@@ -7,12 +7,17 @@
 
 <script>
 import { utilService } from '../services/util.service'
+<<<<<<< HEAD
 import wap from '../services/wap-model.js'
 import cmpEditor from '../cmps/cmp-editor.vue'
+=======
+>>>>>>> 9793fd5492e8b446dc215bc0d7d1266fddde113b
 
 export default {
-  data: {
-    cmps: wap,
+  data() {
+    return {
+      cmps: wap,
+    }
   },
   methods: {
     handleUpdate({ cmpId, name, content, style }) {
@@ -27,7 +32,7 @@ export default {
     },
   },
   created() {
-    console.log(wap);
+    this.$store.dispatch('loadWaps')
   },
   watch: {
     cmps: {
