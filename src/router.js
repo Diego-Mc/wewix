@@ -19,7 +19,7 @@ const routes = [
     component: appTemplates,
   },
   {
-    path: '/edit/:id',
+    path: '/edit/?:id',
     name: 'app-editor',
     component: appEditor,
   },

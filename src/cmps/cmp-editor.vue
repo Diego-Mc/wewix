@@ -1,6 +1,6 @@
 <template>
     <section class="cmp-editor">
-        <font-picker v-if="true"/>
+        <font-picker v-if="isContain('font')"/>
         
     </section>
 </template>
@@ -10,12 +10,16 @@
     import fontPicker from './editor-cmps/font-picker.vue'
 
     export default {
-        computed() {
-            return ['font', 'backgroundColor', 'fontWeight', 'img', 'href', 'borderRadius']
-        },
         methods: {
-            isContain()
+            isContain(type) {
+                return this.types().includes(type)
+            },
+
+            types() {
+                return ['font', 'backgroundColor', 'fontWeight', 'img', 'href', 'borderRadius']
+            } 
         },
+
         components: {
             fontPicker, 
         }
