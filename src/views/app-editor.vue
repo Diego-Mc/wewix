@@ -6,11 +6,12 @@
 
 <script>
 import { utilService } from '../services/util.service'
-import wap from '../services/wap-model.js'
 
 export default {
-  data: {
-    cmps: wap,
+  data() {
+    return {
+      cmps: wap,
+    }
   },
   methods: {
     handleUpdate({ cmpId, name, content, style }) {
@@ -25,7 +26,7 @@ export default {
     },
   },
   created() {
-    console.log(wap);
+    this.$store.dispatch('loadWaps')
   },
   watch: {
     cmps: {
