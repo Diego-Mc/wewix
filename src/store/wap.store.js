@@ -35,6 +35,9 @@ export const wapStore = {
     waps({ waps }) {
       return waps
     },
+    currentWap(){
+
+    }
   },
   mutations: {
     setWaps(state, { waps }) {

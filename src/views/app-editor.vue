@@ -10,7 +10,7 @@ import { utilService } from '../services/util.service'
 export default {
   data() {
     return {
-      cmps: wap,
+      cmps: null,
     }
   },
   methods: {
@@ -21,12 +21,14 @@ export default {
     },
   },
   computed: {
-    getCmpt() {
+    getCmps() {
       return this.$store.getters.cmps
     },
   },
   created() {
-    this.$store.dispatch('loadWaps')
+    //change to loadWapById
+    console.log('wa');
+    // this.$store.dispatch('loadWaps').then(console.log(this.$store.getters))
   },
   watch: {
     cmps: {
