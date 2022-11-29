@@ -1,6 +1,6 @@
 <template>
     <section class="cmp-editor">
-        <font-picker v-if=""/>
+        <font-picker v-if="true"/>
         
     </section>
 </template>
