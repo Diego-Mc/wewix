@@ -5,23 +5,28 @@
   <div v-if="type2">
     <h1 @change="doSomething">Header</h1>
   </div> -->
-  <header>
-    <h1
-      class="title"
-      :style="info.title.style"
-      @change="updateContent('title')"
-      contenteditable>
-      {{ info.title.content.text }}
-    </h1>
-    <p
-      class="text"
-      :style="info.text.style"
-      @change="updateContent('text')"
-      contenteditable>
-      {{ info.text.content.text }}
-    </p>
+  <header class="wap-header">
+    <section class="logo">
+      <section class="img-wrapper">
+        <img :src="info.img.style.imgSrc" />
+      </section>
+      <h1
+        class="title"
+        :style="info.title.style"
+        @change="updateContent('title')"
+        contenteditable>
+        {{ info.title.content.text }}
+      </h1>
+    </section>
+    <nav :style="info.nav.style">
+      <ul>
+        <li v-for="nav in info.nav.content">
+          {{ nav }}
+        </li>
+      </ul>
+    </nav>
     <button class="btn" :style="info.btn.style" @change="updateContent('btn')">
-      {{ info.text.content.text }}
+      {{ info.btn.content.text }}
     </button>
   </header>
 </template>
@@ -33,6 +38,9 @@ export default {
     updateContent(name) {
       this.$emit('update', { cmpId, name, content: info.text.content })
     },
+  },
+  created() {
+    console.log(this.info)
   },
 }
 </script>

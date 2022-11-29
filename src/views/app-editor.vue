@@ -12,7 +12,7 @@ import { utilService } from '../services/util.service'
 
 export default {
   data: {
-    cmps: utilService.deepCopy(getCmps),
+    // cmps: utilService.deepCopy(getCmps),
   },
   methods: {
     handleUpdate({ cmpId, name, content, style }) {

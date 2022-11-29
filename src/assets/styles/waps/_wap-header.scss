@@ -1,0 +1,16 @@
+.wap-header {
+  display: flex;
+  height: 80px;
+  align-items: center;
+  .logo {
+    display: flex;
+    .img-wrapper {
+      width: 40px;
+    }
+    img {
+      width: 100%;
+    }
+  }
+  .title {
+  }
+}
