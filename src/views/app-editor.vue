@@ -10,7 +10,6 @@
 
 <script>
 import { utilService } from '../services/util.service'
-import wap from '../services/wap-model.js'
 import cmpEditor from '../cmps/cmp-editor.vue'
 
 export default {
