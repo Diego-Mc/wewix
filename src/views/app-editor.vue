@@ -1,10 +1,14 @@
 <template>
   <div>
-    <cmp-editor></cmp-editor>
+    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options" :cmpStyle="selectedCmp.style" @update="handleUpdate()"></cmp-editor>
+
     <component
-      v-for="cmp in cmps"
-      is="cmp.type"
-      @update="handleUpdate()"></component>
+        v-for="cmp in cmps"
+        is="cmp.type"
+        @update="handleUpdate()"
+        @select="select">
+    </component>
+
   </div>
 </template>
 
@@ -16,14 +20,27 @@ export default {
   data() {
     return {
       cmps: null,
+      selectedCmp: {},
+      isOpenCmpEditor: true
     }
   },
   methods: {
     handleUpdate({ cmpId, name, content, style }) {
-      const cmp = cmps.find(({ id }) => id === cmpId)
+      const cmp = cmps.find(({ _id }) => _id === cmpId)
       cmp[name] = content ?? cmp.content
       cmp[name] = style ?? cmp.style
     },
+
+    select({cmpId, name}) {
+      const cmp = cmps.find(({ _id }) => id === cmpId)
+
+      this.selectedCmp.style = cmp.style
+      this.selectedCmp._id = cmpId
+      this.selectedCmp.options = Object.keys(this.selectedCmp.style)
+
+      this.isOpenCmpEditor = true
+    }
+
   },
   computed: {
     getCmps() {
