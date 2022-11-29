@@ -1,5 +1,6 @@
 <template>
   <div>
+    <cmp-editor></cmp-editor>
     <component
       v-for="cmp in cmps"
       is="cmp.type"
@@ -9,10 +10,14 @@
 
 <script>
 import { utilService } from '../services/util.service'
+import wap from '../services/wap-model.js'
+import cmpEditor from '../cmps/cmp-editor.vue'
 
 export default {
-  data: {
-    // cmps: utilService.deepCopy(getCmps),
+  data() {
+    return {
+      cmps: null,
+    }
   },
   methods: {
     handleUpdate({ cmpId, name, content, style }) {
@@ -22,9 +27,14 @@ export default {
     },
   },
   computed: {
-    getCmpt() {
+    getCmps() {
       return this.$store.getters.cmps
     },
+  },
+  created() {
+    //change to loadWapById
+    console.log('wa')
+    // this.$store.dispatch('loadWaps').then(console.log(this.$store.getters))
   },
   watch: {
     cmps: {
@@ -33,6 +43,9 @@ export default {
       },
       deep: true,
     },
+  },
+  components: {
+    cmpEditor,
   },
 }
 </script>

@@ -35,6 +35,9 @@ export const wapStore = {
     waps({ waps }) {
       return waps
     },
+    currentWap(){
+
+    }
   },
   mutations: {
     setWaps(state, { waps }) {
@@ -57,6 +60,9 @@ export const wapStore = {
     },
   },
   actions: {
+    updateCmps(context, { cmps }) {
+      console.log(cmps);
+    },
     async addWap(context, { wap }) {
       try {
         wap = await wapService.save(wap)
