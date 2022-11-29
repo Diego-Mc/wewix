@@ -57,6 +57,9 @@ export const wapStore = {
     },
   },
   actions: {
+    updateCmps(context, { cmps }) {
+      console.log(cmps);
+    },
     async addWap(context, { wap }) {
       try {
         wap = await wapService.save(wap)
