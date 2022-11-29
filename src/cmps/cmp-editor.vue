@@ -1,6 +1,6 @@
 <template>
     <section class="cmp-editor">
-        <font-picker v-if="true"/>
+        <font-picker v-if="isContain('font')"/>
         
     </section>
 </template>
@@ -19,7 +19,6 @@
                 return ['font', 'backgroundColor', 'fontWeight', 'img', 'href', 'borderRadius']
             } 
         },
-
 
         components: {
             fontPicker, 

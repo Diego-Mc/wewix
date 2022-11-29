@@ -1,5 +1,6 @@
 <template>
   <div>
+    <cmp-editor></cmp-editor>
     <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()"></component>
   </div>
 </template>
@@ -7,6 +8,7 @@
 <script>
 import { utilService } from '../services/util.service'
 import wap from '../services/wap-model.js'
+import cmpEditor from '../cmps/cmp-editor.vue'
 
 export default {
   data: {
@@ -35,6 +37,9 @@ export default {
       deep: true,
     },
   },
+  components: {
+    cmpEditor
+  }
 }
 </script>
 
