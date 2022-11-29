@@ -6,6 +6,7 @@ import appEditor from './views/app-editor.vue'
 import appDashboard from './views/app-dashboard.vue'
 import appDashboardDetails from './views/app-dashboard-details.vue'
 import appPreview from './views/app-preview.vue'
+import testTest from './views/test-test.vue'
 
 const routes = [
   {
@@ -39,6 +40,11 @@ const routes = [
     path: '/preview/:id',
     name: 'app-preview',
     component: appPreview,
+  },
+  {
+    path: '/test',
+    name: 'test',
+    component: testTest,
   },
   // {
   //   path: dynamicUrl,

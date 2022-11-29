@@ -1,7 +1,10 @@
 <template>
   <div>
     <cmp-editor></cmp-editor>
-    <!-- <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()"></component> -->
+    <component
+      v-for="cmp in cmps"
+      is="cmp.type"
+      @update="handleUpdate()"></component>
   </div>
 </template>
 
@@ -29,7 +32,7 @@ export default {
   },
   created() {
     //change to loadWapById
-    console.log('wa');
+    console.log('wa')
     // this.$store.dispatch('loadWaps').then(console.log(this.$store.getters))
   },
   watch: {
@@ -41,11 +44,9 @@ export default {
     },
   },
   components: {
-    cmpEditor
-  }
+    cmpEditor,
+  },
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
