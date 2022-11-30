@@ -71,7 +71,11 @@ export default {
 
     log() {
       console.log(this.updatedOptions);
-    }
+    },
+
+    updateContent() {
+      this.$emit('update', { cmpId: id, name, content: info.text.content })
+    },
   },
   watch: {
     editOptions() {

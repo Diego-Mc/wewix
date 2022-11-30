@@ -28,7 +28,9 @@
             :info="element.info"
             :options="element.options"
             :cmpId="element.id"
-            @select="select"></component>
+            @select="select">
+            @update="handleUpdate"
+          </component>
         </div>
       </template>
     </draggable>
@@ -46,6 +48,8 @@ import wapTemplates from '../cmps/app-cmps/wap-templates.vue'
 
 import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
+import wapCards from '../cmps/wap-sections/wap-cards.vue'
+import wapSection from '../cmps/wap-sections/wap-section.vue'
 
 import loginModal from '../cmps/app-cmps/login-modal.vue'
 
@@ -95,9 +99,10 @@ export default {
 
     select({ cmpId, name }) {
       const cmp = this.wap.cmps.find(({ id }) => id === cmpId)
+
       this.selectedCmp.id = cmpId
-      this.selectedCmp.options = cmp.options
-      
+      this.selectedCmp.options = (name) ? cmp.info[name].options : cmp.options
+
       this.isOpenCmpEditor = true
     },
   },
@@ -109,7 +114,6 @@ export default {
   watch: {
     wap: {
       handler(wap) {
-        console.log('wa')
         this.updateWap(wap)
       },
       deep: true,
@@ -121,8 +125,10 @@ export default {
     wapTemplates,
     wapHeader,
     draggable,
-    wapHero,,
-    loginModal
+    wapHero,
+    loginModal,
+    wapCards,
+    wapSection
   },
 }
 </script>

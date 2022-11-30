@@ -1,10 +1,10 @@
 <template>
-  <section class="wap-section">
+  <section class="wap-section" @click.stop="$emit('select', {cmpId})">
     <h2
       class="title"
       :style="info.title.options.style"
       @change="updateContent('title')"
-      @click="$emit('select', { cmpId, name: 'title' })"
+      @click.stop="$emit('select', { cmpId, name: 'title' })"
       contenteditable>
       Move your way
       {{ info.title.content.text }}
@@ -13,7 +13,7 @@
       class="text"
       :style="info.text.options.style"
       @change="updateContent('text')"
-      @click="$emit('select', { cmpId, name: 'text' })"
+      @click.stop="$emit('select', { cmpId, name: 'text' })"
       contenteditable>
       Choose the electric ride that suid tour lifestyle
       {{ info.text.content.text }}
