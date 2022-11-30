@@ -10,7 +10,8 @@
       :id="selectedCmp.id"
       :childCmpId="selectedCmp.childCmpId"
       :editOptions="selectedCmp.options"
-      @update="handleUpdate()">
+      :name="selectedCmp.name"
+      @update="handleUpdate">
     </cmp-editor>
 
     <draggable 
@@ -98,6 +99,7 @@ export default {
           return true
         }
       })
+      console.log(this.wap.cmps[cmpIdx].info)
       if (updatedStyle) this.wap.cmps[cmpIdx].info[name].options.style = updatedStyle.style
       if (content) this.wap.cmps[cmpIdx].info[name].content.text = content
       // TODO: remove from here, its only for demonstartion

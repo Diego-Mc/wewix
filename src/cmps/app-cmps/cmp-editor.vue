@@ -72,7 +72,6 @@ export default {
     },
 
     log() {
-      // console.log(this.updatedOptions);
       this.$emit('update', { cmpId: this.id, name: this.name, updatedStyle: this.updatedOptions })
     },
 
