@@ -19,7 +19,6 @@
         <div>
           <component :is="element.type" :info="element.info" :options="element.options" :cmps="element.cmps"
             :cmpId="element.id" @select="select" @update="handleUpdate">
-
           </component>
         </div>
       </template>
@@ -76,15 +75,22 @@ export default {
       return JSON.parse(str)
     },
 
-    handleUpdate({ cmpId, updatedStyle, elType, content }) {
+    handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
       let cmpIdx
+
       const cmp = this.wap.cmps.find(({ id }, idx) => {
         if (id === cmpId) {
           cmpIdx = idx
           return true
         }
       })
-      console.log( this.wap.cmps[cmpIdx],elType)
+      if (cmp?.cmps) {
+        const childCmpIndex = this.wap.cmps[cmpIdx].cmps.findIndex(({ id }) => id === childCmpId)
+        if (updatedStyle) elType ? this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[elType].options.style = updatedStyle.style : this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[elType].options.style = updatedStyle.style
+        if (content) elType ? this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[elType].content.text = content : this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[elType].options.style = updatedStyle.style
+        return
+      }
+
       if (updatedStyle) elType ? this.wap.cmps[cmpIdx].info[elType].options.style = updatedStyle.style : this.wap.cmps[cmpIdx].options.style = updatedStyle.style
       if (content) elType ? this.wap.cmps[cmpIdx].info[elType].content.text = content : this.wap.cmps[cmpIdx].options.style = updatedStyle.style
       // TODO: remove from here, its only for demonstartion
@@ -144,7 +150,15 @@ export default {
     eventBus.on('update', ({ cmpId, updatedStyle, elType, content }) => {
       this.handleUpdate({ cmpId, updatedStyle, elType, content })
     })
-    // console.log(this.wap.cmps[0].info['title'].options.style.style);
+    eventBus.on('onInnerCmpDrop', ({ cmpId, cmps }) => {
+      const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
+      // console.log(this.wap.cmps[cmpIndex].cmps)
+      this.wap.cmps[cmpIndex].cmps = cmps
+      // console.log(this.wap.cmps[cmpIndex].cmps)
+
+      this.saveToStorage('editedWap', this.wap)
+      // this.handleUpdate({ cmpId, updatedStyle, elType, content })
+    })
   },
 
   watch: {
