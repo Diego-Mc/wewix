@@ -1,7 +1,11 @@
 <template>
   <main v-if="wap">
     <wap-templates />
-    <button style="background-color: orange; margin: 10px 0;" @click="updateWap(wap)">publish site</button>
+    <button
+      style="background-color: orange; margin: 10px 0"
+      @click="updateWap(wap)">
+      publish site
+    </button>
 
     <cmp-editor
       v-if="isOpenCmpEditor"
@@ -53,6 +57,7 @@ import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
 import wapCards from '../cmps/wap-sections/wap-cards.vue'
 import wapSection from '../cmps/wap-sections/wap-section.vue'
+import wapForm from '../cmps/wap-sections/wap-form.vue'
 
 import loginModal from '../cmps/app-cmps/login-modal.vue'
 
@@ -94,7 +99,6 @@ export default {
 
     async loadWap() {
       if (this.$route.params?.id) {
-        
         const wap = await this.$store.dispatch({
           type: 'getWap',
           id: this.$route.params.id,
@@ -126,16 +130,15 @@ export default {
       const cmp = this.wap.cmps.find(({ id }) => id === cmpId)
 
       this.selectedCmp.id = cmpId
-      this.selectedCmp.options = (name) ? cmp.info[name].options : cmp.options
+      this.selectedCmp.options = name ? cmp.info[name].options : cmp.options
 
       this.isOpenCmpEditor = true
     },
     getEmptyWap() {
       return {
-        cmps: []
+        cmps: [],
       }
     },
-
   },
 
   created() {
@@ -160,7 +163,8 @@ export default {
     wapHero,
     loginModal,
     wapCards,
-    wapSection
+    wapSection,
+    wapForm,
   },
 }
 </script>
