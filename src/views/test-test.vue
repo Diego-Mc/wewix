@@ -2,6 +2,7 @@
   <div>
     <wap-header :cmpId="id" :info="info" :style="style" />
     <wap-hero :cmpId="id" :info="info" :style="style" />
+    <wap-section :cmpId="id" :info="info" :style="style" />
     <wap-cards :cmpId="id" :info="info" :style="style" />
   </div>
 </template>
@@ -11,6 +12,7 @@
 import wapHeader from '../cmps/wap-header.vue'
 import wapHero from '../cmps/wap-hero.vue'
 import wapCards from '../cmps/wap-cards.vue'
+import wapSection from '../cmps/wap-section.vue'
 export default {
   data() {
     return {
@@ -68,6 +70,7 @@ export default {
     wapHeader,
     wapHero,
     wapCards,
+    wapSection,
   },
 }
 </script>

@@ -1,8 +1,11 @@
 <template>
-  <main>
-    <app-templates />
-    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
-      :cmpStyle="selectedCmp.style" @update="handleUpdate()"></cmp-editor>
+    <main v-if="cmps">
+      <app-templates />
+      <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
+        :cmpStyle="selectedCmp.style" @update="handleUpdate()"></cmp-editor>
+      
+      <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()" @select="select">
+      </component>
 
     <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()" @select="select">
     </component>
@@ -21,11 +24,14 @@
       name: !drag ? 'flip-list' : null
     }" v-model="cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order">
       <template #item="{ element }">
-        <pre>{{ element.type }}</pre>
+        <div>
+          <component :is="element.type" :info="element.info"></component>
+        </div>
       </template>
-
-    </draggable>
-  </main>
+        
+      </draggable>
+              <pre>{{ cmps }}</pre>
+    </main>
 </template>
 
 <script>
@@ -46,6 +52,8 @@ export default {
       cmps: null,
       selectedCmp: {},
       isOpenCmpEditor: true,
+
+      drag: false,
       dragOptions: {
         animation: 200,
         group: "description",
