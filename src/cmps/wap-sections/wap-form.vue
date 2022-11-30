@@ -10,16 +10,7 @@
       {{ info.text.content.text }}
     </p>
     <form>
-      <article class="form-input">
-        <label class="label" :class="{ selected: focused }">
-          {{ focused ? 'Email' : 'your@example.com' }}
-        </label>
-        <input
-          @focusin="focused = true"
-          @focusout="focused = false"
-          class="input email"
-          type="text" />
-      </article>
+      <wap-form-item type="email" />
       <!-- <button class="btn" :style="info.btn.options.style">
         {{ info.btn.content.text }}
       </button> -->
@@ -28,13 +19,10 @@
 </template>
 
 <script>
+import wapFormItem from '../wap-items/wap-form-item.vue'
 export default {
   props: ['info', 'cmpId', 'options'],
-  data() {
-    return {
-      focused: false,
-    }
-  },
+
   methods: {
     updateContent(name) {
       this.$emit('update', { cmpId, name, content: info.text.content })
@@ -42,6 +30,9 @@ export default {
   },
   created() {
     console.log(this.info)
+  },
+  components: {
+    wapFormItem,
   },
 }
 </script>
