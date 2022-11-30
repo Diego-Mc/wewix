@@ -20,6 +20,7 @@
         v-bind="dragOptions" 
         @start="drag = true" 
         @end="drag = false" 
+        
         item-key="order"
         group="sections"
     >
@@ -30,8 +31,9 @@
                 :info="element.info" 
                 :options="element.options" 
                 :cmps="element.cmps"
-                :cmpId="element.id" @select="select">
-                @update="handleUpdate"
+                :cmpId="element.id" @select="select"
+                @update="handleUpdate">
+                
             </component>
           </div>
         </template>
