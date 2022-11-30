@@ -4,11 +4,11 @@
             <h3>login</h3>
             <div class="login-input-container">
                 <label for="">username</label>
-                <input v-model="userCred.username" type="text">
+                <input v-model="loginCred.username" type="text">
             </div>
             <div class="login-input-container">
                 <label for="">password</label>
-                <input v-model="userCred.password" type="text">
+                <input v-model="loginCred.password" type="text">
             </div>
 
             <button @click="onLogin">login</button>
@@ -17,12 +17,16 @@
         <div v-else>
             <h3>sign up</h3>
             <div class="login-input-container">
+                <label for="">full name</label>
+                <input v-model="signupCred.username" type="text">
+            </div>
+            <div class="login-input-container">
                 <label for="">username</label>
-                <input v-model="userCred.username" type="text">
+                <input v-model="signupCred.username" type="text">
             </div>
             <div class="login-input-container">
                 <label for="">password</label>
-                <input v-model="userCred.password" type="text">
+                <input v-model="signupCred.password" type="text">
                 <label for="">confirm password</label>
                 <input v-model="confirmedPassword" type="text">
             </div>
@@ -36,26 +40,25 @@
 
 <script>
 import { userService } from '../../services/user.service';
+
 export default {
     data() {
         return {
             isLogin: true,
-            userCred: {
-                username: null,
-                password: null,
-            },
+            loginCred: { username: 'user1', password: '123' },
+            signupCred: { username: '', password: '', fullname: '', imgUrl: '' },
             confirmedPassword: null
         }
     },
     created() {
-        this.userCred.username = 'puki'
-        this.userCred.password = '123'
+        this.loginCred.username = 'puki'
+        this.loginCred.password = '123'
         this.onLogin(this.userCred)
     },
     methods: {
         async onLogin() {
             try {
-                const userCred = await userService.login(this.userCred)
+                const userCred = await userService.login(this.loginCred)
                 console.log(userCred);
                 this.$store.dispatch({ type: 'login', userCred })
             } catch (err) {
@@ -65,10 +68,10 @@ export default {
         async onSignup() {
             if (this.confirmedPassword !== this.userCred.password) {
                 //TODO: nofity user
-               return console.log('passwords not matching');
+                return console.log('passwords not matching');
             }
             try {
-                const userCred = await userService.signup(this.userCred)
+                const userCred = await userService.signup(this.signupCred)
                 this.$store.dispatch({ type: 'signup', userCred })
             } catch (err) {
                 console.log('oops couldnet sign up', err);

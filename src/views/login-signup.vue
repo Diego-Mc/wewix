@@ -51,7 +51,7 @@
 
 <script>
 
-import imgUploader from '../cmps/img-uploader.vue'
+import imgUploader from '../cmps/app-cmps/img-uploader.vue'
 
 export default {
   name: 'login-signup',
