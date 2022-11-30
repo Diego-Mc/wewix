@@ -513,6 +513,35 @@ export default [
           },
         },
       },
+      {
+        id: 'wc10',
+        type: 'wap-video',
+        options: {
+          meta: {
+            img: '',
+            link: 'https://www.youtube.com/embed/sfabsNX61aU'
+          },
+          style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+              borderRadius: '',
+              fontWeight: '',
+          },
+        },
+        info: {
+          title: {
+            options: {
+              meta: {
+              },
+              style: {
+              },
+            },
+            content: {
+            },
+          },
+        },
+      },
     ],
     isPublic: true,
   },
