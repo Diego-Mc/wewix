@@ -2,6 +2,9 @@
     <app-templates />
     <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
       :cmpStyle="selectedCmp.style" @update="handleUpdate()"></cmp-editor>
+    
+    <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()" @select="select">
+    </component>
 
     <!-- <component
         v-for="cmp in cmps"
@@ -13,8 +16,7 @@
     </component> -->
 
     <draggable 
-        class="list-group" 
-        :list="cmps" 
+        class="list-group"  
         :component-data="{
           type: 'transition-group',
           name: !drag ? 'flip-list' : null
