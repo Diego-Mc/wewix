@@ -1,6 +1,6 @@
 <template>
   <main v-if="wap">
-    <login-modal />     <wap-templates />
+    <login-modal /> <wap-templates />
 
     <cmp-editor
       v-if="isOpenCmpEditor"
@@ -28,6 +28,7 @@
             :is="element.type"
             :info="element.info"
             :options="element.options"
+            :cmps="element.cmps"
             :cmpId="element.id"
             @select="select"></component>
         </div>
@@ -47,6 +48,7 @@ import wapTemplates from '../cmps/app-cmps/wap-templates.vue'
 
 import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
+import wapCards from '../cmps/wap-sections/wap-cards.vue'
 
 import loginModal from '../cmps/app-cmps/login-modal.vue'
 
@@ -120,9 +122,10 @@ export default {
     cmpEditor,
     wapTemplates,
     wapHeader,
+    wapCards,
     draggable,
-    wapHero,,
-    loginModal
+    wapHero,
+    loginModal,
   },
 }
 </script>
