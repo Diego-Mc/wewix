@@ -1,8 +1,9 @@
 import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
-import wapsModel from './wap-model.js'
-const STORAGE_KEY = 'wap'
+
+const WAPS_KEY = 'wapDB'
+import wapsModel from './wap-model'
 
 export const wapService = {
   query,
@@ -12,21 +13,13 @@ export const wapService = {
   getEmptyWap,
   addWapMsg,
 }
+
 window.cs = wapService
+
 async function query(filterBy = { txt: '', price: 0 }) {
-  var waps = await storageService.query(STORAGE_KEY)
-  //change this later!!!!
-  if (!waps.length) waps = wapsModel
-  console.log(waps);
-  if (filterBy.txt) {
-    const regex = new RegExp(filterBy.txt, 'i')
-    waps = waps.filter(
-      (wap) => regex.test(wap.vendor) || regex.test(wap.description)
-    )
-  }
-  if (filterBy.price) {
-    waps = waps.filter((wap) => wap.price <= filterBy.price)
-  }
+  var waps = await storageService.query(WAPS_KEY)
+  if (!waps || !waps.length) waps = wapsModel
+
   return waps
 }
 

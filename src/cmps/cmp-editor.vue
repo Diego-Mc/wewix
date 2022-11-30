@@ -14,8 +14,6 @@
 </template>
 
 <script>
-    import fontPicker from './editor-cmps/font-picker.vue'
-    import colorPicker from './editor-cmps/color-picker.vue'
 
     export default {
         props: {
@@ -30,10 +28,5 @@
                 return true //this.editOptions.includes(type)
             },
         },
-
-        components: {
-            fontPicker, 
-            colorPicker
-        }
     }
 </script>
