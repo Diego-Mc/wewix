@@ -230,8 +230,8 @@ export default {
     },
 
     updateWap(wap) {
-      const updatedWap = JSON.parse(JSON.stringify(wap))
-      this.$store.dispatch({ type: 'updateWap', wap: updatedWap })
+      // const updatedWap = JSON.parse(JSON.stringify(wap))
+      this.$store.dispatch({ type: 'updateWap', wap: wap })
     },
 
     select({ cmpId, name }) {
