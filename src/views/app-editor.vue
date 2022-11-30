@@ -29,7 +29,9 @@
           item-key="order"
       >
       <template #item="{ element }">
-        <component :is="element.type" :info="element.info"></component>
+        <div>
+          <component :is="element.type" :info="element.info"></component>
+        </div>
       </template>
         
       </draggable>
