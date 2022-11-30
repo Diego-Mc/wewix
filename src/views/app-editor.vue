@@ -1,34 +1,24 @@
 <template>
+  <login-modal />
   <main v-if="wap">
 
-      <wap-templates/>
+    <wap-templates />
 
-      <cmp-editor 
-          v-if="isOpenCmpEditor" 
-          :id="selectedCmp._id" 
-          :options="selectedCmp.options"
-          @update="handleUpdate()">
-      </cmp-editor>
-      
+    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
+      :cmpStyle="selectedCmp.style" @update="handleUpdate()">
+    </cmp-editor>
 
-    <draggable 
-        class="list-group" 
-        :component-data="{
-          type: 'transition-group',
-          name: !drag ? 'flip-list' : null}"
-        v-model="wap.cmps"
-        v-bind="dragOptions"
-        @start="drag = true"
-        @end="drag = false"
-        item-key="order"
-        group="sections"
-    >
+
+    <draggable class="list-group" :component-data="{
+      type: 'transition-group',
+      name: !drag ? 'flip-list' : null
+    }" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order"
+      group="sections">
       <template #item="{ element }">
         <div>
-          <component :is="element.type" :info="element.info" :options="element.options.style" :cmpId="element.id" @select="select"></component>
+          <component :is="element.type" :info="element.info" :cmpId="element.id" @select="select"></component>
         </div>
       </template>
-
     </draggable>
     <pre>{{ wap.cmps }}</pre>
   </main>
@@ -45,6 +35,8 @@ import wapTemplates from '../cmps/app-cmps/wap-templates.vue'
 import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
 
+import loginModal from '../cmps/app-cmps/login-modal.vue'
+
 export default {
   data() {
     return {
@@ -55,13 +47,12 @@ export default {
       drag: false,
       dragOptions: {
         animation: 200,
-        group: "description",
+        group: 'description',
         disabled: false,
-        ghostClass: "ghost"
+        ghostClass: 'ghost',
       },
     }
   },
-    
 
   methods: {
     handleUpdate({ cmpId, name, content, style }) {
@@ -73,7 +64,10 @@ export default {
 
     async loadWap() {
       if (this.$route.params.id) {
-        const wap = await this.$store.dispatch({ type: 'getWap', id: this.$route.params.id })
+        const wap = await this.$store.dispatch({
+          type: 'getWap',
+          id: this.$route.params.id,
+        })
         this.wap = JSON.parse(JSON.stringify(wap))
       }
     },
@@ -103,11 +97,11 @@ export default {
   watch: {
     wap: {
       handler(wap) {
+        console.log('wa')
         this.updateWap(wap)
       },
       deep: true,
     },
-
   },
 
   components: {
@@ -119,7 +113,6 @@ export default {
   },
 }
 </script>
-
 
 <style>
 * {
@@ -192,4 +185,3 @@ td {
   min-width: 200px;
 }
 </style>
-
