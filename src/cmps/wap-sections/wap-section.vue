@@ -5,7 +5,7 @@
         class="title"
         :style="info.title.options.style"
         @change="updateContent('title')"
-        @click.stop="$emit('select', { cmpId, name: 'title' })"
+        @click.stop="$emit('select', { cmpId, elType: 'title' })"
         contenteditable>
         Move your way
         {{ info.title.content.text }}
@@ -14,7 +14,7 @@
         class="text"
         :style="info.text.options.style"
         @change="updateContent('text')"
-        @click.stop="$emit('select', { cmpId, name: 'text' })"
+        @click.stop="$emit('select', { cmpId, elType: 'text' })"
         contenteditable>
         Choose the electric ride that suid tour lifestyle
         {{ info.text.content.text }}
@@ -23,7 +23,7 @@
         v-if="info.btn"
         class="btn"
         :style="info.btn.options.style"
-        @click.stop="$emit('select', { cmpId, name: 'btn' })"
+        @click.stop="$emit('select', { cmpId, elType: 'btn' })"
         @change="updateContent('btn')">
         {{ info.btn.content.text }}
       </button>
@@ -39,8 +39,8 @@
 export default {
   props: ['info', 'cmpId', 'options'],
   methods: {
-    updateContent(name) {
-      this.$emit('update', { cmpId, name, content: info.text.content })
+    updateContent(elType) {
+      this.$emit('update', { cmpId, elType, content: info.text.content })
     },
   },
   created() {

@@ -24,8 +24,8 @@ export default {
   props: ['info', 'cmpId', 'options'],
 
   methods: {
-    updateContent(name) {
-      this.$emit('update', { cmpId, name, content: info.text.content })
+    updateContent(elType) {
+      this.$emit('update', { cmpId, elType, content: info.text.content })
     },
   },
   created() {
