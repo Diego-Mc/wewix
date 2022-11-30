@@ -56,6 +56,7 @@
 export default {
   props: {
     id: String,
+    childCmpId: String,
     editOptions: Object,
   },
   data() {
