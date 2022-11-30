@@ -1,7 +1,6 @@
 <template>
-  <login-modal />
   <main v-if="wap">
-    <wap-templates />
+    <login-modal />     <wap-templates />
 
     <cmp-editor
       v-if="isOpenCmpEditor"
@@ -122,7 +121,8 @@ export default {
     wapTemplates,
     wapHeader,
     draggable,
-    wapHero,
+    wapHero,,
+    loginModal
   },
 }
 </script>

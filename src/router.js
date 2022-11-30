@@ -46,6 +46,7 @@ const routes = [
     name: 'test',
     component: testTest,
   },
+
   // {
   //   path: dynamicUrl,
   //   name: 'app-publish',
