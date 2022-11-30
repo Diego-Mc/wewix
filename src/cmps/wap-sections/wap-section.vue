@@ -1,50 +1,67 @@
 <template>
-  <section class="wap-section" @click.stop="$emit('select', { cmpId })">
-    <section class="text-section">
-      <h2
-        class="title"
-        :style="info.title.options.style"
-        @change="updateContent('title')"
-        @click.stop="$emit('select', { cmpId, elType: 'title' })"
-        contenteditable>
-        Move your way
-        {{ info.title.content.text }}
-      </h2>
-      <p
-        class="text"
-        :style="info.text.options.style"
-        @change="updateContent('text')"
-        @click.stop="$emit('select', { cmpId, elType: 'text' })"
-        contenteditable>
-        Choose the electric ride that suid tour lifestyle
-        {{ info.text.content.text }}
-      </p>
-      <button
-        v-if="info.btn"
-        class="btn"
-        :style="info.btn.options.style"
-        @click.stop="$emit('select', { cmpId, elType: 'btn' })"
-        @change="updateContent('btn')">
-        {{ info.btn.content.text }}
-      </button>
-    </section>
-    <section class="img-section">
-      <img
-        src="https://dance.co/_next/image?url=%2Fimages%2Fhome%2Fhome-care%402x.jpg&w=1200&q=75" />
-    </section>
-  </section>
+  <draggable
+    class="list-group wap-section"
+    :component-data="{
+      type: 'transition-group',
+      name: !drag ? 'flip-list' : null,
+    }"
+    v-model="sections"
+    v-bind="dragOptions"
+    @start="drag = true"
+    @end="onDrop"
+    @log="console.log('wi')"
+    item-key="order"
+    group="section">
+    <template #item="{ element }">
+      <component
+        :is="element.type"
+        :key="element.id"
+        :options="element.options"
+        :info="element.info"
+        :cmpId="cmpId"
+        :childCmpId="element.id"
+        @select="emitSelect" />
+    </template>
+  </draggable>
 </template>
 
 <script>
+import wapImgSection from '../wap-items/wap-img-section.vue'
+import wapTextSection from '../wap-items/wap-text-section.vue'
+import draggable from 'vuedraggable'
+import { eventBus } from '../../services/event-bus.service'
 export default {
-  props: ['info', 'cmpId', 'options'],
+  props: ['info', 'cmpId', 'options', 'cmps'],
+
+  data() {
+    return {
+      sections: this.cmps,
+      dragOptions: {
+        animation: 200,
+        group: 'description',
+        disabled: false,
+        ghostClass: 'ghost',
+      },
+      drag: false,
+    }
+  },
+  components: {
+    wapImgSection,
+    wapTextSection,
+    draggable,
+  },
   methods: {
+    emitSelect(data) {
+      this.$emit('select', data)
+    },
+    onDrop() {
+      this.drag = false
+      console.log(this.cards)
+      eventBus.emit('onInnerCmpDrop', { cmpId: this.cmpId, cmps: this.cards })
+    },
     updateContent(elType) {
       this.$emit('update', { cmpId, elType, content: info.text.content })
     },
-  },
-  created() {
-    console.log(this.info)
   },
 }
 </script>

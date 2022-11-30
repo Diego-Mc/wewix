@@ -19,17 +19,18 @@ export default [
       {
         id: 'wc02',
         type: 'wap-header',
+        typeId: 1,
         options: {
           meta: {
             img: '',
-            link: ''
+            link: '',
           },
           style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-              borderRadius: '',
-              fontWeight: '',
+            backgroundColor: '',
+            fontFamily: '',
+            color: '',
+            borderRadius: '',
+            fontWeight: '',
           },
         },
         info: {
@@ -37,7 +38,7 @@ export default [
             options: {
               meta: {
                 img: '',
-                link: ''
+                link: '',
               },
               style: {
                 backgroundColor: '',
@@ -83,8 +84,8 @@ export default [
         options: {
           meta: {},
           style: {
-              borderRadius: '',
-              fontWeight: '',
+            borderRadius: '',
+            fontWeight: '',
           },
         },
         info: {
@@ -484,36 +485,501 @@ export default [
             },
           },
         ],
-        info: {
-          title: {
-            options: {
-              meta: {},
-              style: {
-                backgroundColor: '',
-                fontFamily: '',
-                color: '',
-              },
-            },
-            content: {
-              text: 'Move your way',
-            },
-          },
-          text: {
-            options: {
-              meta: {},
-              style: {
-                backgroundColor: '',
-                fontFamily: '',
-                color: '',
-              },
-            },
-            content: {
-              text: 'Choose the electric ride that suid tour lifeoptions',
-            },
-          },
-        },
       },
     ],
     isPublic: true,
   },
 ]
+
+export const wapsMap = new Map()
+wapsMap.set('wap-header-1', {
+  id: '',
+  type: 'wap-header',
+  typeId: 1,
+  options: {
+    meta: {},
+    style: {
+      backgroundColor: '',
+      fontFamily: '',
+      color: '',
+      fontWeight: '',
+    },
+  },
+  info: {
+    title: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+        },
+      },
+      content: {
+        text: 'Dance',
+      },
+    },
+    nav: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+        },
+      },
+      content: {
+        nav1: 'Concierge',
+        nav2: 'Rides',
+        nav3: 'For Business',
+      },
+    },
+    btn: {
+      options: {
+        meta: {},
+        style: {
+          backgroundColor: '',
+          fontFamily: '',
+          color: '',
+          borderRadius: '',
+          fontWeight: '',
+        },
+      },
+      content: { text: 'Start now' },
+    },
+  },
+})
+wapsMap.set('wap-hero-1', {
+  id: '',
+  type: 'wap-hero',
+  typeId: 1,
+  options: {
+    meta: {},
+    style: {
+      backgroundColor: '',
+      fontFamily: '',
+      color: '',
+      fontWeight: '',
+    },
+  },
+  info: {
+    title: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+        },
+      },
+      content: {
+        text: 'Your future\nis electric',
+      },
+    },
+    text: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+        },
+      },
+      content: {
+        text: 'Get your own ebike or emoped\nwith our flexible subscription',
+      },
+    },
+    btn: {
+      options: {
+        meta: {
+          href: '#',
+        },
+        style: {
+          backgroundColor: '',
+          fontFamily: '',
+          color: '',
+          borderRadius: '',
+          fontWeight: '',
+        },
+      },
+      content: { text: 'Start now' },
+    },
+  },
+})
+wapsMap.set('wap-section-1', {
+  id: '',
+  type: 'wap-section',
+  typeId: 1,
+  options: {
+    meta: {},
+    style: {
+      backgroundColor: '',
+      fontFamily: '',
+      color: '',
+      fontWeight: '',
+    },
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 1,
+      options: {
+        meta: {},
+        style: {
+          backgroundColor: '',
+          fontFamily: '',
+          color: '',
+        },
+      },
+      info: {
+        img: {
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+            },
+          },
+          content: {},
+        },
+        title: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+            },
+          },
+          content: {
+            text: 'Move your way',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+            },
+          },
+          content: {
+            text: 'Choose the electric ride that suid tour lifeoptions',
+          },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-img-section',
+      typeId: 1,
+      options: {
+        meta: {},
+        style: {
+          backgroundColor: '',
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+        },
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://dance.co/_next/image?url=%2Fimages%2Fhome%2Fhome-care%402x.jpg&w=1200&q=75',
+            },
+            style: {},
+          },
+          content: {},
+        },
+      },
+    },
+  ],
+})
+wapsMap.set('wap-cards-1', {
+  id: '',
+  type: 'wap-cards',
+  typeId: 1,
+  options: {
+    meta: {},
+    style: {
+      backgroundColor: '',
+      fontFamily: '',
+      color: '',
+      fontWeight: '',
+    },
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-card',
+      typeId: 1,
+      options: {
+        meta: {},
+        style: {
+          backgroundColor: '',
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+        },
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://dance.co/_next/image?url=%2Fimages%2Frides%2Febikes%2Fone-step-card%402x.png&w=1920&q=75',
+            },
+            style: {},
+          },
+          content: {},
+        },
+        details: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+            },
+          },
+          content: {
+            text: 'From $39/mo',
+          },
+        },
+        tag: {
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+            },
+          },
+          content: {
+            text: 'Automn offer',
+          },
+        },
+        title: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+            },
+          },
+          content: {
+            text: 'Dance One Step',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+            },
+          },
+          content: {
+            text: 'Ebike',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+            },
+          },
+          content: { text: 'See details' },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-card',
+      typeId: 1,
+      options: {
+        meta: {},
+        style: {
+          backgroundColor: '',
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+        },
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://dance.co/_next/image?url=%2Fimages%2Frides%2Febikes%2Fdiamond-card%402x.png&w=1920&q=75',
+            },
+            style: {},
+          },
+          content: {},
+        },
+        details: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+            },
+          },
+          content: {
+            text: 'From $39/mo',
+          },
+        },
+        tag: {
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+            },
+          },
+          content: {
+            text: 'Automn offer',
+          },
+        },
+        title: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+            },
+          },
+          content: {
+            text: 'Dance One',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+            },
+          },
+          content: {
+            text: 'Ebike',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+            },
+          },
+          content: { text: 'See details' },
+        },
+      },
+    },
+    {
+      id: '3',
+      type: 'wap-card',
+      typeId: 1,
+      options: {
+        meta: {},
+        style: {
+          backgroundColor: '',
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+        },
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://dance.co/_next/image?url=%2Fimages%2Frides%2Femoped%2Femoped-card%402x.png&w=1920&q=75',
+            },
+            style: {},
+          },
+          content: {},
+        },
+        details: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+            },
+          },
+          content: {
+            text: 'From $49/mo',
+          },
+        },
+        tag: {
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+            },
+          },
+          content: {
+            text: 'Automn offer',
+          },
+        },
+        title: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+            },
+          },
+          content: {
+            text: 'Dance Moped',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+            },
+          },
+          content: {
+            text: 'Emoped',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+            },
+          },
+          content: { text: 'See details', link: '#wc03' },
+        },
+      },
+    },
+  ],
+})
