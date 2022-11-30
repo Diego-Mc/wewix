@@ -47,7 +47,13 @@
         Link
         <input @input="log" v-model="updatedOptions.meta.link" type="text" placeholder="link" />
       </div>
+
+      <div>
+        <button @click.stop="removeCmp">Delete</button>
+      </div>
     </section>
+
+
   </section>
 </template>
 
@@ -73,6 +79,7 @@ export default {
       return options.includes(type)
     },
 
+    //TODO CHANGE NAME
     log() {
       this.$emit('update', {
         cmpId: this.id,
@@ -85,11 +92,21 @@ export default {
     updateContent() {
       this.$emit('update', { cmpId: id, elType, content: info.text.content, childCmpId: this.childCmpId })
     },
+
+    removeCmp() {
+      console.log(this.childCmpId, this.cmpId);
+        this.$store.dispatch({ 
+          type: 'removeCmp', 
+          isChildCmp: this.childCmpId, 
+          cmpId: (this.childCmpId) ? this.childCmpId : this.id})
+    }
   },
   watch: {
     editOptions() {
       this.updatedOptions = JSON.parse(JSON.stringify(this.editOptions))
     },
   },
+
+
 }
 </script>
