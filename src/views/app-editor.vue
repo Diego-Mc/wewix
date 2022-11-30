@@ -5,9 +5,8 @@
 
     <cmp-editor
       v-if="isOpenCmpEditor"
-      :id="selectedCmp._id"
+      :id="selectedCmp.id"
       :editOptions="selectedCmp.options"
-      :cmpStyle="selectedCmp.style"
       @update="handleUpdate()">
     </cmp-editor>
 
@@ -56,7 +55,7 @@ export default {
     return {
       wap: null,
       selectedCmp: {},
-      isOpenCmpEditor: true,
+      isOpenCmpEditor: false,
 
       drag: false,
       dragOptions: {
@@ -99,6 +98,7 @@ export default {
       const cmp = this.wap.cmps.find(({ id }) => id === cmpId)
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = cmp.options
+      
       this.isOpenCmpEditor = true
     },
   },

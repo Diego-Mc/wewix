@@ -1,7 +1,7 @@
 <template>
   <section>
     <h3>sections to add</h3>
-    <draggable class=" list-group" :list="cmpsTest" item-key="order"
+    <draggable :sort="false" class=" list-group" :list="cmpsTest" item-key="order"
       :group="{ name: 'sections', pull: 'clone', put: false }">
       <template #item="{ element }">
         <li class="list-group-item" :style="{ backgroundColor: element.backgroundColor }">

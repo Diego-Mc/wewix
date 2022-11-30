@@ -16,7 +16,7 @@
         {{ info.title.content.text }}
       </h1>
     </section>
-    <nav :style="info.nav.options.style" @click="$emit('select', cmpId)">
+    <nav :style="info.nav.options.style" @click="$emit('select', { cmpId, name: 'nav' })">
       <ul>
         <li v-for="nav in info.nav.content">
           {{ nav }}

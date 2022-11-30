@@ -22,17 +22,20 @@ export default [
         options: {
           meta: {},
           style: {
-            style: {
               backgroundColor: '',
               fontFamily: '',
               color: '',
-            },
+              borderRadius: '',
+              fontWeight: '',
           },
         },
         info: {
           title: {
             options: {
-              meta: {},
+              meta: {
+                img: '',
+                link: ''
+              },
               style: {
                 backgroundColor: '',
                 fontFamily: '',
