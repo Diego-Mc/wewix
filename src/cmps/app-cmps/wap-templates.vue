@@ -6,7 +6,7 @@
       class="list-group"
       :list="cmpsTest"
       item-key="order"
-      :group="{ elType: 'sections', pull: 'clone', put: false }">
+      :group="{ name: 'sections', pull: 'clone', put: false }">
       <template #item="{ element }">
         <li
           class="list-group-item"
