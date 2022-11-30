@@ -22,17 +22,18 @@
             type: 'transition-group',
             name: !drag ? 'flip-list' : null
           }" 
-          v-model="cmps" 
+          v-model="cmpsTest" 
           v-bind="dragOptions"
           @start="drag = true"
           @end="drag = false"
           item-key="order"
       >
       <template #item="{ element }">
-        <pre>{{ element.type }}</pre>
+        <component :is="element.type" :info="element.info"></component>
       </template>
         
       </draggable>
+              <pre>{{ cmps }}</pre>
     </main>
 </template>
 
@@ -45,6 +46,7 @@ import { utilService } from '../services/util.service'
 
 import cmpEditor from '../cmps/cmp-editor.vue'
 import wapHeader from '../cmps/wap-header.vue'
+import wapHero from '../cmps/wap-hero.vue'
 import appTemplates from './app-templates.vue'
 
 export default {
@@ -52,6 +54,8 @@ export default {
     return {
       selectedCmp: {},
       isOpenCmpEditor: true,
+
+      drag: false,
       dragOptions: {
         animation: 200,
         group: "description",
@@ -192,7 +196,8 @@ export default {
     cmpEditor,
     appTemplates,
     wapHeader,
-    draggable
+    draggable,
+    wapHero
   },
 }
 </script>
