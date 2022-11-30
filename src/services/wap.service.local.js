@@ -17,38 +17,28 @@ export const wapService = {
 window.cs = wapService
 
 async function query(filterBy = { txt: '', price: 0 }) {
-  var waps = await storageService.query(STORAGE_KEY)
-
-  //change this later!!!!
-  // if (!waps.length) waps = wapsModel
-  if (filterBy.txt) {
-    const regex = new RegExp(filterBy.txt, 'i')
-    waps = waps.filter(
-      (wap) => regex.test(wap.vendor) || regex.test(wap.description)
-    )
-  }
-  if (filterBy.price) {
-    waps = waps.filter((wap) => wap.price <= filterBy.price)
-  }
+  var waps = await storageService.query(WAPS_KEY)
+  if (!waps || !waps.length) waps = wapsModel
+  
   return waps
 }
 
 function getById(wapId) {
-  return storageService.get(STORAGE_KEY, wapId)
+  return storageService.get(WAPS_KEY, wapId)
 }
 
 async function remove(wapId) {
-  await storageService.remove(STORAGE_KEY, wapId)
+  await storageService.remove(WAPS_KEY, wapId)
 }
 
 async function save(wap) {
   var savedWap
   if (wap._id) {
-    savedWap = await storageService.put(STORAGE_KEY, wap)
+    savedWap = await storageService.put(WAPS_KEY, wap)
   } else {
     // Later, owner is set by the backend
     wap.owner = userService.getLoggedinUser()
-    savedWap = await storageService.post(STORAGE_KEY, wap)
+    savedWap = await storageService.post(WAPS_KEY, wap)
   }
   return savedWap
 }
@@ -64,7 +54,7 @@ async function addWapMsg(wapId, txt) {
     txt,
   }
   wap.msgs.push(msg)
-  await storageService.put(STORAGE_KEY, wap)
+  await storageService.put(WAPS_KEY, wap)
 
   return msg
 }
@@ -79,7 +69,5 @@ function getEmptyWap() {
 // TEST DATA
 ; (async () => {
   const waps = await wapService.query()
-  console.log(waps);
-  if (!waps.length) await storageService.post(STORAGE_KEY, wapsModel)
-
+  if (!waps || !waps.length) await storageService.post(WAPS_KEY, wapsModel)
 })()

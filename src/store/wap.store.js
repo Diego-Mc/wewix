@@ -98,6 +98,7 @@ export const wapStore = {
         throw err
       }
     },
+    
     async loadWaps(context) {
       try {
         const waps = await wapService.query()
