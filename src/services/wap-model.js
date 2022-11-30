@@ -94,6 +94,35 @@ export default [
           },
         },
       },
+      {
+        id: 'wc03',
+        type: 'wap-section',
+        style: {
+          backgroundColor: '',
+        },
+        info: {
+          title: {
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+            },
+            content: {
+              text: 'Move your way',
+            },
+          },
+          text: {
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+            },
+            content: {
+              text: 'Choose the electric ride that suid tour lifestyle',
+            },
+          },
+        },
+      },
     ],
     isPublic: true,
   },
