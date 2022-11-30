@@ -83,8 +83,8 @@ export default [
         options: {
           meta: {},
           style: {
-            borderRadius: '',
-            fontWeight: '',
+              borderRadius: '',
+              fontWeight: '',
           },
         },
         info: {

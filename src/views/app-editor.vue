@@ -3,8 +3,6 @@
     <wap-templates />
     <button style="background-color: orange; margin: 10px 0;" @click="updateWap(wap)">publish site</button>
 
-    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
-      :cmpStyle="selectedCmp.style" @update="handleUpdate()">
     <cmp-editor
       v-if="isOpenCmpEditor"
       :id="selectedCmp.id"
@@ -12,19 +10,31 @@
       @update="handleUpdate()">
     </cmp-editor>
 
-    <draggable class="list-group" :component-data="{
-      type: 'transition-group',
-      name: !drag ? 'flip-list' : null,
-    }" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order"
-      group="sections">
-      <template #item="{ element }">
-        <div>
-          <component :is="element.type" :info="element.info" :options="element.options" :cmps="element.cmps"
-            :cmpId="element.id" @select="select">
-            @update="handleUpdate"
-          </component>
-        </div>
-      </template>
+    <draggable 
+        class="list-group" 
+        :component-data="{
+          type: 'transition-group',
+          name: !drag ? 'flip-list' : null,
+        }" 
+        v-model="wap.cmps" 
+        v-bind="dragOptions" 
+        @start="drag = true" 
+        @end="drag = false" 
+        item-key="order"
+        group="sections"
+    >
+        <template #item="{ element }">
+          <div>
+            <component 
+                :is="element.type" 
+                :info="element.info" 
+                :options="element.options" 
+                :cmps="element.cmps"
+                :cmpId="element.id" @select="select">
+                @update="handleUpdate"
+            </component>
+          </div>
+        </template>
     </draggable>
     <pre>{{ wap.cmps }}</pre>
   </main>
@@ -41,7 +51,6 @@ import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
 import wapCards from '../cmps/wap-sections/wap-cards.vue'
 import wapSection from '../cmps/wap-sections/wap-section.vue'
-import wapCards from '../cmps/wap-sections/wap-cards.vue'
 
 import loginModal from '../cmps/app-cmps/login-modal.vue'
 
@@ -110,6 +119,7 @@ export default {
     publishWap() {
       this.$store.dispatch({ type: 'updateWap', wap: wap })
     },
+
     select({ cmpId, name }) {
       const cmp = this.wap.cmps.find(({ id }) => id === cmpId)
 
@@ -145,10 +155,8 @@ export default {
     wapHeader,
     wapCards,
     draggable,
-    wapHero
-    loginModal,
     wapHero,
-    loginModal,,
+    loginModal,
     wapCards,
     wapSection
   },
