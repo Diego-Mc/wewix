@@ -13,10 +13,7 @@
 
       <div v-if="isOptionsContain('backgroundColor')">
         Background Color Picker
-        <input
-          @input="log"
-          v-model="updatedOptions.style.backgroundColor"
-          type="color" />
+        <input @input="log" v-model="updatedOptions.style.backgroundColor" type="color" />
       </div>
 
       <div v-if="isOptionsContain('color')">
@@ -36,30 +33,19 @@
 
       <div v-if="isOptionsContain('borderRadius')">
         Border Radius Picker
-        <input
-          @input="log"
-          v-model="updatedOptions.style.borderRadius"
-          type="range" />
+        <input @input="log" v-model="updatedOptions.style.borderRadius" type="range" />
       </div>
     </section>
 
     <section class="content-editor">
       <div v-if="isOptionsContain('img')">
         Img Picker
-        <input
-          @input="log"
-          v-model="updatedOptions.meta.img"
-          type="text"
-          placeholder="img" />
+        <input @input="log" v-model="updatedOptions.meta.img" type="text" placeholder="img" />
       </div>
 
       <div v-if="isOptionsContain('link')">
         Link
-        <input
-          @input="log"
-          v-model="updatedOptions.meta.link"
-          type="text"
-          placeholder="link" />
+        <input @input="log" v-model="updatedOptions.meta.link" type="text" placeholder="link" />
       </div>
     </section>
   </section>
@@ -92,11 +78,12 @@ export default {
         cmpId: this.id,
         elType: this.elType,
         updatedStyle: this.updatedOptions,
+        childCmpId: this.childCmpId
       })
     },
 
     updateContent() {
-      this.$emit('update', { cmpId: id, elType, content: info.text.content })
+      this.$emit('update', { cmpId: id, elType, content: info.text.content, childCmpId: this.childCmpId })
     },
   },
   watch: {
