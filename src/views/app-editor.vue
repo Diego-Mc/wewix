@@ -7,7 +7,7 @@
     <!-- test -->
     <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
       :cmpStyle="selectedCmp.style" @update="handleUpdate()"></cmp-editor>
-
+    
     <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()" @select="select">
     </component>
 
