@@ -5,42 +5,23 @@
       publish site
     </button>
 
-    <cmp-editor
-      v-if="isOpenCmpEditor"
-      :id="selectedCmp.id"
-      :childCmpId="selectedCmp.childCmpId"
-      :editOptions="selectedCmp.options"
-      :elType="selectedCmp.elType"
-      @update="handleUpdate">
+    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp.id" :childCmpId="selectedCmp.childCmpId"
+      :editOptions="selectedCmp.options" :elType="selectedCmp.elType" @update="handleUpdate">
     </cmp-editor>
 
-    <draggable
-        class="list-group"
-        :component-data="{
-          type: 'transition-group',
-          name: !drag ? 'flip-list' : null,
-        }"
-        v-model="wap.cmps"
-        v-bind="dragOptions"
-        @start="drag = true"
-        @end="drag = false"
+    <draggable class="list-group" :component-data="{
+      type: 'transition-group',
+      name: !drag ? 'flip-list' : null,
+    }" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order"
+      group="sections">
+      <template #item="{ element }">
+        <div>
+          <component :is="element.type" :info="element.info" :options="element.options" :cmps="element.cmps"
+            :cmpId="element.id" @select="select" @update="handleUpdate">
 
-        item-key="order"
-        group="sections"
-    >
-        <template #item="{ element }">
-          <div>
-            <component
-                :is="element.type"
-                :info="element.info"
-                :options="element.options"
-                :cmps="element.cmps"
-                :cmpId="element.id" @select="select"
-                @update="handleUpdate">
-
-            </component>
-          </div>
-        </template>
+          </component>
+        </div>
+      </template>
     </draggable>
     <pre>{{ wap.cmps }}</pre>
   </main>
@@ -99,9 +80,9 @@ export default {
           return true
         }
       })
-      console.log(this.wap.cmps[cmpIdx].info)
-      if (updatedStyle) this.wap.cmps[cmpIdx].info[elType].options.style = updatedStyle.style
-      if (content) this.wap.cmps[cmpIdx].info[elType].content.text = content
+      console.log( this.wap.cmps[cmpIdx],elType)
+      if (updatedStyle) elType ? this.wap.cmps[cmpIdx].info[elType].options.style = updatedStyle.style : this.wap.cmps[cmpIdx].options.style = updatedStyle.style
+      if (content) elType ? this.wap.cmps[cmpIdx].info[elType].content.text = content : this.wap.cmps[cmpIdx].options.style = updatedStyle.style
       // TODO: remove from here, its only for demonstartion
 
       this.updateWap(this.wap)
@@ -138,8 +119,8 @@ export default {
       let cmp = this.wap.cmps.find(({ id }) => id === cmpId)
 
       if (childCmpId) {
-          cmp = cmp.cmps.find(({id}) => id === childCmpId)
-          this.selectedCmp.childCmpId = childCmpId
+        cmp = cmp.cmps.find(({ id }) => id === childCmpId)
+        this.selectedCmp.childCmpId = childCmpId
       }
 
       this.selectedCmp.id = cmpId
@@ -165,6 +146,7 @@ export default {
   watch: {
     wap: {
       handler(wap) {
+        console.log('wa')
         this.saveToStorage('editedWap', wap)
       },
       deep: true,

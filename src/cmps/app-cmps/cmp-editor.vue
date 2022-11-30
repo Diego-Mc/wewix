@@ -71,7 +71,7 @@ export default {
     id: String,
     childCmpId: String,
     editOptions: Object,
-    elType: null,
+    elType: String,
   },
   data() {
     return {
