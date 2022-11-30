@@ -8,8 +8,8 @@
 
 <script>
 import { store } from './store/store'
-import appHeader from './cmps/app-header.vue'
-import userMsg from './cmps/user-msg.vue'
+import appHeader from './cmps/app-cmps/app-header.vue'
+import userMsg from './cmps/app-cmps/user-msg.vue'
 import { userService } from './services/user.service'
 
 export default {

@@ -9,10 +9,10 @@
 
 <script>
 
-import wapHeader from '../cmps/wap-header.vue'
-import wapHero from '../cmps/wap-hero.vue'
-import wapCards from '../cmps/wap-cards.vue'
-import wapSection from '../cmps/wap-section.vue'
+import wapHeader from '../cmps/wap-sections/wap-header.vue'
+import wapHero from '../cmps/wap-sections/wap-hero.vue'
+import wapCards from '../cmps/wap-sections/wap-cards.vue'
+import wapSection from '../cmps/wap-sections/wap-section.vue'
 export default {
   data() {
     return {
