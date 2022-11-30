@@ -1,37 +1,30 @@
 <template>
   <main v-if="wap">
 
-    <section>
-      <h3>sections to add</h3>
-      <draggable class=" list-group" :list="list1" item-key="order"
-        :group="{ name: 'sections', pull: 'clone', put: false }">
-        <template #item="{ element }">
-          <li class="list-group-item" :style="{ backgroundColor: element.backgroundColor }">
-            <p>{{ element.name }}</p>
-          </li>
-        </template>
-      </draggable>
-    </section>
+      <wap-templates/>
 
-    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
-      :cmpStyle="selectedCmp.style" @update="handleUpdate()" >
-    </cmp-editor>
+      <cmp-editor 
+          v-if="isOpenCmpEditor" 
+          :id="selectedCmp._id" 
+          :editOptions="selectedCmp.options"
+          :cmpStyle="selectedCmp.style" 
+          @update="handleUpdate()">
+      </cmp-editor>
+      
 
-
-    <!-- <component
-          v-for="cmp in cmps"
-          :is="cmp.type"
-          :info="cmp.info"
-          :cmpId="cmp._id"
-          @update="handleUpdate()"
-          @select="select">
-      </component> -->
-
-    <draggable class="list-group" :component-data="{
-      type: 'transition-group',
-      name: !drag ? 'flip-list' : null
-    }" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order">
-      <template #item="{ element }" group="sections">
+    <draggable 
+        class="list-group" 
+        :component-data="{
+          type: 'transition-group',
+          name: !drag ? 'flip-list' : null}"
+        v-model="wap.cmps"
+        v-bind="dragOptions"
+        @start="drag = true"
+        @end="drag = false"
+        item-key="order"
+        group="sections"
+    >
+      <template #item="{ element }">
         <div>
           <component :is="element.type" :info="element.info" @swap=""></component>
         </div>
@@ -223,8 +216,8 @@ export default {
     },
 
     updateWap(wap) {
-      const updatedWap = JSON.parse(JSON.stringify(wap))
-      this.$store.dispatch({ type: 'updateWap', wap: updatedWap })
+      // const updatedWap = JSON.parse(JSON.stringify(wap))
+      this.$store.dispatch({ type: 'updateWap', wap: wap })
     },
 
     select({ cmpId, name }) {
@@ -251,6 +244,7 @@ export default {
   watch: {
     wap: {
       handler(wap) {
+        console.log('wa');
         this.updateWap(wap)
       },
       deep: true,
