@@ -24,22 +24,31 @@ export function getActionAddWapMsg(wapId) {
     type: 'addWapMsg',
     wapId,
     txt: 'Stam txt',
+    user: {
+
+    }
   }
 }
 
 export const wapStore = {
   state: {
     waps: [],
+    editedWap: null,
   },
+
   getters: {
     waps({ waps }) {
       return waps
     },
-    currentWap(){
-
+    editedWap({ editedWap }) {
+      return editedWap
     }
   },
+
   mutations: {
+    setEditedWap(state, { wap }) {
+      state.editedWap = wap
+    },
     setWaps(state, { waps }) {
       state.waps = waps
     },
@@ -58,8 +67,14 @@ export const wapStore = {
       if (!wap.msgs) wap.msgs = []
       wap.msgs.push(msg)
     },
+    
   },
   actions: {
+    async getWap(context, { id }) {
+      const wap = await wapService.getById(id)
+      context.commit({ type: 'setEditedWap', wap })
+      return wap
+    },
     updateCmps(context, { cmps }) {
       console.log(cmps);
     },
@@ -83,6 +98,7 @@ export const wapStore = {
         throw err
       }
     },
+    
     async loadWaps(context) {
       try {
         const waps = await wapService.query()
@@ -92,6 +108,7 @@ export const wapStore = {
         throw err
       }
     },
+
     async removeWap(context, { wapId }) {
       try {
         await wapService.remove(wapId)
