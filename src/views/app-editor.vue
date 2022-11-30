@@ -1,34 +1,19 @@
 <template>
   <main v-if="wap">
-    <login-modal />     <wap-templates />
-
-    <cmp-editor
-      v-if="isOpenCmpEditor"
-      :id="selectedCmp._id"
-      :editOptions="selectedCmp.options"
-      :cmpStyle="selectedCmp.style"
-      @update="handleUpdate()">
+    <wap-templates />
+    <button style="background-color: orange; margin: 10px 0;" @click="updateWap(wap)">publish site</button>
+    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
+      :cmpStyle="selectedCmp.style" @update="handleUpdate()">
     </cmp-editor>
 
-    <draggable
-      class="list-group"
-      :component-data="{
-        type: 'transition-group',
-        name: !drag ? 'flip-list' : null,
-      }"
-      v-model="wap.cmps"
-      v-bind="dragOptions"
-      @start="drag = true"
-      @end="drag = false"
-      item-key="order"
+    <draggable class="list-group" :component-data="{
+      type: 'transition-group',
+      name: !drag ? 'flip-list' : null,
+    }" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order"
       group="sections">
       <template #item="{ element }">
         <div>
-          <component
-            :is="element.type"
-            :info="element.info"
-            :options="element.options"
-            :cmpId="element.id"
+          <component :is="element.type" :info="element.info" :options="element.options" :cmpId="element.id"
             @select="select"></component>
         </div>
       </template>
@@ -44,7 +29,6 @@ import { utilService } from '../services/util.service'
 
 import cmpEditor from '../cmps/app-cmps/cmp-editor.vue'
 import wapTemplates from '../cmps/app-cmps/wap-templates.vue'
-
 import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
 
@@ -68,6 +52,7 @@ export default {
   },
 
   methods: {
+
     handleUpdate({ cmpId, name, content, style }) {
       const cmp = wap.cmps.find(({ _id }) => _id === cmpId)
       wap.cmps.cmp[name] = content ?? cmp.content
@@ -82,6 +67,8 @@ export default {
           id: this.$route.params.id,
         })
         this.wap = JSON.parse(JSON.stringify(wap))
+      } else {
+        this.wap = this.getEmptyWap()
       }
     },
 
@@ -93,13 +80,21 @@ export default {
       // const updatedWap = JSON.parse(JSON.stringify(wap))
       this.$store.dispatch({ type: 'updateWap', wap: wap })
     },
-
+    publishWap() {
+      this.$store.dispatch({ type: 'updateWap', wap: wap })
+    },
     select({ cmpId, name }) {
       const cmp = this.wap.cmps.find(({ id }) => id === cmpId)
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = cmp.options
       this.isOpenCmpEditor = true
     },
+    getEmptyWap() {
+      return {
+        cmps: []
+      }
+    },
+
   },
 
   created() {
@@ -109,8 +104,7 @@ export default {
   watch: {
     wap: {
       handler(wap) {
-        console.log('wa')
-        this.updateWap(wap)
+        // this.updateWap(wap)
       },
       deep: true,
     },
@@ -121,7 +115,7 @@ export default {
     wapTemplates,
     wapHeader,
     draggable,
-    wapHero,,
+    wapHero,
     loginModal
   },
 }
