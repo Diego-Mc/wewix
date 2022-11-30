@@ -1,7 +1,6 @@
 <template>
   <main v-if="wap">
 
-<<<<<<< HEAD
       <wap-templates/>
 
       <cmp-editor 
@@ -18,53 +17,13 @@
         :component-data="{
           type: 'transition-group',
           name: !drag ? 'flip-list' : null}"
-        v-model="cmpsTest"
+        v-model="wap.cmps"
         v-bind="dragOptions"
         @start="drag = true"
         @end="drag = false"
         item-key="order"
         group="sections"
     >
-=======
-    <section>
-      <h3>sections to add</h3>
-      <draggable class=" list-group" :list="list1" item-key="order"
-        :group="{ name: 'sections', pull: 'clone', put: false }">
-        <template #item="{ element }">
-          <li class="list-group-item" :style="{ backgroundColor: element.backgroundColor }">
-            <p>{{ element.name }}</p>
-          </li>
-        </template>
-      </draggable>
-    </section>
-
-    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
-      :cmpStyle="selectedCmp.style" @update="handleUpdate()">
-    </cmp-editor>
-
-    <component v-for="cmp in wap.cmps" is="cmp.type" @update="handleUpdate()" @select="select">
-    </component>
-
-    <component v-for="cmp in wap.cmps" is="cmp.type" @update="handleUpdate()" @select="select">
-    </component>
-
-    <component v-for="cmp in wap.cmps" is="cmp.type" @update="handleUpdate()" @select="select">
-    </component>
-
-    <!-- <component
-          v-for="cmp in cmps"
-          :is="cmp.type"
-          :info="cmp.info"
-          :cmpId="cmp._id"
-          @update="handleUpdate()"
-          @select="select">
-      </component> -->
-
-    <draggable class="list-group" :component-data="{
-      type: 'transition-group',
-      name: !drag ? 'flip-list' : null
-    }" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order">
->>>>>>> 312a2a4b0df9388622408077d6def1de9b91ec99
       <template #item="{ element }">
         <div>
           <component :is="element.type" :info="element.info" @swap=""></component>
@@ -285,6 +244,7 @@ export default {
   watch: {
     wap: {
       handler(wap) {
+        console.log('wa');
         this.updateWap(wap)
       },
       deep: true,
