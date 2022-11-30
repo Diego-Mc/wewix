@@ -1,17 +1,7 @@
 <template>
     <main v-if="cmps">
 
-      <section>
-        <h3>sections to add</h3>
-        <draggable class=" list-group" :list="list1" item-key="order"
-          :group="{ name: 'sections', pull: 'clone', put: false }">
-          <template #item="{ element }">
-            <li class="list-group-item" :style="{ backgroundColor: element.backgroundColor }">
-              <p>{{ element.name }}</p>
-            </li>
-          </template>
-        </draggable>
-      </section>
+      <wap-templates/>
 
       <cmp-editor 
           v-if="isOpenCmpEditor" 
@@ -21,25 +11,19 @@
           @update="handleUpdate()">
       </cmp-editor>
       
-      <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()" @select="select">
-      </component>
 
-    <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()" @select="select">
-    </component>
-
-    <!-- <component
-          v-for="cmp in cmps"
-          :is="cmp.type"
-          :info="cmp.info"
-          :cmpId="cmp._id"
-          @update="handleUpdate()"
-          @select="select">
-      </component> -->
-
-    <draggable class="list-group" :component-data="{
-      type: 'transition-group',
-      name: !drag ? 'flip-list' : null
-    }" v-model="cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order">
+    <draggable 
+        class="list-group" 
+        :component-data="{
+          type: 'transition-group',
+          name: !drag ? 'flip-list' : null}"
+        v-model="cmpsTest"
+        v-bind="dragOptions"
+        @start="drag = true"
+        @end="drag = false"
+        item-key="order"
+        group="sections"
+    >
       <template #item="{ element }">
         <div>
           <component :is="element.type" :info="element.info"></component>
@@ -56,10 +40,11 @@ import draggable from 'vuedraggable'
 
 import { utilService } from '../services/util.service'
 
-import cmpEditor from '../cmps/cmp-editor.vue'
-import wapHeader from '../cmps/wap-header.vue'
-import wapHero from '../cmps/wap-hero.vue'
-import appTemplates from './app-templates.vue'
+import cmpEditor from '../cmps/app-cmps/cmp-editor.vue'
+import wapTemplates from '../cmps/app-cmps/wap-templates.vue'
+
+import wapHeader from '../cmps/wap-sections/wap-header.vue'
+import wapHero from '../cmps/wap-sections/wap-hero.vue'
 
 export default {
   data() {
@@ -262,7 +247,7 @@ export default {
 
   components: {
     cmpEditor,
-    appTemplates,
+    wapTemplates,
     wapHeader,
     draggable,
     wapHero
