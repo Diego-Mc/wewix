@@ -30,16 +30,20 @@ export function getActionAddWapMsg(wapId) {
 export const wapStore = {
   state: {
     waps: [],
+    editedWap: null,
   },
   getters: {
     waps({ waps }) {
       return waps
     },
-    currentWap(){
-
+    editedWap({ editedWap }) {
+      return editedWap
     }
   },
   mutations: {
+    setEditedWap(state, { wap }) {
+      state.editedWap = wap
+    },
     setWaps(state, { waps }) {
       state.waps = waps
     },
@@ -60,6 +64,11 @@ export const wapStore = {
     },
   },
   actions: {
+    async getWap(context, { id }) {
+      const wap = await wapService.getById(id)
+      context.commit({ type: 'setEditedWap', wap })
+      return wap
+    },
     updateCmps(context, { cmps }) {
       console.log(cmps);
     },

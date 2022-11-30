@@ -1,10 +1,10 @@
 <template>
   <div>
     <cmp-editor></cmp-editor>
-    <component
-      v-for="cmp in cmps"
-      is="cmp.type"
-      @update="handleUpdate()"></component>
+    <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()"></component>
+    <!-- test -->
+    <p v-if="cmps"> {{ cmps }}</p>
+    <!-- test -->
   </div>
 </template>
 
@@ -15,7 +15,6 @@ import cmpEditor from '../cmps/cmp-editor.vue'
 export default {
   data() {
     return {
-      cmps: null,
     }
   },
   methods: {
@@ -24,21 +23,31 @@ export default {
       cmp[name] = content ?? cmp.content
       cmp[name] = style ?? cmp.style
     },
+    async loadWap() {
+      if (this.$route.params.id) {
+        const { cmps } = await this.$store.dispatch({ type: 'getWap', id: this.$route.params.id })
+      }
+    },
+    handleDrop() {
+      this.$store.dispatch({ type: 'updateCmps', cmps: this.cmps })
+    }
   },
   computed: {
-    getCmps() {
-      return this.$store.getters.cmps
+    cmps() {
+      return JSON.parse(JSON.stringify(this.$store.getters.editedWap?.cmps || ''))
     },
+
   },
   created() {
-    //change to loadWapById
-    console.log('wa')
-    // this.$store.dispatch('loadWaps').then(console.log(this.$store.getters))
+    this.loadWap()
+    this.handleDrop()
+    // else 
   },
+  //change to loadWapById
+  // this.$store.dispatch('loadWaps').then(console.log(this.$store.getters))
   watch: {
     cmps: {
-      handler() {
-        this.$store.dispatch({ type: 'updateCmps', cmps })
+      handler(cmps) {
       },
       deep: true,
     },
@@ -49,4 +58,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>
