@@ -180,6 +180,317 @@ export default [
             color: '',
           },
         },
+        cmps: [
+          {
+            id: 'wc02',
+            type: 'wap-card',
+            options: {
+              meta: {},
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
+            },
+            info: {
+              img: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: {},
+              },
+              details: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: {
+                  text: 'From $39/mo',
+                },
+              },
+              tag: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: {
+                  text: 'Automn offer',
+                },
+              },
+              title: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: {
+                  text: 'Dance One Step',
+                },
+              },
+              text: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: {
+                  text: 'Ebike',
+                },
+              },
+              nav: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: {
+                  nav1: 'Concierge',
+                  nav2: 'Rides',
+                  nav3: 'For Business',
+                },
+              },
+              btn: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: { text: 'See details', link: '#wc03' },
+              },
+            },
+          },
+          {
+            id: 'wc02',
+            type: 'wap-card',
+            options: {
+              meta: {},
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
+            },
+            info: {
+              img: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: {},
+              },
+              details: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: {
+                  text: 'From $39/mo',
+                },
+              },
+              tag: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: {
+                  text: 'Automn offer',
+                },
+              },
+              title: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: {
+                  text: 'Dance One Step',
+                },
+              },
+              text: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: {
+                  text: 'Ebike',
+                },
+              },
+              nav: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: {
+                  nav1: 'Concierge',
+                  nav2: 'Rides',
+                  nav3: 'For Business',
+                },
+              },
+              btn: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: { text: 'See details', link: '#wc03' },
+              },
+            },
+          },
+          {
+            id: 'wc02',
+            type: 'wap-card',
+            options: {
+              meta: {},
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
+            },
+            info: {
+              img: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: {},
+              },
+              details: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: {
+                  text: 'From $39/mo',
+                },
+              },
+              tag: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: {
+                  text: 'Automn offer',
+                },
+              },
+              title: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: {
+                  text: 'Dance One Step',
+                },
+              },
+              text: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: {
+                  text: 'Ebike',
+                },
+              },
+              nav: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: {
+                  nav1: 'Concierge',
+                  nav2: 'Rides',
+                  nav3: 'For Business',
+                },
+              },
+              btn: {
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                content: { text: 'See details', link: '#wc03' },
+              },
+            },
+          },
+        ],
         info: {
           title: {
             options: {
@@ -207,317 +518,6 @@ export default [
               text: 'Choose the electric ride that suid tour lifeoptions',
             },
           },
-          cmps: [
-            {
-              id: 'wc02',
-              type: 'wap-card',
-              options: {
-                meta: {},
-                style: {
-                  backgroundColor: '',
-                  fontFamily: '',
-                  color: '',
-                },
-              },
-              info: {
-                img: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: {},
-                },
-                details: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: {
-                    text: 'From $39/mo',
-                  },
-                },
-                tag: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: {
-                    text: 'Automn offer',
-                  },
-                },
-                title: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: {
-                    text: 'Dance One Step',
-                  },
-                },
-                text: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: {
-                    text: 'Ebike',
-                  },
-                },
-                nav: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: {
-                    nav1: 'Concierge',
-                    nav2: 'Rides',
-                    nav3: 'For Business',
-                  },
-                },
-                btn: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: { text: 'See details', link: '#wc03' },
-                },
-              },
-            },
-            {
-              id: 'wc02',
-              type: 'wap-card',
-              options: {
-                meta: {},
-                style: {
-                  backgroundColor: '',
-                  fontFamily: '',
-                  color: '',
-                },
-              },
-              info: {
-                img: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: {},
-                },
-                details: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: {
-                    text: 'From $39/mo',
-                  },
-                },
-                tag: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: {
-                    text: 'Automn offer',
-                  },
-                },
-                title: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: {
-                    text: 'Dance One Step',
-                  },
-                },
-                text: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: {
-                    text: 'Ebike',
-                  },
-                },
-                nav: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: {
-                    nav1: 'Concierge',
-                    nav2: 'Rides',
-                    nav3: 'For Business',
-                  },
-                },
-                btn: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: { text: 'See details', link: '#wc03' },
-                },
-              },
-            },
-            {
-              id: 'wc02',
-              type: 'wap-card',
-              options: {
-                meta: {},
-                style: {
-                  backgroundColor: '',
-                  fontFamily: '',
-                  color: '',
-                },
-              },
-              info: {
-                img: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: {},
-                },
-                details: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: {
-                    text: 'From $39/mo',
-                  },
-                },
-                tag: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: {
-                    text: 'Automn offer',
-                  },
-                },
-                title: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: {
-                    text: 'Dance One Step',
-                  },
-                },
-                text: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: {
-                    text: 'Ebike',
-                  },
-                },
-                nav: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: {
-                    nav1: 'Concierge',
-                    nav2: 'Rides',
-                    nav3: 'For Business',
-                  },
-                },
-                btn: {
-                  options: {
-                    meta: {},
-                    style: {
-                      backgroundColor: '',
-                      fontFamily: '',
-                      color: '',
-                    },
-                  },
-                  content: { text: 'See details', link: '#wc03' },
-                },
-              },
-            },
-          ],
         },
       },
     ],
