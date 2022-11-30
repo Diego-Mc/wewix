@@ -53,6 +53,7 @@ import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
 import wapCards from '../cmps/wap-sections/wap-cards.vue'
 import wapSection from '../cmps/wap-sections/wap-section.vue'
+import wapForm from '../cmps/wap-sections/wap-form.vue'
 
 import loginModal from '../cmps/app-cmps/login-modal.vue'
 
@@ -159,6 +160,7 @@ export default {
     loginModal,
     wapCards,
     wapSection,
+    wapForm,
   },
 }
 </script>
