@@ -61,7 +61,15 @@ export default {
       cmp[name] = content ?? cmp.content
       cmp[name] = style ?? cmp.style
     },
-
+    async loadWap() {
+      if (this.$route.params.id) {
+        const { cmps } = await this.$store.dispatch({ type: 'getWap', id: this.$route.params.id })
+      }
+    },
+    handleDrop() {
+      this.$store.dispatch({ type: 'updateCmps', cmps: this.cmps })
+    }
+    ,
     select({ cmpId, name }) {
       const cmp = cmps.find(({ _id }) => id === cmpId)
 
@@ -75,11 +83,23 @@ export default {
   },
   computed: {
     cmps() {
-      return JSON.parse(JSON.stringify(this.$store.getters.cmps))
+      return JSON.parse(JSON.stringify(this.$store.getters.editedWap?.cmps || ''))
     },
+
   },
   created() {
-    this.$store.dispatch('loadWaps')
+    this.loadWap()
+    this.handleDrop()
+    // else 
+  },
+  //change to loadWapById
+  // this.$store.dispatch('loadWaps').then(console.log(this.$store.getters))
+  watch: {
+    cmps: {
+      handler(cmps) {
+      },
+      deep: true,
+    },
   },
   components: {
     cmpEditor,
