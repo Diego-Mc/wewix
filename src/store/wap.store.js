@@ -67,7 +67,7 @@ export const wapStore = {
       if (!wap.msgs) wap.msgs = []
       wap.msgs.push(msg)
     },
-    
+
   },
   actions: {
     async getWap(context, { id }) {
@@ -75,8 +75,10 @@ export const wapStore = {
       context.commit({ type: 'setEditedWap', wap })
       return wap
     },
-    updateCmps(context, { cmps }) {
-      console.log(cmps);
+    async updateWap(context, { wap }) {
+      const wap = await wapService.save(wap)
+      context.commit({ type: 'setEditedWap', wap })
+      // console.log('store', cmps);
     },
     async addWap(context, { wap }) {
       try {
@@ -98,7 +100,7 @@ export const wapStore = {
         throw err
       }
     },
-    
+
     async loadWaps(context) {
       try {
         const waps = await wapService.query()

@@ -1,13 +1,13 @@
 <template>
-    <main v-if="cmps">
-      <app-templates />
-      <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
-        :cmpStyle="selectedCmp.style" @update="handleUpdate()"></cmp-editor>
-      
-      <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()" @select="select">
-      </component>
+  <main v-if="wap">
+    <app-templates />
+    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
+      :cmpStyle="selectedCmp.style" @update="handleUpdate()"></cmp-editor>
 
-    <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()" @select="select">
+    <component v-for="cmp in wap.cmps" is="cmp.type" @update="handleUpdate()" @select="select">
+    </component>
+
+    <component v-for="cmp in wap.cmps" is="cmp.type" @update="handleUpdate()" @select="select">
     </component>
 
     <!-- <component
@@ -22,16 +22,16 @@
     <draggable class="list-group" :component-data="{
       type: 'transition-group',
       name: !drag ? 'flip-list' : null
-    }" v-model="cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order">
+    }" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order">
       <template #item="{ element }">
         <div>
           <component :is="element.type" :info="element.info"></component>
         </div>
       </template>
-        
-      </draggable>
-              <pre>{{ cmps }}</pre>
-    </main>
+
+    </draggable>
+    <pre>{{ wap.mps }}</pre>
+  </main>
 </template>
 
 <script>
@@ -49,7 +49,7 @@ import appTemplates from './app-templates.vue'
 export default {
   data() {
     return {
-      cmps: null,
+      wap: null,
       selectedCmp: {},
       isOpenCmpEditor: true,
 
@@ -144,21 +144,21 @@ export default {
     }
   },
   methods: {
-    handleUpdate({ cmpId, name, content, style }) {
-      const cmp = cmps.find(({ _id }) => _id === cmpId)
-      cmp[name] = content ?? cmp.content
-      cmp[name] = style ?? cmp.style
-    },
+    // handleUpdate({ cmpId, name, content, style }) {
+    //   const cmp = cmps.find(({ _id }) => _id === cmpId)
+    //   cmp[name] = content ?? cmp.content
+    //   cmp[name] = style ?? cmp.style
+    // },
 
     async loadWap() {
       if (this.$route.params.id) {
-        const { cmps } = await this.$store.dispatch({ type: 'getWap', id: this.$route.params.id })
-        this.cmps = JSON.parse(JSON.stringify(cmps))
+        const wap = await this.$store.dispatch({ type: 'getWap', id: this.$route.params.id })
+        this.wap = JSON.parse(JSON.stringify(wap))
       }
     },
 
     handleDrop() {
-      this.$store.dispatch({ type: 'updateCmps', cmps: this.cmps })
+      this.$store.dispatch({ type: 'updateCmps', wap: this.wap.cmps })
     },
 
     select({ cmpId, name }) {
@@ -183,8 +183,10 @@ export default {
   },
 
   watch: {
-    cmps: {
-      handler(cmps) {
+    wap: {
+      handler(wap) {
+        const updatedWap = JSON.parse(JSON.stringify(wap))
+        this.$store.dispatch({ type: 'updateWap', wap: updatedWap })
       },
       deep: true,
     },
