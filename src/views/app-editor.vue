@@ -1,13 +1,13 @@
 <template>
-    <main>
-      <app-templates />
-      <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
-        :cmpStyle="selectedCmp.style" @update="handleUpdate()"></cmp-editor>
-      
-      <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()" @select="select">
-      </component>
+  <main>
+    <app-templates />
+    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
+      :cmpStyle="selectedCmp.style" @update="handleUpdate()"></cmp-editor>
 
-      <!-- <component
+    <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()" @select="select">
+    </component>
+
+    <!-- <component
           v-for="cmp in cmps"
           :is="cmp.type"
           :info="cmp.info"
@@ -16,24 +16,16 @@
           @select="select">
       </component> -->
 
-      <draggable 
-          class="list-group"  
-          :component-data="{
-            type: 'transition-group',
-            name: !drag ? 'flip-list' : null
-          }" 
-          v-model="cmpsTest" 
-          v-bind="dragOptions"
-          @start="drag = true"
-          @end="drag = false"
-          item-key="order"
-      >
+    <draggable class="list-group" :component-data="{
+      type: 'transition-group',
+      name: !drag ? 'flip-list' : null
+    }" v-model="cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order">
       <template #item="{ element }">
         <pre>{{ element.type }}</pre>
       </template>
-        
-      </draggable>
-    </main>
+
+    </draggable>
+  </main>
 </template>
 
 <script>
@@ -45,11 +37,13 @@ import { utilService } from '../services/util.service'
 
 import cmpEditor from '../cmps/cmp-editor.vue'
 import wapHeader from '../cmps/wap-header.vue'
+import wapHero from '../cmps/wap-hero.vue'
 import appTemplates from './app-templates.vue'
 
 export default {
   data() {
     return {
+      cmps: null,
       selectedCmp: {},
       isOpenCmpEditor: true,
       dragOptions: {
@@ -60,85 +54,85 @@ export default {
       },
 
       cmpsTest: [
-      {
-        id: 'wc02',
-        type: 'wap-header',
-        style: {
-          backgroundColor: '',
-        },
-        info: {
-          title: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-            },
-            content: {
-              text: 'Dance',
-            },
+        {
+          id: 'wc02',
+          type: 'wap-header',
+          style: {
+            backgroundColor: '',
           },
-          nav: {
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
+          info: {
+            title: {
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
+              content: {
+                text: 'Dance',
+              },
             },
-            content: {
-              nav1: 'Concierge',
-              nav2: 'Rides',
-              nav3: 'For Business',
+            nav: {
+              style: {
+                fontFamily: '',
+                color: '',
+                fontWeight: '',
+              },
+              content: {
+                nav1: 'Concierge',
+                nav2: 'Rides',
+                nav3: 'For Business',
+              },
             },
-          },
-          btn: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-              borderRadius: '',
+            btn: {
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+                borderRadius: '',
+              },
+              content: { text: 'Start now', link: '#wc03' },
             },
-            content: { text: 'Start now', link: '#wc03' },
-          },
-        },
-      },
-      {
-        id: 'wc03',
-        type: 'wap-hero',
-        style: {
-          backgroundColor: '',
-        },
-        info: {
-          title: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-            },
-            content: {
-              text: 'Your future\nis electric',
-            },
-          },
-          text: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-            },
-            content: {
-              text: 'Get your own ebike or emoped\nwith our flexible subscription',
-            },
-          },
-          btn: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-              borderRadius: '',
-            },
-            content: { text: 'Start now', link: '#wc03' },
           },
         },
-      },
-    ],
+        {
+          id: 'wc03',
+          type: 'wap-hero',
+          style: {
+            backgroundColor: '',
+          },
+          info: {
+            title: {
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
+              content: {
+                text: 'Your future\nis electric',
+              },
+            },
+            text: {
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
+              content: {
+                text: 'Get your own ebike or emoped\nwith our flexible subscription',
+              },
+            },
+            btn: {
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+                borderRadius: '',
+              },
+              content: { text: 'Start now', link: '#wc03' },
+            },
+          },
+        },
+      ],
     }
   },
   methods: {
@@ -151,6 +145,7 @@ export default {
     async loadWap() {
       if (this.$route.params.id) {
         const { cmps } = await this.$store.dispatch({ type: 'getWap', id: this.$route.params.id })
+        this.cmps = JSON.parse(JSON.stringify(cmps))
       }
     },
 
@@ -169,14 +164,14 @@ export default {
     }
 
   },
-  computed: {
-    cmps() {
-      return JSON.parse(JSON.stringify(this.$store.getters.editedWap?.cmps || ''))
-    },
-  },
+  // computed: {
+  //   cmps() {
+  //     return JSON.parse(JSON.stringify(this.$store.getters.editedWap?.cmps || ''))
+  //   },
+  // },
   created() {
     this.loadWap()
-    this.handleDrop() 
+    // this.handleDrop()
   },
 
   watch: {
@@ -185,14 +180,15 @@ export default {
       },
       deep: true,
     },
-    
+
   },
 
   components: {
     cmpEditor,
     appTemplates,
     wapHeader,
-    draggable
+    draggable,
+    wapHero
   },
 }
 </script>
