@@ -67,6 +67,19 @@ export const wapStore = {
       if (!wap.msgs) wap.msgs = []
       wap.msgs.push(msg)
     },
+    
+    // removeCmp(state, {cmpId}) {
+    //     const cmps = state.editedWap.cmps
+
+    //     for (let i = 0; i < cmps.length; i++) {
+
+    //     }
+
+    //     function recursiveDelete() {
+
+    //     }
+
+    // }
 
   },
   actions: {
@@ -117,6 +130,10 @@ export const wapStore = {
       }
     },
 
+    // async removeCmp(context, {cmpId}){
+    //   context.commit({type: 'removeCmp', cmpId}) 
+    // },
+
     async removeWap(context, { wapId }) {
       try {
         await wapService.remove(wapId)
@@ -126,6 +143,7 @@ export const wapStore = {
         throw err
       }
     },
+
     async addWapMsg(context, { wapId, txt }) {
       try {
         const msg = await wapService.addWapMsg(wapId, txt)
