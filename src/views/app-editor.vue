@@ -1,5 +1,6 @@
 <template>
   <main v-if="wap">
+    <general-editor/>
     <wap-templates />
     <button style="background-color: orange; margin: 10px 0" @click="updateWap(wap)">
       publish site
@@ -33,11 +34,14 @@ import { utilService } from '../services/util.service'
 
 import cmpEditor from '../cmps/app-cmps/cmp-editor.vue'
 import wapTemplates from '../cmps/app-cmps/wap-templates.vue'
+import generalEditor from '../cmps/app-cmps/general-editor.vue'
+
 import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
 import wapCards from '../cmps/wap-sections/wap-cards.vue'
 import wapSection from '../cmps/wap-sections/wap-section.vue'
 import wapForm from '../cmps/wap-sections/wap-form.vue'
+import wapVideo from '../cmps/wap-items/wap-video.vue'
 
 import loginModal from '../cmps/app-cmps/login-modal.vue'
 import { eventBus } from '../services/event-bus.service.js'
@@ -178,6 +182,8 @@ export default {
     wapCards,
     wapSection,
     wapForm,
+    wapVideo,
+    generalEditor,
   },
 }
 </script>
