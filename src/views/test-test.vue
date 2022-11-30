@@ -1,14 +1,13 @@
 <template>
   <div>
-    <wap-header :cmpId="id" :info="info" :style="style" />
-    <wap-hero :cmpId="id" :info="info" :style="style" />
-    <wap-section :cmpId="id" :info="info" :style="style" />
-    <wap-cards :cmpId="id" :info="info" :style="style" />
+    <wap-header :cmpId="id" :info="info" :options="options" />
+    <wap-hero :cmpId="id" :info="info" :options="options" />
+    <wap-section :cmpId="id" :info="info" :options="options" />
+    <wap-cards :cmpId="id" :info="info" :options="options" :cmps="cmps" />
   </div>
 </template>
 
 <script>
-
 import wapHeader from '../cmps/wap-header.vue'
 import wapHero from '../cmps/wap-hero.vue'
 import wapCards from '../cmps/wap-cards.vue'
@@ -18,35 +17,49 @@ export default {
     return {
       id: 'wc02',
       type: 'wap-header',
-      style: {
-        // backgroundColor: 'white',
+      options: {
+        meta: {},
+        style: {
+          backgroundColor: '',
+          fontFamily: '',
+          color: '',
+        },
       },
       info: {
         title: {
-          style: {
-            // backgroundColor: '',
-            // fontFamily: 'Roboto',
-            // color: 'black',
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+            },
           },
           content: {
             text: 'Dance',
           },
         },
         text: {
-          style: {
-            // backgroundColor: '',
-            // fontFamily: 'Roboto',
-            // color: 'black',
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+            },
           },
           content: {
             text: 'Dance',
           },
         },
         nav: {
-          style: {
-            // fontFamily: 'Roboto',
-            // color: 'black',
-            // fontWeight: '400',
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+            },
           },
           content: {
             nav1: 'Concierge',
@@ -55,15 +68,111 @@ export default {
           },
         },
         btn: {
-          style: {
-            // backgroundColor: '#7140eb',
-            // fontFamily: 'Roboto',
-            // color: 'white',
-            // borderRadius: '0.4rem',
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+            },
           },
           content: { text: 'Start now', link: '#wc03' },
         },
       },
+      cmps: [
+        {
+          id: 'wc02',
+          type: 'wap-card',
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+            },
+          },
+          info: {
+            details: {
+              options: {
+                meta: {},
+                style: {
+                  backgroundColor: '',
+                  fontFamily: '',
+                  color: '',
+                },
+              },
+              content: {
+                text: 'From $39/mo',
+              },
+            },
+            tag: {
+              options: {
+                meta: {},
+                style: {
+                  backgroundColor: '',
+                  fontFamily: '',
+                  color: '',
+                },
+              },
+              content: {
+                text: 'Automn offer',
+              },
+            },
+            title: {
+              options: {
+                meta: {},
+                style: {
+                  backgroundColor: '',
+                  fontFamily: '',
+                  color: '',
+                },
+              },
+              content: {
+                text: 'Dance One Step',
+              },
+            },
+            text: {
+              options: {
+                meta: {},
+                style: {
+                  backgroundColor: '',
+                  fontFamily: '',
+                  color: '',
+                },
+              },
+              content: {
+                text: 'Ebike',
+              },
+            },
+            nav: {
+              options: {
+                meta: {},
+                style: {
+                  backgroundColor: '',
+                  fontFamily: '',
+                  color: '',
+                },
+              },
+              content: {
+                nav1: 'Concierge',
+                nav2: 'Rides',
+                nav3: 'For Business',
+              },
+            },
+            btn: {
+              options: {
+                meta: {},
+                style: {
+                  backgroundColor: '',
+                  fontFamily: '',
+                  color: '',
+                },
+              },
+              content: { text: 'See details', link: '#wc03' },
+            },
+          },
+        },
+      ],
     }
   },
   components: {
@@ -75,4 +184,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<options lang="scss" scoped></options>
