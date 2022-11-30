@@ -90,8 +90,13 @@ export const wapStore = {
       return wap
     },
     async updateWap(context, { wap }) {
-      const updatedWap = await wapService.save(wap)
-      context.commit({ type: 'setEditedWap', wap: updatedWap })
+      try{
+        const updatedWap = await wapService.save(wap)
+        context.commit({ type: 'setEditedWap', wap: updatedWap })
+        console.log('site saved!');
+      }catch{
+        console.log('error while saving site.');
+      }
       return updatedWap._id
       // console.log('store', cmps);
     },
