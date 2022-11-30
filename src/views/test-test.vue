@@ -1,30 +1,39 @@
 <template>
   <div>
-    <h1>Hello</h1>
-    <wap-header :cmpId="id" :info="info" />
+    <wap-header :cmpId="id" :info="info" :style="style" />
+    <wap-hero :cmpId="id" :info="info" :style="style" />
+    <wap-cards :cmpId="id" :info="info" :style="style" />
   </div>
 </template>
 
 <script>
 import wapHeader from '../cmps/wap-header.vue'
+import wapHero from '../cmps/wap-hero.vue'
+import wapCards from '../cmps/wap-cards.vue'
 export default {
   data() {
     return {
       id: 'wc02',
       type: 'wap-header',
+      style: {
+        // backgroundColor: 'white',
+      },
       info: {
-        img: {
-          style: {
-            imgSrc:
-              'https://www.freeiconspng.com/thumbs/black-icon/glossy-black-icon-3.png',
-          },
-          content: {},
-        },
         title: {
           style: {
-            backgroundColor: '#485124',
-            fontFamily: 'Roboto',
-            color: 'blue',
+            // backgroundColor: '',
+            // fontFamily: 'Roboto',
+            // color: 'black',
+          },
+          content: {
+            text: 'Dance',
+          },
+        },
+        text: {
+          style: {
+            // backgroundColor: '',
+            // fontFamily: 'Roboto',
+            // color: 'black',
           },
           content: {
             text: 'Dance',
@@ -32,8 +41,9 @@ export default {
         },
         nav: {
           style: {
-            fontFamily: 'Roboto',
-            color: 'blue',
+            // fontFamily: 'Roboto',
+            // color: 'black',
+            // fontWeight: '400',
           },
           content: {
             nav1: 'Concierge',
@@ -43,9 +53,10 @@ export default {
         },
         btn: {
           style: {
-            backgroundColor: '#485124',
-            fontFamily: 'Roboto',
-            color: 'blue',
+            // backgroundColor: '#7140eb',
+            // fontFamily: 'Roboto',
+            // color: 'white',
+            // borderRadius: '0.4rem',
           },
           content: { text: 'Start now', link: '#wc03' },
         },
@@ -54,6 +65,8 @@ export default {
   },
   components: {
     wapHeader,
+    wapHero,
+    wapCards,
   },
 }
 </script>

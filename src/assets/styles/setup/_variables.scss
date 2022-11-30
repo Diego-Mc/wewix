@@ -6,6 +6,40 @@ $clr4: #95adbe;
 $clr5: #dff0ea;
 $clr6: #fff;
 
+:root {
+  --clr-1: rgb(17, 153, 158);
+  --clr-2: rgb(64, 81, 78);
+  --clr-3: rgb(228, 249, 245);
+}
+
+body {
+  &.theme-1 {
+    --clr-1: rgb(244, 124, 124);
+    --clr-2: rgb(239, 159, 159);
+    --clr-3: rgb(250, 212, 212);
+  }
+  &.theme-2 {
+    --clr-1: rgb(248, 236, 209);
+    --clr-2: rgb(222, 182, 171);
+    --clr-3: rgb(172, 125, 136);
+  }
+  &.theme-3 {
+    --clr-1: rgb(98, 140, 103);
+    --clr-2: rgb(253, 235, 201);
+    --clr-3: rgb(237, 108, 92);
+  }
+  &.theme-4 {
+    --clr-1: rgb(1, 66, 53);
+    --clr-2: rgb(199, 199, 199);
+    --clr-3: rgb(151, 173, 237);
+  }
+  &.theme-5 {
+    --clr-1: rgb(198, 204, 202);
+    --clr-2: rgb(248, 244, 241);
+    --clr-3: rgb(163, 74, 33);
+  }
+}
+
 // Breakpoints
 $mobile-breakpoint: 460px;
 $narrow-breakpoint: 720px;
