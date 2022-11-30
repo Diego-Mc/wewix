@@ -1,33 +1,22 @@
 <template>
+  <login-modal />
   <main v-if="wap">
+
     <wap-templates />
 
-    <cmp-editor
-      v-if="isOpenCmpEditor"
-      :id="selectedCmp._id"
-      :cmpOptions="selectedCmp.options"
-      @update="handleUpdate()">
+    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
+      :cmpStyle="selectedCmp.style" @update="handleUpdate()">
     </cmp-editor>
 
-    <draggable
-      class="list-group"
-      :component-data="{
-        type: 'transition-group',
-        name: !drag ? 'flip-list' : null,
-      }"
-      v-model="wap.cmps"
-      v-bind="dragOptions"
-      @start="drag = true"
-      @end="drag = false"
-      item-key="order"
+
+    <draggable class="list-group" :component-data="{
+      type: 'transition-group',
+      name: !drag ? 'flip-list' : null
+    }" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order"
       group="sections">
       <template #item="{ element }">
         <div>
-          <component
-            :is="element.type"
-            :info="element.info"
-            :cmpId="element.id"
-            @select="select"></component>
+          <component :is="element.type" :info="element.info" :cmpId="element.id" @select="select"></component>
         </div>
       </template>
     </draggable>
@@ -46,6 +35,8 @@ import wapTemplates from '../cmps/app-cmps/wap-templates.vue'
 import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
 
+import loginModal from '../cmps/app-cmps/login-modal.vue'
+
 export default {
   data() {
     return {
@@ -60,140 +51,6 @@ export default {
         disabled: false,
         ghostClass: 'ghost',
       },
-
-      cmpsTest: [
-        {
-          id: 'wc02',
-          type: 'wap-header',
-          style: {
-            backgroundColor: '',
-          },
-          info: {
-            title: {
-              style: {
-                backgroundColor: '',
-                fontFamily: '',
-                color: '',
-              },
-              content: {
-                text: 'Dance',
-              },
-            },
-            nav: {
-              style: {
-                fontFamily: '',
-                color: '',
-                fontWeight: '',
-              },
-              content: {
-                nav1: 'Concierge',
-                nav2: 'Rides',
-                nav3: 'For Business',
-              },
-            },
-            btn: {
-              style: {
-                backgroundColor: '',
-                fontFamily: '',
-                color: '',
-                borderRadius: '',
-              },
-              content: { text: 'Start now', link: '#wc03' },
-            },
-          },
-        },
-        {
-          id: 'wc03',
-          type: 'wap-hero',
-          style: {
-            backgroundColor: '',
-          },
-          info: {
-            title: {
-              style: {
-                backgroundColor: '',
-                fontFamily: '',
-                color: '',
-              },
-              content: {
-                text: 'Your future\nis electric',
-              },
-            },
-            text: {
-              style: {
-                backgroundColor: '',
-                fontFamily: '',
-                color: '',
-              },
-              content: {
-                text: 'Get your own ebike or emoped\nwith our flexible subscription',
-              },
-            },
-            btn: {
-              style: {
-                backgroundColor: '',
-                fontFamily: '',
-                color: '',
-                borderRadius: '',
-              },
-              content: { text: 'Start now', link: '#wc03' },
-            },
-          },
-        },
-      ],
-      list1: [
-        {
-          img: 'asdas',
-          name: 'John',
-          id: 1,
-          backgroundColor: '#5e548e',
-          children: [{ name: 'John' }],
-        },
-        {
-          name: 'Joao',
-          id: 2,
-          backgroundColor: '#370617',
-          children: [{ name: 'Joao' }],
-        },
-        {
-          name: 'Jean',
-          id: 3,
-          backgroundColor: '#6a040f',
-          children: [{ name: 'Jean' }],
-        },
-        {
-          name: 'Gerard',
-          id: 4,
-          backgroundColor: '#9d0208',
-          children: [{ name: 'Gerard' }],
-        },
-      ],
-
-      list: [
-        {
-          name: 'Juan',
-          id: 5,
-          backgroundColor: '#e85d04',
-          children: [
-            { name: '1' },
-            { name: '2' },
-            { name: '3' },
-            { name: '4' },
-          ],
-        },
-        {
-          name: 'Edgard',
-          id: 6,
-          backgroundColor: '#f48c06',
-          children: [{ name: 'wa' }, { name: 'ha' }],
-        },
-        {
-          name: 'Johnson',
-          id: 7,
-          backgroundColor: '#faa307',
-          children: [{ name: 'wa' }, { name: 'ha' }],
-        },
-      ],
     }
   },
 
@@ -255,7 +112,7 @@ export default {
     wapTemplates,
     wapHeader,
     draggable,
-    wapHero,
+    wapHero
   },
 }
 </script>
