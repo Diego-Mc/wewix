@@ -3,12 +3,12 @@
 
       <wap-templates/>
 
-      <!-- <cmp-editor 
+      <cmp-editor 
           v-if="isOpenCmpEditor" 
           :id="selectedCmp._id" 
           :options="selectedCmp.options"
           @update="handleUpdate()">
-      </cmp-editor> -->
+      </cmp-editor>
       
 
     <draggable 
@@ -88,14 +88,10 @@ export default {
     },
 
     select({ cmpId, name }) {
-      console.log("🚀 ~ file: app-editor.vue:91 ~ select ~ cmpId", cmpId)
       const cmp = this.wap.cmps.find(({ id }) => id === cmpId)
-
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = cmp.options
       this.isOpenCmpEditor = true
-
-      
     }
 
   },
