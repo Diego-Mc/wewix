@@ -4,6 +4,7 @@
     <wap-hero :cmpId="id" :info="info" :options="options" />
     <wap-section :cmpId="id" :info="info" :options="options" />
     <wap-cards :cmpId="id" :info="info" :options="options" :cmps="cmps" />
+    <wap-form :cmpId="id" :info="info" :options="options" />
   </div>
 </template>
 
@@ -12,6 +13,7 @@ import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
 import wapCards from '../cmps/wap-sections/wap-cards.vue'
 import wapSection from '../cmps/wap-sections/wap-section.vue'
+import wapForm from '../cmps/wap-sections/wap-form.vue'
 export default {
   data() {
     return {
@@ -397,6 +399,7 @@ export default {
     wapHero,
     wapCards,
     wapSection,
+    wapForm,
   },
 }
 </script>
