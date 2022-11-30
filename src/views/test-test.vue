@@ -7,6 +7,7 @@
 </template>
 
 <script>
+
 import wapHeader from '../cmps/wap-header.vue'
 import wapHero from '../cmps/wap-hero.vue'
 import wapCards from '../cmps/wap-cards.vue'

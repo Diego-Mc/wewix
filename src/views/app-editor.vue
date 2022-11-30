@@ -22,14 +22,14 @@
             type: 'transition-group',
             name: !drag ? 'flip-list' : null
           }" 
-          v-model="cmps" 
+          v-model="cmpsTest" 
           v-bind="dragOptions"
           @start="drag = true"
           @end="drag = false"
           item-key="order"
       >
       <template #item="{ element }">
-        <pre>{{ element }}</pre>
+        <pre>{{ element.type }}</pre>
       </template>
         
       </draggable>
@@ -37,6 +37,8 @@
 </template>
 
 <script>
+
+
 import draggable from 'vuedraggable'
 
 import { utilService } from '../services/util.service'
@@ -55,7 +57,88 @@ export default {
         group: "description",
         disabled: false,
         ghostClass: "ghost"
-      }
+      },
+
+      cmpsTest: [
+      {
+        id: 'wc02',
+        type: 'wap-header',
+        style: {
+          backgroundColor: '',
+        },
+        info: {
+          title: {
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+            },
+            content: {
+              text: 'Dance',
+            },
+          },
+          nav: {
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+            },
+            content: {
+              nav1: 'Concierge',
+              nav2: 'Rides',
+              nav3: 'For Business',
+            },
+          },
+          btn: {
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+              borderRadius: '',
+            },
+            content: { text: 'Start now', link: '#wc03' },
+          },
+        },
+      },
+      {
+        id: 'wc03',
+        type: 'wap-hero',
+        style: {
+          backgroundColor: '',
+        },
+        info: {
+          title: {
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+            },
+            content: {
+              text: 'Your future\nis electric',
+            },
+          },
+          text: {
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+            },
+            content: {
+              text: 'Get your own ebike or emoped\nwith our flexible subscription',
+            },
+          },
+          btn: {
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+              borderRadius: '',
+            },
+            content: { text: 'Start now', link: '#wc03' },
+          },
+        },
+      },
+    ],
     }
   },
   methods: {
