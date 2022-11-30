@@ -68,7 +68,7 @@ export default {
                return console.log('passwords not matching');
             }
             try {
-                const userCred = await userService.login(this.userCred)
+                const userCred = await userService.signup(this.userCred)
                 this.$store.dispatch({ type: 'signup', userCred })
             } catch (err) {
                 console.log('oops couldnet sign up', err);
