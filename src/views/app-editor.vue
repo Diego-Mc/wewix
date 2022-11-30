@@ -1,8 +1,28 @@
 <template>
-  <main v-if="wap">
-    <app-templates />
-    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
-      :cmpStyle="selectedCmp.style" @update="handleUpdate()"></cmp-editor>
+    <main v-if="cmps">
+
+      <section>
+        <h3>sections to add</h3>
+        <draggable class=" list-group" :list="list1" item-key="order"
+          :group="{ name: 'sections', pull: 'clone', put: false }">
+          <template #item="{ element }">
+            <li class="list-group-item" :style="{ backgroundColor: element.backgroundColor }">
+              <p>{{ element.name }}</p>
+            </li>
+          </template>
+        </draggable>
+      </section>
+
+      <cmp-editor 
+          v-if="isOpenCmpEditor" 
+          :id="selectedCmp._id" 
+          :editOptions="selectedCmp.options"
+          :cmpStyle="selectedCmp.style" 
+          @update="handleUpdate()">
+      </cmp-editor>
+      
+      <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()" @select="select">
+      </component>
 
     <component v-for="cmp in wap.cmps" is="cmp.type" @update="handleUpdate()" @select="select">
     </component>
@@ -28,15 +48,13 @@
           <component :is="element.type" :info="element.info"></component>
         </div>
       </template>
-
-    </draggable>
-    <pre>{{ wap.mps }}</pre>
-  </main>
+        
+      </draggable>
+              <pre>{{ cmpsTest }}</pre>
+    </main>
 </template>
 
 <script>
-
-
 import draggable from 'vuedraggable'
 
 import { utilService } from '../services/util.service'
@@ -139,10 +157,64 @@ export default {
               content: { text: 'Start now', link: '#wc03' },
             },
           },
+        }],
+        list1: [
+        {
+          img: 'asdas',
+          name: 'John', id: 1, backgroundColor: '#5e548e',
+          children: [
+            { name: 'John' },
+          ]
+        },
+        {
+          name: 'Joao', id: 2, backgroundColor: '#370617',
+          children: [
+            { name: 'Joao' },
+          ]
+        },
+        {
+          name: 'Jean', id: 3, backgroundColor: '#6a040f',
+          children: [
+            { name: 'Jean' },
+          ]
+        },
+        {
+          name: 'Gerard', id: 4, backgroundColor: '#9d0208',
+          children: [
+            { name: 'Gerard' },
+          ]
         },
       ],
-    }
-  },
+
+      list: [
+        {
+          name: 'Juan', id: 5, backgroundColor: '#e85d04',
+          children: [
+            { name: '1' },
+            { name: '2' },
+            { name: '3' },
+            { name: '4' },
+          ]
+        },
+        {
+          name: 'Edgard', id: 6, backgroundColor: '#f48c06',
+          children: [
+            { name: 'wa' },
+            { name: 'ha' }
+          ]
+        },
+        {
+          name: 'Johnson', id: 7, backgroundColor: '#faa307',
+          children: [
+            { name: 'wa' },
+            { name: 'ha' }
+          ]
+        },
+      ],
+
+      }
+    },
+  
   methods: {
     // handleUpdate({ cmpId, name, content, style }) {
     //   const cmp = cmps.find(({ _id }) => _id === cmpId)
@@ -202,4 +274,77 @@ export default {
   },
 }
 </script>
+
+
+<style>
+*{
+  box-sizing: border-box;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+.section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 20px 0;
+}
+
+.section p {
+  text-align: center;
+}
+
+.cmp {
+  padding: 10px;
+  border: 1px dotted white;
+  border-collapse: separate;
+  text-align: center;
+}
+
+.button {
+  margin-top: 35px;
+}
+
+.flip-list-move {
+  transition: transform 0.5s;
+}
+
+.no-move {
+  transition: transform 0s;
+}
+
+li {
+  list-style: none;
+}
+
+.ghost {
+  opacity: 0.5;
+  background: grey;
+}
+
+.list-group {
+  min-height: 20px;
+}
+
+.list-group-item {
+  cursor: move;
+}
+
+.list-group-item i {
+  cursor: pointer;
+}
+
+tr {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+td {
+  padding: 5px;
+  background-color: lightcoral;
+  min-width: 200px;
+}
+</style>
 
