@@ -5,7 +5,7 @@
     
     <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()" @select="select">
     </component>
-
+    {{cmps}}
     <!-- <component
         v-for="cmp in cmps"
         :is="cmp.type"
@@ -89,7 +89,6 @@ export default {
     cmps() {
       return JSON.parse(JSON.stringify(this.$store.getters.editedWap?.cmps || ''))
     },
-
   },
   created() {
     this.loadWap()
