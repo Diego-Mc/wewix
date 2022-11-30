@@ -22,9 +22,11 @@ export default [
         options: {
           meta: {},
           style: {
-            backgroundColor: '',
-            fontFamily: '',
-            color: '',
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+            },
           },
         },
         info: {

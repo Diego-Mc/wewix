@@ -5,8 +5,7 @@
     <cmp-editor
       v-if="isOpenCmpEditor"
       :id="selectedCmp._id"
-      :editOptions="selectedCmp.options"
-      :cmpStyle="selectedCmp.style"
+      :cmpOptions="selectedCmp.options"
       @update="handleUpdate()">
     </cmp-editor>
 
@@ -32,7 +31,7 @@
         </div>
       </template>
     </draggable>
-    <pre>{{ cmpsTest }}</pre>
+    <pre>{{ wap.cmps }}</pre>
   </main>
 </template>
 
@@ -66,36 +65,25 @@ export default {
         {
           id: 'wc02',
           type: 'wap-header',
-          options: {
-            meta: {},
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-            },
+          style: {
+            backgroundColor: '',
           },
           info: {
             title: {
-              options: {
-                meta: {},
-                style: {
-                  backgroundColor: '',
-                  fontFamily: '',
-                  color: '',
-                },
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
               },
               content: {
                 text: 'Dance',
               },
             },
             nav: {
-              options: {
-                meta: {},
-                style: {
-                  backgroundColor: '',
-                  fontFamily: '',
-                  color: '',
-                },
+              style: {
+                fontFamily: '',
+                color: '',
+                fontWeight: '',
               },
               content: {
                 nav1: 'Concierge',
@@ -104,13 +92,11 @@ export default {
               },
             },
             btn: {
-              options: {
-                meta: {},
-                style: {
-                  backgroundColor: '',
-                  fontFamily: '',
-                  color: '',
-                },
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+                borderRadius: '',
               },
               content: { text: 'Start now', link: '#wc03' },
             },
@@ -119,49 +105,36 @@ export default {
         {
           id: 'wc03',
           type: 'wap-hero',
-          options: {
-            meta: {},
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-            },
+          style: {
+            backgroundColor: '',
           },
           info: {
             title: {
-              options: {
-                meta: {},
-                style: {
-                  backgroundColor: '',
-                  fontFamily: '',
-                  color: '',
-                },
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
               },
               content: {
                 text: 'Your future\nis electric',
               },
             },
             text: {
-              options: {
-                meta: {},
-                style: {
-                  backgroundColor: '',
-                  fontFamily: '',
-                  color: '',
-                },
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
               },
               content: {
                 text: 'Get your own ebike or emoped\nwith our flexible subscription',
               },
             },
             btn: {
-              options: {
-                meta: {},
-                style: {
-                  backgroundColor: '',
-                  fontFamily: '',
-                  color: '',
-                },
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+                borderRadius: '',
               },
               content: { text: 'Start now', link: '#wc03' },
             },
@@ -257,18 +230,14 @@ export default {
       })
       this.selectedCmp._id = cmpId
 
-      this.selectedCmp.options = Object.keys(cmp.style)
+      this.selectedCmp.id = cmpId
+      this.selectedCmp.options = cmp.options
       this.isOpenCmpEditor = true
     },
   },
-  // computed: {
-  //   cmps() {
-  //     return JSON.parse(JSON.stringify(this.$store.getters.editedWap?.cmps || ''))
-  //   },
-  // },
+
   created() {
     this.loadWap()
-    // this.handleDrop()
   },
 
   watch: {

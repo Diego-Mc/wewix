@@ -41,7 +41,6 @@
                 <!-- Implement v-model=style.link -->
             </div>
 
-            <div v-if="isOptionsContain('link')">Link Picker</div>
         </section>
         
     </section>
@@ -51,18 +50,12 @@
 
     export default {
         props: {
-            _id: String,
-            cmpOptions: Object,
-        },
-
-        data() {
-            return {      
-                options: this.cmpOptions,
-            }
+            id: String,
+            options: Object,
         },
         methods: {
             isOptionsContain(type) {
-                const options = [...Object.keys(this.cmpOptions)]
+                const options = [...Object.keys(this.options)]
                 return options.includes(type)
             },
         },
