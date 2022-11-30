@@ -76,8 +76,8 @@ export const wapStore = {
       return wap
     },
     async updateWap(context, { wap }) {
-      const wap = await wapService.save(wap)
-      context.commit({ type: 'setEditedWap', wap })
+      const updatedWap = await wapService.save(wap)
+      context.commit({ type: 'setEditedWap', wap: updatedWap })
       // console.log('store', cmps);
     },
     async addWap(context, { wap }) {

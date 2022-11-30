@@ -1,28 +1,24 @@
 <template>
-    <main v-if="cmps">
+  <main v-if="wap">
 
-      <section>
-        <h3>sections to add</h3>
-        <draggable class=" list-group" :list="list1" item-key="order"
-          :group="{ name: 'sections', pull: 'clone', put: false }">
-          <template #item="{ element }">
-            <li class="list-group-item" :style="{ backgroundColor: element.backgroundColor }">
-              <p>{{ element.name }}</p>
-            </li>
-          </template>
-        </draggable>
-      </section>
+    <section>
+      <h3>sections to add</h3>
+      <draggable class=" list-group" :list="list1" item-key="order"
+        :group="{ name: 'sections', pull: 'clone', put: false }">
+        <template #item="{ element }">
+          <li class="list-group-item" :style="{ backgroundColor: element.backgroundColor }">
+            <p>{{ element.name }}</p>
+          </li>
+        </template>
+      </draggable>
+    </section>
 
-      <cmp-editor 
-          v-if="isOpenCmpEditor" 
-          :id="selectedCmp._id" 
-          :editOptions="selectedCmp.options"
-          :cmpStyle="selectedCmp.style" 
-          @update="handleUpdate()">
-      </cmp-editor>
-      
-      <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()" @select="select">
-      </component>
+    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
+      :cmpStyle="selectedCmp.style" @update="handleUpdate()">
+    </cmp-editor>
+
+    <component v-for="cmp in wap.cmps" is="cmp.type" @update="handleUpdate()" @select="select">
+    </component>
 
     <component v-for="cmp in wap.cmps" is="cmp.type" @update="handleUpdate()" @select="select">
     </component>
@@ -45,13 +41,13 @@
     }" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order">
       <template #item="{ element }">
         <div>
-          <component :is="element.type" :info="element.info"></component>
+          <component :is="element.type" :info="element.info" @swap=""></component>
         </div>
       </template>
-        
-      </draggable>
-              <pre>{{ cmpsTest }}</pre>
-    </main>
+
+    </draggable>
+    <pre>{{ cmpsTest }}</pre>
+  </main>
 </template>
 
 <script>
@@ -158,7 +154,7 @@ export default {
             },
           },
         }],
-        list1: [
+      list1: [
         {
           img: 'asdas',
           name: 'John', id: 1, backgroundColor: '#5e548e',
@@ -211,16 +207,16 @@ export default {
           ]
         },
       ],
+    }
+  },
 
-      }
-    },
-  
   methods: {
-    // handleUpdate({ cmpId, name, content, style }) {
-    //   const cmp = cmps.find(({ _id }) => _id === cmpId)
-    //   cmp[name] = content ?? cmp.content
-    //   cmp[name] = style ?? cmp.style
-    // },
+    handleUpdate({ cmpId, name, content, style }) {
+      const cmp = wap.cmps.find(({ _id }) => _id === cmpId)
+      wap.cmps.cmp[name] = content ?? cmp.content
+      wap.cmps.cmp[name] = style ?? cmp.style
+      this.updateWap(wap)
+    },
 
     async loadWap() {
       if (this.$route.params.id) {
@@ -230,7 +226,12 @@ export default {
     },
 
     handleDrop() {
-      this.$store.dispatch({ type: 'updateCmps', wap: this.wap.cmps })
+      this.updateWap(this.wap)
+    },
+
+    updateWap(wap) {
+      const updatedWap = JSON.parse(JSON.stringify(wap))
+      this.$store.dispatch({ type: 'updateWap', wap: updatedWap })
     },
 
     select({ cmpId, name }) {
@@ -257,8 +258,7 @@ export default {
   watch: {
     wap: {
       handler(wap) {
-        const updatedWap = JSON.parse(JSON.stringify(wap))
-        this.$store.dispatch({ type: 'updateWap', wap: updatedWap })
+        this.updateWap(wap)
       },
       deep: true,
     },
@@ -277,7 +277,7 @@ export default {
 
 
 <style>
-*{
+* {
   box-sizing: border-box;
 }
 
