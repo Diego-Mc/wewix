@@ -34,8 +34,7 @@ export default {
       this.$emit('update', { cmpId, name, content: info.text.content })
     },
   },
-  created() {
-    console.log(this.info)
+  created() { 
   },
 }
 </script>

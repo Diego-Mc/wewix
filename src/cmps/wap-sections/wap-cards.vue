@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import wapCard from './wap-items/wap-card.vue'
+import wapCard from '../wap-items/wap-card.vue'
 export default {
   props: ['info', 'cmpId', 'options', 'cmps'],
   methods: {

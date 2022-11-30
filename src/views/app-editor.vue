@@ -1,59 +1,55 @@
 <template>
-    <main v-if="cmps">
-      <app-templates />
-      <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
-        :cmpStyle="selectedCmp.style" @update="handleUpdate()"></cmp-editor>
+  <main v-if="wap">
+
+      <wap-templates/>
+
+      <cmp-editor 
+          v-if="isOpenCmpEditor" 
+          :id="selectedCmp._id" 
+          :editOptions="selectedCmp.options"
+          :cmpStyle="selectedCmp.style" 
+          @update="handleUpdate()">
+      </cmp-editor>
       
-      <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()" @select="select">
-      </component>
 
-      <!-- <component
-          v-for="cmp in cmps"
-          :is="cmp.type"
-          :info="cmp.info"
-          :cmpId="cmp._id"
-          @update="handleUpdate()"
-          @select="select">
-      </component> -->
-
-      <draggable 
-          class="list-group"  
-          :component-data="{
-            type: 'transition-group',
-            name: !drag ? 'flip-list' : null
-          }" 
-          v-model="cmpsTest" 
-          v-bind="dragOptions"
-          @start="drag = true"
-          @end="drag = false"
-          item-key="order"
-      >
+    <draggable 
+        class="list-group" 
+        :component-data="{
+          type: 'transition-group',
+          name: !drag ? 'flip-list' : null}"
+        v-model="wap.cmps"
+        v-bind="dragOptions"
+        @start="drag = true"
+        @end="drag = false"
+        item-key="order"
+        group="sections"
+    >
       <template #item="{ element }">
         <div>
-          <component :is="element.type" :info="element.info"></component>
+          <component :is="element.type" :info="element.info" @swap=""></component>
         </div>
       </template>
-        
-      </draggable>
-              <pre>{{ cmps }}</pre>
-    </main>
+
+    </draggable>
+    <pre>{{ cmpsTest }}</pre>
+  </main>
 </template>
 
 <script>
-
-
 import draggable from 'vuedraggable'
 
 import { utilService } from '../services/util.service'
 
-import cmpEditor from '../cmps/cmp-editor.vue'
-import wapHeader from '../cmps/wap-header.vue'
-import wapHero from '../cmps/wap-hero.vue'
-import appTemplates from './app-templates.vue'
+import cmpEditor from '../cmps/app-cmps/cmp-editor.vue'
+import wapTemplates from '../cmps/app-cmps/wap-templates.vue'
+
+import wapHeader from '../cmps/wap-sections/wap-header.vue'
+import wapHero from '../cmps/wap-sections/wap-hero.vue'
 
 export default {
   data() {
     return {
+      wap: null,
       selectedCmp: {},
       isOpenCmpEditor: true,
 
@@ -66,102 +62,162 @@ export default {
       },
 
       cmpsTest: [
-      {
-        id: 'wc02',
-        type: 'wap-header',
-        style: {
-          backgroundColor: '',
-        },
-        info: {
-          title: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-            },
-            content: {
-              text: 'Dance',
-            },
+        {
+          id: 'wc02',
+          type: 'wap-header',
+          style: {
+            backgroundColor: '',
           },
-          nav: {
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
+          info: {
+            title: {
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
+              content: {
+                text: 'Dance',
+              },
             },
-            content: {
-              nav1: 'Concierge',
-              nav2: 'Rides',
-              nav3: 'For Business',
+            nav: {
+              style: {
+                fontFamily: '',
+                color: '',
+                fontWeight: '',
+              },
+              content: {
+                nav1: 'Concierge',
+                nav2: 'Rides',
+                nav3: 'For Business',
+              },
             },
-          },
-          btn: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-              borderRadius: '',
+            btn: {
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+                borderRadius: '',
+              },
+              content: { text: 'Start now', link: '#wc03' },
             },
-            content: { text: 'Start now', link: '#wc03' },
-          },
-        },
-      },
-      {
-        id: 'wc03',
-        type: 'wap-hero',
-        style: {
-          backgroundColor: '',
-        },
-        info: {
-          title: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-            },
-            content: {
-              text: 'Your future\nis electric',
-            },
-          },
-          text: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-            },
-            content: {
-              text: 'Get your own ebike or emoped\nwith our flexible subscription',
-            },
-          },
-          btn: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-              borderRadius: '',
-            },
-            content: { text: 'Start now', link: '#wc03' },
           },
         },
-      },
-    ],
+        {
+          id: 'wc03',
+          type: 'wap-hero',
+          style: {
+            backgroundColor: '',
+          },
+          info: {
+            title: {
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
+              content: {
+                text: 'Your future\nis electric',
+              },
+            },
+            text: {
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
+              content: {
+                text: 'Get your own ebike or emoped\nwith our flexible subscription',
+              },
+            },
+            btn: {
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+                borderRadius: '',
+              },
+              content: { text: 'Start now', link: '#wc03' },
+            },
+          },
+        }],
+      list1: [
+        {
+          img: 'asdas',
+          name: 'John', id: 1, backgroundColor: '#5e548e',
+          children: [
+            { name: 'John' },
+          ]
+        },
+        {
+          name: 'Joao', id: 2, backgroundColor: '#370617',
+          children: [
+            { name: 'Joao' },
+          ]
+        },
+        {
+          name: 'Jean', id: 3, backgroundColor: '#6a040f',
+          children: [
+            { name: 'Jean' },
+          ]
+        },
+        {
+          name: 'Gerard', id: 4, backgroundColor: '#9d0208',
+          children: [
+            { name: 'Gerard' },
+          ]
+        },
+      ],
+
+      list: [
+        {
+          name: 'Juan', id: 5, backgroundColor: '#e85d04',
+          children: [
+            { name: '1' },
+            { name: '2' },
+            { name: '3' },
+            { name: '4' },
+          ]
+        },
+        {
+          name: 'Edgard', id: 6, backgroundColor: '#f48c06',
+          children: [
+            { name: 'wa' },
+            { name: 'ha' }
+          ]
+        },
+        {
+          name: 'Johnson', id: 7, backgroundColor: '#faa307',
+          children: [
+            { name: 'wa' },
+            { name: 'ha' }
+          ]
+        },
+      ],
     }
   },
+
   methods: {
     handleUpdate({ cmpId, name, content, style }) {
-      const cmp = cmps.find(({ _id }) => _id === cmpId)
-      cmp[name] = content ?? cmp.content
-      cmp[name] = style ?? cmp.style
+      const cmp = wap.cmps.find(({ _id }) => _id === cmpId)
+      wap.cmps.cmp[name] = content ?? cmp.content
+      wap.cmps.cmp[name] = style ?? cmp.style
+      this.updateWap(wap)
     },
 
     async loadWap() {
       if (this.$route.params.id) {
-        const { cmps } = await this.$store.dispatch({ type: 'getWap', id: this.$route.params.id })
+        const wap = await this.$store.dispatch({ type: 'getWap', id: this.$route.params.id })
+        this.wap = JSON.parse(JSON.stringify(wap))
       }
     },
 
     handleDrop() {
-      this.$store.dispatch({ type: 'updateCmps', cmps: this.cmps })
+      this.updateWap(this.wap)
+    },
+
+    updateWap(wap) {
+      // const updatedWap = JSON.parse(JSON.stringify(wap))
+      this.$store.dispatch({ type: 'updateWap', wap: wap })
     },
 
     select({ cmpId, name }) {
@@ -175,32 +231,107 @@ export default {
     }
 
   },
-  computed: {
-    cmps() {
-      return JSON.parse(JSON.stringify(this.$store.getters.editedWap?.cmps || ''))
-    },
-  },
+  // computed: {
+  //   cmps() {
+  //     return JSON.parse(JSON.stringify(this.$store.getters.editedWap?.cmps || ''))
+  //   },
+  // },
   created() {
     this.loadWap()
-    this.handleDrop() 
+    // this.handleDrop()
   },
 
   watch: {
-    cmps: {
-      handler(cmps) {
+    wap: {
+      handler(wap) {
+        console.log('wa');
+        this.updateWap(wap)
       },
       deep: true,
     },
-    
+
   },
 
   components: {
     cmpEditor,
-    appTemplates,
+    wapTemplates,
     wapHeader,
     draggable,
     wapHero
   },
 }
 </script>
+
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+.section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 20px 0;
+}
+
+.section p {
+  text-align: center;
+}
+
+.cmp {
+  padding: 10px;
+  border: 1px dotted white;
+  border-collapse: separate;
+  text-align: center;
+}
+
+.button {
+  margin-top: 35px;
+}
+
+.flip-list-move {
+  transition: transform 0.5s;
+}
+
+.no-move {
+  transition: transform 0s;
+}
+
+li {
+  list-style: none;
+}
+
+.ghost {
+  opacity: 0.5;
+  background: grey;
+}
+
+.list-group {
+  min-height: 20px;
+}
+
+.list-group-item {
+  cursor: move;
+}
+
+.list-group-item i {
+  cursor: pointer;
+}
+
+tr {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+td {
+  padding: 5px;
+  background-color: lightcoral;
+  min-width: 200px;
+}
+</style>
 
