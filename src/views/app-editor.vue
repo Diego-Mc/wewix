@@ -1,29 +1,19 @@
 <template>
+  <login-modal />
   <main v-if="wap">
 
-      <wap-templates/>
+    <wap-templates />
 
-      <cmp-editor 
-          v-if="isOpenCmpEditor" 
-          :id="selectedCmp._id" 
-          :editOptions="selectedCmp.options"
-          :cmpStyle="selectedCmp.style" 
-          @update="handleUpdate()">
-      </cmp-editor>
-      
+    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
+      :cmpStyle="selectedCmp.style" @update="handleUpdate()">
+    </cmp-editor>
 
-    <draggable 
-        class="list-group" 
-        :component-data="{
-          type: 'transition-group',
-          name: !drag ? 'flip-list' : null}"
-        v-model="wap.cmps"
-        v-bind="dragOptions"
-        @start="drag = true"
-        @end="drag = false"
-        item-key="order"
-        group="sections"
-    >
+
+    <draggable class="list-group" :component-data="{
+      type: 'transition-group',
+      name: !drag ? 'flip-list' : null
+    }" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order"
+      group="sections">
       <template #item="{ element }">
         <div>
           <component :is="element.type" :info="element.info" @swap=""></component>
@@ -45,6 +35,8 @@ import wapTemplates from '../cmps/app-cmps/wap-templates.vue'
 
 import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
+
+import loginModal from '../cmps/app-cmps/login-modal.vue'
 
 export default {
   data() {
@@ -257,7 +249,8 @@ export default {
     wapTemplates,
     wapHeader,
     draggable,
-    wapHero
+    wapHero,
+    loginModal
   },
 }
 </script>
