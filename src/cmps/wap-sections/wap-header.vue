@@ -5,7 +5,7 @@
   <div v-if="type2">
     <h1 @change="doSomething">Header</h1>
   </div> -->
-  <header class="wap-header" :style="options">
+  <header class="wap-header" :style="options.style">
     <section class="logo">
       <h1
         class="title"
