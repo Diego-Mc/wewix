@@ -1,22 +1,36 @@
 <template>
   <login-modal />
   <main v-if="wap">
-
     <wap-templates />
 
-    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
-      :cmpStyle="selectedCmp.style" @update="handleUpdate()">
+    <cmp-editor
+      v-if="isOpenCmpEditor"
+      :id="selectedCmp._id"
+      :editOptions="selectedCmp.options"
+      :cmpStyle="selectedCmp.style"
+      @update="handleUpdate()">
     </cmp-editor>
 
-
-    <draggable class="list-group" :component-data="{
-      type: 'transition-group',
-      name: !drag ? 'flip-list' : null
-    }" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order"
+    <draggable
+      class="list-group"
+      :component-data="{
+        type: 'transition-group',
+        name: !drag ? 'flip-list' : null,
+      }"
+      v-model="wap.cmps"
+      v-bind="dragOptions"
+      @start="drag = true"
+      @end="drag = false"
+      item-key="order"
       group="sections">
       <template #item="{ element }">
         <div>
-          <component :is="element.type" :info="element.info" :cmpId="element.id" @select="select"></component>
+          <component
+            :is="element.type"
+            :info="element.info"
+            :options="element.options"
+            :cmpId="element.id"
+            @select="select"></component>
         </div>
       </template>
     </draggable>
@@ -86,8 +100,7 @@ export default {
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = cmp.options
       this.isOpenCmpEditor = true
-    }
-
+    },
   },
 
   created() {
@@ -109,7 +122,7 @@ export default {
     wapTemplates,
     wapHeader,
     draggable,
-    wapHero
+    wapHero,
   },
 }
 </script>
