@@ -5,6 +5,12 @@
     <!-- test -->
     <p v-if="cmps"> {{ cmps }}</p>
     <!-- test -->
+    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
+      :cmpStyle="selectedCmp.style" @update="handleUpdate()"></cmp-editor>
+
+    <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()" @select="select">
+    </component>
+
   </div>
 </template>
 
@@ -15,11 +21,14 @@ import cmpEditor from '../cmps/cmp-editor.vue'
 export default {
   data() {
     return {
+      cmps: null,
+      selectedCmp: {},
+      isOpenCmpEditor: true
     }
   },
   methods: {
     handleUpdate({ cmpId, name, content, style }) {
-      const cmp = cmps.find(({ id }) => id === cmpId)
+      const cmp = cmps.find(({ _id }) => _id === cmpId)
       cmp[name] = content ?? cmp.content
       cmp[name] = style ?? cmp.style
     },
@@ -31,6 +40,17 @@ export default {
     handleDrop() {
       this.$store.dispatch({ type: 'updateCmps', cmps: this.cmps })
     }
+    ,
+    select({ cmpId, name }) {
+      const cmp = cmps.find(({ _id }) => id === cmpId)
+
+      this.selectedCmp.style = cmp.style
+      this.selectedCmp._id = cmpId
+      this.selectedCmp.options = Object.keys(this.selectedCmp.style)
+
+      this.isOpenCmpEditor = true
+    }
+
   },
   computed: {
     cmps() {

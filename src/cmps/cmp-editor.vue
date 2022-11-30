@@ -1,27 +1,39 @@
 <template>
     <section class="cmp-editor">
-        <font-picker v-if="isContain('font')"/>
+
+        <div v-if="isContain('font')">Font Picker</div>
+        <div v-if="isContain('backgroundColor')">Background Color Picker</div>
+        <div v-if="isContain('color')">Color Picker</div>
+        <div v-if="isContain('fontWeight')">Font Weight Picker</div>
+        <div v-if="isContain('borderRadius')">Border Radius Picker</div>
+
+        <div v-if="isContain('img')">Img Picker</div>
+        <div v-if="isContain('href')">Href Picker</div>
         
     </section>
 </template>
 
 <script>
-    import {eventBus} from '../services/event-bus.service'
     import fontPicker from './editor-cmps/font-picker.vue'
+    import colorPicker from './editor-cmps/color-picker.vue'
 
     export default {
+        props: {
+            _id: String,
+            editOptions: Array,
+            cmpStyle: Object,
+        },
+
         methods: {
             isContain(type) {
-                return this.types().includes(type)
+                // TODO: Set Worked
+                return true //this.editOptions.includes(type)
             },
-
-            types() {
-                return ['font', 'backgroundColor', 'fontWeight', 'img', 'href', 'borderRadius']
-            } 
         },
 
         components: {
             fontPicker, 
+            colorPicker
         }
     }
 </script>
