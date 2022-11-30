@@ -1,31 +1,6 @@
 <template>
   <main v-if="wap">
 
-<<<<<<< HEAD
-      <wap-templates/>
-
-      <cmp-editor 
-          v-if="isOpenCmpEditor" 
-          :id="selectedCmp._id" 
-          :editOptions="selectedCmp.options"
-          :cmpStyle="selectedCmp.style" 
-          @update="handleUpdate()">
-      </cmp-editor>
-      
-
-    <draggable 
-        class="list-group" 
-        :component-data="{
-          type: 'transition-group',
-          name: !drag ? 'flip-list' : null}"
-        v-model="cmpsTest"
-        v-bind="dragOptions"
-        @start="drag = true"
-        @end="drag = false"
-        item-key="order"
-        group="sections"
-    >
-=======
     <section>
       <h3>sections to add</h3>
       <draggable class=" list-group" :list="list1" item-key="order"
@@ -39,17 +14,9 @@
     </section>
 
     <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
-      :cmpStyle="selectedCmp.style" @update="handleUpdate()">
+      :cmpStyle="selectedCmp.style" @update="handleUpdate()" >
     </cmp-editor>
 
-    <component v-for="cmp in wap.cmps" is="cmp.type" @update="handleUpdate()" @select="select">
-    </component>
-
-    <component v-for="cmp in wap.cmps" is="cmp.type" @update="handleUpdate()" @select="select">
-    </component>
-
-    <component v-for="cmp in wap.cmps" is="cmp.type" @update="handleUpdate()" @select="select">
-    </component>
 
     <!-- <component
           v-for="cmp in cmps"
@@ -64,8 +31,7 @@
       type: 'transition-group',
       name: !drag ? 'flip-list' : null
     }" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order">
->>>>>>> 312a2a4b0df9388622408077d6def1de9b91ec99
-      <template #item="{ element }">
+      <template #item="{ element }" group="sections">
         <div>
           <component :is="element.type" :info="element.info" @swap=""></component>
         </div>
