@@ -6,7 +6,7 @@
       v-if="isOpenCmpEditor"
       :id="selectedCmp._id"
       :editOptions="selectedCmp.options"
-      :cmpStyle="selectedCmp.options.style"
+      :cmpStyle="selectedCmp.style"
       @update="handleUpdate()">
     </cmp-editor>
 
@@ -27,7 +27,8 @@
           <component
             :is="element.type"
             :info="element.info"
-            @swap=""></component>
+            :cmpId="element.id"
+            @select="select"></component>
         </div>
       </template>
     </draggable>
@@ -251,12 +252,12 @@ export default {
     },
 
     select({ cmpId, name }) {
-      const cmp = cmps.find(({ _id }) => id === cmpId)
-
-      this.selectedCmp.style = cmp.style
+      const cmp = this.wap.cmps.find(({ id }) => {
+        return id === cmpId
+      })
       this.selectedCmp._id = cmpId
-      this.selectedCmp.options = Object.keys(this.selectedCmp.style)
 
+      this.selectedCmp.options = Object.keys(cmp.style)
       this.isOpenCmpEditor = true
     },
   },
