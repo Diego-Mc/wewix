@@ -2,7 +2,7 @@
   <section class="wap-hero">
     <h2
       class="title"
-      :style="info.title.style"
+      :style="info.title.options.style"
       @change="updateContent('title')"
       @click="$emit('select', { cmpId, name: 'title' })"
       contenteditable>
@@ -10,7 +10,7 @@
     </h2>
     <p
       class="text"
-      :style="info.text.style"
+      :style="info.text.options.style"
       @change="updateContent('text')"
       @click="$emit('select', { cmpId, name: 'text' })"
       contenteditable>
@@ -18,7 +18,7 @@
     </p>
     <button
       class="btn"
-      :style="info.btn.style"
+      :style="info.btn.options.style"
       @click="$emit('select', { cmpId, name: 'btn' })"
       @change="updateContent('btn')">
       {{ info.btn.content.text }}
@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  props: ['info', 'cmpId', 'style'],
+  props: ['info', 'cmpId', 'options'],
   methods: {
     updateContent(name) {
       this.$emit('update', { cmpId, name, content: info.text.content })

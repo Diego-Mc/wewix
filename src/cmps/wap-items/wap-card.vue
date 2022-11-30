@@ -1,20 +1,20 @@
 <template>
   <article class="wap-card">
-    <img
+    <!-- <img
       class="card-img"
       src="https://dance.co/_next/image?url=%2Fimages%2Frides%2Febikes%2Fone-step-card%402x.png&w=750&q=75" />
-    <span class="card-details">
-      From $39/mo <span class="tag">Automn offer</span>
+    <span class="details">
+      {{ info.content.details }} <span class="tag">{{ info.content.tag }}</span>
     </span>
-    <h3 class="card-title">Dance One Step</h3>
-    <p class="card-desc">Ebike</p>
-    <button class="btn card-btn">See details</button>
+    <h3 class="title">Dance One Step</h3>
+    <p class="text">Ebike</p>
+    <button class="btn">See details</button> -->
   </article>
 </template>
 
 <script>
 export default {
-  props: ['info', 'cmpId', 'style'],
+  props: ['info', 'cmpId', 'options'],
   methods: {
     updateContent(name) {
       this.$emit('update', { cmpId, name, content: info.text.content })

@@ -2,26 +2,40 @@
   <login-modal />
   <main v-if="wap">
 
-    <wap-templates />
+      <wap-templates/>
 
-    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
-      :cmpStyle="selectedCmp.style" @update="handleUpdate()">
-    </cmp-editor>
+      <cmp-editor 
+          v-if="isOpenCmpEditor" 
+          :id="selectedCmp._id" 
+          :editOptions="selectedCmp.options"
+          :cmpStyle="selectedCmp.style" 
+          @update="handleUpdate()">
+      </cmp-editor>
+      
 
-
-    <draggable class="list-group" :component-data="{
-      type: 'transition-group',
-      name: !drag ? 'flip-list' : null
-    }" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order"
-      group="sections">
+    <draggable 
+        class="list-group" 
+        :component-data="{
+          type: 'transition-group',
+          name: !drag ? 'flip-list' : null}"
+        v-model="wap.cmps"
+        v-bind="dragOptions"
+        @start="drag = true"
+        @end="drag = false"
+        item-key="order"
+        group="sections"
+    >
       <template #item="{ element }">
         <div>
-          <component :is="element.type" :info="element.info" @swap=""></component>
+          <component
+            :is="element.type"
+            :info="element.info"
+            :cmpId="element.id"
+            @select="select"></component>
         </div>
       </template>
-
     </draggable>
-    <pre>{{ cmpsTest }}</pre>
+    <pre>{{ wap.cmps }}</pre>
   </main>
 </template>
 
@@ -48,9 +62,9 @@ export default {
       drag: false,
       dragOptions: {
         animation: 200,
-        group: "description",
+        group: 'description',
         disabled: false,
-        ghostClass: "ghost"
+        ghostClass: 'ghost',
       },
 
       cmpsTest: [
@@ -131,58 +145,59 @@ export default {
               content: { text: 'Start now', link: '#wc03' },
             },
           },
-        }],
+        },
+      ],
       list1: [
         {
           img: 'asdas',
-          name: 'John', id: 1, backgroundColor: '#5e548e',
-          children: [
-            { name: 'John' },
-          ]
+          name: 'John',
+          id: 1,
+          backgroundColor: '#5e548e',
+          children: [{ name: 'John' }],
         },
         {
-          name: 'Joao', id: 2, backgroundColor: '#370617',
-          children: [
-            { name: 'Joao' },
-          ]
+          name: 'Joao',
+          id: 2,
+          backgroundColor: '#370617',
+          children: [{ name: 'Joao' }],
         },
         {
-          name: 'Jean', id: 3, backgroundColor: '#6a040f',
-          children: [
-            { name: 'Jean' },
-          ]
+          name: 'Jean',
+          id: 3,
+          backgroundColor: '#6a040f',
+          children: [{ name: 'Jean' }],
         },
         {
-          name: 'Gerard', id: 4, backgroundColor: '#9d0208',
-          children: [
-            { name: 'Gerard' },
-          ]
+          name: 'Gerard',
+          id: 4,
+          backgroundColor: '#9d0208',
+          children: [{ name: 'Gerard' }],
         },
       ],
 
       list: [
         {
-          name: 'Juan', id: 5, backgroundColor: '#e85d04',
+          name: 'Juan',
+          id: 5,
+          backgroundColor: '#e85d04',
           children: [
             { name: '1' },
             { name: '2' },
             { name: '3' },
             { name: '4' },
-          ]
+          ],
         },
         {
-          name: 'Edgard', id: 6, backgroundColor: '#f48c06',
-          children: [
-            { name: 'wa' },
-            { name: 'ha' }
-          ]
+          name: 'Edgard',
+          id: 6,
+          backgroundColor: '#f48c06',
+          children: [{ name: 'wa' }, { name: 'ha' }],
         },
         {
-          name: 'Johnson', id: 7, backgroundColor: '#faa307',
-          children: [
-            { name: 'wa' },
-            { name: 'ha' }
-          ]
+          name: 'Johnson',
+          id: 7,
+          backgroundColor: '#faa307',
+          children: [{ name: 'wa' }, { name: 'ha' }],
         },
       ],
     }
@@ -198,7 +213,10 @@ export default {
 
     async loadWap() {
       if (this.$route.params.id) {
-        const wap = await this.$store.dispatch({ type: 'getWap', id: this.$route.params.id })
+        const wap = await this.$store.dispatch({
+          type: 'getWap',
+          id: this.$route.params.id,
+        })
         this.wap = JSON.parse(JSON.stringify(wap))
       }
     },
@@ -213,35 +231,29 @@ export default {
     },
 
     select({ cmpId, name }) {
-      const cmp = cmps.find(({ _id }) => id === cmpId)
-
-      this.selectedCmp.style = cmp.style
+      const cmp = this.wap.cmps.find(({ id }) => {
+        return id === cmpId
+      })
       this.selectedCmp._id = cmpId
-      this.selectedCmp.options = Object.keys(this.selectedCmp.style)
 
+      this.selectedCmp.id = cmpId
+      this.selectedCmp.options = cmp.options
       this.isOpenCmpEditor = true
-    }
-
+    },
   },
-  // computed: {
-  //   cmps() {
-  //     return JSON.parse(JSON.stringify(this.$store.getters.editedWap?.cmps || ''))
-  //   },
-  // },
+
   created() {
     this.loadWap()
-    // this.handleDrop()
   },
 
   watch: {
     wap: {
       handler(wap) {
-        console.log('wa');
+        console.log('wa')
         this.updateWap(wap)
       },
       deep: true,
     },
-
   },
 
   components: {
@@ -249,12 +261,10 @@ export default {
     wapTemplates,
     wapHeader,
     draggable,
-    wapHero,
-    loginModal
+    wapHero
   },
 }
 </script>
-
 
 <style>
 * {
@@ -327,4 +337,3 @@ td {
   min-width: 200px;
 }
 </style>
-

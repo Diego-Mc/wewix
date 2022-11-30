@@ -19,25 +19,38 @@ export default [
       {
         id: 'wc02',
         type: 'wap-header',
-        style: {
-          backgroundColor: '',
-        },
-        info: {
-          title: {
+        options: {
+          meta: {},
+          style: {
             style: {
               backgroundColor: '',
               fontFamily: '',
               color: '',
+            },
+          },
+        },
+        info: {
+          title: {
+            options: {
+              meta: {},
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
             },
             content: {
               text: 'Dance',
             },
           },
           nav: {
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
+            options: {
+              meta: {},
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
             },
             content: {
               nav1: 'Concierge',
@@ -46,81 +59,243 @@ export default [
             },
           },
           btn: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-              borderRadius: '',
+            options: {
+              meta: {},
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
             },
-            content: { text: 'Start now', link: '#wc03' },
+            content: { text: 'Start now' },
           },
         },
       },
       {
         id: 'wc03',
         type: 'wap-hero',
-        style: {
-          backgroundColor: '',
+        options: {
+          meta: {},
+          style: {
+            backgroundColor: '',
+            fontFamily: '',
+            color: '',
+          },
         },
         info: {
           title: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
+            options: {
+              meta: {},
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
             },
             content: {
               text: 'Your future\nis electric',
             },
           },
           text: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
+            options: {
+              meta: {},
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
             },
             content: {
               text: 'Get your own ebike or emoped\nwith our flexible subscription',
             },
           },
           btn: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-              borderRadius: '',
+            options: {
+              meta: {
+                href: '#',
+              },
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
             },
-            content: { text: 'Start now', link: '#wc03' },
+            content: { text: 'Start now' },
           },
         },
       },
       {
         id: 'wc03',
         type: 'wap-section',
-        style: {
-          backgroundColor: '',
+        options: {
+          meta: {},
+          style: {
+            backgroundColor: '',
+            fontFamily: '',
+            color: '',
+          },
         },
         info: {
           title: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
+            options: {
+              meta: {},
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
             },
             content: {
               text: 'Move your way',
             },
           },
           text: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
+            options: {
+              meta: {},
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
             },
             content: {
-              text: 'Choose the electric ride that suid tour lifestyle',
+              text: 'Choose the electric ride that suid tour lifeoptions',
             },
           },
+        },
+      },
+      {
+        id: 'wc04',
+        type: 'wap-cards',
+        options: {
+          meta: {},
+          style: {
+            backgroundColor: '',
+            fontFamily: '',
+            color: '',
+          },
+        },
+        info: {
+          title: {
+            options: {
+              meta: {},
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
+            },
+            content: {
+              text: 'Move your way',
+            },
+          },
+          text: {
+            options: {
+              meta: {},
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
+            },
+            content: {
+              text: 'Choose the electric ride that suid tour lifeoptions',
+            },
+          },
+          cmps: [
+            {
+              id: 'wc02',
+              type: 'wap-card',
+              options: {
+                meta: {},
+                style: {
+                  backgroundColor: '',
+                  fontFamily: '',
+                  color: '',
+                },
+              },
+              info: {
+                details: {
+                  options: {
+                    meta: {},
+                    style: {
+                      backgroundColor: '',
+                      fontFamily: '',
+                      color: '',
+                    },
+                  },
+                  content: {
+                    text: 'From $39/mo',
+                  },
+                },
+                tag: {
+                  options: {
+                    meta: {},
+                    style: {
+                      backgroundColor: '',
+                      fontFamily: '',
+                      color: '',
+                    },
+                  },
+                  content: {
+                    text: 'Automn offer',
+                  },
+                },
+                title: {
+                  options: {
+                    meta: {},
+                    style: {
+                      backgroundColor: '',
+                      fontFamily: '',
+                      color: '',
+                    },
+                  },
+                  content: {
+                    text: 'Dance One Step',
+                  },
+                },
+                text: {
+                  options: {
+                    meta: {},
+                    style: {
+                      backgroundColor: '',
+                      fontFamily: '',
+                      color: '',
+                    },
+                  },
+                  content: {
+                    text: 'Ebike',
+                  },
+                },
+                nav: {
+                  options: {
+                    meta: {},
+                    style: {
+                      backgroundColor: '',
+                      fontFamily: '',
+                      color: '',
+                    },
+                  },
+                  content: {
+                    nav1: 'Concierge',
+                    nav2: 'Rides',
+                    nav3: 'For Business',
+                  },
+                },
+                btn: {
+                  options: {
+                    meta: {},
+                    style: {
+                      backgroundColor: '',
+                      fontFamily: '',
+                      color: '',
+                    },
+                  },
+                  content: { text: 'See details', link: '#wc03' },
+                },
+              },
+            },
+          ],
         },
       },
     ],
