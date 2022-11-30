@@ -10,6 +10,7 @@
     <cmp-editor
       v-if="isOpenCmpEditor"
       :id="selectedCmp.id"
+      :childCmpId="selectedCmp.childCmpId"
       :editOptions="selectedCmp.options"
       @update="handleUpdate()">
     </cmp-editor>
@@ -37,7 +38,7 @@
                 :cmps="element.cmps"
                 :cmpId="element.id" @select="select"
                 @update="handleUpdate">
-                
+              
             </component>
           </div>
         </template>
@@ -126,8 +127,13 @@ export default {
       this.$store.dispatch({ type: 'updateWap', wap: wap })
     },
 
-    select({ cmpId, name }) {
-      const cmp = this.wap.cmps.find(({ id }) => id === cmpId)
+    select({ cmpId, name, childCmpId }) {
+      let cmp = this.wap.cmps.find(({ id }) => id === cmpId)
+
+      if (childCmpId) {
+          cmp = cmp.cmps.find(({id}) => id === childCmpId)
+          this.selectedCmp.childCmpId = childCmpId
+      }
 
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = name ? cmp.info[name].options : cmp.options

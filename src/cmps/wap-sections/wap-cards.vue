@@ -1,4 +1,5 @@
 <template>
+  <!-- $emit('select', { cmpId}) -->
   <draggable 
         class="list-group wap-cards"
         :component-data="{
@@ -8,7 +9,7 @@
         v-model="cards" 
         v-bind="dragOptions" 
         @start="drag = true" 
-        @end="handleDrop($event)" 
+        @end="drag = false" 
         item-key="order"
         group="section"
     >
@@ -19,26 +20,12 @@
                 :key="element.id"
                 :options="element.options"
                 :info="element.info"
-                :cmpId="element.id" />
+                :cmpId="cmpId"
+                :childCmpId="element.id"
+                @select="emitSelect"/>
           </div>
         </template>
-    </draggable>
-
-    <!-- <draggable :sort="false" class=" list-group" :list="cards" item-key="order"
-      :group="{ name: 'sections', pull: 'clone', put: false }">
-      <template #item="{ element }">
-        <li class="list-group-item" :style="{ backgroundColor: element.backgroundColor }">
-          <div>
-            <component
-                :is="element.type"
-                :key="element.id"
-                :options="element.options"
-                :info="element.info"
-                :cmpId="element.id" />
-          </div>
-        </li>
-      </template>
-    </draggable> -->
+  </draggable>
 </template>
 
 <script>
@@ -61,6 +48,7 @@ export default {
         disabled: false,
         ghostClass: 'ghost',
       },
+      drag: false,
     }
   },
   components: {
@@ -68,10 +56,8 @@ export default {
     draggable
   },
   methods: {
-    handleDrop(ev) {
-      console.log(ev);
-      [this.cards[oldIndex], this.cards[newIndex]] = [this.cards[newIndex], this.cards[oldIndex]]
-      drag = false
+    emitSelect(data) {
+      this.$emit('select', data)
     }
   },
 }
