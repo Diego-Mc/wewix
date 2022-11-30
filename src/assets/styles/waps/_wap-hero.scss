@@ -1,13 +1,18 @@
-.wap-header {
+.wap-hero {
   display: flex;
+  flex-direction: column;
   width: 100%;
   padding-inline: 30px;
-  justify-content: space-between;
-  height: 80px;
+  height: calc(100vh - 80px);
   gap: 40px;
   align-items: center;
-  background-color: var(--clr-1);
+  justify-content: center;
+  background-color: var(--clr-2);
   color: var(--clr-3);
+  text-align: center;
+  * {
+    max-width: 400px;
+  }
   .logo {
     display: flex;
     align-items: center;
@@ -20,25 +25,21 @@
       width: 100%;
     }
   }
-  nav {
-    flex: 1;
-    ul {
-      list-style-type: none;
-      display: flex;
-      gap: 40px;
-      justify-content: flex-end;
-      li {
-        transition: filter 0.2s;
-        cursor: pointer;
-      }
-    }
+  .title {
+    font-size: rem(70px);
+    font-weight: normal;
+  }
+  .text {
+    font-size: rem(16px);
+    max-width: 240px;
   }
   .btn {
-    padding: 0.8em 2em;
+    font-size: rem(20px);
+    padding: 1.4em 4em;
     font-size: rem(14px);
     transition: filter 0.2s;
     border-radius: 4rem;
-    background-color: var(--clr-2);
+    background-color: var(--clr-1);
     &:hover {
       filter: brightness(120%);
     }
