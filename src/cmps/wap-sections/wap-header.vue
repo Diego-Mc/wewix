@@ -5,18 +5,18 @@
   <div v-if="type2">
     <h1 @change="doSomething">Header</h1>
   </div> -->
-  <header class="wap-header" :style="options.style">
+  <header class="wap-header" :style="options.style" @click.stop="$emit('select', {cmpId})">
     <section class="logo">
       <h1
         class="title"
         :style="info.title.options.style"
         @change="updateContent('title')"
-        @click="$emit('select', { cmpId, name: 'title' })"
+        @click.stop="$emit('select', { cmpId, name: 'title' })"
         contenteditable>
         {{ info.title.content.text }}
       </h1>
     </section>
-    <nav :style="info.nav.options.style" @click="$emit('select', cmpId)">
+    <nav :style="info.nav.options.style" @click.stop="$emit('select', { cmpId, name: 'nav' })">
       <ul>
         <li v-for="nav in info.nav.content">
           {{ nav }}
@@ -26,7 +26,7 @@
     <button
       class="btn"
       :style="info.btn.options.style"
-      @click="$emit('select', { cmpId, name: 'btn' })"
+      @click.stop="$emit('select', { cmpId, name: 'btn' })"
       @change="updateContent('btn')">
       {{ info.btn.content.text }}
     </button>

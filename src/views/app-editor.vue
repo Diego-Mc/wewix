@@ -9,9 +9,8 @@
 
     <cmp-editor
       v-if="isOpenCmpEditor"
-      :id="selectedCmp._id"
+      :id="selectedCmp.id"
       :editOptions="selectedCmp.options"
-      :cmpStyle="selectedCmp.style"
       @update="handleUpdate()">
     </cmp-editor>
 
@@ -53,6 +52,7 @@ import wapTemplates from '../cmps/app-cmps/wap-templates.vue'
 import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
 import wapCards from '../cmps/wap-sections/wap-cards.vue'
+import wapSection from '../cmps/wap-sections/wap-section.vue'
 
 import loginModal from '../cmps/app-cmps/login-modal.vue'
 
@@ -61,7 +61,7 @@ export default {
     return {
       wap: null,
       selectedCmp: {},
-      isOpenCmpEditor: true,
+      isOpenCmpEditor: false,
 
       drag: false,
       dragOptions: {
@@ -120,10 +120,13 @@ export default {
     publishWap() {
       this.$store.dispatch({ type: 'updateWap', wap: wap })
     },
+
     select({ cmpId, name }) {
       const cmp = this.wap.cmps.find(({ id }) => id === cmpId)
+
       this.selectedCmp.id = cmpId
-      this.selectedCmp.options = cmp.options
+      this.selectedCmp.options = name ? cmp.info[name].options : cmp.options
+
       this.isOpenCmpEditor = true
     },
     getEmptyWap() {
@@ -154,8 +157,8 @@ export default {
     draggable,
     wapHero,
     loginModal,
-    wapHero,
-    loginModal,
+    wapCards,
+    wapSection,
   },
 }
 </script>

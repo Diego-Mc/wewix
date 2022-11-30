@@ -1,41 +1,52 @@
 <template>
-  <section v-if="options" class="cmp-editor">
+  <section v-if="editOptions" class="cmp-editor">
+    <button @click="log">click</button>
     <section class="style-editor">
+
       <div v-if="isOptionsContain('fontFamily')">
         Font Picker
-        <!-- Implement v-model=style.fontFamily -->
+        <select @change="log" v-model="updatedOptions.style.fontFamily">
+          <option>arial</option>
+          <option>Gill Sans</option>
+          <option>Calibri</option>
+        </select>
       </div>
 
       <div v-if="isOptionsContain('backgroundColor')">
         Background Color Picker
-        <!-- Implement v-model=style.fontFamily -->
+        <input @input="log" v-model="updatedOptions.style.backgroundColor" type="color">
       </div>
 
       <div v-if="isOptionsContain('color')">
         Color Picker
-        <!-- Implement v-model=style.color -->
+        <input @input="log" v-model="updatedOptions.style.color" type="color">
       </div>
 
       <div v-if="isOptionsContain('fontWeight')">
         Font Weight Picker
-        <!-- Implement v-model=style.fontWeight -->
+        <select @change="log" v-model="updatedOptions.style.fontWeight">
+          <option>lighter</option>
+          <option>normal</option>
+          <option>bold</option>
+          <option>bolder</option>
+        </select>
       </div>
 
       <div v-if="isOptionsContain('borderRadius')">
         Border Radius Picker
-        <!-- Implement v-model=style.fontWeight -->
+        <input @input="log" v-model="updatedOptions.style.borderRadius" type="range">
       </div>
     </section>
 
     <section class="content-editor">
       <div v-if="isOptionsContain('img')">
         Img Picker
-        <!-- Implement v-model=style.img -->
+        <input @input="log" v-model="updatedOptions.meta.img" type="text" placeholder="img"/>
       </div>
 
       <div v-if="isOptionsContain('link')">
         Link
-        <!-- Implement v-model=style.link -->
+        <input @input="log" v-model="updatedOptions.meta.link" type="text" placeholder="link"/>
       </div>
     </section>
   </section>
@@ -45,16 +56,31 @@
 export default {
   props: {
     id: String,
-    options: Object,
+    editOptions: Object,
+  },
+  data() {
+    return {
+      updatedOptions: JSON.parse(JSON.stringify(this.editOptions))
+    }
   },
   methods: {
     isOptionsContain(type) {
-      const options = [...Object.keys(this.options)]
+      const options = [...Object.keys(this.editOptions.style), ...Object.keys(this.editOptions.meta)]
       return options.includes(type)
     },
+
+    log() {
+      console.log(this.updatedOptions);
+    },
+
+    updateContent() {
+      this.$emit('update', { cmpId: id, name, content: info.text.content })
+    },
   },
-  created() {
-    console.log(this.options, 'FDHDF')
-  },
+  watch: {
+    editOptions() {
+      this.updatedOptions = JSON.parse(JSON.stringify(this.editOptions))
+    }
+}
 }
 </script>

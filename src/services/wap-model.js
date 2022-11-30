@@ -20,19 +20,25 @@ export default [
         id: 'wc02',
         type: 'wap-header',
         options: {
-          meta: {},
+          meta: {
+            img: '',
+            link: ''
+          },
           style: {
-            style: {
               backgroundColor: '',
               fontFamily: '',
               color: '',
-            },
+              borderRadius: '',
+              fontWeight: '',
           },
         },
         info: {
           title: {
             options: {
-              meta: {},
+              meta: {
+                img: '',
+                link: ''
+              },
               style: {
                 backgroundColor: '',
                 fontFamily: '',
@@ -77,9 +83,8 @@ export default [
         options: {
           meta: {},
           style: {
-            backgroundColor: '',
-            fontFamily: '',
-            color: '',
+              borderRadius: '',
+              fontWeight: '',
           },
         },
         info: {
