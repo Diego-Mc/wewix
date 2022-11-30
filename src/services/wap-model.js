@@ -182,7 +182,7 @@ export default [
         },
         cmps: [
           {
-            id: 'wc02',
+            id: 'wc05',
             type: 'wap-card',
             options: {
               meta: {},
@@ -198,8 +198,6 @@ export default [
                   meta: {},
                   style: {
                     backgroundColor: '',
-                    fontFamily: '',
-                    color: '',
                   },
                 },
                 content: {},
@@ -285,7 +283,7 @@ export default [
             },
           },
           {
-            id: 'wc02',
+            id: 'wc06',
             type: 'wap-card',
             options: {
               meta: {},
@@ -300,9 +298,7 @@ export default [
                 options: {
                   meta: {},
                   style: {
-                    backgroundColor: '',
                     fontFamily: '',
-                    color: '',
                   },
                 },
                 content: {},
@@ -343,7 +339,7 @@ export default [
                   },
                 },
                 content: {
-                  text: 'Dance One Step',
+                  text: 'Dance One Line',
                 },
               },
               text: {
@@ -388,13 +384,11 @@ export default [
             },
           },
           {
-            id: 'wc02',
+            id: 'wc07',
             type: 'wap-card',
             options: {
               meta: {},
               style: {
-                backgroundColor: '',
-                fontFamily: '',
                 color: '',
               },
             },
@@ -404,7 +398,6 @@ export default [
                   meta: {},
                   style: {
                     backgroundColor: '',
-                    fontFamily: '',
                     color: '',
                   },
                 },

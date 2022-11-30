@@ -5,21 +5,41 @@
       publish site
     </button>
 
-    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp.id" :editOptions="selectedCmp.options" :name="selectedCmp.name"
-      @update="handleUpdate">
+    <cmp-editor
+      v-if="isOpenCmpEditor"
+      :id="selectedCmp.id"
+      :childCmpId="selectedCmp.childCmpId"
+      :editOptions="selectedCmp.options"
+      @update="handleUpdate()">
     </cmp-editor>
 
-    <draggable class="list-group" :component-data="{
-      type: 'transition-group',
-      name: !drag ? 'flip-list' : null,
-    }" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order"
-      group="sections">
-      <template #item="{ element }">
-        <div>
-          <component :is="element.type" :info="element.info" :options="element.options" :cmps="element.cmps"
-            :cmpId="element.id" @select="select"></component>
-        </div>
-      </template>
+    <draggable 
+        class="list-group" 
+        :component-data="{
+          type: 'transition-group',
+          name: !drag ? 'flip-list' : null,
+        }" 
+        v-model="wap.cmps" 
+        v-bind="dragOptions" 
+        @start="drag = true" 
+        @end="drag = false" 
+        
+        item-key="order"
+        group="sections"
+    >
+        <template #item="{ element }">
+          <div>
+            <component 
+                :is="element.type" 
+                :info="element.info" 
+                :options="element.options" 
+                :cmps="element.cmps"
+                :cmpId="element.id" @select="select"
+                @update="handleUpdate">
+              
+            </component>
+          </div>
+        </template>
     </draggable>
     <pre>{{ wap.cmps }}</pre>
   </main>
@@ -112,8 +132,13 @@ export default {
       this.$store.dispatch({ type: 'updateWap', wap: wap })
     },
 
-    select({ cmpId, name }) {
-      const cmp = this.wap.cmps.find(({ id }) => id === cmpId)
+    select({ cmpId, name, childCmpId }) {
+      let cmp = this.wap.cmps.find(({ id }) => id === cmpId)
+
+      if (childCmpId) {
+          cmp = cmp.cmps.find(({id}) => id === childCmpId)
+          this.selectedCmp.childCmpId = childCmpId
+      }
 
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = name ? cmp.info[name].options : cmp.options
