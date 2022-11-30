@@ -13,8 +13,7 @@
     </component> -->
 
     <draggable 
-        class="list-group" 
-        :list="cmps" 
+        class="list-group"  
         :component-data="{
           type: 'transition-group',
           name: !drag ? 'flip-list' : null
