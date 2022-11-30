@@ -1,0 +1,21 @@
+<template>
+  <section class="img-section">
+    <img :src="info.img.options.meta.src" />
+  </section>
+</template>
+
+<script>
+export default {
+  props: ['info', 'cmpId', 'options'],
+  methods: {
+    updateContent(elType) {
+      this.$emit('update', { cmpId, elType, content: info.text.content })
+    },
+  },
+  created() {
+    console.log(this.info)
+  },
+}
+</script>
+
+<style lang="scss" scoped></style>

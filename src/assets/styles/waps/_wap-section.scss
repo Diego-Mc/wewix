@@ -5,14 +5,16 @@
   flex-wrap: wrap;
   background-color: var(--clr-3);
   color: var(--clr-2);
+  padding-inline: 8rem;
+  gap: 4rem;
 }
 
 .img-section {
   flex: 1;
   min-width: 400px;
+  max-height: 600px;
   aspect-ratio: 1 / 1;
   margin-block: 4rem;
-  margin-right: 8rem;
   // background-color: var(--clr-3);
   background-color: transparent;
   overflow: hidden;
@@ -29,7 +31,7 @@
   flex-direction: column;
   flex: 1;
   min-width: 500px;
-  padding: 4rem 8rem;
+  padding-block: 4rem;
   gap: 40px;
 
   .title {
