@@ -1,38 +1,39 @@
 <template>
-    <app-templates />
-    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
-      :cmpStyle="selectedCmp.style" @update="handleUpdate()"></cmp-editor>
-    
-    <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()" @select="select">
-    </component>
-
-    <!-- <component
-        v-for="cmp in cmps"
-        :is="cmp.type"
-        :info="cmp.info"
-        :cmpId="cmp._id"
-        @update="handleUpdate()"
-        @select="select">
-    </component> -->
-
-    <draggable 
-        class="list-group"  
-        :component-data="{
-          type: 'transition-group',
-          name: !drag ? 'flip-list' : null
-        }" 
-        v-model="cmps" 
-        v-bind="dragOptions"
-        @start="drag = true"
-        @end="drag = false"
-        item-key="order"
-    >
-    <template #item="{ element }">
-      <pre>{{ element }}</pre>
-    </template>
+    <main>
+      <app-templates />
+      <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
+        :cmpStyle="selectedCmp.style" @update="handleUpdate()"></cmp-editor>
       
-    </draggable>
+      <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()" @select="select">
+      </component>
 
+      <!-- <component
+          v-for="cmp in cmps"
+          :is="cmp.type"
+          :info="cmp.info"
+          :cmpId="cmp._id"
+          @update="handleUpdate()"
+          @select="select">
+      </component> -->
+
+      <draggable 
+          class="list-group"  
+          :component-data="{
+            type: 'transition-group',
+            name: !drag ? 'flip-list' : null
+          }" 
+          v-model="cmps" 
+          v-bind="dragOptions"
+          @start="drag = true"
+          @end="drag = false"
+          item-key="order"
+      >
+      <template #item="{ element }">
+        <pre>{{ element }}</pre>
+      </template>
+        
+      </draggable>
+    </main>
 </template>
 
 <script>
