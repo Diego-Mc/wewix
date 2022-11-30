@@ -220,7 +220,6 @@ export default {
     },
 
     select({ cmpId, name }) {
-
       const cmp = this.wap.cmps.find(({ id }) => {return id === cmpId})
       this.selectedCmp._id = cmpId
 
