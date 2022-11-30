@@ -2,6 +2,7 @@
   <main v-if="wap">
     <wap-templates />
     <button style="background-color: orange; margin: 10px 0;" @click="updateWap(wap)">publish site</button>
+
     <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
       :cmpStyle="selectedCmp.style" @update="handleUpdate()">
     </cmp-editor>
@@ -13,8 +14,8 @@
       group="sections">
       <template #item="{ element }">
         <div>
-          <component :is="element.type" :info="element.info" :options="element.options" :cmpId="element.id"
-            @select="select"></component>
+          <component :is="element.type" :info="element.info" :options="element.options" :cmps="element.cmps"
+            :cmpId="element.id" @select="select"></component>
         </div>
       </template>
     </draggable>
@@ -31,6 +32,7 @@ import cmpEditor from '../cmps/app-cmps/cmp-editor.vue'
 import wapTemplates from '../cmps/app-cmps/wap-templates.vue'
 import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
+import wapCards from '../cmps/wap-sections/wap-cards.vue'
 
 import loginModal from '../cmps/app-cmps/login-modal.vue'
 
@@ -52,6 +54,16 @@ export default {
   },
 
   methods: {
+    //TODO: think about removing them completly or move to service.
+    saveToStorage(key, val) {
+      const str = JSON.stringify(val)
+      localStorage.setItem(key, str)
+    },
+
+    loadFromStorage(key) {
+      const str = localStorage.getItem(key)
+      return JSON.parse(str)
+    },
 
     handleUpdate({ cmpId, name, content, style }) {
       const cmp = wap.cmps.find(({ _id }) => _id === cmpId)
@@ -61,14 +73,16 @@ export default {
     },
 
     async loadWap() {
-      if (this.$route.params.id) {
+      if (this.$route.params?.id) {
+        
         const wap = await this.$store.dispatch({
           type: 'getWap',
           id: this.$route.params.id,
         })
         this.wap = JSON.parse(JSON.stringify(wap))
       } else {
-        this.wap = this.getEmptyWap()
+        // add condition: user not logged in.
+        this.wap = this.loadFromStorage('wap') || this.getEmptyWap()
       }
     },
 
@@ -78,7 +92,11 @@ export default {
 
     updateWap(wap) {
       // const updatedWap = JSON.parse(JSON.stringify(wap))
-      this.$store.dispatch({ type: 'updateWap', wap: wap })
+      if (!this.$router.params?.id) {
+        this.saveToStorage('wap', this.wap)
+      } else {
+        this.$store.dispatch({ type: 'updateWap', wap: wap })
+      }
     },
     publishWap() {
       this.$store.dispatch({ type: 'updateWap', wap: wap })
@@ -104,7 +122,7 @@ export default {
   watch: {
     wap: {
       handler(wap) {
-        // this.updateWap(wap)
+        this.updateWap(wap)
       },
       deep: true,
     },
@@ -114,9 +132,12 @@ export default {
     cmpEditor,
     wapTemplates,
     wapHeader,
+    wapCards,
     draggable,
     wapHero,
-    loginModal
+    loginModal,
+    wapHero,
+    loginModal,
   },
 }
 </script>
