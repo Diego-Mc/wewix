@@ -6,7 +6,7 @@
       :key="cmp.id"
       :options="cmp.options"
       :info="cmp.info"
-      :cmpId="id" />
+      :cmpId="cmp.id" />
   </section>
 </template>
 
@@ -20,7 +20,7 @@ export default {
     },
   },
   created() {
-    console.log(this.info)
+    console.log(this.info, this.cmps)
   },
   components: {
     wapCard,
