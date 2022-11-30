@@ -1,113 +1,300 @@
 <template>
-      <section>
-        <h3>sections to add</h3>
-        <draggable class=" list-group" :list="cmpsTest" item-key="order"
-          :group="{ name: 'sections', pull: 'clone', put: false }">
-          <template #item="{ element }">
-            <li class="list-group-item" :style="{ backgroundColor: element.backgroundColor }">
-              <p>{{ element.type }}</p>
-            </li>
-          </template>
-        </draggable>
-      </section>
+  <section>
+    <h3>sections to add</h3>
+    <draggable class=" list-group" :list="cmpsTest" item-key="order"
+      :group="{ name: 'sections', pull: 'clone', put: false }">
+      <template #item="{ element }">
+        <li class="list-group-item" :style="{ backgroundColor: element.backgroundColor }">
+          <p>{{ element.type }}</p>
+        </li>
+      </template>
+    </draggable>
+  </section>
 </template>
 
 <script>
 import draggable from 'vuedraggable'
 export default {
-    components: {
-        draggable,
-    },
-    data() {
-        return {
-            cmpsTest: [
-                {
-                    id: 'wc02',
-                    type: 'wap-header',
-                    style: {
-                        backgroundColor: '',
-                    },
-                    info: {
-                        title: {
-                            style: {
-                                backgroundColor: '',
-                                fontFamily: '',
-                                color: '',
-                            },
-                            content: {
-                                text: 'Dance',
-                            },
-                        },
-                        nav: {
-                            style: {
-                                fontFamily: '',
-                                color: '',
-                                fontWeight: '',
-                            },
-                            content: {
-                                nav1: 'Concierge',
-                                nav2: 'Rides',
-                                nav3: 'For Business',
-                            },
-                        },
-                        btn: {
-                            style: {
-                                backgroundColor: '',
-                                fontFamily: '',
-                                color: '',
-                                borderRadius: '',
-                            },
-                            content: { text: 'Start now', link: '#wc03' },
-                        },
-                    },
+  components: {
+    draggable,
+  },
+  data() {
+    return {
+      cmpsTest: [
+        {
+          id: 'wc02',
+          type: 'wap-header',
+          options: {
+            backgroundColor: '',
+          },
+          info: {
+            title: {
+              options: {
+                meta: {},
+                style: {
+                  backgroundColor: '',
+                  fontFamily: '',
+                  color: '',
                 },
-                {
-                    id: 'wc03',
-                    type: 'wap-hero',
-                    style: {
-                        backgroundColor: '',
-                    },
-                    info: {
-                        title: {
-                            style: {
-                                backgroundColor: '',
-                                fontFamily: '',
-                                color: '',
-                            },
-                            content: {
-                                text: 'Your future\nis electric',
-                            },
-                        },
-                        text: {
-                            style: {
-                                backgroundColor: '',
-                                fontFamily: '',
-                                color: '',
-                            },
-                            content: {
-                                text: 'Get your own ebike or emoped\nwith our flexible subscription',
-                            },
-                        },
-                        btn: {
-                            style: {
-                                backgroundColor: '',
-                                fontFamily: '',
-                                color: '',
-                                borderRadius: '',
-                            },
-                            content: { text: 'Start now', link: '#wc03' },
-                        },
-                    },
+              },
+              content: {
+                text: 'Dance',
+              },
+            },
+            nav: {
+              options: {
+                meta: {},
+                style: {
+                  backgroundColor: '',
+                  fontFamily: '',
+                  color: '',
                 },
+              },
+              content: {
+                nav1: 'Concierge',
+                nav2: 'Rides',
+                nav3: 'For Business',
+              },
+            },
+            btn: {
+              options: {
+                meta: {},
+                style: {
+                  backgroundColor: '',
+                  fontFamily: '',
+                  color: '',
+                },
+              },
+              content: { text: 'Start now' },
+            },
+          },
+        },
+        {
+          id: 'wc03',
+          type: 'wap-hero',
+          options: {
+            backgroundColor: '',
+          },
+          info: {
+            title: {
+              options: {
+                meta: {},
+                style: {
+                  backgroundColor: '',
+                  fontFamily: '',
+                  color: '',
+                },
+              },
+              content: {
+                text: 'Your future\nis electric',
+              },
+            },
+            text: {
+              options: {
+                meta: {},
+                style: {
+                  backgroundColor: '',
+                  fontFamily: '',
+                  color: '',
+                },
+              },
+              content: {
+                text: 'Get your own ebike or emoped\nwith our flexible subscription',
+              },
+            },
+            btn: {
+              options: {
+                meta: {
+                  href: '#',
+                },
+                style: {
+                  backgroundColor: '',
+                  fontFamily: '',
+                  color: '',
+                },
+              },
+              content: { text: 'Start now' },
+            },
+          },
+        },
+        {
+          id: 'wc03',
+          type: 'wap-section',
+          options: {
+            backgroundColor: '',
+          },
+          info: {
+            title: {
+              options: {
+                meta: {},
+                style: {
+                  backgroundColor: '',
+                  fontFamily: '',
+                  color: '',
+                },
+              },
+              content: {
+                text: 'Move your way',
+              },
+            },
+            text: {
+              options: {
+                meta: {},
+                style: {
+                  backgroundColor: '',
+                  fontFamily: '',
+                  color: '',
+                },
+              },
+              content: {
+                text: 'Choose the electric ride that suid tour lifeoptions',
+              },
+            },
+          },
+        },
+        {
+          id: 'wc04',
+          type: 'wap-cards',
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+            },
+          },
+          info: {
+            title: {
+              options: {
+                meta: {},
+                style: {
+                  backgroundColor: '',
+                  fontFamily: '',
+                  color: '',
+                },
+              },
+              content: {
+                text: 'Move your way',
+              },
+            },
+            text: {
+              options: {
+                meta: {},
+                style: {
+                  backgroundColor: '',
+                  fontFamily: '',
+                  color: '',
+                },
+              },
+              content: {
+                text: 'Choose the electric ride that suid tour lifeoptions',
+              },
+            },
+            cmps: [
+              {
+                id: 'wc02',
+                type: 'wap-card',
+                options: {
+                  meta: {},
+                  style: {
+                    backgroundColor: '',
+                    fontFamily: '',
+                    color: '',
+                  },
+                },
+                info: {
+                  details: {
+                    options: {
+                      meta: {},
+                      style: {
+                        backgroundColor: '',
+                        fontFamily: '',
+                        color: '',
+                      },
+                    },
+                    content: {
+                      text: 'From $39/mo',
+                    },
+                  },
+                  tag: {
+                    options: {
+                      meta: {},
+                      style: {
+                        backgroundColor: '',
+                        fontFamily: '',
+                        color: '',
+                      },
+                    },
+                    content: {
+                      text: 'Automn offer',
+                    },
+                  },
+                  title: {
+                    options: {
+                      meta: {},
+                      style: {
+                        backgroundColor: '',
+                        fontFamily: '',
+                        color: '',
+                      },
+                    },
+                    content: {
+                      text: 'Dance One Step',
+                    },
+                  },
+                  text: {
+                    options: {
+                      meta: {},
+                      style: {
+                        backgroundColor: '',
+                        fontFamily: '',
+                        color: '',
+                      },
+                    },
+                    content: {
+                      text: 'Ebike',
+                    },
+                  },
+                  nav: {
+                    options: {
+                      meta: {},
+                      style: {
+                        backgroundColor: '',
+                        fontFamily: '',
+                        color: '',
+                      },
+                    },
+                    content: {
+                      nav1: 'Concierge',
+                      nav2: 'Rides',
+                      nav3: 'For Business',
+                    },
+                  },
+                  btn: {
+                    options: {
+                      meta: {},
+                      style: {
+                        backgroundColor: '',
+                        fontFamily: '',
+                        color: '',
+                      },
+                    },
+                    content: { text: 'See details', link: '#wc03' },
+                  },
+                },
+              },
             ],
-        }
-    },
+          },
+        },
+      ],
+    }
+  },
 }
 </script>
 
 
 <style>
-*{
+* {
   box-sizing: border-box;
 }
 

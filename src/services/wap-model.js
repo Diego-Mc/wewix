@@ -20,7 +20,9 @@ export default [
         id: 'wc02',
         type: 'wap-header',
         options: {
-          backgroundColor: '',
+          style: {
+            backgroundColor: '',
+          }
         },
         info: {
           title: {
