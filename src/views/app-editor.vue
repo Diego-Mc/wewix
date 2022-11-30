@@ -6,8 +6,7 @@
       <cmp-editor 
           v-if="isOpenCmpEditor" 
           :id="selectedCmp._id" 
-          :editOptions="selectedCmp.options"
-          :cmpStyle="selectedCmp.style" 
+          :cmpOptions="selectedCmp.options"
           @update="handleUpdate()">
       </cmp-editor>
       
@@ -26,7 +25,7 @@
     >
       <template #item="{ element }">
         <div>
-          <component :is="element.type" :info="element.info" @swap=""></component>
+          <component :is="element.type" :info="element.info" :cmpId="element.id" @select="select"></component>
         </div>
       </template>
 
@@ -221,12 +220,11 @@ export default {
     },
 
     select({ cmpId, name }) {
-      const cmp = cmps.find(({ _id }) => id === cmpId)
 
-      this.selectedCmp.style = cmp.style
+      const cmp = this.wap.cmps.find(({ id }) => {return id === cmpId})
       this.selectedCmp._id = cmpId
-      this.selectedCmp.options = Object.keys(this.selectedCmp.style)
 
+      this.selectedCmp.options = Object.keys(cmp.style)
       this.isOpenCmpEditor = true
     }
 
@@ -244,7 +242,6 @@ export default {
   watch: {
     wap: {
       handler(wap) {
-        console.log('wa');
         this.updateWap(wap)
       },
       deep: true,

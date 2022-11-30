@@ -1,14 +1,48 @@
 <template>
     <section class="cmp-editor">
+        <section class="style-editor">
 
-        <div v-if="isContain('font')">Font Picker</div>
-        <div v-if="isContain('backgroundColor')">Background Color Picker</div>
-        <div v-if="isContain('color')">Color Picker</div>
-        <div v-if="isContain('fontWeight')">Font Weight Picker</div>
-        <div v-if="isContain('borderRadius')">Border Radius Picker</div>
+            <div v-if="isOptionsContain('fontFamily')">
+                Font Picker
+                <!-- Implement v-model=style.fontFamily -->
+            </div>
 
-        <div v-if="isContain('img')">Img Picker</div>
-        <div v-if="isContain('href')">Href Picker</div>
+            <div v-if="isOptionsContain('backgroundColor')">
+                Background Color Picker
+                <!-- Implement v-model=style.fontFamily -->
+            </div>
+
+            <div v-if="isOptionsContain('color')">
+                Color Picker
+                <!-- Implement v-model=style.color -->
+            </div>
+
+            <div v-if="isOptionsContain('fontWeight')">
+                Font Weight Picker
+                <!-- Implement v-model=style.fontWeight -->
+            </div>
+
+            <div v-if="isOptionsContain('borderRadius')">
+                Border Radius Picker
+                <!-- Implement v-model=style.fontWeight -->
+            </div>
+
+        </section>
+
+        <section class="content-editor">
+
+            <div v-if="isOptionsContain('img')">
+                Img Picker
+                <!-- Implement v-model=style.img -->
+            </div>
+
+            <div v-if="isOptionsContain('link')">
+                Link
+                <!-- Implement v-model=style.link -->
+            </div>
+
+            <div v-if="isOptionsContain('link')">Link Picker</div>
+        </section>
         
     </section>
 </template>
@@ -18,14 +52,18 @@
     export default {
         props: {
             _id: String,
-            editOptions: Array,
-            cmpStyle: Object,
+            cmpOptions: Object,
         },
 
+        data() {
+            return {      
+                options: this.cmpOptions,
+            }
+        },
         methods: {
-            isContain(type) {
-                // TODO: Set Worked
-                return true //this.editOptions.includes(type)
+            isOptionsContain(type) {
+                const options = [...Object.keys(this.cmpOptions)]
+                return options.includes(type)
             },
         },
     }
