@@ -1,6 +1,7 @@
 <template>
   <main v-if="wap">
-    <general-editor/>
+    <button @click="undo">undo</button>
+    <general-editor @themeChanged="saveWapToStorage" />
     <wap-templates />
     <button style="background-color: orange; margin: 10px 0" @click="updateWap(wap)">
       publish site
@@ -13,8 +14,7 @@
     <draggable class="list-group" :component-data="{
       type: 'transition-group',
       name: !drag ? 'flip-list' : null,
-    }" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order"
-      group="sections">
+    }" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="onDrop" item-key="order" group="sections">
       <template #item="{ element }">
         <div>
           <component :is="element.type" :info="element.info" :options="element.options" :cmps="element.cmps"
@@ -64,15 +64,42 @@ export default {
   },
 
   methods: {
+    undo() {
+      const wapChanges = this.loadFromStorage('wapChanges')
+      wapChanges.pop()
+      const cmps = wapChanges[wapChanges.length - 1].cmps
+      this.wap.cmps = cmps
+      this.saveToStorage('wapChanges', wapChanges)
+      
+    },
+    saveLastChange() {
+      const wapChanges = this.loadFromStorage('wapChanges')
+      if (wapChanges) {
+        const lastChanges = this.loadFromStorage('wapChanges')
+        lastChanges.push(this.wap)
+        this.saveToStorage('wapChanges', lastChanges)
+      } else {
+        this.saveToStorage('wapChanges', [this.wap])
+      }
+    },
+    saveWapToStorage(wap = this.wap) {
+      
+      this.saveToStorage('editedWap', wap)
+      this.saveLastChange()
+
+    },
     //TODO: think about removing them completly or move to service.
     saveToStorage(key, val) {
-      const str = JSON.stringify(val)
-      localStorage.setItem(key, str)
+      localStorage[key] = JSON.stringify(val)
     },
-
     loadFromStorage(key) {
       const str = localStorage.getItem(key)
       return JSON.parse(str)
+    },
+
+    onDrop() {
+      this.drag = false
+      this.saveWapToStorage()
     },
 
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
@@ -94,8 +121,7 @@ export default {
       if (updatedStyle) elType ? this.wap.cmps[cmpIdx].info[elType].options.style = updatedStyle.style : this.wap.cmps[cmpIdx].options.style = updatedStyle.style
       if (content) elType ? this.wap.cmps[cmpIdx].info[elType].content.text = content : this.wap.cmps[cmpIdx].options.style = updatedStyle.style
       // TODO: remove from here, its only for demonstartion
-
-      this.updateWap(this.wap)
+      this.saveWapToStorage()
     },
 
     async loadWap() {
@@ -112,17 +138,17 @@ export default {
     },
 
     handleDrop() {
-      this.updateWap(this.wap)
+      this.saveWapToStorage()
     },
 
     async updateWap(wap) {
       const { _id } = await this.$store.dispatch({ type: 'updateWap', wap: wap })
       if (_id) this.wap._id = _id
-      this.saveToStorage('editedWap', this.wap)
+      this.saveWapToStorage()
     },
 
     publishWap() {
-      this.$store.dispatch({ type: 'updateWap', wap: wap })
+      this.updateWap(this.wap)
     },
 
     select({ cmpId, elType, childCmpId }) {
@@ -156,20 +182,19 @@ export default {
       this.wap.cmps[cmpIndex].cmps = cmps
       // console.log(this.wap.cmps[cmpIndex].cmps)
 
-      this.saveToStorage('editedWap', this.wap)
+      this.saveWapToStorage()
       // this.handleUpdate({ cmpId, updatedStyle, elType, content })
     })
   },
 
-  watch: {
-    wap: {
-      handler(wap) {
-        console.log('wa')
-        this.saveToStorage('editedWap', wap)
-      },
-      deep: true,
-    },
-  },
+  // watch: {
+  //   wap: {
+  //     handler(wap) {
+  //       // this.saveWapToStorage(wap)
+  //     },
+  //     deep: true,
+  //   },
+  // },
 
   components: {
     cmpEditor,

@@ -43,8 +43,7 @@ export default {
     },
     onDrop() {
       this.drag = false
-      console.log(this.cards)
-      eventBus.emit('onInnerCmpDrop', { cmpId: this.cmpId, cmps: this.cards })
+      eventBus.emit('onInnerCmpDrop', { cmpId: this.cmpId, cmps: [...this.cards] })
     },
     updateContent(elType) {
       this.$emit('update', { cmpId, elType, content: info.text.content })
