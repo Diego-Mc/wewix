@@ -35,7 +35,9 @@ export default {
     },
   },
   created() {
+  
     console.log(this.info)
+    console.log('wa');
   },
 }
 </script>

@@ -24,7 +24,10 @@
       <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()" @select="select">
       </component>
 
-      <!-- <component
+    <component v-for="cmp in cmps" is="cmp.type" @update="handleUpdate()" @select="select">
+    </component>
+
+    <!-- <component
           v-for="cmp in cmps"
           :is="cmp.type"
           :info="cmp.info"
@@ -33,18 +36,10 @@
           @select="select">
       </component> -->
 
-      <draggable 
-          class="list-group"  
-          :component-data="{
-            type: 'transition-group',
-            name: !drag ? 'flip-list' : null
-          }" 
-          v-model="cmpsTest" 
-          v-bind="dragOptions"
-          @start="drag = true"
-          @end="drag = false"
-          item-key="order"
-      >
+    <draggable class="list-group" :component-data="{
+      type: 'transition-group',
+      name: !drag ? 'flip-list' : null
+    }" v-model="cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order">
       <template #item="{ element }">
         <div>
           <component :is="element.type" :info="element.info"></component>
@@ -69,6 +64,7 @@ import appTemplates from './app-templates.vue'
 export default {
   data() {
     return {
+      cmps: null,
       selectedCmp: {},
       isOpenCmpEditor: true,
 
@@ -81,86 +77,85 @@ export default {
       },
 
       cmpsTest: [
-      {
-        id: 'wc02',
-        type: 'wap-header',
-        style: {
-          backgroundColor: '',
-        },
-        info: {
-          title: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-            },
-            content: {
-              text: 'Dance',
-            },
+        {
+          id: 'wc02',
+          type: 'wap-header',
+          style: {
+            backgroundColor: '',
           },
-          nav: {
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
+          info: {
+            title: {
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
+              content: {
+                text: 'Dance',
+              },
             },
-            content: {
-              nav1: 'Concierge',
-              nav2: 'Rides',
-              nav3: 'For Business',
+            nav: {
+              style: {
+                fontFamily: '',
+                color: '',
+                fontWeight: '',
+              },
+              content: {
+                nav1: 'Concierge',
+                nav2: 'Rides',
+                nav3: 'For Business',
+              },
             },
-          },
-          btn: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-              borderRadius: '',
+            btn: {
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+                borderRadius: '',
+              },
+              content: { text: 'Start now', link: '#wc03' },
             },
-            content: { text: 'Start now', link: '#wc03' },
-          },
-        },
-      },
-      {
-        id: 'wc03',
-        type: 'wap-hero',
-        style: {
-          backgroundColor: '',
-        },
-        info: {
-          title: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-            },
-            content: {
-              text: 'Your future\nis electric',
-            },
-          },
-          text: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-            },
-            content: {
-              text: 'Get your own ebike or emoped\nwith our flexible subscription',
-            },
-          },
-          btn: {
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-              borderRadius: '',
-            },
-            content: { text: 'Start now', link: '#wc03' },
           },
         },
-      },
-    ],
-    list1: [
+        {
+          id: 'wc03',
+          type: 'wap-hero',
+          style: {
+            backgroundColor: '',
+          },
+          info: {
+            title: {
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
+              content: {
+                text: 'Your future\nis electric',
+              },
+            },
+            text: {
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+              },
+              content: {
+                text: 'Get your own ebike or emoped\nwith our flexible subscription',
+              },
+            },
+            btn: {
+              style: {
+                backgroundColor: '',
+                fontFamily: '',
+                color: '',
+                borderRadius: '',
+              },
+              content: { text: 'Start now', link: '#wc03' },
+            },
+          },
+        }],
+        list1: [
         {
           img: 'asdas',
           name: 'John', id: 1, backgroundColor: '#5e548e',
@@ -187,6 +182,7 @@ export default {
           ]
         },
       ],
+
       list: [
         {
           name: 'Juan', id: 5, backgroundColor: '#e85d04',
@@ -212,8 +208,10 @@ export default {
           ]
         },
       ],
-    }
-  },
+
+      }
+    },
+  
   methods: {
     handleUpdate({ cmpId, name, content, style }) {
       const cmp = cmps.find(({ _id }) => _id === cmpId)
@@ -224,6 +222,7 @@ export default {
     async loadWap() {
       if (this.$route.params.id) {
         const { cmps } = await this.$store.dispatch({ type: 'getWap', id: this.$route.params.id })
+        this.cmps = JSON.parse(JSON.stringify(cmps))
       }
     },
 
@@ -242,14 +241,14 @@ export default {
     }
 
   },
-  computed: {
-    cmps() {
-      return JSON.parse(JSON.stringify(this.$store.getters.editedWap?.cmps || ''))
-    },
-  },
+  // computed: {
+  //   cmps() {
+  //     return JSON.parse(JSON.stringify(this.$store.getters.editedWap?.cmps || ''))
+  //   },
+  // },
   created() {
     this.loadWap()
-    this.handleDrop() 
+    // this.handleDrop()
   },
 
   watch: {
@@ -258,7 +257,7 @@ export default {
       },
       deep: true,
     },
-    
+
   },
 
   components: {
