@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main v-if="cmps">
       <app-templates />
       <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp._id" :editOptions="selectedCmp.options"
         :cmpStyle="selectedCmp.style" @update="handleUpdate()"></cmp-editor>
@@ -22,7 +22,7 @@
             type: 'transition-group',
             name: !drag ? 'flip-list' : null
           }" 
-          v-model="cmpsTest" 
+          v-model="cmps" 
           v-bind="dragOptions"
           @start="drag = true"
           @end="drag = false"
