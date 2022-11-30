@@ -41,12 +41,12 @@
     <section class="content-editor">
       <div v-if="isOptionsContain('img')">
         Img Picker
-        <input @input="log" v-model="updatedOptions.meta.img" type="text" placeholder="img"/>
+        <input @input="log" v-model="updatedOptions.meta.img" type="text" placeholder="img" />
       </div>
 
       <div v-if="isOptionsContain('link')">
         Link
-        <input @input="log" v-model="updatedOptions.meta.link" type="text" placeholder="link"/>
+        <input @input="log" v-model="updatedOptions.meta.link" type="text" placeholder="link" />
       </div>
     </section>
   </section>
@@ -57,6 +57,7 @@ export default {
   props: {
     id: String,
     editOptions: Object,
+    name: null,
   },
   data() {
     return {
@@ -70,7 +71,8 @@ export default {
     },
 
     log() {
-      console.log(this.updatedOptions);
+      // console.log(this.updatedOptions);
+      this.$emit('update', { cmpId: this.id, name: this.name, updatedStyle: this.updatedOptions })
     },
 
     updateContent() {
@@ -81,6 +83,6 @@ export default {
     editOptions() {
       this.updatedOptions = JSON.parse(JSON.stringify(this.editOptions))
     }
-}
+  }
 }
 </script>

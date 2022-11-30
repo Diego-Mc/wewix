@@ -38,6 +38,7 @@ async function save(wap) {
   } else {
     // Later, owner is set by the backend
     wap.owner = userService.getLoggedinUser()
+    wap._id = utilService.makeId()
     savedWap = await storageService.post(WAPS_KEY, wap)
   }
   return savedWap

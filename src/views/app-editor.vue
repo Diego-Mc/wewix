@@ -1,40 +1,23 @@
 <template>
   <main v-if="wap">
     <wap-templates />
-    <button
-      style="background-color: orange; margin: 10px 0"
-      @click="updateWap(wap)">
+    <button style="background-color: orange; margin: 10px 0" @click="updateWap(wap)">
       publish site
     </button>
 
-    <cmp-editor
-      v-if="isOpenCmpEditor"
-      :id="selectedCmp.id"
-      :editOptions="selectedCmp.options"
-      @update="handleUpdate()">
+    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp.id" :editOptions="selectedCmp.options" :name="selectedCmp.name"
+      @update="handleUpdate">
     </cmp-editor>
 
-    <draggable
-      class="list-group"
-      :component-data="{
-        type: 'transition-group',
-        name: !drag ? 'flip-list' : null,
-      }"
-      v-model="wap.cmps"
-      v-bind="dragOptions"
-      @start="drag = true"
-      @end="drag = false"
-      item-key="order"
+    <draggable class="list-group" :component-data="{
+      type: 'transition-group',
+      name: !drag ? 'flip-list' : null,
+    }" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="drag = false" item-key="order"
       group="sections">
       <template #item="{ element }">
         <div>
-          <component
-            :is="element.type"
-            :info="element.info"
-            :options="element.options"
-            :cmps="element.cmps"
-            :cmpId="element.id"
-            @select="select"></component>
+          <component :is="element.type" :info="element.info" :options="element.options" :cmps="element.cmps"
+            :cmpId="element.id" @select="select"></component>
         </div>
       </template>
     </draggable>
@@ -56,6 +39,7 @@ import wapSection from '../cmps/wap-sections/wap-section.vue'
 import wapForm from '../cmps/wap-sections/wap-form.vue'
 
 import loginModal from '../cmps/app-cmps/login-modal.vue'
+import { eventBus } from '../services/event-bus.service.js'
 
 export default {
   data() {
@@ -86,11 +70,19 @@ export default {
       return JSON.parse(str)
     },
 
-    handleUpdate({ cmpId, name, content, style }) {
-      const cmp = wap.cmps.find(({ _id }) => _id === cmpId)
-      wap.cmps.cmp[name] = content ?? cmp.content
-      wap.cmps.cmp[name] = style ?? cmp.style
-      this.updateWap(wap)
+    handleUpdate({ cmpId, updatedStyle, name, content }) {
+      let cmpIdx
+      const cmp = this.wap.cmps.find(({ id }, idx) => {
+        if (id === cmpId) {
+          cmpIdx = idx
+          return true
+        }
+      })
+      if (updatedStyle) this.wap.cmps[cmpIdx].info[name].options.style = updatedStyle.style
+      if (content) this.wap.cmps[cmpIdx].info[name].content.text = content
+      // TODO: remove from here, its only for demonstartion
+
+      this.updateWap(this.wap)
     },
 
     async loadWap() {
@@ -102,7 +94,7 @@ export default {
         this.wap = JSON.parse(JSON.stringify(wap))
       } else {
         // add condition: user not logged in.
-        this.wap = this.loadFromStorage('wap') || this.getEmptyWap()
+        this.wap = this.loadFromStorage('editedWap') || this.getEmptyWap()
       }
     },
 
@@ -110,14 +102,12 @@ export default {
       this.updateWap(this.wap)
     },
 
-    updateWap(wap) {
-      // const updatedWap = JSON.parse(JSON.stringify(wap))
-      if (!this.$router.params?.id) {
-        this.saveToStorage('wap', this.wap)
-      } else {
-        this.$store.dispatch({ type: 'updateWap', wap: wap })
-      }
+    async updateWap(wap) {
+      const { _id } = await this.$store.dispatch({ type: 'updateWap', wap: wap })
+      if (_id) this.wap._id = _id
+      this.saveToStorage('editedWap', this.wap)
     },
+
     publishWap() {
       this.$store.dispatch({ type: 'updateWap', wap: wap })
     },
@@ -127,7 +117,7 @@ export default {
 
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = name ? cmp.info[name].options : cmp.options
-
+      this.selectedCmp.name = name
       this.isOpenCmpEditor = true
     },
     getEmptyWap() {
@@ -139,12 +129,16 @@ export default {
 
   created() {
     this.loadWap()
+    eventBus.on('update', ({ cmpId, updatedStyle, name, content }) => {
+      this.handleUpdate({ cmpId, updatedStyle, name, content })
+    })
+    // console.log(this.wap.cmps[0].info['title'].options.style.style);
   },
 
   watch: {
     wap: {
       handler(wap) {
-        this.updateWap(wap)
+        this.saveToStorage('editedWap', wap)
       },
       deep: true,
     },
