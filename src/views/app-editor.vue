@@ -100,7 +100,7 @@ export default {
         }
       })
       console.log(this.wap.cmps[cmpIdx].info)
-      if (updatedStyle) this.wap.cmps[cmpIdx].info[name].options.style = updatedStyle.style
+      if (updatedStyle) name ? this.wap.cmps[cmpIdx].info[name].options.style = updatedStyle.style : this.wap.cmps[cmpIdx].options.style = updatedStyle.style
       if (content) this.wap.cmps[cmpIdx].info[name].content.text = content
       // TODO: remove from here, its only for demonstartion
 
@@ -165,6 +165,7 @@ export default {
   watch: {
     wap: {
       handler(wap) {
+        console.log('wa')
         this.saveToStorage('editedWap', wap)
       },
       deep: true,
