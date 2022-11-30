@@ -1,3 +1,5 @@
+import wapModel from './wap-model.js'
+
 export const storageService = {
     query,
     get,
@@ -7,13 +9,13 @@ export const storageService = {
 }
 
 function query(entityType, delay = 500) {
-    var entities = JSON.parse(localStorage.getItem(entityType)) || []
+    var entities = JSON.parse(localStorage.getItem(entityType)) || wapModel 
+    console.log(entities);
     return new Promise(resolve => setTimeout(() => resolve(entities), delay))
 }
 
 function get(entityType, entityId) {
     return query(entityType).then(entities => {
-        console.log(entities);
         const entity = entities.find(entity => entity._id === entityId)
         if (!entity) throw new Error(`Get failed, cannot find entity with id: ${entityId} in: ${entityType}`)
         return entity

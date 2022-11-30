@@ -173,7 +173,6 @@ export default {
     cmps() {
       return JSON.parse(JSON.stringify(this.$store.getters.editedWap?.cmps || ''))
     },
-
   },
   created() {
     this.loadWap()
