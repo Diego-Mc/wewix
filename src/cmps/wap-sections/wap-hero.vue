@@ -1,10 +1,10 @@
 <template>
-  <section class="wap-hero" @click.stop="$emit('select', { cmpId})">
+  <section class="wap-hero" @click.stop="$emit('select', { cmpId })">
     <h2
       class="title"
       :style="info.title.options.style"
       @change="updateContent('title')"
-      @click.stop="$emit('select', { cmpId, name: 'title' })"
+      @click.stop="$emit('select', { cmpId, elType: 'title' })"
       contenteditable>
       {{ info.title.content.text }}
     </h2>
@@ -12,14 +12,14 @@
       class="text"
       :style="info.text.options.style"
       @change="updateContent('text')"
-      @click.stop="$emit('select', { cmpId, name: 'text' })"
+      @click.stop="$emit('select', { cmpId, elType: 'text' })"
       contenteditable>
       {{ info.text.content.text }}
     </p>
     <button
       class="btn"
       :style="info.btn.options.style"
-      @click.stop="$emit('select', { cmpId, name: 'btn' })"
+      @click.stop="$emit('select', { cmpId, elType: 'btn' })"
       @change="updateContent('btn')">
       {{ info.btn.content.text }}
     </button>
@@ -30,12 +30,11 @@
 export default {
   props: ['info', 'cmpId', 'options'],
   methods: {
-    updateContent(name) {
-      this.$emit('update', { cmpId, name, content: info.text.content })
+    updateContent(elType) {
+      this.$emit('update', { cmpId, elType, content: info.text.content })
     },
   },
-  created() { 
-  },
+  created() {},
 }
 </script>
 

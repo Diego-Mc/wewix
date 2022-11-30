@@ -1,10 +1,16 @@
 <template>
   <section>
     <h3>sections to add</h3>
-    <draggable :sort="false" class=" list-group" :list="cmpsTest" item-key="order"
-      :group="{ name: 'sections', pull: 'clone', put: false }">
+    <draggable
+      :sort="false"
+      class="list-group"
+      :list="cmpsTest"
+      item-key="order"
+      :group="{ elType: 'sections', pull: 'clone', put: false }">
       <template #item="{ element }">
-        <li class="list-group-item" :style="{ backgroundColor: element.backgroundColor }">
+        <li
+          class="list-group-item"
+          :style="{ backgroundColor: element.backgroundColor }">
           <p>{{ element.type }}</p>
         </li>
       </template>
@@ -15,19 +21,18 @@
 <script>
 import draggable from 'vuedraggable'
 import wap from '../../services/wap-model'
-console.log(wap);
+console.log(wap)
 export default {
   components: {
     draggable,
   },
   data() {
     return {
-      cmpsTest: wap[0].cmps
+      cmpsTest: wap[0].cmps,
     }
   },
 }
 </script>
-
 
 <style>
 * {

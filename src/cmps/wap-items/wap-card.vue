@@ -1,46 +1,42 @@
 <template>
   <article class="wap-card">
     <img
-      @click.stop="$emit('select', { cmpId, childCmpId, name: 'img' })"
+      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'img' })"
       class="card-img"
       src="https://dance.co/_next/image?url=%2Fimages%2Frides%2Febikes%2Fone-step-card%402x.png&w=750&q=75" />
-    <span 
-      class="details" 
+    <span
+      class="details"
       :style="info.details.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, name: 'details' })">
+      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'details' })">
       {{ info.details.content.text }}
-      <span 
-        class="tag" 
+      <span
+        class="tag"
         :style="info.tag.options.style"
-        @click.stop="$emit('select', { cmpId, childCmpId, name: 'tag' })"
-      >
-        {{info.tag.content.text}}
+        @click.stop="$emit('select', { cmpId, childCmpId, elType: 'tag' })">
+        {{ info.tag.content.text }}
       </span>
     </span>
 
-    <h3 
-      class="title" 
+    <h3
+      class="title"
       :style="info.title.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, name: 'title' })">
+      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'title' })">
       {{ info.title.content.text }}
     </h3>
 
-    <p 
-      class="text" 
+    <p
+      class="text"
       :style="info.text.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, name: 'text' })"
-      >
+      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'text' })">
       {{ info.text.content.text }}
     </p>
 
-    <button 
-      class="btn" 
+    <button
+      class="btn"
       :style="info.btn.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, name: 'btn' })"
-    >
+      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'btn' })">
       {{ info.btn.content.text }}
     </button>
-
   </article>
 </template>
 
@@ -48,8 +44,12 @@
 export default {
   props: ['info', 'cmpId', 'options', 'childCmpId'],
   methods: {
-    updateContent(name) {
-      this.$emit('update', { cmpId: this.cmpId, name, content: info.text.content })
+    updateContent(elType) {
+      this.$emit('update', {
+        cmpId: this.cmpId,
+        elType,
+        content: info.text.content,
+      })
     },
   },
 }

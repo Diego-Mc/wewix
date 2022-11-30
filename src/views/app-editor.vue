@@ -10,34 +10,34 @@
       :id="selectedCmp.id"
       :childCmpId="selectedCmp.childCmpId"
       :editOptions="selectedCmp.options"
-      :name="selectedCmp.name"
+      :elType="selectedCmp.elType"
       @update="handleUpdate">
     </cmp-editor>
 
-    <draggable 
-        class="list-group" 
+    <draggable
+        class="list-group"
         :component-data="{
           type: 'transition-group',
           name: !drag ? 'flip-list' : null,
-        }" 
-        v-model="wap.cmps" 
-        v-bind="dragOptions" 
-        @start="drag = true" 
-        @end="drag = false" 
-        
+        }"
+        v-model="wap.cmps"
+        v-bind="dragOptions"
+        @start="drag = true"
+        @end="drag = false"
+
         item-key="order"
         group="sections"
     >
         <template #item="{ element }">
           <div>
-            <component 
-                :is="element.type" 
-                :info="element.info" 
-                :options="element.options" 
+            <component
+                :is="element.type"
+                :info="element.info"
+                :options="element.options"
                 :cmps="element.cmps"
                 :cmpId="element.id" @select="select"
                 @update="handleUpdate">
-              
+
             </component>
           </div>
         </template>
@@ -91,7 +91,7 @@ export default {
       return JSON.parse(str)
     },
 
-    handleUpdate({ cmpId, updatedStyle, name, content }) {
+    handleUpdate({ cmpId, updatedStyle, elType, content }) {
       let cmpIdx
       const cmp = this.wap.cmps.find(({ id }, idx) => {
         if (id === cmpId) {
@@ -100,8 +100,8 @@ export default {
         }
       })
       console.log(this.wap.cmps[cmpIdx].info)
-      if (updatedStyle) name ? this.wap.cmps[cmpIdx].info[name].options.style = updatedStyle.style : this.wap.cmps[cmpIdx].options.style = updatedStyle.style
-      if (content) this.wap.cmps[cmpIdx].info[name].content.text = content
+      if (updatedStyle) this.wap.cmps[cmpIdx].info[elType].options.style = updatedStyle.style
+      if (content) this.wap.cmps[cmpIdx].info[elType].content.text = content
       // TODO: remove from here, its only for demonstartion
 
       this.updateWap(this.wap)
@@ -134,7 +134,7 @@ export default {
       this.$store.dispatch({ type: 'updateWap', wap: wap })
     },
 
-    select({ cmpId, name, childCmpId }) {
+    select({ cmpId, elType, childCmpId }) {
       let cmp = this.wap.cmps.find(({ id }) => id === cmpId)
 
       if (childCmpId) {
@@ -143,8 +143,8 @@ export default {
       }
 
       this.selectedCmp.id = cmpId
-      this.selectedCmp.options = name ? cmp.info[name].options : cmp.options
-      this.selectedCmp.name = name
+      this.selectedCmp.options = elType ? cmp.info[elType].options : cmp.options
+      this.selectedCmp.elType = elType
       this.isOpenCmpEditor = true
     },
     getEmptyWap() {
@@ -156,8 +156,8 @@ export default {
 
   created() {
     this.loadWap()
-    eventBus.on('update', ({ cmpId, updatedStyle, name, content }) => {
-      this.handleUpdate({ cmpId, updatedStyle, name, content })
+    eventBus.on('update', ({ cmpId, updatedStyle, elType, content }) => {
+      this.handleUpdate({ cmpId, updatedStyle, elType, content })
     })
     // console.log(this.wap.cmps[0].info['title'].options.style.style);
   },
