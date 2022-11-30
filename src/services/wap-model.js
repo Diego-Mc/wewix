@@ -20,7 +20,12 @@ export default [
         id: 'wc02',
         type: 'wap-header',
         options: {
-          backgroundColor: '',
+          meta: {},
+          style: {
+            backgroundColor: '',
+            fontFamily: '',
+            color: '',
+          },
         },
         info: {
           title: {
@@ -68,7 +73,12 @@ export default [
         id: 'wc03',
         type: 'wap-hero',
         options: {
-          backgroundColor: '',
+          meta: {},
+          style: {
+            backgroundColor: '',
+            fontFamily: '',
+            color: '',
+          },
         },
         info: {
           title: {
@@ -116,7 +126,12 @@ export default [
         id: 'wc03',
         type: 'wap-section',
         options: {
-          backgroundColor: '',
+          meta: {},
+          style: {
+            backgroundColor: '',
+            fontFamily: '',
+            color: '',
+          },
         },
         info: {
           title: {
