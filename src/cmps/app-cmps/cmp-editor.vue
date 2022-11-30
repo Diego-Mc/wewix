@@ -94,10 +94,8 @@ export default {
     },
 
     removeCmp() {
-      console.log(this.childCmpId, this.cmpId);
         this.$store.dispatch({ 
           type: 'removeCmp', 
-          isChildCmp: this.childCmpId, 
           cmpId: (this.childCmpId) ? this.childCmpId : this.id})
     }
   },
