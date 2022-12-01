@@ -86,6 +86,9 @@ export default {
   },
 
   methods: {
+    removeCmp(){
+
+    },
     themeChanged(classState) {
       this.wap.classState = classState
       this.saveWapToStorage()
@@ -112,7 +115,7 @@ export default {
       this.saveToStorage('editedWap', this.wap)
       this.saveLastChange()
     },
-    //TODO: think about removing them completly or move to service.
+    //TODO: removing them completly or move to service.
     saveToStorage(key, val) {
       localStorage[key] = JSON.stringify(val)
     },
@@ -127,7 +130,6 @@ export default {
     },
 
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
-      console.log(childCmpId)
       let cmpIdx
       const cmp = this.wap.cmps.find(({ id }, idx) => {
         if (id === cmpId) {
@@ -135,22 +137,20 @@ export default {
           return true
         }
       })
-      //prettier-ignore
+      // p
       if (cmp?.cmps) {
-        const childCmpIndex = this.wap.cmps[cmpIdx].cmps.findIndex(
-          ({ id }) => id === childCmpId
+        const childCmpIndex = this.wap.cmps[cmpIdx].cmps.findIndex(({ id }) => id === childCmpId
         )
-        if (updatedStyle)
-          elType
-            ? (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
-                elType
-              ].options.style = updatedStyle.style)
-            : (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
-                elType
-              ].options.style = updatedStyle.style)
+        if (updatedStyle){
+          if(elType){
+            this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[elType].options.style = updatedStyle.style
+          }else{
+            this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[elType].options.style = updatedStyle.style
+          }
+        }
         if (content){
-          elType
-            ? (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
+          if(elType){
+            this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
                 elType
               ].content.text = content)
             : (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
@@ -191,7 +191,6 @@ export default {
           // add condition: user not logged in.
           this.wap = this.getEmptyWap()
         }
-
         this.saveWapToStorage()
       }
       if (this.wap.classState) {
@@ -247,6 +246,11 @@ export default {
         const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
         this.wap.cmps[cmpIndex].cmps = cmps
 
+        this.saveWapToStorage()
+      })
+      eventBus.on('onRemoveCmp', cmpId => {
+        const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
+        this.wap.cmps.splice(cmpIndex,1)
         this.saveWapToStorage()
       })
     },
