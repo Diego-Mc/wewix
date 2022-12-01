@@ -31,6 +31,7 @@ export default [
             color: '',
             borderRadius: '2em',
             fontWeight: '',
+            fontSize: ''
           },
         },
         info: {
@@ -85,6 +86,7 @@ export default [
           meta: {},
           style: {
             fontWeight: '',
+            fontSize: ''
           },
         },
         info: {
@@ -123,7 +125,7 @@ export default [
                 backgroundColor: '',
                 fontFamily: '',
                 color: '',
-                borderRadius: '2em',
+                borderRadius: '16px',
               },
             },
             content: { text: 'Start now' },
@@ -500,6 +502,7 @@ export default [
             color: '',
             borderRadius: '2em',
             fontWeight: '',
+            fontSize: ''
           },
         },
         info: {
@@ -529,6 +532,7 @@ wapsMap.set('wap-header-1', {
       fontFamily: '',
       color: '',
       fontWeight: '',
+      fontSize: ''
     },
   },
   info: {
@@ -539,6 +543,7 @@ wapsMap.set('wap-header-1', {
           fontFamily: '',
           color: '',
           fontWeight: '',
+          fontSize: ''
         },
       },
       content: {
@@ -552,6 +557,7 @@ wapsMap.set('wap-header-1', {
           fontFamily: '',
           color: '',
           fontWeight: '',
+          fontSize: ''
         },
       },
       content: {
@@ -569,6 +575,7 @@ wapsMap.set('wap-header-1', {
           color: '',
           borderRadius: '2em',
           fontWeight: '',
+          fontSize: ''
         },
       },
       content: { text: 'Start now' },
@@ -586,6 +593,7 @@ wapsMap.set('wap-hero-1', {
       fontFamily: '',
       color: '',
       fontWeight: '',
+      fontSize: ''
     },
   },
   info: {
@@ -596,6 +604,7 @@ wapsMap.set('wap-hero-1', {
           fontFamily: '',
           color: '',
           fontWeight: '',
+          fontSize: ''
         },
       },
       content: {
@@ -609,6 +618,7 @@ wapsMap.set('wap-hero-1', {
           fontFamily: '',
           color: '',
           fontWeight: '',
+          fontSize: ''
         },
       },
       content: {
@@ -626,6 +636,7 @@ wapsMap.set('wap-hero-1', {
           color: '',
           borderRadius: '2em',
           fontWeight: '',
+          fontSize: ''
         },
       },
       content: { text: 'Start now' },
@@ -643,6 +654,7 @@ wapsMap.set('wap-section-1', {
       fontFamily: '',
       color: '',
       fontWeight: '',
+      fontSize: ''
     },
   },
   cmps: [
@@ -667,6 +679,7 @@ wapsMap.set('wap-section-1', {
               fontFamily: '',
               color: '',
               fontWeight: '',
+              fontSize: ''
             },
           },
           content: {},
@@ -678,6 +691,7 @@ wapsMap.set('wap-section-1', {
               fontFamily: '',
               color: '',
               fontWeight: '',
+              fontSize: ''
             },
           },
           content: {
@@ -691,6 +705,7 @@ wapsMap.set('wap-section-1', {
               fontFamily: '',
               color: '',
               fontWeight: '',
+              fontSize: ''
             },
           },
           content: {
@@ -710,6 +725,7 @@ wapsMap.set('wap-section-1', {
           fontFamily: '',
           color: '',
           fontWeight: '',
+          fontSize: ''
         },
       },
       info: {
@@ -737,6 +753,7 @@ wapsMap.set('wap-cards-1', {
       fontFamily: '',
       color: '',
       fontWeight: '',
+      fontSize: ''
     },
   },
   cmps: [
@@ -751,6 +768,7 @@ wapsMap.set('wap-cards-1', {
           fontFamily: '',
           color: '',
           fontWeight: '',
+          fontSize: ''
         },
       },
       info: {
@@ -770,6 +788,7 @@ wapsMap.set('wap-cards-1', {
               fontFamily: '',
               color: '',
               fontWeight: '',
+              fontSize: ''
             },
           },
           content: {
@@ -784,6 +803,7 @@ wapsMap.set('wap-cards-1', {
               fontFamily: '',
               color: '',
               fontWeight: '',
+              fontSize: ''
             },
           },
           content: {
@@ -797,6 +817,7 @@ wapsMap.set('wap-cards-1', {
               fontFamily: '',
               color: '',
               fontWeight: '',
+              fontSize: ''
             },
           },
           content: {
@@ -810,6 +831,7 @@ wapsMap.set('wap-cards-1', {
               fontFamily: '',
               color: '',
               fontWeight: '',
+              fontSize: ''
             },
           },
           content: {
@@ -840,6 +862,7 @@ wapsMap.set('wap-cards-1', {
           fontFamily: '',
           color: '',
           fontWeight: '',
+          fontSize: ''
         },
       },
       info: {
@@ -859,6 +882,7 @@ wapsMap.set('wap-cards-1', {
               fontFamily: '',
               color: '',
               fontWeight: '',
+              fontSize: ''
             },
           },
           content: {
@@ -873,6 +897,7 @@ wapsMap.set('wap-cards-1', {
               fontFamily: '',
               color: '',
               fontWeight: '',
+              fontSize: ''
             },
           },
           content: {
@@ -886,6 +911,7 @@ wapsMap.set('wap-cards-1', {
               fontFamily: '',
               color: '',
               fontWeight: '',
+              fontSize: ''
             },
           },
           content: {
@@ -899,6 +925,7 @@ wapsMap.set('wap-cards-1', {
               fontFamily: '',
               color: '',
               fontWeight: '',
+              fontSize: ''
             },
           },
           content: {
@@ -929,6 +956,7 @@ wapsMap.set('wap-cards-1', {
           fontFamily: '',
           color: '',
           fontWeight: '',
+          fontSize: ''
         },
       },
       info: {
@@ -948,6 +976,7 @@ wapsMap.set('wap-cards-1', {
               fontFamily: '',
               color: '',
               fontWeight: '',
+              fontSize: ''
             },
           },
           content: {
@@ -962,6 +991,7 @@ wapsMap.set('wap-cards-1', {
               fontFamily: '',
               color: '',
               fontWeight: '',
+              fontSize: ''
             },
           },
           content: {
@@ -975,6 +1005,7 @@ wapsMap.set('wap-cards-1', {
               fontFamily: '',
               color: '',
               fontWeight: '',
+              fontSize: ''
             },
           },
           content: {
@@ -988,6 +1019,7 @@ wapsMap.set('wap-cards-1', {
               fontFamily: '',
               color: '',
               fontWeight: '',
+              fontSize: ''
             },
           },
           content: {
@@ -1020,6 +1052,7 @@ wapsMap.set('wap-form-1', {
       fontFamily: '',
       color: '',
       fontWeight: '',
+      fontSize: ''
     },
   },
   info: {
@@ -1030,6 +1063,7 @@ wapsMap.set('wap-form-1', {
           fontFamily: '',
           color: '',
           fontWeight: '',
+          fontSize: ''
         },
       },
       content: {
@@ -1043,6 +1077,7 @@ wapsMap.set('wap-form-1', {
           fontFamily: '',
           color: '',
           fontWeight: '',
+          fontSize: ''
         },
       },
       content: {

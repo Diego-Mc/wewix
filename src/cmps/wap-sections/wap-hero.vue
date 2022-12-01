@@ -39,11 +39,12 @@
 </template>
 
 <script>
+import { eventBus } from '../../services/event-bus.service'
 export default {
   props: ['info', 'cmpId', 'options'],
   methods: {
     updateContent(elType) {
-      this.$emit('update', { cmpId, elType, content: info.text.content })
+      eventBus.emit('update', { cmpId, elType, content: info.text.content })
     },
   },
   created() {},

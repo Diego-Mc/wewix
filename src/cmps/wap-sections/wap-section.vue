@@ -52,6 +52,7 @@ export default {
     draggable,
   },
   created(){
+    console.log('cmps',this.cmps)
   },
   methods: {
     emitSelect(data) {

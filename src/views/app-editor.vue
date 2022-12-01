@@ -127,11 +127,10 @@ export default {
     },
 
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
-      console.log(
-        '🚀 ~ file: app-editor.vue:129 ~ handleUpdate ~ updatedStyle',
-        updatedStyle
-      )
-
+<<<<<<< HEAD
+=======
+      console.log(childCmpId)
+>>>>>>> e3d3e42fd7c2be082ee1663d1c2ed6920e313766
       let cmpIdx
       const cmp = this.wap.cmps.find(({ id }, idx) => {
         if (id === cmpId) {
@@ -152,7 +151,7 @@ export default {
             : (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
                 elType
               ].options.style = updatedStyle.style)
-        if (content)
+        if (content){
           elType
             ? (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
                 elType
@@ -160,7 +159,12 @@ export default {
             : (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
                 elType
               ].options.style = updatedStyle.style)
-        return
+              
+              this.saveWapToStorage()
+              return
+        }
+         
+
       }
 
       if (updatedStyle)
@@ -168,12 +172,13 @@ export default {
           ? (this.wap.cmps[cmpIdx].info[elType].options.style =
               updatedStyle.style)
           : (this.wap.cmps[cmpIdx].options.style = updatedStyle.style)
+
       if (content)
         elType
           ? (this.wap.cmps[cmpIdx].info[elType].content.text = content)
           : (this.wap.cmps[cmpIdx].options.style = updatedStyle.style)
       // TODO: remove from here, its only for demonstartion
-      //  this.saveWapToStorage()
+       this.saveWapToStorage()
     },
 
     async loadWap() {
@@ -204,7 +209,6 @@ export default {
       })
       if (_id) this.wap._id = _id
       this.saveToStorage('editedWap', this.wap)
-      //  this.saveWapToStorage()
     },
 
     publishWap() {
@@ -231,7 +235,7 @@ export default {
     },
     loadEvents() {
       eventBus.on(
-        'update',
+        'cmpUpdated',
         ({ cmpId, updatedStyle, elType, content, childCmpId }) => {
           this.handleUpdate({
             cmpId,
@@ -253,17 +257,7 @@ export default {
 
   created() {
     this.loadWap()
-    eventBus.on('update', ({ cmpId, updatedStyle, elType, content }) => {
-      this.handleUpdate({ cmpId, updatedStyle, elType, content })
-    })
-    eventBus.on('onInnerCmpDrop', ({ cmpId, cmps }) => {
-      const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
-      this.wap.cmps[cmpIndex].cmps = cmps
-
-      //  this.saveWapToStorage()
-
-      // this.handleUpdate({ cmpId, updatedStyle, elType, content })
-    })
+    this.loadEvents()
   },
 
   // watch: {
