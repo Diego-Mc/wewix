@@ -35,6 +35,11 @@
         Border Radius Picker
         <input @input="log" v-model="updatedOptions.style.borderRadius" type="range" />
       </div>
+
+      <div v-if="isOptionsContain('fontSize')">
+        Font Size Picker
+        <input @input="log" v-model="updatedOptions.style.fontSize" type="range" />
+      </div>
     </section>
 
     <section class="content-editor">
