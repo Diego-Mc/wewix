@@ -95,6 +95,7 @@ function _getStyles(elType) {
         color: '',
         borderRadius: '',
         fontWeight: '',
+        fontSize: '',
       }
     case 'img':
     case 'imgs':
@@ -107,6 +108,7 @@ function _getStyles(elType) {
         fontFamily: '',
         color: '',
         fontWeight: '',
+        fontSize: ''
       }
     case 'tag':
       return {
@@ -114,6 +116,7 @@ function _getStyles(elType) {
         fontFamily: '',
         color: '',
         fontWeight: '',
+        fontSize: '',
       }
   }
 }
