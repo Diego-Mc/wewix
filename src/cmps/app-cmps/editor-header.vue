@@ -19,8 +19,10 @@
     </section>
 
     <section class="upload-site">
-      <editor-btn-group info="media" :opts="[{ val: 'undo', icon: 'cast' }]" />
-      Publish
+      <editor-btn-group
+        info="media"
+        :style="{ gap: '10px' }"
+        :opts="[{ val: 'undo', icon: 'cast', text: 'Publish' }]" />
     </section>
   </nav>
 </template>

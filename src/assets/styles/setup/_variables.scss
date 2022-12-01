@@ -1,11 +1,17 @@
 // Colors
 $main: #00c2a6;
-$btn-bg: #e6f6f4;
+$main-light: #e6f6f4;
 $btn-dark: #1e1e1e;
 $clr3: #574f7d;
 $clr4: #95adbe;
 $clr5: #dff0ea;
 $clr6: #fff;
+
+// editor vals
+$cmp-bg: #bff0e9;
+$editor-nav-width: 60px;
+$editor-section-names-width: 160px;
+$editor-section-cmps-width: 240px;
 
 :root {
   --clr-1: rgb(17, 153, 158);
