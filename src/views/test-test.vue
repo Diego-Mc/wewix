@@ -20,6 +20,7 @@
   <main-header />
   <section class="main-editor">
     <editor-header />
+    <editor-sidebar />
   </section>
 </template>
 
@@ -33,6 +34,7 @@ import getCmp from '../services/wap-cmps.service'
 import editorBtnGroup from '../cmps/app-cmps/editor-btn-group.vue'
 import mainHeader from '../cmps/app-cmps/main-header.vue'
 import editorHeader from '../cmps/app-cmps/editor-header.vue'
+import editorSidebar from '../cmps/app-cmps/editor-sidebar.vue'
 export default {
   data() {
     return {
@@ -52,6 +54,7 @@ export default {
     editorBtnGroup,
     mainHeader,
     editorHeader,
+    editorSidebar,
   },
 }
 </script>

@@ -5,7 +5,6 @@
         <!-- <i class="icon undo-btn bi bi-arrow-counterclockwise"></i> -->
         <!-- <i class="icon redo-btn bi bi-arrow-clockwise"></i> -->
         <editor-btn-group
-          gap="4px"
           info="media"
           :opts="[
             { val: 'undo', icon: 'arrow-counterclockwise' },
@@ -14,14 +13,13 @@
       </section>
       <section class="work-together">
         <editor-btn-group
-          gap="4px"
           info="media"
           :opts="[{ val: 'undo', icon: 'people' }]" />
       </section>
     </section>
     <div class="main-logo">
       <img class="logo" src="src/assets/imgs/wewix-logo.svg" />
-      <h1 class="logo-text">wewix</h1>
+      <!-- <h1 class="logo-text">wewix</h1> -->
     </div>
     <div class="auth-info">Diego Mc</div>
   </header>

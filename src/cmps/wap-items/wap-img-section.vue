@@ -9,11 +9,7 @@
 <script>
 export default {
   props: ['info', 'cmpId', 'childCmpId', 'options'],
-  methods: {
-    updateContent(elType) {
-      this.$emit('update', { cmpId, elType, content: info.text.content })
-    },
-  },
+  methods: {},
   created() {
     console.log(this.info, 'HR')
   },
