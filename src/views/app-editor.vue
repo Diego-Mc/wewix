@@ -106,9 +106,9 @@ export default {
         this.saveToStorage('wapChanges', [this.wap])
       }
     },
-    saveWapToStorage(wap = this.wap) {
+    saveWapToStorage() {
       console.log('saved to storage')
-      this.saveToStorage('editedWap', wap)
+      this.saveToStorage('editedWap', this.wap)
       this.saveLastChange()
     },
     //TODO: think about removing them completly or move to service.
@@ -127,7 +127,6 @@ export default {
 
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
       let cmpIdx
-
       const cmp = this.wap.cmps.find(({ id }, idx) => {
         if (id === cmpId) {
           cmpIdx = idx
@@ -171,24 +170,25 @@ export default {
     },
 
     async loadWap() {
-      if (this.$route.params?.id) {
-        const wap = await this.$store.dispatch({
-          type: 'getWap',
-          id: this.$route.params.id,
-        })
-        this.wap = JSON.parse(JSON.stringify(wap))
-      } else {
-        // add condition: user not logged in.
-        this.wap = this.loadFromStorage('editedWap') || this.getEmptyWap()
+      this.wap = this.loadFromStorage('editedWap')
+      if (!this.wap) {
+        if (this.$route.params?.id) {
+          const wap = await this.$store.dispatch({
+            type: 'getWap',
+            id: this.$route.params.id,
+          })
+          this.wap = JSON.parse(JSON.stringify(wap))
+        } else {
+          // add condition: user not logged in.
+          this.wap = this.getEmptyWap()
+        }
+
+        this.saveWapToStorage()
       }
       if (this.wap.classState) {
         document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
       }
     },
-
-    // handleDrop() {
-    //   this.saveWapToStorage()
-    // },
 
     async updateWap(wap) {
       const { _id } = await this.$store.dispatch({
@@ -230,9 +230,7 @@ export default {
     })
     eventBus.on('onInnerCmpDrop', ({ cmpId, cmps }) => {
       const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
-      // console.log(this.wap.cmps[cmpIndex].cmps)
       this.wap.cmps[cmpIndex].cmps = cmps
-      // console.log(this.wap.cmps[cmpIndex].cmps)
 
       //  this.saveWapToStorage()
 
