@@ -63,6 +63,7 @@ import wapCards from '../cmps/wap-sections/wap-cards.vue'
 import wapSection from '../cmps/wap-sections/wap-section.vue'
 import wapForm from '../cmps/wap-sections/wap-form.vue'
 import wapVideo from '../cmps/wap-items/wap-video.vue'
+import wapMap from '../cmps/wap-items/wap-map.vue'
 
 import loginModal from '../cmps/app-cmps/login-modal.vue'
 import { eventBus } from '../services/event-bus.service.js'
@@ -126,6 +127,8 @@ export default {
     },
 
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
+      console.log("🚀 ~ file: app-editor.vue:129 ~ handleUpdate ~ updatedStyle", updatedStyle)
+      
       let cmpIdx
       const cmp = this.wap.cmps.find(({ id }, idx) => {
         if (id === cmpId) {
@@ -261,6 +264,7 @@ export default {
     wapForm,
     wapVideo,
     generalEditor,
+    wapMap,
   },
 }
 </script>
