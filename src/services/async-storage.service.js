@@ -1,4 +1,4 @@
-import wapModel from './wap-model.js'
+import wapModel from './wap-new-model.js'
 
 export const storageService = {
     query,

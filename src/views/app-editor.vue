@@ -24,6 +24,7 @@
         type: 'transition-group',
         name: !drag ? 'flip-list' : null,
       }"
+      @add="saveWapToStorage"
       v-model="wap.cmps"
       v-bind="dragOptions"
       @start="drag = true"
@@ -73,9 +74,6 @@ export default {
       wap: null,
       selectedCmp: {},
       isOpenCmpEditor: false,
-
-      // demoData: [getCmp('wap-header', 1), getCmp('wap-hero', 1), getCmp('wap-section', 1), getCmp('wap-cards', 1), ],
-
       drag: false,
       dragOptions: {
         animation: 200,
@@ -242,15 +240,15 @@ export default {
     })
   },
 
-  watch: {
-    wap: {
-      handler(wap) {
-        // this.saveWapToStorage(wap)
-        console.log('watch, wap changed')
-      },
-      deep: true,
-    },
-  },
+  // watch: {
+  //   wap: {
+  //     handler(wap) {
+  //       // this.saveWapToStorage(wap)
+  //       console.log('watch, wap changed')
+  //     },
+  //     deep: true,
+  //   },
+  // },
 
   components: {
     cmpEditor,

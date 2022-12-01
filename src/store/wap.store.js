@@ -118,10 +118,6 @@ export const wapStore = {
       }
     },
 
-    // async removeCmp(context, {cmpId}){
-    //   context.commit({type: 'removeCmp', cmpId})
-    // },
-
     async removeWap(context, { wapId }) {
       try {
         await wapService.remove(wapId)
