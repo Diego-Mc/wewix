@@ -127,10 +127,7 @@ export default {
     },
 
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
-<<<<<<< HEAD
-=======
       console.log(childCmpId)
->>>>>>> e3d3e42fd7c2be082ee1663d1c2ed6920e313766
       let cmpIdx
       const cmp = this.wap.cmps.find(({ id }, idx) => {
         if (id === cmpId) {
@@ -159,11 +156,11 @@ export default {
             : (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
                 elType
               ].options.style = updatedStyle.style)
-              
+
               this.saveWapToStorage()
               return
         }
-         
+
 
       }
 
@@ -178,7 +175,7 @@ export default {
           ? (this.wap.cmps[cmpIdx].info[elType].content.text = content)
           : (this.wap.cmps[cmpIdx].options.style = updatedStyle.style)
       // TODO: remove from here, its only for demonstartion
-       this.saveWapToStorage()
+      this.saveWapToStorage()
     },
 
     async loadWap() {
