@@ -15,7 +15,7 @@
         :style="info.title.options.style"
         @input="updateContent('title', $event)"
         @click.stop="$emit('select', { cmpId, elType: 'title' })"
-        contenteditable>
+        :contenteditable="$store.getters.isEditMode">
         {{ info.title.content.text }}
       </h1>
     </section>

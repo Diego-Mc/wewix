@@ -1,9 +1,10 @@
 <template>
   <article class="wap-card">
     <img
+      :style="info.img.options.style"
       @click.stop="$emit('select', { cmpId, childCmpId, elType: 'img' })"
       class="card-img"
-      src="https://dance.co/_next/image?url=%2Fimages%2Frides%2Febikes%2Fone-step-card%402x.png&w=750&q=75" />
+      :src="info.img.options.meta.src" />
     <span
       class="details"
       :style="info.details.options.style"

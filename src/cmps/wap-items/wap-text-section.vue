@@ -5,7 +5,7 @@
       :style="info.title.options.style"
       @change="updateContent('title')"
       @click.stop="$emit('select', { cmpId, elType: 'title' })"
-      contenteditable>
+      :contenteditable="$store.getters.isEditMode">
       {{ info.title.content.text }}
     </h2>
     <p
@@ -13,7 +13,7 @@
       :style="info.text.options.style"
       @change="updateContent('text')"
       @click.stop="$emit('select', { cmpId, elType: 'text' })"
-      contenteditable>
+      :contenteditable="$store.getters.isEditMode">
       {{ info.text.content.text }}
     </p>
     <button

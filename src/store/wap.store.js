@@ -24,9 +24,7 @@ export function getActionAddWapMsg(wapId) {
     type: 'addWapMsg',
     wapId,
     txt: 'Stam txt',
-    user: {
-
-    }
+    user: {},
   }
 }
 
@@ -34,6 +32,7 @@ export const wapStore = {
   state: {
     waps: [],
     editedWap: null,
+    isEditMode: true, //TODO: change to be dynamic
   },
 
   getters: {
@@ -42,7 +41,10 @@ export const wapStore = {
     },
     editedWap({ editedWap }) {
       return editedWap
-    }
+    },
+    isEditMode({ isEditMode }) {
+      return isEditMode
+    },
   },
 
   mutations: {
@@ -67,21 +69,6 @@ export const wapStore = {
       if (!wap.msgs) wap.msgs = []
       wap.msgs.push(msg)
     },
-    
-    removeCmp(state, {cmpId}) {
-        const cmps = state.editedWap.cmps
-
-        for (let cmp of cmps) { 
-            let i = 0
-            if (cmp.id === cmpId) cmps.splice(i, 1)
-            i++
-        }
-
-        state.editedWap.cmps = cmps
-        state.editedWap = state.editedWap
-        console.log(state.editedWap);
-    }
-
   },
   actions: {
     async getWap(context, { id }) {
@@ -90,12 +77,12 @@ export const wapStore = {
       return wap
     },
     async updateWap(context, { wap }) {
-      try{
+      try {
         const updatedWap = await wapService.save(wap)
         context.commit({ type: 'setEditedWap', wap: updatedWap })
-        console.log('site saved!');
-      }catch{
-        console.log('error while saving site.');
+        console.log('site saved!')
+      } catch {
+        console.log('error while saving site.')
       }
       return updatedWap._id
       // console.log('store', cmps);
@@ -131,9 +118,9 @@ export const wapStore = {
       }
     },
 
-    async removeCmp(context, {cmpId}){
-      context.commit({type: 'removeCmp', cmpId}) 
-    },
+    // async removeCmp(context, {cmpId}){
+    //   context.commit({type: 'removeCmp', cmpId})
+    // },
 
     async removeWap(context, { wapId }) {
       try {

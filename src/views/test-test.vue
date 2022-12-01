@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :style="{ fontFamily: 'SpaceGrotesk' }">
     <wap-header
       :cmpId="header.id"
       :info="header.info"
@@ -15,7 +15,7 @@
       :info="cards.info"
       :options="cards.options"
       :cmps="cards.cmps" />
-    <!-- <wap-form :cmpId="id" :info="info" :options="options" /> -->
+    <wap-form :cmpId="form.id" :info="form.info" :options="form.options" />
   </div>
 </template>
 
@@ -33,6 +33,7 @@ export default {
       hero: getCmp('wap-hero', 1),
       cards: getCmp('wap-cards', 1),
       section: getCmp('wap-section', 1),
+      form: getCmp('wap-form', 1),
     }
   },
   components: {
