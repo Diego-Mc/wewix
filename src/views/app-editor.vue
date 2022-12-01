@@ -1,5 +1,6 @@
 <template>
   <main v-if="wap">
+    <wap-chat/>
     <button @click="undo">undo</button>
     <button @click="redo">redo</button>
     <general-editor @themeChanged="themeChanged" />
@@ -64,6 +65,7 @@ import wapSection from '../cmps/wap-sections/wap-section.vue'
 import wapForm from '../cmps/wap-sections/wap-form.vue'
 import wapVideo from '../cmps/wap-items/wap-video.vue'
 import wapMap from '../cmps/wap-items/wap-map.vue'
+import wapChat from '../cmps/wap-items/wap-chat.vue'
 
 import loginModal from '../cmps/app-cmps/login-modal.vue'
 import { eventBus } from '../services/event-bus.service.js'
@@ -127,6 +129,7 @@ export default {
       }
     },
     saveWapToStorage() {
+      console.log('deba')
       this.updateWap()
       this.saveLastChange()
       // this.updateHistoryOnChange()
@@ -184,6 +187,7 @@ export default {
             ].options.style = updatedStyle.style
           }
         }
+
         return this.saveWapToStorage()
       }
 
@@ -230,7 +234,6 @@ export default {
       }
       const gHistory = this.loadFromStorage('gHistory')
       this.saveToStorage('gHistory', { changes: [this.wap], changeIdx: 0 })
-
     },
 
     publishWap() {
@@ -282,6 +285,7 @@ export default {
   created() {
     this.loadWap()
     this.loadEvents()
+    this.saveWapToStorage = utilService.debounce(this.saveWapToStorage, 1000)
   },
 
   // watch: {
@@ -307,6 +311,7 @@ export default {
     wapVideo,
     generalEditor,
     wapMap,
+    wapChat,
   },
 }
 </script>
