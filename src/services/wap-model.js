@@ -1243,7 +1243,7 @@ wapsMap.set('wap-section-2', {
     },
     {
       id: '2',
-      type: 'wap-img-section',
+      type: 'section-gallery-item',
       typeId: 1,
       options: {
         meta: {},
@@ -1259,7 +1259,8 @@ wapsMap.set('wap-section-2', {
         img: {
           options: {
             meta: {
-              src: '../assets/imgs/hero-2-img',
+              src1: 'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f1189632baa0fde4f93fb_Tacos-p-800.jpeg',
+              src2: 'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f1197a9384100846bb45b_Burgers.jpg',
             },
             style: {},
           },
@@ -1274,7 +1275,9 @@ wapsMap.set('wap-cards-2', {
   type: 'wap-cards',
   typeId: 1,
   options: {
-    meta: {},
+    meta: {
+      src: 'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623b0c7839281d050ca493ea_Green_Texture.jpg',
+    },
     style: {
       backgroundColor: '',
       fontFamily: '',
@@ -1283,6 +1286,7 @@ wapsMap.set('wap-cards-2', {
       fontSize: '',
     },
   },
+  // need to add title 'You’ll love us', how? container inside container?
   cmps: [
     {
       id: '1',
@@ -1302,45 +1306,46 @@ wapsMap.set('wap-cards-2', {
         img: {
           options: {
             meta: {
-              src: 'https://dance.co/_next/image?url=%2Fimages%2Frides%2Febikes%2Fone-step-card%402x.png&w=1920&q=75',
+              src: 'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623cfb47fbd20a23d33aac54_Icon%202.svg',
             },
             style: {},
           },
           content: {},
         },
-        details: {
-          options: {
-            meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: '',
-            },
-          },
-          content: {
-            text: 'From $39/mo',
-          },
-        },
-        tag: {
-          options: {
-            meta: {},
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: '',
-            },
-          },
-          content: {
-            text: 'Automn offer',
-          },
-        },
+
         title: {
           options: {
             meta: {},
             style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: '',
+            },
+          },
+          content: {
+            text: 'Plant based',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: '',
+            },
+          },
+          content: {
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
               fontFamily: '',
               color: '',
               fontWeight: '',
@@ -1362,24 +1367,27 @@ wapsMap.set('wap-cards-2', {
             },
           },
           content: {
-            text: 'Ebike',
+            text: 'Gluten free',
           },
         },
-        btn: {
+        text: {
           options: {
             meta: {},
             style: {
-              backgroundColor: '',
               fontFamily: '',
               color: '',
+              fontWeight: '',
+              fontSize: '',
             },
           },
-          content: { text: 'See details' },
+          content: {
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          },
         },
       },
     },
     {
-      id: '2',
+      id: '3',
       type: 'wap-card',
       typeId: 1,
       options: {
@@ -1396,45 +1404,46 @@ wapsMap.set('wap-cards-2', {
         img: {
           options: {
             meta: {
-              src: 'https://dance.co/_next/image?url=%2Fimages%2Frides%2Febikes%2Fdiamond-card%402x.png&w=1920&q=75',
+              src: 'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623cfb46bab7a365649510e1_Icon%203.svg',
             },
             style: {},
           },
           content: {},
         },
-        details: {
-          options: {
-            meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: '',
-            },
-          },
-          content: {
-            text: 'From $39/mo',
-          },
-        },
-        tag: {
-          options: {
-            meta: {},
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: '',
-            },
-          },
-          content: {
-            text: 'Automn offer',
-          },
-        },
+
         title: {
           options: {
             meta: {},
             style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: '',
+            },
+          },
+          content: {
+            text: 'Made with love',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: '',
+            },
+          },
+          content: {
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
               fontFamily: '',
               color: '',
               fontWeight: '',
@@ -1568,6 +1577,8 @@ wapsMap.set('wap-cards-2', {
     },
   ],
 })
+
+// social icons? where do i put them?
 wapsMap.set('wap-form-2', {
   id: '',
   type: 'wap-form',
@@ -1594,10 +1605,10 @@ wapsMap.set('wap-form-2', {
         },
       },
       content: {
-        text: 'Stay up to speed',
+        text: 'Sign up for our newsletter!',
       },
     },
-    text: {
+    input: {
       options: {
         meta: {},
         style: {
@@ -1608,7 +1619,23 @@ wapsMap.set('wap-form-2', {
         },
       },
       content: {
-        text: 'Sign up to get the latest Dance offers, updates, and tips straight to your inbox.',
+        // placeholder text
+        text: 'mail@mail.com',
+      },
+    },
+    btn: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: '',
+        },
+      },
+      content: {
+        // placeholder text
+        text: 'Sign up',
       },
     },
   },
