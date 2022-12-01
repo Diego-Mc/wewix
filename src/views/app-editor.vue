@@ -14,7 +14,8 @@
     <draggable class="list-group" :component-data="{
       type: 'transition-group',
       name: !drag ? 'flip-list' : null,
-    }" @add="saveWapToStorage" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="onDrop" item-key="order" group="sections">
+    }" @add="saveWapToStorage" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="onDrop"
+      item-key="order" group="sections">
       <template #item="{ element }">
         <div>
           <component :is="element.type" :info="element.info" :options="element.options" :cmps="element.cmps"
@@ -90,9 +91,9 @@ export default {
         this.saveToStorage('wapChanges', [this.wap])
       }
     },
-    saveWapToStorage(wap = this.wap) {
+    saveWapToStorage() {
       console.log('saved to storage')
-      this.saveToStorage('editedWap', wap)
+      this.saveToStorage('editedWap', this.wap)
       this.saveLastChange()
 
     },
@@ -107,13 +108,12 @@ export default {
 
     onDrop() {
       this.drag = false
-     //  this.saveWapToStorage()
+      //  this.saveWapToStorage()
 
     },
 
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
       let cmpIdx
-
       const cmp = this.wap.cmps.find(({ id }, idx) => {
         if (id === cmpId) {
           cmpIdx = idx
@@ -124,40 +124,42 @@ export default {
         const childCmpIndex = this.wap.cmps[cmpIdx].cmps.findIndex(({ id }) => id === childCmpId)
         if (updatedStyle) elType ? this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[elType].options.style = updatedStyle.style : this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[elType].options.style = updatedStyle.style
         if (content) elType ? this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[elType].content.text = content : this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[elType].options.style = updatedStyle.style
+        this.saveWapToStorage()
         return
       }
 
       if (updatedStyle) elType ? this.wap.cmps[cmpIdx].info[elType].options.style = updatedStyle.style : this.wap.cmps[cmpIdx].options.style = updatedStyle.style
       if (content) elType ? this.wap.cmps[cmpIdx].info[elType].content.text = content : this.wap.cmps[cmpIdx].options.style = updatedStyle.style
       // TODO: remove from here, its only for demonstartion
-     //  this.saveWapToStorage()
+      this.saveWapToStorage()
 
     },
 
     async loadWap() {
-      if (this.$route.params?.id) {
-        const wap = await this.$store.dispatch({
-          type: 'getWap',
-          id: this.$route.params.id,
-        })
-        this.wap = JSON.parse(JSON.stringify(wap))
-      } else {
-        // add condition: user not logged in.
-        this.wap = this.loadFromStorage('editedWap') || this.getEmptyWap()
+      this.wap = this.loadFromStorage('editedWap')
+      if (!this.wap) {
+        if (this.$route.params?.id) {
+          const wap = await this.$store.dispatch({
+            type: 'getWap',
+            id: this.$route.params.id,
+          })
+          this.wap = JSON.parse(JSON.stringify(wap))
+        } else {
+          // add condition: user not logged in.
+          this.wap = this.getEmptyWap()
+        }
+
+        this.saveWapToStorage()
       }
       if (this.wap.classState) {
         document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
       }
     },
 
-    // handleDrop() {
-    //   this.saveWapToStorage()
-    // },
-
     async updateWap(wap) {
       const { _id } = await this.$store.dispatch({ type: 'updateWap', wap: wap })
       if (_id) this.wap._id = _id
-     //  this.saveWapToStorage()
+      this.saveToStorage('editedWap', this.wap)
 
     },
 
@@ -192,12 +194,9 @@ export default {
     })
     eventBus.on('onInnerCmpDrop', ({ cmpId, cmps }) => {
       const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
-      // console.log(this.wap.cmps[cmpIndex].cmps)
       this.wap.cmps[cmpIndex].cmps = cmps
-      // console.log(this.wap.cmps[cmpIndex].cmps)
 
-     //  this.saveWapToStorage()
-
+      this.saveWapToStorage()
       // this.handleUpdate({ cmpId, updatedStyle, elType, content })
     })
 
