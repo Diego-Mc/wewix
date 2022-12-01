@@ -35,3 +35,24 @@
     color: var(--clr-1);
   }
 }
+
+.main-header {
+  height: 60px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .main-logo {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    .logo-text {
+      color: $main;
+      font-family: Asap;
+      font-weight: 400;
+      font-size: em(36px);
+      margin-bottom: 4px;
+    }
+  }
+}
