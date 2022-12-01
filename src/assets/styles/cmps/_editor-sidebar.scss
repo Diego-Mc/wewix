@@ -2,10 +2,73 @@
   position: relative;
   .editor-nav {
     border-right: 1px solid #eee;
-    width: 60px;
+    width: $editor-nav-width;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 190;
+  }
+  .section-select {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 180;
+    &.open {
+      left: $editor-nav-width;
+    }
+    .section-names {
+      width: $editor-section-names-width;
+      position: absolute;
+      background-color: #fff;
+      border-right: 1px solid #eee;
+      z-index: 170;
+      .title {
+        padding: 20px;
+      }
+    }
+    .section-cmps {
+      position: absolute;
+      border-right: 1px solid #eee;
+      top: 0;
+      z-index: 160;
+      width: $editor-section-cmps-width;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px;
+
+      &.open {
+        left: $editor-section-names-width;
+      }
+
+      .cmp-img-container {
+        background-color: $cmp-bg;
+        padding: 3px;
+        position: relative;
+        padding-right: 26px;
+        border-radius: 8px;
+        display: flex;
+
+        img {
+          border-radius: 6px;
+        }
+
+        .grab-icon {
+          position: absolute;
+          color: $main;
+          top: 50%;
+          right: 0;
+          padding-inline: 1px;
+          transform: translateY(-50%);
+          font-size: 24px;
+          cursor: grab;
+        }
+      }
+    }
   }
 }
