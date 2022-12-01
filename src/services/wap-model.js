@@ -497,12 +497,6 @@ export default [
             link: 'https://www.youtube.com/embed/sfabsNX61aU',
           },
           style: {
-            backgroundColor: '',
-            fontFamily: '',
-            color: '',
-            borderRadius: '2em',
-            fontWeight: '',
-            fontSize: ''
           },
         },
         info: {

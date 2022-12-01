@@ -7,7 +7,7 @@
       <small class="small" v-if="opt.small">{{ opt.small }}</small>
       <input
         :value="opt.val"
-        :name="info.key"
+        :name="info?.key"
         type="checkbox"
         v-model="val"
         @change="reportVal(val)" />
@@ -17,10 +17,10 @@
 
 <script>
 export default {
-  props: ['opts', 'info', 'dir', 'gap', 'style'],
+  props: ['opts', 'initialValue', 'info', 'dir', 'gap', 'style'],
   data() {
     return {
-      val: [],
+      val: [this.initialValue] || [],
       // opts: [ //this is an example for the prop data
       //   {
       //     val: 'mobile',
@@ -39,7 +39,7 @@ export default {
         if (this.val[0] === this.val[1]) this.val = []
         else this.val = [this.val[1]]
       }
-      this.$emit('setVal', { key: this.info.key, ans: this.val[0] })
+      this.$emit('setVal', { key: this.info?.key, val: this.val[0] })
     },
   },
 }
