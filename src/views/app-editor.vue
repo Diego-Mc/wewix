@@ -86,8 +86,10 @@ export default {
   },
 
   methods: {
-    removeCmp(){
-
+    removeCmp(cmpId) {
+      const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
+      this.wap.cmps.splice(cmpIndex, 1)
+      this.saveWapToStorage()
     },
     themeChanged(classState) {
       this.wap.classState = classState
@@ -126,7 +128,6 @@ export default {
 
     onDrop() {
       this.drag = false
-      //  this.saveWapToStorage()
     },
 
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
@@ -139,24 +140,31 @@ export default {
       })
       // p
       if (cmp?.cmps) {
-        const childCmpIndex = this.wap.cmps[cmpIdx].cmps.findIndex(({ id }) => id === childCmpId
+        const childCmpIndex = this.wap.cmps[cmpIdx].cmps.findIndex(
+          ({ id }) => id === childCmpId
         )
-        if (updatedStyle){
-          if(elType){
-            this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[elType].options.style = updatedStyle.style
-          }else{
-            this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[elType].options.style = updatedStyle.style
+        if (updatedStyle) {
+          if (elType) {
+            this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
+              elType
+            ].options.style = updatedStyle.style
+          } else {
+            this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
+              elType
+            ].options.style = updatedStyle.style
           }
         }
-        if (content){
-          if(elType){
+        if (content) {
+          if (elType) {
             this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
-                elType
-              ].content.text = content
-          }else{
-            this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[elType].options.style = updatedStyle.style
+              elType
+            ].content.text = content
+          } else {
+            this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
+              elType
+            ].options.style = updatedStyle.style
           }
-              return this.saveWapToStorage()    
+          return this.saveWapToStorage()
         }
       }
 
@@ -171,7 +179,7 @@ export default {
           ? (this.wap.cmps[cmpIdx].info[elType].content.text = content)
           : (this.wap.cmps[cmpIdx].options.style = updatedStyle.style)
       // TODO: remove from here, its only for demonstartion
-       this.saveWapToStorage()
+      this.saveWapToStorage()
     },
 
     async loadWap() {
@@ -244,10 +252,8 @@ export default {
 
         this.saveWapToStorage()
       })
-      eventBus.on('onRemoveCmp', cmpId => {
-        const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
-        this.wap.cmps.splice(cmpIndex,1)
-        this.saveWapToStorage()
+      eventBus.on('onRemoveCmp', (cmpId) => {
+        this.removeCmp(cmpId)
       })
     },
   },
