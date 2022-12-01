@@ -492,26 +492,23 @@ export default [
         options: {
           meta: {
             img: '',
-            link: 'https://www.youtube.com/embed/sfabsNX61aU'
+            link: 'https://www.youtube.com/embed/sfabsNX61aU',
           },
           style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-              borderRadius: '',
-              fontWeight: '',
+            backgroundColor: '',
+            fontFamily: '',
+            color: '',
+            borderRadius: '',
+            fontWeight: '',
           },
         },
         info: {
           title: {
             options: {
-              meta: {
-              },
-              style: {
-              },
+              meta: {},
+              style: {},
             },
-            content: {
-            },
+            content: {},
           },
         },
       },
@@ -1011,4 +1008,46 @@ wapsMap.set('wap-cards-1', {
       },
     },
   ],
+})
+wapsMap.set('wap-form-1', {
+  id: '',
+  type: 'wap-form',
+  typeId: 1,
+  options: {
+    meta: {},
+    style: {
+      backgroundColor: '',
+      fontFamily: '',
+      color: '',
+      fontWeight: '',
+    },
+  },
+  info: {
+    title: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+        },
+      },
+      content: {
+        text: 'Stay up to speed',
+      },
+    },
+    text: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+        },
+      },
+      content: {
+        text: 'Sign up to get the latest Dance offers, updates, and tips straight to your inbox.',
+      },
+    },
+  },
 })

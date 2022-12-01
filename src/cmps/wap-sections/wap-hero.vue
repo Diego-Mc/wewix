@@ -1,11 +1,20 @@
 <template>
-  <section class="wap-hero" @click.stop="$emit('select', { cmpId })">
+  <section
+    class="wap-hero"
+    @click.stop="$emit('select', { cmpId })"
+    :style="options.style">
+    <video
+      src="https://knowledge.s.dance.app/videos/hero_home_alt_15s_16_9.webm"
+      autoplay
+      loop
+      playsinline
+      muted></video>
     <h2
       class="title"
       :style="info.title.options.style"
       @change="updateContent('title')"
       @click.stop="$emit('select', { cmpId, elType: 'title' })"
-      contenteditable>
+      :contenteditable="$store.getters.isEditMode">
       {{ info.title.content.text }}
     </h2>
     <p
@@ -13,15 +22,18 @@
       :style="info.text.options.style"
       @change="updateContent('text')"
       @click.stop="$emit('select', { cmpId, elType: 'text' })"
-      contenteditable>
+      :contenteditable="$store.getters.isEditMode">
       {{ info.text.content.text }}
     </p>
     <button
       class="btn"
       :style="info.btn.options.style"
-      @click.stop="$emit('select', { cmpId, elType: 'btn' })"
-      @change="updateContent('btn')">
-      {{ info.btn.content.text }}
+      @click.stop="$emit('select', { cmpId, elType: 'btn' })">
+      <span
+        :contenteditable="$store.getters.isEditMode"
+        @change="updateContent('btn')">
+        {{ info.btn.content.text }}
+      </span>
     </button>
   </section>
 </template>

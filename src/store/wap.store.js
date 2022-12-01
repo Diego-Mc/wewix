@@ -24,9 +24,7 @@ export function getActionAddWapMsg(wapId) {
     type: 'addWapMsg',
     wapId,
     txt: 'Stam txt',
-    user: {
-
-    }
+    user: {},
   }
 }
 
@@ -34,6 +32,7 @@ export const wapStore = {
   state: {
     waps: [],
     editedWap: null,
+    isEditMode: true, //TODO: change to be dynamic
   },
 
   getters: {
@@ -42,7 +41,10 @@ export const wapStore = {
     },
     editedWap({ editedWap }) {
       return editedWap
-    }
+    },
+    isEditMode({ isEditMode }) {
+      return isEditMode
+    },
   },
 
   mutations: {
@@ -67,7 +69,6 @@ export const wapStore = {
       if (!wap.msgs) wap.msgs = []
       wap.msgs.push(msg)
     },
-
   },
   actions: {
     async getWap(context, { id }) {
