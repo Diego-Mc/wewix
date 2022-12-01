@@ -22,13 +22,15 @@
 import draggable from 'vuedraggable'
 import getCmp from '../../services/wap-cmps.service'
 
+import { wapVideo, wapMap } from '../../services/wap-new-model'
+
 export default {
   components: {
     draggable,
   },
   data() {
     return {
-      cmpsDropdownOptions: [getCmp('wap-header', 1), getCmp('wap-hero', 1), getCmp('wap-section', 1), getCmp('wap-cards', 1), ],
+      cmpsDropdownOptions: [getCmp('wap-header', 1), getCmp('wap-hero', 1), getCmp('wap-section', 1), getCmp('wap-cards', 1), wapVideo, wapMap],
     }
   }
 }
@@ -105,3 +107,5 @@ td {
   min-width: 200px;
 }
 </style>
+
+

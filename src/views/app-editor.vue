@@ -127,8 +127,11 @@ export default {
     },
 
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
-      console.log("🚀 ~ file: app-editor.vue:129 ~ handleUpdate ~ updatedStyle", updatedStyle)
-      
+      console.log(
+        '🚀 ~ file: app-editor.vue:129 ~ handleUpdate ~ updatedStyle',
+        updatedStyle
+      )
+
       let cmpIdx
       const cmp = this.wap.cmps.find(({ id }, idx) => {
         if (id === cmpId) {
@@ -200,6 +203,7 @@ export default {
         wap: wap,
       })
       if (_id) this.wap._id = _id
+      this.saveToStorage('editedWap', this.wap)
       //  this.saveWapToStorage()
     },
 

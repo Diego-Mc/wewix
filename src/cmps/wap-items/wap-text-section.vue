@@ -4,7 +4,7 @@
       class="title"
       @change="updateContent('title')"
       :style="info.title.options.style"
-      @click.stop="$emit('select', { cmpId, elType: 'title' })"
+      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'title' })"
       :contenteditable="$store.getters.isEditMode">
       {{ info.title.content.text }}
     </h2>
@@ -12,7 +12,7 @@
       class="text"
       @change="updateContent('text')"
       :style="info.text.options.style"
-      @click.stop="$emit('select', { cmpId, elType: 'text' })"
+      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'text' })"
       :contenteditable="$store.getters.isEditMode">
       {{ info.text.content.text }}
     </p>
@@ -20,7 +20,7 @@
       v-if="info.btn"
       class="btn"
       :style="info.btn.options.style"
-      @click.stop="$emit('select', { cmpId, elType: 'btn' })"
+      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'btn' })"
       @change="updateContent('btn')">
       {{ info.btn.content.text }}
     </button>
@@ -29,7 +29,7 @@
 
 <script>
 export default {
-  props: ['info', 'cmpId', 'options'],
+  props: ['info', 'cmpId', 'childCmpId', 'options'],
   methods: {
     updateContent(elType) {
       this.$emit('update', { cmpId, elType, content: info.text.content })
