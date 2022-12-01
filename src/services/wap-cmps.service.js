@@ -1,6 +1,11 @@
 import { utilService } from './util.service.js'
 import { wapsMap } from './wap-model.js'
 
+export const wapUtils = {
+  getMeta,
+  getStyles,
+}
+
 export default function getCmp(type, typeId) {
   const key = `${type}-${typeId}`
   const cmp = wapsMap.get(key)
@@ -62,7 +67,7 @@ function _getCmpEls(type, typeId) {
   }
 }
 
-function _getMeta(elType) {
+function getMeta(elType) {
   switch (elType) {
     case 'btn':
     case 'primaryBtn':
@@ -84,7 +89,7 @@ function _getMeta(elType) {
   }
 }
 
-function _getStyles(elType) {
+function getStyles(elType) {
   switch (elType) {
     case 'btn':
     case 'primaryBtn':
@@ -108,9 +113,17 @@ function _getStyles(elType) {
         fontFamily: '',
         color: '',
         fontWeight: '',
-        fontSize: ''
+        fontSize: '',
       }
     case 'tag':
+      return {
+        backgroundColor: '',
+        fontFamily: '',
+        color: '',
+        fontWeight: '',
+        fontSize: '',
+      }
+    default:
       return {
         backgroundColor: '',
         fontFamily: '',

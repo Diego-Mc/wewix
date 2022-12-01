@@ -1,3 +1,6 @@
+import { wapUtils } from './wap-cmps.service'
+const { getStyles, getMeta } = wapUtils
+
 export default [
   {
     _id: '5e28393890dd7201a06d4e44',
@@ -31,7 +34,7 @@ export default [
             color: '',
             borderRadius: '2em',
             fontWeight: '',
-            fontSize: ''
+            fontSize: '',
           },
         },
         info: {
@@ -86,7 +89,7 @@ export default [
           meta: {},
           style: {
             fontWeight: '',
-            fontSize: ''
+            fontSize: '',
           },
         },
         info: {
@@ -496,8 +499,7 @@ export default [
             img: '',
             link: 'https://www.youtube.com/embed/sfabsNX61aU',
           },
-          style: {
-          },
+          style: {},
         },
         info: {
           title: {
@@ -521,24 +523,13 @@ wapsMap.set('wap-header-1', {
   typeId: 1,
   options: {
     meta: {},
-    style: {
-      backgroundColor: '',
-      fontFamily: '',
-      color: '',
-      fontWeight: '',
-      fontSize: ''
-    },
+    style: getStyles(),
   },
   info: {
     title: {
       options: {
         meta: {},
-        style: {
-          fontFamily: '',
-          color: '',
-          fontWeight: '',
-          fontSize: ''
-        },
+        style: getStyles('title'),
       },
       content: {
         text: 'Dance',
@@ -547,12 +538,7 @@ wapsMap.set('wap-header-1', {
     nav: {
       options: {
         meta: {},
-        style: {
-          fontFamily: '',
-          color: '',
-          fontWeight: '',
-          fontSize: ''
-        },
+        style: getStyles('nav'),
       },
       content: {
         nav1: 'Concierge',
@@ -563,14 +549,7 @@ wapsMap.set('wap-header-1', {
     btn: {
       options: {
         meta: {},
-        style: {
-          backgroundColor: '',
-          fontFamily: '',
-          color: '',
-          borderRadius: '2em',
-          fontWeight: '',
-          fontSize: ''
-        },
+        style: getStyles('btn'),
       },
       content: { text: 'Start now' },
     },
@@ -582,24 +561,13 @@ wapsMap.set('wap-hero-1', {
   typeId: 1,
   options: {
     meta: {},
-    style: {
-      backgroundColor: '',
-      fontFamily: '',
-      color: '',
-      fontWeight: '',
-      fontSize: ''
-    },
+    style: getStyles(),
   },
   info: {
     title: {
       options: {
         meta: {},
-        style: {
-          fontFamily: '',
-          color: '',
-          fontWeight: '',
-          fontSize: ''
-        },
+        style: getStyles('title'),
       },
       content: {
         text: 'Your future\nis electric',
@@ -608,12 +576,7 @@ wapsMap.set('wap-hero-1', {
     text: {
       options: {
         meta: {},
-        style: {
-          fontFamily: '',
-          color: '',
-          fontWeight: '',
-          fontSize: ''
-        },
+        style: getStyles('text'),
       },
       content: {
         text: 'Get your own ebike or emoped\nwith our flexible subscription',
@@ -624,14 +587,7 @@ wapsMap.set('wap-hero-1', {
         meta: {
           href: '#',
         },
-        style: {
-          backgroundColor: '',
-          fontFamily: '',
-          color: '',
-          borderRadius: '2em',
-          fontWeight: '',
-          fontSize: ''
-        },
+        style: getStyles(btn),
       },
       content: { text: 'Start now' },
     },
@@ -643,13 +599,7 @@ wapsMap.set('wap-section-1', {
   typeId: 1,
   options: {
     meta: {},
-    style: {
-      backgroundColor: '',
-      fontFamily: '',
-      color: '',
-      fontWeight: '',
-      fontSize: ''
-    },
+    style: getStyles(),
   },
   cmps: [
     {
@@ -658,35 +608,20 @@ wapsMap.set('wap-section-1', {
       typeId: 1,
       options: {
         meta: {},
-        style: {
-          backgroundColor: '',
-          fontFamily: '',
-          color: '',
-        },
+        style: getStyles(),
       },
       info: {
         img: {
           options: {
             meta: {},
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
+            style: getStyles('img'),
           },
           content: {},
         },
         title: {
           options: {
             meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
+            style: getStyles('title'),
           },
           content: {
             text: 'Move your way',
@@ -695,12 +630,7 @@ wapsMap.set('wap-section-1', {
         text: {
           options: {
             meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
+            style: getStyles('text'),
           },
           content: {
             text: 'Choose the electric ride that suid tour lifeoptions',
@@ -714,13 +644,7 @@ wapsMap.set('wap-section-1', {
       typeId: 1,
       options: {
         meta: {},
-        style: {
-          backgroundColor: '',
-          fontFamily: '',
-          color: '',
-          fontWeight: '',
-          fontSize: ''
-        },
+        style: getStyles(),
       },
       info: {
         img: {
@@ -728,7 +652,7 @@ wapsMap.set('wap-section-1', {
             meta: {
               src: 'https://dance.co/_next/image?url=%2Fimages%2Fhome%2Fhome-care%402x.jpg&w=1200&q=75',
             },
-            style: {},
+            style: getStyles('img'),
           },
           content: {},
         },
@@ -742,13 +666,7 @@ wapsMap.set('wap-cards-1', {
   typeId: 1,
   options: {
     meta: {},
-    style: {
-      backgroundColor: '',
-      fontFamily: '',
-      color: '',
-      fontWeight: '',
-      fontSize: ''
-    },
+    style: getStyles(),
   },
   cmps: [
     {
@@ -757,13 +675,7 @@ wapsMap.set('wap-cards-1', {
       typeId: 1,
       options: {
         meta: {},
-        style: {
-          backgroundColor: '',
-          fontFamily: '',
-          color: '',
-          fontWeight: '',
-          fontSize: ''
-        },
+        style: getStyles(),
       },
       info: {
         img: {
@@ -771,19 +683,14 @@ wapsMap.set('wap-cards-1', {
             meta: {
               src: 'https://dance.co/_next/image?url=%2Fimages%2Frides%2Febikes%2Fone-step-card%402x.png&w=1920&q=75',
             },
-            style: {},
+            style: getStyles('img'),
           },
           content: {},
         },
         details: {
           options: {
             meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
+            style: getStyles('details'),
           },
           content: {
             text: 'From $39/mo',
@@ -792,13 +699,7 @@ wapsMap.set('wap-cards-1', {
         tag: {
           options: {
             meta: {},
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
+            style: getStyles('tag'),
           },
           content: {
             text: 'Automn offer',
@@ -807,12 +708,7 @@ wapsMap.set('wap-cards-1', {
         title: {
           options: {
             meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
+            style: getStyles('title'),
           },
           content: {
             text: 'Dance One Step',
@@ -821,12 +717,7 @@ wapsMap.set('wap-cards-1', {
         text: {
           options: {
             meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
+            style: getStyles('text'),
           },
           content: {
             text: 'Ebike',
@@ -835,11 +726,7 @@ wapsMap.set('wap-cards-1', {
         btn: {
           options: {
             meta: {},
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-            },
+            style: getStyles('btn'),
           },
           content: { text: 'See details' },
         },
@@ -851,13 +738,7 @@ wapsMap.set('wap-cards-1', {
       typeId: 1,
       options: {
         meta: {},
-        style: {
-          backgroundColor: '',
-          fontFamily: '',
-          color: '',
-          fontWeight: '',
-          fontSize: ''
-        },
+        style: getStyles(),
       },
       info: {
         img: {
@@ -865,19 +746,14 @@ wapsMap.set('wap-cards-1', {
             meta: {
               src: 'https://dance.co/_next/image?url=%2Fimages%2Frides%2Febikes%2Fdiamond-card%402x.png&w=1920&q=75',
             },
-            style: {},
+            style: getStyles('img'),
           },
           content: {},
         },
         details: {
           options: {
             meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
+            style: getStyles('details'),
           },
           content: {
             text: 'From $39/mo',
@@ -886,13 +762,7 @@ wapsMap.set('wap-cards-1', {
         tag: {
           options: {
             meta: {},
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
+            style: getStyles('tag'),
           },
           content: {
             text: 'Automn offer',
@@ -901,12 +771,7 @@ wapsMap.set('wap-cards-1', {
         title: {
           options: {
             meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
+            style: getStyles('title'),
           },
           content: {
             text: 'Dance One',
@@ -915,12 +780,7 @@ wapsMap.set('wap-cards-1', {
         text: {
           options: {
             meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
+            style: getStyles('text'),
           },
           content: {
             text: 'Ebike',
@@ -929,11 +789,7 @@ wapsMap.set('wap-cards-1', {
         btn: {
           options: {
             meta: {},
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-            },
+            style: getStyles('btn'),
           },
           content: { text: 'See details' },
         },
@@ -945,13 +801,7 @@ wapsMap.set('wap-cards-1', {
       typeId: 1,
       options: {
         meta: {},
-        style: {
-          backgroundColor: '',
-          fontFamily: '',
-          color: '',
-          fontWeight: '',
-          fontSize: ''
-        },
+        style: getStyles(),
       },
       info: {
         img: {
@@ -959,19 +809,14 @@ wapsMap.set('wap-cards-1', {
             meta: {
               src: 'https://dance.co/_next/image?url=%2Fimages%2Frides%2Femoped%2Femoped-card%402x.png&w=1920&q=75',
             },
-            style: {},
+            style: getStyles('img'),
           },
           content: {},
         },
         details: {
           options: {
             meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
+            style: getStyles('details'),
           },
           content: {
             text: 'From $49/mo',
@@ -980,13 +825,7 @@ wapsMap.set('wap-cards-1', {
         tag: {
           options: {
             meta: {},
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
+            style: getStyles('tag'),
           },
           content: {
             text: 'Automn offer',
@@ -995,12 +834,7 @@ wapsMap.set('wap-cards-1', {
         title: {
           options: {
             meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
+            style: getStyles('title'),
           },
           content: {
             text: 'Dance Moped',
@@ -1009,12 +843,7 @@ wapsMap.set('wap-cards-1', {
         text: {
           options: {
             meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
+            style: getStyles('text'),
           },
           content: {
             text: 'Emoped',
@@ -1023,11 +852,7 @@ wapsMap.set('wap-cards-1', {
         btn: {
           options: {
             meta: {},
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-            },
+            style: getStyles('btn'),
           },
           content: { text: 'See details', link: '#wc03' },
         },
@@ -1041,24 +866,13 @@ wapsMap.set('wap-form-1', {
   typeId: 1,
   options: {
     meta: {},
-    style: {
-      backgroundColor: '',
-      fontFamily: '',
-      color: '',
-      fontWeight: '',
-      fontSize: ''
-    },
+    style: getStyles(),
   },
   info: {
     title: {
       options: {
         meta: {},
-        style: {
-          fontFamily: '',
-          color: '',
-          fontWeight: '',
-          fontSize: ''
-        },
+        style: getStyles('title'),
       },
       content: {
         text: 'Stay up to speed',
@@ -1067,12 +881,7 @@ wapsMap.set('wap-form-1', {
     text: {
       options: {
         meta: {},
-        style: {
-          fontFamily: '',
-          color: '',
-          fontWeight: '',
-          fontSize: ''
-        },
+        style: getStyles('text'),
       },
       content: {
         text: 'Sign up to get the latest Dance offers, updates, and tips straight to your inbox.',
@@ -1094,7 +903,7 @@ wapsMap.set('wap-header-2', {
       fontFamily: '',
       color: '',
       fontWeight: '',
-      fontSize: ''
+      fontSize: '',
     },
   },
   info: {
@@ -1102,17 +911,16 @@ wapsMap.set('wap-header-2', {
     img: {
       options: {
         meta: {
-          src:'../assets/imgs/plantify-logo.svg'
+          src: '../assets/imgs/plantify-logo.svg',
         },
         style: {
           fontFamily: '',
           color: '',
           fontWeight: '',
-          fontSize: ''
+          fontSize: '',
         },
       },
-      content: {
-      },
+      content: {},
     },
     nav: {
       options: {
@@ -1121,7 +929,7 @@ wapsMap.set('wap-header-2', {
           fontFamily: '',
           color: '',
           fontWeight: '',
-          fontSize: ''
+          fontSize: '',
         },
       },
       content: {
@@ -1141,7 +949,7 @@ wapsMap.set('wap-header-2', {
           color: '',
           borderRadius: '2em',
           fontWeight: '',
-          fontSize: ''
+          fontSize: '',
         },
       },
       content: { text: 'Find us' },
@@ -1161,7 +969,7 @@ wapsMap.set('wap-section-2', {
       fontFamily: '',
       color: '',
       fontWeight: '',
-      fontSize: ''
+      fontSize: '',
     },
   },
   cmps: [
@@ -1178,14 +986,14 @@ wapsMap.set('wap-section-2', {
         },
       },
       info: {
-        tag:{
+        tag: {
           options: {
             meta: {},
             style: {
               fontFamily: '',
               color: '',
               fontWeight: '',
-              fontSize: ''
+              fontSize: '',
             },
           },
           content: {
@@ -1199,7 +1007,7 @@ wapsMap.set('wap-section-2', {
               fontFamily: '',
               color: '',
               fontWeight: '',
-              fontSize: ''
+              fontSize: '',
             },
           },
           content: {
@@ -1214,15 +1022,13 @@ wapsMap.set('wap-section-2', {
               fontFamily: '',
               color: '',
               fontWeight: '',
-              fontSize: ''
+              fontSize: '',
             },
           },
           content: {
             text: 'No animals.',
           },
-          btn:{
-            
-          }
+          btn: {},
         },
         text: {
           options: {
@@ -1231,7 +1037,7 @@ wapsMap.set('wap-section-2', {
               fontFamily: '',
               color: '',
               fontWeight: '',
-              fontSize: ''
+              fontSize: '',
             },
           },
           content: {
@@ -1245,7 +1051,7 @@ wapsMap.set('wap-section-2', {
               fontFamily: '',
               color: '',
               fontWeight: '',
-              fontSize: ''
+              fontSize: '',
             },
           },
           content: {
@@ -1265,7 +1071,7 @@ wapsMap.set('wap-section-2', {
           fontFamily: '',
           color: '',
           fontWeight: '',
-          fontSize: ''
+          fontSize: '',
         },
       },
       info: {
@@ -1290,14 +1096,14 @@ wapsMap.set('wap-hero-2', {
   options: {
     meta: {
       // download imgs from now?
-      src:'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623cfb46d0ab4fab78e53577_Callout%20Photo.jpg'
+      src: 'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623cfb46d0ab4fab78e53577_Callout%20Photo.jpg',
     },
     style: {
       backgroundColor: '',
       fontFamily: '',
       color: '',
       fontWeight: '',
-      fontSize: ''
+      fontSize: '',
     },
   },
   info: {
@@ -1308,7 +1114,7 @@ wapsMap.set('wap-hero-2', {
           fontFamily: '',
           color: '',
           fontWeight: '',
-          fontSize: ''
+          fontSize: '',
         },
       },
       content: {
@@ -1317,14 +1123,12 @@ wapsMap.set('wap-hero-2', {
     },
     text: {
       options: {
-        meta: {
-
-        },
+        meta: {},
         style: {
           fontFamily: '',
           color: '',
           fontWeight: '',
-          fontSize: ''
+          fontSize: '',
         },
       },
       content: {
@@ -1339,7 +1143,7 @@ wapsMap.set('wap-hero-2', {
           fontFamily: '',
           color: '',
           fontWeight: '',
-          fontSize: ''
+          fontSize: '',
         },
       },
       content: {
@@ -1357,7 +1161,7 @@ wapsMap.set('wap-hero-2', {
           color: '',
           borderRadius: '2em',
           fontWeight: '',
-          fontSize: ''
+          fontSize: '',
         },
       },
       content: { text: '2:00 pm - 9:00 pm' },
@@ -1376,7 +1180,7 @@ wapsMap.set('wap-section-2', {
       fontFamily: '',
       color: '',
       fontWeight: '',
-      fontSize: ''
+      fontSize: '',
     },
   },
   cmps: [
@@ -1392,51 +1196,51 @@ wapsMap.set('wap-section-2', {
           color: '',
         },
       },
-      
-        title: {
-          options: {
-            meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
-          },
-          content: {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor consequat netus tristique at sem ipsum fames.',
+
+      title: {
+        options: {
+          meta: {},
+          style: {
+            fontFamily: '',
+            color: '',
+            fontWeight: '',
+            fontSize: '',
           },
         },
-        // maybe remove
-        text: {
-          options: {
-            meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
-          },
-          content: {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor consequat netus tristique at sem ipsum fames.',
-          },
-        },
-        btn: {
-          options: {
-            meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
-          },
-          content: {
-            text: 'View menu',
-          },
+        content: {
+          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor consequat netus tristique at sem ipsum fames.',
         },
       },
+      // maybe remove
+      text: {
+        options: {
+          meta: {},
+          style: {
+            fontFamily: '',
+            color: '',
+            fontWeight: '',
+            fontSize: '',
+          },
+        },
+        content: {
+          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor consequat netus tristique at sem ipsum fames.',
+        },
+      },
+      btn: {
+        options: {
+          meta: {},
+          style: {
+            fontFamily: '',
+            color: '',
+            fontWeight: '',
+            fontSize: '',
+          },
+        },
+        content: {
+          text: 'View menu',
+        },
+      },
+    },
     {
       id: '2',
       type: 'wap-img-section',
@@ -1448,7 +1252,7 @@ wapsMap.set('wap-section-2', {
           fontFamily: '',
           color: '',
           fontWeight: '',
-          fontSize: ''
+          fontSize: '',
         },
       },
       info: {
@@ -1476,7 +1280,7 @@ wapsMap.set('wap-cards-2', {
       fontFamily: '',
       color: '',
       fontWeight: '',
-      fontSize: ''
+      fontSize: '',
     },
   },
   cmps: [
@@ -1491,7 +1295,7 @@ wapsMap.set('wap-cards-2', {
           fontFamily: '',
           color: '',
           fontWeight: '',
-          fontSize: ''
+          fontSize: '',
         },
       },
       info: {
@@ -1511,7 +1315,7 @@ wapsMap.set('wap-cards-2', {
               fontFamily: '',
               color: '',
               fontWeight: '',
-              fontSize: ''
+              fontSize: '',
             },
           },
           content: {
@@ -1526,7 +1330,7 @@ wapsMap.set('wap-cards-2', {
               fontFamily: '',
               color: '',
               fontWeight: '',
-              fontSize: ''
+              fontSize: '',
             },
           },
           content: {
@@ -1540,7 +1344,7 @@ wapsMap.set('wap-cards-2', {
               fontFamily: '',
               color: '',
               fontWeight: '',
-              fontSize: ''
+              fontSize: '',
             },
           },
           content: {
@@ -1554,7 +1358,7 @@ wapsMap.set('wap-cards-2', {
               fontFamily: '',
               color: '',
               fontWeight: '',
-              fontSize: ''
+              fontSize: '',
             },
           },
           content: {
@@ -1585,7 +1389,7 @@ wapsMap.set('wap-cards-2', {
           fontFamily: '',
           color: '',
           fontWeight: '',
-          fontSize: ''
+          fontSize: '',
         },
       },
       info: {
@@ -1605,7 +1409,7 @@ wapsMap.set('wap-cards-2', {
               fontFamily: '',
               color: '',
               fontWeight: '',
-              fontSize: ''
+              fontSize: '',
             },
           },
           content: {
@@ -1620,7 +1424,7 @@ wapsMap.set('wap-cards-2', {
               fontFamily: '',
               color: '',
               fontWeight: '',
-              fontSize: ''
+              fontSize: '',
             },
           },
           content: {
@@ -1634,7 +1438,7 @@ wapsMap.set('wap-cards-2', {
               fontFamily: '',
               color: '',
               fontWeight: '',
-              fontSize: ''
+              fontSize: '',
             },
           },
           content: {
@@ -1648,7 +1452,7 @@ wapsMap.set('wap-cards-2', {
               fontFamily: '',
               color: '',
               fontWeight: '',
-              fontSize: ''
+              fontSize: '',
             },
           },
           content: {
@@ -1679,7 +1483,7 @@ wapsMap.set('wap-cards-2', {
           fontFamily: '',
           color: '',
           fontWeight: '',
-          fontSize: ''
+          fontSize: '',
         },
       },
       info: {
@@ -1699,7 +1503,7 @@ wapsMap.set('wap-cards-2', {
               fontFamily: '',
               color: '',
               fontWeight: '',
-              fontSize: ''
+              fontSize: '',
             },
           },
           content: {
@@ -1714,7 +1518,7 @@ wapsMap.set('wap-cards-2', {
               fontFamily: '',
               color: '',
               fontWeight: '',
-              fontSize: ''
+              fontSize: '',
             },
           },
           content: {
@@ -1728,7 +1532,7 @@ wapsMap.set('wap-cards-2', {
               fontFamily: '',
               color: '',
               fontWeight: '',
-              fontSize: ''
+              fontSize: '',
             },
           },
           content: {
@@ -1742,7 +1546,7 @@ wapsMap.set('wap-cards-2', {
               fontFamily: '',
               color: '',
               fontWeight: '',
-              fontSize: ''
+              fontSize: '',
             },
           },
           content: {
@@ -1775,7 +1579,7 @@ wapsMap.set('wap-form-2', {
       fontFamily: '',
       color: '',
       fontWeight: '',
-      fontSize: ''
+      fontSize: '',
     },
   },
   info: {
@@ -1786,7 +1590,7 @@ wapsMap.set('wap-form-2', {
           fontFamily: '',
           color: '',
           fontWeight: '',
-          fontSize: ''
+          fontSize: '',
         },
       },
       content: {
@@ -1800,7 +1604,7 @@ wapsMap.set('wap-form-2', {
           fontFamily: '',
           color: '',
           fontWeight: '',
-          fontSize: ''
+          fontSize: '',
         },
       },
       content: {
