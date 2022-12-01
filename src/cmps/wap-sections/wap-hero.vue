@@ -4,7 +4,7 @@
     @click.stop="$emit('select', { cmpId })"
     :style="options.style">
     <video
-      src="https://knowledge.s.dance.app/videos/hero_home_alt_15s_16_9.webm"
+      src="https://knowledge.s.dance.app/videos/hero_home_alt_15s_16_9.webm,"
       autoplay
       loop
       playsinline
