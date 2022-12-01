@@ -54,8 +54,6 @@ export default {
       selectedCmp: {},
       isOpenCmpEditor: false,
 
-      // demoData: [getCmp('wap-header', 1), getCmp('wap-hero', 1), getCmp('wap-section', 1), getCmp('wap-cards', 1), ], 
-
       drag: false,
       dragOptions: {
         animation: 200,
