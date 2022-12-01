@@ -14,12 +14,8 @@
       :id="selectedCmp.id"
       :childCmpId="selectedCmp.childCmpId"
       :editOptions="selectedCmp.options"
-<<<<<<< HEAD
-      :elType="selectedCmp.elType">
-=======
       :elType="selectedCmp.elType"
       @update="handleUpdate">
->>>>>>> 272b2ca5cdbcec711d4c33a9c1e87fd4dcc3fd3d
     </cmp-editor>
 
     <draggable
@@ -131,8 +127,7 @@ export default {
     },
 
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
-      console.log("🚀 ~ file: app-editor.vue:129 ~ handleUpdate ~ updatedStyle", updatedStyle)
-      
+      console.log(childCmpId)
       let cmpIdx
       const cmp = this.wap.cmps.find(({ id }, idx) => {
         if (id === cmpId) {
@@ -153,7 +148,7 @@ export default {
             : (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
                 elType
               ].options.style = updatedStyle.style)
-        if (content)
+        if (content){
           elType
             ? (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
                 elType
@@ -161,7 +156,12 @@ export default {
             : (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
                 elType
               ].options.style = updatedStyle.style)
-        return
+              
+              this.saveWapToStorage()
+              return
+        }
+         
+
       }
 
       if (updatedStyle)
@@ -169,12 +169,13 @@ export default {
           ? (this.wap.cmps[cmpIdx].info[elType].options.style =
               updatedStyle.style)
           : (this.wap.cmps[cmpIdx].options.style = updatedStyle.style)
+
       if (content)
         elType
           ? (this.wap.cmps[cmpIdx].info[elType].content.text = content)
           : (this.wap.cmps[cmpIdx].options.style = updatedStyle.style)
       // TODO: remove from here, its only for demonstartion
-      //  this.saveWapToStorage()
+       this.saveWapToStorage()
     },
 
     async loadWap() {
@@ -204,11 +205,7 @@ export default {
         wap: wap,
       })
       if (_id) this.wap._id = _id
-<<<<<<< HEAD
       this.saveToStorage('editedWap', this.wap)
-=======
-      //  this.saveWapToStorage()
->>>>>>> 272b2ca5cdbcec711d4c33a9c1e87fd4dcc3fd3d
     },
 
     publishWap() {
@@ -235,7 +232,7 @@ export default {
     },
     loadEvents() {
       eventBus.on(
-        'update',
+        'cmpUpdated',
         ({ cmpId, updatedStyle, elType, content, childCmpId }) => {
           this.handleUpdate({
             cmpId,
@@ -257,21 +254,7 @@ export default {
 
   created() {
     this.loadWap()
-<<<<<<< HEAD
     this.loadEvents()
-=======
-    eventBus.on('update', ({ cmpId, updatedStyle, elType, content }) => {
-      this.handleUpdate({ cmpId, updatedStyle, elType, content })
-    })
-    eventBus.on('onInnerCmpDrop', ({ cmpId, cmps }) => {
-      const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
-      this.wap.cmps[cmpIndex].cmps = cmps
-
-      //  this.saveWapToStorage()
-
-      // this.handleUpdate({ cmpId, updatedStyle, elType, content })
-    })
->>>>>>> 272b2ca5cdbcec711d4c33a9c1e87fd4dcc3fd3d
   },
 
   // watch: {

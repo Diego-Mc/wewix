@@ -58,9 +58,10 @@ import { eventBus } from '../../services/event-bus.service'
 
 export default {
   props: ['info', 'cmpId', 'options', 'childCmpId'],
+
   methods: {
     updateContent(elType, e) {
-      eventBus.emit('update', {
+      eventBus.emit('cmpUpdated', {
         cmpId: this.cmpId,
         elType,
         content: e.target.innerText,
