@@ -14,8 +14,12 @@
       :id="selectedCmp.id"
       :childCmpId="selectedCmp.childCmpId"
       :editOptions="selectedCmp.options"
+<<<<<<< HEAD
+      :elType="selectedCmp.elType">
+=======
       :elType="selectedCmp.elType"
       @update="handleUpdate">
+>>>>>>> 272b2ca5cdbcec711d4c33a9c1e87fd4dcc3fd3d
     </cmp-editor>
 
     <draggable
@@ -136,6 +140,7 @@ export default {
           return true
         }
       })
+      //prettier-ignore
       if (cmp?.cmps) {
         const childCmpIndex = this.wap.cmps[cmpIdx].cmps.findIndex(
           ({ id }) => id === childCmpId
@@ -199,7 +204,11 @@ export default {
         wap: wap,
       })
       if (_id) this.wap._id = _id
+<<<<<<< HEAD
+      this.saveToStorage('editedWap', this.wap)
+=======
       //  this.saveWapToStorage()
+>>>>>>> 272b2ca5cdbcec711d4c33a9c1e87fd4dcc3fd3d
     },
 
     publishWap() {
@@ -224,10 +233,33 @@ export default {
         cmps: [],
       }
     },
+    loadEvents() {
+      eventBus.on(
+        'update',
+        ({ cmpId, updatedStyle, elType, content, childCmpId }) => {
+          this.handleUpdate({
+            cmpId,
+            updatedStyle,
+            elType,
+            content,
+            childCmpId,
+          })
+        }
+      )
+      eventBus.on('onInnerCmpDrop', ({ cmpId, cmps }) => {
+        const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
+        this.wap.cmps[cmpIndex].cmps = cmps
+
+        this.saveWapToStorage()
+      })
+    },
   },
 
   created() {
     this.loadWap()
+<<<<<<< HEAD
+    this.loadEvents()
+=======
     eventBus.on('update', ({ cmpId, updatedStyle, elType, content }) => {
       this.handleUpdate({ cmpId, updatedStyle, elType, content })
     })
@@ -239,6 +271,7 @@ export default {
 
       // this.handleUpdate({ cmpId, updatedStyle, elType, content })
     })
+>>>>>>> 272b2ca5cdbcec711d4c33a9c1e87fd4dcc3fd3d
   },
 
   // watch: {

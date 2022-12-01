@@ -85,7 +85,6 @@ export const wapStore = {
         console.log('error while saving site.')
       }
       return updatedWap._id
-      // console.log('store', cmps);
     },
     async addWap(context, { wap }) {
       try {

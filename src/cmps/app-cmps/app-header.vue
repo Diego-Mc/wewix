@@ -6,8 +6,6 @@
       </router-link>
       <router-link to="/wap">Waps</router-link>
       <router-link to="/review">Reviews</router-link>
-      
-
     </nav>
     <section class="loggedin-user" v-if="loggedInUser">
       <router-link :to="`/user/${loggedInUser._id}`">
