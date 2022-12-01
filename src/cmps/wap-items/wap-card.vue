@@ -8,12 +8,14 @@
     <span
       class="details"
       :style="info.details.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'details' })">
+      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'details' })"
+      :contenteditable="$store.getters.isEditMode">
       {{ info.details.content.text }}
       <span
         class="tag"
         :style="info.tag.options.style"
-        @click.stop="$emit('select', { cmpId, childCmpId, elType: 'tag' })">
+        @click.stop="$emit('select', { cmpId, childCmpId, elType: 'tag' })"
+        :contenteditable="$store.getters.isEditMode">
         {{ info.tag.content.text }}
       </span>
     </span>
@@ -21,14 +23,16 @@
     <h3
       class="title"
       :style="info.title.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'title' })">
+      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'title' })"
+      :contenteditable="$store.getters.isEditMode">
       {{ info.title.content.text }}
     </h3>
 
     <p
       class="text"
       :style="info.text.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'text' })">
+      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'text' })"
+      :contenteditable="$store.getters.isEditMode">
       {{ info.text.content.text }}
     </p>
 
@@ -36,7 +40,9 @@
       class="btn"
       :style="info.btn.options.style"
       @click.stop="$emit('select', { cmpId, childCmpId, elType: 'btn' })">
-      {{ info.btn.content.text }}
+      <span :contenteditable="$store.getters.isEditMode">
+        {{ info.btn.content.text }}
+      </span>
     </button>
   </article>
 </template>

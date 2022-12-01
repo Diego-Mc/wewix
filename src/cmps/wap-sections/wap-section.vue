@@ -1,6 +1,7 @@
 <template>
   <draggable
     class="list-group wap-section"
+    :style="options.style"
     :component-data="{
       type: 'transition-group',
       name: !drag ? 'flip-list' : null,
