@@ -4,7 +4,7 @@
     <draggable
       :sort="false"
       class="list-group"
-      :list="cmpsTest"
+      :list="cmpsDropdownOptions"
       item-key="order"
       :group="{ name: 'sections', pull: 'clone', put: false }">
       <template #item="{ element }">
@@ -20,15 +20,15 @@
 
 <script>
 import draggable from 'vuedraggable'
-import wap from '../../services/wap-model'
-console.log(wap)
+import getCmp from '../../services/wap-cmps.service'
+
 export default {
   components: {
     draggable,
   },
   data() {
     return {
-      cmpsTest: wap[0].cmps,
+      cmpsDropdownOptions: [getCmp('wap-header', 1), getCmp('wap-hero', 1), getCmp('wap-section', 1), getCmp('wap-cards', 1), ],
     }
   },
 }
