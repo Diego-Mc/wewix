@@ -10,13 +10,13 @@
     </header>
 
     <section class="charts-container">
-      <select @change="selectedChart">
+      <select v-model="selectedChart">
         <option v-for="chart in chartsOptions" :value="chart.value">{{ chart.label }}</option>
       </select>
       <select v-model="selectedStat">
         <option v-for="stat in statsOptions" :value="stat.value">{{ stat.label }}</option>
       </select>
-      <component :is="selectedChart" :chartData="chartsData"></component>
+      <component :is="selectedChart" :chartData="chartData"></component>
     </section>
 
     <section>
@@ -27,7 +27,7 @@
       <h3>Leads</h3>
     </section>
 
-    <pre>{{chartData}}</pre>
+    <pre>{{ chartData }}</pre>
   </main>
 
 </template>
@@ -36,6 +36,7 @@
 import { ref } from 'vue'
 import { DoughnutChart, BarChart, LineChart, PieChart, PolarAreaChart, RadarChart } from 'vue-chart-3';
 import { Chart, registerables } from "chart.js";
+import Chance from 'chance'
 Chart.register(...registerables);
 
 export default {
@@ -69,12 +70,12 @@ export default {
 
       statsOptions: [
         {
-          value: 'frequencyPerDay',
-          label: 'Frequency Per Day'
+          value: 'frequencyPerHour',
+          label: 'Frequency Per Hour'
         },
         {
-          value: 'frequencyPerWeek',
-          label: 'Frequency Per Week'
+          value: 'frequencyPerDay',
+          label: 'Frequency Per Day'
         },
         {
           value: 'frequencyPerMonth',
@@ -93,53 +94,91 @@ export default {
   },
 
   methods: {
-    getDatasetData(options) {
+    getDatasetData({ type, dateAfter, columnsFilter }) {
+      
+      if (type === 'conversionRate') return [55, 45]
+      if (!columnsFilter) return
 
+      else if (type === 'frequencyPer') {
+        const users = this.getDemoData()
+        // Filter By Date Limit
+        let filteredUsers = users.filter(({ createdAt }) => createdAt >= dateAfter)
+
+        //Map By Selected Date
+        filteredUsers = filteredUsers.reduce((usersMap, currUser) => {
+          const date = new Date(currUser.createdAt)
+            usersMap[date[columnsFilter]()] = usersMap[date[columnsFilter]()] + 1 || 1
+          return usersMap
+        } , {});
+        return Object.values(filteredUsers)
+      }
+
+
+    },
+
+    getDemoData() {
+      var chance = new Chance();
+      const demoData = []
+      for (var i = 0; i < 1500; i++) {
+        demoData.push({
+          firstName: chance.name().split(" ")[0],
+          lastName: chance.name().split(" ")[0],
+          email: chance.email(),
+          createdAt: chance.date({ year: chance.integer({ min: 2020, max: 2022 }) })[Symbol.toPrimitive]('number'),
+          msg: chance.sentence({ words: 5 }),
+        })
+      }
+
+      return demoData
     }
   },
 
   computed: {
     chartData() {
 
-      let dateBefore = 0
+      let dateAfter = 0
       let labels = []
       let label = ''
+      let columnsFilter
 
       switch (this.selectedStat) {
+        case 'frequencyPerHour':
+          label = 'Frequency Per Hour'
+          dateAfter = Date.now() - (24 * 60 * 60 * 1000)
+          labels = [...Array.from(Array(12).keys()).map(num => num + 1 + 'am'), ...Array.from(Array(12).keys()).map(num => num + 1 + 'pm')]
+          columnsFilter = 'getHours'
+          break
         case 'frequencyPerDay':
           label = 'Frequency Per Day'
-          dateBefore = Date.now() - (24 * 60 * 60 * 1000)
-          labels = ['8Am', '10Am', '12Am', '2Pm', '4Pm', '6Pm', '8Pm']
-          break
-        case 'frequencyPerWeek':
-          label = 'Frequency Per Week'
-          dateBefore = Date.now() - (7 * 24 * 60 * 60 * 1000)
-          labels = ['su', 'mo', 'tu', 'we', 'th', 'fr']
+          dateAfter = Date.now() - (7 * 24 * 60 * 60 * 1000)
+          labels = Array.from(Array(7).keys()).map(num => num + 1 + '')
+          columnsFilter = 'getDay'
           break
         case 'frequencyPerMonth':
           label = 'Frequency Per Month'
-          dateBefore = Date.now() - (30 * 7 * 24 * 60 * 60 * 1000)
-          labels = ['1', '5', '10', '15', '20', '25', '30']
+          dateAfter = Date.now() - (30 * 7 * 24 * 60 * 60 * 1000)
+          labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+          columnsFilter = 'getMonth'
           break
         case 'frequencyPerYear':
           label = 'Frequency Per Year'
-          dateBefore = Date.now() - (12 * 30 * 7 * 24 * 60 * 60 * 1000)
-          labels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+          dateAfter = Date.now() - (12 * 30 * 7 * 24 * 60 * 60 * 1000)
+          labels = ["2020", "2021", "2022"]
+          columnsFilter = 'getFullYear'
           break
         case 'conversionRate':
           label = 'Conversion Rate'
           labels = ["No", "Yes"]
           break
       }
-
-      // data = (this.selectedStat === 'conversionRate') ? getDatasetData({ type: 'prec' }) : getDatasetData({ type: 'freq', dateBefore, label })
+      const data = (this.selectedStat === 'conversionRate') ? this.getDatasetData({ type: 'conversionRate' }) : this.getDatasetData({ type: 'frequencyPer', columns: labels.length, columnsFilter, dateAfter })
 
       return {
         labels,
         datasets: [
           {
             label,
-            data: 'demo',
+            data,
             backgroundColor: ['#cfc5ff', '#ac9bff', '#856cff', '#5f3eff', '#2e15a6', '#ffb9b4', '#ff9494', '#ff6666', '#ff3f3f', '#b72b2b', '#8f1717'],
           },
         ],
@@ -148,57 +187,6 @@ export default {
   },
 
   components: { DoughnutChart, BarChart, LineChart, PieChart, PolarAreaChart, RadarChart },
-}
-
-import Chance from 'chance'
-
-// Instantiate Chance so it can be used
-var chance = new Chance();
-
-function getDemoData() {
-  const demoData = []
-  for (var i = 0; i < 100; i++) {
-    demoData.push({
-      firstName: chance.name().split(" ")[0],
-      lastName: chance.name().split(" ")[0],
-      email: chance.email(),
-      date: chance.date()[Symbol.toPrimitive]('number'),
-      msg: chance.sentence({ words: 5 }),
-      siteId: 'asfgasgsdvds1512'
-    })
-  }
-  console.log(demoData);
-  return demoData
-}
-
-
-
-const demoData = getDemoData()
-
-const chartData = {
-  labels: [],
-  datasets: [
-    {
-      label: 'Frequency',
-      data: [],
-      backgroundColor: ['#cfc5ff', '#ac9bff', '#856cff', '#5f3eff', '#2e15a6',],
-    },
-    {
-      label: 'Mean Price',
-      backgroundColor: ['#ffb9b4', '#ff9494', '#ff6666', '#ff3f3f', '#b72b2b', '#8f1717'],
-      data: []
-    },
-    {
-      label: 'Reviews Count',
-      backgroundColor: ['#ecffa9', '#e4ff86', '#bdd85f', '#879f34', '#5e7020', '#52660d'],
-      data: []
-    },
-    {
-      label: 'Stock Percentage',
-      backgroundColor: ['#cef8ff', '#87bec7', '#5ba0ab', '#429dab', '#1a8c9e', '#0d6472'],
-      data: []
-    }
-  ],
 }
 </script>
 
