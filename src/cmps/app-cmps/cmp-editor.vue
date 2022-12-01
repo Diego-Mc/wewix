@@ -1,6 +1,6 @@
 <template>
   <section v-if="editOptions" class="cmp-editor">
-    <button @click="updateOptions">click</button>
+
     <section class="style-editor">
       <div v-if="isOptionsContain('fontFamily')">
         Font Picker
@@ -58,9 +58,15 @@
         <input @input="updateOptions" v-model="updatedOptions.meta.link" type="text" placeholder="link" />
       </div>
 
+      <div v-if="true">
+
+      </div>
+
+
       <div>
         <button @click.stop="removeCmp">Delete</button>
       </div>
+
     </section>
 
 
@@ -68,7 +74,9 @@
 </template>
 
 <script>
+import mapEdit from './map-edit.vue'
 export default {
+  
   props: {
     id: String,
     childCmpId: String,
@@ -124,5 +132,8 @@ export default {
       this.tempBorderRadius = parseInt(this.editOptions.style?.borderRadius)
     }
   },
+  component: {
+    mapEdit,
+  }
 }
 </script>
