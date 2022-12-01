@@ -33,7 +33,7 @@
 
       <div v-if="isOptionsContain('borderRadius')">
         Border Radius Picker
-        <input @input="updateBorderRadius" v-model="tempBorderRadius" type="range"/>
+        <input @input="updateBorderRadius" type="range" v-model="tempBorderRadius" min="0.1" max="2"  step="0.1"/>
       </div>
 
       <div v-if="isOptionsContain('fontSize')">
@@ -111,9 +111,8 @@ export default {
     },
 
     updateBorderRadius() {
-      const borderRadius = this.tempBorderRadius + 'px'
+      const borderRadius = this.tempBorderRadius + 'em'
       this.editOptions.style.borderRadius = borderRadius
-
       this.updateOptions()
     }
   },
@@ -121,14 +120,9 @@ export default {
     editOptions() {
       this.updatedOptions = JSON.parse(JSON.stringify(this.editOptions))
     },
+    id() {
+      this.tempBorderRadius = parseInt(this.editOptions.style?.borderRadius)
+    }
   },
-
-  created() {
-    
-    console.log(this.editOptions.style.borderRadius, 'this.editOptions.style.borderRadius');
-    console.log(this.tempBorderRadius);
-  }
-
-
 }
 </script>
