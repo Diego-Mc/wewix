@@ -1,6 +1,7 @@
 <template>
   <main v-if="wap">
     <button @click="undo">undo</button>
+    <button @click="redo">redo</button>
     <general-editor @themeChanged="themeChanged" />
     <wap-templates />
     <button
@@ -94,26 +95,41 @@ export default {
       this.wap.classState = classState
       this.saveWapToStorage()
     },
+    // updateHistoryOnChange(){
+    //   const gHistory = this.loadFromStorage('gHistory')
+    //   gHistory = [...gHistory.changes.slice(0,gHistory.changeIdx+1),...gHistory.changes()]
+    // },
+    // move to component
     undo() {
-      const wapChanges = this.loadFromStorage('wapChanges')
-      wapChanges.pop()
-      const cmps = wapChanges[wapChanges.length - 1].cmps
-      this.wap.cmps = cmps
-      this.saveToStorage('wapChanges', wapChanges)
+      const gHistory = this.loadFromStorage('gHistory')
+      if (!gHistory.changeIdx) return
+      gHistory.changeIdx -= 1
+      this.wap = gHistory.changes[gHistory.changeIdx]
+      this.saveToStorage('gHistory', gHistory)
+      this.updateWap()
+    },
+    redo() {
+      const gHistory = this.loadFromStorage('gHistory')
+      console.log(gHistory.changes.length, gHistory.changeIdx)
+      if (!gHistory || gHistory.changeIdx >= gHistory.changes.length - 1) return
+      gHistory.changeIdx += 1
+      this.wap = gHistory.changes[gHistory.changeIdx]
+      this.saveToStorage('gHistory', gHistory)
     },
     saveLastChange() {
-      const wapChanges = this.loadFromStorage('wapChanges')
-      if (wapChanges) {
-        const lastChanges = this.loadFromStorage('wapChanges')
-        lastChanges.push(this.wap)
-        this.saveToStorage('wapChanges', lastChanges)
+      const gHistory = this.loadFromStorage('gHistory')
+      if (gHistory) {
+        gHistory.changeIdx += 1
+        gHistory.changes.push(this.wap)
+        this.saveToStorage('gHistory', gHistory)
       } else {
-        this.saveToStorage('wapChanges', [this.wap])
+        this.saveToStorage('gHistory', { changes: [this.wap], changeIdx: 0 })
       }
     },
     saveWapToStorage() {
       this.updateWap()
       this.saveLastChange()
+      // this.updateHistoryOnChange()
     },
 
     async updateWap() {
@@ -141,7 +157,7 @@ export default {
           return true
         }
       })
-      // p
+
       if (cmp?.cmps) {
         const childCmpIndex = this.wap.cmps[cmpIdx].cmps.findIndex(
           ({ id }) => id === childCmpId
@@ -167,9 +183,8 @@ export default {
               elType
             ].options.style = updatedStyle.style
           }
-           
         }
-        return this.saveWapToStorage() 
+        return this.saveWapToStorage()
       }
 
       if (updatedStyle) {
@@ -213,6 +228,9 @@ export default {
       if (this.wap.classState) {
         document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
       }
+      const gHistory = this.loadFromStorage('gHistory')
+      this.saveToStorage('gHistory', { changes: [this.wap], changeIdx: 0 })
+
     },
 
     publishWap() {
