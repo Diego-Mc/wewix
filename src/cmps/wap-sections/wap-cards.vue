@@ -1,5 +1,4 @@
 <template>
-  <button @click="onRemove">remove</button>
   <!-- $emit('select', { cmpId}) -->
   <draggable
     class="list-group wap-cards"
@@ -64,9 +63,7 @@ export default {
         cmps: [...this.cards],
       })
     },
-    onRemove() {
-      eventBus.emit('onRemoveCmp', this.cmpId)
-    },
+
     // updateContent({ cmpId, elType, content, childCmpId }) {
     //   this.$emit('update', { cmpId, elType, content, childCmpId })
     // },

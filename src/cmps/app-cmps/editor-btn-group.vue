@@ -1,9 +1,10 @@
 <template>
   <section class="editor-btn" :style="{ gap, flexDirection: dir }">
     <label :style="style" v-for="opt in opts" :key="opt.val">
+      <i v-if="opt.icon" :class="'icon bi bi-' + opt.icon"></i>
+      <span class="sample" v-if="opt.text">{{ opt.text }}</span>
       <span class="sample" v-if="opt.sample">{{ opt.sample }}</span>
       <small class="small" v-if="opt.small">{{ opt.small }}</small>
-      <i v-if="opt.icon" :class="'icon bi bi-' + opt.icon"></i>
       <input
         :value="opt.val"
         :name="info.key"

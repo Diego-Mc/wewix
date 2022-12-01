@@ -74,6 +74,8 @@
 </template>
 
 <script>
+import { eventBus } from '../../services/event-bus.service'
+
 import mapEdit from './map-edit.vue'
 export default {
   
@@ -89,6 +91,10 @@ export default {
       tempBorderRadius: parseInt(this.editOptions.style?.borderRadius)
     }
   },
+  onRemove() {
+      this.$emit('onRemoveCmp', this.cmpId)
+  },
+
   methods: {
     isOptionsContain(type) {
       const options = [
@@ -100,7 +106,7 @@ export default {
 
     //TODO CHANGE NAME
     updateOptions() {
-      this.$emit('update', {
+      eventBus.emit('cmpUpdated', {
         cmpId: this.id,
         elType: this.elType,
         updatedStyle: this.updatedOptions,
