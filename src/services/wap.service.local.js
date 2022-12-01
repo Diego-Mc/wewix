@@ -67,20 +67,6 @@ function getEmptyWap() {
   }
 }
 
-// function recursiveDelete(wap, cmps, cmpId) {
-
-//     for (let i = 0; i < cmps.length; i++) {
-//         if (cmps[i]?.cmps) {
-//             cmps = {...recursiveDelete(cmps[i], cmpId)}
-//         }  
-//         if (cmps[i].id === cmpId) {
-//           cmps.splice(i, 1)
-//           return cmps
-//         }
-        
-//     }
-// }
-
 // TEST DATA
 ; (async () => {
   const waps = await wapService.query()
