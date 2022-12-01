@@ -1,7 +1,7 @@
 <template>
   <main v-if="wap">
     <button @click="undo">undo</button>
-    <general-editor @themeChanged="saveWapToStorage" />
+    <general-editor @themeChanged="themeChanged" />
     <wap-templates />
     <button style="background-color: orange; margin: 10px 0" @click="updateWap(wap)">
       publish site
@@ -52,7 +52,6 @@ export default {
       wap: null,
       selectedCmp: {},
       isOpenCmpEditor: false,
-
       drag: false,
       dragOptions: {
         animation: 200,
@@ -64,13 +63,18 @@ export default {
   },
 
   methods: {
+    themeChanged(classState) {
+      this.wap.classState = classState
+      this.saveWapToStorage()
+
+    },
     undo() {
       const wapChanges = this.loadFromStorage('wapChanges')
       wapChanges.pop()
       const cmps = wapChanges[wapChanges.length - 1].cmps
       this.wap.cmps = cmps
       this.saveToStorage('wapChanges', wapChanges)
-      
+
     },
     saveLastChange() {
       const wapChanges = this.loadFromStorage('wapChanges')
@@ -83,7 +87,7 @@ export default {
       }
     },
     saveWapToStorage(wap = this.wap) {
-      
+      console.log('saved to storage')
       this.saveToStorage('editedWap', wap)
       this.saveLastChange()
 
@@ -99,7 +103,8 @@ export default {
 
     onDrop() {
       this.drag = false
-      this.saveWapToStorage()
+     //  this.saveWapToStorage()
+
     },
 
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
@@ -121,7 +126,8 @@ export default {
       if (updatedStyle) elType ? this.wap.cmps[cmpIdx].info[elType].options.style = updatedStyle.style : this.wap.cmps[cmpIdx].options.style = updatedStyle.style
       if (content) elType ? this.wap.cmps[cmpIdx].info[elType].content.text = content : this.wap.cmps[cmpIdx].options.style = updatedStyle.style
       // TODO: remove from here, its only for demonstartion
-      this.saveWapToStorage()
+     //  this.saveWapToStorage()
+
     },
 
     async loadWap() {
@@ -135,16 +141,20 @@ export default {
         // add condition: user not logged in.
         this.wap = this.loadFromStorage('editedWap') || this.getEmptyWap()
       }
+      if (this.wap.classState) {
+        document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
+      }
     },
 
-    handleDrop() {
-      this.saveWapToStorage()
-    },
+    // handleDrop() {
+    //   this.saveWapToStorage()
+    // },
 
     async updateWap(wap) {
       const { _id } = await this.$store.dispatch({ type: 'updateWap', wap: wap })
       if (_id) this.wap._id = _id
-      this.saveWapToStorage()
+     //  this.saveWapToStorage()
+
     },
 
     publishWap() {
@@ -182,19 +192,22 @@ export default {
       this.wap.cmps[cmpIndex].cmps = cmps
       // console.log(this.wap.cmps[cmpIndex].cmps)
 
-      this.saveWapToStorage()
+     //  this.saveWapToStorage()
+
       // this.handleUpdate({ cmpId, updatedStyle, elType, content })
     })
+
   },
 
-  // watch: {
-  //   wap: {
-  //     handler(wap) {
-  //       // this.saveWapToStorage(wap)
-  //     },
-  //     deep: true,
-  //   },
-  // },
+  watch: {
+    wap: {
+      handler(wap) {
+        // this.saveWapToStorage(wap)
+        console.log('watch, wap changed')
+      },
+      deep: true,
+    },
+  },
 
   components: {
     cmpEditor,
