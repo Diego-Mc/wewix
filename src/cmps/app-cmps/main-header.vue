@@ -2,8 +2,6 @@
   <header class="main-header">
     <section class="edit-options">
       <section class="history-options">
-        <!-- <i class="icon undo-btn bi bi-arrow-counterclockwise"></i> -->
-        <!-- <i class="icon redo-btn bi bi-arrow-clockwise"></i> -->
         <editor-btn-group
           info="media"
           :opts="[
