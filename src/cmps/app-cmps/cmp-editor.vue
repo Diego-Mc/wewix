@@ -1,10 +1,10 @@
 <template>
   <section v-if="editOptions" class="cmp-editor">
-    <button @click="log">click</button>
+    <button @click="updateOptions">click</button>
     <section class="style-editor">
       <div v-if="isOptionsContain('fontFamily')">
         Font Picker
-        <select @change="log" v-model="updatedOptions.style.fontFamily">
+        <select @change="updateOptions" v-model="updatedOptions.style.fontFamily">
           <option>arial</option>
           <option>Gill Sans</option>
           <option>Calibri</option>
@@ -13,17 +13,17 @@
 
       <div v-if="isOptionsContain('backgroundColor')">
         Background Color Picker
-        <input @input="log" v-model="updatedOptions.style.backgroundColor" type="color" />
+        <input @input="updateOptions" v-model="updatedOptions.style.backgroundColor" type="color" />
       </div>
 
       <div v-if="isOptionsContain('color')">
         Color Picker
-        <input @input="log" v-model="updatedOptions.style.color" type="color" />
+        <input @input="updateOptions" v-model="updatedOptions.style.color" type="color" />
       </div>
 
       <div v-if="isOptionsContain('fontWeight')">
         Font Weight Picker
-        <select @change="log" v-model="updatedOptions.style.fontWeight">
+        <select @change="updateOptions" v-model="updatedOptions.style.fontWeight">
           <option>lighter</option>
           <option>normal</option>
           <option>bold</option>
@@ -33,24 +33,29 @@
 
       <div v-if="isOptionsContain('borderRadius')">
         Border Radius Picker
-        <input @input="log" v-model="updatedOptions.style.borderRadius" type="range" />
+        <input @input="updateBorderRadius" v-model="tempBorderRadius" type="range"/>
       </div>
 
       <div v-if="isOptionsContain('fontSize')">
         Font Size Picker
-        <input @input="log" v-model="updatedOptions.style.fontSize" type="range" />
+        <select @change="updateOptions" v-model="updatedOptions.style.fontSize">
+          <option>small</option>
+          <option>medium</option>
+          <option>large</option>
+          <option>x-large</option>
+        </select>
       </div>
     </section>
 
     <section class="content-editor">
-      <div v-if="isOptionsContain('img')">
+      <div v-if="isOptionsContain('src')">
         Img Picker
-        <input @input="log" v-model="updatedOptions.meta.img" type="text" placeholder="img" />
+        <input @input="updateOptions" v-model="updatedOptions.meta.src" type="text" placeholder="src" />
       </div>
 
       <div v-if="isOptionsContain('link')">
         Link
-        <input @input="log" v-model="updatedOptions.meta.link" type="text" placeholder="link" />
+        <input @input="updateOptions" v-model="updatedOptions.meta.link" type="text" placeholder="link" />
       </div>
 
       <div>
@@ -73,6 +78,7 @@ export default {
   data() {
     return {
       updatedOptions: JSON.parse(JSON.stringify(this.editOptions)),
+      tempBorderRadius: parseInt(this.editOptions.style?.borderRadius)
     }
   },
   methods: {
@@ -85,7 +91,7 @@ export default {
     },
 
     //TODO CHANGE NAME
-    log() {
+    updateOptions() {
       this.$emit('update', {
         cmpId: this.id,
         elType: this.elType,
@@ -102,6 +108,13 @@ export default {
         this.$store.dispatch({ 
           type: 'removeCmp', 
           cmpId: (this.childCmpId) ? this.childCmpId : this.id})
+    },
+
+    updateBorderRadius() {
+      const borderRadius = this.tempBorderRadius + 'px'
+      this.editOptions.style.borderRadius = borderRadius
+
+      this.updateOptions()
     }
   },
   watch: {
@@ -109,6 +122,12 @@ export default {
       this.updatedOptions = JSON.parse(JSON.stringify(this.editOptions))
     },
   },
+
+  created() {
+    
+    console.log(this.editOptions.style.borderRadius, 'this.editOptions.style.borderRadius');
+    console.log(this.tempBorderRadius);
+  }
 
 
 }

@@ -84,7 +84,7 @@ export default [
         options: {
           meta: {},
           style: {
-            borderRadius: '',
+            borderRadius: '16px',
             fontWeight: '',
           },
         },
