@@ -58,7 +58,7 @@
         <input @input="updateOptions" v-model="updatedOptions.meta.link" type="text" placeholder="link" />
       </div>
 
-      <div>
+      <div >
         <button @click.stop="removeCmp">Delete</button>
       </div>
     </section>
@@ -68,6 +68,8 @@
 </template>
 
 <script>
+import { eventBus } from '../../services/event-bus.service'
+
 export default {
   props: {
     id: String,
@@ -81,6 +83,10 @@ export default {
       tempBorderRadius: parseInt(this.editOptions.style?.borderRadius)
     }
   },
+  onRemove() {
+      this.$emit('onRemoveCmp', this.cmpId)
+  },
+
   methods: {
     isOptionsContain(type) {
       const options = [
@@ -92,7 +98,7 @@ export default {
 
     //TODO CHANGE NAME
     updateOptions() {
-      this.$emit('update', {
+      eventBus.emit('cmpUpdated', {
         cmpId: this.id,
         elType: this.elType,
         updatedStyle: this.updatedOptions,

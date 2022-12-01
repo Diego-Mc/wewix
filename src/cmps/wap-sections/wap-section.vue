@@ -51,16 +51,13 @@ export default {
     wapTextSection,
     draggable,
   },
-  created(){
-    console.log('cmps',this.cmps)
-  },
+
   methods: {
     emitSelect(data) {
       this.$emit('select', data)
     },
     onDrop() {
       this.drag = false
-      console.log(this.cmps);
       eventBus.emit('onInnerCmpDrop', {
         cmpId: this.cmpId,
         cmps: [...this.cmps],

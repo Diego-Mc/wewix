@@ -14,8 +14,7 @@
       :id="selectedCmp.id"
       :childCmpId="selectedCmp.childCmpId"
       :editOptions="selectedCmp.options"
-      :elType="selectedCmp.elType"
-      @update="handleUpdate">
+      :elType="selectedCmp.elType">
     </cmp-editor>
 
     <draggable
@@ -113,9 +112,12 @@ export default {
       }
     },
     saveWapToStorage() {
-      console.log('saved to storage')
-      this.saveToStorage('editedWap', this.wap)
+      this.updateWap()
       this.saveLastChange()
+    },
+
+    async updateWap() {
+      await this.$store.dispatch({ type: 'updateWap', wap: this.wap })
     },
     //TODO: removing them completly or move to service.
     saveToStorage(key, val) {
@@ -128,6 +130,7 @@ export default {
 
     onDrop() {
       this.drag = false
+      // this.saveWapToStorage()
     },
 
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
@@ -164,53 +167,52 @@ export default {
               elType
             ].options.style = updatedStyle.style
           }
-          return this.saveWapToStorage()
+           
         }
-
-
+        return this.saveWapToStorage() 
       }
 
-      if (updatedStyle)
-        elType
-          ? (this.wap.cmps[cmpIdx].info[elType].options.style =
-              updatedStyle.style)
-          : (this.wap.cmps[cmpIdx].options.style = updatedStyle.style)
+      if (updatedStyle) {
+        if (elType)
+          this.wap.cmps[cmpIdx].info[elType].options.style = updatedStyle.style
+        else this.wap.cmps[cmpIdx].options.style = updatedStyle.style
+      }
 
-      if (content)
-        elType
-          ? (this.wap.cmps[cmpIdx].info[elType].content.text = content)
-          : (this.wap.cmps[cmpIdx].options.style = updatedStyle.style)
+      if (content) {
+        if (elType) this.wap.cmps[cmpIdx].info[elType].content.text = content
+        else this.wap.cmps[cmpIdx].options.style = updatedStyle.style
+      }
       // TODO: remove from here, its only for demonstartion
       this.saveWapToStorage()
     },
-
+    // TODO: work on logic, avoid repetition.
     async loadWap() {
-      this.wap = this.loadFromStorage('editedWap')
-      if (!this.wap) {
-        if (this.$route.params?.id) {
-          const wap = await this.$store.dispatch({
-            type: 'getWap',
-            id: this.$route.params.id,
-          })
-          this.wap = JSON.parse(JSON.stringify(wap))
-        } else {
-          // add condition: user not logged in.
-          this.wap = this.getEmptyWap()
-        }
-        this.saveWapToStorage()
+      if (this.$route.params?.id) {
+        const wap = await this.$store.dispatch({
+          type: 'getWap',
+          id: this.$route.params.id,
+        })
+        this.wap = JSON.parse(JSON.stringify(this.$store.getters.editedWap))
+      } else if (this.loadFromStorage('editedWapId')) {
+        await this.$store.dispatch({
+          type: 'getWap',
+          id: this.loadFromStorage('editedWapId'),
+        })
+        this.wap = JSON.parse(JSON.stringify(this.$store.getters.editedWap))
+      } else {
+        // add condition: user not logged in.
+        this.wap = this.getEmptyWap()
+        const editedWapId = await this.$store.dispatch({
+          type: 'updateWap',
+          wap: this.wap,
+        })
+        this.wap._id = editedWapId
+        this.saveToStorage('editedWapId', editedWapId)
       }
+
       if (this.wap.classState) {
         document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
       }
-    },
-
-    async updateWap(wap) {
-      const { _id } = await this.$store.dispatch({
-        type: 'updateWap',
-        wap: wap,
-      })
-      if (_id) this.wap._id = _id
-      this.saveToStorage('editedWap', this.wap)
     },
 
     publishWap() {
@@ -251,7 +253,6 @@ export default {
       eventBus.on('onInnerCmpDrop', ({ cmpId, cmps }) => {
         const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
         this.wap.cmps[cmpIndex].cmps = cmps
-
         this.saveWapToStorage()
       })
       eventBus.on('onRemoveCmp', (cmpId) => {
@@ -269,7 +270,6 @@ export default {
   //   wap: {
   //     handler(wap) {
   //       // this.saveWapToStorage(wap)
-  //       console.log('watch, wap changed')
   //     },
   //     deep: true,
   //   },

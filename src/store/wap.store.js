@@ -80,11 +80,10 @@ export const wapStore = {
       try {
         const updatedWap = await wapService.save(wap)
         context.commit({ type: 'setEditedWap', wap: updatedWap })
-        console.log('site saved!')
+        return updatedWap._id
       } catch {
-        console.log('error while saving site.')
+        console.log('err: couldnt save wap');
       }
-      return updatedWap._id
     },
     async addWap(context, { wap }) {
       try {
@@ -96,17 +95,6 @@ export const wapStore = {
         throw err
       }
     },
-    async updateWap(context, { wap }) {
-      try {
-        wap = await wapService.save(wap)
-        context.commit(getActionUpdateWap(wap))
-        return wap
-      } catch (err) {
-        console.log('wapStore: Error in updateWap', err)
-        throw err
-      }
-    },
-
     async loadWaps(context) {
       try {
         const waps = await wapService.query()
