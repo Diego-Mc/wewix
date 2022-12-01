@@ -95,9 +95,14 @@ export default {
       this.wap.classState = classState
       this.saveWapToStorage()
     },
-    // updateHistoryOnChange(){
-    //   const gHistory = this.loadFromStorage('gHistory')
-    //   gHistory = [...gHistory.changes.slice(0,gHistory.changeIdx+1),...gHistory.changes()]
+    // updateHistoryOnUpdate() {
+    //   let gHistory = this.loadFromStorage('gHistory')
+    //   gHistory = [
+    //     ...gHistory.changes.slice(0, gHistory.changeIdx + 1),
+    //     gHistory.changes[gHistory.changes.length - 1],
+    //   ]
+    //   console.log(gHistory)
+    //   this.saveToStorage('gHistory', gHistory)
     // },
     // move to component
     undo() {
@@ -117,9 +122,11 @@ export default {
       this.saveToStorage('gHistory', gHistory)
     },
     saveLastChange() {
-      const gHistory = this.loadFromStorage('gHistory')
+      let gHistory = this.loadFromStorage('gHistory')
       if (gHistory) {
         gHistory.changeIdx += 1
+        console.log( 'idx',gHistory.changeIdx)
+        gHistory.changes = gHistory.changes.slice(0, gHistory.changeIdx)
         gHistory.changes.push(this.wap)
         this.saveToStorage('gHistory', gHistory)
       } else {
@@ -127,12 +134,10 @@ export default {
       }
     },
     saveWapToStorage() {
-      console.log('deba')
       this.updateWap()
       this.saveLastChange()
-      // this.updateHistoryOnChange()
+      // this.updateHistoryOnUpdate()
     },
-
     async updateWap() {
       await this.$store.dispatch({ type: 'updateWap', wap: this.wap })
     },
@@ -230,8 +235,10 @@ export default {
       if (this.wap.classState) {
         document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
       }
-      const gHistory = this.loadFromStorage('gHistory')
-      this.saveToStorage('gHistory', { changes: [this.wap], changeIdx: 0 })
+      if (!this.loadFromStorage('gHistory')) {
+        this.saveToStorage('gHistory', { changes: [this.wap], changeIdx: 0 })
+        console.log('wa')
+      }
     },
 
     publishWap() {

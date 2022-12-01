@@ -1108,7 +1108,7 @@ wapsMap.set('wap-header-2', {
     img: {
       options: {
         meta: {
-          src:'../assets/imgs/plantify-logo.svg'
+          src: '../assets/imgs/plantify-logo.svg'
         },
         style: {
           fontFamily: '',
@@ -1184,7 +1184,7 @@ wapsMap.set('wap-section-2', {
         },
       },
       info: {
-        tag:{
+        tag: {
           options: {
             meta: {},
             style: {
@@ -1226,8 +1226,8 @@ wapsMap.set('wap-section-2', {
           content: {
             text: 'No animals.',
           },
-          btn:{
-            
+          btn: {
+
           }
         },
         text: {
@@ -1296,7 +1296,7 @@ wapsMap.set('wap-hero-2', {
   options: {
     meta: {
       // download imgs from now?
-      src:'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623cfb46d0ab4fab78e53577_Callout%20Photo.jpg'
+      src: 'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623cfb46d0ab4fab78e53577_Callout%20Photo.jpg'
     },
     style: {
       backgroundColor: '',
@@ -1398,54 +1398,54 @@ wapsMap.set('wap-section-2', {
           color: '',
         },
       },
-      
-        title: {
-          options: {
-            meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
-          },
-          content: {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor consequat netus tristique at sem ipsum fames.',
+
+      title: {
+        options: {
+          meta: {},
+          style: {
+            fontFamily: '',
+            color: '',
+            fontWeight: '',
+            fontSize: ''
           },
         },
-        // maybe remove
-        text: {
-          options: {
-            meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
-          },
-          content: {
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor consequat netus tristique at sem ipsum fames.',
-          },
-        },
-        btn: {
-          options: {
-            meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
-          },
-          content: {
-            text: 'View menu',
-          },
+        content: {
+          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor consequat netus tristique at sem ipsum fames.',
         },
       },
+      // maybe remove
+      text: {
+        options: {
+          meta: {},
+          style: {
+            fontFamily: '',
+            color: '',
+            fontWeight: '',
+            fontSize: ''
+          },
+        },
+        content: {
+          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor consequat netus tristique at sem ipsum fames.',
+        },
+      },
+      btn: {
+        options: {
+          meta: {},
+          style: {
+            fontFamily: '',
+            color: '',
+            fontWeight: '',
+            fontSize: ''
+          },
+        },
+        content: {
+          text: 'View menu',
+        },
+      },
+    },
     {
       id: '2',
-      type: 'wap-img-section',
+      type: 'section-gallery-item',
       typeId: 1,
       options: {
         meta: {},
@@ -1461,7 +1461,8 @@ wapsMap.set('wap-section-2', {
         img: {
           options: {
             meta: {
-              src: '../assets/imgs/hero-2-img',
+              src1: 'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f1189632baa0fde4f93fb_Tacos-p-800.jpeg',
+              src2: 'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f1197a9384100846bb45b_Burgers.jpg',
             },
             style: {},
           },
@@ -1476,7 +1477,9 @@ wapsMap.set('wap-cards-2', {
   type: 'wap-cards',
   typeId: 1,
   options: {
-    meta: {},
+    meta: {
+      src: 'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623b0c7839281d050ca493ea_Green_Texture.jpg'
+    },
     style: {
       backgroundColor: '',
       fontFamily: '',
@@ -1485,6 +1488,7 @@ wapsMap.set('wap-cards-2', {
       fontSize: ''
     },
   },
+  // need to add title 'You’ll love us', how? container inside container?
   cmps: [
     {
       id: '1',
@@ -1504,41 +1508,14 @@ wapsMap.set('wap-cards-2', {
         img: {
           options: {
             meta: {
-              src: 'https://dance.co/_next/image?url=%2Fimages%2Frides%2Febikes%2Fone-step-card%402x.png&w=1920&q=75',
+              src: 'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623cfb47fbd20a23d33aac54_Icon%202.svg',
             },
             style: {},
           },
           content: {},
         },
-        details: {
-          options: {
-            meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
-          },
-          content: {
-            text: 'From $39/mo',
-          },
-        },
-        tag: {
-          options: {
-            meta: {},
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
-          },
-          content: {
-            text: 'Automn offer',
-          },
-        },
+
+
         title: {
           options: {
             meta: {},
@@ -1550,7 +1527,7 @@ wapsMap.set('wap-cards-2', {
             },
           },
           content: {
-            text: 'Dance One Step',
+            text: 'Plant based',
           },
         },
         text: {
@@ -1564,7 +1541,7 @@ wapsMap.set('wap-cards-2', {
             },
           },
           content: {
-            text: 'Ebike',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
           },
         },
         btn: {
@@ -1598,41 +1575,13 @@ wapsMap.set('wap-cards-2', {
         img: {
           options: {
             meta: {
-              src: 'https://dance.co/_next/image?url=%2Fimages%2Frides%2Febikes%2Fdiamond-card%402x.png&w=1920&q=75',
+              src: 'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623cfb47fbd20a23d33aac54_Icon%202.svg',
             },
             style: {},
           },
           content: {},
         },
-        details: {
-          options: {
-            meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
-          },
-          content: {
-            text: 'From $39/mo',
-          },
-        },
-        tag: {
-          options: {
-            meta: {},
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
-          },
-          content: {
-            text: 'Automn offer',
-          },
-        },
+
         title: {
           options: {
             meta: {},
@@ -1644,7 +1593,7 @@ wapsMap.set('wap-cards-2', {
             },
           },
           content: {
-            text: 'Dance One',
+            text: 'Gluten free',
           },
         },
         text: {
@@ -1658,19 +1607,8 @@ wapsMap.set('wap-cards-2', {
             },
           },
           content: {
-            text: 'Ebike',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
           },
-        },
-        btn: {
-          options: {
-            meta: {},
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-            },
-          },
-          content: { text: 'See details' },
         },
       },
     },
@@ -1692,41 +1630,13 @@ wapsMap.set('wap-cards-2', {
         img: {
           options: {
             meta: {
-              src: 'https://dance.co/_next/image?url=%2Fimages%2Frides%2Femoped%2Femoped-card%402x.png&w=1920&q=75',
+              src: 'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623cfb46bab7a365649510e1_Icon%203.svg',
             },
             style: {},
           },
           content: {},
         },
-        details: {
-          options: {
-            meta: {},
-            style: {
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
-          },
-          content: {
-            text: 'From $49/mo',
-          },
-        },
-        tag: {
-          options: {
-            meta: {},
-            style: {
-              backgroundColor: '',
-              fontFamily: '',
-              color: '',
-              fontWeight: '',
-              fontSize: ''
-            },
-          },
-          content: {
-            text: 'Automn offer',
-          },
-        },
+
         title: {
           options: {
             meta: {},
@@ -1738,7 +1648,7 @@ wapsMap.set('wap-cards-2', {
             },
           },
           content: {
-            text: 'Dance Moped',
+            text: 'Made with love',
           },
         },
         text: {
@@ -1752,7 +1662,7 @@ wapsMap.set('wap-cards-2', {
             },
           },
           content: {
-            text: 'Emoped',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
           },
         },
         btn: {
@@ -1770,6 +1680,144 @@ wapsMap.set('wap-cards-2', {
     },
   ],
 })
+
+// theres a section i left out (The best vegan...) would be wap-section
+// how do i call it? can i call it wap-text-section?
+
+wapsMap.set('wap-text-section-2', {
+  id: '',
+  type: 'wap-form',
+  typeId: 1,
+  options: {
+    meta: {},
+    style: {
+      backgroundColor: '',
+      fontFamily: '',
+      color: '',
+      fontWeight: '',
+      fontSize: ''
+    },
+  },
+  info: {
+    tag: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: {
+        text: 'WHAT OTHERS ARE SAYING',
+      },
+    },
+    title: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: {
+        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit dolor consequat netus tristiqu.',
+      },
+    },
+    text: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: {
+        text: 'JANE DOE',
+      },
+    },
+  },
+})
+
+wapsMap.set('wap-gallery-section-2', {
+  id: '',
+  type: 'wap-form',
+  typeId: 1,
+  options: {
+    meta: {},
+    style: {
+      backgroundColor: '',
+      fontFamily: '',
+      color: '',
+      fontWeight: '',
+      fontSize: ''
+    },
+  },
+  info: {
+    img1: {
+      options: {
+        meta: {
+          src1:'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623f10c0c942373253b4b3fe_Gallery%20Photo%204.jpg'
+        },
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+
+      },
+    },
+    img2: {
+      options: {
+        meta: {
+          src1:'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623f10c0c942373253b4b3fe_Gallery%20Photo%204.jpg'
+        },
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+
+      },
+    },
+    img3: {
+      options: {
+        meta: {
+          src1:'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623f10c0c942373253b4b3fe_Gallery%20Photo%204.jpg'
+        },
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+
+      },
+    },
+    img4: {
+      options: {
+        meta: {
+          src1:'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623f10c0c942373253b4b3fe_Gallery%20Photo%204.jpg'
+        },
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+
+      },
+    }
+  }
+})
+
 wapsMap.set('wap-form-2', {
   id: '',
   type: 'wap-form',
@@ -1796,10 +1844,10 @@ wapsMap.set('wap-form-2', {
         },
       },
       content: {
-        text: 'Stay up to speed',
+        text: 'Sign up for our newsletter!',
       },
     },
-    text: {
+    input: {
       options: {
         meta: {},
         style: {
@@ -1810,7 +1858,86 @@ wapsMap.set('wap-form-2', {
         },
       },
       content: {
-        text: 'Sign up to get the latest Dance offers, updates, and tips straight to your inbox.',
+        // placeholder text
+        text: 'mail@mail.com',
+      },
+    },
+    btn: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: {
+        // placeholder text
+        text: 'Sign up',
+      },
+    },
+  },
+})
+
+// social icons? where do i put them?
+wapsMap.set('wap-form-2', {
+  id: '',
+  type: 'wap-form',
+  typeId: 1,
+  options: {
+    meta: {},
+    style: {
+      backgroundColor: '',
+      fontFamily: '',
+      color: '',
+      fontWeight: '',
+      fontSize: ''
+    },
+  },
+  info: {
+    title: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: {
+        text: 'Sign up for our newsletter!',
+      },
+    },
+    input: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: {
+        // placeholder text
+        text: 'mail@mail.com',
+      },
+    },
+    btn: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: {
+        // placeholder text
+        text: 'Sign up',
       },
     },
   },
