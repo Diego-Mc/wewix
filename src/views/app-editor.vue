@@ -14,7 +14,7 @@
     <draggable class="list-group" :component-data="{
       type: 'transition-group',
       name: !drag ? 'flip-list' : null,
-    }" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="onDrop" item-key="order" group="sections">
+    }" @add="saveWapToStorage" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="onDrop" item-key="order" group="sections">
       <template #item="{ element }">
         <div>
           <component :is="element.type" :info="element.info" :options="element.options" :cmps="element.cmps"
@@ -66,6 +66,7 @@ export default {
   },
 
   methods: {
+
     themeChanged(classState) {
       this.wap.classState = classState
       this.saveWapToStorage()
@@ -202,15 +203,15 @@ export default {
 
   },
 
-  watch: {
-    wap: {
-      handler(wap) {
-        // this.saveWapToStorage(wap)
-        console.log('watch, wap changed')
-      },
-      deep: true,
-    },
-  },
+  // watch: {
+  //   wap: {
+  //     handler(wap) {
+  //       // this.saveWapToStorage(wap)
+  //       console.log('watch, wap changed')
+  //     },
+  //     deep: true,
+  //   },
+  // },
 
   components: {
     cmpEditor,
