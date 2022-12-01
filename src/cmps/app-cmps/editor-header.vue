@@ -2,7 +2,11 @@
   <nav class="editor-header">
     <section class="media-select">
       <editor-btn-group
-        info="media"
+        :info="{ key: 'media' }"
+        @setVal="handleMediaSelect"
+        gap="4px"
+        :style="{ paddingInline: '14px' }"
+        initialValue="desktop"
         :opts="[
           { val: 'desktop', icon: 'display' },
           { val: 'tablet', icon: 'tablet' },
@@ -20,9 +24,10 @@
 
     <section class="upload-site">
       <editor-btn-group
-        info="media"
+        :info="{ key: 'publishSite' }"
+        @setVal="handleBtnSelect"
         :style="{ gap: '10px' }"
-        :opts="[{ val: 'undo', icon: 'cast', text: 'Publish' }]" />
+        :opts="[{ val: true, icon: 'cast', text: 'Publish' }]" />
     </section>
   </nav>
 </template>
@@ -30,6 +35,22 @@
 <script>
 import editorBtnGroup from './editor-btn-group.vue'
 export default {
+  data() {
+    return {
+      media: '',
+      publishSite: '',
+    }
+  },
+  methods: {
+    handleBtnSelect({ key, val }) {
+      console.log({ key, val })
+      this[key] = val
+    },
+    handleMediaSelect({ key, val }) {
+      this.handleBtnSelect({ key, val })
+      this.$emit('setMedia', val)
+    },
+  },
   components: {
     editorBtnGroup,
   },

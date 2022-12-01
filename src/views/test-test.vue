@@ -20,10 +20,10 @@
   <section class="main-editor">
     <section class="main-editor-tools">
       <main-header />
-      <editor-header />
+      <editor-header @setMedia="setMedia" />
       <editor-sidebar />
     </section>
-    <main class="main-wap">
+    <main class="main-wap" :class="mediaType">
       <wap-test />
     </main>
   </section>
@@ -50,7 +50,14 @@ export default {
       cards: getCmp('wap-cards', 1),
       section: getCmp('wap-section', 1),
       form: getCmp('wap-form', 1),
+
+      mediaType: 'desktop',
     }
+  },
+  methods: {
+    setMedia(mediaType) {
+      this.mediaType = mediaType
+    },
   },
   components: {
     wapHeader,

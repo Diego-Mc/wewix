@@ -7,25 +7,43 @@
     width: 100vw;
     height: 100vh;
     z-index: 1000;
+    pointer-events: none;
+    > * {
+      pointer-events: auto;
+    }
   }
   &:has(.section-select.open) {
-    .main-wap:not(.mobile, .tablet) {
-      margin-left: $editor-nav-width + $editor-section-names-width;
+    .main-wap:not(.phone, .tablet) {
+      left: $editor-nav-width + $editor-section-names-width;
     }
   }
   .main-wap {
-    position: fixed;
+    position: absolute;
     top: calc($main-header-height + $editor-header-height);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-
-    .wap.mobile {
-      width: 600px;
+    margin: auto;
+    overflow-y: scroll;
+    right: 0;
+    left: $editor-nav-width;
+    &.phone {
+      left: 0;
+      max-width: 480px;
     }
-    .wap.tablet {
-      width: 800px;
+    &.tablet {
+      max-width: 768px;
+      left: 0;
+    }
+    &.phone,
+    &.tablet {
+      box-sizing: border-box;
+      top: calc($main-header-height + $editor-header-height + 2rem);
+      height: calc(100vh - $main-header-height - $editor-header-height - 4rem);
+      z-index: 1;
+      opacity: 0.9999;
+      border: 5px solid #f7f7f7;
+      border-radius: 40px;
+      box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+        rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     }
   }
 }
