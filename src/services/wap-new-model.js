@@ -1,5 +1,5 @@
 import getCmp from './wap-cmps.service'
-const wapVideo = {
+export const wapVideo = {
     id: 'wc10',
     type: 'wap-video',
     options: {
@@ -26,7 +26,7 @@ const wapVideo = {
     },
 }
 
-const wapMap = {
+export const wapMap = {
     id: 'wc10',
     type: 'wap-map',
     options: {

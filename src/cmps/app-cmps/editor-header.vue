@@ -18,22 +18,13 @@
       </p>
       <router-link to="#" class="preview-btn">preview site</router-link>
     </section>
-    <section class="history-options">
-      <!-- <i class="icon undo-btn bi bi-arrow-counterclockwise"></i> -->
-      <!-- <i class="icon redo-btn bi bi-arrow-clockwise"></i> -->
+
+    <section class="upload-site">
       <editor-btn-group
         gap="4px"
         info="media"
-        :opts="[
-          { val: 'undo', icon: 'arrow-counterclockwise' },
-          { val: 'redo', icon: 'arrow-clockwise' },
-        ]" />
-    </section>
-    <section class="work-together">
-      <i class="icon work-together-btn bi bi-people"></i>
-    </section>
-    <section class="upload-site">
-      <i class="icon upload-site-btn bi bi-cast"></i>
+        :opts="[{ val: 'undo', icon: 'cast' }]" />
+      Publish
     </section>
   </nav>
 </template>

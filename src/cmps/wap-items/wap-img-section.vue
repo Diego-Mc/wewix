@@ -1,14 +1,14 @@
 <template>
   <section
     class="img-section"
-    @click.stop="$emit('select', { cmpId, elType: 'img' })">
+    @click.stop="$emit('select', { cmpId, childCmpId, elType: 'img' })">
     <img :src="info.img.options.meta.src" />
   </section>
 </template>
 
 <script>
 export default {
-  props: ['info', 'cmpId', 'options'],
+  props: ['info', 'cmpId', 'childCmpId', 'options'],
   methods: {
     updateContent(elType) {
       this.$emit('update', { cmpId, elType, content: info.text.content })
