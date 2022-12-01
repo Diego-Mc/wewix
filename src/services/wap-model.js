@@ -1086,3 +1086,590 @@ wapsMap.set('wap-form-1', {
     },
   },
 })
+
+//Template 2
+//set id
+wapsMap.set('wap-header-2', {
+  id: '',
+  type: 'wap-header',
+  typeId: 1,
+  options: {
+    meta: {},
+    style: {
+      backgroundColor: '',
+      fontFamily: '',
+      color: '',
+      fontWeight: '',
+      fontSize: ''
+    },
+  },
+  info: {
+    // logo?
+    img: {
+      options: {
+        meta: {
+          src:'../assets/imgs/plantify-logo.svg'
+        },
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: {
+      },
+    },
+    nav: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: {
+        nav1: 'Menu',
+        nav2: 'Schedule',
+        nav3: 'About',
+        nav4: 'Catering',
+        nav5: 'Contact',
+      },
+    },
+    btn: {
+      options: {
+        meta: {},
+        style: {
+          backgroundColor: '',
+          fontFamily: '',
+          color: '',
+          borderRadius: '2em',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: { text: 'Find us' },
+    },
+  },
+})
+wapsMap.set('wap-hero-2', {
+  id: '',
+  type: 'wap-hero',
+  typeId: 1,
+  options: {
+    meta: {},
+    style: {
+      backgroundColor: '',
+      fontFamily: '',
+      color: '',
+      fontWeight: '',
+      fontSize: ''
+    },
+  },
+  info: {
+    tag: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: {
+        text: 'Food Truck',
+      },
+    },
+    title: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: {
+        text: 'All plants',
+      },
+    },
+    // can i do something like that?
+    subtitle: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: {
+        text: 'All plants',
+      },
+    },
+    btn: {
+      options: {
+        meta: {
+          href: '#',
+        },
+        style: {
+          backgroundColor: '',
+          fontFamily: '',
+          color: '',
+          borderRadius: '2em',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: { text: 'Start now' },
+    },
+  },
+})
+wapsMap.set('wap-section-2', {
+  id: '',
+  type: 'wap-section',
+  typeId: 1,
+  options: {
+    meta: {},
+    style: {
+      backgroundColor: '',
+      fontFamily: '',
+      color: '',
+      fontWeight: '',
+      fontSize: ''
+    },
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 1,
+      options: {
+        meta: {},
+        style: {
+          backgroundColor: '',
+          fontFamily: '',
+          color: '',
+        },
+      },
+      info: {
+        img: {
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {},
+        },
+        title: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {
+            text: 'Move your way',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {
+            text: 'Choose the electric ride that suid tour lifeoptions',
+          },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-img-section',
+      typeId: 1,
+      options: {
+        meta: {},
+        style: {
+          backgroundColor: '',
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://dance.co/_next/image?url=%2Fimages%2Fhome%2Fhome-care%402x.jpg&w=1200&q=75',
+            },
+            style: {},
+          },
+          content: {},
+        },
+      },
+    },
+  ],
+})
+wapsMap.set('wap-cards-2', {
+  id: '',
+  type: 'wap-cards',
+  typeId: 1,
+  options: {
+    meta: {},
+    style: {
+      backgroundColor: '',
+      fontFamily: '',
+      color: '',
+      fontWeight: '',
+      fontSize: ''
+    },
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-card',
+      typeId: 1,
+      options: {
+        meta: {},
+        style: {
+          backgroundColor: '',
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://dance.co/_next/image?url=%2Fimages%2Frides%2Febikes%2Fone-step-card%402x.png&w=1920&q=75',
+            },
+            style: {},
+          },
+          content: {},
+        },
+        details: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {
+            text: 'From $39/mo',
+          },
+        },
+        tag: {
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {
+            text: 'Automn offer',
+          },
+        },
+        title: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {
+            text: 'Dance One Step',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {
+            text: 'Ebike',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+            },
+          },
+          content: { text: 'See details' },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-card',
+      typeId: 1,
+      options: {
+        meta: {},
+        style: {
+          backgroundColor: '',
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://dance.co/_next/image?url=%2Fimages%2Frides%2Febikes%2Fdiamond-card%402x.png&w=1920&q=75',
+            },
+            style: {},
+          },
+          content: {},
+        },
+        details: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {
+            text: 'From $39/mo',
+          },
+        },
+        tag: {
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {
+            text: 'Automn offer',
+          },
+        },
+        title: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {
+            text: 'Dance One',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {
+            text: 'Ebike',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+            },
+          },
+          content: { text: 'See details' },
+        },
+      },
+    },
+    {
+      id: '3',
+      type: 'wap-card',
+      typeId: 1,
+      options: {
+        meta: {},
+        style: {
+          backgroundColor: '',
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://dance.co/_next/image?url=%2Fimages%2Frides%2Femoped%2Femoped-card%402x.png&w=1920&q=75',
+            },
+            style: {},
+          },
+          content: {},
+        },
+        details: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {
+            text: 'From $49/mo',
+          },
+        },
+        tag: {
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {
+            text: 'Automn offer',
+          },
+        },
+        title: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {
+            text: 'Dance Moped',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {
+            text: 'Emoped',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+            },
+          },
+          content: { text: 'See details', link: '#wc03' },
+        },
+      },
+    },
+  ],
+})
+wapsMap.set('wap-form-2', {
+  id: '',
+  type: 'wap-form',
+  typeId: 1,
+  options: {
+    meta: {},
+    style: {
+      backgroundColor: '',
+      fontFamily: '',
+      color: '',
+      fontWeight: '',
+      fontSize: ''
+    },
+  },
+  info: {
+    title: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: {
+        text: 'Stay up to speed',
+      },
+    },
+    text: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: {
+        text: 'Sign up to get the latest Dance offers, updates, and tips straight to your inbox.',
+      },
+    },
+  },
+})
