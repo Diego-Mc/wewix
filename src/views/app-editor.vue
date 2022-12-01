@@ -230,6 +230,7 @@ export default {
       }
       const gHistory = this.loadFromStorage('gHistory')
       this.saveToStorage('gHistory', { changes: [this.wap], changeIdx: 0 })
+
     },
 
     publishWap() {
