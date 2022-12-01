@@ -127,10 +127,6 @@ export default {
     },
 
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
-<<<<<<< HEAD
-=======
-      console.log(childCmpId)
->>>>>>> e3d3e42fd7c2be082ee1663d1c2ed6920e313766
       let cmpIdx
       const cmp = this.wap.cmps.find(({ id }, idx) => {
         if (id === cmpId) {
