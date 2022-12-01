@@ -11,16 +11,16 @@
       muted></video>
     <h2
       class="title"
-      :style="info.title.options.style"
       @change="updateContent('title')"
+      :style="info.title.options.style"
       @click.stop="$emit('select', { cmpId, elType: 'title' })"
       :contenteditable="$store.getters.isEditMode">
       {{ info.title.content.text }}
     </h2>
     <p
       class="text"
-      :style="info.text.options.style"
       @change="updateContent('text')"
+      :style="info.text.options.style"
       @click.stop="$emit('select', { cmpId, elType: 'text' })"
       :contenteditable="$store.getters.isEditMode">
       {{ info.text.content.text }}
