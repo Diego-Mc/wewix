@@ -43,6 +43,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  .edit-options {
+    display: flex;
+  }
   .main-logo {
     display: flex;
     align-items: center;
