@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid #eee;
+  height: $editor-header-height;
+  background-color: #fff;
 
   .media-select {
   }

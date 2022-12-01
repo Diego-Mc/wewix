@@ -129,6 +129,7 @@ export default {
       }
     },
     saveWapToStorage() {
+      console.log('deba')
       this.updateWap()
       this.saveLastChange()
       // this.updateHistoryOnChange()
@@ -186,6 +187,7 @@ export default {
             ].options.style = updatedStyle.style
           }
         }
+
         return this.saveWapToStorage()
       }
 
@@ -232,7 +234,6 @@ export default {
       }
       const gHistory = this.loadFromStorage('gHistory')
       this.saveToStorage('gHistory', { changes: [this.wap], changeIdx: 0 })
-
     },
 
     publishWap() {
@@ -284,6 +285,7 @@ export default {
   created() {
     this.loadWap()
     this.loadEvents()
+    this.saveWapToStorage = utilService.debounce(this.saveWapToStorage, 1000)
   },
 
   // watch: {

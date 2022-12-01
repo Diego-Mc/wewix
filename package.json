@@ -15,6 +15,7 @@
     "bootstrap-icons": "^1.10.2",
     "chance": "^1.1.9",
     "chart.js": "^3.9.1",
+    "container-query-polyfill": "^1.0.2",
     "node-geocoder": "^4.2.0",
     "require": "^2.4.20",
     "sass": "^1.53.0",

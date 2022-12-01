@@ -17,10 +17,15 @@
       :cmps="cards.cmps" />
     <wap-form :cmpId="form.id" :info="form.info" :options="form.options" />
   </div> -->
-  <main-header />
   <section class="main-editor">
-    <editor-header />
-    <editor-sidebar />
+    <section class="main-editor-tools">
+      <main-header />
+      <editor-header />
+      <editor-sidebar />
+    </section>
+    <main class="main-wap">
+      <wap-test />
+    </main>
   </section>
 </template>
 
@@ -35,6 +40,8 @@ import editorBtnGroup from '../cmps/app-cmps/editor-btn-group.vue'
 import mainHeader from '../cmps/app-cmps/main-header.vue'
 import editorHeader from '../cmps/app-cmps/editor-header.vue'
 import editorSidebar from '../cmps/app-cmps/editor-sidebar.vue'
+
+import wapTest from '../cmps/app-cmps/wap-test.vue'
 export default {
   data() {
     return {
@@ -55,6 +62,7 @@ export default {
     mainHeader,
     editorHeader,
     editorSidebar,
+    wapTest,
   },
 }
 </script>

@@ -1,0 +1,31 @@
+.main-editor {
+  width: 100vw;
+  height: 100vh;
+  .main-editor-tools {
+    overflow: hidden;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1000;
+  }
+  &:has(.section-select.open) {
+    .main-wap:not(.mobile, .tablet) {
+      margin-left: $editor-nav-width + $editor-section-names-width;
+    }
+  }
+  .main-wap {
+    position: fixed;
+    top: calc($main-header-height + $editor-header-height);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    .wap.mobile {
+      width: 600px;
+    }
+    .wap.tablet {
+      width: 800px;
+    }
+  }
+}
