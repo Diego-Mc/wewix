@@ -17,6 +17,7 @@
 
 <script>
 export default {
+
     data() {
         return {
             classState: {
@@ -46,11 +47,11 @@ export default {
     },
 
     methods: {
-        setClass(classType) {
 
+        setClass(classType) {
             this.classState.fontClass = (classType.fontClass) ? classType.fontClass : this.classState.fontClass
             this.classState.themeClass = (classType.themeClass) ? classType.themeClass : this.classState.themeClass
-
+            this.$emit('themeChanged',)
             document.body.className = `${this.classState.fontClass} ${this.classState.themeClass}`
         }
     }
