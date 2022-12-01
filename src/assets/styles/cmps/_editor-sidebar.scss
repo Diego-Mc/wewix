@@ -1,0 +1,11 @@
+.editor-sidebar {
+  position: relative;
+  .editor-nav {
+    border-right: 1px solid #eee;
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -1,6 +1,8 @@
 .editor-header {
   display: flex;
   align-items: center;
+  border-bottom: 1px solid #eee;
+
   .media-select {
   }
   .url-bar {
@@ -12,6 +14,7 @@
     justify-content: space-between;
     align-items: center;
     padding-inline: 14px;
+
     flex: 1;
     .address {
       color: rgba(30, 30, 30, 0.5);

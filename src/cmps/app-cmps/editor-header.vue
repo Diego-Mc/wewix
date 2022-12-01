@@ -2,7 +2,6 @@
   <nav class="editor-header">
     <section class="media-select">
       <editor-btn-group
-        gap="4px"
         info="media"
         :opts="[
           { val: 'desktop', icon: 'display' },
@@ -20,10 +19,7 @@
     </section>
 
     <section class="upload-site">
-      <editor-btn-group
-        gap="4px"
-        info="media"
-        :opts="[{ val: 'undo', icon: 'cast' }]" />
+      <editor-btn-group info="media" :opts="[{ val: 'undo', icon: 'cast' }]" />
       Publish
     </section>
   </nav>

@@ -86,6 +86,11 @@ export default {
   },
 
   methods: {
+    removeCmp(cmpId) {
+      const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
+      this.wap.cmps.splice(cmpIndex, 1)
+      this.saveWapToStorage()
+    },
     themeChanged(classState) {
       this.wap.classState = classState
       this.saveWapToStorage()
@@ -112,7 +117,7 @@ export default {
       this.saveToStorage('editedWap', this.wap)
       this.saveLastChange()
     },
-    //TODO: think about removing them completly or move to service.
+    //TODO: removing them completly or move to service.
     saveToStorage(key, val) {
       localStorage[key] = JSON.stringify(val)
     },
@@ -123,7 +128,6 @@ export default {
 
     onDrop() {
       this.drag = false
-      //  this.saveWapToStorage()
     },
 
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
@@ -134,32 +138,35 @@ export default {
           return true
         }
       })
-      //prettier-ignore
+      // p
       if (cmp?.cmps) {
         const childCmpIndex = this.wap.cmps[cmpIdx].cmps.findIndex(
           ({ id }) => id === childCmpId
         )
-        if (updatedStyle)
-          elType
-            ? (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
-                elType
-              ].options.style = updatedStyle.style)
-            : (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
-                elType
-              ].options.style = updatedStyle.style)
-        if (content){
-          elType
-            ? (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
-                elType
-              ].content.text = content)
-            : (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
-                elType
-              ].options.style = updatedStyle.style)
-              
-              this.saveWapToStorage()
-              return
+        if (updatedStyle) {
+          if (elType) {
+            this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
+              elType
+            ].options.style = updatedStyle.style
+          } else {
+            this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
+              elType
+            ].options.style = updatedStyle.style
+          }
         }
-         
+        if (content) {
+          if (elType) {
+            this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
+              elType
+            ].content.text = content
+          } else {
+            this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
+              elType
+            ].options.style = updatedStyle.style
+          }
+          return this.saveWapToStorage()
+        }
+
 
       }
 
@@ -174,7 +181,7 @@ export default {
           ? (this.wap.cmps[cmpIdx].info[elType].content.text = content)
           : (this.wap.cmps[cmpIdx].options.style = updatedStyle.style)
       // TODO: remove from here, its only for demonstartion
-       this.saveWapToStorage()
+      this.saveWapToStorage()
     },
 
     async loadWap() {
@@ -190,7 +197,6 @@ export default {
           // add condition: user not logged in.
           this.wap = this.getEmptyWap()
         }
-
         this.saveWapToStorage()
       }
       if (this.wap.classState) {
@@ -247,6 +253,9 @@ export default {
         this.wap.cmps[cmpIndex].cmps = cmps
 
         this.saveWapToStorage()
+      })
+      eventBus.on('onRemoveCmp', (cmpId) => {
+        this.removeCmp(cmpId)
       })
     },
   },
