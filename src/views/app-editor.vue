@@ -14,12 +14,8 @@
       :id="selectedCmp.id"
       :childCmpId="selectedCmp.childCmpId"
       :editOptions="selectedCmp.options"
-<<<<<<< HEAD
-      :elType="selectedCmp.elType">
-=======
       :elType="selectedCmp.elType"
       @update="handleUpdate">
->>>>>>> 272b2ca5cdbcec711d4c33a9c1e87fd4dcc3fd3d
     </cmp-editor>
 
     <draggable
@@ -204,11 +200,7 @@ export default {
         wap: wap,
       })
       if (_id) this.wap._id = _id
-<<<<<<< HEAD
-      this.saveToStorage('editedWap', this.wap)
-=======
       //  this.saveWapToStorage()
->>>>>>> 272b2ca5cdbcec711d4c33a9c1e87fd4dcc3fd3d
     },
 
     publishWap() {
@@ -257,9 +249,6 @@ export default {
 
   created() {
     this.loadWap()
-<<<<<<< HEAD
-    this.loadEvents()
-=======
     eventBus.on('update', ({ cmpId, updatedStyle, elType, content }) => {
       this.handleUpdate({ cmpId, updatedStyle, elType, content })
     })
@@ -271,7 +260,6 @@ export default {
 
       // this.handleUpdate({ cmpId, updatedStyle, elType, content })
     })
->>>>>>> 272b2ca5cdbcec711d4c33a9c1e87fd4dcc3fd3d
   },
 
   // watch: {
