@@ -166,6 +166,8 @@ export default {
           }
           return this.saveWapToStorage()
         }
+
+
       }
 
       if (updatedStyle)
