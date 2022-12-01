@@ -1,0 +1,30 @@
+.editor-header {
+  display: flex;
+  align-items: center;
+  .media-select {
+  }
+  .url-bar {
+    background-color: rgba(238, 238, 238, 0.5);
+    height: 30px;
+    border: 2px solid #eee;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 14px;
+    flex: 1;
+    .address {
+      color: rgba(30, 30, 30, 0.5);
+    }
+    .site-name {
+      color: $main;
+    }
+    .preview-btn {
+      color: rgba($color: $main, $alpha: 0.4);
+
+      &:hover {
+        color: rgba($color: $main, $alpha: 0.8);
+      }
+    }
+  }
+}
