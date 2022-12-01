@@ -69,19 +69,6 @@ export const wapStore = {
       if (!wap.msgs) wap.msgs = []
       wap.msgs.push(msg)
     },
-
-    // removeCmp(state, {cmpId}) {
-    //     const cmps = state.editedWap.cmps
-
-    //     for (let i = 0; i < cmps.length; i++) {
-
-    //     }
-
-    //     function recursiveDelete() {
-
-    //     }
-
-    // }
   },
   actions: {
     async getWap(context, { id }) {

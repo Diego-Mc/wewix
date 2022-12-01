@@ -1,5 +1,7 @@
 <template>
-  <section class="img-section">
+  <section
+    class="img-section"
+    @click.stop="$emit('select', { cmpId, elType: 'img' })">
     <img :src="info.img.options.meta.src" />
   </section>
 </template>
