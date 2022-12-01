@@ -14,7 +14,12 @@
       :id="selectedCmp.id"
       :childCmpId="selectedCmp.childCmpId"
       :editOptions="selectedCmp.options"
+<<<<<<< HEAD
       :elType="selectedCmp.elType">
+=======
+      :elType="selectedCmp.elType"
+      @update="handleUpdate">
+>>>>>>> 272b2ca5cdbcec711d4c33a9c1e87fd4dcc3fd3d
     </cmp-editor>
 
     <draggable
@@ -62,6 +67,7 @@ import wapCards from '../cmps/wap-sections/wap-cards.vue'
 import wapSection from '../cmps/wap-sections/wap-section.vue'
 import wapForm from '../cmps/wap-sections/wap-form.vue'
 import wapVideo from '../cmps/wap-items/wap-video.vue'
+import wapMap from '../cmps/wap-items/wap-map.vue'
 
 import loginModal from '../cmps/app-cmps/login-modal.vue'
 import { eventBus } from '../services/event-bus.service.js'
@@ -73,7 +79,6 @@ export default {
       wap: null,
       selectedCmp: {},
       isOpenCmpEditor: false,
-
       drag: false,
       dragOptions: {
         animation: 200,
@@ -126,6 +131,8 @@ export default {
     },
 
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
+      console.log("🚀 ~ file: app-editor.vue:129 ~ handleUpdate ~ updatedStyle", updatedStyle)
+      
       let cmpIdx
       const cmp = this.wap.cmps.find(({ id }, idx) => {
         if (id === cmpId) {
@@ -138,7 +145,6 @@ export default {
         const childCmpIndex = this.wap.cmps[cmpIdx].cmps.findIndex(
           ({ id }) => id === childCmpId
         )
-        console.log(childCmpIndex)
         if (updatedStyle)
           elType
             ? (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
@@ -155,7 +161,6 @@ export default {
             : (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
                 elType
               ].options.style = updatedStyle.style)
-        this.saveWapToStorage()
         return
       }
 
@@ -169,7 +174,7 @@ export default {
           ? (this.wap.cmps[cmpIdx].info[elType].content.text = content)
           : (this.wap.cmps[cmpIdx].options.style = updatedStyle.style)
       // TODO: remove from here, its only for demonstartion
-      this.saveWapToStorage()
+      //  this.saveWapToStorage()
     },
 
     async loadWap() {
@@ -199,7 +204,11 @@ export default {
         wap: wap,
       })
       if (_id) this.wap._id = _id
+<<<<<<< HEAD
       this.saveToStorage('editedWap', this.wap)
+=======
+      //  this.saveWapToStorage()
+>>>>>>> 272b2ca5cdbcec711d4c33a9c1e87fd4dcc3fd3d
     },
 
     publishWap() {
@@ -248,7 +257,21 @@ export default {
 
   created() {
     this.loadWap()
+<<<<<<< HEAD
     this.loadEvents()
+=======
+    eventBus.on('update', ({ cmpId, updatedStyle, elType, content }) => {
+      this.handleUpdate({ cmpId, updatedStyle, elType, content })
+    })
+    eventBus.on('onInnerCmpDrop', ({ cmpId, cmps }) => {
+      const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
+      this.wap.cmps[cmpIndex].cmps = cmps
+
+      //  this.saveWapToStorage()
+
+      // this.handleUpdate({ cmpId, updatedStyle, elType, content })
+    })
+>>>>>>> 272b2ca5cdbcec711d4c33a9c1e87fd4dcc3fd3d
   },
 
   // watch: {
@@ -274,6 +297,7 @@ export default {
     wapForm,
     wapVideo,
     generalEditor,
+    wapMap,
   },
 }
 </script>
