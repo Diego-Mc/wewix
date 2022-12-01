@@ -1154,82 +1154,8 @@ wapsMap.set('wap-header-2', {
     },
   },
 })
-wapsMap.set('wap-hero-2', {
-  id: '',
-  type: 'wap-hero',
-  typeId: 1,
-  options: {
-    meta: {},
-    style: {
-      backgroundColor: '',
-      fontFamily: '',
-      color: '',
-      fontWeight: '',
-      fontSize: ''
-    },
-  },
-  info: {
-    tag: {
-      options: {
-        meta: {},
-        style: {
-          fontFamily: '',
-          color: '',
-          fontWeight: '',
-          fontSize: ''
-        },
-      },
-      content: {
-        text: 'Food Truck',
-      },
-    },
-    title: {
-      options: {
-        meta: {},
-        style: {
-          fontFamily: '',
-          color: '',
-          fontWeight: '',
-          fontSize: ''
-        },
-      },
-      content: {
-        text: 'All plants',
-      },
-    },
-    // can i do something like that?
-    subtitle: {
-      options: {
-        meta: {},
-        style: {
-          fontFamily: '',
-          color: '',
-          fontWeight: '',
-          fontSize: ''
-        },
-      },
-      content: {
-        text: 'All plants',
-      },
-    },
-    btn: {
-      options: {
-        meta: {
-          href: '#',
-        },
-        style: {
-          backgroundColor: '',
-          fontFamily: '',
-          color: '',
-          borderRadius: '2em',
-          fontWeight: '',
-          fontSize: ''
-        },
-      },
-      content: { text: 'Start now' },
-    },
-  },
-})
+
+// this is temp's 2 hero section.
 wapsMap.set('wap-section-2', {
   id: '',
   type: 'wap-section',
@@ -1258,18 +1184,19 @@ wapsMap.set('wap-section-2', {
         },
       },
       info: {
-        img: {
+        tag:{
           options: {
             meta: {},
             style: {
-              backgroundColor: '',
               fontFamily: '',
               color: '',
               fontWeight: '',
               fontSize: ''
             },
           },
-          content: {},
+          content: {
+            text: 'Food Truck',
+          },
         },
         title: {
           options: {
@@ -1282,8 +1209,26 @@ wapsMap.set('wap-section-2', {
             },
           },
           content: {
-            text: 'Move your way',
+            text: 'All plants.',
           },
+        },
+        // maybe remove
+        subtitle: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {
+            text: 'No animals.',
+          },
+          btn:{
+            
+          }
         },
         text: {
           options: {
@@ -1297,6 +1242,20 @@ wapsMap.set('wap-section-2', {
           },
           content: {
             text: 'Choose the electric ride that suid tour lifeoptions',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {
+            text: 'Find Us',
           },
         },
       },
@@ -1319,7 +1278,190 @@ wapsMap.set('wap-section-2', {
         img: {
           options: {
             meta: {
-              src: 'https://dance.co/_next/image?url=%2Fimages%2Fhome%2Fhome-care%402x.jpg&w=1200&q=75',
+              src: '../assets/imgs/hero-2-img',
+            },
+            style: {},
+          },
+          content: {},
+        },
+      },
+    },
+  ],
+})
+
+wapsMap.set('wap-hero-2', {
+  id: '',
+  type: 'wap-hero',
+  typeId: 1,
+  options: {
+    meta: {
+      // download imgs from now?
+      src:'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623cfb46d0ab4fab78e53577_Callout%20Photo.jpg'
+    },
+    style: {
+      backgroundColor: '',
+      fontFamily: '',
+      color: '',
+      fontWeight: '',
+      fontSize: ''
+    },
+  },
+  info: {
+    tag: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: {
+        text: 'MAR 27, 2022',
+      },
+    },
+    text: {
+      options: {
+        meta: {
+
+        },
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: {
+        text: 'Golden Gate Park',
+      },
+    },
+    // can i do something like that?
+    text: {
+      options: {
+        meta: {},
+        style: {
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: {
+        text: '4976 Fulton Street San Francisco, CA 94121',
+      },
+    },
+    text: {
+      options: {
+        meta: {
+          href: '#',
+        },
+        style: {
+          backgroundColor: '',
+          fontFamily: '',
+          color: '',
+          borderRadius: '2em',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      content: { text: '2:00 pm - 9:00 pm' },
+    },
+  },
+})
+
+wapsMap.set('wap-section-2', {
+  id: '',
+  type: 'wap-section',
+  typeId: 1,
+  options: {
+    meta: {},
+    style: {
+      backgroundColor: '',
+      fontFamily: '',
+      color: '',
+      fontWeight: '',
+      fontSize: ''
+    },
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 1,
+      options: {
+        meta: {},
+        style: {
+          backgroundColor: '',
+          fontFamily: '',
+          color: '',
+        },
+      },
+      
+        title: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor consequat netus tristique at sem ipsum fames.',
+          },
+        },
+        // maybe remove
+        text: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor consequat netus tristique at sem ipsum fames.',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: {
+              fontFamily: '',
+              color: '',
+              fontWeight: '',
+              fontSize: ''
+            },
+          },
+          content: {
+            text: 'View menu',
+          },
+        },
+      },
+    {
+      id: '2',
+      type: 'wap-img-section',
+      typeId: 1,
+      options: {
+        meta: {},
+        style: {
+          backgroundColor: '',
+          fontFamily: '',
+          color: '',
+          fontWeight: '',
+          fontSize: ''
+        },
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: '../assets/imgs/hero-2-img',
             },
             style: {},
           },
