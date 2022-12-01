@@ -6,22 +6,23 @@
       type: 'transition-group',
       name: !drag ? 'flip-list' : null,
     }"
-    v-model="sections"
+    v-model="cmps"
     v-bind="dragOptions"
     @start="drag = true"
     @end="onDrop"
-    @log="console.log('wi')"
     item-key="order"
     group="section">
     <template #item="{ element }">
-      <component
-        :is="element.type"
-        :key="element.id"
-        :options="element.options"
-        :info="element.info"
-        :cmpId="cmpId"
-        :childCmpId="element.id"
-        @select="emitSelect" />
+      <div>
+        <component
+          :is="element.type"
+          :key="element.id"
+          :options="element.options"
+          :info="element.info"
+          :cmpId="cmpId"
+          :childCmpId="element.id"
+          @select="emitSelect" />
+      </div>
     </template>
   </draggable>
 </template>
@@ -36,7 +37,6 @@ export default {
 
   data() {
     return {
-      sections: this.cmps,
       dragOptions: {
         animation: 200,
         group: 'description',
@@ -51,14 +51,19 @@ export default {
     wapTextSection,
     draggable,
   },
+  created(){
+  },
   methods: {
     emitSelect(data) {
       this.$emit('select', data)
     },
     onDrop() {
       this.drag = false
-      console.log(this.cards)
-      eventBus.emit('onInnerCmpDrop', { cmpId: this.cmpId, cmps: this.cards })
+      console.log(this.cmps);
+      eventBus.emit('onInnerCmpDrop', {
+        cmpId: this.cmpId,
+        cmps: [...this.cmps],
+      })
     },
     updateContent(elType) {
       this.$emit('update', { cmpId, elType, content: info.text.content })

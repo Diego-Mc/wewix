@@ -3,23 +3,43 @@
     <button @click="undo">undo</button>
     <general-editor @themeChanged="themeChanged" />
     <wap-templates />
-    <button style="background-color: orange; margin: 10px 0" @click="updateWap(wap)">
+    <button
+      style="background-color: orange; margin: 10px 0"
+      @click="updateWap(wap)">
       publish site
     </button>
 
-    <cmp-editor v-if="isOpenCmpEditor" :id="selectedCmp.id" :childCmpId="selectedCmp.childCmpId"
-      :editOptions="selectedCmp.options" :elType="selectedCmp.elType" @update="handleUpdate">
+    <cmp-editor
+      v-if="isOpenCmpEditor"
+      :id="selectedCmp.id"
+      :childCmpId="selectedCmp.childCmpId"
+      :editOptions="selectedCmp.options"
+      :elType="selectedCmp.elType">
     </cmp-editor>
 
-    <draggable class="list-group" :component-data="{
-      type: 'transition-group',
-      name: !drag ? 'flip-list' : null,
-    }" @add="saveWapToStorage" v-model="wap.cmps" v-bind="dragOptions" @start="drag = true" @end="onDrop"
-      item-key="order" group="sections">
+    <draggable
+      class="list-group"
+      :component-data="{
+        type: 'transition-group',
+        name: !drag ? 'flip-list' : null,
+      }"
+      @add="saveWapToStorage"
+      v-model="wap.cmps"
+      v-bind="dragOptions"
+      @start="drag = true"
+      @end="onDrop"
+      item-key="order"
+      group="sections">
       <template #item="{ element }">
         <div>
-          <component :is="element.type" :info="element.info" :options="element.options" :cmps="element.cmps"
-            :cmpId="element.id" @select="select" @update="handleUpdate">
+          <component
+            :is="element.type"
+            :info="element.info"
+            :options="element.options"
+            :cmps="element.cmps"
+            :cmpId="element.id"
+            @select="select"
+            @update="handleUpdate">
           </component>
         </div>
       </template>
@@ -65,11 +85,9 @@ export default {
   },
 
   methods: {
-
     themeChanged(classState) {
       this.wap.classState = classState
       this.saveWapToStorage()
-
     },
     undo() {
       const wapChanges = this.loadFromStorage('wapChanges')
@@ -77,7 +95,6 @@ export default {
       const cmps = wapChanges[wapChanges.length - 1].cmps
       this.wap.cmps = cmps
       this.saveToStorage('wapChanges', wapChanges)
-
     },
     saveLastChange() {
       const wapChanges = this.loadFromStorage('wapChanges')
@@ -93,7 +110,6 @@ export default {
       console.log('saved to storage')
       this.saveToStorage('editedWap', this.wap)
       this.saveLastChange()
-
     },
     //TODO: think about removing them completly or move to service.
     saveToStorage(key, val) {
@@ -107,7 +123,6 @@ export default {
     onDrop() {
       this.drag = false
       //  this.saveWapToStorage()
-
     },
 
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
@@ -118,19 +133,43 @@ export default {
           return true
         }
       })
+      //prettier-ignore
       if (cmp?.cmps) {
-        const childCmpIndex = this.wap.cmps[cmpIdx].cmps.findIndex(({ id }) => id === childCmpId)
-        if (updatedStyle) elType ? this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[elType].options.style = updatedStyle.style : this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[elType].options.style = updatedStyle.style
-        if (content) elType ? this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[elType].content.text = content : this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[elType].options.style = updatedStyle.style
+        const childCmpIndex = this.wap.cmps[cmpIdx].cmps.findIndex(
+          ({ id }) => id === childCmpId
+        )
+        console.log(childCmpIndex)
+        if (updatedStyle)
+          elType
+            ? (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
+                elType
+              ].options.style = updatedStyle.style)
+            : (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
+                elType
+              ].options.style = updatedStyle.style)
+        if (content)
+          elType
+            ? (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
+                elType
+              ].content.text = content)
+            : (this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
+                elType
+              ].options.style = updatedStyle.style)
         this.saveWapToStorage()
         return
       }
 
-      if (updatedStyle) elType ? this.wap.cmps[cmpIdx].info[elType].options.style = updatedStyle.style : this.wap.cmps[cmpIdx].options.style = updatedStyle.style
-      if (content) elType ? this.wap.cmps[cmpIdx].info[elType].content.text = content : this.wap.cmps[cmpIdx].options.style = updatedStyle.style
+      if (updatedStyle)
+        elType
+          ? (this.wap.cmps[cmpIdx].info[elType].options.style =
+              updatedStyle.style)
+          : (this.wap.cmps[cmpIdx].options.style = updatedStyle.style)
+      if (content)
+        elType
+          ? (this.wap.cmps[cmpIdx].info[elType].content.text = content)
+          : (this.wap.cmps[cmpIdx].options.style = updatedStyle.style)
       // TODO: remove from here, its only for demonstartion
       this.saveWapToStorage()
-
     },
 
     async loadWap() {
@@ -155,10 +194,12 @@ export default {
     },
 
     async updateWap(wap) {
-      const { _id } = await this.$store.dispatch({ type: 'updateWap', wap: wap })
+      const { _id } = await this.$store.dispatch({
+        type: 'updateWap',
+        wap: wap,
+      })
       if (_id) this.wap._id = _id
       this.saveToStorage('editedWap', this.wap)
-
     },
 
     publishWap() {
@@ -183,21 +224,31 @@ export default {
         cmps: [],
       }
     },
+    loadEvents() {
+      eventBus.on(
+        'update',
+        ({ cmpId, updatedStyle, elType, content, childCmpId }) => {
+          this.handleUpdate({
+            cmpId,
+            updatedStyle,
+            elType,
+            content,
+            childCmpId,
+          })
+        }
+      )
+      eventBus.on('onInnerCmpDrop', ({ cmpId, cmps }) => {
+        const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
+        this.wap.cmps[cmpIndex].cmps = cmps
+
+        this.saveWapToStorage()
+      })
+    },
   },
 
   created() {
     this.loadWap()
-    eventBus.on('update', ({ cmpId, updatedStyle, elType, content }) => {
-      this.handleUpdate({ cmpId, updatedStyle, elType, content })
-    })
-    eventBus.on('onInnerCmpDrop', ({ cmpId, cmps }) => {
-      const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
-      this.wap.cmps[cmpIndex].cmps = cmps
-
-      this.saveWapToStorage()
-      // this.handleUpdate({ cmpId, updatedStyle, elType, content })
-    })
-
+    this.loadEvents()
   },
 
   // watch: {
