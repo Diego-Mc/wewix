@@ -8,7 +8,7 @@
     <span class="details" :style="info.details.options.style">
       <span
         @click.stop="$emit('select', { cmpId, childCmpId, elType: 'details' })"
-        @blur="updateContent('details', $event)"
+        @input="updateContent('details', $event)"
         :contenteditable="$store.getters.isEditMode">
         {{ info.details.content.text }}
       </span>
@@ -16,7 +16,7 @@
         class="tag"
         :style="info.tag.options.style"
         @click.stop="$emit('select', { cmpId, childCmpId, elType: 'tag' })"
-        @blur="updateContent('tag', $event)"
+        @input="updateContent('tag', $event)"
         :contenteditable="$store.getters.isEditMode">
         {{ info.tag.content.text }}
       </span>
@@ -26,7 +26,7 @@
       class="title"
       :style="info.title.options.style"
       @click.stop="$emit('select', { cmpId, childCmpId, elType: 'title' })"
-      @blur="updateContent('title', $event)"
+      @input="updateContent('title', $event)"
       :contenteditable="$store.getters.isEditMode">
       {{ info.title.content.text }}
     </h3>
@@ -35,7 +35,7 @@
       class="text"
       :style="info.text.options.style"
       @click.stop="$emit('select', { cmpId, childCmpId, elType: 'text' })"
-      @blur="updateContent('text', $event)"
+      @input="updateContent('text', $event)"
       :contenteditable="$store.getters.isEditMode">
       {{ info.text.content.text }}
     </p>
@@ -45,7 +45,7 @@
       :style="info.btn.options.style"
       @click.stop="$emit('select', { cmpId, childCmpId, elType: 'btn' })">
       <span
-        @blur="updateContent('btn', $event)"
+        @input="updateContent('btn', $event)"
         :contenteditable="$store.getters.isEditMode">
         {{ info.btn.content.text }}
       </span>
