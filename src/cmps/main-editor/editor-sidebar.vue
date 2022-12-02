@@ -61,7 +61,7 @@
       :class="{ open: isOpen('editOpt', 'edit-site') }">
       <h2 class="title">Section</h2>
       <edit-font-section />
-      <general-editor @themeChanged="themeChanged" />
+      <general-editor />
     </section>
   </section>
 </template>

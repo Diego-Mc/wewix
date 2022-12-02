@@ -33,7 +33,7 @@ export default {
   props: ['info', 'cmpId', 'childCmpId', 'options'],
   methods: {
     updateContent(elType,e) {
-      this.$emit('cmpUpdated', { cmpId:this.cmpId, elType, content: e.target.innerText })
+      eventBus.emit('cmpUpdated', { cmpId:this.cmpId, elType, content: e.target.innerText ,childCmpId:this.childCmpId})
     },
     onElClick(elType){
       eventBus.emit('select', { cmpId:this.cmpId, childCmpId:this.childCmpId, elType})

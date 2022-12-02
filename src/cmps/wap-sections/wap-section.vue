@@ -1,7 +1,7 @@
 <template>
   <draggable
     class="list-group wap-section"
-    @click.stop="eventBus.emit('select', { cmpId })"
+    @click.stop="onElClick({ cmpId})"
     :style="options.style"
     :component-data="{
       type: 'transition-group',
@@ -70,6 +70,9 @@ export default {
         elType,
         // content: info.text.content,
       })
+    },
+    onElClick(elInfo) {
+      eventBus.emit('select', elInfo)
     },
   },
 }

@@ -1,7 +1,7 @@
 <template>
   <section
     class="img-section"
-    @click.stop="onSelect">
+    @click.stop="onElClick">
     <img :src="info.img.options.meta.src" />
   </section>
 </template>
@@ -12,7 +12,7 @@ import { eventBus } from '../../services/event-bus.service';
 export default {
   props: ['info', 'cmpId', 'childCmpId', 'options'],
   methods: {
-    onSelect(){
+    onElClick(){
       eventBus.emit('select', { cmpId:this.cmpId, childCmpId:this.childCmpId, elType: 'img' })
     }
   },
