@@ -20,7 +20,7 @@
 <script>
 import draggable from 'vuedraggable'
 import getCmp from '../../services/wap-cmps.service'
-import { wapVideo, wapMap ,wapForm} from '../../services/wap-new-model'
+import { wapVideo, wapMap, wapForm } from '../../services/wap-new-model'
 
 export default {
   components: {
@@ -28,9 +28,19 @@ export default {
   },
   data() {
     return {
-      cmpsDropdownOptions: [getCmp('wap-header', 1), getCmp('wap-hero', 1), getCmp('wap-section', 1), getCmp('wap-cards', 1), wapVideo, wapMap,wapForm],
+      cmpsDropdownOptions: [
+        getCmp('wap-header', 2),
+        getCmp('wap-hero', 2),
+        getCmp('wap-section', 2),
+        getCmp('wap-section', 3),
+        getCmp('wap-cards', 2),
+        getCmp('wap-section', 4),
+        wapVideo,
+        wapMap,
+        wapForm,
+      ],
     }
-  }
+  },
 }
 </script>
 
@@ -105,5 +115,3 @@ td {
   min-width: 200px;
 }
 </style>
-
-
