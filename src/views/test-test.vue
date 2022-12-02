@@ -36,10 +36,10 @@ import wapCards from '../cmps/wap-sections/wap-cards.vue'
 import wapSection from '../cmps/wap-sections/wap-section.vue'
 import wapForm from '../cmps/wap-sections/wap-form.vue'
 import getCmp from '../services/wap-cmps.service'
-import editorBtnGroup from '../cmps/app-cmps/editor-btn-group.vue'
+import editorBtnGroup from '../cmps/main-editor/editor-items/editor-btn-group.vue'
 import mainHeader from '../cmps/app-cmps/main-header.vue'
-import editorHeader from '../cmps/app-cmps/editor-header.vue'
-import editorSidebar from '../cmps/app-cmps/editor-sidebar.vue'
+import editorHeader from '../cmps/main-editor/editor-header.vue'
+import editorSidebar from '../cmps/main-editor/editor-sidebar.vue'
 
 import wapTest from '../cmps/app-cmps/wap-test.vue'
 export default {

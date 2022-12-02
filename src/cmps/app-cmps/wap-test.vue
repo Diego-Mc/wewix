@@ -26,10 +26,10 @@ import wapCards from '../wap-sections/wap-cards.vue'
 import wapSection from '../wap-sections/wap-section.vue'
 import wapForm from '../wap-sections/wap-form.vue'
 import getCmp from '../../services/wap-cmps.service'
-import editorBtnGroup from '../app-cmps/editor-btn-group.vue'
+import editorBtnGroup from '../main-editor/editor-items/editor-btn-group.vue'
 import mainHeader from '../app-cmps/main-header.vue'
-import editorHeader from '../app-cmps/editor-header.vue'
-import editorSidebar from '../app-cmps/editor-sidebar.vue'
+import editorHeader from '../main-editor/editor-header.vue'
+import editorSidebar from '../main-editor/editor-sidebar.vue'
 export default {
   data() {
     return {

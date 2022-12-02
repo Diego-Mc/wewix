@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import editorBtnGroup from './editor-btn-group.vue'
+import editorBtnGroup from '../main-editor/editor-items/editor-btn-group.vue'
 export default {
   components: {
     editorBtnGroup,

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import colorItem from '../app-items/color-item.vue'
+import colorItem from './color-item.vue'
 export default {
   data() {
     return {
@@ -33,9 +33,9 @@ export default {
     }
   },
   methods: {
-    handleColorPicked(cl, idx) {
+    handleColorPicked(color, idx) {
       this.colors.forEach((col, i) => (col.selected = idx === i ? true : false))
-      this.$emit('color', cl)
+      this.$emit('color', color)
     },
   },
   components: {
