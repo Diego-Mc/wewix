@@ -31,10 +31,14 @@ export const wapMap = {
   type: 'wap-map',
   options: {
     meta: {
-      latLng: {
-        lat: '',
-        lng: '',
-      },
+      mapData: {
+        title: '',
+        label: '',
+        position: {
+          lat: '',
+          lng: '',
+        },
+      }
     },
     style: {
       backgroundColor: '',

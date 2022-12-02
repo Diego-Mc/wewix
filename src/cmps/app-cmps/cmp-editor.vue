@@ -33,7 +33,7 @@
 
       <div v-if="isOptionsContain('borderRadius')">
         Border Radius Picker
-        <input @input="updateBorderRadius" type="range" v-model="tempBorderRadius" min="0.1" max="2"  step="0.1"/>
+        <input @input="updateBorderRadius" type="range" v-model="tempBorderRadius" min="0.1" max="2" step="0.1" />
       </div>
 
       <div v-if="isOptionsContain('fontSize')">
@@ -59,8 +59,18 @@
       </div>
 
       <div v-if="updatedOptions.meta.mapData">
-          Map Data
-          <input @change="getLatLng($event)" type="text">
+        Map Data
+        <input @input="handleMapInput($event)" type="text">
+        <div v-if="isMapLocationLoader">
+            <span v-if="loadedMapLocation">
+              {{ loadedMapLocation.title }}
+            </span>
+            <span v-else>
+              Loading
+            </span>
+        </div>
+
+
       </div>
 
 
@@ -75,12 +85,13 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { cmpEditorService } from '../../services/cmp-editor.service'
 import { eventBus } from '../../services/event-bus.service'
 import { utilService } from '../../services/util.service'
+
 import mapEdit from './map-edit.vue'
 export default {
-  
+
   props: {
     id: String,
     childCmpId: String,
@@ -90,11 +101,14 @@ export default {
   data() {
     return {
       updatedOptions: JSON.parse(JSON.stringify(this.editOptions)),
-      tempBorderRadius: parseInt(this.editOptions.style?.borderRadius)
+      tempBorderRadius: parseInt(this.editOptions.style?.borderRadius),
+
+      loadedMapLocation: null,
+      isMapLocationLoader: false
     }
   },
   onRemove() {
-      this.$emit('onRemoveCmp', this.cmpId)
+    this.$emit('onRemoveCmp', this.cmpId)
   },
 
   methods: {
@@ -121,9 +135,10 @@ export default {
     },
 
     removeCmp() {
-        this.$store.dispatch({ 
-          type: 'removeCmp', 
-          cmpId: (this.childCmpId) ? this.childCmpId : this.id})
+      this.$store.dispatch({
+        type: 'removeCmp',
+        cmpId: (this.childCmpId) ? this.childCmpId : this.id
+      })
     },
 
     updateBorderRadius() {
@@ -132,20 +147,31 @@ export default {
       this.updateOptions()
     },
 
-    async getLatLng(ev) {
-        const place = ev.target.value
+    handleMapInput(ev) {
+        this.isMapLocationLoader = true
+        this.getMapData(ev)
+    },
 
-        if (!place) return
+    async getMapData(ev) {
+      const locationName = ev.target.value
 
-        const api_key = 'pk.dc87f5d9af931a664e3281457d48045b'
-        
-        const {data} = await axios.get(`https://eu1.locationiq.com/v1/search?key=${api_key}&q=${place}&format=json`)
-        const mapData = (data[0]) ? 
-              {title: place, label: place.charAt(0),  position: {lat: data[0].lat, lng: data[0].lon}} :
-              {title: 'Jerusalem', label: 'JSM', position: { lat: 31.7683, lng: 35.2137 }}
-        
-        this.updatedOptions.meta.mapData = mapData
+      try {
+        this.loadedMapLocation = await cmpEditorService.getMapData(locationName)
+
+        if (!this.loadedMapLocation) throw new Error('Map Has\'nt been loaded')
+
+        // Handle state when getting data
+        this.editOptions.meta.mapData = this.loadedMapLocation
         this.updateOptions()
+      } catch(err) {
+        this.closeMapLocationLoader()
+        console.log(err);
+      }
+
+    },
+
+    closeMapLocationLoader() {
+        this.isMapLocationLoader = false
     }
   },
   watch: {
@@ -158,7 +184,8 @@ export default {
   },
 
   created() {
-    this.getLatLng = utilService.debounce(this.getLatLng)
+    this.getMapData = utilService.debounce(this.getMapData, 50)
+
   },
 
   component: {

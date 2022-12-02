@@ -249,7 +249,7 @@ export default {
 
     select({ cmpId, elType, childCmpId }) {
       let cmp = this.wap.cmps.find(({ id }) => id === cmpId)
-
+      
       if (childCmpId) {
         cmp = cmp.cmps.find(({ id }) => id === childCmpId)
         this.selectedCmp.childCmpId = childCmpId
