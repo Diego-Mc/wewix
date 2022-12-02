@@ -63,6 +63,14 @@ export default {
   props: ['info', 'cmpId', 'childCmpId', 'options', 'typeId'],
   methods: {
     updateContent(elType, e) {
+      eventBus.emit('cmpUpdated', {
+        cmpId: this.cmpId,
+        elType,
+        content: e.target.innerText,
+        childCmpId: this.childCmpId,
+      })
+    },
+    updateContent(elType, e) {
       this.$emit('cmpUpdated', {
         cmpId: this.cmpId,
         elType,

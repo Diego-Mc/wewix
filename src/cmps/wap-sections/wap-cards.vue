@@ -26,7 +26,7 @@
           :childCmpId="element.id"
           @select="emitSelect"
           :typeId="element.typeId"
-          @update="updateContent" />
+          />
       </div>
     </template>
   </draggable>

@@ -1,62 +1,52 @@
 <template>
-  <main v-if="wap">
-    <editor-undo />
-    <wap-chat />
-
-    <button
-      style="background-color: orange; margin: 10px 0"
-      @click="updateWap(wap)">
-      publish site
-    </button>
-
-    <cmp-editor
-      v-if="isOpenCmpEditor"
-      :id="selectedCmp.id"
-      :childCmpId="selectedCmp.childCmpId"
-      :editOptions="selectedCmp.options"
-      :elType="selectedCmp.elType">
-    </cmp-editor>
-
-    <draggable
-      class="list-group"
-      :component-data="{
-        type: 'transition-group',
-        name: !drag ? 'flip-list' : null,
-      }"
-      @add="onCmpsChange"
-      v-model="wap.cmps"
-      v-bind="dragOptions"
-      @start="drag = true"
-      @end="onDrop"
-      item-key="order"
-      group="sections">
-      <template #item="{ element }">
-        <div>
-          <component
-            :is="element.type"
-            :info="element.info"
-            :options="element.options"
-            :cmps="element.cmps"
-            :cmpId="element.id"
-            @select="select"
-            @update="handleUpdate">
-          </component>
-        </div>
-      </template>
-    </draggable>
-  </main>
+  <section class="main-editor" v-if="wap">
+    <section class="main-editor-tools">
+      <main-header />
+      <editor-header @setMedia="setMedia" />
+      <editor-sidebar :selectedCmp="selectedCmp" />
+    </section>
+    <main class="main-wap" :class="mediaType">
+      <draggable
+        class="list-group"
+        :component-data="{
+          type: 'transition-group',
+          name: !drag ? 'flip-list' : null,
+        }"
+        @add="onCmpsChange"
+        v-model="wap.cmps"
+        v-bind="dragOptions"
+        @start="drag = true"
+        @end="onDrop"
+        item-key="order"
+        group="sections">
+        <template #item="{ element }">
+          <div>
+            <component
+              :is="element.type"
+              :info="element.info"
+              :options="element.options"
+              :cmps="element.cmps"
+              :cmpId="element.id">
+            </component>
+          </div>
+        </template>
+      </draggable>
+    </main>
+  </section>
 </template>
 
 <script>
 import draggable from 'vuedraggable'
 
+import { eventBus } from '../services/event-bus.service'
+
 import { appEditorService } from '../services/app-editor.service'
 import { utilService } from '../services/util.service'
 
-import cmpEditor from '../cmps/app-cmps/cmp-editor.vue'
-import wapTemplates from '../cmps/app-cmps/wap-templates.vue'
-import generalEditor from '../cmps/app-cmps/general-editor.vue'
-import editorUndo from '../cmps/app-cmps/editor-undo.vue'
+import editorBtnGroup from '../cmps/main-editor/editor-items/editor-btn-group.vue'
+import mainHeader from '../cmps/app-cmps/main-header.vue'
+import editorHeader from '../cmps/main-editor/editor-header.vue'
+import editorSidebar from '../cmps/main-editor/editor-sidebar.vue'
 
 import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
@@ -65,10 +55,6 @@ import wapSection from '../cmps/wap-sections/wap-section.vue'
 import wapForm from '../cmps/wap-sections/wap-form.vue'
 import wapVideo from '../cmps/wap-items/wap-video.vue'
 import wapMap from '../cmps/wap-items/wap-map.vue'
-import wapChat from '../cmps/wap-items/wap-chat.vue'
-import loginModal from '../cmps/app-cmps/login-modal.vue'
-import { eventBus } from '../services/event-bus.service.js'
-import getCmp from '../services/wap-cmps.service'
 
 export default {
   data() {
@@ -83,13 +69,52 @@ export default {
         disabled: false,
         ghostClass: 'ghost',
       },
+      mediaType: 'desktop',
     }
   },
+  async created() {
+    this.onCmpsChange = utilService.debounce(this.onCmpsChange, 500)
+    await this.loadWap()
+    this.loadEvents()
+    this.initHistory()
+    this.checkNewVisit() // TODO: only on published mode.
 
+    if (this.wap.classState)
+      document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
+  },
+  mounted() {
+    document.addEventListener('keydown', this.keydownHandler)
+  },
+  unmounted() {
+    document.removeEventListener('keydown', this.keydownHandler)
+  },
   methods: {
-    removeCmp(cmpId) {
-      const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
-      this.wap.cmps.splice(cmpIndex, 1)
+    keydownHandler(event) {
+      if (event.ctrlKey && event.key === 'z') {
+        this.undo()
+      }
+    },
+    setMedia(mediaType) {
+      this.mediaType = mediaType
+    },
+    removeCmp({ id, childCmpId, elType }) {
+      let changedCmp = this.wap.cmps.find((cmp) => cmp.id === id)
+      if (childCmpId)
+        changedCmp = changedCmp.cmps.find(
+          (childCmp) => childCmp.id === childCmpId
+        )
+      if (id && childCmpId && elType) {
+        delete changedCmp[elType]
+      } else if (id && childCmpId && !elType) {
+        const idx = changedCmp.findIndex((cmp) => cmp.id === childCmpId)
+        changedCmp.splice(idx, 1)
+      } else if (id && elType) {
+        delete changedCmp[elType]
+      } else {
+        const idx = this.wap.cmps.findIndex((cmp) => cmp.id === id)
+        this.wap.cmps.splice(idx, 1)
+      }
+
       this.onCmpsChange()
     },
     themeChanged(classState) {
@@ -98,6 +123,7 @@ export default {
     },
     undo() {
       const gHistory = appEditorService.loadFromStorage('gHistory')
+      console.log(gHistory.changeIdx)
       if (!gHistory.changeIdx) return
       gHistory.changeIdx -= 1
       this.wap = gHistory.changes[gHistory.changeIdx]
@@ -132,15 +158,16 @@ export default {
     },
     async updateWap() {
       await this.$store.dispatch({ type: 'updateWap', wap: this.wap })
-      console.log('cmp saved')
     },
     //TODO: removing them completly or move to service.
     onDrop() {
       this.drag = false
       this.onCmpsChange()
     },
+
     // prettier-ignore
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
+      
       let changedCmp = this.wap.cmps.find(cmp => cmp.id === cmpId)
       if (childCmpId) changedCmp = changedCmp.cmps.find( childCmp => childCmp.id === childCmpId)
 
@@ -154,6 +181,7 @@ export default {
     },
     // TODO: work on logic, avoid repetition.
     async loadWap() {
+      console.log(this.$route.params)
       if (this.$route.params?.id) {
         const wap = await this.$store.dispatch({
           type: 'getWap',
@@ -168,7 +196,7 @@ export default {
         })
         this.wap._id = editedWapId
         // fix this.
-        this.$router.push('edit/' + editedWapId)
+        this.$router.push({ path: 'edit/' + editedWapId, replace: true })
       }
     },
     publishWap() {
@@ -191,7 +219,6 @@ export default {
         cmp = cmp.cmps.find(({ id }) => id === childCmpId)
         this.selectedCmp.childCmpId = childCmpId
       }
-
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = elType ? cmp.info[elType].options : cmp.options
       this.selectedCmp.elType = elType
@@ -205,19 +232,7 @@ export default {
       this.updateWap()
     },
     loadEvents() {
-      eventBus.on(
-        'cmpUpdated',
-        ({ cmpId, updatedStyle, elType, content, childCmpId }) => {
-          console.log('updatedStyle:', updatedStyle)
-          this.handleUpdate({
-            cmpId,
-            updatedStyle,
-            elType,
-            content,
-            childCmpId,
-          })
-        }
-      )
+      eventBus.on('cmpUpdated', this.handleUpdate)
       eventBus.on('onInnerCmpDrop', ({ cmpId, cmps }) => {
         const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
         this.wap.cmps[cmpIndex].cmps = cmps
@@ -229,6 +244,9 @@ export default {
       eventBus.on('formSubmited', this.addUserInfo)
       eventBus.on('undo', this.undo)
       eventBus.on('redo', this.redo)
+      eventBus.on('select', this.select)
+      eventBus.on('themeChanged', this.themeChanged)
+      eventBus.on('removeCmp', this.removeCmp)
     },
     checkNewVisit() {
       if (!sessionStorage.getItem('newVisit', 'new!')) {
@@ -241,105 +259,22 @@ export default {
       }
     },
   },
-  async created() {
-    this.onCmpsChange = utilService.debounce(this.onCmpsChange, 500)
-    await this.loadWap()
-    this.loadEvents()
-    this.initHistory()
-    this.checkNewVisit() // TODO: only on published mode.
-
-    if (this.wap.classState)
-      document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
-  },
-
   components: {
-    cmpEditor,
-    wapTemplates,
+    editorBtnGroup,
+    mainHeader,
+    editorHeader,
+    editorSidebar,
+    draggable,
     wapHeader,
     wapCards,
-    draggable,
     wapHero,
-    loginModal,
     wapCards,
     wapSection,
     wapForm,
     wapVideo,
-    generalEditor,
     wapMap,
-    wapChat,
-    editorUndo,
   },
 }
 </script>
 
-<style>
-* {
-  box-sizing: border-box;
-}
-
-.main {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-}
-
-.section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 20px 0;
-}
-
-.section p {
-  text-align: center;
-}
-
-.cmp {
-  padding: 10px;
-  border: 1px dotted white;
-  border-collapse: separate;
-  text-align: center;
-}
-
-.button {
-  margin-top: 35px;
-}
-
-.flip-list-move {
-  transition: transform 0.5s;
-}
-
-.no-move {
-  transition: transform 0s;
-}
-
-li {
-  list-style: none;
-}
-
-.ghost {
-  opacity: 0.5;
-  background: grey;
-}
-
-.list-group {
-  min-height: 20px;
-}
-
-.list-group-item {
-  cursor: move;
-}
-
-.list-group-item i {
-  cursor: pointer;
-}
-
-tr {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-td {
-  padding: 5px;
-  background-color: lightcoral;
-  min-width: 200px;
-}
-</style>
+<options lang="scss" scoped></options>

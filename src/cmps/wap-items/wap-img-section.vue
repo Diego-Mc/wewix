@@ -2,6 +2,8 @@
   <section
     v-if="info.img"
     class="img-section"
+    @click.stop="onElClick">
+    <img :src="info.img.options.meta.src" />
     :class="'type-' + typeId"
     @click.stop="onSelect">
     <!-- :src="info?.img?.options.meta.src" -->
@@ -15,6 +17,9 @@ import { eventBus } from '../../services/event-bus.service'
 export default {
   props: ['info', 'cmpId', 'childCmpId', 'options', 'typeId'],
   methods: {
+    onElClick(){
+      eventBus.emit('select', { cmpId:this.cmpId, childCmpId:this.childCmpId, elType: 'img' })
+    },
     onSelect() {
       eventBus.emit('select', {
         cmpId: this.cmpId,

@@ -11,9 +11,9 @@
         :src="info?.img?.options.meta.src" />
       <h1
         class="title"
+        :style="info.title.options.style"
+        @click.stop="onElClick({ cmpId, elType: 'title' })"
         @input="updateContent('title', $event)"
-        :style="info?.title?.options.style"
-        @click.stop="onElClick('title')"
         :contenteditable="$store.getters.isEditMode">
         {{ info?.title?.content.text }}
       </h1>
@@ -49,8 +49,8 @@ export default {
         content: e.target.innerText,
       })
     },
-    onElClick(content) {
-      eventBus.emit('select', content)
+    onElClick(elInfo) {
+      eventBus.emit('select', elInfo )
     },
   },
 }
