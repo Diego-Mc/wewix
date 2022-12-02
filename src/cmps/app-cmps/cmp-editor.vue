@@ -184,7 +184,7 @@ export default {
   },
 
   created() {
-    this.getMapData = utilService.debounce(this.getMapData, 50)
+    this.getMapData = utilService.debounce(this.getMapData, 1500)
 
   },
 
