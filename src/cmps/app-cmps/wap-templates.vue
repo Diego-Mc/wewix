@@ -26,7 +26,6 @@ import { wapVideo, wapMap } from '../../services/wap-new-model'
 export default {
   components: {
     draggable,
-    wapForm
   },
   data() {
     return {
