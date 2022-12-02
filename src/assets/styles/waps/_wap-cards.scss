@@ -1,59 +1,65 @@
 .wap-cards {
-  display: flex;
-  width: 100%;
-  padding: 2rem 30px;
-  flex-wrap: wrap;
-  gap: 40px;
-  background-color: var(--clr-3);
-  color: var(--clr-2);
+  @include grid();
+  background-color: var(--clr-1);
 
+  > div {
+    grid-column: span 4;
+  }
   .wap-card {
-    max-width: 400px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 1rem;
-    padding: 80px 40px 40px;
+    width: 100%;
+    padding: 80px 10px;
+    display: grid;
+    grid-template-areas: 'img' 'title' 'text';
+    justify-items: center;
     color: var(--clr-2);
-    .details {
-      display: flex;
-      gap: 1rem;
-      font-size: 1.1rem;
-      align-items: center;
-      margin-bottom: 2.8rem;
-      .tag {
-        background-color: var(--clr-3);
-        font-size: 1rem;
-        color: var(--clr-1);
-        border-radius: 1rem;
-        padding: 0.2rem 0.8rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+    text-align: center;
+
+    .card-img {
+      width: 48px;
+      margin-bottom: 24px;
     }
     .title {
-      font-size: rem(28px);
-      margin-bottom: 0.6rem;
-      font-weight: normal;
+      font-size: rem(24px);
+      font-weight: 400;
+      margin-bottom: 14px;
     }
     .text {
       font-size: rem(18px);
-      margin-bottom: 1rem;
-    }
-  }
-
-  .btn {
-    font-size: rem(20px);
-    padding: 1.4em 4em;
-    color: var(--clr-2);
-    font-size: rem(16px);
-    transition: filter 0.2s;
-    border-radius: 4rem;
-    outline: 1px solid var(--clr-2);
-    &:hover {
-      outline-color: var(--clr-1);
-      filter: brightness(120%);
-      background-color: var(--clr-1);
-      color: var(--clr-3);
+      font-weight: 200;
     }
   }
 }
+//   .details {
+//       display: flex;
+//       gap: 1rem;
+//       font-size: 1.1rem;
+//       align-items: center;
+//       margin-bottom: 2.8rem;
+//       .tag {
+//         background-color: var(--clr-3);
+//         font-size: 1rem;
+//         color: var(--clr-1);
+//         border-radius: 1rem;
+//         padding: 0.2rem 0.8rem;
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//       }
+//     }
+
+//   .btn {
+//     font-size: rem(20px);
+//     padding: 1.4em 4em;
+//     color: var(--clr-2);
+//     font-size: rem(16px);
+//     transition: filter 0.2s;
+//     border-radius: 4rem;
+//     outline: 1px solid var(--clr-2);
+//     &:hover {
+//       outline-color: var(--clr-1);
+//       filter: brightness(120%);
+//       background-color: var(--clr-1);
+//       color: var(--clr-3);
+//     }
+//   }
+// }

@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.0",
+    "flexbox-grid-mixins": "^0.3.3",
     "vite": "^3.0.0"
   }
 }

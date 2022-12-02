@@ -1,5 +1,5 @@
 <template>
-  <article class="wap-form">
+  <article class="wap-form" :class="'type-' + typeId">
     <!-- <h3 class="title" :style="info.title.options.style">
       Stay up to speed
       {{ info.title.content.text }}
@@ -13,11 +13,11 @@
       <wap-form-item type="email" v-model="userInfo.email" />
       <wap-form-item type="msg" v-model="userInfo.msg" />
       <!-- :style="info.btn.options.style" -->
-      <button @click="userInfo.type='message'" class="btn">
+      <button @click="userInfo.type = 'message'" class="btn">
         submit
         <!-- {{ info.btn.content.text }} -->
       </button>
-      <button @click="userInfo.type='subscription'" class="btn">
+      <button @click="userInfo.type = 'subscription'" class="btn">
         subscribe
         <!-- {{ info.btn.content.text }} -->
       </button>
@@ -29,7 +29,7 @@
 import { eventBus } from '../../services/event-bus.service'
 import wapFormItem from '../wap-items/wap-form-item.vue'
 export default {
-  props: ['info', 'cmpId', 'options'],
+  props: ['info', 'cmpId', 'options', 'typeId'],
   data() {
     return {
       userInfo: {

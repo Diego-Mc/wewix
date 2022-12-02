@@ -7,6 +7,7 @@ import appDashboard from './views/app-dashboard.vue'
 import appDashboardDetails from './views/app-dashboard-details.vue'
 import appPreview from './views/app-preview.vue'
 import testTest from './views/test-test.vue'
+import testTestTest from './views/test-test-test.vue'
 
 import editorWithStyle from './views/editor-with-style.vue'
 
@@ -47,6 +48,11 @@ const routes = [
     path: '/test',
     name: 'test',
     component: testTest,
+  },
+  {
+    path: '/testtest',
+    name: 'testtest',
+    component: testTestTest,
   },
   {
     path: '/editorWithStyle/:id',

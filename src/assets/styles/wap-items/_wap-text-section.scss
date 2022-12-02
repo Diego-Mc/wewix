@@ -1,0 +1,123 @@
+.text-section {
+  align-content: center;
+  display: grid;
+  grid-template-areas:
+    'tag'
+    'title'
+    'subtitle'
+    'text'
+    'cta';
+
+  .tag {
+    grid-area: tag;
+
+    background-color: var(--clr-2);
+    border-radius: 1rem;
+    padding: 8px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    font-size: rem(14px);
+    letter-spacing: 2px;
+    margin-bottom: 26px;
+  }
+
+  .title,
+  .subtitle {
+    font-size: rem(80px);
+    font-weight: 500;
+  }
+  .subtitle {
+    grid-area: subtitle;
+
+    font-style: italic;
+    font-family: AmericanTypewriter;
+    font-weight: 400;
+    margin-bottom: 26px;
+  }
+  .text {
+    grid-area: text;
+
+    font-size: rem(18px);
+    line-height: 1.5;
+    max-width: 38ch;
+    margin-bottom: 26px;
+  }
+  .details {
+    grid-area: details;
+  }
+  .btn {
+    grid-area: cta;
+
+    background-color: var(--clr-1);
+    color: var(--clr-3);
+    padding: 0.8em 1.1em;
+    border-radius: 0;
+    font-size: rem(18px);
+    width: fit-content;
+    &:hover {
+      filter: brightness(120%);
+    }
+  }
+
+  &.type-3 {
+    grid-template-areas:
+      'title'
+      'text'
+      'subtitle'
+      'details'
+      'tag';
+
+    background-color: var(--clr-1);
+    text-align: center;
+    justify-items: center;
+    padding-block: 4rem;
+    border-radius: 2.4rem;
+    // margin-inline: 100px;
+    color: white;
+    transform: rotate(1.6deg);
+    > * {
+      transform: rotate(-1.6deg);
+    }
+    .title {
+      font-size: rem(48px);
+      font-weight: 400;
+      margin-bottom: 32px;
+    }
+    .text {
+      font-size: rem(14px);
+      max-width: 100%;
+      letter-spacing: 2px;
+      margin-bottom: 24px;
+    }
+    .subtitle {
+      font-size: rem(20px);
+      font-family: Asap;
+      font-style: normal;
+      margin-bottom: 8px;
+    }
+    .details {
+      font-size: rem(14px);
+      line-height: 1.5;
+      white-space: pre;
+      text-decoration: underline;
+      margin-bottom: 24px;
+      color: #f9f9f9b3;
+    }
+    .tag {
+      color: var(--clr-1);
+      margin-bottom: 0;
+    }
+  }
+
+  &.type-4 {
+    .title {
+      margin-bottom: 26px;
+      font-size: rem(48px);
+    }
+    .text {
+      max-width: 60ch;
+    }
+  }
+}

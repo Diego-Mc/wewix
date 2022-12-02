@@ -2,6 +2,7 @@
   <!-- $emit('select', { cmpId}) -->
   <draggable
     class="list-group wap-cards"
+    :class="'type-' + typeId"
     @click.stop="$emit('select', { cmpId })"
     :style="options.style"
     :component-data="{
@@ -13,7 +14,7 @@
     @start="drag = true"
     @end="onDrop"
     item-key="order"
-    :group="'section-' + cmpId">
+    :group="'cards-' + cmpId">
     <template #item="{ element }">
       <div>
         <component
@@ -24,6 +25,7 @@
           :cmpId="cmpId"
           :childCmpId="element.id"
           @select="emitSelect"
+          :typeId="element.typeId"
           @update="updateContent" />
       </div>
     </template>
@@ -35,7 +37,7 @@ import wapCard from '../wap-items/wap-card.vue'
 import draggable from 'vuedraggable'
 import { eventBus } from '../../services/event-bus.service'
 export default {
-  props: ['info', 'cmpId', 'options', 'cmps'],
+  props: ['info', 'cmpId', 'options', 'cmps', 'typeId'],
 
   data() {
     return {
