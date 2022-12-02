@@ -183,6 +183,15 @@
             style: 'font-family:\'AmericanTypewriter\'',
           },
         ]" />
+
+      <h6 class="edit-type-label">COLOR</h6>
+      <editor-color-picker />
+
+      <h6 class="edit-type-label">BORDER RADIUS</h6>
+      <el-slider v-model="temp" placement="right" />
+
+      <h6 class="edit-type-label">CUSTOM IMAGE</h6>
+      <editor-upload-section />
     </section>
   </section>
 </template>
@@ -190,11 +199,14 @@
 <script>
 import editorBtnGroup from './editor-btn-group.vue'
 import cmpItem from '../app-items/cmp-item.vue'
+import editorColorPicker from './editor-color-picker.vue'
+import editorUploadSection from '../app-items/editor-upload-section.vue'
 export default {
   data() {
     return {
       editOpt: '',
       section: '',
+      temp: 0,
     }
   },
   methods: {
@@ -209,6 +221,8 @@ export default {
   components: {
     editorBtnGroup,
     cmpItem,
+    editorColorPicker,
+    editorUploadSection,
   },
 }
 </script>

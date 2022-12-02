@@ -16,6 +16,7 @@
     "chance": "^1.1.9",
     "chart.js": "^3.9.1",
     "container-query-polyfill": "^1.0.2",
+    "element-plus": "^2.2.26",
     "require": "^2.4.20",
     "sass": "^1.53.0",
     "socket.io-client": "^4.5.1",

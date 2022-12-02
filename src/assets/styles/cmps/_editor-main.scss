@@ -1,6 +1,7 @@
 .main-editor {
   width: 100vw;
   height: 100vh;
+
   .main-editor-tools {
     overflow: hidden;
     position: fixed;
@@ -8,6 +9,8 @@
     height: 100vh;
     z-index: 1000;
     pointer-events: none;
+    user-select: none;
+
     > * {
       pointer-events: auto;
     }

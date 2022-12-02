@@ -5,14 +5,30 @@
         <editor-btn-group
           info="media"
           :opts="[
+            {
+              val: 'undo',
+              icon: 'arrow-return-left',
+            },
+            {
+              val: 'redo',
+              icon: 'arrow-return-right',
+            },
+          ]" />
+        <!-- <editor-btn-group
+          info="media"
+          :opts="[
             { val: 'undo', icon: 'arrow-counterclockwise' },
             { val: 'redo', icon: 'arrow-clockwise' },
-          ]" />
+          ]" /> -->
+        <!-- <img class="undo-btn" src="src/assets/imgs/undo-2-icon.svg" />
+        &nbsp;
+        <img class="undo-btn" src="src/assets/imgs/redo-icon.svg" />
+        &nbsp; -->
       </section>
       <section class="work-together">
         <editor-btn-group
           info="media"
-          :opts="[{ val: 'undo', icon: 'people' }]" />
+          :opts="[{ val: 'workTogether', icon: 'people' }]" />
       </section>
     </section>
     <div class="main-logo">

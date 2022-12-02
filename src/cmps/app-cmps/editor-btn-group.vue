@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  props: ['opts', 'initialValue', 'info', 'dir', 'gap', 'style'],
+  props: ['opts', 'initialValue', 'info', 'dir', 'gap', 'style', 'title'],
   data() {
     return {
       val: [this.initialValue] || [],

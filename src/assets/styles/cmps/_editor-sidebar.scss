@@ -87,6 +87,9 @@
     z-index: 170;
     left: -100%;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 
     .title {
       margin-bottom: 20px;
@@ -95,7 +98,11 @@
     .edit-type-label {
       color: $btn-small-color;
       font-size: 12px;
-      margin-bottom: 4px;
+      margin-top: 20px;
+    }
+
+    .edit-type-label:first-of-type {
+      margin-top: 0;
     }
 
     &.open {

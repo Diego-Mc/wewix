@@ -1,0 +1,50 @@
+.editor-color-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  .color-picker-option {
+    position: relative;
+    cursor: pointer;
+    .option {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background-color: red;
+      display: inline-block;
+      position: relative;
+      color: #fff;
+      &.selected::after {
+        content: '';
+        width: 34px;
+        height: 34px;
+        border: white 2px solid;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    // position: relative;
+    input {
+      position: absolute;
+      opacity: 0;
+      max-width: 0;
+      max-height: 0;
+      bottom: 0;
+      left: 0;
+      padding: 0;
+      margin: 0;
+    }
+
+    .caret-icon {
+      position: absolute;
+      inset: 0;
+      width: 20px;
+      height: 20px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
