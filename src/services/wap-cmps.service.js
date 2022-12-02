@@ -8,7 +8,7 @@ export const wapUtils = {
 export default function getCmp(type, typeId) {
   const key = `${type}-${typeId}`
   const cmp = wapsMap.get(key)
-  cmp.id = 'wap-' + utilService.getRandomIntInclusive(10, 99)
+  cmp.id = 'wap-' + utilService.makeId()
   return cmp
 }
 
