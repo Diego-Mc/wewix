@@ -1,7 +1,7 @@
 <template>
   <draggable
     class="list-group wap-section"
-    @click.stop="$emit('select', { cmpId })"
+    @click.stop="eventBus.emit('select', { cmpId })"
     :style="options.style"
     :component-data="{
       type: 'transition-group',

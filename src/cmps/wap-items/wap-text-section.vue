@@ -4,7 +4,7 @@
       class="title"
       @input="updateContent('title', $event)"
       :style="info.title.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'title' })"
+      @click.stop="onElClick('title')"
       :contenteditable="$store.getters.isEditMode">
       {{ info.title.content.text }}
     </h2>
@@ -12,7 +12,7 @@
       class="text"
       @input="updateContent('text', $event)"
       :style="info.text.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'text' })"
+      @click.stop="onElClick('text')"
       :contenteditable="$store.getters.isEditMode">
       {{ info.text.content.text }}
     </p>
@@ -21,22 +21,23 @@
       class="btn"
       @input="updateContent('btn', $event)"
       :style="info.btn.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'btn' })">
+      @click.stop="onElClick('btn')">
       {{ info.btn.content.text }}
     </button>
   </section>
 </template>
 
 <script>
+import { eventBus } from '../../services/event-bus.service';
 export default {
   props: ['info', 'cmpId', 'childCmpId', 'options'],
   methods: {
     updateContent(elType,e) {
       this.$emit('cmpUpdated', { cmpId:this.cmpId, elType, content: e.target.innerText })
     },
-  },
-  created() {
-    console.log(this.info)
+    onElClick(elType){
+      eventBus.emit('select', { cmpId:this.cmpId, childCmpId:this.childCmpId, elType})
+    },
   },
 }
 </script>

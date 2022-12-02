@@ -2,7 +2,7 @@
   <!-- $emit('select', { cmpId}) -->
   <draggable
     class="list-group wap-cards"
-    @click.stop="$emit('select', { cmpId })"
+    @click.stop="onCmpClick"
     :style="options.style"
     :component-data="{
       type: 'transition-group',
@@ -63,6 +63,9 @@ export default {
         cmpId: this.cmpId,
         cmps: [...this.cards],
       })
+    },
+    onCmpClick() {
+      eventBus.emit('select', { cmpId: this.cmpId })
     },
   },
 }

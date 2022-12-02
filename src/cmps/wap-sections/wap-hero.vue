@@ -1,7 +1,7 @@
 <template>
   <section
     class="wap-hero"
-    @click.stop="$emit('select', { cmpId })"
+    @click.stop="eventBus.emit('select', { cmpId })"
     :style="options.style">
     <video
       src="https://knowledge.s.dance.app/videos/hero_home_alt_15s_16_9.webm,"
@@ -13,7 +13,7 @@
       class="title"
       @input="updateContent('title',$event)"
       :style="info.title.options.style"
-      @click.stop="$emit('select', { cmpId, elType: 'title' })"
+      @click.stop="eventBus.emit('select', { cmpId, elType: 'title' })"
       :contenteditable="$store.getters.isEditMode">
       {{ info.title.content.text }}
     </h2>
@@ -21,14 +21,14 @@
       class="text"
       @input="updateContent('text',$event)"
       :style="info.text.options.style"
-      @click.stop="$emit('select', { cmpId, elType: 'text' })"
+      @click.stop="eventBus.emit('select', { cmpId, elType: 'text' })"
       :contenteditable="$store.getters.isEditMode">
       {{ info.text.content.text }}
     </p>
     <button
       class="btn"
       :style="info.btn.options.style"
-      @click.stop="$emit('select', { cmpId, elType: 'btn' })">
+      @click.stop="eventBus.emit('select', { cmpId, elType: 'btn' })">
       <span
         :contenteditable="$store.getters.isEditMode"
         @input="updateContent('btn',$event)">

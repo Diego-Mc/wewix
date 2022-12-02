@@ -8,20 +8,20 @@
   <header
     class="wap-header"
     :style="options.style"
-    @click.stop="$emit('select', { cmpId })">
+    @click.stop="onElClick({ cmpId })">
     <section class="logo">
       <h1
         class="title"
-        @blur="updateContent('title', $event)"
+        @input="updateContent('title', $event)"
         :style="info.title.options.style"
-        @click.stop="$emit('select', { cmpId, elType: 'title' })"
+        @click.stop="onElClick('title')"
         :contenteditable="$store.getters.isEditMode">
         {{ info.title.content.text }}
       </h1>
     </section>
     <nav
       :style="info.nav.options.style"
-      @click.stop="$emit('select', { cmpId, elType: 'nav' })">
+      @click.stop="onElClick({ cmpId, elType: 'nav' })">
       <ul>
         <li v-for="nav in info.nav.content">
           {{ nav }}
@@ -31,7 +31,7 @@
     <button
       class="btn"
       :style="info.btn.options.style"
-      @click.stop="$emit('select', { cmpId, elType: 'btn' })"
+      @click.stop="onElClick({ cmpId, elType: 'btn' })"
       @change="updateContent('btn')">
       {{ info.btn.content.text }}
     </button>
@@ -49,6 +49,9 @@ export default {
         elType,
         content: e.target.innerText,
       })
+    },
+    onElClick(content) {
+      eventBus.emit('select', content)
     },
   },
 }

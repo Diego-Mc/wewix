@@ -3,8 +3,6 @@
     <editor-undo />
     <wap-chat />
 
-    <general-editor @themeChanged="themeChanged" />
-    <wap-templates />
     <button
       style="background-color: orange; margin: 10px 0"
       @click="updateWap(wap)">
