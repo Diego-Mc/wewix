@@ -58,8 +58,9 @@
         <input @input="updateOptions" v-model="updatedOptions.meta.link" type="text" placeholder="link" />
       </div>
 
-      <div v-if="true">
-
+      <div v-if="updatedOptions.meta.mapData">
+          Map Data
+          <input @change="getLatLng($event)" type="text">
       </div>
 
 
@@ -74,8 +75,9 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { eventBus } from '../../services/event-bus.service'
-
+import { utilService } from '../../services/util.service'
 import mapEdit from './map-edit.vue'
 export default {
   
@@ -128,6 +130,22 @@ export default {
       const borderRadius = this.tempBorderRadius + 'em'
       this.editOptions.style.borderRadius = borderRadius
       this.updateOptions()
+    },
+
+    async getLatLng(ev) {
+        const place = ev.target.value
+
+        if (!place) return
+
+        const api_key = 'pk.dc87f5d9af931a664e3281457d48045b'
+        
+        const {data} = await axios.get(`https://eu1.locationiq.com/v1/search?key=${api_key}&q=${place}&format=json`)
+        const mapData = (data[0]) ? 
+              {title: place, label: place.charAt(0),  position: {lat: data[0].lat, lng: data[0].lon}} :
+              {title: 'Jerusalem', label: 'JSM', position: { lat: 31.7683, lng: 35.2137 }}
+        
+        this.updatedOptions.meta.mapData = mapData
+        this.updateOptions()
     }
   },
   watch: {
@@ -138,6 +156,11 @@ export default {
       this.tempBorderRadius = parseInt(this.editOptions.style?.borderRadius)
     }
   },
+
+  created() {
+    this.getLatLng = utilService.debounce(this.getLatLng)
+  },
+
   component: {
     mapEdit,
   }

@@ -33,8 +33,7 @@
   import getCmp from '../services/wap-cmps.service'
   import editorBtnGroup from '../cmps/app-cmps/editor-btn-group.vue'
   import mainHeader from '../cmps/app-cmps/main-header.vue'
-  import editorHeaderV2 from '../cmps/app-cmps/editor-headerV2.vue'
-  import editorSidebarV2 from '../cmps/app-cmps/editor-sidebarV2.vue'
+
   
   
   export default {
@@ -55,8 +54,6 @@
       wapForm,
       editorBtnGroup,
       mainHeader,
-      editorHeaderV2,
-      editorSidebarV2,
     },
   }
   </script>
