@@ -1,10 +1,8 @@
 <template>
-  
   <section v-if="editOptions">
     <section class="style-editor">
       <div v-if="isOptionsContain('fontFamily')">
-        
-        <edit-font-section @select="updateOptionsStyle"/>
+        <edit-font-section @select="updateOptionsStyle" />
         <!-- <select
           @change="updateOptions"
           v-model="updatedOptions.style.fontFamily">
@@ -15,7 +13,7 @@
       </div>
 
       <div v-if="isOptionsContain('backgroundColor')">
-        <edit-bg-color-section @select="updateOptionsStyle"/>
+        <edit-bg-color-section @select="updateOptionsStyle" />
         <!-- <input
           @input="updateOptions"
           v-model="updatedOptions.style.backgroundColor"
@@ -23,7 +21,7 @@
       </div>
 
       <div v-if="isOptionsContain('color')">
-        <edit-color-section @select="updateOptionsStyle"/>
+        <edit-color-section @select="updateOptionsStyle" />
         <!-- <input
           @input="updateOptions"
           v-model="updatedOptions.style.color"
@@ -31,7 +29,7 @@
       </div>
 
       <div v-if="isOptionsContain('fontWeight')">
-        <edit-font-weight-section @select="updateOptionsStyle"/>
+        <edit-font-weight-section @select="updateOptionsStyle" />
 
         <!-- <select
           @change="updateOptions"
@@ -44,7 +42,7 @@
       </div>
 
       <div v-if="isOptionsContain('borderRadius')">
-        <edit-radius-section @select="updateBorderRadius"/>
+        <edit-radius-section @select="updateBorderRadius" />
 
         <!-- <input
           @input="updateBorderRadius"
@@ -100,7 +98,7 @@
       </div>
 
       <div>
-        <button @click.stop="removeCmp">Delete</button>
+        <button @click.stop="onRemoveCmp">Delete</button>
       </div>
     </section>
   </section>
@@ -135,16 +133,15 @@ export default {
       isMapLocationLoader: false,
     }
   },
-  created() {
-   
-  },
-  onRemove() {
-    this.$emit('onRemoveCmp', this.cmpId)
-  },
-
   methods: {
+    onRemoveCmp() {
+      eventBus.emit('removeCmp', {
+        id: this.id,
+        childCmpId: this.childCmpId,
+        elType: this.elType,
+      })
+    },
     isOptionsContain(type) {
-
       const options = [
         ...Object.keys(this.editOptions.style),
         ...Object.keys(this.editOptions.meta),
@@ -152,7 +149,7 @@ export default {
       return options.includes(type)
     },
 
-    updateOptionsStyle({key,val}){
+    updateOptionsStyle({ key, val }) {
       this.updatedOptions.style[key] = val
       this.updateOptions()
     },
@@ -183,7 +180,7 @@ export default {
       })
     },
 
-    updateBorderRadius(key,val) {
+    updateBorderRadius(key, val) {
       this.tempBorderRadius = val
       const borderRadius = this.tempBorderRadius + 'em'
       this.editOptions.style.borderRadius = borderRadius

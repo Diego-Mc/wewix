@@ -97,9 +97,24 @@ export default {
     setMedia(mediaType) {
       this.mediaType = mediaType
     },
-    removeCmp(cmpId) {
-      const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
-      this.wap.cmps.splice(cmpIndex, 1)
+    removeCmp({ id, childCmpId, elType }) {
+      let changedCmp = this.wap.cmps.find((cmp) => cmp.id === id)
+      if (childCmpId)
+        changedCmp = changedCmp.cmps.find(
+          (childCmp) => childCmp.id === childCmpId
+        )
+      if (id && childCmpId && elType) {
+        delete changedCmp[elType]
+      } else if (id && childCmpId && !elType) {
+        const idx = changedCmp.findIndex((cmp) => cmp.id === childCmpId)
+        changedCmp.splice(idx, 1)
+      } else if (id && elType) {
+        delete changedCmp[elType]
+      } else {
+        const idx = this.wap.cmps.findIndex((cmp) => cmp.id === id)
+        this.wap.cmps.splice(idx, 1)
+      }
+
       this.onCmpsChange()
     },
     themeChanged(classState) {
@@ -149,9 +164,10 @@ export default {
       this.drag = false
       this.onCmpsChange()
     },
+
     // prettier-ignore
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
-      console.log(cmpId)
+      
       let changedCmp = this.wap.cmps.find(cmp => cmp.id === cmpId)
       if (childCmpId) changedCmp = changedCmp.cmps.find( childCmp => childCmp.id === childCmpId)
 
@@ -165,6 +181,7 @@ export default {
     },
     // TODO: work on logic, avoid repetition.
     async loadWap() {
+      console.log(this.$route.params)
       if (this.$route.params?.id) {
         const wap = await this.$store.dispatch({
           type: 'getWap',
@@ -179,7 +196,7 @@ export default {
         })
         this.wap._id = editedWapId
         // fix this.
-        this.$router.push('edit/' + editedWapId)
+        this.$router.push({ path: 'edit/' + editedWapId, replace: true })
       }
     },
     publishWap() {
@@ -229,6 +246,7 @@ export default {
       eventBus.on('redo', this.redo)
       eventBus.on('select', this.select)
       eventBus.on('themeChanged', this.themeChanged)
+      eventBus.on('removeCmp', this.removeCmp)
     },
     checkNewVisit() {
       if (!sessionStorage.getItem('newVisit', 'new!')) {

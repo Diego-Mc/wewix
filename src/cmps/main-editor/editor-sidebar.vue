@@ -70,7 +70,7 @@
 import { eventBus } from '../../services/event-bus.service'
 import cmpEditor from '../app-cmps/cmp-editor.vue'
 
-import wapTemplates from '../app-cmps/wap-templates.vue'
+import wapTemplates from './wap-templates.vue'
 import generalEditor from '../app-cmps/general-editor.vue'
 
 //------------------------------------------------------------/

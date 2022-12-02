@@ -42,7 +42,7 @@ export default {
         animation: 200,
         group: 'description',
         disabled: false,
-        ghostClass: 'ghost',
+        ghostClass: '',
       },
       drag: false,
     }
