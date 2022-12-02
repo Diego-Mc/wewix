@@ -21,7 +21,7 @@
 <script>
 import draggable from 'vuedraggable'
 import getCmp from '../../services/wap-cmps.service'
-import { wapVideo, wapMap } from '../../services/wap-new-model'
+import { wapVideo, wapMap ,wapForm} from '../../services/wap-new-model'
 
 export default {
   components: {
@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-      cmpsDropdownOptions: [getCmp('wap-header', 1), getCmp('wap-hero', 1), getCmp('wap-section', 1), getCmp('wap-cards', 1), wapVideo, wapMap],
+      cmpsDropdownOptions: [getCmp('wap-header', 1), getCmp('wap-hero', 1), getCmp('wap-section', 1), getCmp('wap-cards', 1), wapVideo, wapMap,wapForm],
     }
   }
 }

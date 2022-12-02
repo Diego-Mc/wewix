@@ -1,4 +1,36 @@
 import getCmp from './wap-cmps.service'
+export const wapForm = {
+  id: 'form-1',
+  type: 'wap-form',
+  options: {
+    meta: {
+      img: '',
+    },
+    style: {
+      backgroundColor: '',
+      fontFamily: '',
+      color: '',
+      borderRadius: '',
+      fontWeight: '',
+    },
+  },
+  info: {
+    title: {
+      options: {
+        meta: {},
+        style: {},
+      },
+      content: {},
+    },
+    btn: {
+      options: {
+        meta: {},
+        style: {},
+      },
+      content: {},
+    },
+  },
+}
 export const wapVideo = {
   id: 'wc10',
   type: 'wap-video',
