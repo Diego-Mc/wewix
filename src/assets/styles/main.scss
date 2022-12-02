@@ -10,6 +10,7 @@
 @import 'basics/base';
 @import 'basics/scroll-bar';
 @import 'basics/user-msg';
+@import 'basics/material-override';
 
 // Components
 @import 'cmps/app-header';
@@ -20,6 +21,8 @@
 @import 'cmps/editor-header';
 @import 'cmps/editor-sidebar';
 @import 'cmps/editor-main';
+@import 'cmps/editor-color-picker';
+@import 'cmps/editor-upload-section';
 
 // Waps
 @import 'waps/wap-header';

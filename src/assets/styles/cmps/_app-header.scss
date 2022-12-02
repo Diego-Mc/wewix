@@ -43,8 +43,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-inline: 18px;
   .edit-options {
     display: flex;
+    align-items: center;
+  }
+  // .undo-btn {
+  //   width: 20px;
+  // }
+  .history-options {
+    transform: scale(1, -1);
   }
   .main-logo {
     display: flex;

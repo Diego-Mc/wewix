@@ -82,11 +82,16 @@
     width: $editor-section-edit-width;
     position: absolute;
     background-color: #fff;
-    height: 100%;
     border-right: 1px solid #eee;
     z-index: 170;
     left: -100%;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    pointer-events: all;
+    overflow-y: scroll;
+    height: calc(100vh - $main-header-height - $editor-header-height);
 
     .title {
       margin-bottom: 20px;
@@ -95,7 +100,11 @@
     .edit-type-label {
       color: $btn-small-color;
       font-size: 12px;
-      margin-bottom: 4px;
+      margin-top: 20px;
+    }
+
+    .edit-type-label:first-of-type {
+      margin-top: 0;
     }
 
     &.open {

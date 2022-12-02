@@ -161,7 +161,7 @@ export default {
         if (!this.loadedMapLocation) throw new Error('Map Has\'nt been loaded')
 
         // Handle state when getting data
-        this.editOptions.meta.mapData = this.loadedMapLocation
+        this.updatedOptions.meta.mapData = this.loadedMapLocation
         this.updateOptions()
       } catch(err) {
         this.closeMapLocationLoader()
@@ -184,7 +184,7 @@ export default {
   },
 
   created() {
-    this.getMapData = utilService.debounce(this.getMapData, 50)
+    this.getMapData = utilService.debounce(this.getMapData, 1500)
 
   },
 

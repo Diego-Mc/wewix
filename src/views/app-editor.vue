@@ -210,6 +210,7 @@ export default {
       eventBus.on(
         'cmpUpdated',
         ({ cmpId, updatedStyle, elType, content, childCmpId }) => {
+          console.log('updatedStyle:', updatedStyle)
           this.handleUpdate({
             cmpId,
             updatedStyle,

@@ -1,0 +1,15 @@
+.el-slider__bar {
+  background-color: $main;
+}
+
+.el-slider__button {
+  border: solid 2px $main;
+}
+
+.el-upload-dragger .el-upload__text em {
+  color: $main;
+}
+
+.el-upload-dragger:hover {
+  border-color: $main;
+}
