@@ -1,8 +1,8 @@
 <template>
   <main v-if="wap">
-    <wap-chat/>
-    <button @click="undo">undo</button>
-    <button @click="redo">redo</button>
+    <editor-undo />
+    <wap-chat />
+
     <general-editor @themeChanged="themeChanged" />
     <wap-templates />
     <button
@@ -57,6 +57,7 @@ import { utilService } from '../services/util.service'
 import cmpEditor from '../cmps/app-cmps/cmp-editor.vue'
 import wapTemplates from '../cmps/app-cmps/wap-templates.vue'
 import generalEditor from '../cmps/app-cmps/general-editor.vue'
+import editorUndo from '../cmps/app-cmps/editor-undo.vue'
 
 import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
@@ -66,7 +67,6 @@ import wapForm from '../cmps/wap-sections/wap-form.vue'
 import wapVideo from '../cmps/wap-items/wap-video.vue'
 import wapMap from '../cmps/wap-items/wap-map.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
-
 import loginModal from '../cmps/app-cmps/login-modal.vue'
 import { eventBus } from '../services/event-bus.service.js'
 import getCmp from '../services/wap-cmps.service'
@@ -127,7 +127,7 @@ export default {
       let gHistory = this.loadFromStorage('gHistory')
       if (gHistory) {
         gHistory.changeIdx += 1
-        console.log( 'idx',gHistory.changeIdx)
+        console.log('idx', gHistory.changeIdx)
         gHistory.changes = gHistory.changes.slice(0, gHistory.changeIdx)
         gHistory.changes.push(this.wap)
         this.saveToStorage('gHistory', gHistory)
@@ -157,58 +157,20 @@ export default {
       // this.saveWapToStorage()
     },
 
+    // prettier-ignore
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
-      let cmpIdx
-      const cmp = this.wap.cmps.find(({ id }, idx) => {
-        if (id === cmpId) {
-          cmpIdx = idx
-          return true
-        }
-      })
+      let changedCmp = this.wap.cmps.find(cmp => cmp.id === cmpId)
+      if (childCmpId) changedCmp = changedCmp.cmps.find( childCmp => childCmp.id === childCmpId)
 
-      if (cmp?.cmps) {
-        const childCmpIndex = this.wap.cmps[cmpIdx].cmps.findIndex(
-          ({ id }) => id === childCmpId
-        )
-        if (updatedStyle) {
-          if (elType) {
-            this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
-              elType
-            ].options.style = updatedStyle.style
-          } else {
-            this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
-              elType
-            ].options.style = updatedStyle.style
-          }
-        }
-        if (content) {
-          if (elType) {
-            this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
-              elType
-            ].content.text = content
-          } else {
-            this.wap.cmps[cmpIdx].cmps[childCmpIndex].info[
-              elType
-            ].options.style = updatedStyle.style
-          }
-        }
-
-        return this.saveWapToStorage()
+      if(elType){
+        updatedStyle ? changedCmp.info[elType].options =updatedStyle : changedCmp.info[elType].content.text = content
+      }else{
+        updatedStyle ? changedCmp.options=updatedStyle :  changedCmp.content.text = content
       }
-
-      if (updatedStyle) {
-        if (elType)
-          this.wap.cmps[cmpIdx].info[elType].options.style = updatedStyle.style
-        else this.wap.cmps[cmpIdx].options.style = updatedStyle.style
-      }
-
-      if (content) {
-        if (elType) this.wap.cmps[cmpIdx].info[elType].content.text = content
-        else this.wap.cmps[cmpIdx].options.style = updatedStyle.style
-      }
-      // TODO: remove from here, its only for demonstartion
+     
       this.saveWapToStorage()
     },
+
     // TODO: work on logic, avoid repetition.
     async loadWap() {
       if (this.$route.params?.id) {
@@ -237,9 +199,13 @@ export default {
       if (this.wap.classState) {
         document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
       }
-      if (!this.loadFromStorage('gHistory')) {
-        this.saveToStorage('gHistory', { changes: [this.wap], changeIdx: 0 })
-        console.log('wa')
+      const gHistory = this.loadFromStorage('gHistory')
+      if (!gHistory || gHistory.wapId !== this.wap._id) {
+        this.saveToStorage('gHistory', {
+          changes: [this.wap],
+          changeIdx: 0,
+          wapId: this.wap._id,
+        })
       }
     },
 
@@ -248,6 +214,8 @@ export default {
     },
 
     select({ cmpId, elType, childCmpId }) {
+      sessionStorage.setItem('wa', 'wa')
+
       let cmp = this.wap.cmps.find(({ id }) => id === cmpId)
 
       if (childCmpId) {
@@ -286,6 +254,8 @@ export default {
       eventBus.on('onRemoveCmp', (cmpId) => {
         this.removeCmp(cmpId)
       })
+      eventBus.on('undo',this.undo)
+      eventBus.on('redo',this.redo)
     },
   },
 
@@ -294,15 +264,6 @@ export default {
     this.loadEvents()
     this.saveWapToStorage = utilService.debounce(this.saveWapToStorage, 1000)
   },
-
-  // watch: {
-  //   wap: {
-  //     handler(wap) {
-  //       // this.saveWapToStorage(wap)
-  //     },
-  //     deep: true,
-  //   },
-  // },
 
   components: {
     cmpEditor,
@@ -319,6 +280,7 @@ export default {
     generalEditor,
     wapMap,
     wapChat,
+    editorUndo
   },
 }
 </script>

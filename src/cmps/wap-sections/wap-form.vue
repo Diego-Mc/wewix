@@ -1,6 +1,6 @@
 <template>
   <article class="wap-form">
-    <h3 class="title" :style="info.title.options.style">
+    <!-- <h3 class="title" :style="info.title.options.style">
       Stay up to speed
       {{ info.title.content.text }}
     </h3>
@@ -8,24 +8,39 @@
       Sign up to get the latest Dance offers, updates, and tips straight to your
       inbox.
       {{ info.text.content.text }}
-    </p>
-    <form>
+    </p> -->
+    <!-- <form @submit.prevent="formSubmited">
       <wap-form-item type="email" />
-      <!-- <button class="btn" :style="info.btn.options.style">
+      <button class="btn" :style="info.btn.options.style">
         {{ info.btn.content.text }}
-      </button> -->
-    </form>
+      </button>
+    </form> -->
   </article>
 </template>
 
 <script>
+import { eventBus } from '../../services/event-bus.service'
 import wapFormItem from '../wap-items/wap-form-item.vue'
 export default {
   props: ['info', 'cmpId', 'options'],
-
+  data() {
+    return {
+      userInfo:{
+        email:'',
+        msg:'',
+        email:'',
+        at:'',
+        type:null
+      }
+    }
+  },
   methods: {
     updateContent(elType) {
       this.$emit('update', { cmpId, elType, content: info.text.content })
+    },
+    formSubmited() {
+      userInfo.at = Date.now()
+      eventBus.emit('formSubmited', { userInfo })
     },
   },
   created() {

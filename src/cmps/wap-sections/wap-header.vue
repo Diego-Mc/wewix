@@ -12,7 +12,7 @@
     <section class="logo">
       <h1
         class="title"
-        @blur="updateContent('title', $event)"
+        @input="updateContent('title', $event)"
         :style="info.title.options.style"
         @click.stop="$emit('select', { cmpId, elType: 'title' })"
         :contenteditable="$store.getters.isEditMode">
