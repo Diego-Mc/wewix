@@ -5,6 +5,7 @@
     </label>
     <i class="bi bi-arrow-right send-btn"></i>
     <input
+      v-if="type === 'email'"
       @focusin="focused = true"
       @focusout="focused = false"
       class="input email"

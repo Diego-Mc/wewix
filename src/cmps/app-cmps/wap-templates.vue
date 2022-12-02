@@ -21,7 +21,6 @@
 <script>
 import draggable from 'vuedraggable'
 import getCmp from '../../services/wap-cmps.service'
-
 import { wapVideo, wapMap } from '../../services/wap-new-model'
 
 export default {
