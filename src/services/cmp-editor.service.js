@@ -15,6 +15,18 @@ async function getMapData(locationName) {
             },
         }
     }
+
+    if (locationName === 'jerusalem') {
+        console.log('from cache');
+        return {
+            "title": "Jerusalem, Jerusalem Subdistrict, Jerusalem District, Israel",
+            "label": "JER",
+            "position": {
+                "lat": 31.7788242,
+                "lng": 35.2257626
+            }
+        }
+    }
     
     const api_key = 'pk.dc87f5d9af931a664e3281457d48045b'
     try {
