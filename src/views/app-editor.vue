@@ -25,7 +25,7 @@
         type: 'transition-group',
         name: !drag ? 'flip-list' : null,
       }"
-      @add="saveWapToStorage"
+      @add="onCmpsChange"
       v-model="wap.cmps"
       v-bind="dragOptions"
       @start="drag = true"
@@ -91,11 +91,11 @@ export default {
     removeCmp(cmpId) {
       const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
       this.wap.cmps.splice(cmpIndex, 1)
-      this.saveWapToStorage()
+      this.onCmpsChange()
     },
     themeChanged(classState) {
       this.wap.classState = classState
-      this.saveWapToStorage()
+      this.onCmpsChange()
     },
     // updateHistoryOnUpdate() {
     //   let gHistory = this.loadFromStorage('gHistory')
@@ -135,7 +135,7 @@ export default {
         this.saveToStorage('gHistory', { changes: [this.wap], changeIdx: 0 })
       }
     },
-    saveWapToStorage() {
+    onCmpsChange() {
       this.updateWap()
       this.saveLastChange()
       // this.updateHistoryOnUpdate()
@@ -154,7 +154,7 @@ export default {
 
     onDrop() {
       this.drag = false
-      // this.saveWapToStorage()
+      // this.onCmpsChange()
     },
 
     // prettier-ignore
@@ -168,7 +168,7 @@ export default {
         updatedStyle ? changedCmp.options=updatedStyle :  changedCmp.content.text = content
       }
      
-      this.saveWapToStorage()
+      this.onCmpsChange()
     },
 
     // TODO: work on logic, avoid repetition.
@@ -217,7 +217,7 @@ export default {
       sessionStorage.setItem('wa', 'wa')
 
       let cmp = this.wap.cmps.find(({ id }) => id === cmpId)
-
+      
       if (childCmpId) {
         cmp = cmp.cmps.find(({ id }) => id === childCmpId)
         this.selectedCmp.childCmpId = childCmpId
@@ -230,13 +230,20 @@ export default {
     },
     getEmptyWap() {
       return {
+        
         cmps: [],
       }
+    },
+    addUserInfo(userInfo) {
+      if(userInfo.type === 'subscription') this.wap.usersData.subscriptions.push(userInfo)
+      else this.wap.usersData.contacts.push(userInfo)
+      this.updateWap()
     },
     loadEvents() {
       eventBus.on(
         'cmpUpdated',
         ({ cmpId, updatedStyle, elType, content, childCmpId }) => {
+          console.log('updatedStyle:', updatedStyle)
           this.handleUpdate({
             cmpId,
             updatedStyle,
@@ -249,20 +256,21 @@ export default {
       eventBus.on('onInnerCmpDrop', ({ cmpId, cmps }) => {
         const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
         this.wap.cmps[cmpIndex].cmps = cmps
-        this.saveWapToStorage()
+        this.onCmpsChange()
       })
       eventBus.on('onRemoveCmp', (cmpId) => {
         this.removeCmp(cmpId)
       })
-      eventBus.on('undo',this.undo)
-      eventBus.on('redo',this.redo)
+      eventBus.on('formSubmited', this.addUserInfo)
+      eventBus.on('undo', this.undo)
+      eventBus.on('redo', this.redo)
     },
   },
 
   created() {
     this.loadWap()
     this.loadEvents()
-    this.saveWapToStorage = utilService.debounce(this.saveWapToStorage, 1000)
+    this.onCmpsChange = utilService.debounce(this.onCmpsChange, 1000)
   },
 
   components: {
@@ -280,7 +288,7 @@ export default {
     generalEditor,
     wapMap,
     wapChat,
-    editorUndo
+    editorUndo,
   },
 }
 </script>

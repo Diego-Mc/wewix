@@ -9,12 +9,19 @@
       inbox.
       {{ info.text.content.text }}
     </p> -->
-    <!-- <form @submit.prevent="formSubmited">
-      <wap-form-item type="email" />
-      <button class="btn" :style="info.btn.options.style">
-        {{ info.btn.content.text }}
+    <form @submit.prevent="formSubmited">
+      <wap-form-item type="email" v-model="userInfo.email" />
+      <wap-form-item type="msg" v-model="userInfo.msg" />
+      <!-- :style="info.btn.options.style" -->
+      <button @click="userInfo.type='message'" class="btn">
+        submit
+        <!-- {{ info.btn.content.text }} -->
       </button>
-    </form> -->
+      <button @click="userInfo.type='subscription'" class="btn">
+        subscribe
+        <!-- {{ info.btn.content.text }} -->
+      </button>
+    </form>
   </article>
 </template>
 
@@ -25,13 +32,13 @@ export default {
   props: ['info', 'cmpId', 'options'],
   data() {
     return {
-      userInfo:{
-        email:'',
-        msg:'',
-        email:'',
-        at:'',
-        type:null
-      }
+      userInfo: {
+        email: '',
+        msg: '',
+        email: '',
+        at: '',
+        type: null,
+      },
     }
   },
   methods: {
@@ -39,13 +46,11 @@ export default {
       this.$emit('update', { cmpId, elType, content: info.text.content })
     },
     formSubmited() {
-      userInfo.at = Date.now()
-      eventBus.emit('formSubmited', { userInfo })
+      this.userInfo.at = Date.now()
+      eventBus.emit('formSubmited', this.userInfo)
     },
   },
-  created() {
-    console.log(this.info)
-  },
+  created() {},
   components: {
     wapFormItem,
   },

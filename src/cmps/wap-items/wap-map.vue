@@ -1,42 +1,65 @@
 <!-- AIzaSyBOnIuYA6sTb4lF2WYWYJIUouv3HjIx2mg -->
 <template>
-  <GoogleMap 
+  <section class="wap-map" @click.stop="$emit('select', { cmpId })">
+    <GoogleMap
+    
     api-key="AIzaSyDKvG9VduLBhsz5HMIEo1Q9RQaX6B24Mck" 
-    style="width: 100%; 
-    height: 500px" 
+    style="width: 100%; height: 500px"
     :center="center"
     :zoom="10"
   >
-    <Marker v-for="m in markers" :options="m" @click="center = m.position" />
+    <Marker :options="marker"/>
   </GoogleMap>
+  <button @click="log">log</button>
+  </section>
+
 </template>
 
 <script>
+//v-for="m in markers"
+//@click="center = m.position"
 import { GoogleMap, Marker } from 'vue3-google-map'
-
 export default {
-  props: {},
+  props: {
+    cmpId: String,
+    options: Object
+  },
   components: { GoogleMap, Marker },
   data() {
     return {
-      center: { lat: 31.7683, lng: 35.2137 },
-      markers: [
-        {
-          title: 'Tel-Aviv',
-          label: 'TLV',
-          position: { lat: 32.0853, lng: 34.7818 },
-        },
-        {
-          title: 'Jerusalem',
-          position: { lat: 31.7683, lng: 35.2137 },
-        },
-        {
-          title: 'Rehovot',
-          position: { lat: 31.8928, lng: 34.8113 },
-        },
-      ],
+      // center: { lat: 31.7683, lng: 35.2137 },
+      // markers: [,
+      // ],
     }
   },
+  computed: {
+      center() {
+          return (this.options?.meta?.mapData?.position?.lat) ? this.options.meta.mapData.position : { lat: 32.0853, lng: 34.7818 }
+      },
+
+      marker() {
+          return  (this.options?.meta?.mapData?.position?.lat) ? 
+                  this.options.meta.mapData : 
+                  {title: 'Tel-Aviv', label: 'TLV', position: { lat: 32.0853, lng: 34.7818 },
+        }
+
+      }
+  },
+
+  methods: {
+    log() {
+      console.log('center:', this.center)
+      console.log('marker:', this.marker)
+    }
+  }
+
 }
 </script>
+
+<style>
+.wap-map {
+  padding: 50px;
+  background-color: violet;
+}
+</style>
   
