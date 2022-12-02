@@ -12,7 +12,7 @@
     <section class="logo">
       <h1
         class="title"
-        @input="updateContent('title', $event)"
+        @blur="updateContent('title', $event)"
         :style="info.title.options.style"
         @click.stop="$emit('select', { cmpId, elType: 'title' })"
         :contenteditable="$store.getters.isEditMode">
@@ -44,7 +44,7 @@ export default {
   props: ['info', 'cmpId', 'options'],
   methods: {
     updateContent(elType, e) {
-      eventBus.emit('update', {
+      eventBus.emit('cmpUpdated', {
         cmpId: this.cmpId,
         elType,
         content: e.target.innerText,

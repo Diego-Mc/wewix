@@ -65,7 +65,11 @@ export default {
       })
     },
     updateContent(elType) {
-      this.$emit('update', { cmpId, elType, content: info.text.content })
+      this.$emit('cmpUpdated', {
+        cmpId: this.cmpId,
+        elType,
+        // content: info.text.content,
+      })
     },
   },
 }

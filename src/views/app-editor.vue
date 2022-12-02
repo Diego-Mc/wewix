@@ -52,6 +52,7 @@
 <script>
 import draggable from 'vuedraggable'
 
+import { appEditorService } from '../services/app-editor.service'
 import { utilService } from '../services/util.service'
 
 import cmpEditor from '../cmps/app-cmps/cmp-editor.vue'
@@ -97,80 +98,62 @@ export default {
       this.wap.classState = classState
       this.onCmpsChange()
     },
-    // updateHistoryOnUpdate() {
-    //   let gHistory = this.loadFromStorage('gHistory')
-    //   gHistory = [
-    //     ...gHistory.changes.slice(0, gHistory.changeIdx + 1),
-    //     gHistory.changes[gHistory.changes.length - 1],
-    //   ]
-    //   console.log(gHistory)
-    //   this.saveToStorage('gHistory', gHistory)
-    // },
-    // move to component
     undo() {
-      const gHistory = this.loadFromStorage('gHistory')
+      const gHistory = appEditorService.loadFromStorage('gHistory')
       if (!gHistory.changeIdx) return
       gHistory.changeIdx -= 1
       this.wap = gHistory.changes[gHistory.changeIdx]
-      this.saveToStorage('gHistory', gHistory)
+      appEditorService.saveToStorage('gHistory', gHistory)
       this.updateWap()
     },
     redo() {
-      const gHistory = this.loadFromStorage('gHistory')
+      const gHistory = appEditorService.loadFromStorage('gHistory')
       console.log(gHistory.changes.length, gHistory.changeIdx)
       if (!gHistory || gHistory.changeIdx >= gHistory.changes.length - 1) return
       gHistory.changeIdx += 1
       this.wap = gHistory.changes[gHistory.changeIdx]
-      this.saveToStorage('gHistory', gHistory)
+      appEditorService.saveToStorage('gHistory', gHistory)
     },
     saveLastChange() {
-      let gHistory = this.loadFromStorage('gHistory')
+      let gHistory = appEditorService.loadFromStorage('gHistory')
       if (gHistory) {
         gHistory.changeIdx += 1
-        console.log('idx', gHistory.changeIdx)
         gHistory.changes = gHistory.changes.slice(0, gHistory.changeIdx)
         gHistory.changes.push(this.wap)
-        this.saveToStorage('gHistory', gHistory)
+        appEditorService.saveToStorage('gHistory', gHistory)
       } else {
-        this.saveToStorage('gHistory', { changes: [this.wap], changeIdx: 0 })
+        appEditorService.saveToStorage('gHistory', {
+          changes: [this.wap],
+          changeIdx: 0,
+        })
       }
     },
     onCmpsChange() {
       this.updateWap()
       this.saveLastChange()
-      // this.updateHistoryOnUpdate()
     },
     async updateWap() {
       await this.$store.dispatch({ type: 'updateWap', wap: this.wap })
+      console.log('cmp saved')
     },
     //TODO: removing them completly or move to service.
-    saveToStorage(key, val) {
-      localStorage[key] = JSON.stringify(val)
-    },
-    loadFromStorage(key) {
-      const str = localStorage.getItem(key)
-      return JSON.parse(str)
-    },
-
     onDrop() {
       this.drag = false
-      // this.onCmpsChange()
+      this.onCmpsChange()
     },
-
     // prettier-ignore
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
       let changedCmp = this.wap.cmps.find(cmp => cmp.id === cmpId)
       if (childCmpId) changedCmp = changedCmp.cmps.find( childCmp => childCmp.id === childCmpId)
 
-      if(elType){
-        updatedStyle ? changedCmp.info[elType].options =updatedStyle : changedCmp.info[elType].content.text = content
-      }else{
+      if (elType) {
+        updatedStyle ? changedCmp.info[elType].options = updatedStyle : changedCmp.info[elType].content.text = content
+      } else {
         updatedStyle ? changedCmp.options=updatedStyle :  changedCmp.content.text = content
       }
      
       this.onCmpsChange()
     },
-
     // TODO: work on logic, avoid repetition.
     async loadWap() {
       if (this.$route.params?.id) {
@@ -179,45 +162,33 @@ export default {
           id: this.$route.params.id,
         })
         this.wap = JSON.parse(JSON.stringify(this.$store.getters.editedWap))
-      } else if (this.loadFromStorage('editedWapId')) {
-        await this.$store.dispatch({
-          type: 'getWap',
-          id: this.loadFromStorage('editedWapId'),
-        })
-        this.wap = JSON.parse(JSON.stringify(this.$store.getters.editedWap))
       } else {
-        // add condition: user not logged in.
-        this.wap = this.getEmptyWap()
+        this.wap = appEditorService.getEmptyWap()
         const editedWapId = await this.$store.dispatch({
           type: 'updateWap',
           wap: this.wap,
         })
         this.wap._id = editedWapId
-        this.saveToStorage('editedWapId', editedWapId)
+        // fix this.
+        this.$router.push('edit/' + editedWapId)
       }
-
-      if (this.wap.classState) {
-        document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
-      }
-      const gHistory = this.loadFromStorage('gHistory')
+    },
+    publishWap() {
+      this.updateWap(this.wap)
+    },
+    initHistory() {
+      const gHistory = appEditorService.loadFromStorage('gHistory')
       if (!gHistory || gHistory.wapId !== this.wap._id) {
-        this.saveToStorage('gHistory', {
+        appEditorService.saveToStorage('gHistory', {
           changes: [this.wap],
           changeIdx: 0,
           wapId: this.wap._id,
         })
       }
     },
-
-    publishWap() {
-      this.updateWap(this.wap)
-    },
-
     select({ cmpId, elType, childCmpId }) {
-      sessionStorage.setItem('wa', 'wa')
-
       let cmp = this.wap.cmps.find(({ id }) => id === cmpId)
-      
+
       if (childCmpId) {
         cmp = cmp.cmps.find(({ id }) => id === childCmpId)
         this.selectedCmp.childCmpId = childCmpId
@@ -228,14 +199,10 @@ export default {
       this.selectedCmp.elType = elType
       this.isOpenCmpEditor = true
     },
-    getEmptyWap() {
-      return {
-        
-        cmps: [],
-      }
-    },
+
     addUserInfo(userInfo) {
-      if(userInfo.type === 'subscription') this.wap.usersData.subscriptions.push(userInfo)
+      if (userInfo.type === 'subscription')
+        this.wap.usersData.subscriptions.push(userInfo)
       else this.wap.usersData.contacts.push(userInfo)
       this.updateWap()
     },
@@ -255,7 +222,7 @@ export default {
       eventBus.on('onInnerCmpDrop', ({ cmpId, cmps }) => {
         const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
         this.wap.cmps[cmpIndex].cmps = cmps
-        this.onCmpsChange()
+        this.updateWap()
       })
       eventBus.on('onRemoveCmp', (cmpId) => {
         this.removeCmp(cmpId)
@@ -264,12 +231,26 @@ export default {
       eventBus.on('undo', this.undo)
       eventBus.on('redo', this.redo)
     },
+    checkNewVisit() {
+      if (!sessionStorage.getItem('newVisit', 'new!')) {
+        // make visitcount default
+        const currVisit = { at: Date.now() }
+        this.wap.visitCount
+          ? this.wap.visitCount.push(currVisit)
+          : (this.wap.visitCount = [currVisit])
+        sessionStorage.setItem('newVisit', 'new!')
+      }
+    },
   },
-
-  created() {
-    this.loadWap()
+  async created() {
+    this.onCmpsChange = utilService.debounce(this.onCmpsChange, 500)
+    await this.loadWap()
     this.loadEvents()
-    this.onCmpsChange = utilService.debounce(this.onCmpsChange, 1000)
+    this.initHistory()
+    this.checkNewVisit() // TODO: only on published mode.
+
+    if (this.wap.classState)
+      document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
   },
 
   components: {

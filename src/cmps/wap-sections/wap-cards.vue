@@ -64,10 +64,6 @@ export default {
         cmps: [...this.cards],
       })
     },
-
-    // updateContent({ cmpId, elType, content, childCmpId }) {
-    //   this.$emit('update', { cmpId, elType, content, childCmpId })
-    // },
   },
 }
 </script>

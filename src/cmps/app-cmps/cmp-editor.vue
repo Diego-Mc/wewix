@@ -131,7 +131,7 @@ export default {
     },
 
     updateContent() {
-      this.$emit('update', { cmpId: id, elType, content: info.text.content, childCmpId: this.childCmpId })
+      this.$emit('cmpUpdated', { cmpId: id, elType, content: info.text.content, childCmpId: this.childCmpId })
     },
 
     removeCmp() {

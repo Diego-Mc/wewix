@@ -11,7 +11,7 @@
       muted></video>
     <h2
       class="title"
-      @change="updateContent('title')"
+      @input="updateContent('title',$event)"
       :style="info.title.options.style"
       @click.stop="$emit('select', { cmpId, elType: 'title' })"
       :contenteditable="$store.getters.isEditMode">
@@ -19,7 +19,7 @@
     </h2>
     <p
       class="text"
-      @change="updateContent('text')"
+      @input="updateContent('text',$event)"
       :style="info.text.options.style"
       @click.stop="$emit('select', { cmpId, elType: 'text' })"
       :contenteditable="$store.getters.isEditMode">
@@ -31,7 +31,7 @@
       @click.stop="$emit('select', { cmpId, elType: 'btn' })">
       <span
         :contenteditable="$store.getters.isEditMode"
-        @change="updateContent('btn')">
+        @input="updateContent('btn',$event)">
         {{ info.btn.content.text }}
       </span>
     </button>
@@ -43,8 +43,12 @@ import { eventBus } from '../../services/event-bus.service'
 export default {
   props: ['info', 'cmpId', 'options'],
   methods: {
-    updateContent(elType) {
-      eventBus.emit('update', { cmpId, elType, content: info.text.content })
+    updateContent(elType, e) {
+      eventBus.emit('cmpUpdated', {
+        cmpId: this.cmpId,
+        elType,
+        content: e.target.innerText,
+      })
     },
   },
   created() {},
