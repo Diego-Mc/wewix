@@ -2,6 +2,7 @@
   <!-- $emit('select', { cmpId}) -->
   <draggable
     class="list-group wap-cards"
+    @click.stop="$emit('select', { cmpId })"
     :style="options.style"
     :component-data="{
       type: 'transition-group',
