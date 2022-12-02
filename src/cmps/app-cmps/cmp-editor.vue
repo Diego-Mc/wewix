@@ -1,43 +1,63 @@
 <template>
-  <section v-if="editOptions" class="cmp-editor">
-
+  
+  <section v-if="editOptions">
     <section class="style-editor">
       <div v-if="isOptionsContain('fontFamily')">
-        Font Picker
-        <select @change="updateOptions" v-model="updatedOptions.style.fontFamily">
+        
+        <edit-font-section @select="updateOptionsStyle"/>
+        <!-- <select
+          @change="updateOptions"
+          v-model="updatedOptions.style.fontFamily">
           <option>arial</option>
           <option>Gill Sans</option>
           <option>Calibri</option>
-        </select>
+        </select> -->
       </div>
 
       <div v-if="isOptionsContain('backgroundColor')">
-        Background Color Picker
-        <input @input="updateOptions" v-model="updatedOptions.style.backgroundColor" type="color" />
+        <edit-bg-color-section @select="updateOptionsStyle"/>
+        <!-- <input
+          @input="updateOptions"
+          v-model="updatedOptions.style.backgroundColor"
+          type="color" /> -->
       </div>
 
       <div v-if="isOptionsContain('color')">
-        Color Picker
-        <input @input="updateOptions" v-model="updatedOptions.style.color" type="color" />
+        <edit-color-section @select="updateOptionsStyle"/>
+        <!-- <input
+          @input="updateOptions"
+          v-model="updatedOptions.style.color"
+          type="color" /> -->
       </div>
 
       <div v-if="isOptionsContain('fontWeight')">
-        Font Weight Picker
-        <select @change="updateOptions" v-model="updatedOptions.style.fontWeight">
+        <edit-font-weight-section @select="updateOptionsStyle"/>
+
+        <!-- <select
+          @change="updateOptions"
+          v-model="updatedOptions.style.fontWeight">
           <option>lighter</option>
           <option>normal</option>
           <option>bold</option>
           <option>bolder</option>
-        </select>
+        </select> -->
       </div>
 
       <div v-if="isOptionsContain('borderRadius')">
-        Border Radius Picker
-        <input @input="updateBorderRadius" type="range" v-model="tempBorderRadius" min="0.1" max="2" step="0.1" />
+        <edit-radius-section @select="updateBorderRadius"/>
+
+        <!-- <input
+          @input="updateBorderRadius"
+          type="range"
+          v-model="tempBorderRadius"
+          min="0.1"
+          max="2"
+          step="0.1" /> -->
       </div>
 
+      <!-- TODO: add style to fontSize -->
       <div v-if="isOptionsContain('fontSize')">
-        Font Size Picker
+        font size
         <select @change="updateOptions" v-model="updatedOptions.style.fontSize">
           <option>small</option>
           <option>medium</option>
@@ -49,38 +69,40 @@
 
     <section class="content-editor">
       <div v-if="isOptionsContain('src')">
-        Img Picker
-        <input @input="updateOptions" v-model="updatedOptions.meta.src" type="text" placeholder="src" />
+        <edit-upload-section />
+
+        <input
+          @input="updateOptions"
+          v-model="updatedOptions.meta.src"
+          type="text"
+          placeholder="src" />
       </div>
 
       <div v-if="isOptionsContain('link')">
         Link
-        <input @input="updateOptions" v-model="updatedOptions.meta.link" type="text" placeholder="link" />
+        <input
+          @input="updateOptions"
+          v-model="updatedOptions.meta.link"
+          type="text"
+          placeholder="link" />
       </div>
 
       <div v-if="updatedOptions.meta.mapData">
         Map Data
-        <input @input="handleMapInput($event)" type="text">
+
+        <input @input="handleMapInput($event)" type="text" />
         <div v-if="isMapLocationLoader">
-            <span v-if="loadedMapLocation">
-              {{ loadedMapLocation.title }}
-            </span>
-            <span v-else>
-              Loading
-            </span>
+          <span v-if="loadedMapLocation">
+            {{ loadedMapLocation.title }}
+          </span>
+          <span v-else> Loading </span>
         </div>
-
-
       </div>
-
 
       <div>
         <button @click.stop="removeCmp">Delete</button>
       </div>
-
     </section>
-
-
   </section>
 </template>
 
@@ -89,9 +111,15 @@ import { cmpEditorService } from '../../services/cmp-editor.service'
 import { eventBus } from '../../services/event-bus.service'
 import { utilService } from '../../services/util.service'
 
+import editFontSection from '../main-editor/cmp-edit-sections/edit-font-section.vue'
+import editFontWeightSection from '../main-editor/cmp-edit-sections/edit-font-weight-section.vue'
+import editColorSection from '../main-editor/cmp-edit-sections/edit-color-section.vue'
+import editBgColorSection from '../main-editor/cmp-edit-sections/edit-bg-color-section.vue'
+import editRadiusSection from '../main-editor/cmp-edit-sections/edit-radius-section.vue'
+import editUploadSection from '../main-editor/cmp-edit-sections/edit-upload-section.vue'
+
 import mapEdit from './map-edit.vue'
 export default {
-
   props: {
     id: String,
     childCmpId: String,
@@ -104,8 +132,11 @@ export default {
       tempBorderRadius: parseInt(this.editOptions.style?.borderRadius),
 
       loadedMapLocation: null,
-      isMapLocationLoader: false
+      isMapLocationLoader: false,
     }
+  },
+  created() {
+   
   },
   onRemove() {
     this.$emit('onRemoveCmp', this.cmpId)
@@ -113,11 +144,17 @@ export default {
 
   methods: {
     isOptionsContain(type) {
+
       const options = [
         ...Object.keys(this.editOptions.style),
         ...Object.keys(this.editOptions.meta),
       ]
       return options.includes(type)
+    },
+
+    updateOptionsStyle({key,val}){
+      this.updatedOptions.style[key] = val
+      this.updateOptions()
     },
 
     //TODO CHANGE NAME
@@ -126,30 +163,36 @@ export default {
         cmpId: this.id,
         elType: this.elType,
         updatedStyle: this.updatedOptions,
-        childCmpId: this.childCmpId
+        childCmpId: this.childCmpId,
       })
     },
 
     updateContent() {
-      this.$emit('update', { cmpId: id, elType, content: info.text.content, childCmpId: this.childCmpId })
+      this.$emit('cmpUpdated', {
+        cmpId: id,
+        elType,
+        content: info.text.content,
+        childCmpId: this.childCmpId,
+      })
     },
 
     removeCmp() {
       this.$store.dispatch({
         type: 'removeCmp',
-        cmpId: (this.childCmpId) ? this.childCmpId : this.id
+        cmpId: this.childCmpId ? this.childCmpId : this.id,
       })
     },
 
-    updateBorderRadius() {
+    updateBorderRadius(key,val) {
+      this.tempBorderRadius = val
       const borderRadius = this.tempBorderRadius + 'em'
       this.editOptions.style.borderRadius = borderRadius
       this.updateOptions()
     },
 
     handleMapInput(ev) {
-        this.isMapLocationLoader = true
-        this.getMapData(ev)
+      this.isMapLocationLoader = true
+      this.getMapData(ev)
     },
 
     async getMapData(ev) {
@@ -158,21 +201,20 @@ export default {
       try {
         this.loadedMapLocation = await cmpEditorService.getMapData(locationName)
 
-        if (!this.loadedMapLocation) throw new Error('Map Has\'nt been loaded')
+        if (!this.loadedMapLocation) throw new Error("Map Has'nt been loaded")
 
         // Handle state when getting data
         this.updatedOptions.meta.mapData = this.loadedMapLocation
         this.updateOptions()
-      } catch(err) {
+      } catch (err) {
         this.closeMapLocationLoader()
-        console.log(err);
+        console.log(err)
       }
-
     },
 
     closeMapLocationLoader() {
-        this.isMapLocationLoader = false
-    }
+      this.isMapLocationLoader = false
+    },
   },
   watch: {
     editOptions() {
@@ -180,16 +222,21 @@ export default {
     },
     id() {
       this.tempBorderRadius = parseInt(this.editOptions.style?.borderRadius)
-    }
+    },
   },
 
   created() {
     this.getMapData = utilService.debounce(this.getMapData, 1500)
-
   },
 
-  component: {
+  components: {
     mapEdit,
-  }
+    editFontSection,
+    editFontWeightSection,
+    editColorSection,
+    editBgColorSection,
+    editRadiusSection,
+    editUploadSection,
+  },
 }
 </script>

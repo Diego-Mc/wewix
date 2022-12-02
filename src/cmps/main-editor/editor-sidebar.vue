@@ -40,41 +40,40 @@
       <section
         class="section-cmps"
         :class="{ open: isOpen('section', 'header') }">
-        <cmp-item />
-        <cmp-item />
-        <cmp-item />
-        <cmp-item />
-        <cmp-item />
-        <cmp-item />
-        <cmp-item />
-        <cmp-item />
-        <cmp-item />
-        <cmp-item />
-        <cmp-item />
-        <cmp-item />
+        <wap-templates />
       </section>
     </section>
     <section
       class="cmp-editor"
       :class="{ open: isOpen('editOpt', 'edit-cmp') }">
       <h2 class="title">Section</h2>
-      <edit-font-section />
-      <edit-font-weight-section />
-      <edit-color-section />
-      <edit-bg-color-section />
-      <edit-radius-section />
-      <edit-upload-section />
+      <cmp-editor
+        v-if="selectedCmp.id"
+        :id="selectedCmp.id"
+        :childCmpId="selectedCmp.childCmpId"
+        :editOptions="selectedCmp.options"
+        :elType="selectedCmp.elType" />
+     
     </section>
+
     <section
       class="page-editor cmp-editor"
       :class="{ open: isOpen('editOpt', 'edit-site') }">
       <h2 class="title">Section</h2>
       <edit-font-section />
+      <general-editor @themeChanged="themeChanged" />
     </section>
   </section>
 </template>
 
 <script>
+import { eventBus } from '../../services/event-bus.service'
+import cmpEditor from '../app-cmps/cmp-editor.vue'
+
+import wapTemplates from '../app-cmps/wap-templates.vue'
+import generalEditor from '../app-cmps/general-editor.vue'
+
+//------------------------------------------------------------/
 import editorBtnGroup from '../main-editor/editor-items/editor-btn-group.vue'
 import cmpItem from './editor-items/cmp-item.vue'
 import editorColorPicker from './editor-items/editor-color-picker.vue'
@@ -86,7 +85,11 @@ import editBgColorSection from '../main-editor/cmp-edit-sections/edit-bg-color-s
 import editRadiusSection from '../main-editor/cmp-edit-sections/edit-radius-section.vue'
 import editUploadSection from '../main-editor/cmp-edit-sections/edit-upload-section.vue'
 
+
 export default {
+  props: {
+    selectedCmp: Object,
+  },
   data() {
     return {
       editOpt: '',
@@ -102,7 +105,22 @@ export default {
     isOpen(key, val) {
       return this[key] === val
     },
+    openCmpEditor() {
+      this.section = 'edit-cmp'
+      this.editOpt = 'edit-cmp'
+    },
   },
+
+  watch: {
+    selectedCmp: {
+      handler() {
+        this['editOpt'] === 'edit-cmp'
+        this.openCmpEditor()
+      },
+      deep: true,
+    },
+  },
+
   components: {
     editorBtnGroup,
     cmpItem,
@@ -113,6 +131,9 @@ export default {
     editRadiusSection,
     editUploadSection,
     editBgColorSection,
+    wapTemplates,
+    generalEditor,
+    cmpEditor,
   },
 }
 </script>

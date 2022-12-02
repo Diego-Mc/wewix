@@ -3,7 +3,7 @@
     <img
       v-if="info.img"
       :style="info?.img?.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'img' })"
+      @click.stop="onElClick('img')"
       class="card-img"
       :src="info?.img?.options.meta.src" />
     <span
@@ -11,7 +11,7 @@
       class="details"
       :style="info?.details?.options.style">
       <span
-        @click.stop="$emit('select', { cmpId, childCmpId, elType: 'details' })"
+        @click.stop="onElClick('details')"
         @input="updateContent('details', $event)"
         :contenteditable="$store.getters.isEditMode">
         {{ info?.details?.content.text }}
@@ -20,7 +20,7 @@
         v-if="info.tag"
         class="tag"
         :style="info?.tag?.options.style"
-        @click.stop="$emit('select', { cmpId, childCmpId, elType: 'tag' })"
+        @click.stop="onElClick('tag')"
         @input="updateContent('tag', $event)"
         :contenteditable="$store.getters.isEditMode">
         {{ info?.tag?.content.text }}
@@ -31,7 +31,7 @@
       v-if="info.title"
       class="title"
       :style="info?.title?.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'title' })"
+      @click.stop="onElClick('title')"
       @input="updateContent('title', $event)"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.title?.content.text }}
@@ -41,7 +41,7 @@
       v-if="info.text"
       class="text"
       :style="info?.text?.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'text' })"
+      @click.stop="onElClick('text')"
       @input="updateContent('text', $event)"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.text?.content.text }}
@@ -51,7 +51,7 @@
       class="btn"
       v-if="info.btn"
       :style="info?.btn?.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'btn' })">
+      @click.stop="onElClick('btn')">
       <span
         @input="updateContent('btn', $event)"
         :contenteditable="$store.getters.isEditMode">
@@ -73,6 +73,13 @@ export default {
         elType,
         content: e.target.innerText,
         childCmpId: this.childCmpId,
+      })
+    },
+    onElClick(elType) {
+      eventBus.emit('select', {
+        cmpId: this.cmpId,
+        childCmpId: this.childCmpId,
+        elType,
       })
     },
   },

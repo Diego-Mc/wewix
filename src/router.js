@@ -25,7 +25,7 @@ const routes = [
   {
     path: '/edit/:id?',
     name: 'app-editor',
-    component: appEditor,
+    component: testTest,
   },
   {
     path: '/dashboard',

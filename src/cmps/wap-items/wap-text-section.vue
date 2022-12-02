@@ -13,9 +13,9 @@
     <h2
       v-if="info.title"
       class="title"
-      @change="updateContent('title')"
+      @input="updateContent('title', $event)"
       :style="info?.title?.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'title' })"
+      @click.stop="onElClick('title')"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.title?.content.text }}
     </h2>
@@ -31,9 +31,9 @@
     <p
       v-if="info.text"
       class="text"
-      @change="updateContent('text')"
+      @input="updateContent('text', $event)"
       :style="info?.text?.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'text' })"
+      @click.stop="onElClick('text')"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.text?.content.text }}
     </p>
@@ -49,24 +49,33 @@
     <button
       v-if="info.btn"
       class="btn"
+      @input="updateContent('btn', $event)"
       :style="info?.btn?.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'btn' })"
-      @change="updateContent('btn')">
+      @click.stop="onElClick('btn')">
       {{ info?.btn?.content.text || 'Find us' }}
     </button>
   </section>
 </template>
 
 <script>
+import { eventBus } from '../../services/event-bus.service'
 export default {
   props: ['info', 'cmpId', 'childCmpId', 'options', 'typeId'],
   methods: {
-    updateContent(elType) {
-      this.$emit('update', { cmpId, elType, content: info.text.content })
+    updateContent(elType, e) {
+      this.$emit('cmpUpdated', {
+        cmpId: this.cmpId,
+        elType,
+        content: e.target.innerText,
+      })
     },
-  },
-  created() {
-    console.log(this.info)
+    onElClick(elType) {
+      eventBus.emit('select', {
+        cmpId: this.cmpId,
+        childCmpId: this.childCmpId,
+        elType,
+      })
+    },
   },
 }
 </script>

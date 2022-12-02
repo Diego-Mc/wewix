@@ -1,6 +1,5 @@
 <template>
   <section>
-    <h3>sections to add</h3>
     <draggable
       :sort="false"
       class="list-group"
