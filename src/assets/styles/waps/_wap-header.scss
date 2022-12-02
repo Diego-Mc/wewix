@@ -1,46 +1,100 @@
 .wap-header {
-  display: flex;
-  width: 100%;
-  padding-inline: 30px;
-  justify-content: space-between;
-  height: 80px;
-  gap: 40px;
-  align-items: center;
-  background-color: var(--clr-1);
-  color: var(--clr-3);
+  @include grid();
+  grid-template-areas: 'logo logo nav nav nav nav nav nav nav nav cta cta';
+
+  color: var(--clr-1);
+  background-color: var(--clr-3);
   .logo {
+    grid-area: logo;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     cursor: default;
-    .img-wrapper {
-      width: 40px;
+    .title {
+      font-size: rem(22px);
+      font-weight: 400;
     }
     img {
-      width: 100%;
+      height: 30px;
     }
   }
   nav {
-    flex: 1;
+    grid-area: nav;
     ul {
-      list-style-type: none;
       display: flex;
       gap: 40px;
-      justify-content: flex-end;
+      justify-content: center;
       li {
-        transition: filter 0.2s;
         cursor: pointer;
       }
     }
   }
   .btn {
-    padding: 0.8em 2em;
+    grid-area: cta;
+    justify-self: end;
+    width: fit-content;
+    height: fit-content;
+    padding: 1em 1.4em;
     font-size: rem(14px);
     transition: filter 0.2s;
-    border-radius: 4rem;
-    background-color: var(--clr-2);
+    background-color: var(--clr-1);
+    color: var(--clr-3);
     &:hover {
       filter: brightness(120%);
     }
   }
 }
+
+// change to other form of selection
+// .wap-header {
+//   max-width: 1280px;
+//   padding-inline: 30px;
+//   display: flex;
+//   width: 100%;
+//   justify-content: space-between;
+//   height: 80px;
+//   align-items: center;
+//   background-color: var(--clr-3);
+//   color: var(--clr-1);
+//   .logo {
+//     display: flex;
+//     align-items: center;
+//     gap: 6px;
+//     cursor: default;
+//     .img-wrapper {
+//       width: 40px;
+//     }
+//     img {
+//       width: 100%;
+//     }
+//   }
+//   nav {
+//     ul {
+//       list-style-type: none;
+//       display: flex;
+//       gap: 40px;
+//       justify-content: flex-end;
+//       li {
+//         transition: filter 0.2s;
+//         cursor: pointer;
+//       }
+//     }
+//   }
+//   .btn {
+//     // padding: 0.8em 2em;
+//     // font-size: rem(14px);
+//     // transition: filter 0.2s;
+//     // border-radius: 4rem;
+//     // background-color: var(--clr-2);
+//     // &:hover {
+//     //   filter: brightness(120%);
+//     // }
+//     background-color: var(--clr-1);
+//     color: var(--clr-3);
+//     padding: 0.8em 1.1em;
+//     border-radius: 0;
+//     &:hover {
+//       filter: brightness(120%);
+//     }
+//   }
+// }

@@ -1,53 +1,61 @@
 <template>
-  <article class="wap-card">
+  <article class="wap-card" :class="'type-' + typeId">
     <img
-      :style="info.img.options.style"
+      v-if="info.img"
+      :style="info?.img?.options.style"
       @click.stop="onElClick('img')"
       class="card-img"
-      :src="info.img.options.meta.src" />
-    <span class="details" :style="info.details.options.style">
+      :src="info?.img?.options.meta.src" />
+    <span
+      v-if="info.details"
+      class="details"
+      :style="info?.details?.options.style">
       <span
         @click.stop="onElClick('details')"
         @input="updateContent('details', $event)"
         :contenteditable="$store.getters.isEditMode">
-        {{ info.details.content.text }}
+        {{ info?.details?.content.text }}
       </span>
       <span
+        v-if="info.tag"
         class="tag"
-        :style="info.tag.options.style"
+        :style="info?.tag?.options.style"
         @click.stop="onElClick('tag')"
         @input="updateContent('tag', $event)"
         :contenteditable="$store.getters.isEditMode">
-        {{ info.tag.content.text }}
+        {{ info?.tag?.content.text }}
       </span>
     </span>
 
     <h3
+      v-if="info.title"
       class="title"
-      :style="info.title.options.style"
+      :style="info?.title?.options.style"
       @click.stop="onElClick('title')"
       @input="updateContent('title', $event)"
       :contenteditable="$store.getters.isEditMode">
-      {{ info.title.content.text }}
+      {{ info?.title?.content.text }}
     </h3>
 
     <p
+      v-if="info.text"
       class="text"
-      :style="info.text.options.style"
+      :style="info?.text?.options.style"
       @click.stop="onElClick('text')"
       @input="updateContent('text', $event)"
       :contenteditable="$store.getters.isEditMode">
-      {{ info.text.content.text }}
+      {{ info?.text?.content.text }}
     </p>
 
     <button
       class="btn"
-      :style="info.btn.options.style"
+      v-if="info.btn"
+      :style="info?.btn?.options.style"
       @click.stop="onElClick('btn')">
       <span
         @input="updateContent('btn', $event)"
         :contenteditable="$store.getters.isEditMode">
-        {{ info.btn.content.text }}
+        {{ info?.btn?.content.text }}
       </span>
     </button>
   </article>
@@ -57,7 +65,7 @@
 import { eventBus } from '../../services/event-bus.service'
 
 export default {
-  props: ['info', 'cmpId', 'options', 'childCmpId'],
+  props: ['info', 'cmpId', 'options', 'childCmpId', 'typeId'],
   methods: {
     updateContent(elType, e) {
       eventBus.emit('cmpUpdated', {

@@ -1,7 +1,12 @@
 .main-layout {
-  margin: 0 auto;
-  padding-left: 1.6rem;
-  padding-right: 1.6rem;
+  display: grid;
+  grid-template-columns: $layoutPadding 1fr $layoutPadding;
+
+  > * {
+    grid-column: 2;
+  }
+
+  > *.full {
+    grid-column: 1 / -1;
+  }
 }
-
-
