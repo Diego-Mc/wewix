@@ -40,27 +40,156 @@
       <section
         class="section-cmps"
         :class="{ open: isOpen('section', 'header') }">
-        <article class="cmp-img-container">
-          <img src="src/assets/imgs/cmp-img-test.png" />
-          <i class="grab-icon bi bi-grip-vertical"></i>
-        </article>
-        <article class="cmp-img-container">
-          <img src="src/assets/imgs/cmp-img-test.png" />
-          <i class="grab-icon bi bi-grip-vertical"></i>
-        </article>
-        <article class="cmp-img-container">
-          <img src="src/assets/imgs/cmp-img-test.png" />
-          <i class="grab-icon bi bi-grip-vertical"></i>
-        </article>
+        <cmp-item />
+        <cmp-item />
+        <cmp-item />
+        <cmp-item />
+        <cmp-item />
+        <cmp-item />
+        <cmp-item />
+        <cmp-item />
+        <cmp-item />
+        <cmp-item />
+        <cmp-item />
+        <cmp-item />
       </section>
     </section>
-    <section class="cmp-editor"></section>
-    <section class="page-editor"></section>
+    <section
+      class="cmp-editor"
+      :class="{ open: isOpen('editOpt', 'edit-cmp') }">
+      <h2 class="title">Section</h2>
+      <h6 class="edit-type-label">FONT</h6>
+      <editor-btn-group
+        :info="{ key: 'font', type: 'picker' }"
+        dir="row"
+        initialValue="system"
+        @setVal="handleBtnSelect"
+        :style="{
+          margin: '4px',
+          padding: '30px',
+        }"
+        :opts="[
+          {
+            val: 'system',
+            small: 'System',
+            sample: 'Aa',
+            style: 'font-family:\'Rubik\'',
+          },
+          {
+            val: 'fancy',
+            small: 'Fancy',
+            sample: 'Ss',
+            style: 'font-family:\'Baskerville\'',
+          },
+          {
+            val: 'mono',
+            small: 'Mono',
+            sample: '00',
+            style: 'font-family:\'FiraCode\'',
+          },
+          {
+            val: 'round',
+            small: 'Round',
+            sample: 'Rr',
+            style: 'font-family:\'VarelaRound\'',
+          },
+          {
+            val: 'fun',
+            small: 'Fun',
+            sample: 'Ff',
+            style: 'font-family:\'SignPainter\'',
+          },
+          {
+            val: 'pro',
+            small: 'Pro',
+            sample: 'Pr',
+            style: 'font-family:\'Helvetica\'',
+          },
+          {
+            val: 'cool',
+            small: 'Cool',
+            sample: 'Cc',
+            style: 'font-family:\'Silom\'',
+          },
+          {
+            val: 'old',
+            small: 'Old',
+            sample: 'At',
+            style: 'font-family:\'AmericanTypewriter\'',
+          },
+        ]" />
+    </section>
+    <section
+      class="page-editor cmp-editor"
+      :class="{ open: isOpen('editOpt', 'edit-site') }">
+      <h2 class="title">Section</h2>
+      <h6 class="edit-type-label">FONT</h6>
+      <editor-btn-group
+        :info="{ key: 'font', type: 'picker' }"
+        dir="row"
+        initialValue="system"
+        @setVal="handleBtnSelect"
+        :style="{
+          margin: '4px',
+          padding: '30px',
+        }"
+        :opts="[
+          {
+            val: 'system',
+            small: 'System',
+            sample: 'Aa',
+            style: 'font-family:\'Rubik\'',
+          },
+          {
+            val: 'fancy',
+            small: 'Fancy',
+            sample: 'Ss',
+            style: 'font-family:\'Baskerville\'',
+          },
+          {
+            val: 'mono',
+            small: 'Mono',
+            sample: '00',
+            style: 'font-family:\'FiraCode\'',
+          },
+          {
+            val: 'round',
+            small: 'Round',
+            sample: 'Rr',
+            style: 'font-family:\'VarelaRound\'',
+          },
+          {
+            val: 'fun',
+            small: 'Fun',
+            sample: 'Ff',
+            style: 'font-family:\'SignPainter\'',
+          },
+          {
+            val: 'pro',
+            small: 'Pro',
+            sample: 'Pr',
+            style: 'font-family:\'Helvetica\'',
+          },
+          {
+            val: 'cool',
+            small: 'Cool',
+            sample: 'Cc',
+            style: 'font-family:\'Silom\'',
+          },
+          {
+            val: 'old',
+            small: 'Old',
+            sample: 'At',
+            style: 'font-family:\'AmericanTypewriter\'',
+          },
+        ]" />
+    </section>
   </section>
 </template>
 
 <script>
 import editorBtnGroup from './editor-btn-group.vue'
+import cmpItem from '../app-items/cmp-item.vue'
 export default {
   data() {
     return {
@@ -79,6 +208,7 @@ export default {
   },
   components: {
     editorBtnGroup,
+    cmpItem,
   },
 }
 </script>

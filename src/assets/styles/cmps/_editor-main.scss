@@ -17,6 +17,11 @@
       left: $editor-nav-width + $editor-section-names-width;
     }
   }
+  &:has(.cmp-editor.open) {
+    .main-wap:not(.phone, .tablet) {
+      left: $editor-nav-width + $editor-section-edit-width;
+    }
+  }
   .main-wap {
     position: absolute;
     top: calc($main-header-height + $editor-header-height);

@@ -1,4 +1,6 @@
 .editor-sidebar {
+  pointer-events: all;
+
   .editor-nav {
     border-right: 1px solid #eee;
     width: $editor-nav-width;
@@ -44,6 +46,7 @@
       left: -500px;
       background-color: #fff;
       height: 100%;
+      overflow-y: scroll;
 
       &.open {
         left: $editor-section-names-width;
@@ -72,6 +75,31 @@
           cursor: grab;
         }
       }
+    }
+  }
+
+  .cmp-editor {
+    width: $editor-section-edit-width;
+    position: absolute;
+    background-color: #fff;
+    height: 100%;
+    border-right: 1px solid #eee;
+    z-index: 170;
+    left: -100%;
+    padding: 20px;
+
+    .title {
+      margin-bottom: 20px;
+    }
+
+    .edit-type-label {
+      color: $btn-small-color;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    &.open {
+      left: $editor-nav-width;
     }
   }
 }

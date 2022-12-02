@@ -9,11 +9,15 @@ $clr6: #fff;
 
 // editor vals
 $cmp-bg: #bff0e9;
+$btn-group-bg: #f7f7f7;
+$btn-small-color: rgba($btn-dark, 0.4);
+
 $main-header-height: 60px;
 $editor-header-height: 48px;
 $editor-nav-width: 60px;
 $editor-section-names-width: 160px;
 $editor-section-cmps-width: 240px;
+$editor-section-edit-width: 330px;
 
 :root {
   --clr-1: rgb(17, 153, 158);
