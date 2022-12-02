@@ -11,15 +11,9 @@
         :src="info?.img?.options.meta.src" />
       <h1
         class="title"
-<<<<<<< HEAD
-        @blur="updateContent('title', $event)"
         :style="info.title.options.style"
         @click.stop="onElClick({ cmpId, elType: 'title' })"
-=======
         @input="updateContent('title', $event)"
-        :style="info?.title?.options.style"
-        @click.stop="onElClick('title')"
->>>>>>> 04e97ce5f61f4d17441bf738e9392a8be98695ab
         :contenteditable="$store.getters.isEditMode">
         {{ info?.title?.content.text }}
       </h1>

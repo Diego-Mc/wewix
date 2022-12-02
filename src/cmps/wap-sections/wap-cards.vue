@@ -25,12 +25,8 @@
           :cmpId="cmpId"
           :childCmpId="element.id"
           @select="emitSelect"
-<<<<<<< HEAD
-          />
-=======
           :typeId="element.typeId"
-          @update="updateContent" />
->>>>>>> 04e97ce5f61f4d17441bf738e9392a8be98695ab
+          />
       </div>
     </template>
   </draggable>
