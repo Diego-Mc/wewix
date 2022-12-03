@@ -6,16 +6,24 @@ import { socketService, SOCKET_EMIT_USER_WATCH, SOCKET_EVENT_USER_UPDATED } from
 
 export const userStore = {
     state: {
-        loggedinUser: null,
+        // TODO: init to null. this is only for demonstartions.
+        loggedinUser: {
+            name:'johnny',
+            wapList:['5e28393890dd7201a06d4e44']
+        },
         users: [],
         watchedUser: null
     },
     getters: {
         users({ users }) { return users },
         loggedinUser({ loggedinUser }) { return loggedinUser },
-        watchedUser({ watchedUser }) { return watchedUser }
+        watchedUser({ watchedUser }) { return watchedUser },
+        // loggedinUserWaps({loggedinUser}) {return loggedinUser.wapList}
     },
     mutations: {
+        loggedinUserWaps(){
+            // this.$store.dispatch('d',{loggedinUser.wapList})
+        },
         setLoggedinUser(state, { user }) {
             // Yaron: needed this workaround as for score not reactive from birth
             state.loggedinUser = (user)? {...user} : null

@@ -1,9 +1,7 @@
 <template>
   <article class="form-input">
-    {{ tag }}
-
     <label class="label" :class="{ selected: focused }">
-      <!-- {{ labelText }} -->
+      {{tag}}
     </label>
     <i class="bi bi-arrow-right send-btn"></i>
     <input
@@ -31,6 +29,7 @@ export default {
   props: {
     type: String,
     modelValue: String,
+    tag:String,
   },
   created() {
     switch (this.type) {
