@@ -1,6 +1,8 @@
 .wap-header {
   @include grid();
   grid-template-areas: 'logo logo nav nav nav nav nav nav nav nav cta cta';
+  height: 140px;
+  padding-block: 0;
 
   color: var(--clr-1);
   background-color: var(--clr-3);

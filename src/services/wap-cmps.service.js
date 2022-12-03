@@ -135,6 +135,18 @@ function getStyles(elType) {
   }
 }
 
+const header1 = {
+  previewUrl: '',
+  typeId: 1,
+  type: 'header',
+}
+const header1otherOption = {
+  previewUrl: '',
+  typeId: 1,
+  type: 'header',
+  'wap-header-1': '#...',
+}
+
 const wapsMap = new Map()
 wapsMap.set('wap-header-1', {
   id: '',
