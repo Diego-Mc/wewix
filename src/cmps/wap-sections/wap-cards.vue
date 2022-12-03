@@ -12,9 +12,9 @@
     v-bind="dragOptions"
     @start="drag = true"
     @end="onDrop"
-    item-key="order"
+    item-key="id"
     :group="'cards-' + cmpId"
-    @click.stop="onCmpClick({ cmpId})">
+    @click.stop="onCmpClick({ cmpId })">
     <template #item="{ element }">
       <div>
         <component

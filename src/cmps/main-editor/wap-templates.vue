@@ -6,7 +6,11 @@
       @clone="wa"
       :list="cmpsDropdownOptions"
       item-key="order"
-      :group="{ name: 'sections', pull: 'clone', put: false }">
+      :group="{
+        name: 'sections',
+        pull: 'clone',
+        put: false,
+      }">
       <template #item="{ element }">
         <li
           class="list-group-item"
@@ -48,7 +52,7 @@ export default {
   },
   methods: {
     wa(e) {
-      this.cmpsDropdownOptions =  [
+      this.cmpsDropdownOptions = [
         // 'header',
         getCmp('wap-cards', 2),
         getCmp('wap-section', 2),
@@ -60,7 +64,6 @@ export default {
         // wapVideo,
         // wapMap,
       ]
-
     },
   },
 }

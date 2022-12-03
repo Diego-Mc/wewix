@@ -19,7 +19,7 @@
         @end="drag = false"
         @update="onCmpsChange"
         @clone="wa"
-        item-key="order"
+        item-key="id"
         group="sections">
         <template #item="{ element }">
           <div>
@@ -62,7 +62,6 @@ import wapChat from '../cmps/wap-items/wap-chat.vue'
 import loginModal from '../cmps/app-cmps/login-modal.vue'
 import getCmp from '../services/wap-cmps.service'
 
-
 export default {
   data() {
     return {
@@ -80,8 +79,9 @@ export default {
     }
   },
   async created() {
-    this.onCmpsChange = utilService.debounce(this.onCmpsChange, 500)
+    // this.onCmpsChange = utilService.debounce(this.onCmpsChange, 500)
     await this.loadWap()
+    console.log('HEYY', this.wap, this.wap.cmps)
     this.loadEvents()
     this.initHistory()
     this.checkNewVisit() // TODO: only on published mode.
@@ -97,6 +97,7 @@ export default {
   },
   methods: {
     cmpAdded(e) {
+      console.log('e', e)
       this.onCmpsChange()
     },
     updateField(fieldInfo) {
@@ -177,6 +178,7 @@ export default {
       }
     },
     onCmpsChange() {
+      console.log('CHANGED', this.wap)
       this.updateWap()
       this.saveLastChange()
     },
@@ -210,6 +212,7 @@ export default {
           type: 'getWap',
           id: this.$route.params.id,
         })
+        console.log('store wap', this.$store.getters.editedWap)
         this.wap = JSON.parse(JSON.stringify(this.$store.getters.editedWap))
       } else {
         this.wap = appEditorService.getEmptyWap()
@@ -217,6 +220,7 @@ export default {
           type: 'updateWap',
           wap: this.wap,
         })
+        console.log('editedWapId', editedWapId)
         this.wap._id = editedWapId
         // TODO: fix this.
         this.$router.push({ path: 'edit/' + editedWapId, replace: true })
@@ -237,11 +241,13 @@ export default {
     },
     select({ cmpId, elType, childCmpId }) {
       this.selectedCmp = {}
+      console.log('THIS IS WAP', this.wap)
 
       let cmp = this.wap.cmps.find(({ id }) => {
-        console.log('id in for loop', id)
+        console.log('id in for loop', id, cmpId)
         return id === cmpId
       })
+      console.log('after loop:', cmp)
       console.log('selected-cmp before bug:', this.wap.cmps)
       if (childCmpId) {
         cmp = cmp.cmps.find(({ id }) => id === childCmpId)

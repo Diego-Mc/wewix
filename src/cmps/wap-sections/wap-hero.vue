@@ -49,7 +49,7 @@
     v-bind="dragOptions"
     @start="drag = true"
     @end="onDrop"
-    item-key="order"
+    item-key="id"
     :group="'hero-' + cmpId">
     <template #item="{ element }">
       <div>
@@ -82,7 +82,6 @@ import draggable from 'vuedraggable'
 export default {
   props: ['info', 'cmpId', 'options', 'cmps', 'typeId'],
   methods: {
-
     onDrop() {
       this.drag = false
       eventBus.emit('onInnerCmpDrop', {

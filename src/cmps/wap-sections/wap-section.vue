@@ -12,7 +12,7 @@
     v-bind="dragOptions"
     @start="drag = true"
     @end="onDrop"
-    item-key="order"
+    item-key="id"
     :group="'section-' + cmpId">
     <template #item="{ element }">
       <div>
