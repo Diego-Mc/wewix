@@ -10,7 +10,6 @@
   >
     <Marker :options="marker"/>
   </GoogleMap>
-  <button @click="log">log</button>
   </section>
 
 </template>

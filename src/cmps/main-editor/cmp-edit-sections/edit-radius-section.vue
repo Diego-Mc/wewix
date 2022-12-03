@@ -1,25 +1,21 @@
 <template>
   <section class="cmp-edit-section">
     <h6 class="edit-type-label">BORDER RADIUS</h6>
-    <el-slider v-model="radius" placement="right" @input="handleBtnSelect" />
+    <el-slider v-model="radius" placement="right" @input="handleBtnSelect($event)" :min="0" :max="2" :step="0.001"/>
   </section>
 </template>
 
 <script>
 export default {
-  props: ['initialValue'],
+  props: ['editOptions'],
   data() {
     return {
-      radius: this.initialValue ?? 0,
+      radius: parseFloat(this.editOptions?.style?.borderRadius) || 0 
     }
   },
   components: {},
   methods: {
-    handleBtnSelect(radius) {
-      console.log('radius selected, emitting @select', {
-        key: 'borderRadius',
-        val: radius,
-      })
+    handleBtnSelect(radius) { 
       this.$emit('select', { key: 'borderRadius', val: radius })
     },
   },

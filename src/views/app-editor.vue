@@ -58,6 +58,10 @@ import wapSection from '../cmps/wap-sections/wap-section.vue'
 import wapForm from '../cmps/wap-sections/wap-form.vue'
 import wapVideo from '../cmps/wap-items/wap-video.vue'
 import wapMap from '../cmps/wap-items/wap-map.vue'
+import wapChat from '../cmps/wap-items/wap-chat.vue'
+import loginModal from '../cmps/app-cmps/login-modal.vue'
+import getCmp from '../services/wap-cmps.service'
+
 
 export default {
   data() {
