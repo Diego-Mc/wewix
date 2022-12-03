@@ -42,19 +42,12 @@
       </div>
 
       <div v-if="isOptionsContain('borderRadius')">
-        <edit-radius-section @select="updateBorderRadius" />
-
-        <!-- <input
-          @input="updateBorderRadius"
-          type="range"
-          v-model="tempBorderRadius"
-          min="0.1"
-          max="2"
-          step="0.1" /> -->
+        <edit-radius-section @select="updateStyleValToEm" :editOptions="editOptions"/>
       </div>
 
       <!-- TODO: add style to fontSize -->
       <div v-if="isOptionsContain('fontSize')">
+        <edit-font-size-section @select="updateStyleValToEm" :editOptions="editOptions"/>
         font size
         <select @change="updateOptions" v-model="updatedOptions.style.fontSize">
           <option>small</option>
@@ -132,6 +125,7 @@ import { utilService } from '../../../services/util.service'
 
 import editFontSection from '../cmp-edit-sections/edit-font-section.vue'
 import editFontWeightSection from '../cmp-edit-sections/edit-font-weight-section.vue'
+import editFontSizeSection from '../cmp-edit-sections/edit-font-size-section.vue'
 import editColorSection from '../cmp-edit-sections/edit-color-section.vue'
 import editBgColorSection from '../cmp-edit-sections/edit-bg-color-section.vue'
 import editRadiusSection from '../cmp-edit-sections/edit-radius-section.vue'
@@ -147,7 +141,6 @@ export default {
   data() {
     return {
       updatedOptions: JSON.parse(JSON.stringify(this.editOptions)),
-      tempBorderRadius: parseInt(this.editOptions.style?.borderRadius),
 
       loadedMapLocation: null,
       isMapLocationLoader: false,
@@ -211,10 +204,9 @@ export default {
       })
     },
 
-    updateBorderRadius(key, val) {
-      this.tempBorderRadius = val
-      const borderRadius = this.tempBorderRadius + 'em'
-      this.editOptions.style.borderRadius = borderRadius
+    updateStyleValToEm({key, val}) {    
+      const updatedVal = val + 'em'
+      this.updatedOptions.style[key] = updatedVal
       this.updateOptions()
     },
 
@@ -248,9 +240,6 @@ export default {
     editOptions() {
       this.updatedOptions = JSON.parse(JSON.stringify(this.editOptions))
     },
-    id() {
-      this.tempBorderRadius = parseInt(this.editOptions.style?.borderRadius)
-    },
   },
 
   created() {
@@ -264,6 +253,7 @@ export default {
     editBgColorSection,
     editRadiusSection,
     editUploadSection,
+    editFontSizeSection,
   },
 }
 </script>
