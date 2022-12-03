@@ -60,7 +60,7 @@
       <section
         class="section-cmps"
         :class="{ open: isOpen('section', 'header') }">
-        <!-- <wap-templates /> -->
+        <wap-templates />
         <cmp-item></cmp-item>
         <cmp-item></cmp-item>
         <cmp-item></cmp-item>
