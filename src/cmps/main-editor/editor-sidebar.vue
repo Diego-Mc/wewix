@@ -60,11 +60,13 @@
       <section
         class="section-cmps"
         :class="{ open: isOpen('section', 'header') }">
-        <wap-templates />
-        <cmp-item></cmp-item>
-        <cmp-item></cmp-item>
-        <cmp-item></cmp-item>
-        <cmp-item></cmp-item>
+        <!-- <wap-templates /> -->
+        <cmp-item src="src/assets/imgs/cmp-img-test.png" />
+        <cmp-item src="src/assets/imgs/cmp-cards-1.png" />
+        <cmp-item src="src/assets/imgs/cmp-gallery-1.png" />
+        <cmp-item src="src/assets/imgs/cmp-hero-1.png" />
+        <cmp-item src="src/assets/imgs/cmp-section-1.png" />
+        <cmp-item src="src/assets/imgs/cmp-section-2.png" />
       </section>
     </section>
     <section

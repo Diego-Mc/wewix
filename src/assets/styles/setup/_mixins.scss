@@ -62,7 +62,7 @@
   grid-template-columns: repeat($colAmount, minmax(0, 1fr));
   gap: $gap;
   align-items: center;
-  padding: 2.6rem 4rem;
+  padding: 4.2rem 4rem;
 }
 
 @mixin mediaWap($maxWidth) {
