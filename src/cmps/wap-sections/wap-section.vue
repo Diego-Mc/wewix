@@ -24,7 +24,7 @@
           :cmpId="cmpId"
           :childCmpId="element.id"
           :typeId="element.typeId"
-          @click="emitSelect({cmpId,childCmpId:element.id})" />
+          @click="emitSelect({ cmpId, childCmpId: element.id })" />
         <!--
         <video
           src="https://knowledge.s.dance.app/videos/hero_home_alt_15s_16_9.webm"
@@ -78,6 +78,7 @@
 <script>
 import wapImgSection from '../wap-items/wap-img-section.vue'
 import wapTextSection from '../wap-items/wap-text-section.vue'
+import wapGallerySection from '../wap-items/wap-gallery-section.vue'
 import draggable from 'vuedraggable'
 import { eventBus } from '../../services/event-bus.service'
 
@@ -98,6 +99,7 @@ export default {
   components: {
     wapImgSection,
     wapTextSection,
+    wapGallerySection,
     draggable,
   },
 
