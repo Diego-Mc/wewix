@@ -26,6 +26,7 @@
               :info="element.info"
               :options="element.options"
               :cmps="element.cmps"
+              :typeId="element.typeId"
               :cmpId="element.id">
             </component>
           </div>
@@ -167,7 +168,7 @@ export default {
 
     // prettier-ignore
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
-      
+
       let changedCmp = this.wap.cmps.find(cmp => cmp.id === cmpId)
       if (childCmpId) changedCmp = changedCmp.cmps.find( childCmp => childCmp.id === childCmpId)
 
@@ -176,7 +177,7 @@ export default {
       } else {
         updatedStyle ? changedCmp.options=updatedStyle :  changedCmp.content.text = content
       }
-     
+
       this.onCmpsChange()
     },
     // TODO: work on logic, avoid repetition.
