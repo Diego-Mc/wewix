@@ -1,6 +1,8 @@
 .text-section {
   align-content: center;
+  width: 100%;
   display: grid;
+  overflow: hidden;
   grid-template-areas:
     'tag'
     'title'
@@ -84,6 +86,9 @@
       font-size: em(48px);
       font-weight: 400;
       margin-bottom: 32px;
+    }
+    .titles-wrapper {
+      width: 100%;
     }
     .text {
       font-size: em(14px);

@@ -10,24 +10,27 @@
       {{ info?.tag?.content.text }}
     </span>
 
-    <h2
-      v-if="info.title"
-      class="title"
-      @input="updateContent('title', $event)"
-      :style="info?.title?.options.style"
-      @click.stop="onElClick('title')"
-      :contenteditable="$store.getters.isEditMode">
-      {{ info?.title?.content.text }}
-    </h2>
-    <h2
-      v-if="info.subtitle"
-      class="subtitle"
-      @change="updateContent('subtitle')"
-      :style="info?.subtitle?.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'subtitle' })"
-      :contenteditable="$store.getters.isEditMode">
-      {{ info?.subtitle?.content.text }}
-    </h2>
+    <div class="titles-wrapper">
+      <h2
+        v-if="info.title"
+        class="title"
+        @input="updateContent('title', $event)"
+        :style="info?.title?.options.style"
+        @click.stop="onElClick('title')"
+        :contenteditable="$store.getters.isEditMode">
+        {{ info?.title?.content.text }}
+      </h2>
+      <h2
+        v-if="info.subtitle"
+        class="subtitle"
+        @change="updateContent('subtitle')"
+        :style="info?.subtitle?.options.style"
+        @click.stop="$emit('select', { cmpId, childCmpId, elType: 'subtitle' })"
+        :contenteditable="$store.getters.isEditMode">
+        {{ info?.subtitle?.content.text }}
+      </h2>
+    </div>
+
     <p
       v-if="info.text"
       class="text"

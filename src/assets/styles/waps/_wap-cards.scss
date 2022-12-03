@@ -29,6 +29,17 @@
     }
   }
 }
+
+@container wap (max-width: 760px) {
+  .wap-cards {
+    @include grid(1);
+
+    > div {
+      grid-column: span 1;
+    }
+  }
+}
+
 //   .details {
 //       display: flex;
 //       gap: 1rem;
