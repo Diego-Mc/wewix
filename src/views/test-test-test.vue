@@ -17,16 +17,8 @@
       :cmps="cards.cmps" />
     <wap-form :cmpId="form.id" :info="form.info" :options="form.options" />
   </div> -->
-  <section class="main-editor">
-    <section class="main-editor-tools">
-      <main-header />
-      <editor-header @setMedia="setMedia" />
-      <editor-sidebar />
-    </section>
-    <main class="main-wap" :class="mediaType">
-      <wap-test />
-    </main>
-  </section>
+
+  <wap-test :style="{ fontFamily: 'Asap' }" />
 </template>
 
 <script>
@@ -36,10 +28,10 @@ import wapCards from '../cmps/wap-sections/wap-cards.vue'
 import wapSection from '../cmps/wap-sections/wap-section.vue'
 import wapForm from '../cmps/wap-sections/wap-form.vue'
 import getCmp from '../services/wap-cmps.service'
-import editorBtnGroup from '../cmps/app-cmps/editor-btn-group.vue'
+import editorBtnGroup from '../cmps/main-editor/editor-items/editor-btn-group.vue'
 import mainHeader from '../cmps/app-cmps/main-header.vue'
-import editorHeader from '../cmps/app-cmps/editor-header.vue'
-import editorSidebar from '../cmps/app-cmps/editor-sidebar.vue'
+import editorHeader from '../cmps/main-editor/editor-header.vue'
+import editorSidebar from '../cmps/main-editor/editor-sidebar.vue'
 
 import wapTest from '../cmps/app-cmps/wap-test.vue'
 export default {
@@ -53,6 +45,9 @@ export default {
 
       mediaType: 'desktop',
     }
+  },
+  created() {
+    document.body.classList.add('theme-2')
   },
   methods: {
     setMedia(mediaType) {

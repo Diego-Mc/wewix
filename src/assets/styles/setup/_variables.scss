@@ -7,6 +7,10 @@ $clr4: #95adbe;
 $clr5: #dff0ea;
 $clr6: #fff;
 
+$layoutPadding: 1.6rem;
+
+$mobileQuery: 900px;
+
 // editor vals
 $cmp-bg: #bff0e9;
 $btn-group-bg: #f7f7f7;
@@ -19,10 +23,16 @@ $editor-section-names-width: 160px;
 $editor-section-cmps-width: 240px;
 $editor-section-edit-width: 330px;
 
+$editor-mb-height-lvl1: 30vh;
+$editor-mb-height-lvl2: 40vh;
+
 :root {
-  --clr-1: rgb(17, 153, 158);
-  --clr-2: rgb(64, 81, 78);
-  --clr-3: rgb(228, 249, 245);
+  // --clr-1: rgb(17, 153, 158);
+  // --clr-2: rgb(64, 81, 78);
+  // --clr-3: rgb(228, 249, 245);
+  --clr-1: #055345;
+  --clr-2: #f3ceac;
+  --clr-3: #f9efe6;
 }
 
 body {
@@ -32,9 +42,9 @@ body {
     --clr-3: rgb(250, 212, 212);
   }
   &.theme-2 {
-    --clr-1: rgb(248, 236, 209);
-    --clr-2: rgb(222, 182, 171);
-    --clr-3: rgb(172, 125, 136);
+    --clr-1: #055345;
+    --clr-2: #f3ceac;
+    --clr-3: #f9efe6;
   }
   &.theme-3 {
     --clr-1: rgb(98, 140, 103);

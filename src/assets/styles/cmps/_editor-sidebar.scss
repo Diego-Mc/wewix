@@ -24,6 +24,10 @@
       left: $editor-nav-width;
     }
     .section-names {
+      .mobile-section-names-btns {
+        display: none;
+      }
+
       width: $editor-section-names-width;
       position: absolute;
       background-color: #fff;
@@ -82,11 +86,16 @@
     width: $editor-section-edit-width;
     position: absolute;
     background-color: #fff;
-    height: 100%;
     border-right: 1px solid #eee;
     z-index: 170;
     left: -100%;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    pointer-events: all;
+    overflow-y: scroll;
+    height: calc(100vh - $main-header-height - $editor-header-height);
 
     .title {
       margin-bottom: 20px;
@@ -94,12 +103,154 @@
 
     .edit-type-label {
       color: $btn-small-color;
-      font-size: 12px;
-      margin-bottom: 4px;
+      font-size: 14px;
+      margin-block: 12px;
+    }
+
+    .edit-type-label:first-of-type {
+      margin-top: 0;
     }
 
     &.open {
       left: $editor-nav-width;
+    }
+
+    .cmp-edit-section {
+      margin-bottom: 32px;
+    }
+  }
+
+  @media screen and (max-width: $mobileQuery) {
+    outline: 4px solid blue;
+    .editor-nav {
+      border-right: none;
+      border-top: 1px solid #eee;
+      width: 100vw;
+      flex-direction: row;
+      align-items: center;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background-color: #fff;
+      z-index: 190;
+      height: $editor-nav-width;
+      .editor-btn {
+        flex-direction: row !important;
+        width: 100%;
+        justify-content: space-evenly;
+        label {
+          padding: (10px) ($editor-nav-width - 4px) !important;
+        }
+      }
+    }
+
+    .section-select {
+      position: absolute;
+      left: 0;
+      bottom: -100%;
+      height: $editor-mb-height-lvl2;
+      z-index: 180;
+      width: 100%;
+      overflow-y: scroll;
+
+      &.open {
+        left: 0;
+        bottom: $editor-nav-width;
+      }
+      .section-names {
+        .desktop-section-names-btns {
+          display: none;
+        }
+
+        .mobile-section-names-btns {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+        }
+
+        width: 100%;
+        position: absolute;
+        background-color: #fff;
+        height: 100%;
+        border-right: none;
+        border-top: 1px solid #eee;
+        z-index: 170;
+        .title {
+          padding: 20px;
+        }
+      }
+      .section-cmps {
+        position: absolute;
+        border-right: none;
+        border-top: 1px solid #eee;
+        width: 100%;
+        left: 0;
+        bottom: -500px;
+        z-index: 200;
+        height: 26vh;
+        overflow-y: scroll;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+
+        &.open {
+          left: 0;
+          bottom: 0;
+        }
+
+        .cmp-img-container {
+          .grab-icon {
+          }
+        }
+      }
+    }
+
+    .cmp-editor {
+      width: 100%;
+      border-right: none;
+      border-top: 1px solid #eee;
+      z-index: 170;
+      left: 0;
+      bottom: -100%;
+      // padding: 20px;
+      // display: flex;
+      // flex-direction: column;
+      // gap: 14px;
+      // pointer-events: all;
+      overflow-y: scroll;
+      // height: calc(100vh - $main-header-height - $editor-header-height);
+      height: $editor-mb-height-lvl1;
+
+      .title {
+        // margin-bottom: 20px;
+      }
+
+      .edit-type-label {
+        color: $btn-small-color;
+        font-size: 14px;
+        margin-block: 12px;
+      }
+
+      .edit-type-label:first-of-type {
+        margin-top: 0;
+      }
+
+      &.open {
+        left: 0;
+        bottom: $editor-nav-width;
+      }
+
+      .cmp-edit-section {
+        margin-bottom: 32px;
+
+        .editor-btns {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        }
+
+        .editor-color-picker {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+        }
+      }
     }
   }
 }

@@ -2,7 +2,7 @@
   <!-- $emit('select', { cmpId}) -->
   <draggable
     class="list-group wap-cards"
-    @click.stop="$emit('select', { cmpId })"
+    :class="'type-' + typeId"
     :style="options.style"
     :component-data="{
       type: 'transition-group',
@@ -13,7 +13,8 @@
     @start="drag = true"
     @end="onDrop"
     item-key="order"
-    :group="'section-' + cmpId">
+    :group="'cards-' + cmpId"
+    @click.stop="onCmpClick({ cmpId})">
     <template #item="{ element }">
       <div>
         <component
@@ -23,8 +24,8 @@
           :info="element.info"
           :cmpId="cmpId"
           :childCmpId="element.id"
-          @select="emitSelect"
-          @update="updateContent" />
+          :typeId="element.typeId"
+          @click.stop="onCmpClick({ cmpId, childCmpId: element.id })" />
       </div>
     </template>
   </draggable>
@@ -35,7 +36,7 @@ import wapCard from '../wap-items/wap-card.vue'
 import draggable from 'vuedraggable'
 import { eventBus } from '../../services/event-bus.service'
 export default {
-  props: ['info', 'cmpId', 'options', 'cmps'],
+  props: ['info', 'cmpId', 'options', 'cmps', 'typeId'],
 
   data() {
     return {
@@ -54,9 +55,6 @@ export default {
     draggable,
   },
   methods: {
-    emitSelect(data) {
-      this.$emit('select', data)
-    },
     onDrop() {
       this.drag = false
       eventBus.emit('onInnerCmpDrop', {
@@ -64,10 +62,9 @@ export default {
         cmps: [...this.cards],
       })
     },
-
-    // updateContent({ cmpId, elType, content, childCmpId }) {
-    //   this.$emit('update', { cmpId, elType, content, childCmpId })
-    // },
+    onCmpClick(elInfo) {
+      eventBus.emit('select', elInfo)
+    },
   },
 }
 </script>

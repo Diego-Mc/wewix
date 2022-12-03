@@ -1,5 +1,8 @@
 <template>
-  <article class="wap-form">
+  <article
+    @click.stop="emitSelect({ cmpId })"
+    class="wap-form"
+    :class="'type-' + typeId">
     <!-- <h3 class="title" :style="info.title.options.style">
       Stay up to speed
       {{ info.title.content.text }}
@@ -10,14 +13,17 @@
       {{ info.text.content.text }}
     </p> -->
     <form @submit.prevent="formSubmited">
-      <wap-form-item type="email" v-model="userInfo.email" />
-      <wap-form-item type="msg" v-model="userInfo.msg" />
+      <div v-for="(field, idx) in options.meta.formInputs">
+        <wap-form-item type="email" v-model="userInfo[field.tag]" :tag="field.tag" />
+      </div>
+      <!-- <wap-form-item  type="email" v-model="userInfo.email" /> -->
+      <!-- <wap-form-item type="msg" v-model="userInfo.msg" /> -->
       <!-- :style="info.btn.options.style" -->
-      <button @click="userInfo.type='message'" class="btn">
+      <button @click="userInfo.type = 'message'" class="btn">
         submit
         <!-- {{ info.btn.content.text }} -->
       </button>
-      <button @click="userInfo.type='subscription'" class="btn">
+      <button @click="userInfo.type = 'subscription'" class="btn">
         subscribe
         <!-- {{ info.btn.content.text }} -->
       </button>
@@ -29,28 +35,34 @@
 import { eventBus } from '../../services/event-bus.service'
 import wapFormItem from '../wap-items/wap-form-item.vue'
 export default {
-  props: ['info', 'cmpId', 'options'],
+  props: ['info', 'cmpId', 'options', 'typeId'],
   data() {
     return {
-      userInfo: {
-        email: '',
-        msg: '',
-        email: '',
-        at: '',
-        type: null,
-      },
+      userInfo: {},
+      // {
+      //   email: '',
+      //   msg: '',
+      //   email: '',
+      //   at: '',
+      //   type: null,
+      // },
     }
   },
   methods: {
     updateContent(elType) {
       this.$emit('update', { cmpId, elType, content: info.text.content })
     },
+
     formSubmited() {
+      console.log(this.userInfo)
       this.userInfo.at = Date.now()
       eventBus.emit('formSubmited', this.userInfo)
     },
+    emitSelect(elInfo) {
+      eventBus.emit('select', elInfo)
+    },
   },
-  created() {},
+
   components: {
     wapFormItem,
   },

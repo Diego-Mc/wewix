@@ -8,7 +8,7 @@ export const wapUtils = {
 export default function getCmp(type, typeId) {
   const key = `${type}-${typeId}`
   const cmp = wapsMap.get(key)
-  cmp.id = 'wap-' + utilService.getRandomIntInclusive(10, 99)
+  cmp.id = 'wap-' + utilService.makeId()
   return cmp
 }
 
@@ -127,10 +127,10 @@ function getStyles(elType) {
     default:
       return {
         backgroundColor: '',
-        fontFamily: '',
-        color: '',
-        fontWeight: '',
-        fontSize: '',
+        // fontFamily: '',
+        // color: '',
+        // fontWeight: '',
+        // fontSize: '',
       }
   }
 }
@@ -182,35 +182,46 @@ wapsMap.set('wap-hero-1', {
     meta: {},
     style: getStyles(),
   },
-  info: {
-    title: {
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 1,
       options: {
         meta: {},
-        style: getStyles('title'),
+        style: getStyles(),
       },
-      content: {
-        text: 'Your future\nis electric',
-      },
-    },
-    text: {
-      options: {
-        meta: {},
-        style: getStyles('text'),
-      },
-      content: {
-        text: 'Get your own ebike or emoped\nwith our flexible subscription',
-      },
-    },
-    btn: {
-      options: {
-        meta: {
-          href: '#',
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Your future\nis electric',
+          },
         },
-        style: getStyles('btn'),
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Get your own ebike or emoped\nwith our flexible subscription',
+          },
+        },
+        btn: {
+          options: {
+            meta: {
+              href: '#',
+            },
+            style: getStyles('btn'),
+          },
+          content: { text: 'Start now' },
+        },
       },
-      content: { text: 'Start now' },
     },
-  },
+  ],
 })
 wapsMap.set('wap-section-1', {
   id: '',
@@ -224,7 +235,7 @@ wapsMap.set('wap-section-1', {
     {
       id: '1',
       type: 'wap-text-section',
-      typeId: 1,
+      typeId: 2,
       options: {
         meta: {},
         style: getStyles(),
@@ -484,7 +495,12 @@ wapsMap.set('wap-form-1', {
   type: 'wap-form',
   typeId: 1,
   options: {
-    meta: {},
+    meta: {
+      formInputs: [
+        { tag: 'email', txt: '' },
+        { tag: 'msg', txt: '' },
+      ],
+    },
     style: getStyles(),
   },
   info: {
@@ -517,20 +533,14 @@ wapsMap.set('wap-header-2', {
   typeId: 2,
   options: {
     meta: {},
-    style: {
-      backgroundColor: '',
-      fontFamily: '',
-      color: '',
-      fontWeight: '',
-      fontSize: '',
-    },
+    style: getStyles(),
   },
   info: {
     // logo?
     img: {
       options: {
         meta: {
-          src: '../assets/imgs/plantify-logo.svg',
+          src: 'https://i.ibb.co/zZdJHBn/plantify-logo.png',
         },
         style: getStyles('img'),
       },
@@ -549,6 +559,13 @@ wapsMap.set('wap-header-2', {
         nav5: 'Contact',
       },
     },
+    title: {
+      options: {
+        meta: {},
+        style: getStyles('title'),
+      },
+      content: { text: 'Plantify' },
+    },
     btn: {
       options: {
         meta: {},
@@ -560,9 +577,9 @@ wapsMap.set('wap-header-2', {
 })
 
 // this is temp's 2 hero section.
-wapsMap.set('wap-section-2', {
+wapsMap.set('wap-hero-2', {
   id: '',
-  type: 'wap-section',
+  type: 'wap-hero',
   typeId: 2,
   options: {
     meta: {},
@@ -584,7 +601,7 @@ wapsMap.set('wap-section-2', {
             style: getStyles('tag'),
           },
           content: {
-            text: 'Food Truck',
+            text: 'FOOD TRUCK',
           },
         },
         title: {
@@ -613,7 +630,7 @@ wapsMap.set('wap-section-2', {
             style: getStyles('text'),
           },
           content: {
-            text: 'Choose the electric ride that suid tour lifeoptions',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor consequat netus tristique at sem ipsum fames. Sed a molestie enim ac sed.',
           },
         },
         btn: {
@@ -639,7 +656,7 @@ wapsMap.set('wap-section-2', {
         img: {
           options: {
             meta: {
-              src: '../assets/imgs/hero-2-img',
+              src: 'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623f10c1e48d404efb7a7178_Hero%20Photo-p-500.jpeg',
             },
             style: getStyles('img'),
           },
@@ -650,9 +667,9 @@ wapsMap.set('wap-section-2', {
   ],
 })
 
-wapsMap.set('wap-hero-2', {
+wapsMap.set('wap-section-2', {
   id: '',
-  type: 'wap-hero',
+  type: 'wap-section',
   typeId: 2,
   options: {
     meta: {
@@ -661,59 +678,72 @@ wapsMap.set('wap-hero-2', {
     },
     style: getStyles(),
   },
-  info: {
-    title: {
-      options: {
-        meta: {},
-        style: getStyles('title'),
-      },
-      content: {
-        text: 'Come day hello',
-      },
-    },
-    text: {
-      options: {
-        meta: {},
-        style: getStyles('text'),
-      },
-      content: {
-        text: 'MAR 27, 2022',
-      },
-    },
-    subtitle: {
-      options: {
-        meta: {},
-        style: getStyles('subtitle'),
-      },
-      content: {
-        text: 'Golden Gate Park',
-      },
-    },
-    details: {
-      options: {
-        meta: {},
-        style: getStyles('details'),
-      },
-      content: {
-        text: '4976 Fulton Street\nSan Francisco, CA 94121',
-      },
-    },
-    tag: {
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 3,
       options: {
         meta: {
-          href: '#',
+          src: 'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623cfb46d0ab4fab78e53577_Callout%20Photo.jpg',
         },
-        style: getStyles('tag'),
+        style: getStyles(),
       },
-      content: { text: '2:00 pm - 9:00 pm' },
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Come say hello',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'MAR 27, 2022',
+          },
+        },
+        subtitle: {
+          options: {
+            meta: {},
+            style: getStyles('subtitle'),
+          },
+          content: {
+            text: 'Golden Gate Park',
+          },
+        },
+        details: {
+          options: {
+            meta: {},
+            style: getStyles('details'),
+          },
+          content: {
+            text: '4976 Fulton Street\nSan Francisco, CA 94121',
+          },
+        },
+        tag: {
+          options: {
+            meta: {
+              href: '#',
+            },
+            style: getStyles('tag'),
+          },
+          content: { text: '2:00 pm - 9:00 pm' },
+        },
+      },
     },
-  },
+  ],
 })
 
-wapsMap.set('wap-section-2', {
+wapsMap.set('wap-section-3', {
   id: '',
   type: 'wap-section',
-  typeId: 2,
+  typeId: 3,
   options: {
     meta: {},
     style: getStyles(),
@@ -722,56 +752,88 @@ wapsMap.set('wap-section-2', {
     {
       id: '1',
       type: 'wap-text-section',
-      typeId: 2,
+      typeId: 5,
       options: {
         meta: {},
         style: getStyles(),
       },
 
-      title: {
-        options: {
-          meta: {},
-          style: getStyles('title'),
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Our menu',
+          },
         },
-        content: {
-          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor consequat netus tristique at sem ipsum fames.',
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor consequat netus tristique at sem ipsum fames.',
+          },
         },
-      },
-      text: {
-        options: {
-          meta: {},
-          style: getStyles('text'),
-        },
-        content: {
-          text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor consequat netus tristique at sem ipsum fames.',
-        },
-      },
-      btn: {
-        options: {
-          meta: {},
-          style: getStyles('btn'),
-        },
-        content: {
-          text: 'View menu',
+        btn: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'View menu',
+          },
         },
       },
     },
     {
       id: '2',
-      type: 'section-gallery-item',
-      typeId: 2,
+      type: 'wap-gallery-section',
+      typeId: 1,
       options: {
-        meta: {
-          srcs: [
-            'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f1189632baa0fde4f93fb_Tacos-p-500.jpeg',
-            'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f1197a9384100846bb45b_Burgers-p-500.jpeg',
-            'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f11917d19484961ab36a5_Sides-p-500.jpeg',
-            'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f119fec895207e4b8f202_Beverages-p-1080.jpeg',
-          ],
-        },
+        meta: {},
         style: getStyles(),
       },
-      info: {},
+      info: {
+        img1: {
+          options: {
+            meta: {
+              src: 'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f1189632baa0fde4f93fb_Tacos.jpg',
+            },
+            style: getStyles('img'),
+          },
+          content: { text: 'Tacos' },
+        },
+        img2: {
+          options: {
+            meta: {
+              src: 'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f1197a9384100846bb45b_Burgers.jpg',
+            },
+            style: getStyles('img'),
+          },
+          content: { text: 'Burgers' },
+        },
+        img3: {
+          options: {
+            meta: {
+              src: 'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f11917d19484961ab36a5_Sides.jpg',
+            },
+            style: getStyles('img'),
+          },
+          content: { text: 'Sides' },
+        },
+        img4: {
+          options: {
+            meta: {
+              src: 'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f119fec895207e4b8f202_Beverages-p-1080.jpeg',
+            },
+            style: getStyles('img'),
+          },
+          content: { text: 'Beverages' },
+        },
+      },
     },
   ],
 })
@@ -910,6 +972,76 @@ wapsMap.set('wap-cards-2', {
           },
           content: {
             text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          },
+        },
+      },
+    },
+  ],
+})
+
+wapsMap.set('wap-section-4', {
+  id: '',
+  type: 'wap-section',
+  typeId: 4,
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-img-section',
+      typeId: 4,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623f1118ecca6c85eac7cd48_About%20Photo-p-500.jpeg',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-text-section',
+      typeId: 4,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'The best vegan comfort food in Los Angeles',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dolor consequat netus tristique at sem ipsum fames. Sed a molestie enim ac sed.',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'About Us',
           },
         },
       },

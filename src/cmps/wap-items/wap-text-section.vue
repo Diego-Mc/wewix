@@ -1,42 +1,88 @@
 <template>
-  <section class="text-section">
-    <h2
-      class="title"
-      @change="updateContent('title')"
-      :style="info.title.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'title' })"
+  <section
+    class="text-section"
+    :class="'type-' + typeId"
+    :style="options.style">
+    <span
+      v-if="info.tag"
+      class="tag"
+      @input="updateContent('tag', $event)"
+      :style="info?.tag?.options.style"
+      @click.stop="emitSelect('tag')"
       :contenteditable="$store.getters.isEditMode">
-      {{ info.title.content.text }}
-    </h2>
+      {{ info?.tag?.content.text }}
+    </span>
+
+    <div class="titles-wrapper">
+      <h2
+        v-if="info.title"
+        class="title"
+        @input="updateContent('title', $event)"
+        :style="info?.title?.options.style"
+        @click.stop="emitSelect('title')"
+        :contenteditable="$store.getters.isEditMode">
+        {{ info?.title?.content.text }}
+      </h2>
+      <h2
+        v-if="info.subtitle"
+        class="subtitle"
+        @input="updateContent('subtitle', $event)"
+        :style="info?.subtitle?.options.style"
+        @click.stop="emitSelect('subtitle')"
+        :contenteditable="$store.getters.isEditMode">
+        {{ info?.subtitle?.content.text }}
+      </h2>
+    </div>
     <p
+      v-if="info.text"
       class="text"
-      @change="updateContent('text')"
-      :style="info.text.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'text' })"
+      @input="updateContent('text', $event)"
+      :style="info?.text?.options.style"
+      @click.stop="emitSelect('text')"
       :contenteditable="$store.getters.isEditMode">
-      {{ info.text.content.text }}
+      {{ info?.text?.content.text }}
+    </p>
+    <p
+      v-if="info.details"
+      class="details"
+      @input="updateContent('details', $event)"
+      :style="info?.details?.options.style"
+      @click.stop="emitSelect('details')"
+      :contenteditable="$store.getters.isEditMode">
+      {{ info?.details?.content.text }}
     </p>
     <button
       v-if="info.btn"
       class="btn"
-      :style="info.btn.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'btn' })"
-      @change="updateContent('btn')">
-      {{ info.btn.content.text }}
+      @input="updateContent('btn', $event)"
+      :style="info?.btn?.options.style"
+      @click.stop="emitSelect('btn')">
+      {{ info?.btn?.content.text || 'Find us' }}
     </button>
   </section>
 </template>
 
 <script>
+import { eventBus } from '../../services/event-bus.service'
 export default {
-  props: ['info', 'cmpId', 'childCmpId', 'options'],
+  props: ['info', 'cmpId', 'childCmpId', 'options', 'typeId'],
   methods: {
-    updateContent(elType) {
-      this.$emit('update', { cmpId, elType, content: info.text.content })
+    updateContent(elType, e) {
+      eventBus.emit('cmpUpdated', {
+        cmpId: this.cmpId,
+        elType,
+        content: e.target.innerText,
+        childCmpId: this.childCmpId,
+      })
     },
-  },
-  created() {
-    console.log(this.info)
+    emitSelect(elType) {
+      console.log('wap-text section',this.cmpId);
+      eventBus.emit('select', {
+        cmpId: this.cmpId,
+        childCmpId: this.childCmpId,
+        elType,
+      })
+    },
   },
 }
 </script>

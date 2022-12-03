@@ -1,6 +1,6 @@
 <!-- AIzaSyBOnIuYA6sTb4lF2WYWYJIUouv3HjIx2mg -->
 <template>
-  <section class="wap-map" @click.stop="$emit('select', { cmpId })">
+  <section class="wap-map" @click.stop="emitSelect({cmpId})">
     <GoogleMap
     
     api-key="AIzaSyDKvG9VduLBhsz5HMIEo1Q9RQaX6B24Mck" 
@@ -18,6 +18,7 @@
 //v-for="m in markers"
 //@click="center = m.position"
 import { GoogleMap, Marker } from 'vue3-google-map'
+import { eventBus } from '../../services/event-bus.service'
 export default {
   props: {
     cmpId: String,
@@ -46,6 +47,13 @@ export default {
   },
 
   methods: {
+    log() {
+      console.log('center:', this.center)
+      console.log('marker:', this.marker)
+    },
+    emitSelect(cmpInfo){
+      eventBus.emit('select', cmpInfo)
+    }
   }
 
 }
