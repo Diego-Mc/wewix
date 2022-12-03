@@ -3,7 +3,6 @@
   <draggable
     class="list-group wap-cards"
     :class="'type-' + typeId"
-    @click.stop="onCmpClick"
     :style="options.style"
     :component-data="{
       type: 'transition-group',
@@ -14,7 +13,8 @@
     @start="drag = true"
     @end="onDrop"
     item-key="order"
-    :group="'cards-' + cmpId">
+    :group="'cards-' + cmpId"
+    @click.stop="onCmpClick({ cmpId, childCmpId: element.id })">
     <template #item="{ element }">
       <div>
         <component
@@ -24,9 +24,8 @@
           :info="element.info"
           :cmpId="cmpId"
           :childCmpId="element.id"
-          @select="emitSelect"
           :typeId="element.typeId"
-          />
+          @click.stop="onCmpClick({ cmpId, childCmpId: element.id })" />
       </div>
     </template>
   </draggable>
@@ -56,9 +55,6 @@ export default {
     draggable,
   },
   methods: {
-    emitSelect(data) {
-      this.$emit('select', data)
-    },
     onDrop() {
       this.drag = false
       eventBus.emit('onInnerCmpDrop', {
@@ -66,8 +62,8 @@ export default {
         cmps: [...this.cards],
       })
     },
-    onCmpClick() {
-      eventBus.emit('select', { cmpId: this.cmpId })
+    onCmpClick(elInfo) {
+      eventBus.emit('select', elInfo)
     },
   },
 }

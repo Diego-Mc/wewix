@@ -1,6 +1,6 @@
 <!-- AIzaSyBOnIuYA6sTb4lF2WYWYJIUouv3HjIx2mg -->
 <template>
-  <section class="wap-map" @click.stop="onElClick({cmpId})">
+  <section class="wap-map" @click.stop="emitSelect({cmpId})">
     <GoogleMap
     
     api-key="AIzaSyDKvG9VduLBhsz5HMIEo1Q9RQaX6B24Mck" 
@@ -52,7 +52,7 @@ export default {
       console.log('center:', this.center)
       console.log('marker:', this.marker)
     },
-    onElClick(cmpInfo){
+    emitSelect(cmpInfo){
       eventBus.emit('select', cmpInfo)
     }
   }

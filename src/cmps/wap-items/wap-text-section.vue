@@ -1,11 +1,11 @@
 <template>
-  <section class="text-section" :class="'type-' + typeId">
+  <section class="text-section" :class="'type-' + typeId" :style="options.style">
     <span
       v-if="info.tag"
       class="tag"
+      @input="updateContent('tag', $event)"
       :style="info?.tag?.options.style"
-      @click.stop="$emit('select', { cmpId, elType: 'tag' })"
-      @change="updateContent('tag')"
+      @click.stop="emitSelect('tag')"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.tag?.content.text }}
     </span>
@@ -15,16 +15,16 @@
       class="title"
       @input="updateContent('title', $event)"
       :style="info?.title?.options.style"
-      @click.stop="onElClick('title')"
+      @click.stop="emitSelect('title')"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.title?.content.text }}
     </h2>
     <h2
       v-if="info.subtitle"
       class="subtitle"
-      @change="updateContent('subtitle')"
+      @input="updateContent('subtitle', $event)"
       :style="info?.subtitle?.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'subtitle' })"
+      @click.stop="emitSelect('subtitle')"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.subtitle?.content.text }}
     </h2>
@@ -33,16 +33,16 @@
       class="text"
       @input="updateContent('text', $event)"
       :style="info?.text?.options.style"
-      @click.stop="onElClick('text')"
+      @click.stop="emitSelect('text')"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.text?.content.text }}
     </p>
     <p
       v-if="info.details"
       class="details"
-      @change="updateContent('details')"
+      @input="updateContent('details', $event)"
       :style="info?.details?.options.style"
-      @click.stop="$emit('select', { cmpId, childCmpId, elType: 'details' })"
+      @click.stop="emitSelect('details')"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.details?.content.text }}
     </p>
@@ -51,7 +51,7 @@
       class="btn"
       @input="updateContent('btn', $event)"
       :style="info?.btn?.options.style"
-      @click.stop="onElClick('btn')">
+      @click.stop="emitSelect('btn')">
       {{ info?.btn?.content.text || 'Find us' }}
     </button>
   </section>
@@ -70,14 +70,7 @@ export default {
         childCmpId: this.childCmpId,
       })
     },
-    updateContent(elType, e) {
-      this.$emit('cmpUpdated', {
-        cmpId: this.cmpId,
-        elType,
-        content: e.target.innerText,
-      })
-    },
-    onElClick(elType) {
+    emitSelect(elType) {
       eventBus.emit('select', {
         cmpId: this.cmpId,
         childCmpId: this.childCmpId,

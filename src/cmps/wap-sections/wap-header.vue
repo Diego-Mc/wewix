@@ -3,24 +3,27 @@
     class="wap-header"
     :class="'type-' + typeId"
     :style="options.style"
-    @click.stop="onElClick({ cmpId })">
+    @click.stop="emitSelect({ cmpId })">
     <section class="logo">
       <img
+      v-if="info.img"
         class="img"
         @click.stop="$emit('select', { cmpId, elType: 'img' })"
         :src="info?.img?.options.meta.src" />
       <h1
+      v-if="info.title"
         class="title"
         :style="info.title.options.style"
-        @click.stop="onElClick({ cmpId, elType: 'title' })"
+        @click.stop="emitSelect({ cmpId, elType: 'title' })"
         @input="updateContent('title', $event)"
         :contenteditable="$store.getters.isEditMode">
         {{ info?.title?.content.text }}
       </h1>
     </section>
     <nav
+    v-if="info.nav"
       :style="info?.nav?.options.style"
-      @click.stop="onElClick({ cmpId, elType: 'nav' })">
+      @click.stop="emitSelect({ cmpId, elType: 'nav' })">
       <ul>
         <li v-for="nav in info?.nav?.content">
           {{ nav }}
@@ -30,7 +33,7 @@
     <button
       class="btn"
       :style="info?.btn?.options.style"
-      @click.stop="onElClick({ cmpId, elType: 'btn' })"
+      @click.stop="emitSelect({ cmpId, elType: 'btn' })"
       @change="updateContent('btn')">
       {{ info?.btn?.content.text }}
     </button>
@@ -49,7 +52,7 @@ export default {
         content: e.target.innerText,
       })
     },
-    onElClick(elInfo) {
+    emitSelect(elInfo) {
       eventBus.emit('select', elInfo )
     },
   },

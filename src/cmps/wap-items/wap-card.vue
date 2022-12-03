@@ -1,9 +1,9 @@
 <template>
-  <article class="wap-card" :class="'type-' + typeId">
+  <article :style="options.style" class="wap-card" :class="'type-' + typeId" >
     <img
       v-if="info.img"
       :style="info?.img?.options.style"
-      @click.stop="onElClick('img')"
+      @click.stop="emitSelect('img')"
       class="card-img"
       :src="info?.img?.options.meta.src" />
     <span
@@ -11,7 +11,7 @@
       class="details"
       :style="info?.details?.options.style">
       <span
-        @click.stop="onElClick('details')"
+        @click.stop="emitSelect('details')"
         @input="updateContent('details', $event)"
         :contenteditable="$store.getters.isEditMode">
         {{ info?.details?.content.text }}
@@ -20,7 +20,7 @@
         v-if="info.tag"
         class="tag"
         :style="info?.tag?.options.style"
-        @click.stop="onElClick('tag')"
+        @click.stop="emitSelect('tag')"
         @input="updateContent('tag', $event)"
         :contenteditable="$store.getters.isEditMode">
         {{ info?.tag?.content.text }}
@@ -31,7 +31,7 @@
       v-if="info.title"
       class="title"
       :style="info?.title?.options.style"
-      @click.stop="onElClick('title')"
+      @click.stop="emitSelect('title')"
       @input="updateContent('title', $event)"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.title?.content.text }}
@@ -41,7 +41,7 @@
       v-if="info.text"
       class="text"
       :style="info?.text?.options.style"
-      @click.stop="onElClick('text')"
+      @click.stop="emitSelect('text')"
       @input="updateContent('text', $event)"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.text?.content.text }}
@@ -51,7 +51,7 @@
       class="btn"
       v-if="info.btn"
       :style="info?.btn?.options.style"
-      @click.stop="onElClick('btn')">
+      @click.stop="emitSelect('btn')">
       <span
         @input="updateContent('btn', $event)"
         :contenteditable="$store.getters.isEditMode">
@@ -75,7 +75,7 @@ export default {
         childCmpId: this.childCmpId,
       })
     },
-    onElClick(elType) {
+    emitSelect(elType) {
       eventBus.emit('select', {
         cmpId: this.cmpId,
         childCmpId: this.childCmpId,

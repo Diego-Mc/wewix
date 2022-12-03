@@ -1,5 +1,5 @@
 <template>
-  <section v-if="info.img" class="img-section" @click.stop="onElClick">
+  <section v-if="info.img" class="img-section" @click.stop="emitSelect" :style="options.style">
     <img :src="info.img.options.meta.src" />
   </section>
 </template>
@@ -10,7 +10,7 @@ import { eventBus } from '../../services/event-bus.service'
 export default {
   props: ['info', 'cmpId', 'childCmpId', 'options', 'typeId'],
   methods: {
-    onElClick() {
+    emitSelect() {
       eventBus.emit('select', {
         cmpId: this.cmpId,
         childCmpId: this.childCmpId,

@@ -1,7 +1,7 @@
 <template>
   <draggable
     class="list-group wap-section"
-    @click.stop="onElClick({ cmpId })"
+    @click.stop="emitSelect({ cmpId })"
     :class="'type-' + typeId"
     :style="options.style"
     :component-data="{
@@ -24,7 +24,7 @@
           :cmpId="cmpId"
           :childCmpId="element.id"
           :typeId="element.typeId"
-          @select="emitSelect" />
+          @click="emitSelect" />
         <!--
         <video
           src="https://knowledge.s.dance.app/videos/hero_home_alt_15s_16_9.webm"
@@ -102,9 +102,6 @@ export default {
   },
 
   methods: {
-    emitSelect(data) {
-      this.$emit('select', data)
-    },
     onDrop() {
       this.drag = false
       eventBus.emit('onInnerCmpDrop', {
@@ -113,13 +110,13 @@ export default {
       })
     },
     updateContent(elType) {
-      this.$emit('cmpUpdated', {
+      eventBus.emit('cmpUpdated', {
         cmpId: this.cmpId,
         elType,
         // content: info.text.content,
       })
     },
-    onElClick(elInfo) {
+    emitSelect(elInfo) {
       eventBus.emit('select', elInfo)
     },
   },

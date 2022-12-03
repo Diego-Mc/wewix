@@ -98,21 +98,25 @@ export default {
       this.mediaType = mediaType
     },
     removeCmp({ id, childCmpId, elType }) {
-      let changedCmp = this.wap.cmps.find((cmp) => cmp.id === id)
-      if (childCmpId)
-        changedCmp = changedCmp.cmps.find(
+      let changedChildCmpIdx
+      let childCmp
+      let changedCmpIdx = +this.wap.cmps.findIndex((cmp) => cmp.id === id)
+      let changedCmp = this.wap.cmps[changedCmpIdx]
+      let section = true
+      if (childCmpId) {
+        changedChildCmpIdx = +this.wap.cmps[changedCmpIdx].cmps.findIndex(
           (childCmp) => childCmp.id === childCmpId
         )
-      if (id && childCmpId && elType) {
-        delete changedCmp[elType]
-      } else if (id && childCmpId && !elType) {
-        const idx = changedCmp.findIndex((cmp) => cmp.id === childCmpId)
-        changedCmp.splice(idx, 1)
-      } else if (id && elType) {
-        delete changedCmp[elType]
+        childCmp = this.wap.cmps[changedCmpIdx].cmps[changedChildCmpIdx]
+        section = false
+      }
+      if (elType) delete changedCmp.info[elType]
+      else if (section) {
+        this.wap.cmps.splice(changedCmpIdx, 1)
       } else {
-        const idx = this.wap.cmps.findIndex((cmp) => cmp.id === id)
-        this.wap.cmps.splice(idx, 1)
+        this.wap.cmps[changedCmpIdx].cmps.splice(changedChildCmpIdx, 1)
+        console.log(childCmp)
+        if (changedCmp?.cmps.length === 0) this.wap.cmps.splice(changedCmpIdx, 1)
       }
 
       this.onCmpsChange()
@@ -123,7 +127,6 @@ export default {
     },
     undo() {
       const gHistory = appEditorService.loadFromStorage('gHistory')
-      console.log(gHistory.changeIdx)
       if (!gHistory.changeIdx) return
       gHistory.changeIdx -= 1
       this.wap = gHistory.changes[gHistory.changeIdx]
@@ -132,7 +135,6 @@ export default {
     },
     redo() {
       const gHistory = appEditorService.loadFromStorage('gHistory')
-      console.log(gHistory.changes.length, gHistory.changeIdx)
       if (!gHistory || gHistory.changeIdx >= gHistory.changes.length - 1) return
       gHistory.changeIdx += 1
       this.wap = gHistory.changes[gHistory.changeIdx]
@@ -167,7 +169,7 @@ export default {
 
     // prettier-ignore
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
-      
+
       let changedCmp = this.wap.cmps.find(cmp => cmp.id === cmpId)
       if (childCmpId) changedCmp = changedCmp.cmps.find( childCmp => childCmp.id === childCmpId)
 
@@ -175,13 +177,12 @@ export default {
         updatedStyle ? changedCmp.info[elType].options = updatedStyle : changedCmp.info[elType].content.text = content
       } else {
         updatedStyle ? changedCmp.options=updatedStyle :  changedCmp.content.text = content
+        console.log(changedCmp.options);
       }
-     
+
       this.onCmpsChange()
     },
-    // TODO: work on logic, avoid repetition.
     async loadWap() {
-      console.log(this.$route.params)
       if (this.$route.params?.id) {
         const wap = await this.$store.dispatch({
           type: 'getWap',
@@ -195,7 +196,7 @@ export default {
           wap: this.wap,
         })
         this.wap._id = editedWapId
-        // fix this.
+        // TODO: fix this.
         this.$router.push({ path: 'edit/' + editedWapId, replace: true })
       }
     },
@@ -214,11 +215,11 @@ export default {
     },
     select({ cmpId, elType, childCmpId }) {
       let cmp = this.wap.cmps.find(({ id }) => id === cmpId)
-
       if (childCmpId) {
         cmp = cmp.cmps.find(({ id }) => id === childCmpId)
         this.selectedCmp.childCmpId = childCmpId
       }
+      console.log('type',elType)
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = elType ? cmp.info[elType].options : cmp.options
       this.selectedCmp.elType = elType
@@ -237,9 +238,6 @@ export default {
         const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
         this.wap.cmps[cmpIndex].cmps = cmps
         this.updateWap()
-      })
-      eventBus.on('onRemoveCmp', (cmpId) => {
-        this.removeCmp(cmpId)
       })
       eventBus.on('formSubmited', this.addUserInfo)
       eventBus.on('undo', this.undo)

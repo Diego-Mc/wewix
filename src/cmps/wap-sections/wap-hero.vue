@@ -1,7 +1,7 @@
 <template>
   <!-- <section
     class="wap-hero"
-    @click.stop="onElClick({ cmpId })"
+    @click.stop="emitSelect({ cmpId })"
     :style="options.style">
     <video
       src="https://knowledge.s.dance.app/videos/hero_home_alt_15s_16_9.webm,"
@@ -13,7 +13,7 @@
       class="title"
       @input="updateContent('title', $event)"
       :style="info.title?.options.style"
-      @click.stop="onElClick({ cmpId, elType: 'title' })"
+      @click.stop="emitSelect({ cmpId, elType: 'title' })"
       :contenteditable="$store.getters.isEditMode">
       {{ info.title?.content.text }}
     </h2>
@@ -21,14 +21,14 @@
       class="text"
       @input="updateContent('text', $event)"
       :style="info.text?.options.style"
-      @click.stop="onElClick({ cmpId, elType: 'text' })"
+      @click.stop="emitSelect({ cmpId, elType: 'text' })"
       :contenteditable="$store.getters.isEditMode">
       {{ info.text?.content.text }}
     </p>
     <button
       class="btn"
       :style="info.btn?.options.style"
-      @click.stop="onElClick({ cmpId, elType: 'btn' })">
+      @click.stop="emitSelect({ cmpId, elType: 'btn' })">
       <span
         :contenteditable="$store.getters.isEditMode"
         @input="updateContent('btn', $event)">
@@ -39,7 +39,7 @@
   <draggable
     class="list-group wap-hero"
     :class="'type-' + typeId"
-    @click.stop="eventBus.emit('select', { cmpId })"
+    @click.stop="onCmpClick({cmpId})"
     :style="options.style"
     :component-data="{
       type: 'transition-group',
@@ -61,7 +61,7 @@
           :cmpId="cmpId"
           :childCmpId="element.id"
           :typeId="element.typeId"
-          @select="emitSelect" />
+          @click.stop="onCmpClick({ cmpId, childCmpId: element.id })" />
         <!-- <video
             src="https://knowledge.s.dance.app/videos/hero_home_alt_15s_16_9.webm,"
             autoplay
@@ -120,8 +120,8 @@ import draggable from 'vuedraggable'
 export default {
   props: ['info', 'cmpId', 'options', 'cmps', 'typeId'],
   methods: {
-    emitSelect(data) {
-      this.$emit('select', data)
+    onCmpClick(cmpInfo) {
+      eventBus.emit('select', cmpInfo)
     },
     onDrop() {
       this.drag = false
@@ -137,7 +137,8 @@ export default {
         content: e.target.innerText,
       })
     },
-    onElClick(elInfo) {
+    emitSelect(elInfo) {
+      console.log(elInfo);
       eventBus.emit('select', elInfo)
     },
   },
