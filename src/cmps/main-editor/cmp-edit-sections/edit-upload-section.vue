@@ -51,6 +51,7 @@ export default {
         const {data} = await axios.post('https://api.cloudinary.com/v1_1/projwewix/image/upload', FORM_DATA)
         this.$emit('select', {key: 'src', val: data.url})
       } catch(err) {
+        // Todo user msg
         throw new Error('Cannot Upload Image')
       }
        
