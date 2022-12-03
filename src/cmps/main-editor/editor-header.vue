@@ -13,11 +13,19 @@
           { val: 'phone', icon: 'phone' },
         ]" />
     </section>
+    <section class="back-btn">
+      <editor-btn-group
+        :info="{ key: 'back' }"
+        @setVal="handleBtnSelect"
+        gap="4px"
+        :style="{ paddingInline: '14px' }"
+        :opts="[{ val: 'back', icon: 'arrow-left-square' }]" />
+    </section>
     <section class="url-bar">
       <p class="address">
-        https://wewix.onrender.com/<span class="site-name" contenteditable
-          >my-site</span
-        >
+        https://<span class="mb-hide">wewix.onrender.com/</span
+        ><span class="mb-show">... /</span
+        ><span class="site-name" contenteditable>my-site</span>
       </p>
       <router-link to="#" class="preview-btn">preview site</router-link>
     </section>

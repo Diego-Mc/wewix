@@ -67,45 +67,7 @@
             autoplay
             loop
             playsinline
-            muted></video>
-
-          <span
-            class="tag"
-            :style="info?.tag?.options.style"
-            @click.stop="$emit('select', { cmpId, elType: 'tag' })"
-            @change="updateContent('tag')"
-            :contenteditable="$store.getters.isEditMode">
-            {{ info?.tag?.content.text }}This is tag
-          </span>
-
-          <h2
-            class="title"
-            @input="updateContent('title',$event)"
-            :style="info?.title?.options.style"
-            @click.stop="eventBus.emit('select', { cmpId, elType: 'title' })"
-            :contenteditable="$store.getters.isEditMode">
-            {{ info?.title?.content.text }}
-          </h2>
-
-          <p
-            class="text"
-            @input="updateContent('text',$event)"
-            :style="info?.text?.options.style"
-            @click.stop="eventBus.emit('select', { cmpId, elType: 'text' })"
-            :contenteditable="$store.getters.isEditMode">
-            {{ info?.text?.content.text }}
-          </p>
-
-          <button
-            class="btn"
-            :style="info?.btn?.options.style"
-            @click.stop="eventBus.emit('select', { cmpId, elType: 'btn' })">
-            <span
-              :contenteditable="$store.getters.isEditMode"
-              @input="updateContent('btn',$event)">
-              {{ info?.btn?.content.text }}
-            </span>
-          </button> -->
+            muted></video>-->
       </div>
     </template>
   </draggable>

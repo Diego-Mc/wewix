@@ -2,12 +2,12 @@
   <section class="cmp-edit-section">
     <h6 class="edit-type-label">FONT</h6>
     <editor-btn-group
+      class="editor-btns"
       :info="{ key: 'fontFamily', type: 'picker' }"
       dir="row"
       initialValue="system"
       @setVal="handleBtnSelect"
       :style="{
-        margin: '4px',
         padding: '30px',
       }"
       :opts="[

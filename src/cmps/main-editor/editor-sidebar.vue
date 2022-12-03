@@ -18,6 +18,7 @@
       <nav class="section-names">
         <h2 class="title">Section</h2>
         <editor-btn-group
+          class="desktop-section-names-btns"
           :info="{ key: 'section' }"
           dir="column"
           @setVal="handleBtnSelect"
@@ -36,11 +37,34 @@
             { val: 'about', text: 'About' },
             { val: 'gallery', text: 'Gallery' },
           ]" />
+        <editor-btn-group
+          class="mobile-section-names-btns"
+          :info="{ key: 'section', type: 'picker' }"
+          dir="row"
+          @setVal="handleBtnSelect"
+          :style="{
+            padding: '30px',
+            margin: '4px',
+          }"
+          :opts="[
+            { val: 'header', small: 'Header', sample: 'Hh' },
+            { val: 'hero', small: 'Hero', sample: 'He' },
+            { val: 'contact', small: 'Contact', sample: 'Cc' },
+            { val: 'cta', small: 'CTA', sample: 'Ct' },
+            { val: 'testimonial', small: 'Testimonial', sample: 'Tt' },
+            { val: 'text', small: 'Text', sample: 'Tx' },
+            { val: 'about', small: 'About', sample: 'Ab' },
+            { val: 'gallery', small: 'Gallery', sample: 'Gl' },
+          ]" />
       </nav>
       <section
         class="section-cmps"
         :class="{ open: isOpen('section', 'header') }">
-        <wap-templates />
+        <!-- <wap-templates /> -->
+        <cmp-item></cmp-item>
+        <cmp-item></cmp-item>
+        <cmp-item></cmp-item>
+        <cmp-item></cmp-item>
       </section>
     </section>
     <section
