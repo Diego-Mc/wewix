@@ -91,10 +91,11 @@ export default {
   },
   methods: {
     updateField(fieldInfo){
+      console.log(fieldInfo.idx)
       const cmp = this.wap.cmps.find(cmp => cmp.id === fieldInfo.id)
       console.log(cmp.options.meta.formInputs[fieldInfo.idx])
       if(fieldInfo.txt) cmp.options.meta.formInputs[fieldInfo.idx].tag = fieldInfo.txt
-      else if(fieldInfo.idx) cmp.options.meta.formInputs.splice(fieldInfo.idx,1)
+      else if(typeof fieldInfo.idx === 'number') cmp.options.meta.formInputs.splice(fieldInfo.idx,1)
       else cmp.options.meta.formInputs.push({ tag: 'wa', txt: '' })
       this.onCmpsChange()
     },
