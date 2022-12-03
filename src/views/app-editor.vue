@@ -12,11 +12,13 @@
           type: 'transition-group',
           name: !drag ? 'flip-list' : null,
         }"
-        @add="onCmpsChange"
+        @add="cmpAdded($event)"
         v-model="wap.cmps"
         v-bind="dragOptions"
         @start="drag = true"
-        @end="onDrop"
+        @end="drag = false"
+        @update="onCmpsChange"
+        @clone="wa"
         item-key="order"
         group="sections">
         <template #item="{ element }">
@@ -94,6 +96,9 @@ export default {
     document.removeEventListener('keydown', this.keydownHandler)
   },
   methods: {
+    cmpAdded(e) {
+      this.onCmpsChange()
+    },
     updateField(fieldInfo) {
       const cmp = this.wap.cmps.find((cmp) => cmp.id === fieldInfo.id)
       if (fieldInfo.txt || fieldInfo.txt === '')
@@ -187,14 +192,15 @@ export default {
     // prettier-ignore
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
 
+      console.log('style',updatedStyle)
       let changedCmp = this.wap.cmps.find(cmp => cmp.id === cmpId)
       if (childCmpId) changedCmp = changedCmp.cmps.find( childCmp => childCmp.id === childCmpId)
-
       if (elType) {
-        updatedStyle ? changedCmp.info[elType].options = updatedStyle : changedCmp.info[elType].content.text = content
+        // console.log(updatedStyle.options.style.backgroundColor)
+        // updatedStyle ? changedCmp.info[elType].options = updatedStyle : changedCmp.info[elType].content.text = content
       } else {
-        updatedStyle ? changedCmp.options=updatedStyle :  changedCmp.content.text = content
-
+        changedCmp.options.style.backgroundColor = updatedStyle.style.backgroundColor
+        // updatedStyle ? changedCmp.options=updatedStyle :  changedCmp.content.text = content
       }
       this.onCmpsChange()
     },
