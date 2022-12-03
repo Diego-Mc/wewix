@@ -13,12 +13,8 @@
       {{ info.text.content.text }}
     </p> -->
     <form @submit.prevent="formSubmited">
-      <div v-for="field in options.meta.formInputs">
-        <!-- TODO: move to wap-form-item -->
-        <wap-form-item
-          type="email"
-      
-          :tag="field.tag" />
+      <div v-for="(field, idx) in options.meta.formInputs">
+        <wap-form-item type="email" v-model="userInfo[field.tag]" :tag="field.tag" />
       </div>
       <!-- <wap-form-item  type="email" v-model="userInfo.email" /> -->
       <!-- <wap-form-item type="msg" v-model="userInfo.msg" /> -->
@@ -56,13 +52,9 @@ export default {
     updateContent(elType) {
       this.$emit('update', { cmpId, elType, content: info.text.content })
     },
-    initUserInfo() {
-      this.options.meta.formInputs.forEach(
-        (field) => (this.userInfo[field.tag] = '')
-      )
-    },
+
     formSubmited() {
-      console.log(this.field.txt)
+      console.log(this.userInfo)
       this.userInfo.at = Date.now()
       eventBus.emit('formSubmited', this.userInfo)
     },
@@ -70,9 +62,7 @@ export default {
       eventBus.emit('select', elInfo)
     },
   },
-  created() {
-    this.initUserInfo()
-  },
+
   components: {
     wapFormItem,
   },

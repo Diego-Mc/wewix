@@ -90,12 +90,12 @@ export default {
     document.removeEventListener('keydown', this.keydownHandler)
   },
   methods: {
-    updateField(fieldInfo){
-      console.log(fieldInfo.idx)
-      const cmp = this.wap.cmps.find(cmp => cmp.id === fieldInfo.id)
-      console.log(cmp.options.meta.formInputs[fieldInfo.idx])
-      if(fieldInfo.txt) cmp.options.meta.formInputs[fieldInfo.idx].tag = fieldInfo.txt
-      else if(typeof fieldInfo.idx === 'number') cmp.options.meta.formInputs.splice(fieldInfo.idx,1)
+    updateField(fieldInfo) {
+      const cmp = this.wap.cmps.find((cmp) => cmp.id === fieldInfo.id)
+      if (fieldInfo.txt || fieldInfo.txt === '')
+        cmp.options.meta.formInputs[fieldInfo.idx].tag = fieldInfo.txt
+      else if (typeof fieldInfo.idx === 'number')
+        cmp.options.meta.formInputs.splice(fieldInfo.idx, 1)
       else cmp.options.meta.formInputs.push({ tag: 'wa', txt: '' })
       this.onCmpsChange()
     },
@@ -109,24 +109,27 @@ export default {
     },
     removeCmp({ id, childCmpId, elType }) {
       let changedChildCmpIdx
-      let childCmp = {}
       let changedCmpIdx = +this.wap.cmps.findIndex((cmp) => cmp.id === id)
-      let changedCmp = this.wap.cmps[changedCmpIdx]
-      let section = true
+      const parentCmp = this.wap.cmps[changedCmpIdx]
+      let changedCmp = parentCmp
       if (childCmpId) {
-        changedChildCmpIdx = +this.wap.cmps[changedCmpIdx].cmps.findIndex(
+        changedChildCmpIdx = +parentCmp.cmps.findIndex(
           (childCmp) => childCmp.id === childCmpId
         )
-        childCmp = this.wap.cmps[changedCmpIdx].cmps[changedChildCmpIdx]
-        section = false
+        changedCmp = parentCmp.cmps[changedChildCmpIdx]
       }
       if (elType) delete changedCmp.info[elType]
-      else if (section) {
+      else if (!childCmpId) {
         this.wap.cmps.splice(changedCmpIdx, 1)
       } else {
-        this.wap.cmps[changedCmpIdx].cmps.splice(changedChildCmpIdx, 1)
-        console.log(childCmp)
-        if (changedCmp?.cmps.length === 0) this.wap.cmps.splice(changedCmpIdx, 1)
+        parentCmp.cmps.splice(changedChildCmpIdx, 1)
+      }
+
+      if (
+        (parentCmp.cmps && !parentCmp.cmps.length) ||
+        (parentCmp.info && !Object.keys(parentCmp.info).length)
+      ) {
+        this.wap.cmps.splice(changedCmpIdx, 1)
       }
 
       this.onCmpsChange()
@@ -187,7 +190,7 @@ export default {
         updatedStyle ? changedCmp.info[elType].options = updatedStyle : changedCmp.info[elType].content.text = content
       } else {
         updatedStyle ? changedCmp.options=updatedStyle :  changedCmp.content.text = content
-        
+
       }
       this.onCmpsChange()
     },
@@ -225,11 +228,16 @@ export default {
     select({ cmpId, elType, childCmpId }) {
       this.selectedCmp = {}
 
-      let cmp = this.wap.cmps.find(({ id }) => id === cmpId)
+      let cmp = this.wap.cmps.find(({ id }) => {
+        console.log('id in for loop', id)
+        return id === cmpId
+      })
+      console.log('selected-cmp before bug:', this.wap.cmps)
       if (childCmpId) {
         cmp = cmp.cmps.find(({ id }) => id === childCmpId)
         this.selectedCmp.childCmpId = childCmpId
       }
+      console.log('selected-cmp:', cmp, cmpId, elType, childCmpId)
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = elType ? cmp.info[elType].options : cmp.options
       this.selectedCmp.elType = elType
