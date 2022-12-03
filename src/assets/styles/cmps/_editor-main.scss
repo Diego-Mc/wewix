@@ -20,6 +20,12 @@
       left: $editor-nav-width + $editor-section-names-width;
     }
   }
+  &:has(.section-cmps.open) {
+    .main-wap:not(.phone, .tablet) {
+      left: $editor-nav-width + $editor-section-names-width +
+        $editor-section-cmps-width;
+    }
+  }
   &:has(.cmp-editor.open) {
     .main-wap:not(.phone, .tablet) {
       left: $editor-nav-width + $editor-section-edit-width;
@@ -32,6 +38,13 @@
     overflow-y: scroll;
     right: 0;
     left: $editor-nav-width;
+    // &::before {
+    //   content: '';
+    //   inset: 0;
+    //   position: fixed;
+    //   background-color: #fff;
+    //   z-index: -7;
+    // }
     &.phone {
       left: 0;
       max-width: 480px;

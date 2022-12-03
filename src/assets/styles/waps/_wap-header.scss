@@ -11,7 +11,7 @@
     gap: 4px;
     cursor: default;
     .title {
-      font-size: rem(22px);
+      font-size: em(22px);
       font-weight: 400;
     }
     img {
@@ -35,13 +35,18 @@
     width: fit-content;
     height: fit-content;
     padding: 1em 1.4em;
-    font-size: rem(14px);
+    font-size: em(14px);
     transition: filter 0.2s;
     background-color: var(--clr-1);
     color: var(--clr-3);
     &:hover {
       filter: brightness(120%);
     }
+  }
+}
+
+@container wap (max-width: $tablet-bp) {
+  .wap-header {
   }
 }
 
@@ -97,4 +102,4 @@
 //       filter: brightness(120%);
 //     }
 //   }
-// }
+// };

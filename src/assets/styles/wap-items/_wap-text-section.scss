@@ -18,14 +18,14 @@
     justify-content: center;
     align-items: center;
     width: fit-content;
-    font-size: rem(14px);
+    font-size: em(14px);
     letter-spacing: 2px;
     margin-bottom: 26px;
   }
 
   .title,
   .subtitle {
-    font-size: rem(80px);
+    font-size: em(80px);
     font-weight: 500;
   }
   .subtitle {
@@ -39,7 +39,7 @@
   .text {
     grid-area: text;
 
-    font-size: rem(18px);
+    font-size: em(18px);
     line-height: 1.5;
     max-width: 38ch;
     margin-bottom: 26px;
@@ -54,7 +54,7 @@
     color: var(--clr-3);
     padding: 0.8em 1.1em;
     border-radius: 0;
-    font-size: rem(18px);
+    font-size: em(18px);
     width: fit-content;
     &:hover {
       filter: brightness(120%);
@@ -81,24 +81,24 @@
       transform: rotate(-1.6deg);
     }
     .title {
-      font-size: rem(48px);
+      font-size: em(48px);
       font-weight: 400;
       margin-bottom: 32px;
     }
     .text {
-      font-size: rem(14px);
+      font-size: em(14px);
       max-width: 100%;
       letter-spacing: 2px;
       margin-bottom: 24px;
     }
     .subtitle {
-      font-size: rem(20px);
+      font-size: em(20px);
       font-family: Asap;
       font-style: normal;
       margin-bottom: 8px;
     }
     .details {
-      font-size: rem(14px);
+      font-size: em(14px);
       line-height: 1.5;
       white-space: pre;
       text-decoration: underline;
@@ -114,7 +114,7 @@
   &.type-4 {
     .title {
       margin-bottom: 26px;
-      font-size: rem(48px);
+      font-size: em(48px);
     }
     .text {
       max-width: 60ch;

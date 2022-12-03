@@ -57,19 +57,19 @@
   }
 }
 
-@mixin grid($colAmount: 12, $gap: 16px) {
+@mixin grid($colAmount: 12, $gap: 36px) {
   display: grid;
   grid-template-columns: repeat($colAmount, minmax(0, 1fr));
   gap: $gap;
   align-items: center;
   padding: 2.6rem 4rem;
-  max-width: 1400px;
-  margin: auto;
-  // &::before {
-  //   content: '';
-  //   position: fixed;
-  //   z-index: -100;
-  //   background-color: inherit;
-  //   inset: 0;
-  // }
+}
+
+@mixin mediaWap($maxWidth) {
+  @container wap (max-width: $maxWidth) {
+    .wap,
+    .main-wap {
+      @content;
+    }
+  }
 }

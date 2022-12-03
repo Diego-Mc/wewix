@@ -1,11 +1,10 @@
 .img-section {
-  max-width: 500px;
-  max-height: 700px;
-  aspect-ratio: 5 / 7;
+  // max-height: 600px;
+  aspect-ratio: 6 / 8;
+  padding: 40px;
   background-color: transparent;
   position: relative;
-  transform-origin: right;
-  transform: rotate(4.8deg) scale(90%);
+  transform: rotate(4.8deg);
   img {
     object-fit: cover;
     width: 100%;
@@ -13,15 +12,17 @@
   }
   &::before {
     content: '';
-    width: 500px;
-    height: 600px;
+    width: 95%;
+    height: 95%;
+    aspect-ratio: 5 / 7;
+    transform-origin: center;
     background-color: #fff;
     position: absolute;
-    transform: rotate(-8.8deg) translate(-12px, 0px);
+    transform: rotate(-5.8deg) translate(-45px, -2px);
     z-index: -1;
   }
   &.type-2 {
-    transform: rotate(-4.8deg) scale(90%);
+    transform: rotate(-4.8deg) scale(80%);
 
     &::before {
       transform: rotate(8.8deg) translate(12px, 0px);
@@ -41,4 +42,13 @@
   //   width: 100%;
   //   height: 100%;
   // }
+}
+
+@container wap (max-width: 990px) {
+  .img-section {
+    transform: rotate(2deg) scale(80%);
+    &::before {
+      transform: rotate(-4deg) translate(-50px, -40px) scale(80%);
+    }
+  }
 }
