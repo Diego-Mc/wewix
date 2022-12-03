@@ -39,7 +39,7 @@
   <draggable
     class="list-group wap-hero"
     :class="'type-' + typeId"
-    @click.stop="onCmpClick({cmpId})"
+    @click.stop="onCmpClick({ cmpId })"
     :style="options.style"
     :component-data="{
       type: 'transition-group',
@@ -138,7 +138,7 @@ export default {
       })
     },
     emitSelect(elInfo) {
-      console.log(elInfo);
+      console.log(elInfo)
       eventBus.emit('select', elInfo)
     },
   },
