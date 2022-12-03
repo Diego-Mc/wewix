@@ -15,6 +15,7 @@
     margin-bottom: 20px;
   }
   .btn {
+    margin-right: 15px;
     font-size: rem(20px);
     padding: 1.4em 4em;
     color: var(--clr-2);
@@ -33,6 +34,8 @@
 
 .form-input {
   position: relative;
+  margin-bottom:15px;
+
   .label {
     position: absolute;
     top: 18px;

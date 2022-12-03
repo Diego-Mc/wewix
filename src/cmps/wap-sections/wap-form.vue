@@ -3,32 +3,27 @@
     @click.stop="emitSelect({ cmpId })"
     class="wap-form"
     :class="'type-' + typeId">
-    <!-- <h3 class="title" :style="info.title.options.style">
-      Stay up to speed
+  <h3 class="title" :style="info.title.options.style">
       {{ info.title.content.text }}
     </h3>
-    <p class="text" :style="info.text.options.style">
+    <!-- <p class="text" :style="info.text.options.style">
       Sign up to get the latest Dance offers, updates, and tips straight to your
       inbox.
       {{ info.text.content.text }}
-    </p> -->
+    </p> --> -->
     <form @submit.prevent="formSubmited">
-      <div v-for="field in options.meta.formInputs">
-        <!-- TODO: move to wap-form-item -->
-        <wap-form-item
-          type="email"
-      
-          :tag="field.tag" />
+      <div v-for="(field, idx) in options.meta.formInputs">
+        <wap-form-item type="email" v-model="userInfo[field.tag]" :tag="field.tag" />
       </div>
       <!-- <wap-form-item  type="email" v-model="userInfo.email" /> -->
       <!-- <wap-form-item type="msg" v-model="userInfo.msg" /> -->
       <!-- :style="info.btn.options.style" -->
-      <button @click="userInfo.type = 'message'" class="btn">
-        submit
+      <button @click="userInfo.type = 'message'" class="btn send-btn">
+        Send
         <!-- {{ info.btn.content.text }} -->
       </button>
-      <button @click="userInfo.type = 'subscription'" class="btn">
-        subscribe
+      <button @click="userInfo.type = 'subscription'" class="btn send-btn">
+        Subscribe
         <!-- {{ info.btn.content.text }} -->
       </button>
     </form>
@@ -56,13 +51,9 @@ export default {
     updateContent(elType) {
       this.$emit('update', { cmpId, elType, content: info.text.content })
     },
-    initUserInfo() {
-      this.options.meta.formInputs.forEach(
-        (field) => (this.userInfo[field.tag] = '')
-      )
-    },
+
     formSubmited() {
-      console.log(this.field.txt)
+      console.log(this.userInfo)
       this.userInfo.at = Date.now()
       eventBus.emit('formSubmited', this.userInfo)
     },
@@ -70,9 +61,7 @@ export default {
       eventBus.emit('select', elInfo)
     },
   },
-  created() {
-    this.initUserInfo()
-  },
+
   components: {
     wapFormItem,
   },

@@ -119,7 +119,7 @@
       </div>
 
       <div>
-        <button @click.stop="onRemoveCmp">Delete</button>
+        <el-button type="danger" @click.stop="onRemoveCmp">Remove</el-button>
       </div>
     </section>
   </section>

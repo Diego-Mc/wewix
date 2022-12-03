@@ -76,6 +76,7 @@ export default {
       })
     },
     emitSelect(elType) {
+      console.log('wap-text section',this.cmpId);
       eventBus.emit('select', {
         cmpId: this.cmpId,
         childCmpId: this.childCmpId,
