@@ -1,6 +1,8 @@
 <template>
   <section v-if="info.img" class="img-section" @click.stop="emitSelect" :style="options.style">
-    <img :src="info.img.options.meta.src" />
+    <div class="img-container">
+      <img :src="info.img.options.meta.src" />
+    </div>
   </section>
 </template>
 

@@ -53,7 +53,6 @@
         :childCmpId="selectedCmp.childCmpId"
         :editOptions="selectedCmp.options"
         :elType="selectedCmp.elType" />
-     
     </section>
 
     <section
@@ -85,7 +84,6 @@ import editBgColorSection from '../main-editor/cmp-edit-sections/edit-bg-color-s
 import editRadiusSection from '../main-editor/cmp-edit-sections/edit-radius-section.vue'
 import editUploadSection from '../main-editor/cmp-edit-sections/edit-upload-section.vue'
 
-
 export default {
   props: {
     selectedCmp: Object,
@@ -94,7 +92,6 @@ export default {
     return {
       editOpt: '',
       section: '',
-      temp: 0,
     }
   },
   methods: {

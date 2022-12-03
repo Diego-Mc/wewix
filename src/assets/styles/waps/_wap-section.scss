@@ -17,13 +17,46 @@
   .img-section {
   }
   &.type-4 {
-    @include grid(2);
+    @include grid(2, 16%);
   }
 }
 
 @container wap (max-width: 990px) {
   .wap-section {
     font-size: rem(14px);
+    .text-section {
+      &.type-4 {
+        .title,
+        .subtitle {
+          font-size: em(50px);
+        }
+      }
+    }
+  }
+}
+
+@container wap (max-width: 760px) {
+  .wap-section {
+    &.type-4 {
+      @include grid(1);
+      .text-section {
+        grid-template-areas: 'tag' 'titles' 'text' 'cta';
+        justify-content: start;
+        .titles-wrapper {
+          grid-area: titles;
+        }
+        .title {
+          margin-right: 12px;
+        }
+        .title,
+        .subtitle {
+          font-size: em(40px);
+        }
+        .text {
+          max-width: 100%;
+        }
+      }
+    }
   }
 }
 

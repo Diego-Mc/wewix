@@ -26,6 +26,7 @@
               :info="element.info"
               :options="element.options"
               :cmps="element.cmps"
+              :typeId="element.typeId"
               :cmpId="element.id">
             </component>
           </div>
