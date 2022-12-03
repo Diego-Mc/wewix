@@ -96,7 +96,7 @@ export default {
     document.removeEventListener('keydown', this.keydownHandler)
   },
   methods: {
-    cmpAdded(ev) {
+    cmpAdded(e) {
       this.onCmpsChange()
     },
     updateField(fieldInfo) {
@@ -192,14 +192,15 @@ export default {
     // prettier-ignore
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
 
+      console.log('style',updatedStyle)
       let changedCmp = this.wap.cmps.find(cmp => cmp.id === cmpId)
       if (childCmpId) changedCmp = changedCmp.cmps.find( childCmp => childCmp.id === childCmpId)
-
       if (elType) {
-        updatedStyle ? changedCmp.info[elType].options = updatedStyle : changedCmp.info[elType].content.text = content
+        // console.log(updatedStyle.options.style.backgroundColor)
+        // updatedStyle ? changedCmp.info[elType].options = updatedStyle : changedCmp.info[elType].content.text = content
       } else {
-        updatedStyle ? changedCmp.options=updatedStyle :  changedCmp.content.text = content
-
+        changedCmp.options.style.backgroundColor = updatedStyle.style.backgroundColor
+        // updatedStyle ? changedCmp.options=updatedStyle :  changedCmp.content.text = content
       }
       this.onCmpsChange()
     },

@@ -11,8 +11,8 @@
         <li
           class="list-group-item"
           :style="{ backgroundColor: element.backgroundColor }">
-          <!-- <img :src="element.previewImg" alt=""/> -->
-          <p>wawa</p>
+          <cmp-item :src="element.previewImg"></cmp-item>
+          wawa
         </li>
       </template>
     </draggable>
@@ -21,34 +21,46 @@
 
 <script>
 import draggable from 'vuedraggable'
+import cmpItem from './editor-items/cmp-item.vue'
 import { utilService } from '../../services/util.service'
 import getCmp from '../../services/wap-cmps.service'
 import { wapVideo, wapMap, wapForm } from '../../services/wap-new-model'
 export default {
   components: {
     draggable,
+    cmpItem,
   },
   data() {
     return {
       cmpsDropdownOptions: [
-        'wa',
-        getCmp('wap-hero', 2),
+        // 'header',
+        getCmp('wap-cards', 2),
         getCmp('wap-section', 2),
         getCmp('wap-section', 3),
-        getCmp('wap-cards', 2),
-        getCmp('wap-section', 4),
-        getCmp('wap-form', 1),
-        wapVideo,
-        wapMap,
+        // cmpCardImg: 'src/assets/imgs/cmp-cards-2.png',
+        // cmp:null
+        // getCmp('wap-section', 4),
+        // getCmp('wap-form', 1),
+        // wapVideo,
+        // wapMap,
       ],
     }
   },
   methods: {
     wa(e) {
-      e.item.__draggable_context.element = JSON.parse(
-        JSON.stringify(getCmp('wap-header', 2))
-      )
-      // e.item.__draggable_context.element._id = utilService.makeId()
+      this.cmpsDropdownOptions =  [
+        // 'header',
+        getCmp('wap-cards', 2),
+        getCmp('wap-section', 2),
+        getCmp('wap-section', 3),
+        // cmpCardImg: 'src/assets/imgs/cmp-cards-2.png',
+        // cmp:null
+        // getCmp('wap-section', 4),
+        // getCmp('wap-form', 1),
+        // wapVideo,
+        // wapMap,
+      ]
+
     },
   },
 }
