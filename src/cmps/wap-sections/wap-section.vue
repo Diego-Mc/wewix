@@ -24,7 +24,7 @@
           :cmpId="cmpId"
           :childCmpId="element.id"
           :typeId="element.typeId"
-          @click="emitSelect" />
+          @click="emitSelect({cmpId,childCmpId:element.id})" />
         <!--
         <video
           src="https://knowledge.s.dance.app/videos/hero_home_alt_15s_16_9.webm"
