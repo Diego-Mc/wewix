@@ -35,9 +35,9 @@ export default {
         getCmp('wap-section', 3),
         getCmp('wap-cards', 2),
         getCmp('wap-section', 4),
+        getCmp('wap-form', 1),
         wapVideo,
         wapMap,
-        wapForm,
       ],
     }
   },

@@ -127,10 +127,10 @@ function getStyles(elType) {
     default:
       return {
         backgroundColor: '',
-        fontFamily: '',
-        color: '',
-        fontWeight: '',
-        fontSize: '',
+        // fontFamily: '',
+        // color: '',
+        // fontWeight: '',
+        // fontSize: '',
       }
   }
 }
@@ -495,7 +495,12 @@ wapsMap.set('wap-form-1', {
   type: 'wap-form',
   typeId: 1,
   options: {
-    meta: {},
+    meta: {
+      formInputs: [
+        {tag:'email',txt:''},
+        {tag:'msg',txt:''},
+      ]
+    },
     style: getStyles(),
   },
   info: {
@@ -528,13 +533,8 @@ wapsMap.set('wap-header-2', {
   typeId: 2,
   options: {
     meta: {},
-    style: {
-      backgroundColor: '',
-      fontFamily: '',
-      color: '',
-      fontWeight: '',
-      fontSize: '',
-    },
+    style: getStyles()
+
   },
   info: {
     // logo?

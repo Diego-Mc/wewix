@@ -1,5 +1,8 @@
 <template>
-  <article class="wap-form" :class="'type-' + typeId">
+  <article
+    @click.stop="emitSelect({ cmpId })"
+    class="wap-form"
+    :class="'type-' + typeId">
     <!-- <h3 class="title" :style="info.title.options.style">
       Stay up to speed
       {{ info.title.content.text }}
@@ -10,8 +13,15 @@
       {{ info.text.content.text }}
     </p> -->
     <form @submit.prevent="formSubmited">
-      <wap-form-item type="email" v-model="userInfo.email" />
-      <wap-form-item type="msg" v-model="userInfo.msg" />
+      <div v-for="field in options.meta.formInputs">
+        <!-- TODO: move to wap-form-item -->
+        <wap-form-item
+          type="email"
+      
+          :tag="field.tag" />
+      </div>
+      <!-- <wap-form-item  type="email" v-model="userInfo.email" /> -->
+      <!-- <wap-form-item type="msg" v-model="userInfo.msg" /> -->
       <!-- :style="info.btn.options.style" -->
       <button @click="userInfo.type = 'message'" class="btn">
         submit
@@ -32,25 +42,37 @@ export default {
   props: ['info', 'cmpId', 'options', 'typeId'],
   data() {
     return {
-      userInfo: {
-        email: '',
-        msg: '',
-        email: '',
-        at: '',
-        type: null,
-      },
+      userInfo: {},
+      // {
+      //   email: '',
+      //   msg: '',
+      //   email: '',
+      //   at: '',
+      //   type: null,
+      // },
     }
   },
   methods: {
     updateContent(elType) {
       this.$emit('update', { cmpId, elType, content: info.text.content })
     },
+    initUserInfo() {
+      this.options.meta.formInputs.forEach(
+        (field) => (this.userInfo[field.tag] = '')
+      )
+    },
     formSubmited() {
+      console.log(this.field.txt)
       this.userInfo.at = Date.now()
       eventBus.emit('formSubmited', this.userInfo)
     },
+    emitSelect(elInfo) {
+      eventBus.emit('select', elInfo)
+    },
   },
-  created() {},
+  created() {
+    this.initUserInfo()
+  },
   components: {
     wapFormItem,
   },
