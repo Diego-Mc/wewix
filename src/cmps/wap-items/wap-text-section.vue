@@ -1,5 +1,8 @@
 <template>
-  <section class="text-section" :class="'type-' + typeId" :style="options.style">
+  <section
+    class="text-section"
+    :class="'type-' + typeId"
+    :style="options.style">
     <span
       v-if="info.tag"
       class="tag"
@@ -10,24 +13,26 @@
       {{ info?.tag?.content.text }}
     </span>
 
-    <h2
-      v-if="info.title"
-      class="title"
-      @input="updateContent('title', $event)"
-      :style="info?.title?.options.style"
-      @click.stop="emitSelect('title')"
-      :contenteditable="$store.getters.isEditMode">
-      {{ info?.title?.content.text }}
-    </h2>
-    <h2
-      v-if="info.subtitle"
-      class="subtitle"
-      @input="updateContent('subtitle', $event)"
-      :style="info?.subtitle?.options.style"
-      @click.stop="emitSelect('subtitle')"
-      :contenteditable="$store.getters.isEditMode">
-      {{ info?.subtitle?.content.text }}
-    </h2>
+    <div class="titles-wrapper">
+      <h2
+        v-if="info.title"
+        class="title"
+        @input="updateContent('title', $event)"
+        :style="info?.title?.options.style"
+        @click.stop="emitSelect('title')"
+        :contenteditable="$store.getters.isEditMode">
+        {{ info?.title?.content.text }}
+      </h2>
+      <h2
+        v-if="info.subtitle"
+        class="subtitle"
+        @input="updateContent('subtitle', $event)"
+        :style="info?.subtitle?.options.style"
+        @click.stop="emitSelect('subtitle')"
+        :contenteditable="$store.getters.isEditMode">
+        {{ info?.subtitle?.content.text }}
+      </h2>
+    </div>
     <p
       v-if="info.text"
       class="text"
