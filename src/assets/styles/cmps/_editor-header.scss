@@ -2,9 +2,10 @@
   display: flex;
   align-items: center;
   border-bottom: 1px solid #eee;
-  height: $editor-header-height;
+  height: $editor-header-height + 4px;
   background-color: #fff;
   padding-inline: 4px;
+  // padding-block: 40px;
 
   .media-select {
   }
