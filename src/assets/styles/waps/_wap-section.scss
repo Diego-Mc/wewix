@@ -16,6 +16,17 @@
 
   .img-section {
   }
+  &.type-3 {
+    @include grid(3, 40px);
+    align-items: start;
+    div:has(.text-section) {
+      position: sticky;
+      top: 48px;
+    }
+    div:has(.gallery-section) {
+      grid-column: span 2;
+    }
+  }
   &.type-4 {
     @include grid(2, 16%);
   }
@@ -24,6 +35,17 @@
 @container wap (max-width: 990px) {
   .wap-section {
     font-size: rem(14px);
+    &.type-3 {
+      @include grid(1, 40px);
+      // align-items: start;
+      div:has(.text-section) {
+        position: static;
+        top: 48px;
+      }
+      div:has(.gallery-section) {
+        grid-column: span 1;
+      }
+    }
     .text-section {
       &.type-4 {
         .title,
@@ -39,7 +61,10 @@
   .wap-section {
     &.type-4 {
       @include grid(1);
-      .text-section {
+    }
+
+    .text-section {
+      &.type-4 {
         grid-template-areas: 'tag' 'titles' 'text' 'cta';
         justify-content: start;
         .titles-wrapper {
@@ -55,6 +80,29 @@
         .text {
           max-width: 100%;
         }
+      }
+      &.type-5 {
+        grid-template-areas: 'title' 'text' 'cta';
+        justify-content: start;
+        .title {
+          grid-area: title;
+          font-size: em(40px);
+          margin-bottom: 20px;
+        }
+        .text {
+          max-width: 100%;
+        }
+      }
+    }
+
+    .gallery-section {
+      grid-template-columns: 1fr;
+      .gallery-item,
+      .gallery-item:nth-child(even) {
+        padding-top: 0;
+      }
+      .gallery-item:not(:last-child) {
+        padding-bottom: 40px;
       }
     }
   }

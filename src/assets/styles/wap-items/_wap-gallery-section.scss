@@ -1,0 +1,27 @@
+.gallery-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+  gap: 0px 40px;
+
+  .gallery-item {
+    width: 100%;
+    &:nth-child(even) {
+      padding-top: 40px;
+    }
+    .img-container {
+      width: 100%;
+      aspect-ratio: 42/56;
+      object-fit: cover;
+      margin-bottom: 20px;
+      img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+      }
+    }
+    .img-text {
+      font-size: em(32px);
+      font-weight: 400;
+    }
+  }
+}

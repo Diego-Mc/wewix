@@ -497,9 +497,9 @@ wapsMap.set('wap-form-1', {
   options: {
     meta: {
       formInputs: [
-        {tag:'email',txt:''},
-        {tag:'msg',txt:''},
-      ]
+        { tag: 'email', txt: '' },
+        { tag: 'msg', txt: '' },
+      ],
     },
     style: getStyles(),
   },
@@ -533,8 +533,7 @@ wapsMap.set('wap-header-2', {
   typeId: 2,
   options: {
     meta: {},
-    style: getStyles()
-
+    style: getStyles(),
   },
   info: {
     // logo?
@@ -753,7 +752,7 @@ wapsMap.set('wap-section-3', {
     {
       id: '1',
       type: 'wap-text-section',
-      typeId: 4,
+      typeId: 5,
       options: {
         meta: {},
         style: getStyles(),
@@ -791,20 +790,50 @@ wapsMap.set('wap-section-3', {
     },
     {
       id: '2',
-      type: 'section-gallery-item',
+      type: 'wap-gallery-section',
       typeId: 1,
       options: {
-        meta: {
-          srcs: [
-            'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f1189632baa0fde4f93fb_Tacos-p-500.jpeg',
-            'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f1197a9384100846bb45b_Burgers-p-500.jpeg',
-            'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f11917d19484961ab36a5_Sides-p-500.jpeg',
-            'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f119fec895207e4b8f202_Beverages-p-1080.jpeg',
-          ],
-        },
+        meta: {},
         style: getStyles(),
       },
-      info: {},
+      info: {
+        img1: {
+          options: {
+            meta: {
+              src: 'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f1189632baa0fde4f93fb_Tacos.jpg',
+            },
+            style: getStyles('img'),
+          },
+          content: { text: 'Tacos' },
+        },
+        img2: {
+          options: {
+            meta: {
+              src: 'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f1197a9384100846bb45b_Burgers.jpg',
+            },
+            style: getStyles('img'),
+          },
+          content: { text: 'Burgers' },
+        },
+        img3: {
+          options: {
+            meta: {
+              src: 'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f11917d19484961ab36a5_Sides.jpg',
+            },
+            style: getStyles('img'),
+          },
+          content: { text: 'Sides' },
+        },
+        img4: {
+          options: {
+            meta: {
+              src: 'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f119fec895207e4b8f202_Beverages-p-1080.jpeg',
+            },
+            style: getStyles('img'),
+          },
+          content: { text: 'Beverages' },
+        },
+      },
     },
   ],
 })
