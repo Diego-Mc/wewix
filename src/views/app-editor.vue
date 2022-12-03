@@ -255,8 +255,7 @@ export default {
         this.selectedCmp.childCmpId = childCmpId
       }
       console.log('selected-cmp:', cmp, cmpId, elType, childCmpId)
-      this.selectedCmp.id = cmpId
-      debugger
+      this.selectedCmp.id = cmpId 
       this.selectedCmp.options = elType ? cmp.info[elType].options : cmp.options
       this.selectedCmp.elType = elType
       this.isOpenCmpEditor = true
