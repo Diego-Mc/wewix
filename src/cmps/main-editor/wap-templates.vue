@@ -3,6 +3,7 @@
     <draggable
       :sort="false"
       class="list-group"
+      @clone="wa"
       :list="cmpsDropdownOptions"
       item-key="order"
       :group="{ name: 'sections', pull: 'clone', put: false }">
@@ -10,7 +11,8 @@
         <li
           class="list-group-item"
           :style="{ backgroundColor: element.backgroundColor }">
-          <p>{{ element.type }}</p>
+          <cmp-item :src="element.previewImg"></cmp-item>
+          wawa
         </li>
       </template>
     </draggable>
@@ -19,27 +21,47 @@
 
 <script>
 import draggable from 'vuedraggable'
+import cmpItem from './editor-items/cmp-item.vue'
+import { utilService } from '../../services/util.service'
 import getCmp from '../../services/wap-cmps.service'
 import { wapVideo, wapMap, wapForm } from '../../services/wap-new-model'
-
 export default {
   components: {
     draggable,
+    cmpItem,
   },
   data() {
     return {
       cmpsDropdownOptions: [
-        getCmp('wap-header', 2),
-        getCmp('wap-hero', 2),
+        // 'header',
+        getCmp('wap-cards', 2),
         getCmp('wap-section', 2),
         getCmp('wap-section', 3),
-        getCmp('wap-cards', 2),
-        getCmp('wap-section', 4),
-        getCmp('wap-form', 1),
-        wapVideo,
-        wapMap,
+        // cmpCardImg: 'src/assets/imgs/cmp-cards-2.png',
+        // cmp:null
+        // getCmp('wap-section', 4),
+        // getCmp('wap-form', 1),
+        // wapVideo,
+        // wapMap,
       ],
     }
+  },
+  methods: {
+    wa(e) {
+      this.cmpsDropdownOptions =  [
+        // 'header',
+        getCmp('wap-cards', 2),
+        getCmp('wap-section', 2),
+        getCmp('wap-section', 3),
+        // cmpCardImg: 'src/assets/imgs/cmp-cards-2.png',
+        // cmp:null
+        // getCmp('wap-section', 4),
+        // getCmp('wap-form', 1),
+        // wapVideo,
+        // wapMap,
+      ]
+
+    },
   },
 }
 </script>

@@ -1,15 +1,18 @@
 import { utilService } from './util.service.js'
 
+window.getCmp = getCmp
+
 export const wapUtils = {
   getMeta,
   getStyles,
 }
 
 export default function getCmp(type, typeId) {
-  const key = `${type}-${typeId}`
+  let key = type
+  if (typeId) key = `${type}-${typeId}`
   const cmp = wapsMap.get(key)
   cmp.id = 'wap-' + utilService.makeId()
-  return cmp
+  return utilService.deepCopy(cmp)
 }
 
 function _getCmpEls(type, typeId) {
@@ -125,13 +128,13 @@ function getStyles(elType) {
         fontSize: '',
       }
     default:
-      return {
+      return utilService.deepCopy({
         backgroundColor: '',
         // fontFamily: '',
         // color: '',
         // fontWeight: '',
         // fontSize: '',
-      }
+      })
   }
 }
 
@@ -837,10 +840,14 @@ wapsMap.set('wap-section-3', {
     },
   ],
 })
+
+
+
 wapsMap.set('wap-cards-2', {
   id: '',
   type: 'wap-cards',
   typeId: 2,
+  previewImg: 'src/assets/imgs/cmp-cards-2.png',
   options: {
     meta: {
       src: 'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623b0c7839281d050ca493ea_Green_Texture.jpg',
