@@ -10,7 +10,6 @@
   >
     <Marker :options="marker"/>
   </GoogleMap>
-  <button @click="log">log</button>
   </section>
 
 </template>
@@ -47,10 +46,6 @@ export default {
   },
 
   methods: {
-    log() {
-      console.log('center:', this.center)
-      console.log('marker:', this.marker)
-    }
   }
 
 }

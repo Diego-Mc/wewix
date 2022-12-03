@@ -1,7 +1,7 @@
 <template>
   <main v-if="wap">
     <editor-undo />
-    <wap-chat />
+    <!-- <wap-chat /> -->
 
     <general-editor @themeChanged="themeChanged" />
     <wap-templates />
@@ -68,8 +68,11 @@ import wapVideo from '../cmps/wap-items/wap-video.vue'
 import wapMap from '../cmps/wap-items/wap-map.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
 import loginModal from '../cmps/app-cmps/login-modal.vue'
+
+
 import { eventBus } from '../services/event-bus.service.js'
 import getCmp from '../services/wap-cmps.service'
+
 
 export default {
   data() {

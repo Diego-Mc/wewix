@@ -1,6 +1,6 @@
 <template>
   <section v-if="editOptions" class="cmp-editor">
-
+    <imgUploader class="imgUploader"/>
     <section class="style-editor">
       <div v-if="isOptionsContain('fontFamily')">
         Font Picker
@@ -69,8 +69,6 @@
               Loading
             </span>
         </div>
-
-
       </div>
 
 
@@ -89,7 +87,7 @@ import { cmpEditorService } from '../../services/cmp-editor.service'
 import { eventBus } from '../../services/event-bus.service'
 import { utilService } from '../../services/util.service'
 
-import mapEdit from './map-edit.vue'
+import imgUploader from './img-uploader.vue'
 export default {
 
   props: {
@@ -189,7 +187,14 @@ export default {
   },
 
   component: {
-    mapEdit,
+    imgUploader
   }
 }
 </script>
+
+<style>
+.imgUploader {
+  padding: 150px;
+  background-color: whitesmoke;
+}
+</style>
