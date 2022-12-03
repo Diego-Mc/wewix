@@ -14,7 +14,7 @@
     @end="onDrop"
     item-key="order"
     :group="'cards-' + cmpId"
-    @click.stop="onCmpClick({ cmpId, childCmpId: element.id })">
+    @click.stop="onCmpClick({ cmpId})">
     <template #item="{ element }">
       <div>
         <component

@@ -91,7 +91,7 @@
 
 <script>
 import { eventBus } from '../../services/event-bus.service'
-import cmpEditor from '../app-cmps/cmp-editor.vue'
+import cmpEditor from './editor-items/cmp-editor.vue'
 
 import wapTemplates from './wap-templates.vue'
 import generalEditor from '../app-cmps/general-editor.vue'

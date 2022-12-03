@@ -90,6 +90,14 @@ export default {
     document.removeEventListener('keydown', this.keydownHandler)
   },
   methods: {
+    updateField(fieldInfo){
+      const cmp = this.wap.cmps.find(cmp => cmp.id === fieldInfo.id)
+      console.log(cmp.options.meta.formInputs[fieldInfo.idx])
+      if(fieldInfo.txt) cmp.options.meta.formInputs[fieldInfo.idx].tag = fieldInfo.txt
+      else if(fieldInfo.idx) cmp.options.meta.formInputs.splice(fieldInfo.idx,1)
+      else cmp.options.meta.formInputs.push({ tag: 'wa', txt: '' })
+      this.onCmpsChange()
+    },
     keydownHandler(event) {
       if (event.ctrlKey && event.key === 'z') {
         this.undo()
@@ -100,7 +108,7 @@ export default {
     },
     removeCmp({ id, childCmpId, elType }) {
       let changedChildCmpIdx
-      let childCmp
+      let childCmp = {}
       let changedCmpIdx = +this.wap.cmps.findIndex((cmp) => cmp.id === id)
       let changedCmp = this.wap.cmps[changedCmpIdx]
       let section = true
@@ -178,9 +186,8 @@ export default {
         updatedStyle ? changedCmp.info[elType].options = updatedStyle : changedCmp.info[elType].content.text = content
       } else {
         updatedStyle ? changedCmp.options=updatedStyle :  changedCmp.content.text = content
-        console.log(changedCmp.options);
+        
       }
-
       this.onCmpsChange()
     },
     async loadWap() {
@@ -215,12 +222,13 @@ export default {
       }
     },
     select({ cmpId, elType, childCmpId }) {
+      this.selectedCmp = {}
+
       let cmp = this.wap.cmps.find(({ id }) => id === cmpId)
       if (childCmpId) {
         cmp = cmp.cmps.find(({ id }) => id === childCmpId)
         this.selectedCmp.childCmpId = childCmpId
       }
-      console.log('type',elType)
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = elType ? cmp.info[elType].options : cmp.options
       this.selectedCmp.elType = elType
@@ -246,6 +254,7 @@ export default {
       eventBus.on('select', this.select)
       eventBus.on('themeChanged', this.themeChanged)
       eventBus.on('removeCmp', this.removeCmp)
+      eventBus.on('updateField', this.updateField)
     },
     checkNewVisit() {
       if (!sessionStorage.getItem('newVisit', 'new!')) {

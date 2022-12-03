@@ -1,12 +1,12 @@
 <template>
   <article class="form-input">
+    {{tag}}
+
     <label class="label" :class="{ selected: focused }">
-      {{ labelText }}
+      <!-- {{ labelText }} -->
     </label>
     <i class="bi bi-arrow-right send-btn"></i>
     <input
-      v-model="txt"
-      @input="emailChange"
       @focusin="focused = true"
       @focusout="focused = false"
       class="input email"
@@ -29,6 +29,7 @@ export default {
   props: {
     type: String,
     modelValue: String,
+    tag:String,
   },
   created() {
     switch (this.type) {

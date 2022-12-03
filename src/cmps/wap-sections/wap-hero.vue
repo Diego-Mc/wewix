@@ -39,7 +39,7 @@
   <draggable
     class="list-group wap-hero"
     :class="'type-' + typeId"
-    @click.stop="onCmpClick({ cmpId })"
+    @click.stop="emitSelect({ cmpId })"
     :style="options.style"
     :component-data="{
       type: 'transition-group',
@@ -61,7 +61,7 @@
           :cmpId="cmpId"
           :childCmpId="element.id"
           :typeId="element.typeId"
-          @click.stop="onCmpClick({ cmpId, childCmpId: element.id })" />
+          @click.stop="emitSelect({ cmpId, childCmpId: element.id })" />
         <!-- <video
             src="https://knowledge.s.dance.app/videos/hero_home_alt_15s_16_9.webm,"
             autoplay
@@ -82,9 +82,7 @@ import draggable from 'vuedraggable'
 export default {
   props: ['info', 'cmpId', 'options', 'cmps', 'typeId'],
   methods: {
-    onCmpClick(cmpInfo) {
-      eventBus.emit('select', cmpInfo)
-    },
+
     onDrop() {
       this.drag = false
       eventBus.emit('onInnerCmpDrop', {
@@ -100,7 +98,6 @@ export default {
       })
     },
     emitSelect(elInfo) {
-      console.log(elInfo)
       eventBus.emit('select', elInfo)
     },
   },
