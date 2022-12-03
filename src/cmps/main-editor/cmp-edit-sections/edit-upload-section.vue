@@ -4,8 +4,11 @@
     <el-upload
       class="editor-upload-section"
       drag
-      action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
-      multiple>
+      :before-upload="setData"
+      :http-request="() => {this.getRequest()}"
+      :on-error="handleError"
+      :on-success="handleSuccess"
+      >
       <i class="upload-icon bi bi-cloud-arrow-up-fill"></i>
       <div class="el-upload__text">
         Drop file here or <em>click to upload</em>
@@ -15,20 +18,44 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   props: ['initialValue'],
   data() {
-    return {}
+    return {
+      file: null
+    }
   },
   components: {},
   methods: {
-    // handleBtnSelect(radius) {
-    //   console.log('radius selected, emitting @select', {
-    //     key: 'radius',
-    //     val: radius,
-    //   })
-    //   this.$emit('select', { key: 'radius', val: radius })
-    // },
+    setData(file) {
+        this.file = file
+    },
+    handleError(ev) {
+      // Todo user msg
+      console.log('error', ev);
+    },
+    handleSuccess(ev) {
+      // Todo user msg
+      console.log('succsess', ev);
+    },
+    async getRequest() {
+      const UPLOAD_PRESET = 'mainuploader' // Insert your upload preset
+      const FORM_DATA = new FormData()
+
+      // Building the request body
+      FORM_DATA.append('file', this.file)
+      FORM_DATA.append('upload_preset', UPLOAD_PRESET)
+      try {
+        const {data} = await axios.post('https://api.cloudinary.com/v1_1/projwewix/image/upload', FORM_DATA)
+        this.$emit('select', {key: 'src', val: data.url})
+      } catch(err) {
+        throw new Error('Cannot Upload Image')
+      }
+       
+    }
+
   },
 }
 </script>
