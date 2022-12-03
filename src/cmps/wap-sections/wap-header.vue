@@ -6,12 +6,12 @@
     @click.stop="emitSelect({ cmpId })">
     <section class="logo">
       <img
-      v-if="info.img"
+        v-if="info.img"
         class="img"
         @click.stop="$emit('select', { cmpId, elType: 'img' })"
         :src="info?.img?.options.meta.src" />
       <h1
-      v-if="info.title"
+        v-if="info.title"
         class="title"
         :style="info.title.options.style"
         @click.stop="emitSelect({ cmpId, elType: 'title' })"
@@ -21,13 +21,18 @@
       </h1>
     </section>
     <nav
-    v-if="info.nav"
+      v-if="info.nav"
       :style="info?.nav?.options.style"
       @click.stop="emitSelect({ cmpId, elType: 'nav' })">
       <ul>
-        <li v-for="nav in info?.nav?.content">
+        <li class="nav" v-for="nav in info?.nav?.content">
           {{ nav }}
         </li>
+        <Slide right class="burger">
+          <li v-for="nav in info?.nav?.content">
+            {{ nav }}
+          </li>
+        </Slide>
       </ul>
     </nav>
     <button
@@ -42,6 +47,7 @@
 
 <script>
 import { eventBus } from '../../services/event-bus.service'
+import { Slide } from 'vue3-burger-menu'
 export default {
   props: ['info', 'cmpId', 'options', 'typeId'],
   methods: {
@@ -53,8 +59,11 @@ export default {
       })
     },
     emitSelect(elInfo) {
-      eventBus.emit('select', elInfo )
+      eventBus.emit('select', elInfo)
     },
+  },
+  components: {
+    Slide,
   },
 }
 </script>

@@ -13,3 +13,32 @@
 .el-upload-dragger:hover {
   border-color: $main;
 }
+
+.bm-burger-button {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 34px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  .bm-burger-bars {
+    height: 2px;
+    position: static;
+    width: 100%;
+  }
+  .bm-burger-bars:nth-child(1) {
+  }
+  .bm-burger-bars:nth-child(2) {
+    width: 60%;
+  }
+  .bm-burger-bars:nth-child(3) {
+    width: 80%;
+  }
+}
+
+.bm-cross-button {
+  top: 20px;
+}

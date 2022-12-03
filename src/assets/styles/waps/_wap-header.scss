@@ -3,9 +3,27 @@
   grid-template-areas: 'logo logo nav nav nav nav nav nav nav nav cta cta';
   height: 140px;
   padding-block: 0;
-
   color: var(--clr-1);
   background-color: var(--clr-3);
+
+  .burger {
+    display: none;
+    .bm-burger-bars {
+      background-color: var(--clr-1);
+    }
+  }
+
+  .bm-menu {
+    background-color: var(--clr-3);
+    border-left: 4px solid var(--clr-2);
+    .bm-item-list {
+      color: var(--clr-1);
+    }
+    .bm-cross {
+      background-color: var(--clr-1);
+    }
+  }
+
   .logo {
     grid-area: logo;
     display: flex;
@@ -47,8 +65,18 @@
   }
 }
 
-@container wap (max-width: $tablet-bp) {
+@container wap (max-width: 990px) {
   .wap-header {
+    grid-template-areas: 'logo logo . . . . . . . . . nav';
+    .btn {
+      display: none;
+    }
+    .burger {
+      display: block;
+    }
+    .nav {
+      display: none;
+    }
   }
 }
 

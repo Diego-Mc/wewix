@@ -19,7 +19,7 @@
         @setVal="handleBtnSelect"
         gap="4px"
         :style="{ paddingInline: '14px' }"
-        :opts="[{ val: 'back', icon: 'arrow-left-square' }]" />
+        :opts="[{ val: 'back', icon: 'arrow-left' }]" />
     </section>
     <section class="url-bar">
       <p class="address">

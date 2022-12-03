@@ -1,13 +1,13 @@
 .editor-color-picker {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 12px;
   .color-picker-option {
     position: relative;
     cursor: pointer;
     .option {
-      width: 42px;
-      height: 42px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background-color: red;
       display: inline-block;
