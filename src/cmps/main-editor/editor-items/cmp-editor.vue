@@ -42,25 +42,18 @@
       </div>
 
       <div v-if="isOptionsContain('borderRadius')">
-        <edit-radius-section @select="updateStyleValToEm" :editOptions="editOptions"/>
+        <edit-radius-section @select="updateStyleValToEm" :borderRadius="parseFloat(editOptions.style.borderRadius)"/>
       </div>
 
       <!-- TODO: add style to fontSize -->
       <div v-if="isOptionsContain('fontSize')">
-        <edit-font-size-section @select="updateStyleValToEm" :editOptions="editOptions"/>
-        font size
-        <select @change="updateOptions" v-model="updatedOptions.style.fontSize">
-          <option>small</option>
-          <option>medium</option>
-          <option>large</option>
-          <option>x-large</option>
-        </select>
+        <edit-font-size-section @select="updateStyleValToEm" :fontSize="parseFloat(editOptions.style.fontSize)"/>
       </div>
     </section>
 
     <section class="content-editor">
       <div v-if="isOptionsContain('src')">
-        <edit-upload-section />
+        <edit-upload-section @select="updateOptionsMeta"/>
 
         <input
           @input="updateOptions"
@@ -175,6 +168,13 @@ export default {
 
     updateOptionsStyle({ key, val }) {
       this.updatedOptions.style[key] = val
+      this.updateOptions()
+    },
+
+    updateOptionsMeta({key, val}) {
+
+      this.updatedOptions.meta[key] = val
+      console.log(this.updatedOptions);
       this.updateOptions()
     },
 
