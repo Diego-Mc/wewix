@@ -3,6 +3,7 @@
     <draggable
       :sort="false"
       class="list-group"
+      @clone="wa"
       :list="cmpsDropdownOptions"
       item-key="order"
       :group="{ name: 'sections', pull: 'clone', put: false }">
@@ -10,7 +11,8 @@
         <li
           class="list-group-item"
           :style="{ backgroundColor: element.backgroundColor }">
-          <p>{{ element.type }}</p>
+          <!-- <img :src="element.previewImg" alt=""/> -->
+          <p>wawa</p>
         </li>
       </template>
     </draggable>
@@ -19,9 +21,9 @@
 
 <script>
 import draggable from 'vuedraggable'
+import { utilService } from '../../services/util.service'
 import getCmp from '../../services/wap-cmps.service'
 import { wapVideo, wapMap, wapForm } from '../../services/wap-new-model'
-
 export default {
   components: {
     draggable,
@@ -29,7 +31,7 @@ export default {
   data() {
     return {
       cmpsDropdownOptions: [
-        getCmp('wap-header', 2),
+        'wa',
         getCmp('wap-hero', 2),
         getCmp('wap-section', 2),
         getCmp('wap-section', 3),
@@ -40,6 +42,14 @@ export default {
         wapMap,
       ],
     }
+  },
+  methods: {
+    wa(e) {
+      e.item.__draggable_context.element = JSON.parse(
+        JSON.stringify(getCmp('wap-header', 2))
+      )
+      // e.item.__draggable_context.element._id = utilService.makeId()
+    },
   },
 }
 </script>

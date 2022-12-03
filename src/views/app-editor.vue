@@ -12,11 +12,13 @@
           type: 'transition-group',
           name: !drag ? 'flip-list' : null,
         }"
-        @add="onCmpsChange"
+        @add="cmpAdded($event)"
         v-model="wap.cmps"
         v-bind="dragOptions"
         @start="drag = true"
-        @end="onDrop"
+        @end="drag = false"
+        @update="onCmpsChange"
+        @clone="wa"
         item-key="order"
         group="sections">
         <template #item="{ element }">
@@ -90,6 +92,9 @@ export default {
     document.removeEventListener('keydown', this.keydownHandler)
   },
   methods: {
+    cmpAdded(ev) {
+      this.onCmpsChange()
+    },
     updateField(fieldInfo) {
       const cmp = this.wap.cmps.find((cmp) => cmp.id === fieldInfo.id)
       if (fieldInfo.txt || fieldInfo.txt === '')
