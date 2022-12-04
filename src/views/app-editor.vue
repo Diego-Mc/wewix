@@ -2,7 +2,7 @@
   <section class="main-editor" v-if="wap">
     <section class="main-editor-tools">
       <main-header />
-      <editor-header @setMedia="setMedia" @publishWap="publishWap"/>
+      <editor-header @setMedia="setMedia" @publishWap="publishWap" />
       <editor-sidebar :selectedCmp="selectedCmp" />
     </section>
     <main class="main-wap" :class="mediaType">
@@ -13,7 +13,7 @@
           name: !drag ? 'flip-list' : null,
         }"
         @add="cmpAdded($event)"
-        v-model="wap.cmps"
+        :list="wap.cmps"
         v-bind="dragOptions"
         @start="drag = true"
         @end="drag = false"
@@ -66,7 +66,6 @@ export default {
     return {
       wap: null,
       selectedCmp: {},
-      isOpenCmpEditor: false,
       drag: false,
       dragOptions: {
         animation: 200,
@@ -256,7 +255,7 @@ export default {
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = elType ? cmp.info[elType].options : cmp.options
       this.selectedCmp.elType = elType
-      this.isOpenCmpEditor = true
+      eventBus.emit('openCmpEditor')
     },
 
     addUserInfo(userInfo) {
@@ -296,10 +295,9 @@ export default {
       try {
         const wapId = await this.updateWap(this.wap)
         if (wapId) this.$router.push(`/${siteName}`)
-      } catch(err) {
-        console.log(err);
+      } catch (err) {
+        console.log(err)
       }
-      
     },
   },
   components: {

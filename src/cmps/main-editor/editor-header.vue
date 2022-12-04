@@ -2,15 +2,27 @@
   <nav class="editor-header">
     <section class="media-select">
       <editor-btn-group
-        :info="{ key: 'media' }"
+        :info="{ key: 'media', type: 'radioDefault' }"
         @setVal="handleMediaSelect"
         gap="4px"
         :style="{ paddingInline: '14px' }"
         initialValue="desktop"
         :opts="[
-          { val: 'desktop', icon: 'display' },
-          { val: 'tablet', icon: 'tablet' },
-          { val: 'phone', icon: 'phone' },
+          {
+            val: 'desktop',
+            icon: 'display',
+            title: { text: 'Desktop', placement: 'bottom' },
+          },
+          {
+            val: 'tablet',
+            icon: 'tablet',
+            title: { text: 'Tablet', placement: 'bottom' },
+          },
+          {
+            val: 'phone',
+            icon: 'phone',
+            title: { text: 'Mobile', placement: 'bottom' },
+          },
         ]" />
     </section>
     <section class="back-btn">
@@ -25,16 +37,17 @@
       <p class="address">
         https://<span class="mb-hide">wewix.onrender.com/</span
         ><span class="mb-show">... /</span
-        ><span class="site-name" @input="setSiteName($event)" contenteditable>my-site</span>
+        ><span class="site-name" @input="setSiteName($event)" contenteditable
+          >my-site</span
+        >
       </p>
       <router-link to="#" class="preview-btn">preview site</router-link>
     </section>
 
     <section class="upload-site" @click.stop="$emit('publishWap', siteName)">
       <editor-btn-group
-        :info="{ key: 'publishSite' }"
+        :info="{ key: 'publishSite', type: 'click' }"
         @setVal="handleBtnSelect"
-        
         :style="{ gap: '10px' }"
         :opts="[{ val: true, icon: 'cast', text: 'Publish' }]" />
     </section>
@@ -61,8 +74,8 @@ export default {
       this.$emit('setMedia', val)
     },
     setSiteName(ev) {
-        this.siteName = ev.target.innerText
-    },  
+      this.siteName = ev.target.innerText
+    },
   },
   components: {
     editorBtnGroup,

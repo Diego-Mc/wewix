@@ -50,7 +50,6 @@ export const wapStore = {
   mutations: {
     setEditedWap(state, { wap }) {
       state.editedWap = wap
-      
     },
     setWaps(state, { waps }) {
       state.waps = waps
@@ -89,7 +88,7 @@ export const wapStore = {
         context.commit({ type: 'setEditedWap', wap: updatedWap })
         return updatedWap._id
       } catch {
-        console.log('err: couldnt save wap');
+        console.log('err: couldnt save wap')
       }
     },
     async addWap(context, { wap }) {
