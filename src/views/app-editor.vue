@@ -2,7 +2,10 @@
   <section class="main-editor" v-if="wap">
     <section class="main-editor-tools">
       <main-header />
-      <editor-header @setMedia="setMedia" @publishWap="publishWap" />
+      <editor-header
+        @setMedia="setMedia"
+        @publishWap="publishWap"
+        :wapName="wap.name" />
       <editor-sidebar :selectedCmp="selectedCmp" />
     </section>
     <main class="main-wap" :class="mediaType">

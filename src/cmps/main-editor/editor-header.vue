@@ -37,16 +37,19 @@
       <p class="address">
         https://<span class="mb-hide">wewix.onrender.com/</span
         ><span class="mb-show">... /</span
-        ><span class="site-name" @input="setSiteName($event)" contenteditable
-          >my-site</span
+        ><span
+          class="site-name"
+          :style="{ color: isValidSiteName ? '#00c2a6' : '#e35a5a' }"
+          @input="setSiteName($event)"
+          :contenteditable="!wapName"
+          >{{ getSiteName() }}</span
         >
       </p>
       <router-link to="#" class="preview-btn">preview site</router-link>
     </section>
-
-    <section class="upload-site" @click.stop="$emit('publishWap', siteName)">
+    <section class="upload-site">
       <editor-btn-group
-        :info="{ key: 'publishSite', type: 'click' }"
+        :info="{ key: 'publishSite' }"
         @setVal="handleBtnSelect"
         :style="{ gap: '10px' }"
         :opts="[{ val: true, icon: 'cast', text: 'Publish' }]" />
@@ -57,11 +60,15 @@
 <script>
 import editorBtnGroup from '../main-editor/editor-items/editor-btn-group.vue'
 export default {
+  props: {
+    wapName: String,
+  },
   data() {
     return {
       media: '',
       publishSiteTxt: '',
-      siteName: 'my-site',
+      siteName: this.wapName,
+      isValidSiteName: true,
     }
   },
   methods: {

@@ -28,8 +28,14 @@ function getById(wapId) {
   return storageService.get(WAPS_KEY, wapId)
 }
 
-function getByName(wapName) {
-  return storageService.getByName(WAPS_KEY, wapName)
+async function getByName(wapName) {
+  try {
+    const res = await storageService.getByName(WAPS_KEY, wapName)
+    return res
+  } catch (err) {
+    console.log(`${err} while getByName From storageService`);
+    throw new Error(`Couldn't retrieve Wap from storageService`)
+  }
 }
 
 async function remove(wapId) {

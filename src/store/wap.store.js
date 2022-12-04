@@ -78,10 +78,15 @@ export const wapStore = {
     },
 
     async getWapByName(context, { wapName }) {
-      const wap = await wapService.getByName(wapName)
-      context.commit({ type: 'setEditedWap', wap })
-      return wap
+      try {
+        const wap = await wapService.getByName(wapName)
+        return wap
+      } catch(err) {
+        return undefined
+      }
+
     },
+
     async updateWap(context, { wap }) {
       try {
         const updatedWap = await wapService.save(wap)
