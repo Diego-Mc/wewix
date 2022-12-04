@@ -78,10 +78,10 @@ export default {
     }
   },
   async created() {
-    console.log('I AM CREATED!!!!!!', utilService.deepCopy(this.wap))
     this.onCmpsChange = utilService.debounce(this.onCmpsChange, 500)
+
     await this.loadWap()
-    console.log('HEYY', this.wap, this.wap.cmps)
+
     this.loadEvents()
     this.initHistory()
     this.checkNewVisit() // TODO: only on published mode.
@@ -209,12 +209,12 @@ export default {
       this.onCmpsChange()
     },
     async loadWap() {
+      debugger
       if (this.$route.params?.id) {
         const wap = await this.$store.dispatch({
           type: 'getWap',
           id: this.$route.params.id,
         })
-        console.log('store wap', this.$store.getters.editedWap)
         this.wap = JSON.parse(JSON.stringify(this.$store.getters.editedWap))
       } else {
         this.wap = appEditorService.getEmptyWap()
@@ -239,20 +239,18 @@ export default {
       }
     },
     select({ cmpId, elType, childCmpId }) {
+      
       this.selectedCmp = {}
-      console.log('THIS IS WAP', this.wap)
-
+      debugger
       let cmp = this.wap.cmps.find(({ id }) => {
-        console.log('id in for loop', id, cmpId)
         return id === cmpId
       })
-      console.log('after loop:', cmp)
-      console.log('selected-cmp before bug:', this.wap.cmps)
+
       if (childCmpId) {
         cmp = cmp.cmps.find(({ id }) => id === childCmpId)
         this.selectedCmp.childCmpId = childCmpId
       }
-      console.log('selected-cmp:', cmp, cmpId, elType, childCmpId)
+      
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = elType ? cmp.info[elType].options : cmp.options
       this.selectedCmp.elType = elType
