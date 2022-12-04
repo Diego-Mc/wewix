@@ -28,6 +28,7 @@ import { eventBus } from '../../services/event-bus.service'
 export default {
   props: ['info', 'cmpId', 'childCmpId', 'options', 'typeId'],
   methods: {
+    // Change 'gallery' into 'img1'
     emitSelect() {
       eventBus.emit('select', {
         cmpId: this.cmpId,
