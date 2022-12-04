@@ -3,6 +3,8 @@
     <section class="edit-options">
       <section class="history-options">
         <editor-btn-group
+          gap="4px"
+          :style="{ paddingInline: '14px' }"
           info="media"
           :opts="[
             {
@@ -28,6 +30,7 @@
       <section class="work-together">
         <editor-btn-group
           info="media"
+          :style="{ paddingInline: '14px', marginLeft: '4px' }"
           :opts="[{ val: 'workTogether', icon: 'people' }]" />
       </section>
     </section>

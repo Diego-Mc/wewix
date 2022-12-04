@@ -78,6 +78,7 @@ export default {
     }
   },
   async created() {
+    console.log('I AM CREATED!!!!!!', utilService.deepCopy(this.wap))
     this.onCmpsChange = utilService.debounce(this.onCmpsChange, 500)
     await this.loadWap()
     console.log('HEYY', this.wap, this.wap.cmps)
@@ -89,9 +90,11 @@ export default {
       document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
   },
   mounted() {
+    console.log('I AM MOUNTED!!!!!!', utilService.deepCopy(this.wap))
     document.addEventListener('keydown', this.keydownHandler)
   },
   unmounted() {
+    console.log('I AM UNMOUNTED!!!!!!', utilService.deepCopy(this.wap))
     document.removeEventListener('keydown', this.keydownHandler)
   },
   methods: {
@@ -200,7 +203,10 @@ export default {
         // console.log(updatedStyle.options.style.backgroundColor)
         updatedStyle ? changedCmp.info[elType].options = updatedStyle : changedCmp.info[elType].content.text = content
       } else {
+<<<<<<< HEAD
         // changedCmp.options.style.backgroundColor = updatedStyle.style.backgroundColor
+=======
+>>>>>>> e2b64638d89aba32aa020a6cef9759126b8e9d73
         updatedStyle ? changedCmp.options=updatedStyle :  changedCmp.content.text = content
       }
       this.onCmpsChange()
@@ -222,7 +228,11 @@ export default {
         console.log('editedWapId', editedWapId)
         this.wap._id = editedWapId
         // TODO: fix this.
+<<<<<<< HEAD
         // this.$router.push({ path: 'edit/' + editedWapId, replace: true })
+=======
+        this.$router.push({ path: '/edit/' + editedWapId, replace: true })
+>>>>>>> e2b64638d89aba32aa020a6cef9759126b8e9d73
       }
     },
     publishWap() {
@@ -239,7 +249,6 @@ export default {
       }
     },
     select({ cmpId, elType, childCmpId }) {
-      
       this.selectedCmp = {}
       console.log('THIS IS WAP', this.wap)
 
@@ -254,7 +263,7 @@ export default {
         this.selectedCmp.childCmpId = childCmpId
       }
       console.log('selected-cmp:', cmp, cmpId, elType, childCmpId)
-      this.selectedCmp.id = cmpId 
+      this.selectedCmp.id = cmpId
       this.selectedCmp.options = elType ? cmp.info[elType].options : cmp.options
       this.selectedCmp.elType = elType
       this.isOpenCmpEditor = true

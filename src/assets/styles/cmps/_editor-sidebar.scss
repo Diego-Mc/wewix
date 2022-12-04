@@ -52,6 +52,17 @@
       height: 100%;
       overflow-y: scroll;
 
+      .section-cmp-previews {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        li:hover {
+          background-image: none;
+        }
+      }
+
       &.open {
         left: $editor-section-names-width;
       }
@@ -121,7 +132,6 @@
   }
 
   @media screen and (max-width: $mobileQuery) {
-    outline: 4px solid blue;
     .editor-nav {
       border-right: none;
       border-top: 1px solid #eee;
