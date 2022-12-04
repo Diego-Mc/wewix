@@ -6,6 +6,7 @@
         v-for="template in templates"
         class="template"
         :class="{ emptyTemplate: !template.id }"
+        @click="openEditor(template.id)"
         @mouseenter="isHover[template.name] = true"
         @mouseleave="isHover[template.name] = false">
         <div>
@@ -44,6 +45,12 @@ export default {
       isHover: {},
     }
   },
+  methods: {
+    openEditor(templateId) {
+      this.$router.push({ path: '/edit/', query: { templateId } })
+    },
+  },
+
   computed: {
     templates() {
       return [
