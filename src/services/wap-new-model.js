@@ -91,6 +91,55 @@ export const wapMap = {
   },
 }
 
+
+export const wapGraph = {
+  id: 'wc11',
+  type: 'wap-graph',
+  options: {
+    meta: {
+      graphType: 'DoughnutChart',
+      graphData: {
+        labels: ['Satisfied customers', 'Unsatisfied customers'],
+        datasets: [
+          {
+            label: 'Satisfation',
+            data: [95, 5],
+            backgroundColor: [
+              '#cfc5ff',
+              '#ac9bff',
+              '#856cff',
+              '#5f3eff',
+              '#2e15a6',
+              '#ffb9b4',
+              '#ff9494',
+              '#ff6666',
+              '#ff3f3f',
+              '#b72b2b',
+              '#8f1717',
+            ],
+          },
+        ],
+      }
+    },
+    style: {
+      backgroundColor: '',
+      fontFamily: '',
+      color: '',
+      borderRadius: '',
+      fontWeight: '',
+    },
+  },
+  info: {
+    title: {
+      options: {
+        meta: {},
+        style: {},
+      },
+      content: {},
+    },
+  },
+}
+
 export default [
   {
     _id: '5e28393890dd7201a06d4e44',

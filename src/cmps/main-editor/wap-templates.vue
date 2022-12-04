@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { wapGraph } from '../../services/wap-new-model'
 import draggable from 'vuedraggable'
 import cmpItem from './editor-items/cmp-item.vue'
 import { utilService } from '../../services/util.service'
@@ -41,6 +42,7 @@ export default {
         getCmp('wap-section', 3),
         getCmp('wap-section', 4),
         getCmp('wap-cards', 2),
+        wapGraph
       ],
     }
   },

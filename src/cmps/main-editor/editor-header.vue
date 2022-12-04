@@ -25,15 +25,16 @@
       <p class="address">
         https://<span class="mb-hide">wewix.onrender.com/</span
         ><span class="mb-show">... /</span
-        ><span class="site-name" contenteditable>my-site</span>
+        ><span class="site-name" @input="setSiteName($event)" contenteditable>my-site</span>
       </p>
       <router-link to="#" class="preview-btn">preview site</router-link>
     </section>
 
-    <section class="upload-site">
+    <section class="upload-site" @click.stop="$emit('publishWap', siteName)">
       <editor-btn-group
         :info="{ key: 'publishSite' }"
         @setVal="handleBtnSelect"
+        
         :style="{ gap: '10px' }"
         :opts="[{ val: true, icon: 'cast', text: 'Publish' }]" />
     </section>
@@ -46,7 +47,8 @@ export default {
   data() {
     return {
       media: '',
-      publishSite: '',
+      publishSiteTxt: '',
+      siteName: 'my-site',
     }
   },
   methods: {
@@ -58,6 +60,9 @@ export default {
       this.handleBtnSelect({ key, val })
       this.$emit('setMedia', val)
     },
+    setSiteName(ev) {
+        this.siteName = ev.target.innerText
+    },  
   },
   components: {
     editorBtnGroup,

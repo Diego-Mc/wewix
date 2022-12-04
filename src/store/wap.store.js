@@ -50,6 +50,7 @@ export const wapStore = {
   mutations: {
     setEditedWap(state, { wap }) {
       state.editedWap = wap
+      
     },
     setWaps(state, { waps }) {
       state.waps = waps
@@ -73,6 +74,12 @@ export const wapStore = {
   actions: {
     async getWap(context, { id }) {
       const wap = await wapService.getById(id)
+      context.commit({ type: 'setEditedWap', wap })
+      return wap
+    },
+
+    async getWapByName(context, { wapName }) {
+      const wap = await wapService.getByName(wapName)
       context.commit({ type: 'setEditedWap', wap })
       return wap
     },

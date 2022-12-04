@@ -12,6 +12,7 @@ export const wapService = {
   remove,
   getEmptyWap,
   addWapMsg,
+  getByName
 }
 
 window.cs = wapService
@@ -25,6 +26,10 @@ async function query(filterBy = { txt: '', price: 0 }) {
 
 function getById(wapId) {
   return storageService.get(WAPS_KEY, wapId)
+}
+
+function getByName(wapName) {
+  return storageService.getByName(WAPS_KEY, wapName)
 }
 
 async function remove(wapId) {

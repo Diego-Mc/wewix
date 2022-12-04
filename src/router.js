@@ -7,6 +7,7 @@ import appDashboard from './views/app-dashboard.vue'
 import appDashboardDetails from './views/app-dashboard-details.vue'
 import appPreview from './views/app-preview.vue'
 import testTestTest from './views/test-test-test.vue'
+import appPublish from './views/appPublish.vue'
 
 import editorWithStyle from './views/editor-with-style.vue'
 
@@ -53,6 +54,11 @@ const routes = [
     path: '/editorWithStyle/:id',
     name: 'editorWithStyle',
     component: editorWithStyle,
+  },
+  {
+    path: '/:name?',
+    name: 'publish-wap',
+    component: appPublish,
   },
 
   // {

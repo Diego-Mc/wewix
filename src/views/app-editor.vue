@@ -2,7 +2,7 @@
   <section class="main-editor" v-if="wap">
     <section class="main-editor-tools">
       <main-header />
-      <editor-header @setMedia="setMedia" />
+      <editor-header @setMedia="setMedia" @publishWap="publishWap"/>
       <editor-sidebar :selectedCmp="selectedCmp" />
     </section>
     <main class="main-wap" :class="mediaType">
@@ -185,8 +185,9 @@ export default {
       this.saveLastChange()
       console.log('CHANGE', this.wap)
     },
+    // I added return to this function
     async updateWap() {
-      await this.$store.dispatch({ type: 'updateWap', wap: this.wap })
+      return await this.$store.dispatch({ type: 'updateWap', wap: this.wap })
     },
     //TODO: removing them completly or move to service.
     onDrop() {
@@ -227,9 +228,6 @@ export default {
         // TODO: fix this.
         this.$router.push({ path: '/edit/' + editedWapId, replace: true })
       }
-    },
-    publishWap() {
-      this.updateWap(this.wap)
     },
     initHistory() {
       const gHistory = appEditorService.loadFromStorage('gHistory')
@@ -292,6 +290,17 @@ export default {
           : (this.wap.visitCount = [currVisit])
         sessionStorage.setItem('newVisit', 'new!')
       }
+    },
+    async publishWap(siteName) {
+      //TODO ADD USER MSGS
+      this.wap.name = siteName
+      try {
+        const wapId = await this.updateWap(this.wap)
+        if (wapId) this.$router.push(`/${siteName}`)
+      } catch(err) {
+        console.log(err);
+      }
+      
     },
   },
   components: {
