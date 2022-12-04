@@ -42,7 +42,7 @@
           :style="{ color: isValidSiteName ? '#00c2a6' : '#e35a5a' }"
           @input="setSiteName($event)"
           :contenteditable="!wapName"
-          >{{ getSiteName() }}</span
+          >{{ siteName }}</span
         >
       </p>
       <router-link to="#" class="preview-btn">preview site</router-link>
