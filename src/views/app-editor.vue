@@ -228,7 +228,7 @@ export default {
         this.wap._id = editedWapId
 
         // TODO: fix this.
-        // this.$router.push({ path: '/edit/' + editedWapId, replace: true })
+        this.$router.push({ path: '/edit/' + editedWapId, replace: true })
       }
     },
     initHistory() {
