@@ -82,12 +82,7 @@ export default {
     this.onCmpsChange = utilService.debounce(this.onCmpsChange, 500)
 
     await this.loadWap()
-<<<<<<< HEAD
-
-    this.loadEvents()
-=======
     this.initEventsFromBus()
->>>>>>> 22af1c7065db9eb7630248fdb9d8e01fd76944c6
     this.initHistory()
     this.checkNewVisit() // TODO: only on published mode.
 
@@ -211,11 +206,7 @@ export default {
       this.onCmpsChange()
     },
     async loadWap() {
-<<<<<<< HEAD
-      debugger
-=======
       // console.log('templatedId',this.$route.query.templateId)
->>>>>>> 22af1c7065db9eb7630248fdb9d8e01fd76944c6
       if (this.$route.params?.id) {
         const wap = await this.$store.dispatch({
           type: 'getWap',
@@ -250,26 +241,15 @@ export default {
         })
       }
     },
-<<<<<<< HEAD
-    select({ cmpId, elType, childCmpId }) {
-      
-      this.selectedCmp = {}
-      debugger
-=======
     cmpSelected({ cmpId, elType, childCmpId }) {
       this.selectedCmp = {}
       console.log('THIS IS WAP', this.wap._id)
 
->>>>>>> 22af1c7065db9eb7630248fdb9d8e01fd76944c6
       let cmp = this.wap.cmps.find(({ id }) => {
         return id === cmpId
       })
-<<<<<<< HEAD
-
-=======
       console.log('after loop:', cmp)
       console.log('selected-wap before bug:', this.wap._id)
->>>>>>> 22af1c7065db9eb7630248fdb9d8e01fd76944c6
       if (childCmpId) {
         cmp = cmp.cmps.find(({ id }) => id === childCmpId)
         this.selectedCmp.childCmpId = childCmpId
