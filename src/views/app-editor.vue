@@ -18,7 +18,6 @@
         @start="drag = true"
         @end="drag = false"
         @update="onCmpsChange"
-        @clone="wa"
         item-key="id"
         group="sections">
         <template #item="{ element }">
@@ -199,10 +198,10 @@ export default {
       if (childCmpId) changedCmp = changedCmp.cmps.find( childCmp => childCmp.id === childCmpId)
       if (elType) {
         // console.log(updatedStyle.options.style.backgroundColor)
-        // updatedStyle ? changedCmp.info[elType].options = updatedStyle : changedCmp.info[elType].content.text = content
+        updatedStyle ? changedCmp.info[elType].options = updatedStyle : changedCmp.info[elType].content.text = content
       } else {
-        changedCmp.options.style.backgroundColor = updatedStyle.style.backgroundColor
-        // updatedStyle ? changedCmp.options=updatedStyle :  changedCmp.content.text = content
+        // changedCmp.options.style.backgroundColor = updatedStyle.style.backgroundColor
+        updatedStyle ? changedCmp.options=updatedStyle :  changedCmp.content.text = content
       }
       this.onCmpsChange()
     },
@@ -223,7 +222,7 @@ export default {
         console.log('editedWapId', editedWapId)
         this.wap._id = editedWapId
         // TODO: fix this.
-        this.$router.push({ path: 'edit/' + editedWapId, replace: true })
+        // this.$router.push({ path: 'edit/' + editedWapId, replace: true })
       }
     },
     publishWap() {
