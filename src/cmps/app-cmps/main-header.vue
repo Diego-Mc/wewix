@@ -5,15 +5,17 @@
         <editor-btn-group
           gap="4px"
           :style="{ paddingInline: '14px' }"
-          info="media"
+          :info="{ key: 'history', type: 'click' }"
           :opts="[
             {
               val: 'undo',
               icon: 'arrow-return-left',
+              title: { text: 'Undo', placement: 'bottom' },
             },
             {
               val: 'redo',
               icon: 'arrow-return-right',
+              title: { text: 'Redo', placement: 'bottom' },
             },
           ]" />
         <!-- <editor-btn-group
@@ -29,9 +31,15 @@
       </section>
       <section class="work-together">
         <editor-btn-group
-          info="media"
+          :info="{ key: 'workTogether', type: 'click' }"
           :style="{ paddingInline: '14px', marginLeft: '4px' }"
-          :opts="[{ val: 'workTogether', icon: 'people' }]" />
+          :opts="[
+            {
+              val: 'workTogether',
+              icon: 'people',
+              title: { text: 'Work together', placement: 'bottom' },
+            },
+          ]" />
       </section>
     </section>
     <div class="main-logo">

@@ -68,7 +68,6 @@ export default {
     return {
       wap: null,
       selectedCmp: {},
-      isOpenCmpEditor: false,
       drag: false,
       dragOptions: {
         animation: 200,
@@ -260,7 +259,7 @@ export default {
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = elType ? cmp.info[elType].options : cmp.options
       this.selectedCmp.elType = elType
-      this.isOpenCmpEditor = true
+      eventBus.emit('openCmpEditor')
     },
 
     addUserInfo(userInfo) {
