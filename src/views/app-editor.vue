@@ -18,7 +18,6 @@
         @start="drag = true"
         @end="drag = false"
         @update="onCmpsChange"
-        @clone="wa"
         item-key="id"
         group="sections">
         <template #item="{ element }">

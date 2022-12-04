@@ -6,7 +6,7 @@
     @click.stop="emitSelect"
     :style="options.style">
     <div class="img-container">
-      <img :src="info.img.options.meta.src" />
+      <img :src="info.img.options.meta.src" @click.stop="emitSelect"/>
     </div>
   </section>
 </template>
@@ -18,13 +18,6 @@ export default {
   props: ['info', 'cmpId', 'childCmpId', 'options', 'typeId'],
   methods: {
     emitSelect() {
-      eventBus.emit('select', {
-        cmpId: this.cmpId,
-        childCmpId: this.childCmpId,
-        elType: 'img',
-      })
-    },
-    onSelect() {
       eventBus.emit('select', {
         cmpId: this.cmpId,
         childCmpId: this.childCmpId,
