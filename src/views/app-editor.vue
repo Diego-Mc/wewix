@@ -203,10 +203,6 @@ export default {
         // console.log(updatedStyle.options.style.backgroundColor)
         updatedStyle ? changedCmp.info[elType].options = updatedStyle : changedCmp.info[elType].content.text = content
       } else {
-<<<<<<< HEAD
-        // changedCmp.options.style.backgroundColor = updatedStyle.style.backgroundColor
-=======
->>>>>>> e2b64638d89aba32aa020a6cef9759126b8e9d73
         updatedStyle ? changedCmp.options=updatedStyle :  changedCmp.content.text = content
       }
       this.onCmpsChange()
@@ -228,11 +224,7 @@ export default {
         console.log('editedWapId', editedWapId)
         this.wap._id = editedWapId
         // TODO: fix this.
-<<<<<<< HEAD
-        // this.$router.push({ path: 'edit/' + editedWapId, replace: true })
-=======
         this.$router.push({ path: '/edit/' + editedWapId, replace: true })
->>>>>>> e2b64638d89aba32aa020a6cef9759126b8e9d73
       }
     },
     publishWap() {
