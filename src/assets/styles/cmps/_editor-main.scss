@@ -16,19 +16,19 @@
     }
   }
   &:has(.section-select.open) {
-    .main-wap:not(.phone, .tablet) {
+    .main-wap {
       left: $editor-nav-width + $editor-section-names-width;
     }
 
     &:has(.section-cmps.open) {
-      .main-wap:not(.phone, .tablet) {
+      .main-wap {
         left: $editor-nav-width + $editor-section-names-width +
           $editor-section-cmps-width;
       }
     }
   }
   &:has(.cmp-editor.open) {
-    .main-wap:not(.phone, .tablet) {
+    .main-wap {
       left: $editor-nav-width + $editor-section-edit-width;
     }
   }

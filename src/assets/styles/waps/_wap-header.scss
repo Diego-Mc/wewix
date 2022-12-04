@@ -16,6 +16,9 @@
   .bm-menu {
     background-color: var(--clr-3);
     border-left: 4px solid var(--clr-2);
+    // left: -100px !important;
+    left: unset !important;
+    right: -4px !important;
     .bm-item-list {
       color: var(--clr-1);
     }
@@ -67,9 +70,13 @@
 
 @container wap (max-width: 990px) {
   .wap-header {
-    grid-template-areas: 'logo logo . . . . . . . . . nav';
+    @include grid(2);
+    grid-template-areas: 'logo nav';
     .btn {
       display: none;
+    }
+    nav {
+      justify-self: end;
     }
     .burger {
       display: block;
