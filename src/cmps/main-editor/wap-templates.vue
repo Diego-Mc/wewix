@@ -48,7 +48,6 @@ export default {
   },
   methods: {
     startDrag(e) {
-      console.log('eE', e.item.__draggable_context.element)
       const { type, typeId } = e.item.__draggable_context.element
       e.item.__draggable_context.element = getCmp(type, typeId)
       // this.cmpsDropdownOptions = [

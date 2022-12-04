@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@fortawesome/vue-fontawesome": "^3.0.2",
+    "@programic/vue3-tooltip": "^1.0.0",
     "axios": "^0.27.2",
     "bootstrap-icons": "^1.10.2",
     "chance": "^1.1.9",
@@ -19,7 +20,6 @@
     "require": "^2.4.20",
     "sass": "^1.53.0",
     "socket.io-client": "^4.5.1",
-    "v-title": "^2.0.1",
     "vue": "^3.2.37",
     "vue-chart-3": "^3.1.8",
     "vue-router": "^4.1.2",

@@ -3,7 +3,6 @@ import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 
 const WAPS_KEY = 'wapDB'
-import wapsModel from './wap-model'
 
 export const wapService = {
   query,
@@ -19,7 +18,6 @@ window.cs = wapService
 
 async function query(filterBy = { txt: '', price: 0 }) {
   var waps = await storageService.query(WAPS_KEY)
-  if (!waps || !waps.length) waps = wapsModel
 
   return waps
 }
@@ -79,8 +77,3 @@ function getEmptyWap() {
 }
 
 // TEST DATA
-; (async () => {
-  const waps = await wapService.query()
-  if (!waps || !waps.length) await storageService.post(WAPS_KEY, wapsModel)
-  
-})()
