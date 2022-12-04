@@ -2,7 +2,10 @@
   <section class="main-editor" v-if="wap">
     <section class="main-editor-tools">
       <main-header />
-      <editor-header @setMedia="setMedia" @publishWap="publishWap" :wapName="wap.name"/>
+      <editor-header
+        @setMedia="setMedia"
+        @publishWap="publishWap"
+        :wapName="wap.name" />
       <editor-sidebar :selectedCmp="selectedCmp" />
     </section>
     <main class="main-wap" :class="mediaType">
@@ -13,7 +16,7 @@
           name: !drag ? 'flip-list' : null,
         }"
         @add="cmpAdded($event)"
-        v-model="wap.cmps"
+        :list="wap.cmps"
         v-bind="dragOptions"
         @start="drag = true"
         @end="drag = false"
@@ -39,7 +42,6 @@
 
 <script>
 import draggable from 'vuedraggable'
-
 import { eventBus } from '../services/event-bus.service'
 
 import { appEditorService } from '../services/app-editor.service'
@@ -59,7 +61,7 @@ import wapVideo from '../cmps/wap-items/wap-video.vue'
 import wapMap from '../cmps/wap-items/wap-map.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
 import loginModal from '../cmps/app-cmps/login-modal.vue'
-import getCmp from '../services/wap-cmps.service'
+import getCmp, { wapUtils } from '../services/wap-cmps.service'
 
 export default {
   data() {
@@ -78,23 +80,20 @@ export default {
     }
   },
   async created() {
-    console.log('I AM CREATED!!!!!!', utilService.deepCopy(this.wap))
     this.onCmpsChange = utilService.debounce(this.onCmpsChange, 500)
     await this.loadWap()
-    console.log('HEYY', this.wap, this.wap.cmps)
-    this.loadEvents()
+    this.initEventsFromBus()
     this.initHistory()
     this.checkNewVisit() // TODO: only on published mode.
 
-    if (this.wap.classState)
+    if (this.wap.classState) {
       document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
-  },
-  mounted() {
-    console.log('I AM MOUNTED!!!!!!', utilService.deepCopy(this.wap))
-    document.addEventListener('keydown', this.keydownHandler)
+    }
+
+    console.log('I AM CREATED!!!!!!', this.wap._id)
   },
   unmounted() {
-    console.log('I AM UNMOUNTED!!!!!!', utilService.deepCopy(this.wap))
+    console.log('I AM UNMOUNTED!!!!!!', this.wap._id)
     document.removeEventListener('keydown', this.keydownHandler)
   },
   methods: {
@@ -179,10 +178,8 @@ export default {
       }
     },
     onCmpsChange() {
-      console.log('CHANGE', this.wap)
       this.updateWap()
       this.saveLastChange()
-      console.log('CHANGE', this.wap)
     },
     // I added return to this function
     async updateWap() {
@@ -209,6 +206,7 @@ export default {
       this.onCmpsChange()
     },
     async loadWap() {
+      // console.log('templatedId',this.$route.query.templateId)
       if (this.$route.params?.id) {
         const wap = await this.$store.dispatch({
           type: 'getWap',
@@ -217,15 +215,21 @@ export default {
         console.log('store wap', this.$store.getters.editedWap)
         this.wap = JSON.parse(JSON.stringify(this.$store.getters.editedWap))
       } else {
-        this.wap = appEditorService.getEmptyWap()
+        if (this.$route.query.templateId) {
+          this.wap = wapUtils.getTemplate(this.$route.query.templateId)
+          this.wap._id = ''
+        } else this.wap = appEditorService.getEmptyWap()
+
         const editedWapId = await this.$store.dispatch({
           type: 'updateWap',
           wap: this.wap,
         })
+
         console.log('editedWapId', editedWapId)
         this.wap._id = editedWapId
+
         // TODO: fix this.
-        this.$router.push({ path: '/edit/' + editedWapId, replace: true })
+        // this.$router.push({ path: '/edit/' + editedWapId, replace: true })
       }
     },
     initHistory() {
@@ -238,16 +242,16 @@ export default {
         })
       }
     },
-    select({ cmpId, elType, childCmpId }) {
+    cmpSelected({ cmpId, elType, childCmpId }) {
       this.selectedCmp = {}
-      console.log('THIS IS WAP', this.wap)
+      console.log('THIS IS WAP', this.wap._id)
 
       let cmp = this.wap.cmps.find(({ id }) => {
         console.log('id in for loop', id, cmpId)
         return id === cmpId
       })
       console.log('after loop:', cmp)
-      console.log('selected-cmp before bug:', this.wap.cmps)
+      console.log('selected-wap before bug:', this.wap._id)
       if (childCmpId) {
         cmp = cmp.cmps.find(({ id }) => id === childCmpId)
         this.selectedCmp.childCmpId = childCmpId
@@ -265,7 +269,7 @@ export default {
       else this.wap.usersData.contacts.push(userInfo)
       this.updateWap()
     },
-    loadEvents() {
+    initEventsFromBus() {
       eventBus.on('cmpUpdated', this.handleUpdate)
       eventBus.on('onInnerCmpDrop', ({ cmpId, cmps }) => {
         const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
@@ -275,7 +279,7 @@ export default {
       eventBus.on('formSubmited', this.addUserInfo)
       eventBus.on('undo', this.undo)
       eventBus.on('redo', this.redo)
-      eventBus.on('select', this.select)
+      eventBus.on('select', this.cmpSelected)
       eventBus.on('themeChanged', this.themeChanged)
       eventBus.on('removeCmp', this.removeCmp)
       eventBus.on('updateField', this.updateField)
@@ -296,11 +300,25 @@ export default {
       try {
         const wapId = await this.updateWap(this.wap)
         if (wapId) this.$router.push(`/${siteName}`)
-      } catch(err) {
-        console.log(err);
+      } catch (err) {
+        console.log(err)
       }
-      
     },
+    terminateEventBus() {
+      eventBus.off('select')
+      eventBus.off('cmpUpdated')
+      eventBus.off('onInnerCmpDrop')
+      eventBus.off('formSubmited')
+      eventBus.off('undo')
+      eventBus.off('redo')
+      eventBus.off('select')
+      eventBus.off('themeChanged')
+      eventBus.off('removeCmp')
+      eventBus.off('updateField')
+    },
+  },
+  unmounted() {
+    this.terminateEventBus()
   },
   components: {
     editorBtnGroup,
