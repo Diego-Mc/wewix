@@ -9,7 +9,6 @@
           @mouseenter="isHover[template.name] = true" 
           @mouseleave="isHover[template.name] = false"
       >
-      <Transition >
         <div class="template-details" v-if="isHover[template.name]">
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum hic non quaerat aliquam quisquam
             aspernatur explicabo autem ipsum? Beatae, sed.
@@ -19,6 +18,7 @@
             <button>Edit</button>
           </div>
         </div>
+
         <div v-else>
             <img :src="template.img" alt="">
         </div>
@@ -27,7 +27,6 @@
           <h2>{{ template.name }}</h2>
           <p v-if="template.type">{{ template.type }}</p>
         </div>
-      </Transition>
       </article>
     </section>
 
