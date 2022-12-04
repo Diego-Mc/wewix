@@ -3,13 +3,14 @@
     <draggable
       :sort="false"
       class="list-group"
-      @clone="wa"
+      @start="startDrag"
       :list="cmpsDropdownOptions"
-      item-key="order"
+      item-key="id"
       :group="{
         name: 'sections',
         pull: 'clone',
         put: false,
+        // revertClone: true,
       }">
       <template #item="{ element }">
         <li
@@ -51,19 +52,22 @@ export default {
     }
   },
   methods: {
-    wa(e) {
-      this.cmpsDropdownOptions = [
-        // 'header',
-        getCmp('wap-cards', 2),
-        getCmp('wap-section', 2),
-        getCmp('wap-section', 3),
-        // cmpCardImg: 'src/assets/imgs/cmp-cards-2.png',
-        // cmp:null
-        // getCmp('wap-section', 4),
-        // getCmp('wap-form', 1),
-        // wapVideo,
-        // wapMap,
-      ]
+    startDrag(e) {
+      console.log('eE', e.item.__draggable_context.element)
+      const { type, typeId } = e.item.__draggable_context.element
+      e.item.__draggable_context.element = getCmp(type, typeId)
+      // this.cmpsDropdownOptions = [
+      //   // 'header',
+      //   getCmp('wap-cards', 2),
+      //   getCmp('wap-section', 2),
+      //   getCmp('wap-section', 3),
+      //   // cmpCardImg: 'src/assets/imgs/cmp-cards-2.png',
+      //   // cmp:null
+      //   // getCmp('wap-section', 4),
+      //   // getCmp('wap-form', 1),
+      //   // wapVideo,
+      //   // wapMap,
+      // ]
     },
   },
 }

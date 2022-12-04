@@ -79,7 +79,7 @@ export default {
     }
   },
   async created() {
-    // this.onCmpsChange = utilService.debounce(this.onCmpsChange, 500)
+    this.onCmpsChange = utilService.debounce(this.onCmpsChange, 500)
     await this.loadWap()
     console.log('HEYY', this.wap, this.wap.cmps)
     this.loadEvents()
@@ -97,7 +97,6 @@ export default {
   },
   methods: {
     cmpAdded(e) {
-      console.log('e', e)
       this.onCmpsChange()
     },
     updateField(fieldInfo) {
@@ -178,9 +177,10 @@ export default {
       }
     },
     onCmpsChange() {
-      console.log('CHANGED', this.wap)
+      console.log('CHANGE', this.wap)
       this.updateWap()
       this.saveLastChange()
+      console.log('CHANGE', this.wap)
     },
     async updateWap() {
       await this.$store.dispatch({ type: 'updateWap', wap: this.wap })
@@ -199,10 +199,10 @@ export default {
       if (childCmpId) changedCmp = changedCmp.cmps.find( childCmp => childCmp.id === childCmpId)
       if (elType) {
         // console.log(updatedStyle.options.style.backgroundColor)
-        updatedStyle ? changedCmp.info[elType].options = updatedStyle : changedCmp.info[elType].content.text = content
+        // updatedStyle ? changedCmp.info[elType].options = updatedStyle : changedCmp.info[elType].content.text = content
       } else {
-        // changedCmp.options.style.backgroundColor = updatedStyle.style.backgroundColor
-        updatedStyle ? changedCmp.options=updatedStyle :  changedCmp.content.text = content
+        changedCmp.options.style.backgroundColor = updatedStyle.style.backgroundColor
+        // updatedStyle ? changedCmp.options=updatedStyle :  changedCmp.content.text = content
       }
       this.onCmpsChange()
     },
