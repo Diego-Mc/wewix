@@ -6,7 +6,7 @@ export const appEditorService = {
 
 function getEmptyWap() {
     return {
-        name: 'New Site',
+        name: '',
         imgUrl: '',
         createdBy: {
             // _id: '',

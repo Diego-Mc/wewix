@@ -18,6 +18,7 @@ function get(entityType, entityId) {
     return query(entityType).then(entities => {
         const entity = entities.find(entity => entity._id === entityId)
         if (!entity) throw new Error(`Get failed, cannot find entity with id: ${entityId} in: ${entityType}`)
+        
         return entity
     })
 }
