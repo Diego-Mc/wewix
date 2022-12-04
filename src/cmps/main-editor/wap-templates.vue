@@ -1,27 +1,24 @@
 <template>
-  <section>
-    <draggable
-      :sort="false"
-      class="list-group"
-      @start="startDrag"
-      :list="cmpsDropdownOptions"
-      item-key="id"
-      :group="{
-        name: 'sections',
-        pull: 'clone',
-        put: false,
-        // revertClone: true,
-      }">
-      <template #item="{ element }">
-        <li
-          class="list-group-item"
-          :style="{ backgroundColor: element.backgroundColor }">
-          <cmp-item :src="element.previewImg"></cmp-item>
-          wawa
-        </li>
-      </template>
-    </draggable>
-  </section>
+  <draggable
+    :sort="false"
+    class="list-group section-cmp-previews"
+    @start="startDrag"
+    :list="cmpsDropdownOptions"
+    item-key="id"
+    :group="{
+      name: 'sections',
+      pull: 'clone',
+      put: false,
+      // revertClone: true,
+    }">
+    <template #item="{ element }">
+      <li
+        class="list-group-item"
+        :style="{ backgroundColor: element.backgroundColor }">
+        <cmp-item :src="element.previewImg" />
+      </li>
+    </template>
+  </draggable>
 </template>
 
 <script>
@@ -38,16 +35,12 @@ export default {
   data() {
     return {
       cmpsDropdownOptions: [
-        // 'header',
-        getCmp('wap-cards', 2),
+        getCmp('wap-header', 2),
+        getCmp('wap-hero', 2),
         getCmp('wap-section', 2),
         getCmp('wap-section', 3),
-        // cmpCardImg: 'src/assets/imgs/cmp-cards-2.png',
-        // cmp:null
-        // getCmp('wap-section', 4),
-        // getCmp('wap-form', 1),
-        // wapVideo,
-        // wapMap,
+        getCmp('wap-section', 4),
+        getCmp('wap-cards', 2),
       ],
     }
   },

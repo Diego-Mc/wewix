@@ -534,6 +534,8 @@ wapsMap.set('wap-header-2', {
   id: '',
   type: 'wap-header',
   typeId: 2,
+  previewImg:
+    'https://res.cloudinary.com/wewix/image/upload/v1670116104/wap-cmp-header-1_j7sddq.png',
   options: {
     meta: {},
     style: getStyles(),
@@ -584,6 +586,8 @@ wapsMap.set('wap-hero-2', {
   id: '',
   type: 'wap-hero',
   typeId: 2,
+  previewImg:
+    'https://res.cloudinary.com/wewix/image/upload/v1670081189/cmp-hero-1_ajrwkx.png',
   options: {
     meta: {},
     style: getStyles(),
@@ -674,6 +678,8 @@ wapsMap.set('wap-section-2', {
   id: '',
   type: 'wap-section',
   typeId: 2,
+  previewImg:
+    'https://res.cloudinary.com/wewix/image/upload/v1670081186/cmp-section-1_ry3zpj.png',
   options: {
     meta: {
       // download imgs from now?
@@ -747,6 +753,8 @@ wapsMap.set('wap-section-3', {
   id: '',
   type: 'wap-section',
   typeId: 3,
+  previewImg:
+    'https://res.cloudinary.com/wewix/image/upload/v1670081191/cmp-gallery-1_rxxyfr.png',
   options: {
     meta: {},
     style: getStyles(),
@@ -841,13 +849,12 @@ wapsMap.set('wap-section-3', {
   ],
 })
 
-
-
 wapsMap.set('wap-cards-2', {
   id: '',
   type: 'wap-cards',
   typeId: 2,
-  previewImg: 'src/assets/imgs/cmp-cards-2.png',
+  previewImg:
+    'https://res.cloudinary.com/wewix/image/upload/v1670081186/cmp-cards-1_ggawxa.png',
   options: {
     meta: {
       src: 'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623b0c7839281d050ca493ea_Green_Texture.jpg',
@@ -990,6 +997,8 @@ wapsMap.set('wap-section-4', {
   id: '',
   type: 'wap-section',
   typeId: 4,
+  previewImg:
+    'https://res.cloudinary.com/wewix/image/upload/v1670081191/cmp-section-2_mpdblo.png',
   options: {
     meta: {},
     style: getStyles(),
