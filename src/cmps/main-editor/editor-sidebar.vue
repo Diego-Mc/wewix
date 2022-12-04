@@ -123,6 +123,7 @@ export default {
   },
   created() {
     eventBus.on('openCmpEditor', this.openCmpEditor)
+    eventBus.on('closeCmpEditor', this.closeCmpEditor)
   },
   data() {
     return {
@@ -135,9 +136,9 @@ export default {
   methods: {
     openCmpEditor() {
       this.tabState.editOpt = 'edit-cmp'
-      this.tabState.section = ''
-
-      console.log('this.tabState', this.tabState)
+    },
+    closeCmpEditor() {
+      this.tabState.editOpt = ''
     },
   },
 
