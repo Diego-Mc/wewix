@@ -8,6 +8,7 @@
   color: rgba($color: $btn-dark, $alpha: 0.8);
   background-color: #fff;
   border-bottom: 1px solid #eee;
+  color: $btn-dark;
 
   .login-btn {
     padding: 4px 16px;
@@ -76,6 +77,40 @@
   //     display: none;
   //   }
   // }
+
+  @media screen and (max-width: 970px) {
+    grid-template-columns: 1fr 2fr 1fr;
+    .burger {
+      display: none;
+      // grid-column: 3;
+      // justify-self: end;
+    }
+    .nav {
+      display: flex;
+    }
+    .user-auth {
+      display: flex;
+    }
+  }
+  @media screen and (max-width: 740px) {
+    grid-template-columns: 1fr 5fr 2fr;
+    .logo {
+      h1 {
+        display: none;
+      }
+    }
+    // .burger {
+    //   display: none;
+    //   // grid-column: 3;
+    //   // justify-self: end;
+    // }
+    // .nav {
+    //   display: flex;
+    // }
+    // .user-auth {
+    //   display: flex;
+    // }
+  }
 }
 
 .editor-header {
@@ -105,10 +140,8 @@
         top: 50%;
         transform: translateY(-50%);
       }
-      &:last-of-type {
-        // content: '';
-        background-color: red;
-        // display: none;
+      &:nth-child(3)::after {
+        display: none;
       }
     }
   }
@@ -126,6 +159,14 @@
 
   .media-select {
   }
+
+  .publish-btns {
+    display: flex;
+    gap: 12px;
+    padding-right: 20px;
+    flex: 1;
+    justify-content: flex-end;
+  }
   .url-bar {
     background-color: rgba(238, 238, 238, 0.5);
     height: 30px;
@@ -134,9 +175,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-inline: 14px;
+    padding-inline: 18px;
     flex: 1;
-    max-width: 550px;
+    max-width: 350px;
 
     .mb-show {
       display: none;
@@ -144,16 +185,47 @@
 
     .address {
       color: rgba(30, 30, 30, 0.5);
+      overflow-x: hidden;
+      white-space: nowrap;
     }
     .site-name {
       color: $main;
     }
-    .preview-btn {
-      color: rgba($color: $main, $alpha: 0.4);
+    // .preview-btn {
+    //   color: rgba($color: $main, $alpha: 0.4);
 
-      &:hover {
-        color: rgba($color: $main, $alpha: 0.8);
-      }
+    //   &:hover {
+    //     color: rgba($color: $main, $alpha: 0.8);
+    //   }
+    // }
+  }
+  .preview-btn,
+  .publish-btn {
+    padding: 0 18px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    border-radius: rem(8px);
+    border-radius: 3rem;
+    border: 2px solid transparent;
+    letter-spacing: 0.4px;
+    transition: all 0.2s;
+  }
+  .preview-btn {
+    &:hover {
+      border-color: #ddd;
+      background-color: #eee;
+    }
+  }
+  .publish-btn {
+    font-weight: 800;
+    background-color: $main;
+    border-color: $main;
+    color: white;
+
+    &:hover {
+      border-color: darken($main, 4%);
+      background-color: darken($main, 4%);
     }
   }
   .upload-site {
@@ -165,7 +237,7 @@
   }
 
   @media screen and (max-width: $mobileQuery) {
-    .media-select {
+    .options > * {
       display: none;
     }
     .back-btn {

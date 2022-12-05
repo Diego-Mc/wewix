@@ -66,9 +66,11 @@
 
 <script>
 import editorBtnGroup from '../main-editor/editor-items/editor-btn-group.vue'
+import { Slide } from 'vue3-burger-menu'
 export default {
   components: {
     editorBtnGroup,
+    Slide,
   },
   methods: {
     log(data) {
