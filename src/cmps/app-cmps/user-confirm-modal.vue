@@ -1,15 +1,16 @@
 <template>
     <div>
         <h1>{{ confirmData.txt }}</h1>
-        <div>
-            <button @click="(isDisplayLocation = true)">Yes</button>
-            <button @click="$emit('cancelWorkTogether')">No</button>
+        <div v-if="!isDisplayUrl">
+            <button @click="(isDisplayUrl = true)">Yes</button>
+            <button @click="$emit('closelModal')">No</button>
         </div>
-        <div v-if="isDisplayLocation">
-            <span @click="copyToClipboard(confirmData.sendedProps.location)">
-                Work Space: {{ confirmData.sendedProps.location }}
+        <div v-else>
+            <span @click="openWorkSpace">
+                Work Space: {{ currentUrl }}
+                click to copy and exit
             </span>
-            <button @click="$emit('openWorkSpace')">Close</button>
+            <button @click="$emit('closelModal')">Cancel</button>
         </div>
     </div>
 </template>
@@ -22,7 +23,7 @@ export default {
 
     data() {
         return {
-            isDisplayLocation: false
+            isDisplayUrl: false
         }
     },
 
@@ -35,7 +36,19 @@ export default {
             var result = document.execCommand('copy');
             document.body.removeChild(input);
             return result;
+        },
+
+        openWorkSpace() {
+            this.$router.replace({...this.$route, query: {workTogether: true}})
+            this.copyToClipboard(this.currentUrl)
+            this.$emit('openWorkSpace')
+            this.$emit('closelModal')
         }
     },
+    computed: {
+        currentUrl() {
+            return window.location.href + '?workTogether=true'
+        }
+    }
 }
 </script>

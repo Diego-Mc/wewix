@@ -3,7 +3,7 @@
       class="confirm-modal"
       v-if="isConfirmModalOpen" 
       :confirmData="confirmData"
-      @cancelWorkTogether="cancelWorkTogether"
+      @closelModal="closeConfirmModal"
       @openWorkSpace="openWorkSpace"
   />
   <cursor v-if="workTogetherCursors[0]" :cursorsData="workTogetherCursors"/>
@@ -15,7 +15,7 @@
     class="main-editor" v-if="wap">
     <section class="main-editor-tools">
       <button @click="publishWap('yay')">publish test</button>
-      <main-header @setVal="workTogether"/>
+      <main-header @setVal="openWorkTogetherConfirm"/>
       <editor-header
         @setMedia="setMedia"
         @publishWap="publishWap"
@@ -119,6 +119,11 @@ export default {
       document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
     }
 
+    if (this.$route.query.workTogether) {
+        this.isSocketsOn = true
+        this.openWorkSpace()
+    }
+
     this.setSocketEvents()
   },
   unmounted() {
@@ -211,7 +216,6 @@ export default {
       this.saveLastChange()
       if (this.isSocketsOn) {
         socketService.emit('cmpChange', this.wap)
-        console.log('this.socketId:', this.socketId)
       }
     },
     // I added return to this function
@@ -350,11 +354,6 @@ export default {
     },
 
     async setSocketEvents() {
-        socketService.on('openWorkSpace', (wap) => {
-          this.isSocketsOn = true
-          this.wap = wap
-        })
-
         socketService.on('cmpChange', (wap) => {
           this.wap = wap
         })
@@ -382,28 +381,29 @@ export default {
             socketService.emit('mouseEvent', sendedCursor)   
         },
 
-      workTogether({key}) {    
+      openWorkTogetherConfirm({key}) {  
+        if (this.isSocketsOn) {
+            //Todo user msg
+            console.log('There is opened work space');
+            return 
+        }  
         if (key !== 'workTogether') return
 
         this.confirmData = {
           txt: 'Are you sure you want to open a work space?',
-          sendedProps: {
-            location: window.location.href
-          }
         }
 
         this.isConfirmModalOpen = true
       },
 
-      cancelWorkTogether() {
+      closeConfirmModal() {
           this.confirmData = null,
           this.isConfirmModalOpen = false
       },
 
       openWorkSpace() {
-        this.isConfirmModalOpen = false
         this.isSocketsOn = true
-        socketService.emit('openWorkSpace', this.wap)
+        socketService.emit('joinWorkSpace', this.wap._id)
       }
       
   },
