@@ -6,12 +6,27 @@
   font-family: PoppinsRegular;
   color: $btn-dark;
   font-size: rem(16px);
-  max-width: 1700px !important;
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 1700px) 1fr;
+  > * {
+    grid-column: 2;
+  }
   a {
     cursor: pointer;
   }
 
+  .header-container {
+    grid-column: 1 / -1;
+    display: grid;
+    background-color: $btn-dark;
+    grid-template-columns: 1fr minmax(0, 1700px) 1fr;
+    > * {
+      grid-column: 2;
+    }
+  }
+
   .hero {
+    grid-column: 1 / -1;
     @include grid(1);
     text-align: center;
     background-color: $btn-dark;
@@ -177,6 +192,7 @@
     }
   }
   .footer {
+    grid-column: 1 / -1;
     background-color: $btn-dark;
     color: white;
     @include grid(1);

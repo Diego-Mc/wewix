@@ -1,6 +1,8 @@
 <template>
-  <app-header />
   <main class="homepage">
+    <div class="header-container">
+      <app-header />
+    </div>
     <section class="hero" id="home">
       <h1>The <span>modern</span> way to<br />build websites</h1>
       <p>
@@ -46,6 +48,32 @@
         <svg
           class="decor"
           width="306"
+          height="18"
+          viewBox="0 0 306 18"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M3 12.0001C73.6667 5.66679 232.5 -3.19987 302.5 12.0001"
+            stroke="#00C2A6"
+            stroke-width="6"
+            stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path
+            d="M3.00001 11.834C78.5969 6.37402 245.763 -2.39233 301.5 14.5"
+            stroke="#00C2A6"
+            stroke-width="6"
+            stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path
+            d="M301.5 14.5L302.5 12"
+            stroke="#00C2A6"
+            stroke-width="6"
+            stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+        <!-- <svg
+          class="decor"
+          width="306"
           height="20"
           viewBox="0 0 306 20"
           fill="none"
@@ -62,7 +90,7 @@
             stroke-width="6"
             stroke-linecap="round"
             stroke-linejoin="round" />
-        </svg>
+        </svg> -->
       </div>
       <!-- TODO: Add features as draggables, could be cool -->
       <section class="cards">
