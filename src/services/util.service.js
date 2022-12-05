@@ -6,7 +6,8 @@ export const utilService = {
     randomPastTime,
     saveToStorage,
     loadFromStorage,
-    deepCopy
+    deepCopy,
+    getRandomColor
 }
 
 function makeId(length = 6) {
@@ -69,3 +70,12 @@ function loadFromStorage(key) {
 function deepCopy(val){
     return JSON.parse(JSON.stringify(val))
 }
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }

@@ -4,10 +4,12 @@ import appHome from './views/app-home.vue'
 import appTemplates from './views/app-templates.vue'
 import appEditor from './views/app-editor.vue'
 import appDashboard from './views/app-dashboard.vue'
-import appDashboardDetails from './views/app-dashboard-details.vue'
+import appDashboardData from './views/app-dashboard-data.vue'
 import appPreview from './views/app-preview.vue'
 import testTestTest from './views/test-test-test.vue'
 import appPublish from './views/appPublish.vue'
+
+import appTemplatesBug from './views/app-templates-bug.vue'
 
 import editorWithStyle from './views/editor-with-style.vue'
 
@@ -20,7 +22,7 @@ const routes = [
   {
     path: '/templates',
     name: 'app-templates',
-    component: appTemplates,
+    component: appTemplatesBug,
   },
   {
     path: '/edit/:id?',
@@ -34,8 +36,8 @@ const routes = [
     children: [
       {
         path: ':name',
-        name: 'app-dashboard-details',
-        component: appDashboardDetails,
+        name: 'app-dashboard-data',
+        component: appDashboardData,
       },
     ],
   },
