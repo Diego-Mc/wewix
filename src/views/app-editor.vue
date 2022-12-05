@@ -382,7 +382,7 @@ export default {
             socketService.emit('mouseEvent', sendedCursor)   
         },
 
-      workTogether({key}) {
+      workTogether({key}) {    
         if (key !== 'workTogether') return
 
         this.confirmData = {
@@ -410,6 +410,7 @@ export default {
 
   unmounted() {
     this.terminateEventBus()
+    socketService.emit('leaveWorkSpace', {})
   },
   computed: {
     loggedinUser() {
