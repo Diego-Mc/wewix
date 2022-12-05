@@ -105,6 +105,11 @@
         top: 50%;
         transform: translateY(-50%);
       }
+      &:last-of-type {
+        // content: '';
+        background-color: red;
+        // display: none;
+      }
     }
   }
 
