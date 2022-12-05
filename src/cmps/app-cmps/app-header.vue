@@ -22,19 +22,17 @@
       </svg>
       <h1>wewix</h1>
     </section>
-    <nav>
+    <nav class="nav">
       <a to="#home">Home</a>
       <a to="#features">Features</a>
       <a to="#demo">Demo</a>
       <a to="#about">About</a>
     </nav>
-    <Slide right class="burger">
-      <li>
-        <a to="#home">Home</a>
-        <a to="#features">Features</a>
-        <a to="#demo">Demo</a>
-        <a to="#about">About</a>
-      </li>
+    <Slide noOverlay right class="burger">
+      <a to="#home">Home</a>
+      <a to="#features">Features</a>
+      <a to="#demo">Demo</a>
+      <a to="#about">About</a>
     </Slide>
     <section class="user-auth">
       <button class="login-btn"><i class="bi bi-person"></i> login</button>

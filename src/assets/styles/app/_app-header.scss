@@ -6,6 +6,9 @@
   padding-block: 0;
   height: 120px;
   font-family: 'PoppinsRegular';
+  a {
+    cursor: pointer;
+  }
   .logo {
     display: flex;
     cursor: pointer;
@@ -20,16 +23,13 @@
       margin-bottom: 3px;
     }
   }
-  nav {
+  .nav {
     display: flex;
     justify-content: space-between;
     color: rgba($color: #fff, $alpha: 0.5);
     transition: all 0.2s;
     a:hover {
       color: white;
-    }
-    a {
-      cursor: pointer;
     }
   }
   .burger {
@@ -42,14 +42,27 @@
   .bm-menu {
     background-color: $btn-dark;
     border-left: 4px solid white;
-    // left: -100px !important;
+    left: -100px !important;
     left: unset !important;
     right: -4px !important;
     .bm-item-list {
       color: white;
+      color: rgba($color: #fff, $alpha: 0.5);
+      transition: all 0.2s;
+      a:hover {
+        color: white;
+      }
     }
-    .bm-cross {
-      background-color: #ccc;
+    .bm-cross-button {
+      .bm-cross {
+        background-color: #8f8f8f;
+        transition: all 0.2s;
+      }
+      &:hover {
+        .bm-cross {
+          background-color: white;
+        }
+      }
     }
   }
   .user-auth {
@@ -95,7 +108,7 @@
       grid-column: 3;
       justify-self: end;
     }
-    nav {
+    .nav {
       display: none;
     }
     .user-auth {
