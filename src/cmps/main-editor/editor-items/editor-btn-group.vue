@@ -1,30 +1,15 @@
 <template>
   <section class="editor-btn" :style="{ gap, flexDirection: dir }">
-    <el-tooltip
-      class="box-item"
-      effect="light"
-      :hide-after="0"
-      :disabled="!opt.title"
-      :content="opt.title?.text"
-      :placement="opt.title?.placement"
-      v-for="opt in opts"
-      :key="opt.val">
+    <el-tooltip class="box-item" effect="light" :hide-after="0" :disabled="!opt.title" :content="opt.title?.text"
+      :placement="opt.title?.placement" v-for="opt in opts" :key="opt.val">
       <label :class="info.type" :style="style">
-        <i
-          v-if="opt.icon"
-          @click="iconEvent(opt.icon)"
-          :class="'icon bi bi-' + opt.icon"></i>
+        <i v-if="opt.icon" @click="iconEvent(opt.icon)" :class="'icon bi bi-' + opt.icon"></i>
         <span class="text" v-if="opt.text">{{ opt.text }}</span>
         <span class="sample" :style="opt.style" v-if="opt.sample">{{
-          opt.sample
+            opt.sample
         }}</span>
         <small class="small" v-if="opt.small">{{ opt.small }}</small>
-        <input
-          :value="opt.val"
-          :name="info?.key"
-          type="checkbox"
-          v-model="val"
-          @change="reportVal(val)" />
+        <input :value="opt.val" :name="info?.key" type="checkbox" v-model="val" @change="reportVal(val)" />
       </label>
     </el-tooltip>
   </section>
@@ -61,7 +46,6 @@ export default {
   },
   methods: {
     reportVal(ev) {
-      console.log('SDSDGSD', this.val, this.info.type)
       if (this.info.type === 'click') this.val = []
       else if (this.val[0] === undefined) {
         if (this.info.type === 'radioDefault') this.val = [this.initialValue]
@@ -73,14 +57,18 @@ export default {
       }
       this.$emit('update:modelValue', this.val[0])
       this.$emit('setVal', { key: this.info?.key, val: this.val[0] })
+
     },
     iconEvent(iconType) {
       if (iconType === 'arrow-return-left') eventBus.emit('undo')
       else if (iconType === 'arrow-return-right') eventBus.emit('redo')
       return true
     },
+
   },
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>

@@ -1,5 +1,11 @@
 <template>
-  <section class="main-editor" v-if="wap">
+  <cursor :cursorsData="workTogetherCursors"/>
+  <section 
+    @drag="sendMouseEvent('drag', $event)" 
+    @mousemove="sendMouseEvent('move', $event)" 
+    @mousedown="sendMouseEvent('down', $event)" 
+    @mouseup="sendMouseEvent('move', $event)" 
+    class="main-editor" v-if="wap">
     <section class="main-editor-tools">
       <main-header />
       <editor-header
@@ -42,8 +48,12 @@
 
 <script>
 import draggable from 'vuedraggable'
-import { eventBus } from '../services/event-bus.service'
+import { socketService } from '../services/socket.service'
+import { Socket } from 'engine.io-client'
 
+import { eventBus } from '../services/event-bus.service'
+import { httpService } from '../services/http.service'
+import getCmp, { wapUtils } from '../services/wap-cmps.service'
 import { appEditorService } from '../services/app-editor.service'
 import { utilService } from '../services/util.service'
 
@@ -51,6 +61,7 @@ import editorBtnGroup from '../cmps/main-editor/editor-items/editor-btn-group.vu
 import mainHeader from '../cmps/app-cmps/main-header.vue'
 import editorHeader from '../cmps/main-editor/editor-header.vue'
 import editorSidebar from '../cmps/main-editor/editor-sidebar.vue'
+import cursor from '../cmps/app-cmps/cursor.vue'
 
 import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
@@ -61,7 +72,8 @@ import wapVideo from '../cmps/wap-items/wap-video.vue'
 import wapMap from '../cmps/wap-items/wap-map.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
 import loginModal from '../cmps/app-cmps/login-modal.vue'
-import getCmp, { wapUtils } from '../services/wap-cmps.service'
+
+
 
 export default {
   data() {
@@ -76,6 +88,11 @@ export default {
         ghostClass: 'ghost',
       },
       mediaType: 'desktop',
+
+
+      tempSocketId: utilService.makeId(),
+      cursorColor: utilService.getRandomColor(),
+      workTogetherCursors: []
     }
   },
   async created() {
@@ -90,7 +107,12 @@ export default {
       document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
     }
 
-    console.log('I AM CREATED!!!!!!', this.wap._id)
+    socketService.emit('createWorkSpace',  {wap: this.wap, userId: 'asdasd'})
+    socketService.on('createWorkSpace',  (wap) => {
+      this.wap = wap
+    })
+
+    this.socketDemo()
   },
   unmounted() {
     console.log('I AM UNMOUNTED!!!!!!', this.wap._id)
@@ -178,6 +200,8 @@ export default {
       }
     },
     onCmpsChange() {
+      socketService.emit('cmpChange', this.wap)
+
       this.updateWap()
       this.saveLastChange()
     },
@@ -314,7 +338,47 @@ export default {
       eventBus.off('removeCmp')
       eventBus.off('updateField')
     },
+    async socketDemo() {
+
+        const cred = {
+          username: '',
+          password: ''
+        }
+
+        const user = await httpService.post('user/login', cred)
+        socketService.on('cmpChange', (wap) => {
+          this.wap = wap
+          this.onCmpsChange()
+        })
+
+        socketService.on('mouseEvent', (cursorProps) => {
+            const cursorPropIdx = this.workTogetherCursors.findIndex(({id}) => {
+                return id === cursorProps.id
+            })
+
+            if (cursorPropIdx !== -1) this.workTogetherCursors[cursorPropIdx] = cursorProps
+            else this.workTogetherCursors.push(cursorProps)
+          
+        })
+      },
+
+      sendMouseEvent(evType, ev) {
+        const isSocketsOn = true
+        if (!isSocketsOn) return
+
+            const sendedCursor = {style: evType}
+            const {clientX, clientY} = ev
+
+            sendedCursor.clientXY = {clientX, clientY}
+            sendedCursor.id = this.tempSocketId
+            sendedCursor.color = this.cursorColor
+            sendedCursor.type = evType
+
+            socketService.emit('mouseEvent', sendedCursor)   
+        },
+      
   },
+
   unmounted() {
     this.terminateEventBus()
   },
@@ -332,6 +396,7 @@ export default {
     wapForm,
     wapVideo,
     wapMap,
+    cursor
   },
 }
 </script>

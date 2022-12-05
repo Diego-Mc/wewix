@@ -14,8 +14,8 @@ const SOCKET_EMIT_LOGOUT = 'unset-user-socket'
 
 
 const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030'
-// export const socketService = createSocketService()
-export const socketService = createDummySocketService()
+export const socketService = createSocketService()
+// export const socketService = createDummySocketService()
 
 // for debugging from console
 window.socketService = socketService
@@ -99,6 +99,7 @@ function createDummySocketService() {
   window.listenersMap = listenersMap;
   return socketService
 }
+
 
 
 // Basic Tests
