@@ -144,6 +144,19 @@ export const wapGraph = {
   },
 }
 
+export const wapChat = {
+  id: 'wc11',
+  type: 'wap-chat',
+  options: {
+    meta: {
+        chatData: {
+          adminName: 'Adam. MasterChef at CafePuki',
+          chatId: 'asgg2134'
+        }
+      }
+    },
+}
+
 export default [
   {
     _id: '5e28393890dd7201a06d4e44',

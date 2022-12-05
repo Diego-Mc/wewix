@@ -68,27 +68,30 @@
       </section>
     </div>
 
-    <section class="url-bar">
-      <p class="address">
-        https://<span class="mb-hide">wewix.onrender.com/</span
-        ><span class="mb-show">... /</span
-        ><span
-          class="site-name"
-          :style="{ color: isValidSiteName ? '#00c2a6' : '#e35a5a' }"
-          @input="setSiteName($event)"
-          :contenteditable="!wapName"
-          >{{ siteName }}</span
-        >
-      </p>
+    <div class="publish-btns">
+      <section class="url-bar">
+        <p class="address">
+          https://<span class="mb-hide">wewix.onrender.com/</span
+          ><span class="mb-show">... /</span
+          ><span
+            class="site-name"
+            :style="{ color: isValidSiteName ? '#00c2a6' : '#e35a5a' }"
+            @input="setSiteName($event)"
+            :contenteditable="!wapName"
+            >{{ siteName }}</span
+          >
+        </p>
+      </section>
       <router-link to="#" class="preview-btn">preview site</router-link>
-    </section>
-    <section class="upload-site">
+      <router-link to="#" class="publish-btn">publish site</router-link>
+    </div>
+    <!-- <section class="upload-site">
       <editor-btn-group
         :info="{ key: 'publishSite' }"
         @setVal="handleBtnSelect"
         :style="{ gap: '10px' }"
         :opts="[{ val: true, icon: 'cast', text: 'Publish' }]" />
-    </section>
+    </section> -->
   </nav>
 </template>
 

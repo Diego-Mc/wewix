@@ -27,7 +27,7 @@ import draggable from 'vuedraggable'
 import cmpItem from './editor-items/cmp-item.vue'
 import { utilService } from '../../services/util.service'
 import getCmp from '../../services/wap-cmps.service'
-import { wapVideo, wapMap, wapForm } from '../../services/wap-new-model'
+import { wapVideo, wapMap, wapForm, wapChat } from '../../services/wap-new-model'
 export default {
   components: {
     draggable,
@@ -44,7 +44,8 @@ export default {
         getCmp('wap-cards', 2),
         wapVideo,
         wapMap,
-        wapForm
+        wapForm,
+        wapChat,
         ],
     }
   },
