@@ -8,7 +8,7 @@
         </li>
       </ul>
     </section>
-    <router-view v-if="currWapData" :wapData="currWapData.contacts"></router-view>
+    <router-view v-if="currWapData" :wapData="currWapData"></router-view>
   </main>
 </template>
 

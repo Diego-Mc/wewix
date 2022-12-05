@@ -1,13 +1,13 @@
 <template>
-  <section class="dashboard-data" v-if="wapData">
+  <section class="dashboard-data" >
     <div class="dashboard-top-div">
       <h2>Kite Shop's Dashboard</h2>
       <div>
-        <router-link :to="''">
+        <router-link :to="wapData._id">
           <el-button class="view-wap-btn">View Website</el-button>
         </router-link>
-        <router-link :to="''">
-          <button class="edit-wap-btn">Edit Website</button>
+        <router-link :to="'/edit/' + wapData._id">
+          <button class="edit-wap-btn" >Edit Website</button>
         </router-link>
       </div>
     </div>
@@ -15,7 +15,7 @@
       <app-dashboard-graphs :usersData="getDemoData" />
       <app-dashboard-stats />
     </main>
-    <app-dashboard-details :usersData="wapData.usersData.subscribed" />
+    <app-dashboard-details :usersData="getDemoData" />
   </section>
 </template>
 
@@ -30,6 +30,7 @@ export default {
     wapData: Object,
   },
   created() {
+  console.log(this.wapData);
   },
   computed: {
     getDemoData() {
