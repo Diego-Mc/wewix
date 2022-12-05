@@ -69,6 +69,8 @@
     overflow-y: scroll;
     right: 0;
     left: $editor-nav-width;
+    max-width: 100%;
+    transition: max-width 0.3s cubic-bezier(0.83, 0.22, 0.17, 0.84);
     &.phone {
       left: 0;
       max-width: 480px;

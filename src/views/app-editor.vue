@@ -1,22 +1,33 @@
 <template>
   <!-- <wap-chat/> -->
   <user-confirm-modal
-      class="confirm-modal"
-      v-if="isConfirmModalOpen" 
-      :confirmData="confirmData"
-      @closelModal="closeConfirmModal"
-      @openWorkSpace="openWorkSpace"
-  />
-  <cursor v-if="workTogetherCursors[0]" :cursorsData="workTogetherCursors"/>
-  <section 
-    @drag="sendMouseEvent('drag', $event)" 
-    @mousemove="sendMouseEvent('move', $event)" 
-    @mousedown="sendMouseEvent('down', $event)" 
-    @mouseup="sendMouseEvent('move', $event)" 
-    class="main-editor" v-if="wap">
+    class="confirm-modal"
+    v-if="isConfirmModalOpen"
+    :confirmData="confirmData"
+    @closelModal="closeConfirmModal"
+    @openWorkSpace="openWorkSpace" />
+  <cursor v-if="workTogetherCursors[0]" :cursorsData="workTogetherCursors" />
+  <section
+    @drag="sendMouseEvent('drag', $event)"
+    @mousemove="sendMouseEvent('move', $event)"
+    @mousedown="sendMouseEvent('down', $event)"
+    @mouseup="sendMouseEvent('move', $event)"
+    class="main-editor"
+    v-if="wap">
     <section class="main-editor-tools">
-      <button @click="publishWap('yay')">publish test</button>
-      <main-header @setVal="openWorkTogetherConfirm"/>
+      <button
+        @click="publishWap('yay')"
+        :style="{
+          backgroundColor: 'blue',
+          position: 'fixed',
+          bottom: 0,
+          right: 0,
+          padding: '20px',
+          color: 'white',
+        }">
+        publish test
+      </button>
+      <main-header @setVal="openWorkTogetherConfirm" />
       <editor-header
         @setMedia="setMedia"
         @publishWap="publishWap"
@@ -82,8 +93,6 @@ import wapMap from '../cmps/wap-items/wap-map.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
 import loginModal from '../cmps/app-cmps/login-modal.vue'
 
-
-
 export default {
   data() {
     return {
@@ -104,7 +113,7 @@ export default {
       isSocketsOn: false,
 
       isConfirmModalOpen: false,
-      confirmData: null
+      confirmData: null,
     }
   },
   async created() {
@@ -122,8 +131,8 @@ export default {
     this.setSocketEvents()
 
     if (this.$route.query.workTogether) {
-        this.isSocketsOn = true
-        this.openWorkSpace()
+      this.isSocketsOn = true
+      this.openWorkSpace()
     }
   },
   unmounted() {
@@ -354,66 +363,68 @@ export default {
     },
 
     async setSocketEvents() {
-        socketService.on('cmpChange', (wap) => {
-          this.wap = wap
+      socketService.on('cmpChange', (wap) => {
+        this.wap = wap
+      })
+
+      socketService.on('mouseEvent', (cursorProps) => {
+        const cursorPropIdx = this.workTogetherCursors.findIndex(({ id }) => {
+          return id === cursorProps.id
         })
+        if (cursorPropIdx !== -1)
+          this.workTogetherCursors[cursorPropIdx] = cursorProps
+        else this.workTogetherCursors.push(cursorProps)
+      })
 
-        socketService.on('mouseEvent', (cursorProps) => {                             
-            const cursorPropIdx = this.workTogetherCursors.findIndex(({id}) => {
-                return id === cursorProps.id
-        })
-            if (cursorPropIdx !== -1) this.workTogetherCursors[cursorPropIdx] = cursorProps
-            else this.workTogetherCursors.push(cursorProps)
-        })
+      socketService.on('userDisconnected', (cursorId) => {
+        console.log('userDisconnected')
+        const curserToRemoveIdx = this.workTogetherCursors.findIndex(
+          ({ id }) => id === cursorId
+        )
+        this.workTogetherCursors.splice(curserToRemoveIdx, 1)
+      })
+    },
 
-        socketService.on('userDisconnected', (cursorId) => {
-            console.log('userDisconnected');
-            const curserToRemoveIdx = this.workTogetherCursors.findIndex(({id}) => id === cursorId)
-            this.workTogetherCursors.splice(curserToRemoveIdx, 1)
-        })
-      },
+    sendMouseEvent(evType, ev) {
+      if (!this.isSocketsOn) return
 
+      const sendedCursor = { style: evType }
+      const { clientX, clientY, offsetX, offsetY } = ev
 
+      sendedCursor.clientXY = { clientX, clientY }
+      sendedCursor.id = this.curserId
+      sendedCursor.color = this.cursorColor
+      sendedCursor.type = evType
 
-      sendMouseEvent(evType, ev) {
-        if (!this.isSocketsOn) return
+      socketService.emit('mouseEvent', sendedCursor)
+    },
 
-            const sendedCursor = {style: evType}
-            const {clientX, clientY, offsetX, offsetY} = ev
-
-            sendedCursor.clientXY = {clientX, clientY}
-            sendedCursor.id = this.curserId
-            sendedCursor.color = this.cursorColor
-            sendedCursor.type = evType
-
-            socketService.emit('mouseEvent', sendedCursor)   
-        },
-
-      openWorkTogetherConfirm({key}) {  
-        if (this.isSocketsOn) {
-            //Todo user msg
-            console.log('There is opened work space');
-            return 
-        }  
-        if (key !== 'workTogether') return
-
-        this.confirmData = {
-          txt: 'Are you sure you want to open a work space?',
-        }
-
-        this.isConfirmModalOpen = true
-      },
-
-      closeConfirmModal() {
-          this.confirmData = null,
-          this.isConfirmModalOpen = false
-      },
-
-      openWorkSpace() {
-        this.isSocketsOn = true
-        socketService.emit('joinWorkSpace', {wapId: this.wap._id, cursorId: this.curserId})
+    openWorkTogetherConfirm({ key }) {
+      if (this.isSocketsOn) {
+        //Todo user msg
+        console.log('There is opened work space')
+        return
       }
-      
+      if (key !== 'workTogether') return
+
+      this.confirmData = {
+        txt: 'Are you sure you want to open a work space?',
+      }
+
+      this.isConfirmModalOpen = true
+    },
+
+    closeConfirmModal() {
+      ;(this.confirmData = null), (this.isConfirmModalOpen = false)
+    },
+
+    openWorkSpace() {
+      this.isSocketsOn = true
+      socketService.emit('joinWorkSpace', {
+        wapId: this.wap._id,
+        cursorId: this.curserId,
+      })
+    },
   },
 
   unmounted() {
@@ -447,11 +458,10 @@ export default {
 </script>
 
 <options lang="scss" scoped>
-    .confirm-modal {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
+.confirm-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 </options>

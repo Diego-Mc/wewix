@@ -948,7 +948,6 @@ wapsMap.set('wap-cards-2', {
         },
       },
     },
-
   ],
 })
 
@@ -1089,33 +1088,6 @@ wapsMap.set('wap-section-4', {
 // })
 // -----------------------------------------------template 2--------------------------------------------------------------->
 
-
-const template2 = {
-  _id: 'template-2',
-  name: 'HairDresser Baluta Marketing Site',
-  imgUrl:
-    'http://res.cloudinary.com/webify/image/upload/v1580021948/coffe_yi0yzf.png',
-  createdBy: {
-    _id: '5e26e0b718a0891d4c995527',
-    fullname: 'Hekro Special',
-    imgUrl: 'img.jpg',
-  },
-  usersData: {
-    contacts: [
-      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
-    ],
-    subscriptions: [{ email: 'user@user.com', at: 123 }],
-  },
-  cmps: [
-    getCmp('wap-header', 3),
-    getCmp('wap-hero', 3),
-    getCmp('wap-section', 2),
-    getCmp('wap-section', 3),
-    getCmp('wap-section', 4),
-    getCmp('wap-cards', 2),
-  ],
-}
-
 wapsMap.set('wap-header-3', {
   id: '',
   type: 'wap-header',
@@ -1125,59 +1097,60 @@ wapsMap.set('wap-header-3', {
     meta: {},
     style: getStyles(),
   },
-  cmps: [{
-    id: '1',
-    type: 'wap-logo',
-    typeId: 99, // change to what you want
-    previewImg: '',
-    options: {
-      meta: {},
-      style: getStyles('header'),
-    },
-    info: {
-      logo: { // logo or wapLogo or title?
-        options: {
-          meta: {
-            src: '' // its an svg didnt know how to copy
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-logo',
+      typeId: 99, // change to what you want
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles('header'),
+      },
+      info: {
+        logo: {
+          // logo or wapLogo or title?
+          options: {
+            meta: {
+              src: '', // its an svg didnt know how to copy
+            },
+            style: getStyles('title'),
           },
-          style: getStyles('title'),
-        },
-        content: {
-          text: 'GOBY',
+          content: {
+            text: 'GOBY',
+          },
         },
       },
-    }
-  }, {
-    id: '2',
-    type: 'nav',
-    typeId: 20, //change to what you want
-    previewImg: '',
-    options: {
-      meta: {},
-      style: getStyles(),
     },
-    info: {
-      nav: {
-        options: {
-          meta: {},
-          style: getStyles('nav'),
-        },
-        content: {
-          nav1: 'SHOP',
-          nav2: 'DESIGN',
-          nav3: 'ABOUT',
-          nav4: 'REVIEWS',
-          nav5: 'REFER A FRIEND',
-          nav6: 'SIGN IN',
-          nav7: 'CART',
+    {
+      id: '2',
+      type: 'nav',
+      typeId: 20, //change to what you want
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        nav: {
+          options: {
+            meta: {},
+            style: getStyles('nav'),
+          },
+          content: {
+            nav1: 'SHOP',
+            nav2: 'DESIGN',
+            nav3: 'ABOUT',
+            nav4: 'REVIEWS',
+            nav5: 'REFER A FRIEND',
+            nav6: 'SIGN IN',
+            nav7: 'CART',
+          },
         },
       },
-    }
-
-  }
-  ]
+    },
+  ],
 })
-
 
 wapsMap.set('wap-hero-3', {
   id: '',
@@ -1186,7 +1159,7 @@ wapsMap.set('wap-hero-3', {
   previewImg: '',
   options: {
     meta: {
-      src: 'https://www.goby.co/assets/modern-luxary-desktop-810f00643379d078f84ed90e28d96ba12742e9fb347cc966e480c75f9d896740.jpg'
+      src: 'https://www.goby.co/assets/modern-luxary-desktop-810f00643379d078f84ed90e28d96ba12742e9fb347cc966e480c75f9d896740.jpg',
     },
     style: getStyles('hero'),
   },
@@ -1227,11 +1200,9 @@ wapsMap.set('wap-cards-3', {
   id: '',
   type: 'wap-cards',
   typeId: 3, // not sure but i think you maybe said it needs to be 6.
-  previewImg:
-    '',
+  previewImg: '',
   options: {
-    meta: {
-    },
+    meta: {},
     style: getStyles(),
   },
   //go back to this.
@@ -1306,7 +1277,7 @@ wapsMap.set('wap-cards-3', {
         img: {
           options: {
             meta: {
-              src: 'https://www.goby.co/assets/stars-01685a6e100fb26465825ae119697ed31cfe78fa49c67a8e62e65351257abd3a.png'
+              src: 'https://www.goby.co/assets/stars-01685a6e100fb26465825ae119697ed31cfe78fa49c67a8e62e65351257abd3a.png',
             },
             style: getStyles('img'),
           },
@@ -1383,7 +1354,6 @@ wapsMap.set('wap-cards-3', {
         },
       },
     },
-
   ],
 })
 
@@ -1392,11 +1362,9 @@ wapsMap.set('wap-section-6', {
   id: '',
   type: 'wap-section',
   typeId: 6,
-  previewImg:
-    '',
+  previewImg: '',
   options: {
-    meta: {
-    },
+    meta: {},
     style: getStyles(),
   },
   cmps: [
@@ -1442,16 +1410,13 @@ wapsMap.set('wap-section-6', {
   ],
 })
 
-
 wapsMap.set('wap-cards-4', {
   id: '',
   type: 'wap-cards',
   typeId: 4, // not sure but i think you maybe said it needs to be 6.
-  previewImg:
-    '',
+  previewImg: '',
   options: {
-    meta: {
-    },
+    meta: {},
     style: getStyles(),
   },
   //go back to this.
@@ -1580,11 +1545,9 @@ wapsMap.set('wap-section-6', {
   id: '',
   type: 'wap-section',
   typeId: 6,
-  previewImg:
-    '',
+  previewImg: '',
   options: {
-    meta: {
-    },
+    meta: {},
     style: getStyles(),
   },
   cmps: [
@@ -1607,7 +1570,6 @@ wapsMap.set('wap-section-6', {
             text: 'UNLIMITED COMPLIMENTS. GUARANTEED.',
           },
         },
-
       },
     },
   ],
@@ -1617,11 +1579,9 @@ wapsMap.set('wap-cards-5', {
   id: '',
   type: 'wap-cards',
   typeId: 5, // not sure but i think you maybe said it needs to be 6.
-  previewImg:
-    '',
+  previewImg: '',
   options: {
-    meta: {
-    },
+    meta: {},
     style: getStyles(),
   },
   //go back to this.
@@ -1789,11 +1749,9 @@ wapsMap.set('wap-section-7', {
   id: '',
   type: 'wap-section',
   typeId: 7,
-  previewImg:
-    '',
+  previewImg: '',
   options: {
-    meta: {
-    },
+    meta: {},
     style: getStyles(),
   },
   cmps: [
@@ -1825,7 +1783,6 @@ wapsMap.set('wap-section-7', {
             text: 'TREAT YOUR MOUTH TO A BETTER TOOTHBRUSH.',
           },
         },
-
       },
     },
   ],
@@ -1835,11 +1792,9 @@ wapsMap.set('footer-1', {
   id: '',
   type: 'wap-footer',
   typeId: 1,
-  previewImg:
-    '',
+  previewImg: '',
   options: {
-    meta: {
-    },
+    meta: {},
     style: getStyles(),
   },
   cmps: [
@@ -1871,7 +1826,6 @@ wapsMap.set('footer-1', {
             text: 'TREAT YOUR MOUTH TO A BETTER TOOTHBRUSH.',
           },
         },
-
       },
     },
     {
@@ -1899,8 +1853,8 @@ wapsMap.set('footer-1', {
             nav7: 'CART',
           },
         },
-      }
-    }
+      },
+    },
   ],
 })
 
@@ -1908,11 +1862,9 @@ wapsMap.set('wap-section-8', {
   id: '',
   type: 'wap-section',
   typeId: 1, // not sure but i think you maybe said it needs to be 6.
-  previewImg:
-    '',
+  previewImg: '',
   options: {
-    meta: {
-    },
+    meta: {},
     style: getStyles(),
   },
   //go back to this.
@@ -1964,6 +1916,31 @@ wapsMap.set('wap-section-8', {
         },
       },
     },
-
   ],
 })
+
+const template2 = {
+  _id: 'template-2',
+  name: 'HairDresser Baluta Marketing Site',
+  imgUrl:
+    'http://res.cloudinary.com/webify/image/upload/v1580021948/coffe_yi0yzf.png',
+  createdBy: {
+    _id: '5e26e0b718a0891d4c995527',
+    fullname: 'Hekro Special',
+    imgUrl: 'img.jpg',
+  },
+  usersData: {
+    contacts: [
+      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+    ],
+    subscriptions: [{ email: 'user@user.com', at: 123 }],
+  },
+  cmps: [
+    getCmp('wap-header', 3),
+    getCmp('wap-hero', 3),
+    getCmp('wap-section', 2),
+    getCmp('wap-section', 3),
+    getCmp('wap-section', 4),
+    getCmp('wap-cards', 2),
+  ],
+}
