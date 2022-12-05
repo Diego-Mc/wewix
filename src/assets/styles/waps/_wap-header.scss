@@ -6,7 +6,8 @@
   color: var(--clr-1);
   background-color: var(--clr-3);
 
-  .burger {
+  > .burger {
+    grid-area: nav;
     display: none;
     .bm-burger-bars {
       background-color: var(--clr-1);
@@ -78,8 +79,9 @@
     nav {
       justify-self: end;
     }
-    .burger {
+    > .burger {
       display: block;
+      justify-self: end;
     }
     .nav {
       display: none;

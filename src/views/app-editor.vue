@@ -1,21 +1,32 @@
 <template>
   <user-confirm-modal
-      class="confirm-modal"
-      v-if="isConfirmModalOpen" 
-      :confirmData="confirmData"
-      @cancelWorkTogether="cancelWorkTogether"
-      @openWorkSpace="openWorkSpace"
-  />
-  <cursor v-if="workTogetherCursors[0]" :cursorsData="workTogetherCursors"/>
-  <section 
-    @drag="sendMouseEvent('drag', $event)" 
-    @mousemove="sendMouseEvent('move', $event)" 
-    @mousedown="sendMouseEvent('down', $event)" 
-    @mouseup="sendMouseEvent('move', $event)" 
-    class="main-editor" v-if="wap">
+    class="confirm-modal"
+    v-if="isConfirmModalOpen"
+    :confirmData="confirmData"
+    @cancelWorkTogether="cancelWorkTogether"
+    @openWorkSpace="openWorkSpace" />
+  <cursor v-if="workTogetherCursors[0]" :cursorsData="workTogetherCursors" />
+  <section
+    @drag="sendMouseEvent('drag', $event)"
+    @mousemove="sendMouseEvent('move', $event)"
+    @mousedown="sendMouseEvent('down', $event)"
+    @mouseup="sendMouseEvent('move', $event)"
+    class="main-editor"
+    v-if="wap">
     <section class="main-editor-tools">
-      <button @click="publishWap('yay')">publish test</button>
-      <main-header @setVal="workTogether"/>
+      <button
+        @click="publishWap('yay')"
+        :style="{
+          position: 'fixed',
+          bottom: 0,
+          right: 0,
+          background: 'blue',
+          color: 'white',
+          padding: '20px',
+        }">
+        publish test
+      </button>
+      <main-header @setVal="workTogether" />
       <editor-header
         @setMedia="setMedia"
         @publishWap="publishWap"
@@ -82,8 +93,6 @@ import wapMap from '../cmps/wap-items/wap-map.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
 import loginModal from '../cmps/app-cmps/login-modal.vue'
 
-
-
 export default {
   data() {
     return {
@@ -104,7 +113,7 @@ export default {
       isSocketsOn: false,
 
       isConfirmModalOpen: false,
-      confirmData: null
+      confirmData: null,
     }
   },
   async created() {
@@ -350,62 +359,61 @@ export default {
     },
 
     async setSocketEvents() {
-        socketService.on('openWorkSpace', (wap) => {
-          this.isSocketsOn = true
-          this.wap = wap
-        })
-
-        socketService.on('cmpChange', (wap) => {
-          this.wap = wap
-        })
-
-        socketService.on('mouseEvent', (cursorProps) => {                             
-            const cursorPropIdx = this.workTogetherCursors.findIndex(({id}) => {
-                return id === cursorProps.id
-        })
-            if (cursorPropIdx !== -1) this.workTogetherCursors[cursorPropIdx] = cursorProps
-            else this.workTogetherCursors.push(cursorProps)
-        })
-      },
-
-      sendMouseEvent(evType, ev) {
-        if (!this.isSocketsOn) return
-
-            const sendedCursor = {style: evType}
-            const {clientX, clientY} = ev
-
-            sendedCursor.clientXY = {clientX, clientY}
-            sendedCursor.id = this.socketId
-            sendedCursor.color = this.cursorColor
-            sendedCursor.type = evType
-
-            socketService.emit('mouseEvent', sendedCursor)   
-        },
-
-      workTogether({key}) {    
-        if (key !== 'workTogether') return
-
-        this.confirmData = {
-          txt: 'Are you sure you want to open a work space?',
-          sendedProps: {
-            location: window.location.href
-          }
-        }
-
-        this.isConfirmModalOpen = true
-      },
-
-      cancelWorkTogether() {
-          this.confirmData = null,
-          this.isConfirmModalOpen = false
-      },
-
-      openWorkSpace() {
-        this.isConfirmModalOpen = false
+      socketService.on('openWorkSpace', (wap) => {
         this.isSocketsOn = true
-        socketService.emit('openWorkSpace', this.wap)
+        this.wap = wap
+      })
+
+      socketService.on('cmpChange', (wap) => {
+        this.wap = wap
+      })
+
+      socketService.on('mouseEvent', (cursorProps) => {
+        const cursorPropIdx = this.workTogetherCursors.findIndex(({ id }) => {
+          return id === cursorProps.id
+        })
+        if (cursorPropIdx !== -1)
+          this.workTogetherCursors[cursorPropIdx] = cursorProps
+        else this.workTogetherCursors.push(cursorProps)
+      })
+    },
+
+    sendMouseEvent(evType, ev) {
+      if (!this.isSocketsOn) return
+
+      const sendedCursor = { style: evType }
+      const { clientX, clientY } = ev
+
+      sendedCursor.clientXY = { clientX, clientY }
+      sendedCursor.id = this.socketId
+      sendedCursor.color = this.cursorColor
+      sendedCursor.type = evType
+
+      socketService.emit('mouseEvent', sendedCursor)
+    },
+
+    workTogether({ key }) {
+      if (key !== 'workTogether') return
+
+      this.confirmData = {
+        txt: 'Are you sure you want to open a work space?',
+        sendedProps: {
+          location: window.location.href,
+        },
       }
-      
+
+      this.isConfirmModalOpen = true
+    },
+
+    cancelWorkTogether() {
+      ;(this.confirmData = null), (this.isConfirmModalOpen = false)
+    },
+
+    openWorkSpace() {
+      this.isConfirmModalOpen = false
+      this.isSocketsOn = true
+      socketService.emit('openWorkSpace', this.wap)
+    },
   },
 
   unmounted() {
@@ -438,11 +446,10 @@ export default {
 </script>
 
 <options lang="scss" scoped>
-    .confirm-modal {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-
+.confirm-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 </options>
