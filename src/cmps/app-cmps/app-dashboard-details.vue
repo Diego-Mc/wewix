@@ -1,5 +1,5 @@
 <template>
-  <div class="container home">
+  <div class="container home" >
     <ul class="wap-list">
       <li v-for="wap in waps" :key="wap._id">
         <p>

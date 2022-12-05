@@ -42,7 +42,38 @@ export default {
         getCmp('wap-section', 3),
         getCmp('wap-section', 4),
         getCmp('wap-cards', 2),
-        wapGraph
+        {
+  id: 'wc10',
+  type: 'wap-map',
+  options: {
+    meta: {
+      mapData: {
+        title: '',
+        label: '',
+        position: {
+          lat: '',
+          lng: '',
+        },
+      }
+    },
+    style: {
+      backgroundColor: '',
+      fontFamily: '',
+      color: '',
+      borderRadius: '',
+      fontWeight: '',
+    },
+  },
+  info: {
+    title: {
+      options: {
+        meta: {},
+        style: {},
+      },
+      content: {},
+    },
+  },
+},
       ],
     }
   },
