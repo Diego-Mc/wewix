@@ -15,9 +15,12 @@
 @import 'basics/material-override';
 @import 'basics/animations';
 
+// App
+@import 'app/app-header';
+@import 'app/app-home';
+
 // Components
 @import 'cmps/main-wap';
-@import 'cmps/app-header';
 @import 'cmps/user-msg';
 @import 'cmps/review-list';
 @import 'cmps/wap-list';

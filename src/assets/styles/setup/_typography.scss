@@ -1,33 +1,39 @@
 @font-face {
   font-family: 'Asap';
-  src: url('src/assets/fonts/Asap-VariableFont_wdth,wght.woff2')
+  src: url('../fonts/Asap-VariableFont_wdth,wght.woff2')
       format('woff2 supports variations'),
-    url('src/assets/fonts/Asap-VariableFont_wdth,wght.woff2')
-      format('woff2-variations');
+    url('../fonts/Asap-VariableFont_wdth,wght.woff2') format('woff2-variations');
   font-weight: 100 1000;
 }
 @font-face {
   font-family: 'JosefinSans';
-  src: url('src/assets/fonts/JosefinSans-VariableFont_wght.woff2')
+  src: url('../fonts/JosefinSans-VariableFont_wght.woff2')
       format('woff2 supports variations'),
-    url('src/assets/fonts/JosefinSans-VariableFont_wght.woff2')
+    url('../fonts/JosefinSans-VariableFont_wght.woff2')
       format('woff2-variations');
   font-weight: 100 1000;
 }
 @font-face {
   font-family: 'Raleway';
-  src: url('src/assets/fonts/Raleway-VariableFont_wght.woff2')
+  src: url('../fonts/Raleway-VariableFont_wght.woff2')
       format('woff2 supports variations'),
-    url('src/assets/fonts/Raleway-VariableFont_wght.woff2')
-      format('woff2-variations');
+    url('../fonts/Raleway-VariableFont_wght.woff2') format('woff2-variations');
   font-weight: 100 1000;
 }
 @font-face {
   font-family: 'SpaceGrotesk';
-  src: url('src/assets/fonts/SpaceGrotesk-VariableFont_wght.woff2')
+  src: url('../fonts/SpaceGrotesk-VariableFont_wght.woff2')
       format('woff2 supports variations'),
-    url('src/assets/fonts/SpaceGrotesk-VariableFont_wght.woff2')
+    url('../fonts/SpaceGrotesk-VariableFont_wght.woff2')
       format('woff2-variations');
   font-weight: 100 1000;
+}
+@font-face {
+  font-family: PoppinsRegular;
+  src: url('../fonts/Poppins-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: PoppinsBold;
+  src: url('../fonts/Poppins-Bold.ttf') format('truetype');
 }
 @import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css');

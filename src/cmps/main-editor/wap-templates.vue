@@ -43,37 +43,38 @@ export default {
         getCmp('wap-section', 4),
         getCmp('wap-cards', 2),
         {
-  id: 'wc10',
-  type: 'wap-map',
-  options: {
-    meta: {
-      mapData: {
-        title: '',
-        label: '',
-        position: {
-          lat: '',
-          lng: '',
+          id: 'wc10',
+          type: 'wap-map',
+          options: {
+            meta: {
+              mapData: {
+                title: '',
+                label: '',
+                position: {
+                  lat: '',
+                  lng: '',
+                },
+              },
+            },
+            style: {
+              backgroundColor: '',
+              fontFamily: '',
+              color: '',
+              borderRadius: '',
+              fontWeight: '',
+            },
+          },
+          info: {
+            title: {
+              options: {
+                meta: {},
+                style: {},
+              },
+              content: {},
+            },
+          },
         },
-      }
-    },
-    style: {
-      backgroundColor: '',
-      fontFamily: '',
-      color: '',
-      borderRadius: '',
-      fontWeight: '',
-    },
-  },
-  info: {
-    title: {
-      options: {
-        meta: {},
-        style: {},
-      },
-      content: {},
-    },
-  },
-},
+        ,
       ],
     }
   },
@@ -86,7 +87,7 @@ export default {
       //   getCmp('wap-cards', 2),
       //   getCmp('wap-section', 2),
       //   getCmp('wap-section', 3),
-      //   // cmpCardImg: 'src/assets/imgs/cmp-cards-2.png',
+      //   // cmpCardImg: './assets/imgs/cmp-cards-2.png',
       //   // cmp:null
       //   // getCmp('wap-section', 4),
       //   // getCmp('wap-form', 1),
