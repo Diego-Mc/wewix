@@ -79,9 +79,11 @@ export default {
       wapToAdd: wapService.getEmptyWap(),
     }
   },
+   created(){
+    console.log(this.usersData);
+  },
   computed: {
     usersDataKeys() {
-      
         return this.usersData.reduce((keys, currUser) => {
             const userKeys = Object.keys(currUser)
             userKeys.forEach(key => {
@@ -91,7 +93,7 @@ export default {
         }, []).sort()
     },
 
-
+ 
 
     modifiedUsers() {
       let users = this.usersData
