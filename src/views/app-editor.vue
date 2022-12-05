@@ -1,4 +1,5 @@
 <template>
+  <!-- <wap-chat/> -->
   <user-confirm-modal
       class="confirm-modal"
       v-if="isConfirmModalOpen" 
@@ -57,7 +58,6 @@
 <script>
 import draggable from 'vuedraggable'
 import { socketService } from '../services/socket.service'
-import { Socket } from 'engine.io-client'
 
 import { eventBus } from '../services/event-bus.service'
 import { httpService } from '../services/http.service'
@@ -379,7 +379,7 @@ export default {
         if (!this.isSocketsOn) return
 
             const sendedCursor = {style: evType}
-            const {clientX, clientY} = ev
+            const {clientX, clientY, offsetX, offsetY} = ev
 
             sendedCursor.clientXY = {clientX, clientY}
             sendedCursor.id = this.curserId
@@ -418,6 +418,7 @@ export default {
 
   unmounted() {
     this.terminateEventBus()
+    socketService.emit('doDisconnect', {})
   },
   computed: {
     loggedinUser() {
@@ -440,6 +441,7 @@ export default {
     wapMap,
     cursor,
     userConfirmModal,
+    wapChat,
   },
 }
 </script>
