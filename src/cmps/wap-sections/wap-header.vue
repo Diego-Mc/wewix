@@ -28,13 +28,13 @@
         <li class="nav" v-for="nav in info?.nav?.content">
           {{ nav }}
         </li>
-        <Slide right class="burger">
-          <li v-for="nav in info?.nav?.content">
-            {{ nav }}
-          </li>
-        </Slide>
       </ul>
     </nav>
+    <Slide noOverlay right class="burger">
+      <li v-for="nav in info?.nav?.content">
+        {{ nav }}
+      </li>
+    </Slide>
     <button
       class="btn"
       :style="info?.btn?.options.style"

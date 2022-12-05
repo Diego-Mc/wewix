@@ -595,7 +595,7 @@ wapsMap.set('wap-header-2', {
     },
     title: {
       options: {
-        meta: {},
+        meta: {animation: ''},
         style: getStyles('title'),
       },
       content: { text: 'Plantify' },
@@ -642,7 +642,7 @@ wapsMap.set('wap-hero-2', {
         },
         title: {
           options: {
-            meta: {},
+            meta: {animation: ''},
             style: getStyles('title'),
           },
           content: {

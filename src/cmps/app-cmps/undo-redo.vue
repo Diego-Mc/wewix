@@ -1,21 +1,27 @@
 <template>
-<div>
-    <button @click="undo">undo</button>
-    <button @click="redo">redo</button>
-</div>
+    <div>
+        <button @click="undo">undo</button>
+        <button @click="redo">redo</button>
+    </div>
 </template>
 
 <script>
 import { eventBus } from '../../services/event-bus.service';
 
-export default{
-    methods:{
-        undo(){
+
+export default {
+    methods: {
+        undo() {
             eventBus.emit('undo')
+            
         },
-        redo(){
+        redo() {
             eventBus.emit('redo')
-        }
-    }
+        },
+
+
+    },
+
+
 }
 </script>

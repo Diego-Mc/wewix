@@ -12,6 +12,7 @@
   "dependencies": {
     "@fortawesome/vue-fontawesome": "^3.0.2",
     "@programic/vue3-tooltip": "^1.0.0",
+    "animate.css": "^4.1.1",
     "axios": "^0.27.2",
     "bootstrap-icons": "^1.10.2",
     "chance": "^1.1.9",

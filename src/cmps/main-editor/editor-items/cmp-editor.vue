@@ -83,6 +83,10 @@
         </div>
       </div>
 
+      <div v-if="isOptionsContain('animation')">
+          <edit-animation-section @select="updateOptionsMeta" :animation="editOptions.meta.animation"/>
+      </div> 
+
       <div v-if="isOptionsContain('formInputs')">
         enter name of fields
         <div v-for="(field, idx) in updatedOptions.meta.formInputs">
@@ -123,6 +127,7 @@ import editColorSection from '../cmp-edit-sections/edit-color-section.vue'
 import editBgColorSection from '../cmp-edit-sections/edit-bg-color-section.vue'
 import editRadiusSection from '../cmp-edit-sections/edit-radius-section.vue'
 import editUploadSection from '../cmp-edit-sections/edit-upload-section.vue'
+import editAnimationSection from '../cmp-edit-sections/edit-animation-section.vue'
 
 export default {
   props: {
@@ -254,6 +259,7 @@ export default {
     editRadiusSection,
     editUploadSection,
     editFontSizeSection,
+    editAnimationSection
   },
 }
 </script>

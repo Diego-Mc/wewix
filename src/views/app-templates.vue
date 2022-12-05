@@ -57,7 +57,7 @@ export default {
         {
           name: 'Start from scratch',
           id: '',
-          img: 'src/assets/imgs/templates-template.jpg',
+          img: './src/assets/imgs/templates-template.jpg',
           type: '',
         },
         {

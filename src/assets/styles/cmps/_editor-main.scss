@@ -15,21 +15,51 @@
       pointer-events: auto;
     }
   }
-  &:has(.section-select.open) {
-    .main-wap {
-      left: $editor-nav-width + $editor-section-names-width;
-    }
-
-    &:has(.section-cmps.open) {
+  @media screen and (max-width: 1940px) {
+    &:has(.section-select.open) {
       .main-wap {
-        left: $editor-nav-width + $editor-section-names-width +
-          $editor-section-cmps-width;
+        left: calc(
+          $editor-nav-width + $editor-section-names-width -
+            ((100vw - 1280px) / 2) + 3rem
+        );
+      }
+
+      &:has(.section-cmps.open) {
+        .main-wap {
+          left: calc(
+            $editor-nav-width + $editor-section-names-width +
+              $editor-section-cmps-width - ((100vw - 1280px) / 2) + 3rem
+          );
+        }
+      }
+    }
+    &:has(.cmp-editor.open) {
+      .main-wap {
+        left: calc(
+          $editor-nav-width + $editor-section-edit-width -
+            ((100vw - 1280px) / 2) + 3rem
+        );
       }
     }
   }
-  &:has(.cmp-editor.open) {
-    .main-wap {
-      left: $editor-nav-width + $editor-section-edit-width;
+
+  @media screen and (max-width: 1660px) {
+    &:has(.section-select.open) {
+      .main-wap {
+        left: $editor-nav-width + $editor-section-names-width;
+      }
+
+      &:has(.section-cmps.open) {
+        .main-wap {
+          left: $editor-nav-width + $editor-section-names-width +
+            $editor-section-cmps-width;
+        }
+      }
+    }
+    &:has(.cmp-editor.open) {
+      .main-wap {
+        left: $editor-nav-width + $editor-section-edit-width;
+      }
     }
   }
   .main-wap {
