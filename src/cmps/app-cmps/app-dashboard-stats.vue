@@ -11,6 +11,7 @@
 export default {}
 </script>
 
+
 <style lang="scss" scoped>
 .dashboard-wap-stats {
   display: grid;

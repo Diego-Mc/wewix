@@ -4,6 +4,10 @@ export const wapForm = {
   type: 'wap-form',
   options: {
     meta: {
+      formInputs: [
+        { tag: 'email', txt: '' },
+        { tag: 'msg', txt: '' },
+      ],
       img: '',
     },
     style: {

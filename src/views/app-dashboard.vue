@@ -8,7 +8,7 @@
         </li>
       </ul>
     </section>
-    <router-view v-if="currWapData" :wapData="currWapData"></router-view>
+    <router-view v-if="currWapData" :wapData="currWapData.contacts"></router-view>
   </main>
 </template>
 
@@ -30,7 +30,7 @@ export default {
           _id: wap._id,
           name: wap.name,
           usersData: wap.usersData,
-          createdAt: wap.createdAt,
+          createdAt: 2,
           totalViews: wap.totalViews,
         }
       })
@@ -42,6 +42,7 @@ export default {
     changeCurrWapData(wap) {
       this.currWapData = wap
       this.$router.push('/dashboard/' + this.currWapData._id)
+      console.log(this.currWapData);
     },
   },
   computed: {

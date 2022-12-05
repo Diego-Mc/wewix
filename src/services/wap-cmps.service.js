@@ -156,6 +156,14 @@ function getStyles(elType) {
         fontWeight: '',
         fontSize: '',
       }
+    case 'form':
+      return {
+        backgroundColor: '',
+        fontFamily: '',
+        color: '',
+        fontWeight: '',
+        fontSize: '',
+      }
     default:
       return utilService.deepCopy({
         backgroundColor: '',
@@ -595,7 +603,7 @@ wapsMap.set('wap-header-2', {
     },
     title: {
       options: {
-        meta: {animation: ''},
+        meta: { animation: '' },
         style: getStyles('title'),
       },
       content: { text: 'Plantify' },
@@ -642,7 +650,7 @@ wapsMap.set('wap-hero-2', {
         },
         title: {
           options: {
-            meta: {animation: ''},
+            meta: { animation: '' },
             style: getStyles('title'),
           },
           content: {
