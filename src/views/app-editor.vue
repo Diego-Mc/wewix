@@ -1,6 +1,7 @@
 <template>
   <section class="main-editor" v-if="wap">
     <section class="main-editor-tools">
+      <button @click="publishWap('yay')">publish test</button>
       <main-header />
       <editor-header
         @setMedia="setMedia"
@@ -254,7 +255,7 @@ export default {
         cmp = cmp.cmps.find(({ id }) => id === childCmpId)
         this.selectedCmp.childCmpId = childCmpId
       }
-      
+
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = elType ? cmp.info[elType].options : cmp.options
       this.selectedCmp.elType = elType
@@ -295,9 +296,11 @@ export default {
     async publishWap(siteName) {
       //TODO ADD USER MSGS
       this.wap.name = siteName
+      this.wap.owner = this.loggedinUser
       try {
         const wapId = await this.updateWap(this.wap)
-        if (wapId) this.$router.push(`/${siteName}`)
+        this.$store.dispatch('addWapToUser', { wapId: this.wap._id })
+        // if (wapId) this.$router.push(`/${siteName}`)
       } catch (err) {
         console.log(err)
       }
@@ -315,8 +318,14 @@ export default {
       eventBus.off('updateField')
     },
   },
+
   unmounted() {
     this.terminateEventBus()
+  },
+  computed: {
+    loggedinUser() {
+      return this.$store.getters.loggedinUser
+    },
   },
   components: {
     editorBtnGroup,
