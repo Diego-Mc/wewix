@@ -82,15 +82,17 @@ async function addWapId(wapId) {
     const user = getLoggedinUser()
     if (!user) throw new Error('Not loggedin')
     console.log(user.waps);
-    if(user.waps && user.waps.includes(wapId)) return console.log('wap already exists');
-    user.waps = user.waps ? user.waps.push(wapId) : [wapId]
+    if (user.waps && user.waps.includes(wapId)) return console.log('wap already exists');
+
+    if (user.waps) user.waps.push(wapId)
+    else user.waps = [wapId]
     await update(user)
     return user
 }
 
 
 function saveLocalUser(user) {
-    user = { _id: user._id, fullname: user.fullname, waps:user.waps }
+    user = { _id: user._id, fullname: user.fullname, waps: user.waps }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
 }

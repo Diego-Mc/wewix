@@ -72,6 +72,12 @@ export const wapStore = {
   },
   actions: {
     
+    async getWaps(context) {
+      const waps = await wapService.query()
+      console.log('waps',waps);
+      context.commit({ type: 'setWaps', waps })
+      return waps
+    },
     async getWap(context, { id }) {
       const wap = await wapService.getById(id)
       context.commit({ type: 'setEditedWap', wap })

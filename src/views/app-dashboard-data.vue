@@ -1,5 +1,5 @@
 <template>
-  <section class="dashboard-data">
+  <section class="dashboard-data" v-if="wapData">
     <div class="dashboard-top-div">
       <h2>Kite Shop's Dashboard</h2>
       <div>
@@ -26,6 +26,12 @@ import appDashboardDetails from '../cmps/app-cmps/app-dashboard-details.vue'
 import appDashboardStats from '../cmps/app-cmps/app-dashboard-stats.vue'
 
 export default {
+  props: {
+    wapData: Object,
+  },
+  created() {
+    console.log(this.wapData.usersData);
+  },
   computed: {
     getDemoData() {
       var chance = new Chance()
@@ -48,7 +54,6 @@ export default {
           demoData[i][Math.random() < 0.5 ? 'isJobAssign' : 'isHobbyAssign'] =
             Math.random() < 0.5
       }
-      console.log(demoData)
       return demoData
     },
   },
@@ -84,9 +89,8 @@ export default {
   }
 }
 
-.graph-and-stats-container{
+.graph-and-stats-container {
   display: flex;
   justify-content: space-between;
-  
 }
 </style>
