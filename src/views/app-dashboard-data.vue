@@ -15,7 +15,7 @@
       <app-dashboard-graphs :usersData="getDemoData" />
       <app-dashboard-stats />
     </main>
-    <app-dashboard-details :usersData="getDemoData" />
+    <app-dashboard-details :usersData="wapData.usersData.subscribed" />
   </section>
 </template>
 
@@ -30,7 +30,6 @@ export default {
     wapData: Object,
   },
   created() {
-    console.log(this.wapData.usersData);
   },
   computed: {
     getDemoData() {

@@ -342,6 +342,7 @@ export default {
       //TODO ADD USER MSGS
       this.wap.name = siteName
       this.wap.owner = this.loggedinUser
+      console.log( this.loggedinUser);
       try {
         const wapId = await this.updateWap(this.wap)
         this.$store.dispatch('addWapToUser', { wapId: this.wap._id })

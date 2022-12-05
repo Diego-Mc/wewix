@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return {
-      cmpsDropdownOptions: [getCmp('wap-header', 1), getCmp('wap-hero', 1), getCmp('wap-section', 1), getCmp('wap-cards', 1), wapVideo, wapMap,wapForm],
+      cmpsDropdownOptions: [getCmp('wap-header', 1), getCmp('wap-hero', 1), getCmp('wap-section', 1), getCmp('wap-cards', 1), wapVideo, wapMap,getCmp('wap-form', 1)],
     }
   }
 }
