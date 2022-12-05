@@ -372,9 +372,9 @@ export default {
         if (!this.isSocketsOn) return
 
             const sendedCursor = {style: evType}
-            const {clientX, clientY} = ev
+            const {offsetX, offsetY} = ev
 
-            sendedCursor.clientXY = {clientX, clientY}
+            sendedCursor.clientXY = {offsetX, offsetY}
             sendedCursor.id = this.socketId
             sendedCursor.color = this.cursorColor
             sendedCursor.type = evType
