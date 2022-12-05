@@ -1,38 +1,73 @@
 <template>
   <nav class="editor-header">
-    <section class="media-select">
-      <editor-btn-group
-        :info="{ key: 'media', type: 'radioDefault' }"
-        @setVal="handleMediaSelect"
-        gap="4px"
-        :style="{ paddingInline: '14px' }"
-        initialValue="desktop"
-        :opts="[
-          {
-            val: 'desktop',
-            icon: 'display',
-            title: { text: 'Desktop', placement: 'bottom' },
-          },
-          {
-            val: 'tablet',
-            icon: 'tablet',
-            title: { text: 'Tablet', placement: 'bottom' },
-          },
-          {
-            val: 'phone',
-            icon: 'phone',
-            title: { text: 'Mobile', placement: 'bottom' },
-          },
-        ]" />
-    </section>
-    <section class="back-btn">
-      <editor-btn-group
-        :info="{ key: 'back' }"
-        @setVal="handleBtnSelect"
-        gap="4px"
-        :style="{ paddingInline: '14px' }"
-        :opts="[{ val: 'back', icon: 'arrow-left' }]" />
-    </section>
+    <div class="options">
+      <section class="work-together">
+        <editor-btn-group
+          @setVal="(data) => $emit('setVal', data)"
+          :info="{ key: 'workTogether', type: 'click' }"
+          :style="{ paddingInline: '14px', marginLeft: '4px' }"
+          :opts="[
+            {
+              val: 'workTogether',
+              icon: 'people',
+              title: { text: 'Work together', placement: 'bottom' },
+            },
+          ]" />
+      </section>
+      <section class="history-options">
+        <editor-btn-group
+          gap="4px"
+          :style="{ paddingInline: '14px' }"
+          :info="{ key: 'history', type: 'click' }"
+          :opts="[
+            {
+              val: 'undo',
+              icon: 'arrow-return-left',
+              title: { text: 'Undo', placement: 'bottom' },
+            },
+            {
+              val: 'redo',
+              icon: 'arrow-return-right',
+              title: { text: 'Redo', placement: 'bottom' },
+            },
+          ]" />
+      </section>
+
+      <section class="media-select">
+        <editor-btn-group
+          :info="{ key: 'media', type: 'radioDefault' }"
+          @setVal="handleMediaSelect"
+          gap="4px"
+          :style="{ paddingInline: '14px' }"
+          initialValue="desktop"
+          :opts="[
+            {
+              val: 'desktop',
+              icon: 'display',
+              title: { text: 'Desktop', placement: 'bottom' },
+            },
+            {
+              val: 'tablet',
+              icon: 'tablet',
+              title: { text: 'Tablet', placement: 'bottom' },
+            },
+            {
+              val: 'phone',
+              icon: 'phone',
+              title: { text: 'Mobile', placement: 'bottom' },
+            },
+          ]" />
+      </section>
+      <section class="back-btn">
+        <editor-btn-group
+          :info="{ key: 'back' }"
+          @setVal="handleBtnSelect"
+          gap="4px"
+          :style="{ paddingInline: '14px' }"
+          :opts="[{ val: 'back', icon: 'arrow-left' }]" />
+      </section>
+    </div>
+
     <section class="url-bar">
       <p class="address">
         https://<span class="mb-hide">wewix.onrender.com/</span

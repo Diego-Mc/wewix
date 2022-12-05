@@ -91,13 +91,19 @@
       );
       border-radius: 3rem;
       font-family: 'PoppinsBold';
+
       transition: all 1s;
       &:hover {
         color: white;
+        // background: linear-gradient(
+        //   180deg,
+        //   rgba(0, 194, 166, 1) 0%,
+        //   rgba(6, 255, 255, 0.7) 50%
+        // );
         background: linear-gradient(
-          180deg,
+          -320deg,
           rgba(0, 194, 166, 1) 0%,
-          rgba(6, 255, 255, 0.7) 50%
+          rgb(209, 92, 227) 98%
         );
       }
     }
