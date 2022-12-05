@@ -31,6 +31,7 @@
       </section>
       <section class="work-together">
         <editor-btn-group
+          @setVal="(data) => $emit('setVal', data)"
           :info="{ key: 'workTogether', type: 'click' }"
           :style="{ paddingInline: '14px', marginLeft: '4px' }"
           :opts="[
@@ -55,6 +56,11 @@ import editorBtnGroup from '../main-editor/editor-items/editor-btn-group.vue'
 export default {
   components: {
     editorBtnGroup,
+  },
+  methods: {
+    log(data) {
+      console.log(data);
+    }
   },
 }
 </script>

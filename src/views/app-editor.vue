@@ -1,5 +1,12 @@
 <template>
-  <cursor :cursorsData="workTogetherCursors"/>
+  <user-confirm-modal
+      class="confirm-modal"
+      v-if="isConfirmModalOpen" 
+      :confirmData="confirmData"
+      @cancelWorkTogether="cancelWorkTogether"
+      @openWorkSpace="openWorkSpace"
+  />
+  <cursor v-if="workTogetherCursors[0]" :cursorsData="workTogetherCursors"/>
   <section 
     @drag="sendMouseEvent('drag', $event)" 
     @mousemove="sendMouseEvent('move', $event)" 
@@ -7,7 +14,7 @@
     @mouseup="sendMouseEvent('move', $event)" 
     class="main-editor" v-if="wap">
     <section class="main-editor-tools">
-      <main-header />
+      <main-header @setVal="workTogether"/>
       <editor-header
         @setMedia="setMedia"
         @publishWap="publishWap"
@@ -62,6 +69,7 @@ import mainHeader from '../cmps/app-cmps/main-header.vue'
 import editorHeader from '../cmps/main-editor/editor-header.vue'
 import editorSidebar from '../cmps/main-editor/editor-sidebar.vue'
 import cursor from '../cmps/app-cmps/cursor.vue'
+import userConfirmModal from '../cmps/app-cmps/user-confirm-modal.vue'
 
 import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
@@ -89,10 +97,13 @@ export default {
       },
       mediaType: 'desktop',
 
-
-      tempSocketId: utilService.makeId(),
+      socketId: utilService.makeId(),
       cursorColor: utilService.getRandomColor(),
-      workTogetherCursors: []
+      workTogetherCursors: [],
+      isSocketsOn: false,
+
+      isConfirmModalOpen: false,
+      confirmData: null
     }
   },
   async created() {
@@ -107,12 +118,7 @@ export default {
       document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
     }
 
-    socketService.emit('createWorkSpace',  {wap: this.wap, userId: 'asdasd'})
-    socketService.on('createWorkSpace',  (wap) => {
-      this.wap = wap
-    })
-
-    this.socketDemo()
+    this.setSocketEvents()
   },
   unmounted() {
     console.log('I AM UNMOUNTED!!!!!!', this.wap._id)
@@ -200,10 +206,12 @@ export default {
       }
     },
     onCmpsChange() {
-      socketService.emit('cmpChange', this.wap)
-
       this.updateWap()
       this.saveLastChange()
+      if (this.isSocketsOn) {
+        socketService.emit('cmpChange', this.wap)
+        console.log('this.socketId:', this.socketId)
+      }
     },
     // I added return to this function
     async updateWap() {
@@ -214,7 +222,6 @@ export default {
       this.drag = false
       this.onCmpsChange()
     },
-
     // prettier-ignore
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
 
@@ -338,44 +345,63 @@ export default {
       eventBus.off('removeCmp')
       eventBus.off('updateField')
     },
-    async socketDemo() {
 
-        const cred = {
-          username: '',
-          password: ''
-        }
-
-        const user = await httpService.post('user/login', cred)
-        socketService.on('cmpChange', (wap) => {
+    async setSocketEvents() {
+        socketService.on('openWorkSpace', (wap) => {
+          this.isSocketsOn = true
           this.wap = wap
-          this.onCmpsChange()
         })
 
-        socketService.on('mouseEvent', (cursorProps) => {
+        socketService.on('cmpChange', (wap) => {
+          this.wap = wap
+        })
+
+        socketService.on('mouseEvent', (cursorProps) => {                             
             const cursorPropIdx = this.workTogetherCursors.findIndex(({id}) => {
                 return id === cursorProps.id
-            })
-
+        })
             if (cursorPropIdx !== -1) this.workTogetherCursors[cursorPropIdx] = cursorProps
             else this.workTogetherCursors.push(cursorProps)
-          
         })
       },
 
       sendMouseEvent(evType, ev) {
-        const isSocketsOn = true
-        if (!isSocketsOn) return
+        if (!this.isSocketsOn) return
 
             const sendedCursor = {style: evType}
             const {clientX, clientY} = ev
 
             sendedCursor.clientXY = {clientX, clientY}
-            sendedCursor.id = this.tempSocketId
+            sendedCursor.id = this.socketId
             sendedCursor.color = this.cursorColor
             sendedCursor.type = evType
 
             socketService.emit('mouseEvent', sendedCursor)   
         },
+
+      workTogether({key}) {
+        if (key !== 'workTogether') return
+
+        this.confirmData = {
+          txt: 'Are you sure you want to open a work space?',
+          sendedProps: {
+            location: window.location.href
+          }
+        }
+
+        this.isConfirmModalOpen = true
+      },
+
+      cancelWorkTogether() {
+          this.confirmData = null,
+          this.isConfirmModalOpen = false
+      },
+
+      openWorkSpace() {
+        this.isConfirmModalOpen = false
+        this.isSocketsOn = true
+        socketService.emit('openWorkSpace', this.wap)
+      }
       
   },
 
@@ -396,9 +422,18 @@ export default {
     wapForm,
     wapVideo,
     wapMap,
-    cursor
+    cursor,
+    userConfirmModal,
   },
 }
 </script>
 
-<options lang="scss" scoped></options>
+<options lang="scss" scoped>
+    .confirm-modal {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+</options>
