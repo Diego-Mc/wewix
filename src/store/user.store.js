@@ -43,6 +43,9 @@ export const userStore = {
         }
     },
     actions: {
+        async getUserWaps({waps}){
+            // waps
+        },
         async addWapToUser({ commit }, { wapId }) {
             const user = await userService.addWapId(wapId)
             console.log(user);

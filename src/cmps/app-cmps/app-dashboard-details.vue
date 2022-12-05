@@ -124,9 +124,9 @@ export default {
       const USERS_PER_PAGE = 5
       const firstIndex = (this.currentPage - 1) * USERS_PER_PAGE
       const lastIndex = this.currentPage * USERS_PER_PAGE
-      console.log('firstIndex, lastIndex:', firstIndex, lastIndex)
+      // console.log('firstIndex, lastIndex:', firstIndex, lastIndex)
       users = users.slice(firstIndex, lastIndex)
-      console.log("🚀 ~ file: app-dashboard-details.vue:128 ~ modifiedUsers ~ users", users)
+      // console.log("🚀 ~ file: app-dashboard-details.vue:128 ~ modifiedUsers ~ users", users)
       
       return users
     },

@@ -3,22 +3,51 @@
     <section class="dashboard-sidebar">
       <h3 class="my-Sites-header">My Sites</h3>
       <ul class="waps-list">
-        <li>dada</li>
-        <li>gaga</li>
-        <li>rara</li>
+        <li v-for="wap in userWaps" @click="changeCurrWapData(wap)">
+          {{ wap.name }}
+        </li>
       </ul>
     </section>
-    <router-view></router-view>
+    <router-view v-if="currWapData" :wapData="currWapData"></router-view>
   </main>
 </template>
 
 <script>
 export default {
   data() {
-    return { waps: null }
+    return {
+      userWaps: null,
+      currWapData: null,
+    }
+  },
+  async created() {
+    if (!this.loggedinUser || !this.loggedinUser.waps) return
+    let waps = await this.getWaps()
+    this.userWaps = waps
+      .filter((wap) => this.loggedinUser.waps.includes(wap._id))
+      .map((wap) => {
+        return {
+          _id: wap._id,
+          name: wap.name,
+          usersData: wap.usersData,
+          createdAt: wap.createdAt,
+          totalViews: wap.totalViews,
+        }
+      })
   },
   methods: {
-    getUserWaps() {},
+    async getWaps() {
+      return await this.$store.dispatch('getWaps')
+    },
+    changeCurrWapData(wap) {
+      this.currWapData = wap
+      this.$router.push('/dashboard/' + this.currWapData._id)
+    },
+  },
+  computed: {
+    loggedinUser() {
+      return this.$store.getters.loggedinUser
+    },
   },
 }
 </script>
@@ -67,7 +96,7 @@ table is too large how do i make it smaller?
     border-radius: 6px;
   }
 
-  .dashboard-data{
+  .dashboard-data {
     padding-inline: 75px;
   }
 }

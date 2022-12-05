@@ -15,7 +15,6 @@
     class="main-editor" v-if="wap">
     <section class="main-editor-tools">
       <button @click="publishWap('yay')">publish test</button>
-      <main-header />
       <main-header @setVal="workTogether"/>
       <editor-header
         @setMedia="setMedia"
