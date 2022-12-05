@@ -13,6 +13,9 @@ import appTemplatesBug from './views/app-templates-bug.vue'
 
 import editorWithStyle from './views/editor-with-style.vue'
 
+import loginModal from './cmps/app-cmps/login-modal.vue'
+import loginSignup from './views/login-signup.vue'
+
 const routes = [
   {
     path: '/',
@@ -61,6 +64,16 @@ const routes = [
     path: '/:name?',
     name: 'publish-wap',
     component: appPublish,
+  },
+  {
+    path: '/loginsignup',
+    name: 'loginsignup',
+    component: loginSignup,
+  },
+  {
+    path: '/loginModal',
+    name: 'loginModal',
+    component: loginModal,
   },
 
   // {

@@ -50,8 +50,8 @@ async function getMapData(locationName) {
 
 async function uploadImg(file) {
     // Defining our variables
-    const UPLOAD_PRESET = 'mainuploader' // Insert your upload preset
-    const CLOUD_NAME = 'projwewix' // Insert your cloud name
+    const UPLOAD_PRESET = 'wap_db' // Insert your upload preset
+    const CLOUD_NAME = 'wewix' // Insert your cloud name
     const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
     
     const FORM_DATA = new FormData()

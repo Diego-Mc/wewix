@@ -1,4 +1,4 @@
-import { wapService } from '../services/wap.service.local'
+import { wapService } from '../services/wap.service.js'
 
 export function getActionRemoveWap(wapId) {
   return {

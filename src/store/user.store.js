@@ -7,10 +7,7 @@ import { socketService, SOCKET_EMIT_USER_WATCH, SOCKET_EVENT_USER_UPDATED } from
 export const userStore = {
     state: {
         // TODO: init to null. this is only for demonstartions.
-        loggedinUser: {
-            name:'johnny',
-            wapList:['5e28393890dd7201a06d4e44']
-        },
+        loggedinUser: null,
         users: [],
         watchedUser: null
     },
@@ -21,16 +18,16 @@ export const userStore = {
         // loggedinUserWaps({loggedinUser}) {return loggedinUser.wapList}
     },
     mutations: {
-        loggedinUserWaps(){
+        loggedinUserWaps() {
             // this.$store.dispatch('d',{loggedinUser.wapList})
         },
         setLoggedinUser(state, { user }) {
             // Yaron: needed this workaround as for score not reactive from birth
-            state.loggedinUser = (user)? {...user} : null
+            state.loggedinUser = (user) ? { ...user } : null
         },
         setWatchedUser(state, { user }) {
             state.watchedUser = user
-        },       
+        },
         setUsers(state, { users }) {
             state.users = users
         },
@@ -40,12 +37,22 @@ export const userStore = {
         setUserScore(state, { score }) {
             state.loggedinUser.score = score
         },
+        addWapToUserLocally(state, { wapId }) {
+            if (state.loggedinUser.waps) state.loggedinUser.waps, push(wapId)
+            else state.loggedinUser.waps = [wapId]
+        }
     },
     actions: {
+        async addWapToUser({ commit }, { wapId }) {
+            const user = await userService.addWapId(wapId)
+            console.log(user);
+            commit({ type: 'setLoggedinUser', user })
+        },
         async login({ commit }, { userCred }) {
             try {
                 const user = await userService.login(userCred)
                 commit({ type: 'setLoggedinUser', user })
+                console.log('logged in user', user);
                 // TODO: msg login successfully
                 return user
             } catch (err) {
@@ -82,12 +89,12 @@ export const userStore = {
                 console.log('userStore: Error in loadUsers', err)
                 throw err
             }
-        },        
+        },
         async loadAndWatchUser({ commit }, { userId }) {
             try {
                 const user = await userService.getById(userId)
                 commit({ type: 'setWatchedUser', user })
-                
+
             } catch (err) {
                 console.log('userStore: Error in loadAndWatchUser', err)
                 throw err
@@ -122,9 +129,9 @@ export const userStore = {
             }
         },
         // Keep this action for compatability with a common user.service ReactJS/VueJS
-        setWatchedUser({commit}, payload) {
+        setWatchedUser({ commit }, payload) {
             commit(payload)
-        },       
+        },
 
     }
 }

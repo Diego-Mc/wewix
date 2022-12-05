@@ -15,7 +15,7 @@
       <app-dashboard-graphs :usersData="getDemoData" />
       <app-dashboard-stats />
     </main>
-    <!-- <app-dashboard-details :usersData="getDemoData" /> -->
+    <app-dashboard-details :usersData="getDemoData" />
   </section>
 </template>
 
