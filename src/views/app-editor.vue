@@ -98,7 +98,7 @@ export default {
       },
       mediaType: 'desktop',
 
-      socketId: utilService.makeId(),
+      curserId: utilService.makeId(),
       cursorColor: utilService.getRandomColor(),
       workTogetherCursors: [],
       isSocketsOn: false,
@@ -119,12 +119,12 @@ export default {
       document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
     }
 
+    this.setSocketEvents()
+
     if (this.$route.query.workTogether) {
         this.isSocketsOn = true
         this.openWorkSpace()
     }
-
-    this.setSocketEvents()
   },
   unmounted() {
     console.log('I AM UNMOUNTED!!!!!!', this.wap._id)
@@ -365,7 +365,15 @@ export default {
             if (cursorPropIdx !== -1) this.workTogetherCursors[cursorPropIdx] = cursorProps
             else this.workTogetherCursors.push(cursorProps)
         })
+
+        socketService.on('userDisconnected', (cursorId) => {
+            console.log('userDisconnected');
+            const curserToRemoveIdx = this.workTogetherCursors.findIndex(({id}) => id === cursorId)
+            this.workTogetherCursors.splice(curserToRemoveIdx, 1)
+        })
       },
+
+
 
       sendMouseEvent(evType, ev) {
         if (!this.isSocketsOn) return
@@ -374,7 +382,7 @@ export default {
             const {clientX, clientY} = ev
 
             sendedCursor.clientXY = {clientX, clientY}
-            sendedCursor.id = this.socketId
+            sendedCursor.id = this.curserId
             sendedCursor.color = this.cursorColor
             sendedCursor.type = evType
 
@@ -403,14 +411,13 @@ export default {
 
       openWorkSpace() {
         this.isSocketsOn = true
-        socketService.emit('joinWorkSpace', this.wap._id)
+        socketService.emit('joinWorkSpace', {wapId: this.wap._id, cursorId: this.curserId})
       }
       
   },
 
   unmounted() {
     this.terminateEventBus()
-    socketService.emit('leaveWorkSpace', {})
   },
   computed: {
     loggedinUser() {
