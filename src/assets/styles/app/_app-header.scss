@@ -1,0 +1,105 @@
+.app-header {
+  background-color: $btn-dark;
+  color: white;
+  font-size: rem(14px);
+  @include grid(3);
+  padding-block: 0;
+  height: 120px;
+  font-family: 'PoppinsRegular';
+  .logo {
+    display: flex;
+    cursor: pointer;
+    gap: 8px;
+    font-size: rem(24px);
+    font-family: 'PoppinsBold';
+    align-items: center;
+    img {
+      height: rem(24px);
+    }
+    h1 {
+      margin-bottom: 3px;
+    }
+  }
+  nav {
+    display: flex;
+    justify-content: space-between;
+    color: rgba($color: #fff, $alpha: 0.5);
+    transition: all 0.2s;
+    a:hover {
+      color: white;
+    }
+    a {
+      cursor: pointer;
+    }
+  }
+  .burger {
+    display: none;
+    .bm-burger-bars {
+      background-color: white;
+    }
+  }
+
+  .bm-menu {
+    background-color: $btn-dark;
+    border-left: 4px solid white;
+    // left: -100px !important;
+    left: unset !important;
+    right: -4px !important;
+    .bm-item-list {
+      color: white;
+    }
+    .bm-cross {
+      background-color: #ccc;
+    }
+  }
+  .user-auth {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    button {
+      font-size: inherit;
+    }
+    .login-btn {
+      font-size: rem(16px);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      i {
+        font-size: rem(20px);
+      }
+    }
+    .register-btn {
+      background: $main;
+      background: linear-gradient(
+        90deg,
+        rgba(0, 194, 166, 1) 0%,
+        rgba(0, 194, 166, 1) 50%
+      );
+      border-radius: 3rem;
+      font-family: 'PoppinsBold';
+      transition: all 1s;
+      &:hover {
+        color: white;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 194, 166, 1) 0%,
+          rgba(6, 255, 255, 0.7) 50%
+        );
+      }
+    }
+  }
+  @media screen and (max-width: 970px) {
+    .burger {
+      display: block;
+      grid-column: 3;
+      justify-self: end;
+    }
+    nav {
+      display: none;
+    }
+    .user-auth {
+      display: none;
+    }
+  }
+}

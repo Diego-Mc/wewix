@@ -42,7 +42,7 @@ export default {
         getCmp('wap-section', 3),
         getCmp('wap-section', 4),
         getCmp('wap-cards', 2),
-        wapGraph
+        wapGraph,
       ],
     }
   },
@@ -55,7 +55,7 @@ export default {
       //   getCmp('wap-cards', 2),
       //   getCmp('wap-section', 2),
       //   getCmp('wap-section', 3),
-      //   // cmpCardImg: 'src/assets/imgs/cmp-cards-2.png',
+      //   // cmpCardImg: './assets/imgs/cmp-cards-2.png',
       //   // cmp:null
       //   // getCmp('wap-section', 4),
       //   // getCmp('wap-form', 1),
