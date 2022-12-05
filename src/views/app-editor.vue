@@ -3,7 +3,7 @@
     class="confirm-modal"
     v-if="isConfirmModalOpen"
     :confirmData="confirmData"
-    @cancelWorkTogether="cancelWorkTogether"
+    @closelModal="closeConfirmModal"
     @openWorkSpace="openWorkSpace" />
   <cursor v-if="workTogetherCursors[0]" :cursorsData="workTogetherCursors" />
   <section
@@ -128,6 +128,11 @@ export default {
       document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
     }
 
+    if (this.$route.query.workTogether) {
+      this.isSocketsOn = true
+      this.openWorkSpace()
+    }
+
     this.setSocketEvents()
   },
   unmounted() {
@@ -220,7 +225,6 @@ export default {
       this.saveLastChange()
       if (this.isSocketsOn) {
         socketService.emit('cmpChange', this.wap)
-        console.log('this.socketId:', this.socketId)
       }
     },
     // I added return to this function
