@@ -127,7 +127,7 @@ export default {
     },
     validate() {
       if (this.isValidName) {
-        this.$emit('openUserConfirmModal', {key: 'openPublishModal'})
+        // TODO : BUILD MODAL, SAVE WAP WITH USER DATA, SWITCH isOnline = true
       }
       else {
         console.log('Not A Valid Site')

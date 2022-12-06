@@ -1,12 +1,13 @@
 .img-section {
-  aspect-ratio: 6 / 8;
   padding-inline: 16px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  .img-container {
+  &.type-1,
+  &.type-2 {
+    aspect-ratio: 6 / 8;
     position: relative;
     padding-block: 10%;
     width: 100%;
@@ -38,6 +39,21 @@
 
     &::before {
       transform: rotate(8.8deg) translate(12px, 0px);
+    }
+  }
+
+  &.type-5 {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    .img-container {
+      height: 100%;
+      width: 100%;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+      }
     }
   }
   // flex: 1;
