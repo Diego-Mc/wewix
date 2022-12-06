@@ -42,6 +42,9 @@
     background-color: var(--clr-3);
     // background-color: #eee;
     @include grid(5);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    row-gap: 80px;
+    align-items: start;
     > div {
       grid-column: span 1;
     }
@@ -71,7 +74,7 @@
         font-family: PoppinsBold;
         font-size: em(14px);
         font-weight: 200;
-        width: min-content;
+        // width: min-content;
       }
     }
   }

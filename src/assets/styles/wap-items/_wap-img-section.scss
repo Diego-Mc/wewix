@@ -74,12 +74,15 @@
 
 @container wap (max-width: 990px) {
   .img-section {
-    .img-container {
-      img {
-        transform: rotate(2deg);
-      }
-      &::before {
-        transform: rotate(-4deg) translate(-0px, 14px);
+    &.type-1,
+    &.type-2 {
+      .img-container {
+        img {
+          transform: rotate(2deg);
+        }
+        &::before {
+          transform: rotate(-4deg) translate(-0px, 14px);
+        }
       }
     }
   }

@@ -140,6 +140,13 @@
   }
 
   &.type-6 {
+    > .titles-wrapper {
+      width: 60%;
+    }
+  }
+  &.type-6,
+  &.type-7,
+  &.type-8 {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -148,21 +155,34 @@
     > .titles-wrapper {
       font-family: BarlowCondensed-Bold;
       font-size: em(10px);
-      width: 60%;
     }
     button {
       font-family: PoppinsBold;
       letter-spacing: 1px;
       border-radius: 4px;
       background-color: var(--clr-2);
-      font-size: em(12px);
+      font-size: em(14px);
       padding: 20px 42px;
+    }
+  }
+
+  &.type-7 {
+    padding-block: 80px;
+  }
+
+  &.type-8 {
+    text-align: center;
+    button {
+      background-color: var(--clr-3);
+      color: var(--clr-1);
+      margin-top: 20px;
     }
   }
 
   &.type-9 {
     text-align: center;
     justify-items: center;
+    height: 100%;
     > .titles-wrapper {
       font-family: BarlowCondensed-Bold;
       font-size: em(8px);
