@@ -33,7 +33,7 @@ export default {
           name: wap.name,
           usersData: wap.usersData,
           createdAt: 2,
-          totalViews: wap.totalViews,
+          visits: wap.visits,
         }
       })
   },
