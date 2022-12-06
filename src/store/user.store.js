@@ -7,7 +7,7 @@ import { socketService, SOCKET_EMIT_USER_WATCH, SOCKET_EVENT_USER_UPDATED } from
 export const userStore = {
     state: {
         // TODO: init to null. this is only for demonstartions.
-        loggedinUser: null,
+        loggedinUser: {},
         users: [],
         watchedUser: null
     },
@@ -43,7 +43,7 @@ export const userStore = {
         }
     },
     actions: {
-        async getUserWaps({waps}){
+        async getUserWaps({ waps }) {
             // waps
         },
         async addWapToUser({ commit }, { wapId }) {

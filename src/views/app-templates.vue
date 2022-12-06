@@ -1,5 +1,5 @@
 <template>
-  <!-- <app-header/> -->
+  <app-header/>
   <main class="templates-page">
     <section class="templates">
       <article
@@ -86,7 +86,7 @@ export default {
   grid-gap: 50px;
   display: grid;
   gap: 50px;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 300px));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 250px));
   grid-auto-rows: 350px;
   justify-content: center;
   padding: 0 6%;
@@ -121,7 +121,8 @@ export default {
 }
 
 .template-name {
-  align-self: end;
+  align-self: center;
+  line-height: 60px;
 }
 
 .emptyTemplate {
