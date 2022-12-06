@@ -1,23 +1,13 @@
 <template>
   <div class="wap" :style="{ fontFamily: 'SpaceGrotesk' }">
-    <section
-      :style="{ textAlign: 'center' }"
+    <component
       v-for="section in sections"
-      class="doc">
-      <h1>{{ section.type + section.typeId }}</h1>
-      <p v-if="section.cmps" v-for="cmp in section.cmps">
-        children: {{ cmp.type + cmp.typeId }}
-      </p>
-      <p v-else>{{ section.type }} doesn't have child cmps</p>
-      <component
-        :style="{ transform: 'scale(50%)' }"
-        :is="section.type"
-        :cmpId="section.id"
-        :typeId="section.typeId"
-        :info="section.info"
-        :options="section.options"
-        :cmps="section.cmps" />
-    </section>
+      :is="section.type"
+      :cmpId="section.id"
+      :typeId="section.typeId"
+      :info="section.info"
+      :options="section.options"
+      :cmps="section.cmps" />
     <!-- <wap-header
       :cmpId="header.id"
       :typeId="header.typeId"
@@ -71,27 +61,27 @@
 </template>
 
 <script>
-import wapHeader from '../wap-sections/wap-header.vue'
-import wapHero from '../wap-sections/wap-hero.vue'
-import wapCards from '../wap-sections/wap-cards.vue'
-import wapSection from '../wap-sections/wap-section.vue'
-import wapForm from '../wap-sections/wap-form.vue'
-import getCmp from '../../services/wap-cmps.service'
-import editorBtnGroup from '../main-editor/editor-items/editor-btn-group.vue'
-import mainHeader from '../app-cmps/main-header.vue'
-import editorHeader from '../main-editor/editor-header.vue'
-import editorSidebar from '../main-editor/editor-sidebar.vue'
+import wapHeader from '../cmps/wap-sections/wap-header.vue'
+import wapHero from '../cmps/wap-sections/wap-hero.vue'
+import wapCards from '../cmps/wap-sections/wap-cards.vue'
+import wapSection from '../cmps/wap-sections/wap-section.vue'
+import wapForm from '../cmps/wap-sections/wap-form.vue'
+import getCmp from '../services/wap-cmps.service'
+import editorBtnGroup from '../cmps/main-editor/editor-items/editor-btn-group.vue'
+import mainHeader from '../cmps/app-cmps/main-header.vue'
+import editorHeader from '../cmps/main-editor/editor-header.vue'
+import editorSidebar from '../cmps/main-editor/editor-sidebar.vue'
 export default {
   data() {
     return {
       sections: [
-        getCmp('wap-header', 2),
-        getCmp('wap-hero', 2),
-        getCmp('wap-cards', 2),
-        getCmp('wap-section', 2),
-        getCmp('wap-section', 3),
-        getCmp('wap-section', 4),
-        getCmp('wap-form', 1),
+        // getCmp('wap-header', 2),
+        // getCmp('wap-hero', 2),
+        // getCmp('wap-cards', 2),
+        // getCmp('wap-section', 2),
+        // getCmp('wap-section', 3),
+        // getCmp('wap-section', 4),
+        // getCmp('wap-form', 1),
 
         // getCmp('wap-header', 3),
         getCmp('wap-hero', 3),

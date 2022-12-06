@@ -935,7 +935,7 @@ wapsMap.set('wap-cards-2', {
             style: getStyles('title'),
           },
           content: {
-            text: 'BEST NEW ELECTRIC TOOTHBRUSH',
+            text: 'Plant based',
           },
         },
         text: {

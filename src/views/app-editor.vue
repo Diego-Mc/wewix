@@ -27,8 +27,9 @@
         }">
         publish test
       </button>
-      <main-header @setVal="openWorkTogetherConfirm" />
+      <main-header />
       <editor-header
+        @setVal="openWorkTogetherConfirm"
         @setMedia="setMedia"
         @publishWap="publishWap"
         :wapName="wap.name" />
