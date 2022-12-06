@@ -32,10 +32,6 @@
   }
   .subtitle {
     grid-area: subtitle;
-
-    font-style: italic;
-    font-family: AmericanTypewriter;
-    font-weight: 400;
     margin-bottom: 26px;
   }
   .text {
@@ -60,6 +56,16 @@
     width: fit-content;
     &:hover {
       filter: brightness(120%);
+    }
+  }
+
+  &.type-2 {
+    .titles-wrapper {
+      .subtitle {
+        font-style: italic;
+        font-family: AmericanTypewriter;
+        font-weight: 400;
+      }
     }
   }
 
@@ -319,6 +325,79 @@
         background-color: var(--clr-2);
         border-color: var(--clr-2);
       }
+    }
+  }
+  &.type-18 {
+    grid-template-areas: 'title' 'text' 'cta';
+    font-family: PoppinsBold;
+    width: fit-content;
+    .titles-wrapper {
+      display: flex;
+      flex-direction: column-reverse;
+      width: fit-content;
+      .subtitle {
+        font-size: em(30px);
+        margin: 0;
+        padding-left: 10px;
+      }
+      .title {
+        line-height: 90%;
+        max-width: 100%;
+        font-size: em(160px);
+        margin: 0;
+      }
+    }
+    .text {
+      margin-bottom: 40px;
+      max-width: 80%;
+      justify-self: end;
+      color: var(--clr-2);
+      letter-spacing: 4px;
+    }
+    button {
+      background-color: var(--clr-2);
+      color: var(--clr-1);
+      font-size: em(16px);
+      letter-spacing: 0.8px;
+      padding: 18px 32px;
+      transition: all 0.15s ease-in-out;
+      margin-left: 10px;
+      &:hover {
+        color: var(--clr-3);
+        background-color: var(--clr-1);
+      }
+    }
+  }
+  &.type-19,
+  &.type-20,
+  &.type-21,
+  &.type-22 {
+    .tag {
+      background-color: unset;
+      letter-spacing: normal;
+      font-size: em(20px);
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+    .titles-wrapper {
+      .title {
+        font-family: PoppinsBold;
+        font-size: em(64px);
+      }
+      .subtitle {
+        font-family: PoppinsBold;
+        font-size: em(24px);
+      }
+    }
+    .text {
+      font-size: em(18px);
+      white-space: pre-wrap;
+    }
+  }
+  &.type-22 {
+    .text {
+      max-width: 100%;
     }
   }
 }

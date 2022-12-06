@@ -79,6 +79,8 @@
 import wapImgSection from '../wap-items/wap-img-section.vue'
 import wapTextSection from '../wap-items/wap-text-section.vue'
 import wapGallerySection from '../wap-items/wap-gallery-section.vue'
+import wapForm from './wap-form.vue'
+import wapVideo from '../wap-items/wap-video.vue'
 import draggable from 'vuedraggable'
 import { eventBus } from '../../services/event-bus.service'
 
@@ -100,6 +102,8 @@ export default {
     wapImgSection,
     wapTextSection,
     wapGallerySection,
+    wapVideo,
+    wapForm,
     draggable,
   },
 

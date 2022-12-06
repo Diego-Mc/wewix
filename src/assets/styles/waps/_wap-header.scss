@@ -100,6 +100,24 @@
       }
     }
   }
+
+  &.type-5 {
+    @include grid(2);
+    grid-template-areas: 'logo nav';
+    background-color: var(--clr-1);
+    color: var(--clr-3);
+    height: 100px;
+    .logo {
+      img {
+        height: 70px;
+      }
+    }
+    .burger {
+      .bm-burger-bars {
+        background-color: var(--clr-3);
+      }
+    }
+  }
 }
 
 @container wap (max-width: 990px) {

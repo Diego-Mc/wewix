@@ -80,6 +80,26 @@
     background-color: var(--clr-1);
     color: var(--clr-2);
   }
+  &.type-15 {
+    font-family: PoppinsRegular;
+    @include grid(1);
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    padding-block: 8rem;
+  }
+  &.type-16 {
+    @include grid(1);
+    background-color: #fff;
+  }
+  &.type-17,
+  &.type-18 {
+    @include grid(2);
+    background-color: var(--clr-1);
+    color: var(--clr-3);
+  }
+  &.type-19 {
+    background-color: #fff;
+    font-family: PoppinsRegular;
+  }
 }
 
 @container wap (max-width: 990px) {
