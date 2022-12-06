@@ -75,15 +75,15 @@
           ><span class="mb-show">... /</span
           ><span
             class="site-name"
-            :style="{color: updatedNameColor}"
+            :style="{color: siteNameColor}"
             @input="setUpdatedWapName($event)"
-            :contenteditable="!wapName"
+            :contenteditable="!isOnline"
             >{{ updatedWapName }}</span
           >
         </p>
       </section>
-      <router-link to="#" class="preview-btn">preview site</router-link>
-      <router-link to="#" class="publish-btn">publish site</router-link>
+      <a @click="preview" class="preview-btn">preview site</a>
+      <a @click="validate" class="publish-btn">publish site</a>
     </div>
     <!-- <section class="upload-site">
       <editor-btn-group
@@ -107,7 +107,7 @@ export default {
     return {
       media: '',
       updatedWapName: this.wapName || 'mySite',
-      updatedNameColor: 'green'
+      isValidName: true
     }
   },
   methods: {
@@ -121,28 +121,33 @@ export default {
     },
     setUpdatedWapName(ev) {
       this.updatedWapName = ev.target.innerText
-      this.isValidUpdatedWapName
+      if (true) { //TODO Replace WITH isValid
+          this.$emit('setName', this.updatedWapName)
+      }
     },
+    validate() {
+      if (this.isValidName) this.$router.push(`/${this.updatedWapName}`)
+      else {
+        console.log('Not A Valid Site')
+        //Todo add user msg
+      }
+    },
+    preview() {
+      this.$router.push({ path: `/${this.updatedWapName}`, query: { preview: 'true' }})
+    }
   },
   computed: {
     async isValidUpdatedWapName() {
-        const isUnique = await this.$store.dispatch({ type: 'getWapByName', wapName: this.updatedWapName })
-        const regex = new RegExp('[A-Za-z0-9]{4,}', 'gi')
-
-        console.log('regex', regex.test(this.updatedWapName));
-        console.log('isUnique', isUnique);
-        this.updatedNameColor = (regex.test(this.updatedWapName) && isUnique) ? '#00c2a6' : '#e35a5a'
-        console.log('color:', this.updatedNameColor)
-        return (regex.test(this.updatedWapName) && isUnique)
+        //TODO: cannot be 'signup', 'login', '', 'templates', 'edit', 'dashboard', 'preview', 
+        try {
+          const isUnique = await this.$store.dispatch({ type: 'getWapByName', wapName: this.updatedWapName })
+          return isUnique
+        } catch (err) {
+          this.siteNameColor = '#e35a5a'
+          console.log('err:', err)
+          return false
+        }  
     }, 
-
-    updatedNameStyle() {
-      //const isValid = await this.isValidUpdatedWapName
-      //const style = {color: (isValid) ? '#e35a5a' : '#00c2a6'}
-      //console.log(style);
-
-      return {color: 'red'}//style
-    }
   },
   components: {
     editorBtnGroup,

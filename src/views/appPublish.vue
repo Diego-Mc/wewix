@@ -49,6 +49,7 @@ export default {
     },
     created() {
         const wapName = this.$route.params.name
+        console.log(wapName);
         if (wapName) {
             this.getWap(wapName)
         }
