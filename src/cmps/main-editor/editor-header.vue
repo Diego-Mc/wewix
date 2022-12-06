@@ -126,7 +126,9 @@ export default {
       }
     },
     validate() {
-      if (this.isValidName) this.$router.push(`/${this.updatedWapName}`)
+      if (this.isValidName) {
+        this.$emit('openUserConfirmModal', {key: 'openPublishModal'})
+      }
       else {
         console.log('Not A Valid Site')
         //Todo add user msg
