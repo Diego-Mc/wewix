@@ -4447,37 +4447,37 @@ wap-form : 3
 wap-footer: 3
 */
 
-const template4 = {
-  _id: 'template-4',
-  name: 'Kitesurfing-club-template',
-  imgUrl:
-    'http://res.cloudinary.com/webify/image/upload/v1580021948/coffe_yi0yzf.png',
-  createdBy: {
-    _id: '5e26e0b718a0891d4c995527',
-    fullname: 'Hekro Special',
-    imgUrl: 'img.jpg',
-  },
-  usersData: {
-    contacts: [
-      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
-    ],
-    subscriptions: [{ email: 'user@user.com', at: 123 }],
-  },
-  cmps: [
-    getCmp('wap - header', 5),
-    getCmp('wap-hero', 5),
-    getCmp('wap-section', 15),
-    getCmp('wap-section', 16),
-    getCmp('wap-cards', 8),
-    getCmp('wap-cards', 9),
-    getCmp('wap-section', 17),
-    getCmp('wap-section', 18),
-    getCmp('wap-cards', 10),
-    getCmp('wap-section', 19),
-    getCmp('wap-section', 20),
-    getCmp('footer', 3)
-  ],
-}
+// const template4 = {
+//   _id: 'template-4',
+//   name: 'Kitesurfing-club-template',
+//   imgUrl:
+//     'http://res.cloudinary.com/webify/image/upload/v1580021948/coffe_yi0yzf.png',
+//   createdBy: {
+//     _id: '5e26e0b718a0891d4c995527',
+//     fullname: 'Hekro Special',
+//     imgUrl: 'img.jpg',
+//   },
+//   usersData: {
+//     contacts: [
+//       { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+//     ],
+//     subscriptions: [{ email: 'user@user.com', at: 123 }],
+//   },
+//   cmps: [
+//     getCmp('wap - header', 5),
+//     getCmp('wap-hero', 5),
+//     getCmp('wap-section', 15),
+//     getCmp('wap-section', 16),
+//     getCmp('wap-cards', 8),
+//     getCmp('wap-cards', 9),
+//     getCmp('wap-section', 17),
+//     getCmp('wap-section', 18),
+//     getCmp('wap-cards', 10),
+//     getCmp('wap-section', 19),
+//     getCmp('wap-section', 20),
+//     getCmp('footer', 3)
+//   ],
+// }
 
 
 
