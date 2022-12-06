@@ -131,7 +131,7 @@
         </article>
       </section>
     </section>
-    <section class="demo">
+    <section class="demo" id="demo">
       <h3>Let's make a website <span>in 2 minutes.</span></h3>
       <main>
         <section class="video">
@@ -185,10 +185,10 @@
           <h1>wewix</h1>
         </section>
         <nav>
-          <a to="#home">Home</a>
-          <a to="#features">Features</a>
-          <a to="#demo">Demo</a>
-          <a to="#about">About</a>
+          <a href="#" v-scroll-to="'#home'">Home</a>
+          <a href="#" v-scroll-to="'#features'">Features</a>
+          <a href="#" v-scroll-to="'#demo'">Demo</a>
+          <a href="#" v-scroll-to="'#about'">About</a>
         </nav>
       </div>
     </footer>
