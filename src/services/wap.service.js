@@ -53,6 +53,8 @@ async function remove(wapId) {
 async function save(wap) {
   var savedWap
   if (wap._id) {
+  console.log('service',wap._id);
+
     // savedWap = await storageService.put(STORAGE_KEY, wap)
     savedWap = await httpService.put(`wap/${wap._id}`, wap)
   } else {

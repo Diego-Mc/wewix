@@ -9,9 +9,9 @@ export const wapUtils = {
 }
 
 function getTemplate(templateId) {
-  return {
-    _id: '5e28393890dd7201a06d4e44',
-    name: 'HairDresser Baluta Marketing Site',
+  const wa =  {
+    _id: 'template-1',
+    name: 'template-1',
     imgUrl:
       'http://res.cloudinary.com/webify/image/upload/v1580021948/coffe_yi0yzf.png',
     createdBy: {
@@ -34,6 +34,7 @@ function getTemplate(templateId) {
       getCmp('wap-cards', 2),
     ],
   }
+  return wa
 }
 
 export default function getCmp(type, typeId) {
@@ -2037,7 +2038,7 @@ const template2 = {
 }
 
 
-// --------------------------------------------------------------------- template 3
+// ---------------------------template 3 -------------------------------------------------------------------- 
 
 wapsMap.set('wap-header-4', {
   id: '',
@@ -3037,32 +3038,32 @@ wapsMap.set('wap-section-14', {
   ],
 })
 
-const template3 = {
-  _id: 'template-3',
-  name: 'Sevah Creative',
-  imgUrl:
-    '',
+// const template3 = {
+//   _id: 'template-3',
+//   name: 'Sevah Creative',
+//   imgUrl:
+//     '',
 
-  usersData: {
-    contacts: [
-      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
-    ],
-    subscriptions: [{ email: 'user@user.com', at: 123 }],
-  },
-  cmps: [
-    getCmp('wap-header', 4),
-    getCmp('wap-hero', 4),
-    getCmp('wap-section', 9),
-    getCmp('wap-section', 14),
-    getCmp('wap-section', 10),
-    getCmp('wap-cards-6', 6),
-    getCmp('wap-section', 11),
-    getCmp('wap-section', 12),
-    getCmp('wap-section', 13),
-    getCmp('footer', 2),
-    getCmp('wap-section', 14),
-  ],
-}
+//   usersData: {
+//     contacts: [
+//       { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+//     ],
+//     subscriptions: [{ email: 'user@user.com', at: 123 }],
+//   },
+//   cmps: [
+//     getCmp('wap-header', 4),
+//     getCmp('wap-hero', 4),
+//     getCmp('wap-section', 9),
+//     getCmp('wap-section', 14),
+//     getCmp('wap-section', 10),
+//     getCmp('wap-cards-6', 6),
+//     getCmp('wap-section', 11),
+//     getCmp('wap-section', 12),
+//     getCmp('wap-section', 13),
+//     getCmp('footer', 2),
+//     getCmp('wap-section', 14),
+//   ],
+// }
 
 /* 
 last cmp num:

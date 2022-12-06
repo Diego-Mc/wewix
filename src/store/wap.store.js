@@ -24,7 +24,6 @@ export function getActionAddWapMsg(wapId) {
     type: 'addWapMsg',
     wapId,
     txt: 'Stam txt',
-    user: {},
   }
 }
 
