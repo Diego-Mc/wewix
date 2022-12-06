@@ -1,40 +1,41 @@
+<!-- @click.stop="emitSelect({ cmpId })" -->
 <template>
-  <header
+  <draggable
+    class="list-group wap-header"
+    :class="'type-' + typeId"
+    :style="options.style"
+    :component-data="{
+      type: 'transition-group',
+      name: !drag ? 'flip-list' : null,
+    }"
+    v-model="cards"
+    v-bind="dragOptions"
+    @start="drag = true"
+    @end="onDrop"
+    item-key="id"
+    :group="'header-' + cmpId"
+    @click.stop="onCmpClick({ cmpId })">
+    <template #item="{ element }">
+      <div>
+        <component
+          :is="element.type"
+          :key="element.id"
+          :options="element.options"
+          :info="element.info"
+          :cmpId="cmpId"
+          :childCmpId="element.id"
+          :typeId="element.typeId"
+          @click.stop="onCmpClick({ cmpId, childCmpId: element.id })" />
+      </div>
+    </template>
+  </draggable>
+  <!-- <header
     class="wap-header"
     :class="'type-' + typeId"
     :style="options.style"
     @click.stop="emitSelect({ cmpId })">
-    <section class="logo">
-      <img
-        v-if="info.img"
-        class="img"
-        @click.stop="$emit('select', { cmpId, elType: 'img' })"
-        :src="info?.img?.options.meta.src" />
-      <h1
-        v-if="info.title"
-        class="title"
-        :style="info.title.options.style"
-        @click.stop="emitSelect({ cmpId, elType: 'title' })"
-        @input="updateContent('title', $event)"
-        :contenteditable="$store.getters.isEditMode">
-        {{ info?.title?.content.text }}
-      </h1>
-    </section>
-    <nav
-      v-if="info.nav"
-      :style="info?.nav?.options.style"
-      @click.stop="emitSelect({ cmpId, elType: 'nav' })">
-      <ul>
-        <li class="nav" v-for="nav in info?.nav?.content">
-          {{ nav }}
-        </li>
-      </ul>
-    </nav>
-    <Slide noOverlay right class="burger">
-      <li v-for="nav in info?.nav?.content">
-        {{ nav }}
-      </li>
-    </Slide>
+
+
     <button
       class="btn"
       :style="info?.btn?.options.style"
@@ -42,28 +43,58 @@
       @change="updateContent('btn')">
       {{ info?.btn?.content.text }}
     </button>
-  </header>
+  </header> -->
 </template>
 
 <script>
+import wapLogo from '../wap-items/wap-logo.vue'
+import wapNav from '../wap-items/wap-nav.vue'
+import wapBtn from '../wap-items/wap-Btn.vue'
+import draggable from 'vuedraggable'
 import { eventBus } from '../../services/event-bus.service'
 import { Slide } from 'vue3-burger-menu'
 export default {
-  props: ['info', 'cmpId', 'options', 'typeId'],
+  props: ['info', 'cmpId', 'options', 'cmps', 'typeId'],
+  data() {
+    return {
+      cards: this.cmps,
+      dragOptions: {
+        animation: 200,
+        group: 'description',
+        disabled: false,
+        ghostClass: 'ghost',
+      },
+      drag: false,
+    }
+  },
   methods: {
-    updateContent(elType, e) {
-      eventBus.emit('cmpUpdated', {
+    // updateContent(elType, e) {
+    //   eventBus.emit('cmpUpdated', {
+    //     cmpId: this.cmpId,
+    //     elType,
+    //     content: e.target.innerText,
+    //   })
+    // },
+    // emitSelect(elInfo) {
+    //   eventBus.emit('select', elInfo)
+    // },
+    onDrop() {
+      this.drag = false
+      eventBus.emit('onInnerCmpDrop', {
         cmpId: this.cmpId,
-        elType,
-        content: e.target.innerText,
+        cmps: [...this.cards],
       })
     },
-    emitSelect(elInfo) {
+    onCmpClick(elInfo) {
       eventBus.emit('select', elInfo)
     },
   },
   components: {
     Slide,
+    wapNav,
+    wapLogo,
+    wapBtn,
+    draggable,
   },
 }
 </script>

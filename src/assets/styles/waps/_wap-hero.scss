@@ -1,8 +1,31 @@
 .wap-hero {
   @include grid(2, 16%);
   background-color: var(--clr-3);
+  background-repeat: no-repeat;
+  // background-size: 200%;
+  background-size: auto 130%;
+  background-position: top center;
+  min-width: 100%;
   color: var(--clr-1);
   font-size: rem(16px);
+
+  &.type-3 {
+    min-height: 500px;
+    height: auto;
+    text-align: center;
+    // @include grid(1);
+    display: flex;
+    justify-content: center;
+    // margin: auto;
+
+    .text-section {
+    }
+  }
+
+  &.type-4 {
+    @include grid(1);
+    color: var(--clr-3);
+  }
 
   > div {
     height: 100%;
@@ -19,6 +42,9 @@
 
 @container wap (max-width: 990px) {
   .wap-hero {
+    &.type-3 {
+      min-height: 400px;
+    }
     font-size: rem(14px);
     .text-section {
       .title,

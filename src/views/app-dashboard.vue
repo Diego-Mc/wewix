@@ -32,7 +32,7 @@ export default {
           _id: wap._id,
           name: wap.name,
           usersData: wap.usersData,
-          createdAt: 2,
+          createdAt: wap.createdAt,
           visits: wap.visits,
         }
       })

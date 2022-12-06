@@ -1,12 +1,23 @@
 .wap-header {
-  @include grid();
-  grid-template-areas: 'logo logo nav nav nav nav nav nav nav nav cta cta';
+  @include grid(3);
+  grid-template-columns: auto auto auto;
+  grid-template-areas: 'logo nav cta';
   height: 140px;
-  padding-block: 0;
+  padding-block: 0 !important;
   color: var(--clr-1);
   background-color: var(--clr-3);
+  font-family: PoppinsBold;
+  justify-items: center;
 
-  > .burger {
+  > :last-child {
+    justify-self: end;
+  }
+
+  > :first-child {
+    justify-self: start;
+  }
+
+  .burger {
     grid-area: nav;
     display: none;
     .bm-burger-bars {
@@ -67,19 +78,41 @@
       filter: brightness(120%);
     }
   }
+
+  &.type-3,
+  &.type-4 {
+    @include grid(2);
+    grid-template-columns: auto auto;
+    grid-template-areas: 'logo nav';
+    height: 80px;
+    .logo {
+      img {
+        height: 50px;
+      }
+    }
+  }
+
+  &.type-4 {
+    background-color: #fff;
+    .logo {
+      img {
+        height: 40px;
+      }
+    }
+  }
 }
 
 @container wap (max-width: 990px) {
   .wap-header {
     @include grid(2);
     grid-template-areas: 'logo nav';
-    .btn {
+    > div:has(.btn) {
       display: none;
     }
-    nav {
+    > div:has(nav) {
       justify-self: end;
     }
-    > .burger {
+    .burger {
       display: block;
       justify-self: end;
     }

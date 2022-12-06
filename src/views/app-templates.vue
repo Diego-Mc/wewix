@@ -1,24 +1,25 @@
 <template>
-  <app-header/>
+  <app-header />
   <main class="templates-page">
+    <h2 class="template-page-header">Choose a template for your website</h2>
     <section class="templates">
       <article
         v-for="template in templates"
         class="template"
         :class="{ emptyTemplate: !template.id }"
-        @click="openEditor(template.id)"
         @mouseenter="isHover[template.name] = true"
         @mouseleave="isHover[template.name] = false">
-        <div>
-          <div class="template-details" v-if="isHover[template.name]">
+        <div style="height: 100%">
+          <div
+            class="template-details"
+            v-if="isHover[template.name]"
+            :style="{ backgroundImage: 'url(template.img)' }">
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum
-              hic non quaerat aliquam quisquam aspernatur explicabo autem ipsum?
-              Beatae, sed.
+              {{ template.detalis }}
             </p>
             <div class="template-actions">
               <button>Preview</button>
-              <button>Edit</button>
+              <button @click="openEditor(template.id)">Edit</button>
             </div>
           </div>
 
@@ -27,7 +28,7 @@
           </div>
         </div>
 
-        <div class="template-name">
+        <div class="template-name-container">
           <h2>{{ template.name }}</h2>
           <p v-if="template.type">{{ template.type }}</p>
         </div>
@@ -59,10 +60,11 @@ export default {
           id: '',
           img: './src/assets/imgs/templates-template.jpg',
           type: '',
+          detalis: 'Build a website from scratch.',
         },
         {
           name: 'Bike Shop',
-          id: '5e28393890dd7201a06d4e44',
+          id: 'template-1',
           img: './src/assets/imgs/template-1-preview-img.png',
         },
         {
@@ -82,6 +84,10 @@ export default {
 </script>
 
 <style lang="scss">
+.template-page-header {
+  margin-top: 50px;
+  text-align: center;
+}
 .templates {
   grid-gap: 50px;
   display: grid;
@@ -90,7 +96,7 @@ export default {
   grid-auto-rows: 350px;
   justify-content: center;
   padding: 0 6%;
-  margin-block-start: 100px;
+  margin-block-start: 50px;
 
   .template-preview-img {
     border-radius: 8px 8px 0 0px;
@@ -103,6 +109,18 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     // -webkit-line-break: ;
+  }
+  .emptyTemplate {
+    background-color: white;
+  }
+  .emptyTemplate:after {
+    content: '+';
+    position: absolute;
+    width: 10px;
+    top: 6;
+    left: 50%;
+    top: 100%;
+    margin-left: -5px;
   }
 }
 
@@ -118,14 +136,19 @@ export default {
 
 .template-details {
   opacity: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  flex-direction: column;
+  padding-block: 20px;
 }
 
-.template-name {
+.template-name-container {
   align-self: center;
   line-height: 60px;
-}
-
-.emptyTemplate {
-  background-color: white;
+  border-top: 1px solid #e7e7e7;
+  width: 100%;
+  text-align: center;
 }
 </style>

@@ -95,16 +95,7 @@ li {
   cursor: pointer;
 }
 
-tr {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
 
-td {
-  padding: 5px;
-  background-color: lightcoral;
-  min-width: 200px;
-}
 </style>
 
 
