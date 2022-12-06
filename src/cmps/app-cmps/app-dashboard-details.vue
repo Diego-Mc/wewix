@@ -3,7 +3,7 @@
     <el-pagination
       background
       layout="prev, pager, next"
-      :total="totalPages"
+      :page-count="totalPages"
       class="mt-4"
       @current-change="paginate($event)"
       :current-page="currentPage" />
@@ -58,7 +58,7 @@ export default {
       },
       filterBy: '',
       currentPage: 1,
-      totalPages: this.usersData.length / 5,
+      totalPages: 10000,
       wapToAdd: wapService.getEmptyWap(),
     }
   },
@@ -103,18 +103,17 @@ export default {
         }
       }
 
-      this.totalPages = users.length / 5
+
+      const USERS_PER_PAGE = 5
+      this.totalPages = Math.round(users.length /  USERS_PER_PAGE)
 
       //Paginate
-      const USERS_PER_PAGE = 5
       const firstIndex = (this.currentPage - 1) * USERS_PER_PAGE
       const lastIndex = this.currentPage * USERS_PER_PAGE
-      // console.log('firstIndex, lastIndex:', firstIndex, lastIndex)
       users = users.slice(firstIndex, lastIndex)
-      // console.log("🚀 ~ file: app-dashboard-details.vue:128 ~ modifiedUsers ~ users", users)
-
       return users
     },
+    
 
     loggedInUser() {
       return this.$store.getters.loggedinUser

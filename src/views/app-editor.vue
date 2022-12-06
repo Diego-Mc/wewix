@@ -31,7 +31,7 @@
       <main-header />
       <editor-header
         @setName="setName"
-        @setVal="openWorkTogetherConfirm"
+        @setVal="openUserConfirmModal"
         @setMedia="setMedia"
         @publishWap="publishWap"
         :wapName="wap.name"
@@ -417,14 +417,13 @@ export default {
       socketService.emit('mouseEvent', sendedCursor)
     },
 
-    openWorkTogetherConfirm({ key }) {
-      console.log(key)
+    openUserConfirmModal({ key }) {
       if (this.isSocketsOn) {
         //Todo user msg
         console.log('There is opened work space')
         return
       }
-      if (key !== 'workTogether') return
+      if (key !== 'workTogether' && key !== 'confirmPublish') return
 
       this.confirmData = {
         txt: 'Are you sure you want to open a work space?',
