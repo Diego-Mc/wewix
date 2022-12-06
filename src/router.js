@@ -61,11 +61,6 @@ const routes = [
     component: editorWithStyle,
   },
   {
-    path: '/:name?',
-    name: 'publish-wap',
-    component: appPublish,
-  },
-  {
     path: '/loginsignup',
     name: 'loginsignup',
     component: loginSignup,
@@ -74,6 +69,12 @@ const routes = [
     path: '/loginModal',
     name: 'loginModal',
     component: loginModal,
+  },
+
+  {
+    path: '/:name?',
+    name: 'publish-wap',
+    component: appPublish,
   },
 
   // {

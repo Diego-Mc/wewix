@@ -72,6 +72,7 @@
       width: fit-content;
       border-radius: 3rem;
       padding: 1rem 3rem;
+      transition: background-color 0.1s;
       &:hover {
         background-color: white;
         color: $btn-dark;
@@ -210,8 +211,8 @@
       width: fit-content;
       border-radius: 3rem;
       padding: 1rem 3rem;
-      transition: all 0.2s;
       margin-bottom: 4rem;
+      transition: background-color 0.1s;
       &:hover {
         background-color: white;
         color: $btn-dark;

@@ -23,16 +23,16 @@
       <h1>wewix</h1>
     </section>
     <nav class="nav">
-      <a to="#home">Home</a>
-      <a to="#features">Features</a>
-      <a to="#demo">Demo</a>
-      <a to="#about">About</a>
+      <a href="#" v-scroll-to="'#home'">Home</a>
+      <a href="#" v-scroll-to="'#features'">Features</a>
+      <a href="#" v-scroll-to="'#demo'">Demo</a>
+      <a href="#" v-scroll-to="'#about'">About</a>
     </nav>
-    <Slide noOverlay right class="burger">
-      <a to="#home">Home</a>
-      <a to="#features">Features</a>
-      <a to="#demo">Demo</a>
-      <a to="#about">About</a>
+    <Slide noOverlay right :closeOnNavigation="true" class="burger">
+      <a href="#" v-scroll-to="'#home'">Home</a>
+      <a href="#" v-scroll-to="'#features'">Features</a>
+      <a href="#" v-scroll-to="'#demo'">Demo</a>
+      <a href="#" v-scroll-to="'#about'">About</a>
     </Slide>
     <section class="user-auth">
       <button class="login-btn"><i class="bi bi-person"></i> login</button>
