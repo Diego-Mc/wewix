@@ -75,10 +75,10 @@
           ><span class="mb-show">... /</span
           ><span
             class="site-name"
-            :style="{ color: isValidSiteName ? '#00c2a6' : '#e35a5a' }"
-            @input="setSiteName($event)"
+            :style="{color: updatedNameColor}"
+            @input="setUpdatedWapName($event)"
             :contenteditable="!wapName"
-            >{{ siteName }}</span
+            >{{ updatedWapName }}</span
           >
         </p>
       </section>
@@ -97,6 +97,8 @@
 
 <script>
 import editorBtnGroup from '../main-editor/editor-items/editor-btn-group.vue'
+import { wapService } from '../../services/wap.service'
+
 export default {
   props: {
     wapName: String,
@@ -104,9 +106,8 @@ export default {
   data() {
     return {
       media: '',
-      publishSiteTxt: '',
-      siteName: this.wapName,
-      isValidSiteName: true,
+      updatedWapName: this.wapName || 'mySite',
+      updatedNameColor: 'green'
     }
   },
   methods: {
@@ -118,9 +119,30 @@ export default {
       this.handleBtnSelect({ key, val })
       this.$emit('setMedia', val)
     },
-    setSiteName(ev) {
-      this.siteName = ev.target.innerText
+    setUpdatedWapName(ev) {
+      this.updatedWapName = ev.target.innerText
+      this.isValidUpdatedWapName
     },
+  },
+  computed: {
+    async isValidUpdatedWapName() {
+        const isUnique = await this.$store.dispatch({ type: 'getWapByName', wapName: this.updatedWapName })
+        const regex = new RegExp('[A-Za-z0-9]{4,}', 'gi')
+
+        console.log('regex', regex.test(this.updatedWapName));
+        console.log('isUnique', isUnique);
+        this.updatedNameColor = (regex.test(this.updatedWapName) && isUnique) ? '#00c2a6' : '#e35a5a'
+        console.log('color:', this.updatedNameColor)
+        return (regex.test(this.updatedWapName) && isUnique)
+    }, 
+
+    updatedNameStyle() {
+      //const isValid = await this.isValidUpdatedWapName
+      //const style = {color: (isValid) ? '#e35a5a' : '#00c2a6'}
+      //console.log(style);
+
+      return {color: 'red'}//style
+    }
   },
   components: {
     editorBtnGroup,

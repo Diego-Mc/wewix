@@ -33,10 +33,23 @@ function getById(wapId) {
   return httpService.get(`wap/${wapId}`)
 }
 
+// Todo
+async function getByName(wapName) {
+  return true
+  try {
+    const res = await storageService.getByName(WAPS_KEY, wapName)
+    return res
+  } catch (err) {
+    console.log(`${err} while getByName From storageService`);
+    throw new Error(`Couldn't retrieve Wap from storageService`)
+  }
+}
+
 async function remove(wapId) {
   // await storageService.remove(STORAGE_KEY, wapId)
   return httpService.delete(`wap/${wapId}`)
 }
+
 async function save(wap) {
   var savedWap
   if (wap._id) {

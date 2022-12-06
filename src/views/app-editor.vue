@@ -269,7 +269,6 @@ export default {
           wap: this.wap,
         })
 
-        console.log('editedWapId', editedWapId)
         this.wap._id = editedWapId
 
         // TODO: fix this.
@@ -286,15 +285,13 @@ export default {
         })
       }
     },
-    cmpSelected({ cmpId, elType, childCmpId }) {
+    cmpSelected({ cmpId, elType, childCmpId, elDom }) {
       this.selectedCmp = {}
-      console.log('THIS IS WAP', this.wap._id)
 
       let cmp = this.wap.cmps.find(({ id }) => {
         return id === cmpId
       })
-      console.log('after loop:', cmp)
-      console.log('selected-wap before bug:', this.wap._id)
+
       if (childCmpId) {
         cmp = cmp.cmps.find(({ id }) => id === childCmpId)
         this.selectedCmp.childCmpId = childCmpId
@@ -303,6 +300,8 @@ export default {
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = elType ? cmp.info[elType].options : cmp.options
       this.selectedCmp.elType = elType
+      this.selectedCmp.elDom = elDom.target
+
       eventBus.emit('openCmpEditor')
     },
 

@@ -85,7 +85,9 @@
         :id="selectedCmp.id"
         :childCmpId="selectedCmp.childCmpId"
         :editOptions="selectedCmp.options"
-        :elType="selectedCmp.elType" />
+        :elType="selectedCmp.elType"
+        :elDom="selectedCmp.elDom"
+        />
     </section>
 
     <section

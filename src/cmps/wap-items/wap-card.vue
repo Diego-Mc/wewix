@@ -76,11 +76,11 @@ export default {
       })
     },
     emitSelect(elType,e) {
-      console.log(window.getComputedStyle(e.target))
       eventBus.emit('select', {
         cmpId: this.cmpId,
         childCmpId: this.childCmpId,
         elType,
+        elDom: e
       })
     },
   },
