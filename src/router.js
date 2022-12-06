@@ -7,15 +7,14 @@ import appDashboard from './views/app-dashboard.vue'
 import appDashboardData from './views/app-dashboard-data.vue'
 import appPreview from './views/app-preview.vue'
 import testTestTest from './views/test-test-test.vue'
+import testTestTestTest from './views/test-test-test-test.vue'
 import appPublish from './views/appPublish.vue'
-
-import appTemplatesBug from './views/app-templates-bug.vue'
 
 import editorWithStyle from './views/editor-with-style.vue'
 
 import loginModal from './cmps/app-cmps/login-modal.vue'
-import loginSignup from './views/login-signup.vue'
-
+import userLogin from './views/user-login.vue'
+import usersignup from './views/user-signup.vue'
 const routes = [
   {
     path: '/',
@@ -25,7 +24,7 @@ const routes = [
   {
     path: '/templates',
     name: 'app-templates',
-    component: appTemplatesBug,
+    component: appTemplates,
   },
   {
     path: '/edit/:id?',
@@ -56,19 +55,29 @@ const routes = [
     component: testTestTest,
   },
   {
+    path: '/testtesttest',
+    name: 'testtesttest',
+    component: testTestTestTest,
+  },
+  {
     path: '/editorWithStyle/:id',
     name: 'editorWithStyle',
     component: editorWithStyle,
   },
   {
-    path: '/loginsignup',
-    name: 'loginsignup',
-    component: loginSignup,
+    path: '/:name?',
+    name: 'publish-wap',
+    component: appPublish,
   },
   {
-    path: '/loginModal',
-    name: 'loginModal',
-    component: loginModal,
+    path: '/login',
+    name: 'userLogin',
+    component: userLogin,
+  },
+  {
+    path: '/signup',
+    name: 'usersignup',
+    component: usersignup,
   },
 
   {
