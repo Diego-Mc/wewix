@@ -934,7 +934,7 @@ wapsMap.set('wap-cards-2', {
             style: getStyles('title'),
           },
           content: {
-            text: 'BEST NEW ELECTRIC TOOTHBRUSH',
+            text: 'Plant based',
           },
         },
         text: {
@@ -943,7 +943,83 @@ wapsMap.set('wap-cards-2', {
             style: getStyles('text'),
           },
           content: {
-            text: 'THE STRATEGIST',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-card',
+      typeId: 2,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623cfb47fbd20a23d33aac54_Icon%202.svg',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Gluten free',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          },
+        },
+      },
+    },
+    {
+      id: '3',
+      type: 'wap-card',
+      typeId: 2,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623cfb46bab7a365649510e1_Icon%203.svg',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Made with love',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
           },
         },
       },
