@@ -2108,7 +2108,6 @@ const template2 = {
   ],
 }
 
-
 // --------------------------------------------------------------------- template 3
 
 wapsMap.set('wap-header-4', {
@@ -2178,7 +2177,7 @@ wapsMap.set('wap-hero-4', {
   previewImg: '',
   options: {
     meta: {
-      src: ''
+      src: '',
     },
     style: getStyles(),
   },
@@ -2213,15 +2212,13 @@ wapsMap.set('wap-hero-4', {
         },
         btn: {
           options: {
-            meta: {
-            },
+            meta: {},
             style: getStyles('btn'),
           },
           content: {
-            text: 'GET CREATIVE'
+            text: 'GET CREATIVE',
           },
         },
-
       },
     },
   ],
@@ -2258,13 +2255,12 @@ wapsMap.set('wap-section-9', {
         img: {
           options: {
             meta: {
-              src: "https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/sv-dot-1.png?w=240&ssl=1"
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/sv-dot-1.png?w=240&ssl=1',
             },
             style: getStyles(),
           },
           content: {
             text: 'GET YOUR GOBY.',
-
           },
         },
       },
@@ -2290,25 +2286,23 @@ wapsMap.set('wap-section-9', {
         btn1: {
           options: {
             meta: {
-              src: "https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/sv-dot-1.png?w=240&ssl=1"
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/sv-dot-1.png?w=240&ssl=1',
             },
             style: getStyles('btn'),
           },
           content: {
             text: 'GET YOUR GOBY.',
-
           },
         },
         btn2: {
           options: {
             meta: {
-              src: "https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/sv-dot-1.png?w=240&ssl=1"
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/sv-dot-1.png?w=240&ssl=1',
             },
             style: getStyles('btn'),
           },
           content: {
             text: 'CONTENT SERVICES.',
-
           },
         },
       },
@@ -2316,7 +2310,7 @@ wapsMap.set('wap-section-9', {
   ],
 })
 
-// 
+//
 wapsMap.set('wap-section-14', {
   id: '',
   type: 'wap-section',
@@ -2338,49 +2332,40 @@ wapsMap.set('wap-section-14', {
       info: {
         title: {
           options: {
-            meta: {
-
-            },
+            meta: {},
             style: getStyles('title'),
           },
           content: {
-            text: 'Things we can do for your business'
+            text: 'Things we can do for your business',
           },
         },
         text: {
           options: {
-            meta: {
-
-            },
+            meta: {},
             style: getStyles('text'),
           },
           content: {
-            text: 'AKA our services that will elevate your brand aesthetics, free up your time & add value to your bottom line.'
+            text: 'AKA our services that will elevate your brand aesthetics, free up your time & add value to your bottom line.',
           },
         },
         btn1: {
           options: {
-            meta: {
-
-            },
+            meta: {},
             style: getStyles('btn'),
           },
           content: {
-            text: 'DESIGN SERVICES'
+            text: 'DESIGN SERVICES',
           },
         },
         btn2: {
           options: {
-            meta: {
-
-            },
+            meta: {},
             style: getStyles('btn'),
           },
           content: {
-            text: 'CONTENT SERVICES'
+            text: 'CONTENT SERVICES',
           },
         },
-
       },
     },
   ],
@@ -2619,7 +2604,7 @@ wapsMap.set('wap-cards-6', {
       },
     },
     {
-      id: '1',
+      id: '4',
       type: 'wap-card',
       typeId: 7,
       options: {
@@ -2828,7 +2813,6 @@ wapsMap.set('wap-section-11', {
         },
       },
     },
-
   ],
 })
 
@@ -2881,8 +2865,6 @@ wapsMap.set('wap-section-12', {
         },
       },
     },
-
-
   ],
 })
 wapsMap.set('wap-section-13', {
@@ -2936,8 +2918,6 @@ wapsMap.set('wap-section-13', {
         },
       },
     },
-
-
   ],
 })
 
@@ -2947,9 +2927,7 @@ wapsMap.set('footer-2', {
   typeId: 2,
   previewImg: '',
   options: {
-    meta: {
-
-    },
+    meta: {},
     style: getStyles(),
   },
   cmps: [
@@ -3029,7 +3007,6 @@ wapsMap.set('wap-section-14', {
       },
 
       info: {
-
         text: {
           options: {
             meta: {},
@@ -3039,7 +3016,6 @@ wapsMap.set('wap-section-14', {
             text: 'We acknowledge & pay respect to the land & the traditional families of the Yugambeh region of South East Queensland & their Elders past, present & emerging.',
           },
         },
-
       },
     },
     {
@@ -3098,8 +3074,7 @@ wapsMap.set('wap-section-14', {
         },
         text: {
           options: {
-            meta: {
-            },
+            meta: {},
             style: getStyles('text'),
           },
           content: { text: '© 2022 Sevah Creative®' },
@@ -3112,8 +3087,7 @@ wapsMap.set('wap-section-14', {
 const template3 = {
   _id: 'template-3',
   name: 'Sevah Creative',
-  imgUrl:
-    '',
+  imgUrl: '',
 
   usersData: {
     contacts: [
@@ -3127,7 +3101,7 @@ const template3 = {
     getCmp('wap-section', 9),
     getCmp('wap-section', 14),
     getCmp('wap-section', 10),
-    getCmp('wap-cards-6', 6),
+    getCmp('wap-cards', 6),
     getCmp('wap-section', 11),
     getCmp('wap-section', 12),
     getCmp('wap-section', 13),
@@ -3136,7 +3110,7 @@ const template3 = {
   ],
 }
 
-/* 
+/*
 last cmp num:
 wap-header: 4
 wap-section: 14
