@@ -69,11 +69,12 @@ export default {
     socketService.emit('startConversation', {
       chatId: this.chatId, 
       userId: this.user.id, 
-      adminId: (this.user.id === this.chatId) ? this.user.id : ''
+      adminId: (this.user.isAdmin) ? this.user.id : ''
     })
 
     socketService.on('emitToAdmin', (activeUsers) => {
-        if (this.user.id !== this.chatId) return
+        if (!this.user.isAdmin) return
+
         this.activeUsers = activeUsers
         socketService.emit('listenAll', {})
     })
@@ -84,7 +85,9 @@ export default {
         if (this.user.id !== userId) return
 
         const user = this.activeUsers.find(({activeUser}) => activeUser.userId === userId)
+        this.activeConversation = userId
     })
+
   },
   unmounted() {
     socketService.off(SOCKET_EVENT_ADD_MSG, this.addMsg)
@@ -96,7 +99,9 @@ export default {
       else this.conversations[msg.id] = [msg]
 
       const user = this.activeUsers.find(({userId}) => userId === msg.id)
-      if (user) user.unread++
+      
+      console.log('this.activeConversation, user:', this.activeConversation, user)
+      if (user && (this.activeConversation !== user.userId)) user.unread++
 
     },
     sendMsg() {
@@ -105,16 +110,21 @@ export default {
       this.msg = { txt: '' }
     },
     getUser() {
-        //TODO: IMPORT FROM BACKEND
-        // if (user)
-        return (Math.random() > 0.5) ? 
-              {nickname: 'Admin', id: 'asgg2134'} : 
-              {nickname: 'guest', id: Math.random() + ''}
+        const user = JSON.parse(JSON.stringify(this.$store.getters.loggedinUser))
+
+        if (!user) return {nickname: 'guest', id: Math.random() + ''}
+
+        user.isAdmin = true
+        user.nickname = 'Admin'
+        user.id = user._id
+
+        delete user._id
+        console.log('user:', user)
+        return user       
     },
     setActiveConversation(user) {
         this.activeConversation = user.userId
         user.unread = 0
-        console.log('this.activeUsers:', this.activeUsers)
         socketService.emit('activateConversation', user.userId)
     },
     avatar() { 
