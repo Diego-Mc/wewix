@@ -2035,3 +2035,1043 @@ const template2 = {
     getCmp('wap-cards', 2),
   ],
 }
+
+
+// --------------------------------------------------------------------- template 3
+
+wapsMap.set('wap-header-4', {
+  id: '',
+  type: 'wap-header',
+  typeId: 4,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-logo',
+      typeId: 3,
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'nav',
+      typeId: 2, //change to what you want
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        nav: {
+          options: {
+            meta: {},
+            style: getStyles('nav'),
+          },
+          content: {
+            nav1: 'DESIGN SERVICES',
+            nav2: 'CONTENT SERVICES',
+            nav3: 'OUR WORK',
+            nav4: 'ABOUT',
+            nav5: 'BLOG',
+            nav6: 'CONTACT',
+          },
+        },
+      },
+    },
+  ],
+})
+
+wapsMap.set('wap-hero-4', {
+  id: '',
+  type: 'wap-section',
+  typeId: 9, // not sure but i think you maybe said it needs to be 6.
+  previewImg: '',
+  options: {
+    meta: {
+      src: ''
+    },
+    style: getStyles(),
+  },
+  //go back to this.
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 1,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'We’re more than just your type.',
+          },
+        },
+        text: {
+          options: {
+            meta: {
+              src: 'https://www.goby.co/assets/twitter-ffb608709acf047f23aacb01ca67ac1120372ceb9d7a389bd9476b204b0e264e.svg',
+            },
+            style: getStyles('text'),
+          },
+          content: {},
+        },
+        btn: {
+          options: {
+            meta: {
+            },
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'GET CREATIVE'
+          },
+        },
+
+      },
+    },
+  ],
+})
+
+wapsMap.set('wap-section-9', {
+  id: '',
+  type: 'wap-section',
+  typeId: 9,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 9,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'We’re a boutique creative agency located on the sunny Gold Coast. We bring our big picture minds for business strategy to awesome website design, marketing and content creation.',
+          },
+        },
+        img: {
+          options: {
+            meta: {
+              src: "https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/sv-dot-1.png?w=240&ssl=1"
+            },
+            style: getStyles(),
+          },
+          content: {
+            text: 'GET YOUR GOBY.',
+
+          },
+        },
+      },
+    },
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 10,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Our digital experience offering is second to none, with the ability to make any platform – from WordPress, Unbounce, Shopify through to email platforms, CRMs and social channels – look better than any of those out-of-the-box templates. Whether you’re a services, product or eCommerce business, we create a cohesive brand experience across digital channels, offering slick and compelling touch points that convert and move people to action.',
+          },
+        },
+        btn1: {
+          options: {
+            meta: {
+              src: "https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/sv-dot-1.png?w=240&ssl=1"
+            },
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'GET YOUR GOBY.',
+
+          },
+        },
+        btn2: {
+          options: {
+            meta: {
+              src: "https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/sv-dot-1.png?w=240&ssl=1"
+            },
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'CONTENT SERVICES.',
+
+          },
+        },
+      },
+    },
+  ],
+})
+
+// 
+wapsMap.set('wap-section-14', {
+  id: '',
+  type: 'wap-section',
+  typeId: 14,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 14,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        title: {
+          options: {
+            meta: {
+
+            },
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Things we can do for your business'
+          },
+        },
+        text: {
+          options: {
+            meta: {
+
+            },
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'AKA our services that will elevate your brand aesthetics, free up your time & add value to your bottom line.'
+          },
+        },
+        btn1: {
+          options: {
+            meta: {
+
+            },
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'DESIGN SERVICES'
+          },
+        },
+        btn2: {
+          options: {
+            meta: {
+
+            },
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'CONTENT SERVICES'
+          },
+        },
+
+      },
+    },
+  ],
+})
+wapsMap.set('wap-section-10', {
+  id: '',
+  type: 'wap-section',
+  typeId: 10,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '2',
+      type: 'wap-gallery-section',
+      typeId: 2,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img1: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img2: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img3: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img4: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img5: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img6: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img7: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img8: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img9: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+      },
+    },
+  ],
+})
+
+wapsMap.set('wap-cards-6', {
+  id: '',
+  type: 'wap-cards',
+  typeId: 6,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  //go back to this.
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-card',
+      typeId: 7,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Logo & Brand Identity',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Put your brand’s best foot forward with a bespoke logo design – or go the whole hog with a complete brand identity. We like to take a holistic approach and help shape the entire brand story; so that your products and services stand out in the crowd. All brand identity packages are customised to your requirements.',
+          },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-card',
+      typeId: 7,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Product Photography',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'We shoot at our in house studio for product photography on the Gold Coast. You can also ship your products to us if you’re not local. Custom photography packages can cover everything from pre-shoot planning, prop sourcing, set-building, styling and post-production to make your products stand out. Videography, motion graphics and stop motion video are also available.',
+          },
+        },
+      },
+    },
+    {
+      id: '3',
+      type: 'wap-card',
+      typeId: 7,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Graphic & Website Design',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Elevate your online presence with a beautifully designed website on WordPress & user-friendly custom Divi Theme. You can rely on us to handle everything from your website design to custom website icons, bespoke illustrations, social media content, infographics, UX design – we do it all!',
+          },
+        },
+      },
+    },
+    {
+      id: '1',
+      type: 'wap-card',
+      typeId: 7,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Unbounce Landing Page',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'We’ve worked with Unbounce landing pages since 2013. Whether you need a design refresh, a brand new page built from scratch, help with optimising conversions or setting up A/B testing – we know how to get the most out of Unbounce for you.',
+          },
+        },
+        img2: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+      },
+    },
+  ],
+})
+
+wapsMap.set('wap-section-11', {
+  id: '',
+  type: 'wap-section',
+  typeId: 11,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 11,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'We work with awesome brands & businesses.',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'p.s. We’re based on the beautiful Gold Coast, Australia – but our clients are Australia wide and around the world. No matter where you are, we charge in $AUD, making Sevah Creative® a cost-effective solution.',
+          },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-gallery-section',
+      typeId: 3,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img1: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img2: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img3: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img4: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img5: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img6: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img7: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img8: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img9: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img10: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img11: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img12: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+      },
+    },
+
+  ],
+})
+
+wapsMap.set('wap-section-12', {
+  id: '',
+  type: 'wap-section',
+  typeId: 12,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 11,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: `"...very experienced across a wide range of platforms"`,
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Zoe, your ability to assess and create is uncanny. I have zero suggestions that could make anything that you have done any better! I’ve never said that before!',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Lizzie Babarczy, Head of Marketing Bench',
+          },
+        },
+      },
+    },
+
+
+  ],
+})
+wapsMap.set('wap-section-13', {
+  id: '',
+  type: 'wap-section',
+  typeId: 12,
+  previewImg: '',
+  options: {
+    meta: {
+      src: '',
+    },
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 11,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: `Let's make some magic.`,
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Go on, give us a go. We won’t disappoint …',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'GET IN TOUCH',
+          },
+        },
+      },
+    },
+
+
+  ],
+})
+
+wapsMap.set('footer-2', {
+  id: '',
+  type: 'wap-footer',
+  typeId: 2,
+  previewImg: '',
+  options: {
+    meta: {
+
+    },
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '2',
+      type: 'wap-logo',
+      typeId: 3, //change to what you want
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        nav: {
+          options: {
+            meta: {},
+            style: getStyles('nav'),
+          },
+          content: {
+            nav1: 'SHOP',
+            nav2: 'DESIGN',
+            nav3: 'ABOUT',
+            nav4: 'REVIEWS',
+            nav5: 'REFER A FRIEND',
+            nav6: 'SIGN IN',
+            nav7: 'CART',
+          },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'nav',
+      typeId: 3, //change to what you want
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        nav: {
+          options: {
+            meta: {},
+            style: getStyles('nav'),
+          },
+          content: {
+            nav1: 'DESIGN SERVICES',
+            nav2: 'CONTENT SERVICES',
+            nav3: 'OUR WORK',
+            nav4: 'ABOUT',
+            nav5: 'BLOG',
+            nav6: 'CONTACT',
+          },
+        },
+      },
+    },
+  ],
+})
+
+wapsMap.set('wap-section-14', {
+  id: '',
+  type: 'wap-section',
+  typeId: 14,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 13,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+
+      info: {
+
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'We acknowledge & pay respect to the land & the traditional families of the Yugambeh region of South East Queensland & their Elders past, present & emerging.',
+          },
+        },
+
+      },
+    },
+    {
+      id: '1',
+      type: 'wap-social-section',
+      typeId: 2,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img1: {
+          options: {
+            meta: {
+              src: 'https://www.goby.co/assets/twitter-ffb608709acf047f23aacb01ca67ac1120372ceb9d7a389bd9476b204b0e264e.svg',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img2: {
+          options: {
+            meta: {
+              src: 'https://www.goby.co/assets/facebook-6146757741e670387b96c2b92cd299563b02bf5d242bdd436e85450faf2e913a.svg',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img3: {
+          options: {
+            meta: {
+              src: 'https://www.goby.co/assets/instagram-5ea4be0a80a85df13e3066b28af284140f8ec4b47763285ea431ece13e20b175.svg',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img4: {
+          options: {
+            meta: {
+              src: 'https://www.goby.co/assets/instagram-5ea4be0a80a85df13e3066b28af284140f8ec4b47763285ea431ece13e20b175.svg',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img5: {
+          options: {
+            meta: {
+              src: 'https://www.goby.co/assets/instagram-5ea4be0a80a85df13e3066b28af284140f8ec4b47763285ea431ece13e20b175.svg',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        text: {
+          options: {
+            meta: {
+            },
+            style: getStyles('text'),
+          },
+          content: { text: '© 2022 Sevah Creative®' },
+        },
+      },
+    },
+  ],
+})
+
+const template3 = {
+  _id: 'template-3',
+  name: 'Sevah Creative',
+  imgUrl:
+    '',
+
+  usersData: {
+    contacts: [
+      { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+    ],
+    subscriptions: [{ email: 'user@user.com', at: 123 }],
+  },
+  cmps: [
+    getCmp('wap-header', 4),
+    getCmp('wap-hero', 4),
+    getCmp('wap-section', 9),
+    getCmp('wap-section', 14),
+    getCmp('wap-section', 10),
+    getCmp('wap-cards-6', 6),
+    getCmp('wap-section', 11),
+    getCmp('wap-section', 12),
+    getCmp('wap-section', 13),
+    getCmp('footer', 2),
+    getCmp('wap-section', 14),
+  ],
+}
+
+/* 
+last cmp num:
+wap-header: 4
+wap-section: 14
+wap-hero: 4
+wap-text-section : 14
+wap-cards : 6
+wap-card : 7
+wap-gallery : 3
+wap-logo : 3
+*/
