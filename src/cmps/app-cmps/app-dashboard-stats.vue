@@ -2,11 +2,11 @@
   <section class="dashboard-wap-stats">
     <div class="wap-stat-block">
       <h3>Total Views</h3>
-      <p class="stat-count">{{ wapData.visits?.length}}</p>
+      <p class="stat-count">{{ wapData.visits?.length }}</p>
     </div>
     <div class="wap-stat-block">
       <h3>Created At</h3>
-      <p class="stat-count">{{ wapData.usersData.subscriptions.length }}</p>
+      <p class="stat-count">{{ dateStr }}</p>
     </div>
     <div class="wap-stat-block">
       <h3>Total Subscribers</h3>
@@ -14,7 +14,9 @@
     </div>
     <div class="wap-stat-block">
       <h3>Conversion Rate</h3>
-      <p class="stat-count">{{ wapData.usersData.subscriptions.length }}</p>
+      <p class="stat-count">
+        {{ conversionRate }}
+      </p>
     </div>
   </section>
 </template>
@@ -25,7 +27,18 @@ export default {
     wapData: Object,
   },
   created() {
-    console.log('wa',this.wapData)
+    console.log('wa', this.wapData)
+  },
+  computed: {
+    dateStr() {
+      console.log(this.wapData.createdAt);
+      return new Date(this.wapData.createdAt).toLocaleDateString('fr')
+    },
+    conversionRate(){
+      let rate = this.wapData.usersData.subscriptions.length / this.wapData.visits?.length * 100
+      if(isNaN(rate)) rate =  0
+      return rate + '%'
+    }
   },
 }
 </script>

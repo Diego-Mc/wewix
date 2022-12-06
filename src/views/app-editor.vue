@@ -344,11 +344,16 @@ export default {
     async publishWap(wapName) {
       //TODO ADD USER MSGS
 
-      if (!this.wap.isPublished) {
-        this.wap.name = wapName
-        this.wap.createdAt = Date.now()
-        this.wap.owner = this.loggedinUser
+      if (this.wap.isPublished) {
+        console.log('saved changes')
+        return
       }
+      this.wap.name = wapName
+      this.wap.createdAt = Date.now()
+      this.wap.owner = this.loggedinUser
+      this.wap.isPublished = !this.wap.isPublished
+
+
       try {
         const wapId = await this.updateWap(this.wap)
         this.$store.dispatch('addWapToUser', { wapId: this.wap._id })
