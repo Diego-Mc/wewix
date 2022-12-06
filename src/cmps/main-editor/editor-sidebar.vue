@@ -5,23 +5,36 @@
         :info="{ key: 'editOpt' }"
         dir="column"
         :style="{ paddingBlock: '30px', paddingInline: '14px', margin: '4px' }"
-        @setVal="handleBtnSelect"
+        v-model="tabState.editOpt"
+        :key="tabState.editOpt"
         :opts="[
-          { val: 'add-cmp', icon: 'plus-lg' },
-          { val: 'edit-cmp', icon: 'droplet' },
-          { val: 'edit-site', icon: 'file-richtext' },
+          {
+            val: 'add-cmp',
+            icon: 'plus-lg',
+            title: { text: 'Add', placement: 'right' },
+          },
+          {
+            val: 'edit-cmp',
+            icon: 'droplet',
+            title: { text: 'Edit', placement: 'right' },
+          },
+          {
+            val: 'edit-site',
+            icon: 'file-richtext',
+            title: { text: 'Themes', placement: 'right' },
+          },
         ]" />
     </nav>
     <section
       class="section-select"
-      :class="{ open: isOpen('editOpt', 'add-cmp') }">
+      :class="{ open: tabState.editOpt === 'add-cmp' }">
       <nav class="section-names">
         <h2 class="title">Section</h2>
         <editor-btn-group
           class="desktop-section-names-btns"
           :info="{ key: 'section' }"
           dir="column"
-          @setVal="handleBtnSelect"
+          v-model="tabState.section"
           :style="{
             margin: '4px',
             justifyContent: 'flex-start',
@@ -41,7 +54,7 @@
           class="mobile-section-names-btns"
           :info="{ key: 'section', type: 'picker' }"
           dir="row"
-          @setVal="handleBtnSelect"
+          v-model="tabState.section"
           :style="{
             padding: '30px',
             margin: '4px',
@@ -59,25 +72,27 @@
       </nav>
       <section
         class="section-cmps"
-        :class="{ open: isOpen('section', 'header') }">
+        :class="{ open: tabState.section === 'header' }">
         <wap-templates />
       </section>
     </section>
     <section
       class="cmp-editor"
-      :class="{ open: isOpen('editOpt', 'edit-cmp') }">
+      :class="{ open: tabState.editOpt === 'edit-cmp' }">
       <h2 class="title">Section</h2>
       <cmp-editor
         v-if="selectedCmp.id"
         :id="selectedCmp.id"
         :childCmpId="selectedCmp.childCmpId"
         :editOptions="selectedCmp.options"
-        :elType="selectedCmp.elType" />
+        :elType="selectedCmp.elType"
+        :elDom="selectedCmp.elDom"
+        />
     </section>
 
     <section
       class="page-editor cmp-editor"
-      :class="{ open: isOpen('editOpt', 'edit-site') }">
+      :class="{ open: tabState.editOpt === 'edit-site' }">
       <h2 class="title">Section</h2>
       <edit-font-section />
       <general-editor />
@@ -108,33 +123,24 @@ export default {
   props: {
     selectedCmp: Object,
   },
+  created() {
+    eventBus.on('openCmpEditor', this.openCmpEditor)
+    eventBus.on('closeCmpEditor', this.closeCmpEditor)
+  },
   data() {
     return {
-      editOpt: '',
-      section: '',
+      tabState: {
+        editOpt: '',
+        section: '',
+      },
     }
   },
   methods: {
-    handleBtnSelect({ key, val }) {
-      console.log({ key, val })
-      this[key] = val
-    },
-    isOpen(key, val) {
-      return this[key] === val
-    },
     openCmpEditor() {
-      this.section = 'edit-cmp'
-      this.editOpt = 'edit-cmp'
+      this.tabState.editOpt = 'edit-cmp'
     },
-  },
-
-  watch: {
-    selectedCmp: {
-      handler() {
-        this['editOpt'] === 'edit-cmp'
-        this.openCmpEditor()
-      },
-      deep: true,
+    closeCmpEditor() {
+      this.tabState.editOpt = ''
     },
   },
 

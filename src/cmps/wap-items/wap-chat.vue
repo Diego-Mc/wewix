@@ -31,14 +31,6 @@
       <button>Send</button>
     </form>
 
-    <!-- <label>
-      <input type="radio" value="Politics" v-model="topic" @change="changeTopic" />
-      Politics
-    </label>
-    <label>
-      <input type="radio" value="Love" v-model="topic" @change="changeTopic" />
-      Love
-    </label> -->
   </section>
 </template>
 
@@ -47,45 +39,39 @@ import {
   socketService,
   SOCKET_EMIT_SEND_MSG,
   SOCKET_EVENT_ADD_MSG,
-  SOCKET_EMIT_SET_TOPIC,
 } from '../../services/socket.service'
 
+
 export default {
+  props: {
+    options: Object
+  },
   data() {
     return {
-      msg: { from: 'Guest', txt: '' },
+      msg: {txt: '' },
       msgs: [],
-      topic: 'Love',
-      isChatOpen: false
+      isChatOpen: false,
+      wapId: this.options.meta.chatData.chatId,
+      guestId: Math.random() + '',
+      userNickname: (Math.random() > 0.5) ? 'Guest' : this.options.meta.chatData.adminName
     }
   },
   created() {
-    socketService.setup()
-    // socketService.emit(SOCKET_EMIT_SET_TOPIC, this.topic)
-    socketService.on(SOCKET_EVENT_ADD_MSG, this.addMsg)
+    socketService.emit('startConversation', {wapId: this.wapId, guestId: this.guestId})
+    socketService.on('addMsg', this.addMsg)
   },
   unmounted() {
     socketService.off(SOCKET_EVENT_ADD_MSG, this.addMsg)
-    // socketService.terminate()
   },
   methods: {
     addMsg(msg) {
       this.msgs.push(msg)
     },
     sendMsg() {
-      console.log('Sending', this.msg)
-      // TODO: next line not needed after connecting to backend
-      this.addMsg(this.msg)
-      setTimeout(()=>this.addMsg({from: 'Dummy', txt: 'Yey'}), 2000)
-      const user = userService.getLoggedinUser()
-      const from = (user && user.fullname) || 'Guest'
-      this.msg.from = from
-      socketService.emit(SOCKET_EMIT_SEND_MSG, this.msg)
-      this.msg = { from, txt: '' }
+      this.msg.from = this.userNickname
+      socketService.emit('addMsg', this.msg)
+      this.msg = { txt: '' }
     },
-    // changeTopic() {
-    //   socketService.emit(SOCKET_EMIT_SET_TOPIC, this.topic)
-    // },
   },
 }
 </script>

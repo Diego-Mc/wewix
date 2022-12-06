@@ -1,4 +1,4 @@
-import { wapService } from '../services/wap.service.local'
+import { wapService } from '../services/wap.service.js'
 
 export function getActionRemoveWap(wapId) {
   return {
@@ -50,7 +50,6 @@ export const wapStore = {
   mutations: {
     setEditedWap(state, { wap }) {
       state.editedWap = wap
-      
     },
     setWaps(state, { waps }) {
       state.waps = waps
@@ -72,20 +71,30 @@ export const wapStore = {
     },
   },
   actions: {
+    
+    async getWaps(context) {
+      const waps = await wapService.query()
+      console.log('waps',waps);
+      context.commit({ type: 'setWaps', waps })
+      return waps
+    },
     async getWap(context, { id }) {
       const wap = await wapService.getById(id)
       context.commit({ type: 'setEditedWap', wap })
       return wap
     },
 
+    //Todo
     async getWapByName(context, { wapName }) {
-      try {
-        const wap = await wapService.getByName(wapName)
-        return wap
-      } catch(err) {
-        return undefined
-      }
+      
+        const waps = await wapService.query()
+        console.log(waps);
+        const wapIdx = waps.findIndex(wap => {
+          return wap.name === wapName
+        })
 
+        //isUnique
+        return (wapIdx === -1)
     },
 
     async updateWap(context, { wap }) {
@@ -94,7 +103,7 @@ export const wapStore = {
         context.commit({ type: 'setEditedWap', wap: updatedWap })
         return updatedWap._id
       } catch {
-        console.log('err: couldnt save wap');
+        console.log('err: couldnt save wap')
       }
     },
     async addWap(context, { wap }) {

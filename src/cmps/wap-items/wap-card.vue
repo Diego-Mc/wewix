@@ -3,7 +3,7 @@
     <img
       v-if="info.img"
       :style="info?.img?.options.style"
-      @click.stop="emitSelect('img')"
+      @click.stop="emitSelect('img',$event)"
       class="card-img"
       :src="info?.img?.options.meta.src" />
     <span
@@ -75,11 +75,12 @@ export default {
         childCmpId: this.childCmpId,
       })
     },
-    emitSelect(elType) {
+    emitSelect(elType,e) {
       eventBus.emit('select', {
         cmpId: this.cmpId,
         childCmpId: this.childCmpId,
         elType,
+        elDom: e
       })
     },
   },

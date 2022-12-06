@@ -10,6 +10,7 @@ $clr6: #fff;
 $layoutPadding: 1.6rem;
 
 $mobileQuery: 900px;
+$desktopQuery: 1280px;
 
 // editor vals
 $cmp-bg: #bff0e9;
@@ -17,8 +18,8 @@ $btn-group-bg: #f7f7f7;
 $btn-small-color: rgba($btn-dark, 0.4);
 
 $main-header-height: 60px;
-$editor-header-height: 48px;
-$editor-nav-width: 60px;
+$editor-header-height: 56px;
+$editor-nav-width: 71px;
 $editor-section-names-width: 160px;
 $editor-section-cmps-width: 240px;
 $editor-section-edit-width: 330px;

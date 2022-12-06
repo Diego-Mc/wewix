@@ -1,262 +1,104 @@
 <template>
-  <main>
-    <header>
-      <h2>Dashboard</h2>
-      <nav>
-        <li>View Site</li>
-        <li>Edit Site</li>
-      </nav>
-    </header>
-
-    <section>
-      <div v-for="wap in loggedinUserWaps">
-        {{ wap }}
-      </div>
+  <main class="app-dashboard">
+    <section class="dashboard-sidebar">
+      <h3 class="my-Sites-header">My Sites</h3>
+      <ul class="waps-list">
+        <li v-for="wap in userWaps" @click="changeCurrWapData(wap)">
+          {{ wap.name }}
+        </li>
+      </ul>
     </section>
-
-    <section class="charts-container">
-      <select v-model="selectedChart">
-        <option v-for="chart in chartsOptions" :value="chart.value">
-          {{ chart.label }}
-        </option>
-      </select>
-      <select v-model="selectedStat">
-        <option v-for="stat in statsOptions" :value="stat.value">
-          {{ stat.label }}
-        </option>
-      </select>
-      <component :is="selectedChart" :chartData="chartData"></component>
-    </section>
-
-    <section>
-      <h3>Statistics</h3>
-    </section>
-
-    <section>
-      <h3>Leads</h3>
-    </section>
-
-    <pre>{{ chartData }}</pre>
+    <router-view v-if="currWapData" :wapData="currWapData"></router-view>
   </main>
 </template>
 
 <script>
-import { ref } from 'vue'
-import {
-  DoughnutChart,
-  BarChart,
-  LineChart,
-  PieChart,
-  PolarAreaChart,
-  RadarChart,
-} from 'vue-chart-3'
-import { Chart, registerables } from 'chart.js'
-import Chance from 'chance'
-Chart.register(...registerables)
-
 export default {
   data() {
     return {
-      loggedinUserWaps: null,
-      toys: [],
-      selectedChart: '',
-      selectedStat: '',
-
-      chartsOptions: [
-        {
-          value: 'DoughnutChart',
-          label: 'Doughnut Chart',
-        },
-        {
-          value: 'BarChart',
-          label: 'Bar Chart',
-        },
-        {
-          value: 'LineChart',
-          label: 'Line Chart',
-        },
-        {
-          value: 'PieChart',
-          label: 'Pie Chart',
-        },
-        {
-          value: 'PolarAreaChart',
-          label: 'Polar Area Chart',
-        },
-        {
-          value: 'RadarChart',
-          label: 'Radar Chart',
-        },
-      ],
-
-      statsOptions: [
-        {
-          value: 'frequencyPerHour',
-          label: 'Frequency Per Hour',
-        },
-        {
-          value: 'frequencyPerDay',
-          label: 'Frequency Per Day',
-        },
-        {
-          value: 'frequencyPerMonth',
-          label: 'Frequency Per Month',
-        },
-        {
-          value: 'frequencyPerYear',
-          label: 'Frequency Per Year',
-        },
-        {
-          value: 'conversionRate',
-          label: 'Conversion Rate',
-        },
-      ],
+      userWaps: null,
+      currWapData: null,
     }
   },
-  created() {
-    this.initWaps()
+  async created() {
+    if (!this.loggedinUser || !this.loggedinUser.waps) return
+    let waps = await this.getWaps()
+    this.userWaps = waps
+      .filter((wap) => this.loggedinUser.waps.includes(wap._id))
+      .map((wap) => {
+        return {
+          _id: wap._id,
+          name: wap.name,
+          usersData: wap.usersData,
+          createdAt: 2,
+          totalViews: wap.totalViews,
+        }
+      })
   },
-
   methods: {
-    initWaps() {
-      this.loggedinUserWaps = this.$store.getters.loggedinUserWaps
+    async getWaps() {
+      return await this.$store.dispatch('getWaps')
     },
-    getWapsiteData() {},
-    getDatasetData({ type, dateAfter, columnsFilter }) {
-      if (type === 'conversionRate') return [55, 45]
-      if (!columnsFilter) return
-      else if (type === 'frequencyPer') {
-        const users = this.getDemoData()
-        // Filter By Date Limit
-        let filteredUsers = users.filter(
-          ({ createdAt }) => createdAt >= dateAfter
-        )
-
-        //Map By Selected Date
-        filteredUsers = filteredUsers.reduce((usersMap, currUser) => {
-          const date = new Date(currUser.createdAt)
-          usersMap[date[columnsFilter]()] =
-            usersMap[date[columnsFilter]()] + 1 || 1
-          return usersMap
-        }, {})
-        return Object.values(filteredUsers)
-      }
-    },
-
-    getDemoData() {
-      var chance = new Chance()
-      const demoData = []
-      for (var i = 0; i < 1500; i++) {
-        demoData.push({
-          firstName: chance.name().split(' ')[0],
-          lastName: chance.name().split(' ')[0],
-          email: chance.email(),
-          createdAt: chance
-            .date({ year: chance.integer({ min: 2020, max: 2022 }) })
-            [Symbol.toPrimitive]('number'),
-          msg: chance.sentence({ words: 5 }),
-        })
-      }
-
-      return demoData
+    changeCurrWapData(wap) {
+      this.currWapData = wap
+      this.$router.push('/dashboard/' + this.currWapData._id)
+      console.log(this.currWapData);
     },
   },
-
   computed: {
-    chartData() {
-      let dateAfter = 0
-      let labels = []
-      let label = ''
-      let columnsFilter
-
-      switch (this.selectedStat) {
-        case 'frequencyPerHour':
-          label = 'Frequency Per Hour'
-          dateAfter = Date.now() - 24 * 60 * 60 * 1000
-          labels = [
-            ...Array.from(Array(12).keys()).map((num) => num + 1 + 'am'),
-            ...Array.from(Array(12).keys()).map((num) => num + 1 + 'pm'),
-          ]
-          columnsFilter = 'getHours'
-          break
-        case 'frequencyPerDay':
-          label = 'Frequency Per Day'
-          dateAfter = Date.now() - 7 * 24 * 60 * 60 * 1000
-          labels = Array.from(Array(7).keys()).map((num) => num + 1 + '')
-          columnsFilter = 'getDay'
-          break
-        case 'frequencyPerMonth':
-          label = 'Frequency Per Month'
-          dateAfter = Date.now() - 30 * 7 * 24 * 60 * 60 * 1000
-          labels = [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec',
-          ]
-          columnsFilter = 'getMonth'
-          break
-        case 'frequencyPerYear':
-          label = 'Frequency Per Year'
-          dateAfter = Date.now() - 12 * 30 * 7 * 24 * 60 * 60 * 1000
-          labels = ['2020', '2021', '2022']
-          columnsFilter = 'getFullYear'
-          break
-        case 'conversionRate':
-          label = 'Conversion Rate'
-          labels = ['No', 'Yes']
-          break
-      }
-      const data =
-        this.selectedStat === 'conversionRate'
-          ? this.getDatasetData({ type: 'conversionRate' })
-          : this.getDatasetData({
-              type: 'frequencyPer',
-              columns: labels.length,
-              columnsFilter,
-              dateAfter,
-            })
-
-      return {
-        labels,
-        datasets: [
-          {
-            label,
-            data,
-            backgroundColor: [
-              '#cfc5ff',
-              '#ac9bff',
-              '#856cff',
-              '#5f3eff',
-              '#2e15a6',
-              '#ffb9b4',
-              '#ff9494',
-              '#ff6666',
-              '#ff3f3f',
-              '#b72b2b',
-              '#8f1717',
-            ],
-          },
-        ],
-      }
+    loggedinUser() {
+      return this.$store.getters.loggedinUser
     },
-  },
-
-  components: {
-    DoughnutChart,
-    BarChart,
-    LineChart,
-    PieChart,
-    PolarAreaChart,
-    RadarChart,
   },
 }
 </script>
+
+<!-- 
+Diego:
+table is too large how do i make it smaller?
+-->
+<style lang="scss">
+.app-dashboard {
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  padding: 20px;
+  gap: 23px;
+  height: 100vh;
+
+  .dashboard-sidebar {
+    background-color: teal;
+    height: 100%;
+    padding: 30px 5px;
+
+    .my-Sites-header {
+      margin-bottom: 30px;
+      margin-left: 20px;
+      font-size: 18px;
+    }
+
+    .waps-list {
+      li {
+        height: 50px;
+        line-height: 16px;
+        padding-left: 16px;
+        padding-block: 19px;
+      }
+      li:hover {
+        background: #e6f6f4;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  .dashboard-data,
+  .dashboard-sidebar {
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 6px;
+  }
+
+  .dashboard-data {
+    padding-inline: 75px;
+  }
+}
+</style>

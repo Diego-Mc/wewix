@@ -1,8 +1,40 @@
 <template>
-  <section class="main-editor" v-if="wap">
+  <!-- <wap-chat/> -->
+  <user-confirm-modal
+    class="confirm-modal"
+    v-if="isConfirmModalOpen"
+    :confirmData="confirmData"
+    @closelModal="closeConfirmModal"
+    @openWorkSpace="openWorkSpace" 
+  />
+
+  <cursor v-if="workTogetherCursors[0]" :cursorsData="workTogetherCursors" />
+  <section
+    @drag="sendMouseEvent('drag', $event)"
+    @mousemove="sendMouseEvent('move', $event)"
+    @mousedown="sendMouseEvent('down', $event)"
+    @mouseup="sendMouseEvent('move', $event)"
+    class="main-editor"
+    v-if="wap">
     <section class="main-editor-tools">
+      <button
+        @click="publishWap('yay')"
+        :style="{
+          backgroundColor: 'blue',
+          position: 'fixed',
+          bottom: 0,
+          right: 0,
+          padding: '20px',
+          color: 'white',
+        }">
+        publish test
+      </button>
       <main-header />
-      <editor-header @setMedia="setMedia" @publishWap="publishWap" :wapName="wap.name"/>
+      <editor-header
+        @setVal="openWorkTogetherConfirm"
+        @setMedia="setMedia"
+        @publishWap="publishWap"
+        :wapName="wap.name" />
       <editor-sidebar :selectedCmp="selectedCmp" />
     </section>
     <main class="main-wap" :class="mediaType">
@@ -13,7 +45,7 @@
           name: !drag ? 'flip-list' : null,
         }"
         @add="cmpAdded($event)"
-        v-model="wap.cmps"
+        :list="wap.cmps"
         v-bind="dragOptions"
         @start="drag = true"
         @end="drag = false"
@@ -39,9 +71,11 @@
 
 <script>
 import draggable from 'vuedraggable'
+import { socketService } from '../services/socket.service'
 
 import { eventBus } from '../services/event-bus.service'
-
+import { httpService } from '../services/http.service'
+import getCmp, { wapUtils } from '../services/wap-cmps.service'
 import { appEditorService } from '../services/app-editor.service'
 import { utilService } from '../services/util.service'
 
@@ -49,6 +83,8 @@ import editorBtnGroup from '../cmps/main-editor/editor-items/editor-btn-group.vu
 import mainHeader from '../cmps/app-cmps/main-header.vue'
 import editorHeader from '../cmps/main-editor/editor-header.vue'
 import editorSidebar from '../cmps/main-editor/editor-sidebar.vue'
+import cursor from '../cmps/app-cmps/cursor.vue'
+import userConfirmModal from '../cmps/app-cmps/user-confirm-modal.vue'
 
 import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
@@ -59,14 +95,12 @@ import wapVideo from '../cmps/wap-items/wap-video.vue'
 import wapMap from '../cmps/wap-items/wap-map.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
 import loginModal from '../cmps/app-cmps/login-modal.vue'
-import getCmp from '../services/wap-cmps.service'
 
 export default {
   data() {
     return {
       wap: null,
       selectedCmp: {},
-      isOpenCmpEditor: false,
       drag: false,
       dragOptions: {
         animation: 200,
@@ -75,26 +109,37 @@ export default {
         ghostClass: 'ghost',
       },
       mediaType: 'desktop',
+
+      curserId: utilService.makeId(),
+      cursorColor: utilService.getRandomColor(),
+      workTogetherCursors: [],
+      isSocketsOn: false,
+
+      isConfirmModalOpen: false,
+      confirmData: null,
     }
   },
   async created() {
-    console.log('I AM CREATED!!!!!!', utilService.deepCopy(this.wap))
     this.onCmpsChange = utilService.debounce(this.onCmpsChange, 500)
+
     await this.loadWap()
-    console.log('HEYY', this.wap, this.wap.cmps)
-    this.loadEvents()
+    this.initEventsFromBus()
     this.initHistory()
     this.checkNewVisit() // TODO: only on published mode.
 
-    if (this.wap.classState)
+    if (this.wap.classState) {
       document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
-  },
-  mounted() {
-    console.log('I AM MOUNTED!!!!!!', utilService.deepCopy(this.wap))
-    document.addEventListener('keydown', this.keydownHandler)
+    }
+
+    this.setSocketEvents()
+
+    if (this.$route.query.workTogether) {
+      this.isSocketsOn = true
+      this.openWorkSpace()
+    }
   },
   unmounted() {
-    console.log('I AM UNMOUNTED!!!!!!', utilService.deepCopy(this.wap))
+    console.log('I AM UNMOUNTED!!!!!!', this.wap._id)
     document.removeEventListener('keydown', this.keydownHandler)
   },
   methods: {
@@ -179,10 +224,11 @@ export default {
       }
     },
     onCmpsChange() {
-      console.log('CHANGE', this.wap)
       this.updateWap()
       this.saveLastChange()
-      console.log('CHANGE', this.wap)
+      if (this.isSocketsOn) {
+        socketService.emit('cmpChange', this.wap)
+      }
     },
     // I added return to this function
     async updateWap() {
@@ -193,7 +239,6 @@ export default {
       this.drag = false
       this.onCmpsChange()
     },
-
     // prettier-ignore
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
 
@@ -209,21 +254,26 @@ export default {
       this.onCmpsChange()
     },
     async loadWap() {
+      // console.log('templatedId',this.$route.query.templateId)
       if (this.$route.params?.id) {
         const wap = await this.$store.dispatch({
           type: 'getWap',
           id: this.$route.params.id,
         })
-        console.log('store wap', this.$store.getters.editedWap)
         this.wap = JSON.parse(JSON.stringify(this.$store.getters.editedWap))
       } else {
-        this.wap = appEditorService.getEmptyWap()
+        if (this.$route.query.templateId) {
+          this.wap = wapUtils.getTemplate(this.$route.query.templateId)
+          this.wap._id = ''
+        } else this.wap = appEditorService.getEmptyWap()
+
         const editedWapId = await this.$store.dispatch({
           type: 'updateWap',
           wap: this.wap,
         })
-        console.log('editedWapId', editedWapId)
+
         this.wap._id = editedWapId
+
         // TODO: fix this.
         this.$router.push({ path: '/edit/' + editedWapId, replace: true })
       }
@@ -238,25 +288,24 @@ export default {
         })
       }
     },
-    select({ cmpId, elType, childCmpId }) {
+    cmpSelected({ cmpId, elType, childCmpId, elDom }) {
       this.selectedCmp = {}
-      console.log('THIS IS WAP', this.wap)
 
       let cmp = this.wap.cmps.find(({ id }) => {
-        console.log('id in for loop', id, cmpId)
         return id === cmpId
       })
-      console.log('after loop:', cmp)
-      console.log('selected-cmp before bug:', this.wap.cmps)
+
       if (childCmpId) {
         cmp = cmp.cmps.find(({ id }) => id === childCmpId)
         this.selectedCmp.childCmpId = childCmpId
       }
-      console.log('selected-cmp:', cmp, cmpId, elType, childCmpId)
+
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = elType ? cmp.info[elType].options : cmp.options
       this.selectedCmp.elType = elType
-      this.isOpenCmpEditor = true
+      this.selectedCmp.elDom = elDom.target
+
+      eventBus.emit('openCmpEditor')
     },
 
     addUserInfo(userInfo) {
@@ -265,7 +314,7 @@ export default {
       else this.wap.usersData.contacts.push(userInfo)
       this.updateWap()
     },
-    loadEvents() {
+    initEventsFromBus() {
       eventBus.on('cmpUpdated', this.handleUpdate)
       eventBus.on('onInnerCmpDrop', ({ cmpId, cmps }) => {
         const cmpIndex = this.wap.cmps.findIndex(({ id }) => id === cmpId)
@@ -275,7 +324,7 @@ export default {
       eventBus.on('formSubmited', this.addUserInfo)
       eventBus.on('undo', this.undo)
       eventBus.on('redo', this.redo)
-      eventBus.on('select', this.select)
+      eventBus.on('select', this.cmpSelected)
       eventBus.on('themeChanged', this.themeChanged)
       eventBus.on('removeCmp', this.removeCmp)
       eventBus.on('updateField', this.updateField)
@@ -293,13 +342,102 @@ export default {
     async publishWap(siteName) {
       //TODO ADD USER MSGS
       this.wap.name = siteName
+      this.wap.owner = this.loggedinUser
       try {
         const wapId = await this.updateWap(this.wap)
-        if (wapId) this.$router.push(`/${siteName}`)
-      } catch(err) {
-        console.log(err);
+        this.$store.dispatch('addWapToUser', { wapId: this.wap._id })
+        // if (wapId) this.$router.push(`/${siteName}`)
+      } catch (err) {
+        console.log(err)
       }
-      
+    },
+    terminateEventBus() {
+      eventBus.off('select')
+      eventBus.off('cmpUpdated')
+      eventBus.off('onInnerCmpDrop')
+      eventBus.off('formSubmited')
+      eventBus.off('undo')
+      eventBus.off('redo')
+      eventBus.off('select')
+      eventBus.off('themeChanged')
+      eventBus.off('removeCmp')
+      eventBus.off('updateField')
+    },
+
+    async setSocketEvents() {
+      socketService.on('cmpChange', (wap) => {
+        this.wap = wap
+      })
+
+      socketService.on('mouseEvent', (cursorProps) => {
+        const cursorPropIdx = this.workTogetherCursors.findIndex(({ id }) => {
+          return id === cursorProps.id
+        })
+        if (cursorPropIdx !== -1)
+          this.workTogetherCursors[cursorPropIdx] = cursorProps
+        else this.workTogetherCursors.push(cursorProps)
+      })
+
+      socketService.on('userDisconnected', (cursorId) => {
+        console.log('userDisconnected')
+        const curserToRemoveIdx = this.workTogetherCursors.findIndex(
+          ({ id }) => id === cursorId
+        )
+        this.workTogetherCursors.splice(curserToRemoveIdx, 1)
+      })
+    },
+
+    sendMouseEvent(evType, ev) {
+      if (!this.isSocketsOn) return
+
+      const sendedCursor = { style: evType }
+      const { clientX, clientY, offsetX, offsetY } = ev
+
+      sendedCursor.clientXY = { clientX, clientY }
+      sendedCursor.id = this.curserId
+      sendedCursor.color = this.cursorColor
+      sendedCursor.type = evType
+
+      socketService.emit('mouseEvent', sendedCursor)
+    },
+
+    openWorkTogetherConfirm({ key }) {
+      console.log(key);
+      if (this.isSocketsOn) {
+        //Todo user msg
+        console.log('There is opened work space')
+        return
+      }
+      if (key !== 'workTogether') return
+
+      this.confirmData = {
+        txt: 'Are you sure you want to open a work space?',
+      }
+
+      this.isConfirmModalOpen = true
+    },
+
+    closeConfirmModal() {
+      this.confirmData = null
+      this.isConfirmModalOpen = false
+    },
+
+    openWorkSpace() {
+      this.isSocketsOn = true
+      socketService.emit('joinWorkSpace', {
+        wapId: this.wap._id,
+        cursorId: this.curserId,
+      })
+    },
+  },
+
+  unmounted() {
+    this.terminateEventBus()
+    socketService.emit('doDisconnect', {})
+  },
+  computed: {
+    loggedinUser() {
+      return this.$store.getters.loggedinUser
     },
   },
   components: {
@@ -316,8 +454,18 @@ export default {
     wapForm,
     wapVideo,
     wapMap,
+    cursor,
+    userConfirmModal,
+    wapChat,
   },
 }
 </script>
 
-<options lang="scss" scoped></options>
+<options lang="scss" scoped>
+.confirm-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+</options>

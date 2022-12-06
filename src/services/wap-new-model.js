@@ -4,6 +4,10 @@ export const wapForm = {
   type: 'wap-form',
   options: {
     meta: {
+      formInputs: [
+        { tag: 'email', txt: '' },
+        { tag: 'msg', txt: '' },
+      ],
       img: '',
     },
     style: {
@@ -138,6 +142,19 @@ export const wapGraph = {
       content: {},
     },
   },
+}
+
+export const wapChat = {
+  id: 'wc11',
+  type: 'wap-chat',
+  options: {
+    meta: {
+        chatData: {
+          adminName: 'Adam. MasterChef at CafePuki',
+          chatId: 'asgg2134'
+        }
+      }
+    },
 }
 
 export default [

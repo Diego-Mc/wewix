@@ -27,7 +27,7 @@ import draggable from 'vuedraggable'
 import cmpItem from './editor-items/cmp-item.vue'
 import { utilService } from '../../services/util.service'
 import getCmp from '../../services/wap-cmps.service'
-import { wapVideo, wapMap, wapForm } from '../../services/wap-new-model'
+import { wapVideo, wapMap, wapForm, wapChat } from '../../services/wap-new-model'
 export default {
   components: {
     draggable,
@@ -42,13 +42,15 @@ export default {
         getCmp('wap-section', 3),
         getCmp('wap-section', 4),
         getCmp('wap-cards', 2),
-        wapGraph
-      ],
+        wapVideo,
+        wapMap,
+        wapForm,
+        wapChat,
+        ],
     }
   },
   methods: {
     startDrag(e) {
-      console.log('eE', e.item.__draggable_context.element)
       const { type, typeId } = e.item.__draggable_context.element
       e.item.__draggable_context.element = getCmp(type, typeId)
       // this.cmpsDropdownOptions = [
@@ -56,7 +58,7 @@ export default {
       //   getCmp('wap-cards', 2),
       //   getCmp('wap-section', 2),
       //   getCmp('wap-section', 3),
-      //   // cmpCardImg: 'src/assets/imgs/cmp-cards-2.png',
+      //   // cmpCardImg: './assets/imgs/cmp-cards-2.png',
       //   // cmp:null
       //   // getCmp('wap-section', 4),
       //   // getCmp('wap-form', 1),

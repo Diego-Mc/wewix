@@ -115,6 +115,8 @@ export default {
         ...Object.keys(this.editOptions.style),
         ...Object.keys(this.editOptions.meta),
       ]
+      console.log('cmp', options.includes(type))
+
       return options.includes(type)
     },
 
@@ -182,7 +184,7 @@ export default {
   },
 
   created() {
-    this.getMapData = utilService.debounce(this.getMapData, 1500)
+        this.getMapData = utilService.debounce(this.getMapData, 1500)
 
   },
 

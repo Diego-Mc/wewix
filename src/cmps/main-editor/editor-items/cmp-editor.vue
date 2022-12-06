@@ -83,6 +83,10 @@
         </div>
       </div>
 
+      <div v-if="isOptionsContain('animation')">
+          <edit-animation-section @select="updateOptionsMeta" :animation="editOptions.meta.animation"/>
+      </div> 
+
       <div v-if="isOptionsContain('formInputs')">
         enter name of fields
         <div v-for="(field, idx) in updatedOptions.meta.formInputs">
@@ -107,6 +111,9 @@
       <div>
         <el-button type="danger" @click.stop="onRemoveCmp">Remove</el-button>
       </div>
+      <div>
+        <button @click="log">Log</button>
+      </div>
     </section>
   </section>
 </template>
@@ -123,6 +130,7 @@ import editColorSection from '../cmp-edit-sections/edit-color-section.vue'
 import editBgColorSection from '../cmp-edit-sections/edit-bg-color-section.vue'
 import editRadiusSection from '../cmp-edit-sections/edit-radius-section.vue'
 import editUploadSection from '../cmp-edit-sections/edit-upload-section.vue'
+import editAnimationSection from '../cmp-edit-sections/edit-animation-section.vue'
 
 export default {
   props: {
@@ -130,6 +138,7 @@ export default {
     childCmpId: String,
     editOptions: Object,
     elType: String,
+    elDom: Object
   },
   data() {
     return {
@@ -163,6 +172,7 @@ export default {
         ...Object.keys(this.editOptions.style),
         ...Object.keys(this.editOptions.meta),
       ]
+      console.log('cmp', options.includes(type))
       return options.includes(type)
     },
 
@@ -235,6 +245,10 @@ export default {
     closeMapLocationLoader() {
       this.isMapLocationLoader = false
     },
+    log() {
+      window.getComputedStyle(this.elDom)
+      this.elDom.style.height = Math.floor(Math.random() * 100) + 'px'
+    }
   },
   watch: {
     editOptions() {
@@ -243,7 +257,9 @@ export default {
   },
 
   created() {
+    console.log('elDom', this.elDom);
     this.getMapData = utilService.debounce(this.getMapData, 1500)
+
   },
 
   components: {
@@ -254,6 +270,7 @@ export default {
     editRadiusSection,
     editUploadSection,
     editFontSizeSection,
+    editAnimationSection
   },
 }
 </script>

@@ -18,7 +18,6 @@ window.cs = wapService
 
 async function query(filterBy = { txt: '', price: 0 }) {
   var waps = await storageService.query(WAPS_KEY)
-  if (!waps || !waps.length) waps = []
 
   return waps
 }
@@ -77,3 +76,4 @@ function getEmptyWap() {
   }
 }
 
+// TEST DATA
