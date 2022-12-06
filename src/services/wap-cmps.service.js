@@ -1180,7 +1180,7 @@ wapsMap.set('wap-header-3', {
     {
       id: '1',
       type: 'wap-logo',
-      typeId: 1, // change to what you want
+      typeId: 2, // change to what you want
       previewImg: '',
       options: {
         meta: {},
@@ -1202,7 +1202,7 @@ wapsMap.set('wap-header-3', {
     {
       id: '2',
       type: 'nav',
-      typeId: 20, //change to what you want
+      typeId: 2, //change to what you want
       previewImg: '',
       options: {
         meta: {},
@@ -1238,13 +1238,17 @@ wapsMap.set('wap-hero-3', {
     meta: {
       src: 'https://www.goby.co/assets/modern-luxary-desktop-810f00643379d078f84ed90e28d96ba12742e9fb347cc966e480c75f9d896740.jpg',
     },
-    style: getStyles(),
+    style: {
+      ...getStyles(),
+      backgroundImage:
+        'url(https://www.goby.co/assets/modern-luxary-desktop-810f00643379d078f84ed90e28d96ba12742e9fb347cc966e480c75f9d896740.jpg)',
+    },
   },
   cmps: [
     {
       id: '1',
       type: 'wap-text-section',
-      typeId: 5,
+      typeId: 6,
       options: {
         meta: {},
         style: getStyles(),
@@ -1265,7 +1269,7 @@ wapsMap.set('wap-hero-3', {
             style: getStyles('btn'),
           },
           content: {
-            text: 'Shop Now',
+            text: 'SHOP NOW',
           },
         },
       },
@@ -1432,10 +1436,10 @@ wapsMap.set('wap-cards-3', {
 })
 
 //did we skip the part wher eit has a sticker 'ADA Accepted'?
-wapsMap.set('wap-section-6', {
+wapsMap.set('wap-section-5', {
   id: '',
   type: 'wap-section',
-  typeId: 6,
+  typeId: 5,
   previewImg: '',
   options: {
     meta: {},
@@ -1444,8 +1448,28 @@ wapsMap.set('wap-section-6', {
   cmps: [
     {
       id: '1',
+      type: 'wap-img-section',
+      typeId: 5,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://www.goby.co/assets/max-clean-0ddf5ef0f199f84aa3a1a0a17a24e404e97546c6ed6235644b742579e7af6ac2.jpg',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+      },
+    },
+    {
+      id: '2',
       type: 'wap-text-section',
-      typeId: 6,
+      typeId: 9,
       options: {
         meta: {},
         style: getStyles(),
@@ -1498,7 +1522,7 @@ wapsMap.set('wap-cards-4', {
     {
       id: '1',
       type: 'wap-card',
-      typeId: 4,
+      typeId: 5,
       options: {
         meta: {},
         style: getStyles(),
@@ -1537,7 +1561,7 @@ wapsMap.set('wap-cards-4', {
     {
       id: '2',
       type: 'wap-card',
-      typeId: 4,
+      typeId: 5,
       options: {
         meta: {},
         style: getStyles(),
@@ -1576,7 +1600,7 @@ wapsMap.set('wap-cards-4', {
     {
       id: '3',
       type: 'wap-card',
-      typeId: 4,
+      typeId: 5,
       options: {
         meta: {},
         style: getStyles(),
@@ -1663,7 +1687,7 @@ wapsMap.set('wap-cards-5', {
     {
       id: '1',
       type: 'wap-card',
-      typeId: 4,
+      typeId: 6,
       options: {
         meta: {},
         style: getStyles(),
@@ -1672,7 +1696,7 @@ wapsMap.set('wap-cards-5', {
         img: {
           options: {
             meta: {
-              src: 'https://www.goby.co/assets/subscribe-4bb6314d9b54e9f3725d3b697e8e804259b370bd91849da8204ed3b9126b8eb0.png',
+              src: 'https://www.goby.co/assets/icon-smile-ed3aec2d082711b3bd0ff051712c0e85aef7523efeea12eee291da20970151d6.png',
             },
             style: getStyles('img'),
           },
@@ -1702,7 +1726,7 @@ wapsMap.set('wap-cards-5', {
     {
       id: '2',
       type: 'wap-card',
-      typeId: 4,
+      typeId: 6,
       options: {
         meta: {},
         style: getStyles(),
@@ -1741,7 +1765,7 @@ wapsMap.set('wap-cards-5', {
     {
       id: '3',
       type: 'wap-card',
-      typeId: 4,
+      typeId: 6,
       options: {
         meta: {},
         style: getStyles(),
@@ -1780,7 +1804,7 @@ wapsMap.set('wap-cards-5', {
     {
       id: '4',
       type: 'wap-card',
-      typeId: 4,
+      typeId: 6,
       options: {
         meta: {},
         style: getStyles(),

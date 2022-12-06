@@ -30,6 +30,18 @@
   &.type-4 {
     @include grid(2, 16%);
   }
+  &.type-5 {
+    @include grid(2, 16%);
+    background-color: #f7f7f7;
+    padding-block: 0;
+    // font-size: rem(10px);
+  }
+  &.type-6 {
+    @include grid(1);
+    background-color: #f7f7f7;
+    padding-block: 0;
+    // font-size: rem(10px);
+  }
 }
 
 @container wap (max-width: 990px) {

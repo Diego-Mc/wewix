@@ -1,9 +1,9 @@
 <template>
-  <article :style="options.style" class="wap-card" :class="'type-' + typeId" >
+  <article :style="options.style" class="wap-card" :class="'type-' + typeId">
     <img
       v-if="info.img"
       :style="info?.img?.options.style"
-      @click.stop="emitSelect('img',$event)"
+      @click.stop="emitSelect('img', $event)"
       class="card-img"
       :src="info?.img?.options.meta.src" />
     <span
@@ -35,6 +35,15 @@
       @input="updateContent('title', $event)"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.title?.content.text }}
+    </h3>
+    <h3
+      v-if="info.subtitle"
+      class="subtitle"
+      :style="info?.subtitle?.options.style"
+      @click.stop="emitSelect('subtitle')"
+      @input="updateContent('subtitle', $event)"
+      :contenteditable="$store.getters.isEditMode">
+      {{ info?.subtitle?.content.text }}
     </h3>
 
     <p
@@ -75,12 +84,12 @@ export default {
         childCmpId: this.childCmpId,
       })
     },
-    emitSelect(elType,e) {
+    emitSelect(elType, e) {
       eventBus.emit('select', {
         cmpId: this.cmpId,
         childCmpId: this.childCmpId,
         elType,
-        elDom: e
+        elDom: e,
       })
     },
   },
