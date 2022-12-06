@@ -57,7 +57,6 @@ export default {
       }
       this.$emit('update:modelValue', this.val[0])
       this.$emit('setVal', { key: this.info?.key, val: this.val[0] })
-
     },
     iconEvent(iconType) {
       if (iconType === 'arrow-return-left') eventBus.emit('undo')

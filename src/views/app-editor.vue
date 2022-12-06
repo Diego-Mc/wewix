@@ -5,7 +5,9 @@
     v-if="isConfirmModalOpen"
     :confirmData="confirmData"
     @closelModal="closeConfirmModal"
-    @openWorkSpace="openWorkSpace" />
+    @openWorkSpace="openWorkSpace" 
+  />
+
   <cursor v-if="workTogetherCursors[0]" :cursorsData="workTogetherCursors" />
   <section
     @drag="sendMouseEvent('drag', $event)"
@@ -400,6 +402,7 @@ export default {
     },
 
     openWorkTogetherConfirm({ key }) {
+      console.log(key);
       if (this.isSocketsOn) {
         //Todo user msg
         console.log('There is opened work space')
