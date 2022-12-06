@@ -9,13 +9,12 @@ import appPreview from './views/app-preview.vue'
 import testTestTest from './views/test-test-test.vue'
 import appPublish from './views/appPublish.vue'
 
-import appTemplatesBug from './views/app-templates-bug.vue'
 
 import editorWithStyle from './views/editor-with-style.vue'
 
 import loginModal from './cmps/app-cmps/login-modal.vue'
-import loginSignup from './views/login-signup.vue'
-
+import userLogin from './views/user-login.vue'
+import usersignup from './views/user-signup.vue'
 const routes = [
   {
     path: '/',
@@ -25,7 +24,7 @@ const routes = [
   {
     path: '/templates',
     name: 'app-templates',
-    component: appTemplatesBug,
+    component: appTemplates,
   },
   {
     path: '/edit/:id?',
@@ -66,14 +65,14 @@ const routes = [
     component: appPublish,
   },
   {
-    path: '/loginsignup',
-    name: 'loginsignup',
-    component: loginSignup,
+    path: '/login',
+    name: 'userLogin',
+    component: userLogin,
   },
   {
-    path: '/loginModal',
-    name: 'loginModal',
-    component: loginModal,
+    path: '/signup',
+    name: 'usersignup',
+    component: usersignup,
   },
 
   // {

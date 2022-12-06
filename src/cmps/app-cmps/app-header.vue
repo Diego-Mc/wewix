@@ -34,17 +34,37 @@
       <a to="#demo">Demo</a>
       <a to="#about">About</a>
     </Slide>
-    <section class="user-auth">
-      <button class="login-btn"><i class="bi bi-person"></i> login</button>
-      <button class="register-btn">sign up for free</button>
+    <!-- TODO: make it pretty -->
+    <section v-if="loggedinUser">
+      <span>user: <h3 style="display:inline-block">
+        {{loggedinUser.fullname}}
+      </h3>
+    </span>
+        <button @click="doLogout">Logout</button>
+    </section>
+    <section class="user-auth" v-else>
+      <router-link :to="'/login/'">
+        <button class="login-btn"><i class="bi bi-person"></i> login</button>
+      </router-link>
+      <router-link :to="'/signup/'">
+        <button class="register-btn">sign up for free</button>
+      </router-link>
     </section>
   </header>
 </template>
 <script>
 import { Slide } from 'vue3-burger-menu'
 export default {
-  computed: {},
-  methods: {},
+  computed: {
+    loggedinUser() {
+      return this.$store.getters.loggedinUser
+    },
+  },
+  methods: {
+    doLogout() {
+      this.$store.dispatch({ type: 'logout' })
+    },
+  },
   components: {
     Slide,
   },

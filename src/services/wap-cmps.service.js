@@ -928,13 +928,14 @@ wapsMap.set('wap-cards-2', {
           },
           content: {},
         },
+
         title: {
           options: {
             meta: {},
             style: getStyles('title'),
           },
           content: {
-            text: 'BEST NEW ELECTRIC TOOTHBRUSH',
+            text: 'Plant based',
           },
         },
         text: {
@@ -943,7 +944,85 @@ wapsMap.set('wap-cards-2', {
             style: getStyles('text'),
           },
           content: {
-            text: 'THE STRATEGIST',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-card',
+      typeId: 2,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623cfb47fbd20a23d33aac54_Icon%202.svg',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Gluten free',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+          },
+        },
+      },
+    },
+    {
+      id: '3',
+      type: 'wap-card',
+      typeId: 2,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623cfb46bab7a365649510e1_Icon%203.svg',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Made with love',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
           },
         },
       },
@@ -1101,23 +1180,22 @@ wapsMap.set('wap-header-3', {
     {
       id: '1',
       type: 'wap-logo',
-      typeId: 99, // change to what you want
+      typeId: 1, // change to what you want
       previewImg: '',
       options: {
         meta: {},
-        style: getStyles('header'),
+        style: getStyles(),
       },
       info: {
-        logo: {
+        img: {
           // logo or wapLogo or title?
           options: {
             meta: {
               src: '', // its an svg didnt know how to copy
             },
-            style: getStyles('title'),
+            style: getStyles('img'),
           },
           content: {
-            text: 'GOBY',
           },
         },
       },
@@ -1161,7 +1239,7 @@ wapsMap.set('wap-hero-3', {
     meta: {
       src: 'https://www.goby.co/assets/modern-luxary-desktop-810f00643379d078f84ed90e28d96ba12742e9fb347cc966e480c75f9d896740.jpg',
     },
-    style: getStyles('hero'),
+    style: getStyles(),
   },
   cmps: [
     {
@@ -1205,7 +1283,6 @@ wapsMap.set('wap-cards-3', {
     meta: {},
     style: getStyles(),
   },
-  //go back to this.
   cmps: [
     {
       id: '1',
@@ -1228,10 +1305,10 @@ wapsMap.set('wap-cards-3', {
         title: {
           options: {
             meta: {},
-            style: getStyles('text'),
+            style: getStyles('title'),
           },
           content: {
-            text: 'THE STRATEGIST.',
+            text: 'THE STRATEGIST',
           },
         },
       },
@@ -1257,10 +1334,10 @@ wapsMap.set('wap-cards-3', {
         title: {
           options: {
             meta: {},
-            style: getStyles('text'),
+            style: getStyles('title'),
           },
           content: {
-            text: 'ASK THE DENTIST.',
+            text: 'ASK THE DENTIST',
           },
         },
       },
@@ -1268,7 +1345,7 @@ wapsMap.set('wap-cards-3', {
     {
       id: '3',
       type: 'wap-card',
-      typeId: 3,
+      typeId: 4,
       options: {
         meta: {},
         style: getStyles(),
@@ -1282,16 +1359,15 @@ wapsMap.set('wap-cards-3', {
             style: getStyles('img'),
           },
           content: {
-            text: 'BEST NEW ELECTRIC TOOTHBRUSH',
           },
         },
         title: {
           options: {
             meta: {},
-            style: getStyles('text'),
+            style: getStyles('title'),
           },
           content: {
-            text: '500+ REVIEWS.',
+            text: '500+ REVIEWS',
           },
         },
       },
@@ -1311,16 +1387,16 @@ wapsMap.set('wap-cards-3', {
             style: getStyles('subtitle'),
           },
           content: {
-            text: 'BEST NEW ELECTRIC TOOTHBRUSH',
+            text: 'BEST SUBSCRIPTION TOOTHBRUSH',
           },
         },
         title: {
           options: {
             meta: {},
-            style: getStyles('text'),
+            style: getStyles('title'),
           },
           content: {
-            text: 'WIRECUTTER.',
+            text: 'WIRECUTTER',
           },
         },
       },
@@ -1346,10 +1422,10 @@ wapsMap.set('wap-cards-3', {
         title: {
           options: {
             meta: {},
-            style: getStyles('text'),
+            style: getStyles('title'),
           },
           content: {
-            text: 'REAL SIMPLE.',
+            text: 'REAL SIMPLE',
           },
         },
       },
@@ -1611,7 +1687,7 @@ wapsMap.set('wap-cards-5', {
             style: getStyles('title'),
           },
           content: {
-            text: 'SUBSCRIBE',
+            text: 'FRACTION OFTHE PRICE',
           },
         },
         text: {
@@ -1620,7 +1696,7 @@ wapsMap.set('wap-cards-5', {
             style: getStyles('text'),
           },
           content: {
-            text: 'and we’ll automatically send you new brush heads.',
+            text: 'By selling directly toyou, we offer an award winning electric toothbrush at an affordable price.',
           },
         },
       },
@@ -1780,7 +1856,7 @@ wapsMap.set('wap-section-7', {
             style: getStyles('btn'),
           },
           content: {
-            text: 'TREAT YOUR MOUTH TO A BETTER TOOTHBRUSH.',
+            text: 'GET YOUR GOBY.',
           },
         },
       },
@@ -1799,39 +1875,9 @@ wapsMap.set('footer-1', {
   },
   cmps: [
     {
-      id: '1',
-      type: 'footer-text-section',
-      typeId: 1,
-      options: {
-        meta: {},
-        style: getStyles(),
-      },
-
-      info: {
-        title: {
-          options: {
-            meta: {},
-            style: getStyles('title'),
-          },
-          content: {
-            text: 'JOIN THE GOBY REVOLUTION',
-          },
-        },
-        btn: {
-          options: {
-            meta: {},
-            style: getStyles('btn'),
-          },
-          content: {
-            text: 'TREAT YOUR MOUTH TO A BETTER TOOTHBRUSH.',
-          },
-        },
-      },
-    },
-    {
       id: '2',
       type: 'nav',
-      typeId: 20, //change to what you want
+      typeId: 4, //change to what you want
       previewImg: '',
       options: {
         meta: {},
@@ -1853,6 +1899,30 @@ wapsMap.set('footer-1', {
             nav7: 'CART',
           },
         },
+      },
+    },
+    {
+      id: '1',
+      type: 'form',
+      typeId: 1,
+      options: {
+        meta: {
+          formInputs: [{ tag: 'email', txt: '' },]
+        },
+        style: getStyles(),
+      },
+
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'JOIN THE GOBY REVOLUTION',
+          },
+        },
+
       },
     },
   ],
@@ -1887,7 +1957,7 @@ wapsMap.set('wap-section-8', {
             text: 'FOLLOW US',
           },
         },
-        img: {
+        img1: {
           options: {
             meta: {
               src: 'https://www.goby.co/assets/twitter-ffb608709acf047f23aacb01ca67ac1120372ceb9d7a389bd9476b204b0e264e.svg',
@@ -1896,7 +1966,7 @@ wapsMap.set('wap-section-8', {
           },
           content: {},
         },
-        img: {
+        img2: {
           options: {
             meta: {
               src: 'https://www.goby.co/assets/facebook-6146757741e670387b96c2b92cd299563b02bf5d242bdd436e85450faf2e913a.svg',
@@ -1905,7 +1975,7 @@ wapsMap.set('wap-section-8', {
           },
           content: {},
         },
-        img: {
+        img3: {
           options: {
             meta: {
               src: 'https://www.goby.co/assets/instagram-5ea4be0a80a85df13e3066b28af284140f8ec4b47763285ea431ece13e20b175.svg',
