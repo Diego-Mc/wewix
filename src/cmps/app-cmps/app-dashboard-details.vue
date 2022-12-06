@@ -1,17 +1,9 @@
 <template>
   <div class="container home">
-    <el-pagination
-      background
-      layout="prev, pager, next"
-      :page-count="totalPages"
-      class="mt-4"
-      @current-change="paginate($event)"
-      :current-page="currentPage" />
     <button @click="log">log</button>
 
     <input type="search" v-model="filterBy" />
-
-    <table>
+    <table class="styled-table">
       <thead>
         <tr class="header">
           <td v-for="userKey in usersDataKeys" :key="userKey">
@@ -22,19 +14,18 @@
       <tbody>
         <tr v-for="user in modifiedUsers" :key="user" class="header">
           <td v-for="userKey in usersDataKeys">
-            {{ user[userKey] ? user[userKey] : '-' }}
+            {{ keyForDisplay(userKey, user) }}
           </td>
         </tr>
       </tbody>
     </table>
-
-    <hr />
-
-    <!-- <form @submit.prevent="addWap()">
-      <h2>Add wap</h2>
-      <input type="text" v-model="wapToAdd.vendor" />
-      <button>Save</button>
-    </form> -->
+    <el-pagination
+      background
+      layout="prev, pager, next"
+      :page-count="totalPages"
+      class="mt-4 paging"
+      @current-change="paginate($event)"
+      :current-page="currentPage" />
   </div>
 </template>
 
@@ -77,7 +68,7 @@ export default {
 
     modifiedUsers() {
       let users = this.usersData
-      console.log(users);
+      console.log(users)
       //Filter
       if (this.filterBy) {
         const regex = new RegExp(this.filterBy, 'i')
@@ -103,9 +94,8 @@ export default {
         }
       }
 
-
       const USERS_PER_PAGE = 5
-      this.totalPages = Math.round(users.length /  USERS_PER_PAGE)
+      this.totalPages = Math.round(users.length / USERS_PER_PAGE)
 
       //Paginate
       const firstIndex = (this.currentPage - 1) * USERS_PER_PAGE
@@ -113,7 +103,6 @@ export default {
       users = users.slice(firstIndex, lastIndex)
       return users
     },
-    
 
     loggedInUser() {
       return this.$store.getters.loggedinUser
@@ -126,6 +115,19 @@ export default {
     this.$store.dispatch({ type: 'loadWaps' })
   },
   methods: {
+    keyForDisplay(key, user) {
+      let displatedKey = '-'
+      if (user[key]) {
+        displatedKey = key === 'at' ? this.dateStr(user[key]) : user[key]
+      }
+      return displatedKey
+    },
+    dateStr(timeStamp) {
+      const date = new Date(timeStamp)
+      return `${date.toLocaleDateString(
+        'fr'
+      )} ${date.getHours()}:${date.getMinutes()} `
+    },
     paginate(page) {
       this.currentPage = page
     },
@@ -181,9 +183,38 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .header {
   display: flex;
   flex-direction: row;
+}
+.styled-table {
+  display: table;
+    table-layout: fixed;
+  width: 100%;
+  thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+  }
+  th,
+  td {
+    padding: 12px 15px;
+  }
+  tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+
+  tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+
+  tbody tr.active-row {
+    font-weight: bold;
+    background: #F5F6FA;
+  }
+}
+.paging {
+  justify-content: end;
 }
 </style>
