@@ -85,16 +85,12 @@ export const wapStore = {
     },
 
     //Todo
-    async getWapByName(context, { wapName }) {
-      
+    async getWapByName(context, { wapName }) {  
         const waps = await wapService.query()
-        console.log(waps);
-        const wapIdx = waps.findIndex(wap => {
-          return wap.name === wapName
-        })
 
-        //isUnique
-        return (wapIdx === -1)
+          return waps.find(wap => {
+              return wap.name === wapName
+          })
     },
 
     async updateWap(context, { wap }) {

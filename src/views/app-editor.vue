@@ -31,10 +31,14 @@
       </button>
       <main-header />
       <editor-header
+        @setName="setName"
         @setVal="openWorkTogetherConfirm"
         @setMedia="setMedia"
         @publishWap="publishWap"
-        :wapName="wap.name" />
+        :wapName="wap.name"
+        :isOnline="wap.isOnline"
+        
+        />
       <editor-sidebar :selectedCmp="selectedCmp" />
     </section>
     <main class="main-wap" :class="mediaType">
@@ -303,7 +307,7 @@ export default {
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = elType ? cmp.info[elType].options : cmp.options
       this.selectedCmp.elType = elType
-      this.selectedCmp.elDom = elDom.target
+      this.selectedCmp.elDom = elDom?.target
 
       eventBus.emit('openCmpEditor')
     },
@@ -339,14 +343,24 @@ export default {
         sessionStorage.setItem('newVisit', 'new!')
       }
     },
-    async publishWap(siteName) {
+    async publishWap(wapName) {
       //TODO ADD USER MSGS
-      this.wap.name = siteName
+      this.wap.name = wapName
       this.wap.owner = this.loggedinUser
       try {
         const wapId = await this.updateWap(this.wap)
         this.$store.dispatch('addWapToUser', { wapId: this.wap._id })
-        // if (wapId) this.$router.push(`/${siteName}`)
+        // if (wapId) this.$router.push(`/${wapName}`)
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    async setName(wapName) {
+      //TODO ADD USER MSGS
+      this.wap.name = wapName
+      try {
+        const wapId = await this.updateWap(this.wap)  
+        console.log('this.wap:', this.wap)
       } catch (err) {
         console.log(err)
       }

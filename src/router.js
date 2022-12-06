@@ -65,11 +65,6 @@ const routes = [
     component: editorWithStyle,
   },
   {
-    path: '/:name?',
-    name: 'publish-wap',
-    component: appPublish,
-  },
-  {
     path: '/login',
     name: 'userLogin',
     component: userLogin,
@@ -79,12 +74,12 @@ const routes = [
     name: 'usersignup',
     component: usersignup,
   },
-
   {
     path: '/:name?',
     name: 'publish-wap',
     component: appPublish,
   },
+
 
   // {
   //   path: dynamicUrl,
