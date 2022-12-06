@@ -3975,89 +3975,6 @@ wapsMap.set('wap-section-18', {
         },
       },
     },
-    {
-      id: '2',
-      type: 'wap-gallery-section',
-      typeId: 3,
-      options: {
-        meta: {},
-        style: getStyles(),
-      },
-      info: {
-        img1: {
-          options: {
-            meta: {
-              src: '',
-            },
-            style: getStyles('img'),
-          },
-          content: {},
-        },
-        img2: {
-          options: {
-            meta: {
-              src: '',
-            },
-            style: getStyles('img'),
-          },
-          content: {},
-        },
-        img3: {
-          options: {
-            meta: {
-              src: '',
-            },
-            style: getStyles('img'),
-          },
-          content: {},
-        },
-        img4: {
-          options: {
-            meta: {
-              src: '',
-            },
-            style: getStyles('img'),
-          },
-          content: {},
-        },
-        img5: {
-          options: {
-            meta: {
-              src: '',
-            },
-            style: getStyles('img'),
-          },
-          content: {},
-        },
-        img6: {
-          options: {
-            meta: {
-              src: '',
-            },
-            style: getStyles('img'),
-          },
-          content: {},
-        },
-        img7: {
-          options: {
-            meta: {
-              src: '',
-            },
-            style: getStyles('img'),
-          },
-          content: {},
-        },
-        img8: {
-          options: {
-            meta: {
-              src: '',
-            },
-            style: getStyles('img'),
-          },
-          content: {},
-        },
-      },
-    },
   ],
 })
 
@@ -4569,7 +4486,7 @@ wapsMap.set('footer-3', {
 
 //----------------------------------------- template 5 -------------------------------------------------------------
 
-wapsMap.set('wap-header-5', {
+wapsMap.set('wap-header-6', {
   id: '',
   type: 'wap-header',
   typeId: 6,
