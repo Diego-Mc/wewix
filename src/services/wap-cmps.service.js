@@ -3975,6 +3975,89 @@ wapsMap.set('wap-section-18', {
         },
       },
     },
+    {
+      id: '2',
+      type: 'wap-gallery-section',
+      typeId: 3,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img1: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img2: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img3: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img4: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img5: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img6: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img7: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img8: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+      },
+    },
   ],
 })
 
@@ -4450,23 +4533,6 @@ wapsMap.set('footer-3', {
   ],
 })
 
-/*
-last cmp num:
-wap-header: 5
-wap-section: 19
-wap-hero: 5
-wap-text-section : 19
-wap-cards : 10
-wap-card : 13
-wap-gallery : 4
-wap-logo : 3
-nav : 4
-wap-img-section : 4
-wap-video-section: 2
-wap-form : 3
-wap-footer: 3
-*/
-
 // const template4 = {
 //   _id: 'template-4',
 //   name: 'Kitesurfing-club-template',
@@ -4500,3 +4566,772 @@ wap-footer: 3
 // }
 
 //------------------------------------------------------------------------------------------------------
+
+//----------------------------------------- template 5 -------------------------------------------------------------
+
+wapsMap.set('wap-header-5', {
+  id: '',
+  type: 'wap-header',
+  typeId: 6,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-logo',
+      typeId: 4,
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'nav',
+      typeId: 5,
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        nav: {
+          options: {
+            meta: {},
+            style: getStyles('nav'),
+          },
+          content: {
+            nav1: 'Courses',
+            nav2: 'Plans',
+            nav3: 'Blog Posts',
+            nav4: 'Blog',
+          },
+        },
+        img: {
+          options: {
+            meta: {
+              src: 'https://assets.website-files.com/5ff6cf529d44b2be039f96ca/609398c36be20aa94f6d2f91_logo%402x.png',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'DO IT NOW',
+          },
+        },
+      },
+    },
+  ],
+})
+
+wapsMap.set('wap-hero-20', {
+  id: '',
+  type: 'wap-hero',
+  typeId: 20,
+  previewImg: '',
+  options: {
+    meta: {
+      src: 'http://webdesign-finder.com/werfy/wp-content/uploads/2020/01/bg-section-about.jpg',
+    },
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 20,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        tag: {
+          options: {
+            meta: {},
+            style: getStyles('tag'),
+          },
+          content: {
+            text: 'Advantages',
+          },
+        },
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Learn with us',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system.',
+          },
+        },
+      },
+    },
+  ],
+})
+wapsMap.set('wap-section-21', {
+  id: '',
+  type: 'wap-section',
+  typeId: 21,
+  previewImg: '',
+  options: {
+    meta: {
+      src: 'http://webdesign-finder.com/werfy/wp-content/uploads/2020/01/bg-section-about.jpg',
+    },
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-video-section',
+      typeId: 3,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        video: {
+          options: {
+            meta: {},
+            style: getStyles('video'),
+          },
+          content: {},
+        },
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Morning Routine for Beginners',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: ' 30 MINS  •  RELAXATION & STRETCHING',
+          },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-video-section',
+      typeId: 3,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        video: {
+          options: {
+            meta: {},
+            style: getStyles('video'),
+          },
+          content: {},
+        },
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Yoga on the beach',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: ' 30 MINS  •  RELAXATION & STRETCHING',
+          },
+        },
+      },
+    },
+    {
+      id: '1',
+      type: 'wap-video-section',
+      typeId: 3,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        video: {
+          options: {
+            meta: {},
+            style: getStyles('video'),
+          },
+          content: {},
+        },
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Yoga in house',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: ' 30 MINS  •  RELAXATION & STRETCHING',
+          },
+        },
+      },
+    },
+  ],
+})
+
+wapsMap.set('wap-section-22', {
+  id: '',
+  type: 'wap-section',
+  typeId: 22,
+  previewImg: '',
+  options: {
+    meta: {
+      src: 'http://webdesign-finder.com/werfy/wp-content/uploads/2020/01/bg-section-about.jpg',
+    },
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 22,
+      options: {
+        meta: {
+          src: 'https://assets.website-files.com/5ff6cf529d44b2be039f96ca/5ff8735866b4f772aff36056_img1.jpg',
+        },
+        style: getStyles(),
+      },
+      info: {
+        tag: {
+          options: {
+            meta: {},
+            style: getStyles('tag'),
+          },
+          content: {
+            text: 'DISCOVER MORE',
+          },
+        },
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Start with us the body and mind clensing',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'START YOUR JOURNY',
+          },
+        },
+        details: {
+          options: {
+            meta: {},
+            style: getStyles('details'),
+          },
+          content: {
+            text: 'Try our 30-days free trial',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful.',
+          },
+        },
+      },
+    },
+  ],
+})
+wapsMap.set('wap-section-23', {
+  id: '',
+  type: 'wap-section',
+  typeId: 23,
+  previewImg: '',
+  options: {
+    meta: {
+      src: 'https://assets.website-files.com/5ff6cf529d44b2be039f96ca/5ff86d6541dd4e083c9c5102_background_discover.jpg',
+    },
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 23,
+      options: {
+        meta: {
+          src: 'https://assets.website-files.com/5ff6cf529d44b2be039f96ca/5ff8735866b4f772aff36056_img1.jpg',
+        },
+        style: getStyles(),
+      },
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Discover yourself through yoga',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'START YOUR JOURNY',
+          },
+        },
+      },
+    },
+  ],
+})
+wapsMap.set('wap-section-24', {
+  id: '',
+  type: 'wap-section',
+  typeId: 24,
+  previewImg: '',
+  options: {
+    meta: {
+      src: 'https://assets.website-files.com/5ff6cf529d44b2be039f96ca/5ff86d6541dd4e083c9c5102_background_discover.jpg',
+    },
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 24,
+      options: {
+        meta: {
+          src: 'https://assets.website-files.com/5ff6cf529d44b2be039f96ca/5ff8735866b4f772aff36056_img1.jpg',
+        },
+        style: getStyles(),
+      },
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'People trust us',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: '“But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences.”',
+          },
+        },
+
+        img: {
+          options: {
+            meta: {
+              src: 'https://assets.website-files.com/5ff6cf529d44b2be039f96ca/5ffb1d59c715f856854fa66b_medalion_quote.png',
+            },
+            style: getStyles('img'),
+          },
+          content: {
+            text: '“Jennie Poe”',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: '“Jennie Poe”',
+          },
+        },
+        details: {
+          options: {
+            meta: {},
+            style: getStyles('details'),
+          },
+          content: {
+            text: 'ROCKIE GYM AMBASADOR',
+          },
+        },
+      },
+    },
+  ],
+})
+
+wapsMap.set('wap-cards-11', {
+  id: '',
+  type: 'wap-cards',
+  typeId: 11,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-card',
+      typeId: 14,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        tag: {
+          options: {
+            meta: {
+              // i think icons are from an icon collection
+              src: '',
+            },
+            style: getStyles('tag'),
+          },
+          content: { text: 'CHOOSE YOURS ' },
+        },
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Start now your plan',
+          },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-card',
+      typeId: 15,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        title: {
+          options: {
+            meta: {
+              // i think icons are from an icon collection
+              src: '',
+            },
+            style: getStyles('title'),
+          },
+          content: { text: 'Basic' },
+        },
+        subtitle: {
+          options: {
+            meta: {},
+            style: getStyles('subtitle'),
+          },
+          content: {
+            text: 'TRY FREE TODAY',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Learn a new skill, stretch and let it loose and unwind. Live from your living room, our boundary-pushing activities come to you.',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Create private collections',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Access to new features',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Comment direct on design',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'GET IT NOW',
+          },
+        },
+      },
+    },
+    {
+      id: '3',
+      type: 'wap-card',
+      typeId: 16,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        title: {
+          options: {
+            meta: {
+              // i think icons are from an icon collection
+              src: '',
+            },
+            style: getStyles('title'),
+          },
+          content: { text: 'Advanced' },
+        },
+        subtitle: {
+          options: {
+            meta: {},
+            style: getStyles(`20$ /MONTH`),
+          },
+          content: {
+            text: `Discover true flexibility and join us as long as you want for a few days, dip your toes in, or go steady for a year. It's at home.`,
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: '120+ videos',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Premium live videos',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'A well structured meal plan',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'GET IT NOW',
+          },
+        },
+      },
+    },
+  ],
+})
+
+wapsMap.set('footer-4', {
+  id: '',
+  type: 'wap-footer',
+  typeId: 4,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 25, //change to what you want
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: '© Yoga Instructor',
+          },
+        },
+
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Template by DOTS N’ BITS Powered by Webflow Style Guide, Instructions, Licensing & Changelog',
+          },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-social-section',
+      typeId: 4,
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img1: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('nav'),
+          },
+          content: {},
+        },
+        img2: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('nav'),
+          },
+          content: {},
+        },
+        img3: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('nav'),
+          },
+          content: {},
+        },
+        img4: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('nav'),
+          },
+          content: {},
+        },
+      },
+    },
+  ],
+})
+
+// const template5 = {
+//   _id: 'template-5',
+//   name: 'Kitesurfing-club-template',
+//   imgUrl:
+//     'http://res.cloudinary.com/webify/image/upload/v1580021948/coffe_yi0yzf.png',
+//   createdBy: {
+//     _id: '5e26e0b718a0891d4c995527',
+//     fullname: 'Hekro Special',
+//     imgUrl: 'img.jpg',
+//   },
+//   usersData: {
+//     contacts: [
+//       { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+//     ],
+//     subscriptions: [{ email: 'user@user.com', at: 123 }],
+//   },
+//   cmps: [
+//     getCmp('wap-header', 5),
+//     getCmp('wap-hero', 20),
+//     getCmp('wap-section', 21),
+//     getCmp('wap-section', 22),
+//     getCmp('wap-section', 23),
+//     getCmp('wap-section', 24),
+//     getCmp('wap-cards', 11),
+//     getCmp('wap-footer', 4),
+//    ],
+// }
+
+/*
+last cmp num:
+wap-header: 6
+wap-section: 24
+wap-hero: 5
+wap-text-section : 25
+wap-cards : 11
+wap-card : 16
+wap-gallery : 5
+wap-logo : 3
+nav : 5
+wap-img-section : 4
+wap-video-section: 3
+wap-form : 4
+wap-footer: 3
+wap-social-section: 4
+
+*/
