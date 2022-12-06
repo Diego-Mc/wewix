@@ -32,9 +32,10 @@
       <main-header />
       <editor-header
         @setName="setName"
-        @setVal="openUserConfirmModal"
+        @setVal="openSocketsConfirm"
         @setMedia="setMedia"
         @publishWap="publishWap"
+        @openPublishConfirm=""
         :wapName="wap.name"
         :isOnline="wap.isOnline"
         
@@ -415,19 +416,24 @@ export default {
       socketService.emit('mouseEvent', sendedCursor)
     },
 
-    openUserConfirmModal({ key }) {
+    openSocketsConfirm({ key }) {
       if (this.isSocketsOn) {
         //Todo user msg
         console.log('There is opened work space')
         return
       }
-      if (key !== 'workTogether' && key !== 'confirmPublish') return
+      if (key !== 'workTogether') return
 
-      this.confirmData = {
+      const data =  {
         txt: 'Are you sure you want to open a work space?',
       }
 
-      this.isConfirmModalOpen = true
+      this.handleUserConfirmModal('open', data)
+    },
+
+    handleUserConfirmModal(state, data) {
+      this.isConfirmModalOpen = (state === 'open') ? true : false
+      this.confirmData = data
     },
 
     closeConfirmModal() {
