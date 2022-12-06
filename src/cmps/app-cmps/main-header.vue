@@ -26,7 +26,7 @@
     <div class="auth-info">Diego Mc</div>
   </header> -->
   <header class="app-header main-header">
-    <section class="logo">
+    <section class="logo" @click="$router.push('/')">
       <svg
         width="24"
         height="24"
@@ -49,14 +49,14 @@
       <h1>wewix</h1>
     </section>
     <nav class="nav">
-      <a to="#home">Home</a>
-      <a to="#home">Templates</a>
-      <a to="#Dashboard">Dashboard</a>
+      <router-link to="/">Home</router-link>
+      <router-link to="/templates">Templates</router-link>
+      <router-link to="/dashboard">Dashboard</router-link>
     </nav>
-    <Slide noOverlay right class="burger">
-      <a to="#home">Home</a>
-      <a to="#home">Templates</a>
-      <a to="#Dashboard">Dashboard</a>
+    <Slide noOverlay right :closeOnNavigation="true" class="burger">
+      <router-link to="/">Home</router-link>
+      <router-link to="/templates">Templates</router-link>
+      <router-link to="/dashboard">Dashboard</router-link>
     </Slide>
     <section class="user-auth">
       <button class="login-btn"><i class="bi bi-person"></i> login</button>

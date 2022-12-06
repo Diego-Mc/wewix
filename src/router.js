@@ -75,6 +75,12 @@ const routes = [
     component: usersignup,
   },
 
+  {
+    path: '/:name?',
+    name: 'publish-wap',
+    component: appPublish,
+  },
+
   // {
   //   path: dynamicUrl,
   //   name: 'app-publish',

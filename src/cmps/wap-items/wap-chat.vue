@@ -51,12 +51,13 @@ export default {
       msg: {txt: '' },
       msgs: [],
       isChatOpen: false,
-      chatId: this.options.meta.chatData.chatId,
+      wapId: this.options.meta.chatData.chatId,
+      guestId: Math.random() + '',
       userNickname: (Math.random() > 0.5) ? 'Guest' : this.options.meta.chatData.adminName
     }
   },
   created() {
-    socketService.emit('joinSitesChat', this.chatId)
+    socketService.emit('startConversation', {wapId: this.wapId, guestId: this.guestId})
     socketService.on('addMsg', this.addMsg)
   },
   unmounted() {
