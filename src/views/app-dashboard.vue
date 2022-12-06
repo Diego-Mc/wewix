@@ -23,9 +23,11 @@ export default {
   async created() {
     if (!this.loggedinUser || !this.loggedinUser.waps) return
     let waps = await this.getWaps()
+  
     this.userWaps = waps
       .filter((wap) => this.loggedinUser.waps.includes(wap._id))
       .map((wap) => {
+        console.log(wap.usersData);
         return {
           _id: wap._id,
           name: wap.name,
@@ -42,7 +44,6 @@ export default {
     changeCurrWapData(wap) {
       this.currWapData = wap
       this.$router.push('/dashboard/' + this.currWapData._id)
-      console.log(this.currWapData);
     },
   },
   computed: {

@@ -1,57 +1,40 @@
 <template>
-  <div class="container home" >
-    <ul class="wap-list">
-      <li v-for="wap in waps" :key="wap._id">
-        <p>
-          {{ wap.vendor }}
-        </p>
-        <p>${{ wap.price?.toLocaleString() }}</p>
-        <button @click="removeWap(wap._id)">x</button>
-        <button @click="updateWap(wap)">Update</button>
-        <hr />
-        <button @click="addWapMsg(wap._id)">Add wap msg</button>
-        <button @click="printWapToConsole(wap)">Print msgs to console</button>
-      </li>
-    </ul>
-    
+  <div class="container home">
     <el-pagination
-    background
-    layout="prev, pager, next"
-    :total="totalPages"
-    class="mt-4"
-    @current-change="paginate($event)"
-    :current-page="currentPage"
-
-  />
+      background
+      layout="prev, pager, next"
+      :total="totalPages"
+      class="mt-4"
+      @current-change="paginate($event)"
+      :current-page="currentPage" />
     <button @click="log">log</button>
 
-    <input type="search" v-model="filterBy">
+    <input type="search" v-model="filterBy" />
 
-    <table >
+    <table>
       <thead>
         <tr class="header">
           <td v-for="userKey in usersDataKeys" :key="userKey">
-              <span @click="setSort(userKey)">{{userKey}}</span>
+            <span @click="setSort(userKey)">{{ userKey }}</span>
           </td>
         </tr>
       </thead>
       <tbody>
         <tr v-for="user in modifiedUsers" :key="user" class="header">
-          <td v-for="userKey in usersDataKeys"> {{(user[userKey] ? user[userKey] : '-')}}</td>
+          <td v-for="userKey in usersDataKeys">
+            {{ user[userKey] ? user[userKey] : '-' }}
+          </td>
         </tr>
       </tbody>
     </table>
-  
-
 
     <hr />
 
-
-    <form @submit.prevent="addWap()">
+    <!-- <form @submit.prevent="addWap()">
       <h2>Add wap</h2>
       <input type="text" v-model="wapToAdd.vendor" />
       <button>Save</button>
-    </form>
+    </form> -->
   </div>
 </template>
 
@@ -65,56 +48,57 @@ import {
 } from '../../store/wap.store'
 export default {
   props: {
-    usersData: Array
+    usersData: Array,
   },
   data() {
     return {
       sortBy: {
         type: '',
-        desc: 1
+        desc: 1,
       },
       filterBy: '',
       currentPage: 1,
-      totalPages: (this.usersData.length / 5),
+      totalPages: this.usersData.length / 5,
       wapToAdd: wapService.getEmptyWap(),
     }
   },
-   created(){
-  },
   computed: {
     usersDataKeys() {
-        return this.usersData.reduce((keys, currUser) => {
-            const userKeys = Object.keys(currUser)
-            userKeys.forEach(key => {
-              if (!keys.includes(key)) keys.push(key)
-            })
-            return keys
-        }, []).sort()
+      return this.usersData
+        .reduce((keys, currUser) => {
+          const userKeys = Object.keys(currUser)
+          userKeys.forEach((key) => {
+            if (!keys.includes(key)) keys.push(key)
+          })
+          return keys
+        }, [])
+        .sort()
     },
-
- 
 
     modifiedUsers() {
       let users = this.usersData
-
+      console.log(users);
       //Filter
       if (this.filterBy) {
         const regex = new RegExp(this.filterBy, 'i')
-        users = users.filter(user => {
+        users = users.filter((user) => {
           const userKeys = Object.keys(user)
-          return userKeys.some(key => regex.test(user[key]))
+          return userKeys.some((key) => regex.test(user[key]))
         })
       }
 
       // Sort
       if (this.sortBy.type) {
         if (this.sortBy.type === 'createdAt') {
-          users.sort((u1, u2)=> {
+          users.sort((u1, u2) => {
             return (u1.createdAt - u2.createdAt) * this.sortBy.desc
           })
         } else {
-          users.sort((u1, u2)=> {
-            return (u1[this.sortBy.type].localeCompare(u2[this.sortBy.type]) * this.sortBy.desc)
+          users.sort((u1, u2) => {
+            return (
+              u1[this.sortBy.type].localeCompare(u2[this.sortBy.type]) *
+              this.sortBy.desc
+            )
           })
         }
       }
@@ -128,10 +112,9 @@ export default {
       // console.log('firstIndex, lastIndex:', firstIndex, lastIndex)
       users = users.slice(firstIndex, lastIndex)
       // console.log("🚀 ~ file: app-dashboard-details.vue:128 ~ modifiedUsers ~ users", users)
-      
+
       return users
     },
-
 
     loggedInUser() {
       return this.$store.getters.loggedinUser
@@ -149,7 +132,7 @@ export default {
     },
     setSort(sortBy) {
       if (this.sortBy.type === sortBy) this.sortBy.desc *= -1
-      
+
       this.sortBy.type = sortBy
     },
 
@@ -204,5 +187,4 @@ export default {
   display: flex;
   flex-direction: row;
 }
-
 </style>
