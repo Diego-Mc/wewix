@@ -415,7 +415,8 @@ export default {
     },
 
     closeConfirmModal() {
-      ;(this.confirmData = null), (this.isConfirmModalOpen = false)
+      this.confirmData = null
+      this.isConfirmModalOpen = false
     },
 
     openWorkSpace() {
