@@ -5,8 +5,7 @@
     v-if="isConfirmModalOpen"
     :confirmData="confirmData"
     @closelModal="closeConfirmModal"
-    @openWorkSpace="openWorkSpace" 
-  />
+    @openWorkSpace="openWorkSpace" />
 
   <cursor v-if="workTogetherCursors[0]" :cursorsData="workTogetherCursors" />
   <section
@@ -36,9 +35,7 @@
         @setMedia="setMedia"
         @publishWap="publishWap"
         :wapName="wap.name"
-        :isOnline="wap.isOnline"
-        
-        />
+        :isOnline="wap.isOnline" />
       <editor-sidebar :selectedCmp="selectedCmp" />
     </section>
     <main class="main-wap" :class="mediaType">
@@ -335,18 +332,23 @@ export default {
     },
     checkNewVisit() {
       if (!sessionStorage.getItem('newVisit', 'new!')) {
-        // make visitcount default
-        const currVisit = { at: Date.now() }
-        this.wap.visitCount
-          ? this.wap.visitCount.push(currVisit)
-          : (this.wap.visitCount = [currVisit])
+        const currVisit = { createdAt: Date.now() }
+        this.wap.visits
+          ? this.wap.visits.push(currVisit)
+          : (this.wap.visits = [currVisit])
         sessionStorage.setItem('newVisit', 'new!')
+        console.log('new visit!', this.wap.visits)
+        this.updateWap()
       }
     },
     async publishWap(wapName) {
       //TODO ADD USER MSGS
-      this.wap.name = wapName
-      this.wap.owner = this.loggedinUser
+
+      if (!this.wap.isPublished) {
+        this.wap.name = wapName
+        this.wap.createdAt = Date.now()
+        this.wap.owner = this.loggedinUser
+      }
       try {
         const wapId = await this.updateWap(this.wap)
         this.$store.dispatch('addWapToUser', { wapId: this.wap._id })
@@ -359,7 +361,7 @@ export default {
       //TODO ADD USER MSGS
       this.wap.name = wapName
       try {
-        const wapId = await this.updateWap(this.wap)  
+        const wapId = await this.updateWap(this.wap)
         console.log('this.wap:', this.wap)
       } catch (err) {
         console.log(err)
@@ -416,7 +418,7 @@ export default {
     },
 
     openWorkTogetherConfirm({ key }) {
-      console.log(key);
+      console.log(key)
       if (this.isSocketsOn) {
         //Todo user msg
         console.log('There is opened work space')
