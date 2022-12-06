@@ -258,22 +258,28 @@ export default {
     async loadWap() {
       // console.log('templatedId',this.$route.query.templateId)
       if (this.$route.params?.id) {
+        // if(!auth) return  this.$router.push({ path: '/edit/' + editedWapId, replace: true })
         const wap = await this.$store.dispatch({
           type: 'getWap',
           id: this.$route.params.id,
         })
+        if (wap.isPublished) {
+          if (
+            !this.loggedinUser ||
+            !this.loggedinUser?.waps.includes(this.$route.params?.id)
+          )
+            return console.log('Not your website!')
+        }
         this.wap = JSON.parse(JSON.stringify(this.$store.getters.editedWap))
       } else {
         if (this.$route.query.templateId) {
           this.wap = wapUtils.getTemplate(this.$route.query.templateId)
-          this.wap._id = ''
         } else this.wap = appEditorService.getEmptyWap()
-
+        delete this.wap._id
         const editedWapId = await this.$store.dispatch({
           type: 'updateWap',
           wap: this.wap,
         })
-
         this.wap._id = editedWapId
 
         // TODO: fix this.
@@ -344,7 +350,10 @@ export default {
     },
     async publishWap(wapName) {
       //TODO ADD USER MSGS
-
+      if(!this.loggedinUser){
+        // open modal!
+        return
+      }
       if (this.wap.isPublished) {
         console.log('saved changes')
         return
@@ -354,10 +363,11 @@ export default {
       this.wap.owner = this.loggedinUser
       this.wap.isPublished = !this.wap.isPublished
 
-
       try {
         const wapId = await this.updateWap(this.wap)
         this.$store.dispatch('addWapToUser', { wapId: this.wap._id })
+        this.$router.push({ path: editedWapId, replace: true })
+
         // if (wapId) this.$router.push(`/${wapName}`)
       } catch (err) {
         console.log(err)
@@ -431,7 +441,7 @@ export default {
       }
       if (key !== 'workTogether') return
 
-      const data =  {
+      const data = {
         txt: 'Are you sure you want to open a work space?',
       }
 
@@ -439,7 +449,7 @@ export default {
     },
 
     handleUserConfirmModal(state, data) {
-      this.isConfirmModalOpen = (state === 'open') ? true : false
+      this.isConfirmModalOpen = state === 'open' ? true : false
       this.confirmData = data
     },
 

@@ -12,7 +12,7 @@
       </div>
     </div>
     <main class="graph-and-stats-container">
-      <app-dashboard-graphs :usersData="wapData.usersData.contacts" />
+      <app-dashboard-graphs :visitorsData="wapData.visits" />
       <app-dashboard-stats :wapData="wapData"/>
     </main>
     <app-dashboard-details :usersData="wapData.usersData.contacts" />

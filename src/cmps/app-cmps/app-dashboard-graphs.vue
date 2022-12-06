@@ -49,7 +49,7 @@ Chart.register(...registerables)
 
 export default {
   props: {
-    usersData: Array,
+    visitorsData: Array,
   },
   data() {
     return {
@@ -111,6 +111,7 @@ export default {
   },
   created() {
     this.initWaps()
+    console.log(this.visitorsData);
   },
 
   methods: {
@@ -122,7 +123,7 @@ export default {
       if (type === 'conversionRate') return [55, 45]
       if (!columnsFilter) return
       else if (type === 'frequencyPer') {
-        const users = this.usersData
+        const users = this.visitorsData
         console.log(
           '🚀 ~ file: app-dashboard-graphs.vue:133 ~ getDatasetData ~ users',
           users
