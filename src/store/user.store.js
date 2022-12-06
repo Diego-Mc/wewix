@@ -43,7 +43,6 @@ export const userStore = {
         }
     },
     actions: {
-    
         async getUserWaps({ waps }) {
             // waps
         },
