@@ -22,6 +22,11 @@
     }
   }
 
+  &.type-4 {
+    @include grid(1);
+    color: var(--clr-3);
+  }
+
   > div {
     height: 100%;
   }
