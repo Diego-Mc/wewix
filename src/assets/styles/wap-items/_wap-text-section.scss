@@ -166,7 +166,8 @@
     }
   }
 
-  &.type-7 {
+  &.type-7,
+  &.type-10 {
     padding-block: 80px;
   }
 
@@ -202,6 +203,121 @@
       &:hover {
         background-color: var(--clr-1);
         color: white;
+      }
+    }
+  }
+
+  &.type-10 {
+    font-family: PoppinsRegular;
+
+    .title {
+      font-family: PoppinsBold;
+      margin-bottom: 40px;
+    }
+    .text {
+      margin-bottom: 40px;
+      max-width: 50ch;
+    }
+    button {
+      border-radius: 3rem;
+      border: 1px solid var(--clr-3);
+      background-color: unset;
+      color: var(--clr-2);
+      font-size: em(16px);
+      letter-spacing: 2px;
+      padding: 14px 24px;
+      transition: all 0.15s ease-in-out;
+      &:hover {
+        color: var(--clr-1);
+        background-color: var(--clr-2);
+        border-color: var(--clr-2);
+      }
+    }
+  }
+  &.type-11,
+  &.type-12 {
+    .text {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+  }
+  &.type-11 {
+    font-family: PoppinsBold;
+    font-size: em(32px);
+  }
+  &.type-12 {
+    font-size: em(18px);
+  }
+  &.type-13 {
+    text-align: center;
+    justify-items: center;
+    .titles-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 32px;
+      .title {
+        font-family: PoppinsBold;
+        font-size: em(48px);
+        max-width: 80%;
+      }
+    }
+    .text {
+      max-width: 80%;
+    }
+  }
+  &.type-15,
+  &.type-16 {
+    font-family: PoppinsRegular;
+    grid-template-areas: 'title' 'text' 'tag';
+    text-align: center;
+    justify-items: center;
+    .titles-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 24px;
+      .title {
+        font-size: em(48px);
+        font-family: PoppinsBold;
+        max-width: 60%;
+      }
+    }
+    .text {
+      max-width: 60%;
+      margin-bottom: 10px;
+    }
+    .tag {
+      letter-spacing: normal;
+      font-family: PoppinsBold;
+      font-size: em(16px);
+    }
+  }
+  &.type-16 {
+    grid-template-areas: 'title' 'text' 'cta';
+    .titles-wrapper {
+      .title {
+        max-width: 80%;
+      }
+    }
+    .text {
+      margin-bottom: 40px;
+      max-width: 80%;
+    }
+    button {
+      border-radius: 3rem;
+      border: 1px solid var(--clr-3);
+      background-color: unset;
+      color: var(--clr-2);
+      font-size: em(16px);
+      letter-spacing: 2px;
+      padding: 14px 24px;
+      transition: all 0.15s ease-in-out;
+      &:hover {
+        color: var(--clr-1);
+        background-color: var(--clr-2);
+        border-color: var(--clr-2);
       }
     }
   }

@@ -2133,7 +2133,7 @@ wapsMap.set('wap-header-4', {
         img: {
           options: {
             meta: {
-              src: '',
+              src: 'https://888874.smushcdn.com/2059080/wp-content/uploads/2021/06/WEB-sevah-logo-primary-col-®.png?lossy=0&strip=1&webp=1',
             },
             style: getStyles('img'),
           },
@@ -2143,7 +2143,7 @@ wapsMap.set('wap-header-4', {
     },
     {
       id: '2',
-      type: 'nav',
+      type: 'wap-nav',
       typeId: 2, //change to what you want
       previewImg: '',
       options: {
@@ -2172,21 +2172,25 @@ wapsMap.set('wap-header-4', {
 
 wapsMap.set('wap-hero-4', {
   id: '',
-  type: 'wap-section',
-  typeId: 9, // not sure but i think you maybe said it needs to be 6.
+  type: 'wap-hero',
+  typeId: 4, // not sure but i think you maybe said it needs to be 6.
   previewImg: '',
   options: {
     meta: {
       src: '',
     },
-    style: getStyles(),
+    style: {
+      ...getStyles(),
+      backgroundImage:
+        'url(https://888874.smushcdn.com/2059080/wp-content/uploads/2022/11/SC-holographic-2.0.jpg?lossy=0&strip=1&webp=1)',
+    },
   },
   //go back to this.
   cmps: [
     {
       id: '1',
       type: 'wap-text-section',
-      typeId: 1,
+      typeId: 10,
       options: {
         meta: {},
         style: getStyles(),
@@ -2203,12 +2207,12 @@ wapsMap.set('wap-hero-4', {
         },
         text: {
           options: {
-            meta: {
-              src: 'https://www.goby.co/assets/twitter-ffb608709acf047f23aacb01ca67ac1120372ceb9d7a389bd9476b204b0e264e.svg',
-            },
+            meta: {},
             style: getStyles('text'),
           },
-          content: {},
+          content: {
+            text: 'We do awesome, too. And website design, graphics, product photography, video content and more.',
+          },
         },
         btn: {
           options: {
@@ -2237,7 +2241,7 @@ wapsMap.set('wap-section-9', {
     {
       id: '1',
       type: 'wap-text-section',
-      typeId: 9,
+      typeId: 11,
       options: {
         meta: {},
         style: getStyles(),
@@ -2268,7 +2272,7 @@ wapsMap.set('wap-section-9', {
     {
       id: '1',
       type: 'wap-text-section',
-      typeId: 10,
+      typeId: 12,
       options: {
         meta: {},
         style: getStyles(),
@@ -2311,6 +2315,7 @@ wapsMap.set('wap-section-9', {
 })
 
 //
+
 wapsMap.set('wap-section-14', {
   id: '',
   type: 'wap-section',
@@ -2370,6 +2375,7 @@ wapsMap.set('wap-section-14', {
     },
   ],
 })
+
 wapsMap.set('wap-section-10', {
   id: '',
   type: 'wap-section',
@@ -2392,7 +2398,7 @@ wapsMap.set('wap-section-10', {
         img1: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2022/10/BE-shopify2.0-2.png?fit=1500%2C1500&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2401,7 +2407,7 @@ wapsMap.set('wap-section-10', {
         img2: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2022/07/DrNC-thumbnail-1.0.jpg?fit=1500%2C1500&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2410,7 +2416,7 @@ wapsMap.set('wap-section-10', {
         img3: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2022/03/LivelyLiving-Feb2022-Web-SSP_1149-Edit-1.jpg?fit=2200%2C1237&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2419,7 +2425,7 @@ wapsMap.set('wap-section-10', {
         img4: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2021/11/SC-DaBomb-Studio-Pink-2-860.jpg?fit=1650%2C2200&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2428,7 +2434,7 @@ wapsMap.set('wap-section-10', {
         img5: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2022/01/CC-website-1.1-1.png?fit=1500%2C1500&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2437,7 +2443,7 @@ wapsMap.set('wap-section-10', {
         img6: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2021/11/ILIONEMA-thumbnail-1.0.png?fit=1500%2C1500&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2446,7 +2452,7 @@ wapsMap.set('wap-section-10', {
         img7: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2021/10/SoftwareSkin_SSP_409-Edit-1.jpg?fit=1800%2C1800&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2455,7 +2461,7 @@ wapsMap.set('wap-section-10', {
         img8: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2021/08/TheBBco_SSP_344-Edit.jpg?fit=1200%2C1200&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2464,7 +2470,7 @@ wapsMap.set('wap-section-10', {
         img9: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2021/04/AÉDE_Studio19Mar2021_LCC2291-Edit-2-copy.jpg?fit=1067%2C1600&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2498,7 +2504,7 @@ wapsMap.set('wap-cards-6', {
         img: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i.ibb.co/dKBRbQ9/Capture-2022-12-06-192538.png',
             },
             style: getStyles('img'),
           },
@@ -2537,7 +2543,7 @@ wapsMap.set('wap-cards-6', {
         img: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i.ibb.co/RCG6qY7/Capture-2022-12-06-192617.png',
             },
             style: getStyles('img'),
           },
@@ -2576,7 +2582,7 @@ wapsMap.set('wap-cards-6', {
         img: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i.ibb.co/6BkRWXr/Capture-2022-12-06-192555.png',
             },
             style: getStyles('img'),
           },
@@ -2615,7 +2621,7 @@ wapsMap.set('wap-cards-6', {
         img: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i.ibb.co/HtG3myL/Capture-2022-12-06-192606.png',
             },
             style: getStyles('img'),
           },
@@ -2667,7 +2673,7 @@ wapsMap.set('wap-section-11', {
     {
       id: '1',
       type: 'wap-text-section',
-      typeId: 11,
+      typeId: 13,
       options: {
         meta: {},
         style: getStyles(),
@@ -2680,7 +2686,7 @@ wapsMap.set('wap-section-11', {
             style: getStyles('title'),
           },
           content: {
-            text: 'We work with awesome brands & businesses.',
+            text: 'We work with awesome brands & businesses',
           },
         },
         text: {
@@ -2706,7 +2712,7 @@ wapsMap.set('wap-section-11', {
         img1: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/Entertainment.png?w=300&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2715,7 +2721,7 @@ wapsMap.set('wap-section-11', {
         img2: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/BE-logo-1.png?w=300&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2724,7 +2730,7 @@ wapsMap.set('wap-section-11', {
         img3: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/BPDZenith-logo.png?w=300&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2733,7 +2739,7 @@ wapsMap.set('wap-section-11', {
         img4: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/redballoon-logo.png?w=300&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2742,7 +2748,7 @@ wapsMap.set('wap-section-11', {
         img5: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2021/04/AEDE-v1.png?w=300&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2751,61 +2757,7 @@ wapsMap.set('wap-section-11', {
         img6: {
           options: {
             meta: {
-              src: '',
-            },
-            style: getStyles('img'),
-          },
-          content: {},
-        },
-        img7: {
-          options: {
-            meta: {
-              src: '',
-            },
-            style: getStyles('img'),
-          },
-          content: {},
-        },
-        img8: {
-          options: {
-            meta: {
-              src: '',
-            },
-            style: getStyles('img'),
-          },
-          content: {},
-        },
-        img9: {
-          options: {
-            meta: {
-              src: '',
-            },
-            style: getStyles('img'),
-          },
-          content: {},
-        },
-        img10: {
-          options: {
-            meta: {
-              src: '',
-            },
-            style: getStyles('img'),
-          },
-          content: {},
-        },
-        img11: {
-          options: {
-            meta: {
-              src: '',
-            },
-            style: getStyles('img'),
-          },
-          content: {},
-        },
-        img12: {
-          options: {
-            meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2022/11/DrNC.png?w=300&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2828,8 +2780,28 @@ wapsMap.set('wap-section-12', {
   cmps: [
     {
       id: '1',
+      type: 'wap-img-section',
+      typeId: 6,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/10/sevah-quotation-badge-80px-v2.png?resize=80%2C70&ssl=1',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+      },
+    },
+    {
+      id: '1',
       type: 'wap-text-section',
-      typeId: 11,
+      typeId: 15,
       options: {
         meta: {},
         style: getStyles(),
@@ -2854,10 +2826,10 @@ wapsMap.set('wap-section-12', {
             text: 'Zoe, your ability to assess and create is uncanny. I have zero suggestions that could make anything that you have done any better! I’ve never said that before!',
           },
         },
-        text: {
+        tag: {
           options: {
             meta: {},
-            style: getStyles('text'),
+            style: getStyles('tag'),
           },
           content: {
             text: 'Lizzie Babarczy, Head of Marketing Bench',
@@ -2870,7 +2842,7 @@ wapsMap.set('wap-section-12', {
 wapsMap.set('wap-section-13', {
   id: '',
   type: 'wap-section',
-  typeId: 12,
+  typeId: 13,
   previewImg: '',
   options: {
     meta: {
@@ -2882,7 +2854,7 @@ wapsMap.set('wap-section-13', {
     {
       id: '1',
       type: 'wap-text-section',
-      typeId: 11,
+      typeId: 16,
       options: {
         meta: {},
         style: getStyles(),
@@ -3000,7 +2972,7 @@ wapsMap.set('wap-section-14', {
     {
       id: '1',
       type: 'wap-text-section',
-      typeId: 13,
+      typeId: 17,
       options: {
         meta: {},
         style: getStyles(),

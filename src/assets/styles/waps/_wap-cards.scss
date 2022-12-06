@@ -2,8 +2,11 @@
   @include grid();
   background-color: var(--clr-1);
 
-  > div {
-    grid-column: span 4;
+  &.type-1,
+  &.type-2 {
+    > div {
+      grid-column: span 4;
+    }
   }
   .wap-card {
     width: 100%;
@@ -45,9 +48,6 @@
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     row-gap: 80px;
     align-items: start;
-    > div {
-      grid-column: span 1;
-    }
     .wap-card {
       // background-color: #bbb;
       grid-template-areas: 'img' 'subtitle' 'title';
@@ -86,9 +86,6 @@
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     row-gap: 80px;
     align-items: start;
-    > div {
-      grid-column: span 1;
-    }
     .wap-card {
       grid-template-areas: 'img' 'title' 'text';
       color: var(--clr-1);
@@ -121,6 +118,36 @@
         font-family: PoppinsBold;
         font-size: em(18px);
         margin-bottom: 22px;
+      }
+    }
+  }
+
+  &.type-6 {
+    align-items: start;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    background-color: var(--clr-3);
+
+    .wap-card {
+      color: var(--clr-1);
+      padding: 0;
+      font-family: PoppinsBold;
+      letter-spacing: 1px;
+      text-align: left;
+      justify-items: start;
+
+      .card-img {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+        margin-bottom: 24px;
+      }
+      .title {
+        font-size: em(24px);
+        margin-bottom: 22px;
+      }
+      .text {
+        font-family: PoppinsRegular;
+        font-size: em(16px);
       }
     }
   }

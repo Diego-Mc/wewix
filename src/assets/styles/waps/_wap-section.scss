@@ -54,6 +54,32 @@
     padding-block: 100px;
     // font-size: rem(10px);
   }
+  &.type-9 {
+    font-family: PoppinsRegular;
+    @include grid(2);
+    > *:first-child {
+      justify-self: end;
+      text-align: right;
+    }
+    > *:last-child {
+      text-align: left;
+      justify-self: start;
+    }
+  }
+  &.type-11 {
+    background-color: var(--clr-1);
+    color: var(--clr-3);
+    row-gap: 20px;
+  }
+
+  &.type-12 {
+    background-color: var(--clr-2);
+    gap: 150px;
+  }
+  &.type-13 {
+    background-color: var(--clr-1);
+    color: var(--clr-2);
+  }
 }
 
 @container wap (max-width: 990px) {

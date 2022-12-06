@@ -79,7 +79,8 @@
     }
   }
 
-  &.type-3 {
+  &.type-3,
+  &.type-4 {
     @include grid(2);
     grid-template-columns: auto auto;
     grid-template-areas: 'logo nav';
@@ -87,6 +88,15 @@
     .logo {
       img {
         height: 50px;
+      }
+    }
+  }
+
+  &.type-4 {
+    background-color: #fff;
+    .logo {
+      img {
+        height: 40px;
       }
     }
   }

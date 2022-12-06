@@ -6,8 +6,11 @@
         padding: '20px',
         backgroundColor: 'green',
         color: 'white',
+        position: 'sticky',
+        top: 0,
+        'z-index': 5000,
       }">
-      Theme 1
+      מסעדה
     </button>
     <button
       @click="changeTheme('theme-2')"
@@ -15,8 +18,23 @@
         padding: '20px',
         backgroundColor: 'blue',
         color: 'white',
+        position: 'sticky',
+        top: 0,
+        'z-index': 5000,
       }">
-      Theme 2
+      מברשת שיניים
+    </button>
+    <button
+      @click="changeTheme('theme-3')"
+      :style="{
+        padding: '20px',
+        backgroundColor: 'black',
+        color: 'white',
+        position: 'sticky',
+        top: 0,
+        'z-index': 5000,
+      }">
+      סוכנות עיצוב
     </button>
     <component
       v-for="section in sections"
@@ -26,55 +44,6 @@
       :info="section.info"
       :options="section.options"
       :cmps="section.cmps" />
-    <!-- <wap-header
-      :cmpId="header.id"
-      :typeId="header.typeId"
-      :info="header.info"
-      :options="header.options" />
-    <h1>Hero {{ hero.typeId }}</h1>
-    <p v-for="cmp in hero.cmps">children: {{ cmp.type + cmp.typeId }}</p>
-    <wap-hero
-      :cmpId="hero.id"
-      :typeId="hero.typeId"
-      :info="hero.info"
-      :options="hero.options"
-      :cmps="hero.cmps" />
-    <h1>Section {{ section.typeId }}</h1>
-    <p v-for="cmp in section.cmps">children: {{ cmp.type + cmp.typeId }}</p>
-    <wap-section
-      :cmpId="section.id"
-      :typeId="section.typeId"
-      :info="section.info"
-      :options="section.options"
-      :cmps="section.cmps" />
-    <h1>Section {{ section2.typeId }}</h1>
-    <p v-for="cmp in section2.cmps">children: {{ cmp.type + cmp.typeId }}</p>
-    <wap-section
-      :cmpId="section2.id"
-      :typeId="section2.typeId"
-      :info="section2.info"
-      :options="section2.options"
-      :cmps="section2.cmps" />
-    <h1>Cards {{ cards.typeId }}</h1>
-    <p v-for="cmp in cards.cmps">children: {{ cmp.type + cmp.typeId }}</p>
-    <wap-cards
-      :cmpId="cards.id"
-      :typeId="cards.typeId"
-      :info="cards.info"
-      :options="cards.options"
-      :cmps="cards.cmps" />
-    <h1>Section {{ section3.typeId }}</h1>
-    <p v-for="cmp in section3.cmps">children: {{ cmp.type + cmp.typeId }}</p>
-    <wap-section
-      :cmpId="section3.id"
-      :typeId="section3.typeId"
-      :info="section3.info"
-      :options="section3.options"
-      :cmps="section3.cmps" />
-    <h1>Form {{ form.typeId }}</h1>
-    <p v-for="cmp in form.cmps">children: {{ cmp.type + cmp.typeId }}</p>
-    <wap-form :cmpId="form.id" :info="form.info" :options="form.options" />
-  </div> -->
   </div>
 </template>
 
@@ -93,6 +62,18 @@ export default {
   data() {
     return {
       sections: [
+        // template 3
+        getCmp('wap-header', 4),
+        getCmp('wap-hero', 4),
+        getCmp('wap-section', 9),
+        getCmp('wap-section', 10),
+        getCmp('wap-cards', 6),
+        getCmp('wap-section', 11),
+        getCmp('wap-section', 12),
+        getCmp('wap-section', 13),
+        // getCmp('wap-section', 14),
+
+        // template 2
         getCmp('wap-header', 2),
         getCmp('wap-hero', 2),
         getCmp('wap-cards', 2),
@@ -101,6 +82,7 @@ export default {
         getCmp('wap-section', 4),
         // getCmp('wap-form', 1),
 
+        // template 1
         getCmp('wap-header', 3),
         getCmp('wap-hero', 3),
         getCmp('wap-cards', 3),
