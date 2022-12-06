@@ -35,11 +35,23 @@
     background-color: #f7f7f7;
     padding-block: 0;
     // font-size: rem(10px);
+    height: 100%;
+    > div {
+      height: 100%;
+    }
   }
   &.type-6 {
     @include grid(1);
-    background-color: #f7f7f7;
+    background-color: var(--clr-1);
+    color: var(--clr-3);
     padding-block: 0;
+    // font-size: rem(10px);
+  }
+  &.type-7 {
+    @include grid(1);
+    background-color: var(--clr-2);
+    color: var(--clr-3);
+    padding-block: 100px;
     // font-size: rem(10px);
   }
 }

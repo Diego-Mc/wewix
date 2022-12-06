@@ -1,5 +1,23 @@
 <template>
   <div class="wap" :style="{ fontFamily: 'SpaceGrotesk' }">
+    <button
+      @click="changeTheme('theme-1')"
+      :style="{
+        padding: '20px',
+        backgroundColor: 'green',
+        color: 'white',
+      }">
+      Theme 1
+    </button>
+    <button
+      @click="changeTheme('theme-2')"
+      :style="{
+        padding: '20px',
+        backgroundColor: 'blue',
+        color: 'white',
+      }">
+      Theme 2
+    </button>
     <component
       v-for="section in sections"
       :is="section.type"
@@ -75,15 +93,15 @@ export default {
   data() {
     return {
       sections: [
-        // getCmp('wap-header', 2),
-        // getCmp('wap-hero', 2),
-        // getCmp('wap-cards', 2),
-        // getCmp('wap-section', 2),
-        // getCmp('wap-section', 3),
-        // getCmp('wap-section', 4),
+        getCmp('wap-header', 2),
+        getCmp('wap-hero', 2),
+        getCmp('wap-cards', 2),
+        getCmp('wap-section', 2),
+        getCmp('wap-section', 3),
+        getCmp('wap-section', 4),
         // getCmp('wap-form', 1),
 
-        // getCmp('wap-header', 3),
+        getCmp('wap-header', 3),
         getCmp('wap-hero', 3),
         getCmp('wap-cards', 3),
         getCmp('wap-section', 5),
@@ -103,6 +121,11 @@ export default {
       // section3: getCmp('wap-section', 4),
       // form: getCmp('wap-form', 1),
     }
+  },
+  methods: {
+    changeTheme(className) {
+      document.querySelector('#app').className = className
+    },
   },
   components: {
     wapHeader,

@@ -2,8 +2,9 @@
   @include grid(2, 16%);
   background-color: var(--clr-3);
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: bottom center;
+  // background-size: 200%;
+  background-size: auto 130%;
+  background-position: top center;
   min-width: 100%;
   color: var(--clr-1);
   font-size: rem(16px);
