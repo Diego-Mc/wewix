@@ -1,7 +1,7 @@
 <template>
     <section class="cmp-edit-section">
       <h6 class="edit-type-label">FONT SIZE</h6>
-      <el-slider v-model="fontSizeToEdit" placement="right" @input="handleBtnSelect" :min="0" :max="3" :step="0.001"/>
+      <el-slider v-model="fontSizeToEdit" placement="right" @input="handleBtnSelect" value="5" :min="0" :max="10" :step="0.001"/>
     </section>
   </template>
   

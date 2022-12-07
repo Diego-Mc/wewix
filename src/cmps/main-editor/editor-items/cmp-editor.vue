@@ -1,44 +1,21 @@
 <template>
   <section v-if="editOptions">
     <section class="style-editor">
+
       <div v-if="isOptionsContain('fontFamily')">
         <edit-font-section @select="updateOptionsStyle" />
-        <!-- <select
-          @change="updateOptions"
-          v-model="updatedOptions.style.fontFamily">
-          <option>arial</option>
-          <option>Gill Sans</option>
-          <option>Calibri</option>
-        </select> -->
       </div>
 
       <div v-if="isOptionsContain('backgroundColor')">
         <edit-bg-color-section @select="updateOptionsStyle" />
-        <!-- <input
-          @input="updateOptions"
-          v-model="updatedOptions.style.backgroundColor"
-          type="color" /> -->
       </div>
 
       <div v-if="isOptionsContain('color')">
         <edit-color-section @select="updateOptionsStyle" />
-        <!-- <input
-          @input="updateOptions"
-          v-model="updatedOptions.style.color"
-          type="color" /> -->
       </div>
 
       <div v-if="isOptionsContain('fontWeight')">
         <edit-font-weight-section @select="updateOptionsStyle" />
-
-        <!-- <select
-          @change="updateOptions"
-          v-model="updatedOptions.style.fontWeight">
-          <option>lighter</option>
-          <option>normal</option>
-          <option>bold</option>
-          <option>bolder</option>
-        </select> -->
       </div>
 
       <div v-if="isOptionsContain('borderRadius')">
@@ -117,9 +94,6 @@
 
       <div>
         <el-button type="danger" @click.stop="onRemoveCmp">Remove</el-button>
-      </div>
-      <div>
-        <button @click="log">Log</button>
       </div>
     </section>
   </section>
@@ -267,7 +241,6 @@ export default {
   },
 
   created() {
-    console.log('elDom', this.elDom)
     this.getMapData = utilService.debounce(this.getMapData, 1500)
   },
 

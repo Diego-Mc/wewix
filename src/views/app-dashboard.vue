@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       userWaps: null,
-      currWapData: null,
+      currWapData: null
     }
   },
   async created() {
@@ -37,6 +37,8 @@ export default {
           visits: wap.visits,
         }
       })
+    
+      this.currWapData = this.userWaps[0]
   },
   methods: {
     async getWaps() {

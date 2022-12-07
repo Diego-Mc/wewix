@@ -3,7 +3,7 @@
     <div class="dashboard-top-div">
       <h2>Kite Shop's Dashboard</h2>
       <div>
-        <router-link :to="wapData._id">
+        <router-link :to="`/${wapData.name}`">
           <el-button class="view-wap-btn">View Website</el-button>
         </router-link>
         <router-link :to="'/edit/' + wapData._id">
