@@ -327,7 +327,8 @@
       }
     }
   }
-  &.type-18 {
+  &.type-18,
+  &.type-26 {
     grid-template-areas: 'title' 'text' 'cta';
     font-family: PoppinsBold;
     width: fit-content;
@@ -398,6 +399,105 @@
   &.type-22 {
     .text {
       max-width: 100%;
+    }
+  }
+  &.type-26 {
+    font-size: rem(26px);
+    .text {
+      color: var(--clr-3);
+      font-family: PoppinsRegular;
+    }
+  }
+  &.type-27 {
+    grid-template-areas:
+      'tag tag'
+      'title title'
+      'cta details'
+      'text text';
+
+    max-width: 50%;
+
+    grid-template-columns: max-content 1fr;
+    gap: 10px;
+    column-gap: 20px;
+
+    align-items: center;
+
+    .tag {
+      background-color: unset;
+      letter-spacing: normal;
+      font-size: em(14px);
+      color: var(--clr-2);
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+    .titles-wrapper {
+      grid-area: title;
+      margin-bottom: 20px;
+      .title {
+        font-family: PoppinsBold;
+        font-size: em(48px);
+        line-height: 130%;
+      }
+      .subtitle {
+        font-family: PoppinsBold;
+        font-size: em(24px);
+      }
+    }
+    button {
+      background-color: var(--clr-2);
+    }
+    .text {
+      margin-top: 20px;
+      font-size: em(14px);
+      max-width: 100%;
+      white-space: pre-wrap;
+    }
+  }
+  &.type-28 {
+    text-align: center;
+    justify-items: center;
+    gap: 16px;
+  }
+  &.type-29 {
+    grid-template-areas:
+      'title title'
+      'text text'
+      'img tag'
+      'img details';
+    text-align: center;
+    justify-items: center;
+    column-gap: 26px;
+
+    .titles-wrapper {
+      grid-area: title;
+      margin-bottom: 30px;
+    }
+    .text {
+      max-width: 100%;
+      margin-bottom: 50px;
+    }
+    .img {
+      grid-area: img;
+      width: 64px;
+      height: 64px;
+      justify-self: end;
+    }
+    .tag {
+      background-color: unset;
+      letter-spacing: normal;
+      margin: 0;
+      padding: 0;
+      font-size: em(20px);
+    }
+    .details {
+      font-size: em(14px);
+      font-family: PoppinsRegular;
+    }
+    .tag,
+    .details {
+      justify-self: start;
     }
   }
 }

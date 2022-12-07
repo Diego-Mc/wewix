@@ -100,6 +100,39 @@
     background-color: #fff;
     font-family: PoppinsRegular;
   }
+  &.type-20 {
+    background-color: var(--clr-3);
+    font-family: PoppinsBold;
+    color: var(--clr-1);
+  }
+  &.type-21,
+  &.type-25 {
+    @include grid(3, 14px);
+    background-color: var(--clr-1);
+    font-family: PoppinsRegular;
+    color: var(--clr-3);
+  }
+  &.type-22 {
+    @include grid(1);
+    background-color: var(--clr-3);
+    font-family: PoppinsRegular;
+    color: var(--clr-1);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+  }
+  &.type-23 {
+    @include grid(1);
+    background-color: var(--clr-2);
+    font-family: PoppinsBold;
+    color: var(--clr-3);
+  }
+  &.type-24 {
+    @include grid(1);
+    background-color: var(--clr-3);
+    font-family: PoppinsBold;
+    color: var(--clr-1);
+  }
 }
 
 @container wap (max-width: 990px) {

@@ -1,6 +1,18 @@
 <template>
   <div class="wap" :style="{ fontFamily: 'SpaceGrotesk' }">
     <button
+      @click="changeTheme('theme-5')"
+      :style="{
+        padding: '20px',
+        backgroundColor: 'pink',
+        color: 'white',
+        position: 'sticky',
+        top: 0,
+        'z-index': 5000,
+      }">
+      יוגה
+    </button>
+    <button
       @click="changeTheme('theme-1')"
       :style="{
         padding: '20px',
@@ -48,14 +60,18 @@
       }">
       גלישה
     </button>
-    <component
-      v-for="section in sections"
-      :is="section.type"
-      :cmpId="section.id"
-      :typeId="section.typeId"
-      :info="section.info"
-      :options="section.options"
-      :cmps="section.cmps" />
+    <section v-for="section in sections">
+      <p>{{ section.type }}, {{ section.typeId }}</p>
+
+      <component
+        :style="{ transform: 'scale(0.6)' }"
+        :is="section.type"
+        :cmpId="section.id"
+        :typeId="section.typeId"
+        :info="section.info"
+        :options="section.options"
+        :cmps="section.cmps" />
+    </section>
   </div>
 </template>
 
@@ -75,6 +91,17 @@ export default {
   data() {
     return {
       sections: [
+        // template 5
+        getCmp('wap-header', 6),
+        getCmp('wap-hero', 6),
+        getCmp('wap-section', 21),
+        getCmp('wap-section', 22),
+        getCmp('wap-section', 23),
+        getCmp('wap-section', 24),
+        getCmp('wap-section', 25),
+        getCmp('wap-cards', 11),
+        // getCmp('wap-footer', 4),
+
         // template 4
         getCmp('wap-header', 5),
         getCmp('wap-hero', 5),
@@ -117,8 +144,6 @@ export default {
         getCmp('wap-section', 6),
         getCmp('wap-cards', 5),
         getCmp('wap-section', 7),
-        // getCmp('wap-section', 6),
-        // getCmp('wap-section', 7),
         // getCmp('wap-form', 2),
       ],
       // header: getCmp('wap-header', 2),

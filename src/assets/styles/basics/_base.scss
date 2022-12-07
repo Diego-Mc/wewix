@@ -106,59 +106,67 @@ button {
 }
 
 [data-draggable]:hover {
-  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='black' stroke-width='4' stroke-dasharray='10%2c 20' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
   cursor: grab;
 }
 
-[contenteditable='true'] {
-  cursor: text;
-  position: relative;
-  &:before,
-  &:after {
-    height: 0.4em;
-    width: 0.4em;
-    position: absolute;
-    content: '';
-    opacity: 0;
-  }
-  &:after {
-    left: 0px;
-    bottom: 0px;
-    border-left: 3px solid #00c2a6;
-    border-bottom: 3px solid #00c2a6;
-    transform: translate(100%, -50%);
-  }
-  &:before {
-    right: 0px;
-    top: 0px;
-    border-right: 3px solid #00c2a6;
-    border-top: 3px solid #00c2a6;
-    transform: translate(-100%, 50%);
-  }
-
-  &:hover {
-    transition: all 0.1s ease;
-
-    &:before {
-      transform: translate(0%, 0%);
-      opacity: 1;
-    }
-    &:after {
-      transform: translate(0%, 0%);
-      opacity: 1;
-    }
-  }
-
-  &:focus-visible {
-    outline: 4px dotted #00c2a6;
-    appearance: none;
-    &:before {
-      transform: translate(-100%, 50%);
-      opacity: 0;
-    }
-    &:after {
-      transform: translate(100%, -50%);
-      opacity: 0;
-    }
-  }
+.main-wap {
+  height: 100vh;
 }
+
+// [data-draggable]:hover {
+//   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='black' stroke-width='4' stroke-dasharray='10%2c 20' stroke-dashoffset='0' stroke-linecap='round'/%3e%3c/svg%3e");
+//   cursor: grab;
+// }
+
+// [contenteditable='true'] {
+//   cursor: text;
+//   position: relative;
+//   &:before,
+//   &:after {
+//     height: 0.4em;
+//     width: 0.4em;
+//     position: absolute;
+//     content: '';
+//     opacity: 0;
+//   }
+//   &:after {
+//     left: 0px;
+//     bottom: 0px;
+//     border-left: 3px solid #00c2a6;
+//     border-bottom: 3px solid #00c2a6;
+//     transform: translate(100%, -50%);
+//   }
+//   &:before {
+//     right: 0px;
+//     top: 0px;
+//     border-right: 3px solid #00c2a6;
+//     border-top: 3px solid #00c2a6;
+//     transform: translate(-100%, 50%);
+//   }
+
+//   &:hover {
+//     transition: all 0.1s ease;
+
+//     &:before {
+//       transform: translate(0%, 0%);
+//       opacity: 1;
+//     }
+//     &:after {
+//       transform: translate(0%, 0%);
+//       opacity: 1;
+//     }
+//   }
+
+//   &:focus-visible {
+//     outline: 4px dotted #00c2a6;
+//     appearance: none;
+//     &:before {
+//       transform: translate(-100%, 50%);
+//       opacity: 0;
+//     }
+//     &:after {
+//       transform: translate(100%, -50%);
+//       opacity: 0;
+//     }
+//   }
+// }
