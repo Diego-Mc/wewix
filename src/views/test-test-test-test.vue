@@ -61,10 +61,10 @@
       גלישה
     </button>
     <section v-for="section in sections">
-      <p>{{ section.type }}, {{ section.typeId }}</p>
+      <!-- <p>{{ section.type }}, {{ section.typeId }}</p> -->
 
       <component
-        :style="{ transform: 'scale(0.6)' }"
+        :style="{ transform: '' }"
         :is="section.type"
         :cmpId="section.id"
         :typeId="section.typeId"

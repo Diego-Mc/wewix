@@ -23,24 +23,26 @@
       <h1>wewix</h1>
     </section>
     <nav class="nav">
-      <a href="#" v-scroll-to="'#home'">Home</a>
-      <a href="#" v-scroll-to="'#features'">Features</a>
-      <a href="#" v-scroll-to="'#demo'">Demo</a>
-      <a href="#" v-scroll-to="'#about'">About</a>
+      <router-link to="/" v-scroll-to="'#home'">Home</router-link>
+      <router-link to="/" v-scroll-to="'#features'">Features</router-link>
+      <router-link to="/" v-scroll-to="'#demo'">Demo</router-link>
+      <router-link to="/" v-scroll-to="'#about'">About</router-link>
     </nav>
     <Slide noOverlay right :closeOnNavigation="true" class="burger">
-      <a href="#" v-scroll-to="'#home'">Home</a>
-      <a href="#" v-scroll-to="'#features'">Features</a>
-      <a href="#" v-scroll-to="'#demo'">Demo</a>
-      <a href="#" v-scroll-to="'#about'">About</a>
+      <router-link to="/" v-scroll-to="'#home'">Home</router-link>
+      <router-link to="/" v-scroll-to="'#features'">Features</router-link>
+      <router-link to="/" v-scroll-to="'#demo'">Demo</router-link>
+      <router-link to="/" v-scroll-to="'#about'">About</router-link>
     </Slide>
     <!-- TODO: make it pretty -->
     <section v-if="loggedinUser">
-      <span>user: <h3 style="display:inline-block">
-        {{loggedinUser.fullname}}
-      </h3>
-    </span>
-        <button @click="doLogout">Logout</button>
+      <span
+        >user:
+        <h3 style="display: inline-block">
+          {{ loggedinUser.fullname }}
+        </h3>
+      </span>
+      <button @click="doLogout">Logout</button>
     </section>
     <section class="user-auth" v-else>
       <router-link :to="'/login/'">

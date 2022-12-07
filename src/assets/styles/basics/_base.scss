@@ -49,7 +49,7 @@ object {
   max-width: 100%;
 }
 
-.video {
+.video:has(iframe) {
   position: relative;
   padding-bottom: 56.25%;
   height: 0;

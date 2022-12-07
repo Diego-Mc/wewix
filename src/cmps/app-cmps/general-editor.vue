@@ -58,7 +58,6 @@ export default {
   methods: {
     handleThemeSelect({ key, val }) {
       eventBus.emit('themeChanged', val)
-      document.body.className = val
     },
     setClass(classType) {
       this.classState.fontClass = classType.fontClass

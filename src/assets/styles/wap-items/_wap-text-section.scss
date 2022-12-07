@@ -396,6 +396,11 @@
       white-space: pre-wrap;
     }
   }
+  &.type-19 {
+    .text {
+      max-width: 100%;
+    }
+  }
   &.type-22 {
     .text {
       max-width: 100%;

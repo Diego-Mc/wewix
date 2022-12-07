@@ -54,6 +54,14 @@
   }
 }
 
+@container wap (max-width: 1160px) {
+  .wap-hero {
+    &.type-5 {
+      font-size: rem(12px);
+    }
+  }
+}
+
 @container wap (max-width: 990px) {
   .wap-hero {
     &.type-3 {

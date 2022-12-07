@@ -17,19 +17,15 @@
       v-if="authModal.isShown === 'login'"
       @authenticated="publishWap"
       @swapAuthModal="swapAuthModal"
-      :msg="authModal.loginMsg" 
-      :destPage="authModal.destPage"
-      />
-      
+      :msg="authModal.loginMsg"
+      :destPage="authModal.destPage" />
 
     <signup-modal
       v-else
       @authenticated="publishWap"
       @swapAuthModal="swapAuthModal"
-      :msg="authModal.signupMsg" 
-      :destPage="authModal.destPage"
-      />
-
+      :msg="authModal.signupMsg"
+      :destPage="authModal.destPage" />
   </div>
 
   <loading-screen v-if="isLoading" />
@@ -244,6 +240,7 @@ export default {
     },
     themeChanged(classState) {
       this.wap.classState = classState
+      document.querySelector('#app').className = classState
       this.onCmpsChange()
     },
     undo() {
@@ -324,7 +321,11 @@ export default {
         this.wap = JSON.parse(JSON.stringify(this.$store.getters.editedWap))
       } else {
         if (this.$route.query.templateId) {
-          this.wap = wapUtils.getTemplate(this.$route.query.templateId)
+          const { templateId } = this.$route.query
+          this.wap = wapUtils.getTemplate(templateId)
+          const defaultTheme = wapUtils.getTemplateTheme(templateId)
+          console.log('sdfsdf', defaultTheme)
+          this.themeChanged(defaultTheme)
         } else this.wap = appEditorService.getEmptyWap()
         delete this.wap._id
         const editedWapId = await this.$store.dispatch({
@@ -418,7 +419,6 @@ export default {
         this.$store.dispatch('addWapToUser', { wapId: this.wap._id })
         // this.$router.replace({ path: , replace: true })
         this.$router.push(this.wap.name)
-
 
         // if (wapId) this.$router.push(`/${wapName}`)
       } catch (err) {

@@ -37,15 +37,19 @@
     padding-bottom: 0;
     position: relative;
     h1 {
-      font-size: rem(68px);
+      font-size: 5.2rem;
       font-family: PoppinsBold;
 
       span {
-        background: linear-gradient(
-          90deg,
-          rgba(0, 194, 166, 1) 0%,
-          rgba(6, 255, 255, 1) 50%
-        );
+        // background: linear-gradient(
+        //   90deg,
+        //   rgba(0, 194, 166, 1) 0%,
+        //   rgba(6, 255, 255, 1) 50%
+        // );
+        // background-clip: text;
+        // -webkit-background-clip: text;
+        // -webkit-text-fill-color: transparent;
+        background: linear-gradient(140deg, #92fe9d 0%, #00c9ff 70%);
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -66,16 +70,21 @@
       }
     }
     button {
-      font-size: rem(14px);
-      border: 1px solid white;
+      font-size: rem(16px);
+      // border: 1px solid white;
+      background-color: white;
+      color: $btn-dark;
+      font-family: PoppinsBold;
       display: inline;
       width: fit-content;
       border-radius: 3rem;
-      padding: 1rem 3rem;
-      transition: background-color 0.1s;
+      padding: 1rem 2.6rem;
+      background: linear-gradient(140deg, #fff 0%, #fff 70%);
+      transition: background 0.1s;
       &:hover {
-        background-color: white;
-        color: $btn-dark;
+        // background-color: white;
+        background: linear-gradient(140deg, #92fe9d 0%, #00c9ff 70%);
+        color: #fff;
       }
     }
 
@@ -94,7 +103,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        height: 20%;
+        height: 26%;
       }
     }
   }
@@ -152,6 +161,9 @@
       }
     }
     main {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 80px;
       @media screen and (max-width: 1120px) {
         grid-template-columns: 1fr;
         .demo-text {
@@ -167,15 +179,15 @@
           }
         }
       }
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
+
       .video {
         width: 100%;
+        overflow: visible;
         video {
-          border-radius: rem(8px);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
-            0 6px 6px rgba(0, 0, 0, 0.23);
+          // border-radius: rem(8px);
+          // box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+          //   0 6px 6px rgba(0, 0, 0, 0.23);
+          box-shadow: 20px 20px 0 $main;
         }
       }
       .demo-text {

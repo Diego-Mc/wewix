@@ -6,36 +6,56 @@ export const wapUtils = {
   getMeta,
   getStyles,
   getTemplate,
+  getTemplateTheme,
+}
+
+function getTemplateTheme(templateId) {
+  return 'theme-' + templateId.match(/\d+/)[0]
 }
 
 function getTemplate(templateId) {
-  const wa = {
-    _id: 'template-1',
-    name: 'template-1',
-    imgUrl:
-      'http://res.cloudinary.com/webify/image/upload/v1590021948/coffe_yi0yzf.png',
-    createdBy: {
-      _id: '5e26e0b718a0891d4c995527',
-      fullname: 'Hekro Special',
-      imgUrl: 'img.jpg',
-    },
-    usersData: {
-      contacts: [
-        { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
-      ],
-      subscriptions: [{ email: 'user@user.com', at: 123 }],
-    },
-    cmps: [
-      getCmp('wap-header', 2),
-      getCmp('wap-hero', 2),
-      getCmp('wap-section', 2),
-      getCmp('wap-section', 3),
-      getCmp('wap-section', 4),
-      getCmp('wap-cards', 2),
-    ],
+  const template = templatesMap.get(templateId)
+  // not sure if should happen now or when publishing...
+  // but //TODO move to db anyway
+  template.createdBy = {
+    _id: '5e26e0b718a0891d4c995527',
+    fullname: 'Hekro Special',
+    imgUrl: 'img.jpg',
   }
-  return wa
+  return template
+  // const wap = {
+  //   _id: 'template-1',
+  //   name: 'template-1',
+  //   imgUrl:
+  //     'http://res.cloudinary.com/webify/image/upload/v1590021948/coffe_yi0yzf.png',
+  //   createdBy: {
+  //     _id: '5e26e0b718a0891d4c995527',
+  //     fullname: 'Hekro Special',
+  //     imgUrl: 'img.jpg',
+  //   },
+  //   usersData: {
+  //     contacts: [
+  //       { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+  //     ],
+  //     subscriptions: [{ email: 'user@user.com', at: 123 }],
+  //   },
+  //   cmps: [
+  //     getCmp('wap-header', 2),
+  //     getCmp('wap-hero', 2),
+  //     getCmp('wap-section', 2),
+  //     getCmp('wap-section', 3),
+  //     getCmp('wap-section', 4),
+  //     getCmp('wap-cards', 2),
+  //   ],
+  // }
+  // return wap
 }
+
+// {
+//   _id: '5e26e0b718a0891d4c995527',
+//   fullname: 'Hekro Special',
+//   imgUrl: 'img.jpg',
+// }
 
 export default function getCmp(type, typeId) {
   let key = type
@@ -2167,12 +2187,10 @@ wapsMap.set('wap-header-4', {
             style: getStyles('nav'),
           },
           content: {
-            nav1: 'DESIGN SERVICES',
-            nav2: 'CONTENT SERVICES',
-            nav3: 'OUR WORK',
-            nav4: 'ABOUT',
-            nav5: 'BLOG',
-            nav6: 'CONTACT',
+            nav1: 'OUR WORK',
+            nav2: 'ABOUT',
+            nav3: 'BLOG',
+            nav4: 'CONTACT',
           },
         },
       },
@@ -5362,3 +5380,113 @@ wap-footer: 3
 wap-social-section: 4
 
 */
+
+//TODO: move to db
+// *************** TEMPLATES MAP ****************
+
+const templatesMap = new Map()
+templatesMap.set('template-1', {
+  _id: 'template-1',
+  name: 'Product',
+  imgUrl:
+    'https://res.cloudinary.com/wewix/image/upload/v1670428298/site-previews/goby-preview-site_hiwx9v.png',
+  createdBy: {},
+  usersData: {
+    contacts: [],
+    subscriptions: [],
+  },
+  cmps: [
+    getCmp('wap-header', 3),
+    getCmp('wap-hero', 3),
+    getCmp('wap-cards', 3),
+    getCmp('wap-section', 5),
+    getCmp('wap-cards', 4),
+    getCmp('wap-section', 6),
+    getCmp('wap-cards', 5),
+    getCmp('wap-section', 7),
+  ],
+})
+templatesMap.set('template-2', {
+  _id: 'template-2',
+  name: 'Local Business',
+  imgUrl:
+    'https://res.cloudinary.com/wewix/image/upload/v1670428298/site-previews/yoga-preview-site_lig7fy.png',
+  createdBy: {},
+  usersData: {
+    contacts: [],
+    subscriptions: [],
+  },
+  cmps: [
+    getCmp('wap-header', 6),
+    getCmp('wap-hero', 6),
+    getCmp('wap-section', 21),
+    getCmp('wap-section', 22),
+    getCmp('wap-section', 23),
+    getCmp('wap-section', 24),
+    getCmp('wap-section', 25),
+    getCmp('wap-cards', 11),
+  ],
+})
+templatesMap.set('template-3', {
+  _id: 'template-3',
+  name: "Sport's shop",
+  imgUrl:
+    'https://res.cloudinary.com/wewix/image/upload/v1670428300/site-previews/kite-preview-site_aowkrp.png',
+  createdBy: {},
+  usersData: {
+    contacts: [],
+    subscriptions: [],
+  },
+  cmps: [
+    getCmp('wap-header', 5),
+    getCmp('wap-hero', 5),
+    getCmp('wap-section', 15),
+    getCmp('wap-section', 16),
+    getCmp('wap-cards', 8),
+    getCmp('wap-section', 17),
+    getCmp('wap-section', 19),
+    getCmp('wap-cards', 9),
+    getCmp('wap-section', 18),
+    getCmp('wap-section', 20),
+  ],
+})
+templatesMap.set('template-4', {
+  _id: 'template-4',
+  name: 'Food truck',
+  imgUrl:
+    'https://res.cloudinary.com/wewix/image/upload/v1670428296/site-previews/plantify-preview-site_lfoxvp.png',
+  createdBy: {},
+  usersData: {
+    contacts: [],
+    subscriptions: [],
+  },
+  cmps: [
+    getCmp('wap-header', 2),
+    getCmp('wap-hero', 2),
+    getCmp('wap-cards', 2),
+    getCmp('wap-section', 2),
+    getCmp('wap-section', 3),
+    getCmp('wap-section', 4),
+  ],
+})
+templatesMap.set('template-5', {
+  _id: 'template-5',
+  name: 'Design Agency',
+  imgUrl:
+    'https://res.cloudinary.com/wewix/image/upload/v1670428300/site-previews/creative-preview-site_kjnnnn.png',
+  createdBy: {},
+  usersData: {
+    contacts: [],
+    subscriptions: [],
+  },
+  cmps: [
+    getCmp('wap-header', 4),
+    getCmp('wap-hero', 4),
+    getCmp('wap-section', 9),
+    getCmp('wap-section', 10),
+    getCmp('wap-cards', 6),
+    getCmp('wap-section', 11),
+    getCmp('wap-section', 12),
+    getCmp('wap-section', 13),
+  ],
+})

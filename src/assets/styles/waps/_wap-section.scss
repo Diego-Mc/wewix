@@ -83,6 +83,7 @@
   &.type-15 {
     font-family: PoppinsRegular;
     @include grid(1);
+    row-gap: 60px;
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     padding-block: 8rem;
   }
