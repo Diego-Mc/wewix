@@ -37,19 +37,6 @@
     class="main-editor"
     v-if="wap && !isLoading">
     <section class="main-editor-tools">
-      <button
-        @click="publishWap('yay')"
-        :style="{
-          backgroundColor: 'blue',
-          position: 'fixed',
-          bottom: 0,
-          left: 0,
-          padding: '20px',
-          color: 'white',
-          'z-index': 500000,
-        }">
-        publish test
-      </button>
       <main-header @dashboardLinkClicked="dashboardLinkClicked" />
       <editor-header
         @setName="setName"
@@ -195,7 +182,6 @@ export default {
       this.onCmpsChange()
     },
     updateField(fieldInfo) {
-      console.log('fieldInfo', fieldInfo)
       const cmp = this.wap.cmps.find((cmp) => cmp.id === fieldInfo.id)
       const formCmp = cmp.cmps.find(childCmp => childCmp.id === fieldInfo.childCmpId)
       if (fieldInfo.txt || fieldInfo.txt === '')
@@ -397,10 +383,7 @@ export default {
     },
     async publishWap(wapName) {
       //TODO ADD USER MSGS
-      this.$notify({
-              title: 'Cannot Publish Site With Invalid Name',
-              type: 'error',
-          });
+      console.log('wa')
       if (!this.loggedinUser) {
         this.authModal.isShown = 'login'
         this.setAuthModalMsg('publishWap')
@@ -421,14 +404,20 @@ export default {
         this.$store.dispatch('addWapToUser', { wapId: this.wap._id })
         // this.$router.replace({ path: , replace: true })
         this.$router.push(this.wap.name)
-        showUserMsg({ txt: 'Site in live!' })
+        this.$notify({
+              title: 'Site is live! ',
+              type: 'success',
+          });
 
         // window.open(routeData.href, '_blank');
 
         // if (wapId) this.$router.push(`/${wapName}`)
       } catch (err) {
         console.log(err)
-        showUserMsg({ txt: 'Could not publish site' })
+        this.$notify({
+              title: 'Cannot Publish Site With Invalid Name',
+              type: 'error',
+          });
       }
     },
     async setName(wapName) {
