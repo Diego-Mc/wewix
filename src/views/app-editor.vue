@@ -43,9 +43,10 @@
           backgroundColor: 'blue',
           position: 'fixed',
           bottom: 0,
-          right: 0,
+          left: 0,
           padding: '20px',
           color: 'white',
+          'z-index': 500000,
         }">
         publish test
       </button>
