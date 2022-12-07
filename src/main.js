@@ -11,8 +11,6 @@ import rootCmp from './root-cmp.vue'
 
 import VueScrollTo from 'vue-scrollto'
 
-import './jquery-temp.js'
-
 const supportsContainerQueries = 'container' in document.documentElement.style
 if (!supportsContainerQueries) {
   import('https://cdn.skypack.dev/container-query-polyfill')
