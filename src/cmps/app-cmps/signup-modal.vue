@@ -21,8 +21,10 @@
 
       <img-uploader @uploaded="onUploaded"></img-uploader>
       <el-button type="primary" @click.prevent="doSignup">
-        <span>Signup </span> 
-        <span v-if="destPage === 'publishWap'">&nbspand publish</span></el-button
+        <span>Signup </span>
+        <span v-if="destPage === 'publishWap'"
+          >&nbspand publish</span
+        ></el-button
       >
     </form>
     <button class="toggle-auth-link" @click="backToLogin">back to login</button>
@@ -69,13 +71,25 @@ export default {
           userCred: this.signupCred,
         })
         let dest
-        console.log(this.isModalInAuthPage)
-        if (this.isModalInAuthPage) dest = '/'
-        else if (this.destPage === 'dashboard') dest = '/dashboard'
-        this.$router.push(dest)
-        showUserMsg({ txt: 'Signed up successfully' })
+        if (this.isModalInAuthPage) {
+          dest = '/'
+          this.$router.push(dest)
+
+        }
+        else if (this.destPage === 'dashboard') {
+          dest = '/dashboard'
+          this.$router.push(dest)
+        }
+        this.$emit('authenticated')
+        this.$notify({
+          title: 'Signed up successfully',
+          type: 'success',
+        })
       } catch {
-        showUserMsg({ txt: 'Signed up failed: username is taken.' })
+        this.$notify({
+          title: 'Signed up failed.',
+          type: 'error',
+        })
       }
     },
   },

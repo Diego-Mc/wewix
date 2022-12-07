@@ -78,16 +78,19 @@ export default {
         if (this.isModalInAuthPage) dest = '/'
         else if (this.destPage === 'dashboard') dest = '/dashboard'
         this.$router.push(dest)
+      this.$emit('authenticated')
 
-        showUserMsg({ txt: 'Logged in successfully' })
-
-        console.log(showUserMsg)
+        this.$notify({
+          title: 'Logged in successfully',
+          type: 'success',
+        })
       } catch (err) {
         console.log(err)
-        this.msg = 'Failed to login'
-        showUserMsg(this.msg)
+        this.$notify({
+          title: 'Cannot sign in',
+          type: 'error',
+        })
       }
-      this.$emit('authenticated')
     },
     async doSignup() {
       if (
@@ -112,8 +115,8 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  padding: 15px;
   border-radius: 10px;
-
   .login-p-divider,
   .google-auth-btn {
     text-align: center;
@@ -122,8 +125,8 @@ export default {
     text-align: center;
     margin-bottom: 20px;
     @media (max-width: 700px) {
-        font-size: 16px;
-}
+      font-size: 16px;
+    }
   }
   .login-form {
     display: flex;
@@ -134,13 +137,11 @@ export default {
       width: 350px;
       @media (max-width: 700px) {
         width: 240px;
-}
+      }
     }
   }
   .toggle-auth-link {
     color: rgb(102, 102, 102);
   }
-
-
 }
 </style>

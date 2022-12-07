@@ -36,6 +36,7 @@
         Subscribe
         <!-- {{ info.btn.content.text }} -->
       </button>
+      <button @click="wawa">asdasdasd</button>
     </form>
   </article>
 </template>
@@ -48,29 +49,25 @@ export default {
   data() {
     return {
       userInfo: {},
-      // {
-      //   email: '',
-      //   msg: '',
-      //   email: '',
-      //   at: '',
-      //   type: null,
-      // },
+  
     }
   },
   created() {
   },
   methods: {
-    // updateContent(elType) {
-    //   this.$emit('update', { cmpId, elType, content: info.text.content })
-    // },
+    wawa(){
+      console.log('wawa');
+    },
     formSubmited() {
-      if(this.$store.getters.isEditMode) return
+      // if(this.$store.getters.isEditMode) return
+      console.log('wawawa')
       this.userInfo.createdAt = Date.now()
       eventBus.emit('formSubmited', this.userInfo)
     },
     emitSelect(elInfo) {
       eventBus.emit('select', elInfo)
     },
+    
   },
 
   components: {
