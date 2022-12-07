@@ -22,15 +22,15 @@
     > .list-group {
       padding-inline: 3rem !important;
     }
-    > * > * {
-      padding-inline: 3rem !important;
-    }
+    // > * > * {
+    //   padding-inline: 3rem !important;
+    // }
   }
 }
 
 @container wap (max-width: 1200px) {
   .main-wap {
-    > .list-group > div > * {
+    > .list-group > div > *:not(.wap-chat) {
       padding-inline: 3rem !important;
     }
   }
