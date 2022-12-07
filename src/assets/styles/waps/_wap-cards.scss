@@ -225,6 +225,91 @@
       }
     }
   }
+
+  &.type-11 {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    background-color: var(--clr-2);
+    align-items: start;
+    row-gap: 0;
+
+    font-family: PoppinsRegular;
+    .wap-card {
+      grid-template-areas:
+        'title'
+        'subtitle'
+        'details'
+        'text1'
+        'text2'
+        'text3'
+        'cta';
+      border-radius: 4px;
+      color: var(--clr-1);
+      .title {
+        font-family: PoppinsBold;
+        font-size: em(36px);
+        margin-bottom: 6px;
+      }
+      .subtitle {
+        font-size: em(18px);
+      }
+      .details {
+        padding-inline: 20px;
+        margin-bottom: 40px;
+        font-size: em(14px);
+      }
+      .text1,
+      .text2,
+      .text3,
+      .text4 {
+        margin-bottom: 14px;
+      }
+
+      button {
+        margin-top: 26px;
+        background-color: var(--clr-2);
+        color: var(--clr-1);
+        font-size: em(16px);
+        letter-spacing: 0.8px;
+        padding: 18px 32px;
+        transition: all 0.15s ease-in-out;
+        &:hover {
+          color: var(--clr-3);
+          background-color: var(--clr-1);
+        }
+      }
+
+      &.type-14 {
+        font-size: em(26px);
+        text-align: left;
+        padding: 0;
+        max-width: 260px;
+      }
+      &.type-15,
+      &.type-16 {
+        background-color: var(--clr-3);
+        button {
+          background-color: var(--clr-1);
+          color: var(--clr-3);
+          &:hover {
+            background-color: var(--clr-2);
+            color: var(--clr-1);
+          }
+        }
+      }
+      &.type-16 {
+        background-color: var(--clr-1);
+        color: var(--clr-3);
+        button {
+          background-color: var(--clr-3);
+          color: var(--clr-1);
+          &:hover {
+            background-color: var(--clr-2);
+            color: var(--clr-3);
+          }
+        }
+      }
+    }
+  }
 }
 
 @container wap (max-width: 760px) {

@@ -1,0 +1,16 @@
+.wap-video {
+  &.type-5 {
+    .video {
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .title {
+      font-size: em(16px);
+      font-family: PoppinsBold;
+      margin-bottom: 10px;
+    }
+    .text {
+      font-size: em(12px);
+    }
+  }
+}

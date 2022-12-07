@@ -15,6 +15,34 @@
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
     </div>
+    <h3
+      v-if="info.title"
+      class="title"
+      :style="info?.title?.options.style"
+      @click.stop="emitSelect('title')"
+      @input="updateContent('title', $event)"
+      :contenteditable="$store.getters.isEditMode">
+      {{ info?.title?.content.text }}
+    </h3>
+    <h3
+      v-if="info.subtitle"
+      class="subtitle"
+      :style="info?.subtitle?.options.style"
+      @click.stop="emitSelect('subtitle')"
+      @input="updateContent('subtitle', $event)"
+      :contenteditable="$store.getters.isEditMode">
+      {{ info?.subtitle?.content.text }}
+    </h3>
+
+    <p
+      v-if="info.text"
+      class="text"
+      :style="info?.text?.options.style"
+      @click.stop="emitSelect('text')"
+      @input="updateContent('text', $event)"
+      :contenteditable="$store.getters.isEditMode">
+      {{ info?.text?.content.text }}
+    </p>
   </section>
 </template>
 
