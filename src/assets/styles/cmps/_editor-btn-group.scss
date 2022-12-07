@@ -80,3 +80,60 @@
   justify-content: space-between;
   gap: 11px;
 }
+
+.theme-picker {
+  gap: 16px;
+  label {
+    font-family: PoppinsBold;
+    padding-block: 16px;
+    position: relative;
+    overflow: hidden;
+    background-color: #f7f7f7;
+    border-width: 3px;
+    &:hover:not(:has(:checked)) {
+      border-width: 3px;
+      background-color: #f7f7f7 !important;
+      border: 3px solid #ccc !important;
+    }
+    &:has(:checked) {
+      // border: 3px solid #263140;
+      border-width: 3px;
+      color: unset;
+      background-color: unset;
+    }
+    .text {
+      z-index: 1;
+      color: #263140;
+    }
+    .theme-colors {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      overflow: hidden;
+      .colors-wrapper {
+        position: absolute;
+        inset: 0;
+        height: 60px;
+        display: flex;
+        transform: rotate(46deg) scaleY(500%);
+      }
+      .color1 {
+        background-color: var(--clr-1);
+        height: 100%;
+        flex: 1;
+      }
+      .color2 {
+        background-color: var(--clr-2);
+        height: 100%;
+        flex: 1;
+      }
+      .color3 {
+        background-color: var(--clr-3);
+        height: 100%;
+        flex: 1;
+      }
+    }
+  }
+}

@@ -11,23 +11,19 @@ import rootCmp from './root-cmp.vue'
 
 import VueScrollTo from 'vue-scrollto'
 
-import './jquery-temp.js'
-
 const supportsContainerQueries = 'container' in document.documentElement.style
 if (!supportsContainerQueries) {
   import('https://cdn.skypack.dev/container-query-polyfill')
 }
 
-// window.onload = overLayFunc
-
-// window.addEventListener('load', () => {
+// window.onload = () => {
 //   const wap = document.querySelector('.main-wap')
 //   new ResizeObserver(overLayFunc).observe(wap)
-// })
+// }
 
 // function overLayFunc(e) {
 //   window.random = function () {
-//     return Math.floor(Math.random() * Math.pow(10, 17))
+//     return 'aa' + Math.floor(Math.random() * Math.pow(10, 17))
 //   }
 //   window.z_index = 1
 //   window.data_ = Array()
@@ -124,7 +120,7 @@ if (!supportsContainerQueries) {
 //           (y > window.data_[i][3].y)) &
 //         window.data_[i][5]
 //       ) {
-//         document.getElementById(`${window.data_[i][0]}`).remove()
+//         document.querySelector('#' + window.data_[i][0]).remove()
 //         window.data_[i][5] = false
 //       }
 //     }
