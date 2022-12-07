@@ -42,18 +42,22 @@
       </div>
 
       <div v-if="isOptionsContain('borderRadius')">
-        <edit-radius-section @select="updateStyleValToEm" :borderRadius="parseFloat(editOptions.style.borderRadius)"/>
+        <edit-radius-section
+          @select="updateStyleValToEm"
+          :borderRadius="parseFloat(editOptions.style.borderRadius)" />
       </div>
 
       <!-- TODO: add style to fontSize -->
       <div v-if="isOptionsContain('fontSize')">
-        <edit-font-size-section @select="updateStyleValToEm" :fontSize="parseFloat(editOptions.style.fontSize)"/>
+        <edit-font-size-section
+          @select="updateStyleValToEm"
+          :fontSize="parseFloat(editOptions.style.fontSize)" />
       </div>
     </section>
 
     <section class="content-editor">
       <div v-if="isOptionsContain('src')">
-        <edit-upload-section @select="updateOptionsMeta"/>
+        <edit-upload-section @select="updateOptionsMeta" />
 
         <input
           @input="updateOptions"
@@ -84,11 +88,14 @@
       </div>
 
       <div v-if="isOptionsContain('animation')">
-          <edit-animation-section @select="updateOptionsMeta" :animation="editOptions.meta.animation"/>
-      </div> 
+        <edit-animation-section
+          @select="updateOptionsMeta"
+          :animation="editOptions.meta.animation" />
+      </div>
 
       <div v-if="isOptionsContain('formInputs')">
-        enter name of fields
+        <h6 class="edit-type-label">Form Fields</h6>
+
         <div v-for="(field, idx) in updatedOptions.meta.formInputs">
           <div>
             <input
@@ -98,9 +105,9 @@
             <button @click="fieldRemoved(id, idx)">X</button>
           </div>
         </div>
-        <button @click="fieldAdded(id)" style="width: 100%; background: green">
+        <el-button type="primary" @click="fieldAdded(id)" style="width: 100%; background: green; margin-bottom: 10px">
           add field
-        </button>
+        </el-button>
         <!-- <input
           @input="updateOptions"
           v-model="updatedOptions.meta.link"
@@ -138,7 +145,7 @@ export default {
     childCmpId: String,
     editOptions: Object,
     elType: String,
-    elDom: Object
+    elDom: Object,
   },
   data() {
     return {
@@ -148,17 +155,23 @@ export default {
       isMapLocationLoader: false,
     }
   },
+
   methods: {
     fieldChanged(id, idx, e) {
-      eventBus.emit('updateField', { id, idx, txt: e.target.value })
+      eventBus.emit('updateField', {
+        id,
+        idx,
+        txt: e.target.value,
+        childCmpId: this.childCmpId,
+      })
     },
     fieldRemoved(id, idx) {
       this.updatedOptions.meta.formInputs.splice(idx, 1)
       eventBus.emit('updateField', { id, idx })
     },
     fieldAdded(id) {
-      this.updatedOptions.meta.formInputs.push({ tag: 'wa', txt: '' })
-      eventBus.emit('updateField',{id})
+      this.updatedOptions.meta.formInputs.push({ tag: '', txt: '' })
+      eventBus.emit('updateField', { id, childCmpId: this.childCmpId })
     },
     onRemoveCmp() {
       eventBus.emit('removeCmp', {
@@ -172,7 +185,6 @@ export default {
         ...Object.keys(this.editOptions.style),
         ...Object.keys(this.editOptions.meta),
       ]
-      console.log('cmp', options.includes(type))
       return options.includes(type)
     },
 
@@ -181,10 +193,8 @@ export default {
       this.updateOptions()
     },
 
-    updateOptionsMeta({key, val}) {
-
+    updateOptionsMeta({ key, val }) {
       this.updatedOptions.meta[key] = val
-      console.log(this.updatedOptions);
       this.updateOptions()
     },
 
@@ -214,7 +224,7 @@ export default {
       })
     },
 
-    updateStyleValToEm({key, val}) {    
+    updateStyleValToEm({ key, val }) {
       const updatedVal = val + 'em'
       this.updatedOptions.style[key] = updatedVal
       this.updateOptions()
@@ -248,7 +258,7 @@ export default {
     log() {
       window.getComputedStyle(this.elDom)
       this.elDom.style.height = Math.floor(Math.random() * 100) + 'px'
-    }
+    },
   },
   watch: {
     editOptions() {
@@ -257,9 +267,8 @@ export default {
   },
 
   created() {
-    console.log('elDom', this.elDom);
+    console.log('elDom', this.elDom)
     this.getMapData = utilService.debounce(this.getMapData, 1500)
-
   },
 
   components: {
@@ -270,7 +279,7 @@ export default {
     editRadiusSection,
     editUploadSection,
     editFontSizeSection,
-    editAnimationSection
+    editAnimationSection,
   },
 }
 </script>

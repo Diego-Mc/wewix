@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="work-together-modal">
         <h1>{{ confirmData.txt }}</h1>
         <div v-if="!isDisplayUrl">
             <button @click="(isDisplayUrl = true)">Yes</button>
@@ -52,3 +52,10 @@ export default {
     }
 }
 </script>
+
+<style>
+.work-together-modal{
+    z-index: 100000;
+    background-color: aliceblue;
+}
+</style>

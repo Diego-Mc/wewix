@@ -1,9 +1,6 @@
 <template>
   <!--  -->
-  <article
-    @click.stop="emitSelect({ cmpId })"
-    class="wap-form"
-    :class="'type-' + typeId">
+  <article class="wap-form" :class="'type-' + typeId">
     <h3 class="title" :style="info?.title?.options.style">
       {{ info?.title?.content.text }}
     </h3>
@@ -15,7 +12,9 @@
       inbox.
       {{ info.text.content.text }}
     </p> -->
-    <form @submit.prevent="formSubmited">
+    <form
+      @submit.prevent="formSubmited"
+      @click.stop="emitSelect({ cmpId, childCmpId })">
       <div
         v-for="(field, idx) in options?.meta?.formInputs"
         class="input-fields">
@@ -45,7 +44,7 @@
 import { eventBus } from '../../services/event-bus.service'
 import wapFormItem from '../wap-items/wap-form-item.vue'
 export default {
-  props: ['info', 'cmpId', 'options', 'typeId'],
+  props: ['info', 'cmpId', 'options', 'typeId', 'childCmpId'],
   data() {
     return {
       userInfo: {},
@@ -58,12 +57,14 @@ export default {
       // },
     }
   },
-  created() {},
+  created() {
+  },
   methods: {
     // updateContent(elType) {
     //   this.$emit('update', { cmpId, elType, content: info.text.content })
     // },
     formSubmited() {
+      if(this.$store.getters.isEditMode) return
       this.userInfo.createdAt = Date.now()
       eventBus.emit('formSubmited', this.userInfo)
     },

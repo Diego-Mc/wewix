@@ -3,12 +3,13 @@
     v-if="info.img1"
     class="gallery-section"
     :class="'type-' + typeId"
-    @click.stop="emitSelect"
     :style="options.style">
     <div class="gallery-item" v-for="(cmp, key) in info">
       <div class="img-container">
         <img :src="cmp.options.meta.src" />
       </div>
+      <!-- @click.stop="emitSelect" -->
+
       <h6
         v-if="cmp.content.text"
         class="img-text"
@@ -29,23 +30,14 @@ export default {
   props: ['info', 'cmpId', 'childCmpId', 'options', 'typeId'],
   methods: {
     // Change 'gallery' into 'img1'
-    emitSelect() {
+    emitSelect(key) {
+      console.log('key', key)
       eventBus.emit('select', {
         cmpId: this.cmpId,
+        elType: 'img' + key,
         childCmpId: this.childCmpId,
-        elType: 'gallery',
       })
     },
-    onSelect() {
-      eventBus.emit('select', {
-        cmpId: this.cmpId,
-        childCmpId: this.childCmpId,
-        elType: 'gallery',
-      })
-    },
-  },
-  created() {
-    console.log(this.info, 'HR')
   },
 }
 </script>
