@@ -1,0 +1,42 @@
+// .guest-avatar {
+//     height: 50px;
+// }
+// .wap-chat {
+//   position: fixed;
+//   bottom: 25px;
+//   right: 25px;
+//   height: 400px;
+//   width: 350px;
+//   background-color: lightblue;
+//   padding: 10px;
+
+//   nav ul {
+//     display: flex;
+//     justify-content: space-between;
+//     margin-block: 0;
+//     padding-inline: 0;
+//   }
+
+//   .welcome-txt {
+//     margin-block-start: 50px;
+//   }
+// }
+
+.wap-chat {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  height: 400px;
+  width: 300px;
+  background-color: #fff;
+  box-shadow: 0 0 40px #00000022;
+
+  .guests {
+    display: flex;
+    flex-wrap: nowrap;
+    .guest-avatar {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
