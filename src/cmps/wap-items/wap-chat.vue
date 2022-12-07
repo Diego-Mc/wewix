@@ -21,11 +21,12 @@
 
 
     <hr />
-    <ul>
+    <ul class="msgs">
       <li v-for="(msg, idx) in conversations[this.activeConversation]" :key="idx">
         <span>{{ msg.from }}:</span>{{ msg.txt }}
       </li>
     </ul>
+
     <form @submit.prevent="sendMsg">
       <input v-if="((activeConversation && this.user.isAdmin) || !this.user.isAdmin)" @input="sendTypeState" type="text" v-model="msg.txt" placeholder="Your msg" />
       <span v-else>Please Select User To Msg</span>

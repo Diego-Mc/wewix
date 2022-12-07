@@ -3,6 +3,7 @@ import { createApp } from 'vue'
 import { router } from './router.js'
 import { store } from './store/store.js'
 
+import Notifications from '@kyvg/vue3-notification'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
@@ -132,5 +133,6 @@ app.use(router)
 app.use(store)
 app.use(ElementPlus)
 app.use(VueScrollTo)
+app.use(Notifications)
 
 app.mount('#app')

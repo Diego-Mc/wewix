@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@fortawesome/vue-fontawesome": "^3.0.2",
+    "@kyvg/vue3-notification": "^2.7.0",
     "@programic/vue3-tooltip": "^1.0.0",
     "animate.css": "^4.1.1",
     "axios": "^0.27.2",
