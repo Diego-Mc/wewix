@@ -1,6 +1,6 @@
 <template>
   <app-header />
-  <signup-modal @authenticated="authenticated" :isModalInAuthPage="true"/>
+  <signup-modal @authenticated="authenticated" :isModalInAuthPage="true" :msg="'signup'"/>
 </template>
 
 <script>

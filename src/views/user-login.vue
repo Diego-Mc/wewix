@@ -2,7 +2,7 @@
   <app-header />
   <p>{{ msg }}</p>
   <div>
-    <login-modal @authenticated="authenticated" :isModalInAuthPage="true"/>
+    <login-modal @authenticated="authenticated" :isModalInAuthPage="true" :msg="'login'"/>
   </div>
 </template>
 

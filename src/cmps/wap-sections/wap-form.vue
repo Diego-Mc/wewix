@@ -1,4 +1,5 @@
 <template>
+  <!--  -->
   <article
     @click.stop="emitSelect({ cmpId })"
     class="wap-form"
@@ -57,13 +58,12 @@ export default {
       // },
     }
   },
+  created() {},
   methods: {
-    updateContent(elType) {
-      this.$emit('update', { cmpId, elType, content: info.text.content })
-    },
-
+    // updateContent(elType) {
+    //   this.$emit('update', { cmpId, elType, content: info.text.content })
+    // },
     formSubmited() {
-      console.log(this.userInfo)
       this.userInfo.createdAt = Date.now()
       eventBus.emit('formSubmited', this.userInfo)
     },

@@ -21,8 +21,7 @@ export default {
     }
   },
   async created() {
-    console.log(this.loggedinUser);
-    if (!this.loggedinUser || !this.loggedinUser.waps) return
+    if (!this.loggedinUser || !this.loggedinUser.waps) this.$router.push('/')
     let waps = await this.getWaps()
   
     this.userWaps = waps

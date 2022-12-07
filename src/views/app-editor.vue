@@ -8,15 +8,28 @@
     @openWorkSpace="openWorkSpace" />
 
   <cursor v-if="workTogetherCursors[0]" :cursorsData="workTogetherCursors" />
-  <div v-if="authModal" class="authModal">
+  <div v-if="authModal.isShown" class="auth-edit-mode-modal">
+    <div>
+      <button @click="authModal.isShown = false">X</button>
+    </div>
+
     <login-modal
-      v-if="authModal === 'login'"
+      v-if="authModal.isShown === 'login'"
       @authenticated="publishWap"
-      @swapAuthModal="swapAuthModal" />
+      @swapAuthModal="swapAuthModal"
+      :msg="authModal.loginMsg" 
+      :destPage="authModal.destPage"
+      />
+      
+
     <signup-modal
       v-else
       @authenticated="publishWap"
-      @swapAuthModal="swapAuthModal" />
+      @swapAuthModal="swapAuthModal"
+      :msg="authModal.signupMsg" 
+      :destPage="authModal.destPage"
+      />
+
   </div>
 
   <loading-screen v-if="isLoading" />
@@ -40,7 +53,7 @@
         }">
         publish test
       </button>
-      <main-header />
+      <main-header @dashboardLinkClicked="dashboardLinkClicked" />
       <editor-header
         @setName="setName"
         @setVal="openSocketsConfirm"
@@ -65,6 +78,7 @@
         @end="drag = false"
         @update="onCmpsChange"
         item-key="id"
+        :disabled="!this.$store.getters.isEditMode"
         group="sections">
         <template #item="{ element }">
           <div>
@@ -134,12 +148,16 @@ export default {
       isConfirmModalOpen: false,
       confirmData: null,
       isLoading: false,
-      authModal: false,
+      authModal: {
+        isShown: false,
+        loginMsg: '',
+        signupMsg: '',
+      },
     }
   },
   async created() {
     this.onCmpsChange = utilService.debounce(this.onCmpsChange, 500)
-
+    this.$store.commit('setEditMode', { isEditMode: true })
     await this.loadWap()
     this.initEventsFromBus()
     this.initHistory()
@@ -156,13 +174,26 @@ export default {
       this.openWorkSpace()
     }
   },
-  unmounted() {
-    console.log('I AM UNMOUNTED!!!!!!', this.wap._id)
-    document.removeEventListener('keydown', this.keydownHandler)
-  },
   methods: {
-    swapAuthModal(modalType){
-      this.authModal = modalType
+    setAuthModalMsg(destinationPage) {
+      if (destinationPage === 'dashboard') {
+        this.authModal.loginMsg = 'Login to view dashboard'
+        this.authModal.signupMsg = 'Signup  to view dashboard'
+      } else {
+        this.authModal.loginMsg = 'Login to publish website'
+        this.authModal.signupMsg = 'Signup publish website'
+      }
+      this.authModal.destPage = destinationPage
+    },
+    dashboardLinkClicked() {
+      if (this.loggedinUser) this.$router.push('/dashboard')
+      else {
+        this.setAuthModalMsg('dashboard')
+        this.authModal.isShown = 'login'
+      }
+    },
+    swapAuthModal(modalType) {
+      this.authModal.isShown = modalType
     },
     cmpAdded(e) {
       this.onCmpsChange()
@@ -277,6 +308,7 @@ export default {
     async loadWap() {
       // console.log('templatedId',this.$route.query.templateId)
       if (this.$route.params?.id) {
+        // console.log(this.$route.name === 'app-editor' ? 'ayyayaya' : 'ops')
         // if(!auth) return  this.$router.push({ path: '/edit/' + editedWapId, replace: true })
         const wap = await this.$store.dispatch({
           type: 'getWap',
@@ -316,7 +348,6 @@ export default {
     },
     cmpSelected({ cmpId, elType, childCmpId, elDom }) {
       this.selectedCmp = {}
-
       let cmp = this.wap.cmps.find(({ id }) => {
         return id === cmpId
       })
@@ -330,7 +361,6 @@ export default {
       this.selectedCmp.options = elType ? cmp.info[elType].options : cmp.options
       this.selectedCmp.elType = elType
       this.selectedCmp.elDom = elDom?.target
-
       eventBus.emit('openCmpEditor')
     },
 
@@ -369,7 +399,8 @@ export default {
     async publishWap(wapName) {
       //TODO ADD USER MSGS
       if (!this.loggedinUser) {
-        this.authModal = true
+        this.authModal.isShown = true
+        this.setAuthModalMsg('publishWap')
         return
       }
       if (this.wap.isPublished) {
@@ -380,12 +411,14 @@ export default {
       this.wap.createdAt = Date.now()
       this.wap.owner = this.loggedinUser
       this.wap.isPublished = !this.wap.isPublished
-      this.authModal = false
+      this.authModal.isShown = false
 
       try {
         const wapId = await this.updateWap(this.wap)
         this.$store.dispatch('addWapToUser', { wapId: this.wap._id })
-        this.$router.push({ path: editedWapId, replace: true })
+        // this.$router.replace({ path: , replace: true })
+        this.$router.push(this.wap.name)
+
 
         // if (wapId) this.$router.push(`/${wapName}`)
       } catch (err) {
@@ -409,7 +442,6 @@ export default {
       eventBus.off('formSubmited')
       eventBus.off('undo')
       eventBus.off('redo')
-      eventBus.off('select')
       eventBus.off('themeChanged')
       eventBus.off('removeCmp')
       eventBus.off('updateField')
@@ -489,6 +521,7 @@ export default {
   unmounted() {
     this.terminateEventBus()
     socketService.emit('doDisconnect', {})
+    document.removeEventListener('keydown', this.keydownHandler)
   },
   computed: {
     loggedinUser() {
@@ -529,13 +562,14 @@ export default {
 </options>
 
 <style lang="scss">
-  .authModal{
-    position: fixed;
-    z-index: 20000;
-    background-color: white;
-    padding: 20px;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-  }
+.auth-edit-mode-modal {
+  position: fixed;
+  z-index: 20000;
+  background-color: white;
+  padding: 20px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: end;
+}
 </style>

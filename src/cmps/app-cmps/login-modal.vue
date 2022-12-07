@@ -1,8 +1,6 @@
 <template>
   <div class="auth-modal">
-    <h2 class="auth-header" v-if="isModalInAuthPage">Login</h2>
-    <h2 class="auth-header" v-else>Login to publish your website</h2>
-
+    <h2 class="auth-header">{{ msg }}</h2>
     <div class="google-auth-btn">
       <button>
         <a href="http://localhost:3030/auth/google">google login</a>
@@ -14,7 +12,6 @@
       </button>
     </div>
     <p class="login-p-divider">or</p>
-
     <form class="login-form">
       <el-input
         class="auth-input"
@@ -40,11 +37,12 @@
 export default {
   props: {
     isModalInAuthPage: Boolean,
+    msg: String,
+    destPage: String,
   },
   name: 'login-modal',
   data() {
     return {
-      msg: '',
       loginCred: { username: '', password: '' },
     }
   },
@@ -60,7 +58,6 @@ export default {
     openSignupModal() {
       if (this.isModalInAuthPage) this.$router.push('/signup')
       else this.$emit('swapAuthModal', 'signup')
-      console.log('modal', this.isModalInAuthPage)
     },
     async doLogin() {
       if (!this.loginCred.username) {
@@ -72,7 +69,10 @@ export default {
       }
       try {
         await this.$store.dispatch({ type: 'login', userCred: this.loginCred })
-        if (this.isModalInAuthPage) this.$router.push('/')
+        let dest 
+        if (this.isModalInAuthPage) dest = '/'
+        else if (this.destPage === 'dashboard') dest = '/dashboard'
+        this.$router.push(dest)
       } catch (err) {
         console.log(err)
         this.msg = 'Failed to login'

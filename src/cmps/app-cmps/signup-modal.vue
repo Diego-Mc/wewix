@@ -1,8 +1,6 @@
 <template>
   <div class="auth-modal">
-    <h2 class="auth-header" v-if="isModalInAuthPage">Signup</h2>
-    <h2 class="auth-header" v-else>Signup to publish your website</h2>
-    <p>{{ msg }}</p>
+    <h2 class="auth-header">{{ msg }}</h2>
     <form class="login-form">
       <el-input
         class="auth-input"
@@ -32,11 +30,12 @@
 export default {
   props: {
     isModalInAuthPage: Boolean,
+    msg: String,
+    destPage: String,
   },
   name: 'login-signup',
   data() {
     return {
-      msg: '',
       signupCred: { username: '', password: '', fullname: '', imgUrl: '' },
     }
   },

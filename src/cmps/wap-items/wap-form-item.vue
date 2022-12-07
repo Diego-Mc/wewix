@@ -46,11 +46,8 @@ export default {
     }
   },
   methods: {
-    emailChange() {
-      this.$emit('update:modelValue', this.txt)
-    },
+  
     changeTxt() {
-      console.log(this.txt)
       this.$emit('update:modelValue', this.txt)
     },
   },
