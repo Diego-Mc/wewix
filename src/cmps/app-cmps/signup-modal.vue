@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import {showUserMsg} from '../../services/event-bus.service.js'
+
 export default {
   props: {
     isModalInAuthPage: Boolean,
@@ -59,8 +61,12 @@ export default {
         return
       }
       await this.$store.dispatch({ type: 'signup', userCred: this.signupCred })
-      this.$router.push('/edit') //TODO: change to different page
-      this.$emit('authenticated')
+      let dest
+      console.log(this.isModalInAuthPage)
+      if (this.isModalInAuthPage) dest = '/'
+      else if (this.destPage === 'dashboard') dest = '/dashboard'
+      this.$router.push(dest)
+      showUserMsg({ txt: 'Signed up successfully' })
     },
   },
   components: {},

@@ -99,7 +99,6 @@
       <general-editor />
     </section>
   </section>
-  <button>wa</button>
 
 </template>
 

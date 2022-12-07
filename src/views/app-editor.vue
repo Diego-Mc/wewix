@@ -101,7 +101,7 @@
 import draggable from 'vuedraggable'
 import { socketService } from '../services/socket.service'
 
-import { eventBus } from '../services/event-bus.service'
+import { eventBus ,showUserMsg} from '../services/event-bus.service'
 import { httpService } from '../services/http.service'
 import getCmp, { wapUtils } from '../services/wap-cmps.service'
 import { appEditorService } from '../services/app-editor.service'
@@ -162,7 +162,6 @@ export default {
     this.initEventsFromBus()
     this.initHistory()
     this.checkNewVisit() // TODO: only on published mode.
-
     if (this.wap.classState) {
       document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
     }
@@ -404,7 +403,7 @@ export default {
         return
       }
       if (this.wap.isPublished) {
-        console.log('saved changes')
+        showUserMsg({txt:'Site saved'})
         return
       }
       this.wap.name = wapName

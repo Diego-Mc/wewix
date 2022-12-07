@@ -34,6 +34,8 @@
 </template>
 
 <script>
+import { showUserMsg } from '../../services/event-bus.service.js'
+
 export default {
   props: {
     isModalInAuthPage: Boolean,
@@ -69,13 +71,18 @@ export default {
       }
       try {
         await this.$store.dispatch({ type: 'login', userCred: this.loginCred })
-        let dest 
+        let dest
         if (this.isModalInAuthPage) dest = '/'
         else if (this.destPage === 'dashboard') dest = '/dashboard'
         this.$router.push(dest)
+
+        showUserMsg({ txt: 'Logged in successfully' })
+
+        console.log(showUserMsg)
       } catch (err) {
         console.log(err)
         this.msg = 'Failed to login'
+        showUserMsg(this.msg)
       }
       this.$emit('authenticated')
     },
