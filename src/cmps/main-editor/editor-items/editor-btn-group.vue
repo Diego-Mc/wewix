@@ -1,15 +1,37 @@
 <template>
   <section class="editor-btn" :style="{ gap, flexDirection: dir }">
-    <el-tooltip class="box-item" effect="light" :hide-after="0" :disabled="!opt.title" :content="opt.title?.text"
-      :placement="opt.title?.placement" v-for="opt in opts" :key="opt.val">
+    <el-tooltip
+      class="box-item"
+      effect="light"
+      :hide-after="0"
+      :disabled="!opt.title"
+      :content="opt.title?.text"
+      :placement="opt.title?.placement"
+      v-for="opt in opts"
+      :key="opt.val">
       <label :class="info.type" :style="style">
-        <i v-if="opt.icon" @click="iconEvent(opt.icon)" :class="'icon bi bi-' + opt.icon"></i>
+        <i
+          v-if="opt.icon"
+          @click="iconEvent(opt.icon)"
+          :class="'icon bi bi-' + opt.icon"></i>
         <span class="text" v-if="opt.text">{{ opt.text }}</span>
         <span class="sample" :style="opt.style" v-if="opt.sample">{{
-            opt.sample
+          opt.sample
         }}</span>
         <small class="small" v-if="opt.small">{{ opt.small }}</small>
-        <input :value="opt.val" :name="info?.key" type="checkbox" v-model="val" @change="reportVal(val)" />
+        <div v-if="info?.key === 'theme'" class="theme-colors">
+          <div class="colors-wrapper">
+            <div class="color1" :class="opt.val"></div>
+            <div class="color2" :class="opt.val"></div>
+            <div class="color3" :class="opt.val"></div>
+          </div>
+        </div>
+        <input
+          :value="opt.val"
+          :name="info?.key"
+          type="checkbox"
+          v-model="val"
+          @change="reportVal(val)" />
       </label>
     </el-tooltip>
   </section>
@@ -63,11 +85,8 @@ export default {
       else if (iconType === 'arrow-return-right') eventBus.emit('redo')
       return true
     },
-
   },
 }
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
