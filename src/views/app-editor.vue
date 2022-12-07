@@ -144,6 +144,7 @@ export default {
     this.onCmpsChange = utilService.debounce(this.onCmpsChange, 500)
     this.$store.commit('setEditMode', { isEditMode: true })
     await this.loadWap()
+    console.log(this.wap)
     this.initEventsFromBus()
     this.initHistory()
     this.checkNewVisit() // TODO: only on published mode.
@@ -354,7 +355,19 @@ export default {
       if (userInfo.type === 'subscription')
         this.wap.usersData.subscriptions.push(userInfo)
       else this.wap.usersData.contacts.push(userInfo)
+      try {
       this.updateWap()
+      this.$notify({
+          title: 'message sent successfully',
+          type: 'success',
+        })
+      } catch (error) {
+        this.$notify({
+          title: 'couldnt send message',
+          type: 'error',
+        })
+      }
+
     },
     initEventsFromBus() {
       eventBus.on('cmpUpdated', this.handleUpdate)
@@ -391,7 +404,10 @@ export default {
         return
       }
       if (this.wap.isPublished) {
-        showUserMsg({ txt: 'Site saved' })
+        this.$notify({
+          title: 'sites saved',
+          type: 'success',
+        })
         return
       }
       this.wap.name = wapName

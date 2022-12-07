@@ -62,7 +62,7 @@
     <section class="user-auth">
       <h3 v-if="loggedinUser">
         logged in user : {{ loggedinUser.fullname }}
-        <button>Log out</button>
+        <button @click="doLogout">Log out</button>
       </h3>
       <router-link v-else to="/login/">
         <button class="login-btn"><i class="bi bi-person"></i> login</button>
@@ -82,6 +82,9 @@ export default {
   methods: {
     log(data) {
       console.log(data)
+    },
+    doLogout() {
+      this.$store.dispatch({ type: 'logout' })
     },
     dashboardLinkClicked() {
       this.$emit('dashboardLinkClicked')

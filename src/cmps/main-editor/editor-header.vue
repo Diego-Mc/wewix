@@ -97,12 +97,12 @@ export default {
   props: {
     wapName: String,
     isPublished: Boolean,
-    wapId: String
+    wapId: String,
   },
   data() {
     return {
       media: '',
-      updatedWapName: this.wapName || ' a',
+      updatedWapName: this.wapName || 'site-name',
       isValidWapName: true,
     }
   },
@@ -121,7 +121,7 @@ export default {
 
       ///if (isValid.state)
       this.updateInlineNameStyle(isValid.state)
-      
+
       if (isValid.state) {
         this.$notify({
           title: isValid.msg,
@@ -166,12 +166,18 @@ export default {
     },
 
     async publish() {
-      if(this.updatedWapName.length <= 3)return
+      if (this.updatedWapName.length <= 3) {
+        this.$notify({
+          title: 'Cannot Publish Site With Invalid Name',
+          type: 'error',
+        })
+        return
+      }
       this.$emit('publishWap', this.updatedWapName)
       return
       const { state } = await this.isValidName(this.updatedWapName)
-      console.log(this.updatedWapName);
-      console.log(state);
+      console.log(this.updatedWapName)
+      console.log(state)
       if (!state) {
         this.$notify({
           title: 'Cannot Publish Site With Invalid Name',

@@ -40,6 +40,7 @@ export default {
     return {
       wap: null,
       showErrPage:false,
+      userInfo: {},
       // header: getCmp('wap-header', 2),
       // hero: getCmp('wap-hero', 2),
       // cards: getCmp('wap-cards', 2),
@@ -60,8 +61,15 @@ export default {
         this.wap = await this.$store.dispatch({ type: 'getWap', id: wapId })
         console.log(this.wap)
         if(!this.wap) this.showErrPage = true
-    }
+    },
+    formSubmited() {
+      console.log('wa');
+      // if(this.$store.getters.isEditMode) return
+      this.userInfo.createdAt = Date.now()
+      eventBus.emit('formSubmited', this.userInfo)
+    },
   },
+
   components: {
     wapHeader,
     wapHero,

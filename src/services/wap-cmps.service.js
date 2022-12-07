@@ -5397,9 +5397,9 @@ wapsMap.set('wap-section-24', {
   },
   cmps: [
     {
-      id: '',
+      id: '1',
       type: 'wap-form',
-      typeId: 1,
+      typeId: 6,
       options: {
         meta: {
           formInputs: [
