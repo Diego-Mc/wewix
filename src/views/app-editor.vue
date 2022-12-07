@@ -393,6 +393,10 @@ export default {
     },
     async publishWap(wapName) {
       //TODO ADD USER MSGS
+      this.$notify({
+              title: 'Cannot Publish Site With Invalid Name',
+              type: 'error',
+          });
       if (!this.loggedinUser) {
         this.authModal.isShown = 'login'
         this.setAuthModalMsg('publishWap')

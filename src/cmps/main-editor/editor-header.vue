@@ -56,20 +56,13 @@
       <section class="url-bar">
         <p class="address">
           https://<span class="mb-hide">wewix.onrender.com/</span><span class="mb-show">... /</span><span
-            class="site-name" :style="validationStyle" @input="setUpdatedWapName($event)"
+            class="site-name" :style="{color: (isValidWapName) ? 'green' : 'red'}" @input="setUpdatedWapName($event)"
             :contenteditable="!isPublished">{{ updatedWapName }}</span>
         </p>
       </section>
       <a @click="preview" class="preview-btn">preview</a>
-      <a @click="validate" class="publish-btn">publish</a>
+      <a @click="publish" class="publish-btn">publish</a>
     </div>
-    <!-- <section class="upload-site">
-      <editor-btn-group
-        :info="{ key: 'publishSite' }"
-        @setVal="handleBtnSelect"
-        :style="{ gap: '10px' }"
-        :opts="[{ val: true, icon: 'cast', text: 'Publish' }]" />
-    </section> -->
   </nav>
 </template>
 
@@ -87,6 +80,7 @@ export default {
     return {
       media: '',
       updatedWapName: this.wapName || 'mySite',
+      isValidWapName: true
     }
   },
   methods: {
@@ -102,6 +96,8 @@ export default {
       this.updatedWapName = ev.target.innerText
       const isValid = await this.isValidName(this.updatedWapName)
 
+      this.updateInlineNameStyle(isValid.state)
+
       if (isValid.state) {
         this.$notify({
           title: isValid.msg,
@@ -113,12 +109,9 @@ export default {
           type: 'error',
         });
       }
-
-
-      // if (isValid) {
-      //   //TODO Replace WITH isValid
-      //   this.$emit('setName', this.updatedWapName)
-      // }
+    },
+    updateInlineNameStyle(state) {
+      this.isValidWapName = state
     },
     async isValidName(wapName) {
       const isExist = await this.$store.dispatch({ type: 'getWapByName', wapName })
@@ -140,11 +133,17 @@ export default {
         query: { preview: 'true' },
       })
     },
-  },
-  computed: {
-    async validationStyle() {
-      const {state} = await this.isValidName(this.updatedWapName)
-      return { color: (state) ? 'green' : 'red' }
+
+    async publish() {
+        const {state} = await this.isValidName(this.updatedWapName)
+        if (!state) {
+          this.$notify({
+              title: 'Cannot Publish Site With Invalid Name',
+              type: 'error',
+          });
+        } else {
+          this.$emit('publishWap', this.updatedWapName)
+        }
     }
   },
   components: {
