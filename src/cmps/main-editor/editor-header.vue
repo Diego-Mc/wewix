@@ -101,7 +101,7 @@ export default {
   data() {
     return {
       media: '',
-      updatedWapName: this.wapName || 'mySite',
+      updatedWapName: this.wapName || ' a',
       isValidWapName: true,
     }
   },
@@ -165,6 +165,9 @@ export default {
     },
 
     async publish() {
+      if(this.updatedWapName.length <= 3)return
+      this.$emit('publishWap', this.updatedWapName)
+      return
       const { state } = await this.isValidName(this.updatedWapName)
       console.log(this.updatedWapName);
       console.log(state);
@@ -174,7 +177,6 @@ export default {
           type: 'error',
         })
       } else {
-        this.$emit('publishWap', this.updatedWapName)
       }
     },
   },

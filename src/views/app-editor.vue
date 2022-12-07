@@ -568,5 +568,7 @@ export default {
   text-align: end;
   border-radius: 10px;
   box-shadow: 0 0 0;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
 }
 </style>

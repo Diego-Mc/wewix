@@ -112,8 +112,8 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  padding: 15px;
   border-radius: 10px;
-
   .login-p-divider,
   .google-auth-btn {
     text-align: center;
