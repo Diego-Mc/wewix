@@ -43,9 +43,10 @@
           backgroundColor: 'blue',
           position: 'fixed',
           bottom: 0,
-          right: 0,
+          left: 0,
           padding: '20px',
           color: 'white',
+          'z-index': 500000,
         }">
         publish test
       </button>
@@ -57,7 +58,7 @@
         @publishWap="publishWap"
         @openPublishConfirm=""
         :wapName="wap.name"
-        :isOnline="wap.isOnline" />
+        :isPublished="wap.isPublished" />
       <editor-sidebar :selectedCmp="selectedCmp" />
     </section>
     <main class="main-wap" :class="mediaType">
@@ -241,7 +242,7 @@ export default {
     },
     themeChanged(classState) {
       this.wap.classState = classState
-      document.querySelector('#app').className = classState
+      document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
       this.onCmpsChange()
     },
     undo() {
@@ -320,8 +321,7 @@ export default {
           const { templateId } = this.$route.query
           this.wap = wapUtils.getTemplate(templateId)
           const defaultTheme = wapUtils.getTemplateTheme(templateId)
-          console.log('sdfsdf', defaultTheme)
-          this.themeChanged(defaultTheme)
+          this.themeChanged({ themeClass: defaultTheme })
         } else this.wap = appEditorService.getEmptyWap()
         delete this.wap._id
         const editedWapId = await this.$store.dispatch({
@@ -397,6 +397,10 @@ export default {
     },
     async publishWap(wapName) {
       //TODO ADD USER MSGS
+      this.$notify({
+              title: 'Cannot Publish Site With Invalid Name',
+              type: 'error',
+          });
       if (!this.loggedinUser) {
         this.authModal.isShown = 'login'
         this.setAuthModalMsg('publishWap')

@@ -21,20 +21,24 @@
 
 
     <hr />
-    <ul>
+    <ul class="msgs">
       <li v-for="(msg, idx) in conversations[this.activeConversation]" :key="idx">
         <span>{{ msg.from }}:</span>{{ msg.txt }}
       </li>
     </ul>
+
     <form @submit.prevent="sendMsg">
-      <input type="text" v-model="msg.txt" placeholder="Your msg" />
+      <input v-if="((activeConversation && this.user.isAdmin) || !this.user.isAdmin)" @input="sendTypeState" type="text" v-model="msg.txt" placeholder="Your msg" />
+      <span v-else>Please Select User To Msg</span>
       <button>Send</button>
     </form>
     
-    <span v-for="u in activeUsers" :key="u" @click="setActiveConversation(u)">
+    <span v-for="g in activeGuests" :key="g" @click="setActiveConversation(g)">
       <!-- Todo Make It Random -->
       <img class="guest-avatar" src="../../assets/imgs/png-96/avatar1.png">
-      <span>{{u.unread}}</span>
+      <span>{{g.unread}}</span>
+      <span v-if="isTyping(g.userId)">typing...</span>
+      <span v-else-if="isTyping('Admin')">Admin typing...</span>
     </span>
   </section>
 </template>
@@ -55,14 +59,14 @@ export default {
   data() {
     return {
       msg: {txt: '' },
-      msgs: [],
       isChatOpen: false,
 
       conversations: {},
-      activeUsers: [],
+      activeGuests: [],
       activeConversation: null,
       user: this.getUser(),
       chatId: this.options.meta.chatData.chatId,
+      isUserTyping: {}
     }
   },
   created() {
@@ -72,41 +76,52 @@ export default {
       adminId: (this.user.isAdmin) ? this.user.id : ''
     })
 
-    socketService.on('emitToAdmin', (activeUsers) => {
-        if (!this.user.isAdmin) return
 
-        this.activeUsers = activeUsers
-        socketService.emit('listenAll', {})
+    socketService.on('updateGuests', (data) => {
+      if (Array.isArray(data)) {
+        this.activeGuests = data
+        
+        this.conversations = this.activeGuests.reduce((updatedGuest, guest) => {
+            updatedGuest[guest.userId] = guest.msgs
+            return updatedGuest
+        }, {})
+      }
+      else if (typeof data === 'object' && data !== null) this.activeGuests.push(data)
     })
 
-    socketService.on('addMsg', this.addMsg)
 
-    socketService.on('setGuestActiveConversation', (userId) => {
-        if (this.user.id !== userId) return
 
-        const user = this.activeUsers.find(({activeUser}) => activeUser.userId === userId)
-        this.activeConversation = userId
+    socketService.on('addGuestMsg', this.addMsg)
+    socketService.on('addAdminMsg', this.addMsg)
+    socketService.on('addOwnMsg', this.addMsg)
+    socketService.on('typing', (user) => {
+        this.isUserTyping[user] = true
+        this.clearTyping(user)
     })
 
+
+
+    this.clearTyping = utilService.debounce(this.clearTyping)
   },
   unmounted() {
+    this.activeGuests = this.activeGuests.filter(({userId}) => userId !== this.user.id)
     socketService.off(SOCKET_EVENT_ADD_MSG, this.addMsg)
   },
   methods: {
     addMsg(msg) {
-      this.msgs.push(msg)
+      if (msg.isFromAdmin) this.activeConversation = msg.id
+
       if (this.conversations[msg.id]) this.conversations[msg.id].push(msg)
       else this.conversations[msg.id] = [msg]
-
-      const user = this.activeUsers.find(({userId}) => userId === msg.id)
-      
-      console.log('this.activeConversation, user:', this.activeConversation, user)
-      if (user && (this.activeConversation !== user.userId)) user.unread++
-
     },
     sendMsg() {
-      this.msg.from = this.user.userNickname
-      socketService.emit('addMsg', this.msg)
+      // if (!this.conversations[this.user.id]) this.conversations[this.user.id] = [this.msg]
+      // else {
+      //   this.conversations[this.user.id].push(this.msg)
+      // } 
+
+      this.msg.from = 'Davud'
+      socketService.emit('addMsg', {msg: this.msg, activeConversation: this.activeConversation})
       this.msg = { txt: '' }
     },
     getUser() {
@@ -119,17 +134,24 @@ export default {
         user.id = user._id
 
         delete user._id
-        console.log('user:', user)
         return user       
     },
-    setActiveConversation(user) {
-        this.activeConversation = user.userId
-        user.unread = 0
-        socketService.emit('activateConversation', user.userId)
+    setActiveConversation({userId}) {
+        this.activeConversation = userId
+        socketService.emit('activateChat', this.activeConversation)
+    },
+    sendTypeState() {
+      socketService.emit('typing', this.user.id)
     },
     avatar() { 
       return '../../assets/imgs/png-96/avatar1.png'
     },
+    isTyping(user) {
+        return this.isUserTyping[user]
+    },
+    clearTyping(user) {
+      this.isUserTyping[user] = false
+    }
   },
 
   computed: {

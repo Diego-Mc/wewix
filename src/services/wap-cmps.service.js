@@ -5473,7 +5473,7 @@ wapsMap.set('wap-section-24', {
 const templatesMap = new Map()
 templatesMap.set('template-1', {
   _id: 'template-1',
-  name: 'Product',
+  name: '',
   imgUrl:
     'https://res.cloudinary.com/wewix/image/upload/v1670428298/site-previews/goby-preview-site_hiwx9v.png',
   createdBy: {},
@@ -5494,7 +5494,7 @@ templatesMap.set('template-1', {
 })
 templatesMap.set('template-2', {
   _id: 'template-2',
-  name: 'Local Business',
+  name: '',
   imgUrl:
     'https://res.cloudinary.com/wewix/image/upload/v1670428298/site-previews/yoga-preview-site_lig7fy.png',
   createdBy: {},
@@ -5515,7 +5515,7 @@ templatesMap.set('template-2', {
 })
 templatesMap.set('template-3', {
   _id: 'template-3',
-  name: "Sport's shop",
+  name: '',
   imgUrl:
     'https://res.cloudinary.com/wewix/image/upload/v1670428300/site-previews/kite-preview-site_aowkrp.png',
   createdBy: {},
@@ -5538,7 +5538,7 @@ templatesMap.set('template-3', {
 })
 templatesMap.set('template-4', {
   _id: 'template-4',
-  name: 'Food truck',
+  name: '',
   imgUrl:
     'https://res.cloudinary.com/wewix/image/upload/v1670428296/site-previews/plantify-preview-site_lfoxvp.png',
   createdBy: {},
@@ -5557,7 +5557,7 @@ templatesMap.set('template-4', {
 })
 templatesMap.set('template-5', {
   _id: 'template-5',
-  name: 'Design Agency',
+  name: '',
   imgUrl:
     'https://res.cloudinary.com/wewix/image/upload/v1670428300/site-previews/creative-preview-site_kjnnnn.png',
   createdBy: {},
