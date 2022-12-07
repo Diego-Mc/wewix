@@ -25,7 +25,7 @@
     </section>
     <div class="auth-info">Diego Mc</div>
   </header> -->
-  
+
   <header class="app-header main-header">
     <section class="logo" @click="$router.push('/')">
       <svg
@@ -60,7 +60,10 @@
       <a @click="dashboardLinkClicked">Dashboard</a>
     </Slide>
     <section class="user-auth">
-      <h3 v-if="loggedinUser">logged in user : {{ loggedinUser.fullname }}</h3>
+      <h3 v-if="loggedinUser">
+        logged in user : {{ loggedinUser.fullname }}
+        <button>Log out</button>
+      </h3>
       <router-link v-else to="/login/">
         <button class="login-btn"><i class="bi bi-person"></i> login</button>
       </router-link>
@@ -80,9 +83,9 @@ export default {
     log(data) {
       console.log(data)
     },
-    dashboardLinkClicked(){
+    dashboardLinkClicked() {
       this.$emit('dashboardLinkClicked')
-    }
+    },
   },
   computed: {
     loggedinUser() {

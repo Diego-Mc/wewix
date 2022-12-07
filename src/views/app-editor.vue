@@ -43,9 +43,10 @@
           backgroundColor: 'blue',
           position: 'fixed',
           bottom: 0,
-          right: 0,
+          left: 0,
           padding: '20px',
           color: 'white',
+          'z-index': 500000,
         }">
         publish test
       </button>
@@ -239,7 +240,7 @@ export default {
     },
     themeChanged(classState) {
       this.wap.classState = classState
-      document.querySelector('#app').className = classState
+      document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
       this.onCmpsChange()
     },
     undo() {
@@ -318,8 +319,7 @@ export default {
           const { templateId } = this.$route.query
           this.wap = wapUtils.getTemplate(templateId)
           const defaultTheme = wapUtils.getTemplateTheme(templateId)
-          console.log('sdfsdf', defaultTheme)
-          this.themeChanged(defaultTheme)
+          this.themeChanged({ themeClass: defaultTheme })
         } else this.wap = appEditorService.getEmptyWap()
         delete this.wap._id
         const editedWapId = await this.$store.dispatch({
