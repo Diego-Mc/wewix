@@ -50,11 +50,17 @@ export default {
     }
   },
   methods: {
-    async getWap(wapName) {
+    async getWapByName(wapName) {
       this.wap = await this.$store.dispatch({ type: 'getWapByName', wapName })
       console.log(this.wap)
       if(!this.wap) this.showErrPage = true
     },
+
+    async getWap(wapId) {
+        this.wap = await this.$store.dispatch({ type: 'getWap', id: wapId })
+        console.log(this.wap)
+        if(!this.wap) this.showErrPage = true
+    }
   },
   components: {
     wapHeader,
@@ -70,9 +76,14 @@ export default {
     //   editorSidebar,
   },
   created() {
-    const wapName = this.$route.params.name
-    if (wapName) {
-      this.getWap(wapName)
+    const {preview} = this.$route.query
+    
+    if (preview) {
+      const id = this.$route.params.name
+      this.getWap(id)
+    } else {
+      const wapName = this.$route.params.name
+      this.getWapByName(wapName)
     }
     this.$store.commit('setEditMode', { isEditMode: false })
   },

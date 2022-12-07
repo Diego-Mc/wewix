@@ -58,7 +58,8 @@
         @publishWap="publishWap"
         @openPublishConfirm=""
         :wapName="wap.name"
-        :isPublished="wap.isPublished" />
+        :isPublished="wap.isPublished" 
+        :wapId="wap._id"/>
       <editor-sidebar :selectedCmp="selectedCmp" />
     </section>
     <main class="main-wap" :class="mediaType">
