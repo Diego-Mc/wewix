@@ -48,28 +48,20 @@ export default {
   data() {
     return {
       userInfo: {},
-      // {
-      //   email: '',
-      //   msg: '',
-      //   email: '',
-      //   at: '',
-      //   type: null,
-      // },
+  
     }
   },
   created() {
   },
   methods: {
-    // updateContent(elType) {
-    //   this.$emit('update', { cmpId, elType, content: info.text.content })
-    // },
+ 
     formSubmited() {
       if(this.$store.getters.isEditMode) return
       this.userInfo.createdAt = Date.now()
       eventBus.emit('formSubmited', this.userInfo)
     },
     emitSelect(elInfo) {
-      eventBus.emit('select', elInfo)
+      // eventBus.emit('select', elInfo)
     },
   },
 
