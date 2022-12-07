@@ -96,6 +96,7 @@ export default {
       this.updatedWapName = ev.target.innerText
       const isValid = await this.isValidName(this.updatedWapName)
 
+      ///if (isValid.state) 
       this.updateInlineNameStyle(isValid.state)
 
       if (isValid.state) {
@@ -129,7 +130,7 @@ export default {
     },
     preview() {
       this.$router.push({
-        path: `/${this.updatedWapName}`,
+        path: `/${this.wapName}`,
         query: { preview: 'true' },
       })
     },
