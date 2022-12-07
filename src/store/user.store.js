@@ -7,7 +7,7 @@ import { socketService, SOCKET_EMIT_USER_WATCH, SOCKET_EVENT_USER_UPDATED } from
 export const userStore = {
     state: {
         // TODO: init to null. this is only for demonstartions.
-        loggedinUser: {},
+        loggedinUser: null,
         users: [],
         watchedUser: null
     },

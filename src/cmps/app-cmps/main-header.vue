@@ -59,7 +59,9 @@
       <router-link to="/dashboard">Dashboard</router-link>
     </Slide>
     <section class="user-auth">
+      <router-link :to="'/login/'">
       <button class="login-btn"><i class="bi bi-person"></i> login</button>
+      </router-link>
     </section>
   </header>
 </template>

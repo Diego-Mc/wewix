@@ -7,13 +7,14 @@
     @closelModal="closeConfirmModal"
     @openWorkSpace="openWorkSpace" />
   <cursor v-if="workTogetherCursors[0]" :cursorsData="workTogetherCursors" />
+  <loading-screen v-if="isLoading"/>
   <section
     @drag="sendMouseEvent('drag', $event)"
     @mousemove="sendMouseEvent('move', $event)"
     @mousedown="sendMouseEvent('down', $event)"
     @mouseup="sendMouseEvent('move', $event)"
     class="main-editor"
-    v-if="wap">
+    v-if="wap && !isLoading">
     <section class="main-editor-tools">
       <button
         @click="publishWap('yay')"
@@ -93,6 +94,7 @@ import wapMap from '../cmps/wap-items/wap-map.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
 import loginModal from '../cmps/app-cmps/login-modal.vue'
 
+import loadingScreen from '../cmps/app-cmps/loading-screen.vue'
 export default {
   data() {
     return {
@@ -114,6 +116,7 @@ export default {
 
       isConfirmModalOpen: false,
       confirmData: null,
+      isLoading: false,
     }
   },
   async created() {
@@ -261,7 +264,7 @@ export default {
       } else {
         if (this.$route.query.templateId) {
           this.wap = wapUtils.getTemplate(this.$route.query.templateId)
-          this.wap._id = ''
+          delete this.wap._id
         } else this.wap = appEditorService.getEmptyWap()
 
         const editedWapId = await this.$store.dispatch({
@@ -272,7 +275,6 @@ export default {
         console.log('editedWapId', editedWapId)
         this.wap._id = editedWapId
 
-        // TODO: fix this.
         this.$router.push({ path: '/edit/' + editedWapId, replace: true })
       }
     },
@@ -453,6 +455,7 @@ export default {
     cursor,
     userConfirmModal,
     wapChat,
+    loadingScreen
   },
 }
 </script>

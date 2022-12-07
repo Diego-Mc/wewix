@@ -9,7 +9,13 @@ export const store = Vuex.createStore({
     userStore,
     wapStore,
   },
-  state: {},
-  mutations: {},
+  state: {
+    isLoading: false,
+  },
+  mutations: {
+    setLoading(state, loading) {
+      state.loading = loading;
+    },
+  },
   actions: {},
 })
