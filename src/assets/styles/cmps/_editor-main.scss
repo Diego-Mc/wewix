@@ -65,6 +65,7 @@
   .main-wap {
     position: absolute;
     top: calc($main-header-height + $editor-header-height);
+    height: calc(100vh - $main-header-height - $editor-header-height);
     margin: auto;
     overflow-y: scroll;
     right: 0;
