@@ -20,14 +20,17 @@
         show-password />
 
       <img-uploader @uploaded="onUploaded"></img-uploader>
-      <el-button type="primary" @click.prevent="doSignup">Signup</el-button>
+      <el-button type="primary" @click.prevent="doSignup">
+        <span>Signup </span> 
+        <span v-if="destPage === 'publishWap'">&nbspand publish</span></el-button
+      >
     </form>
     <button class="toggle-auth-link" @click="backToLogin">back to login</button>
   </div>
 </template>
 
 <script>
-import {showUserMsg} from '../../services/event-bus.service.js'
+import { showUserMsg } from '../../services/event-bus.service.js'
 
 export default {
   props: {
@@ -60,13 +63,20 @@ export default {
         this.msg = 'Please fill up the form'
         return
       }
-      await this.$store.dispatch({ type: 'signup', userCred: this.signupCred })
-      let dest
-      console.log(this.isModalInAuthPage)
-      if (this.isModalInAuthPage) dest = '/'
-      else if (this.destPage === 'dashboard') dest = '/dashboard'
-      this.$router.push(dest)
-      showUserMsg({ txt: 'Signed up successfully' })
+      try {
+        await this.$store.dispatch({
+          type: 'signup',
+          userCred: this.signupCred,
+        })
+        let dest
+        console.log(this.isModalInAuthPage)
+        if (this.isModalInAuthPage) dest = '/'
+        else if (this.destPage === 'dashboard') dest = '/dashboard'
+        this.$router.push(dest)
+        showUserMsg({ txt: 'Signed up successfully' })
+      } catch {
+        showUserMsg({ txt: 'Signed up failed: username is taken.' })
+      }
     },
   },
   components: {},

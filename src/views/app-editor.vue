@@ -17,19 +17,15 @@
       v-if="authModal.isShown === 'login'"
       @authenticated="publishWap"
       @swapAuthModal="swapAuthModal"
-      :msg="authModal.loginMsg" 
-      :destPage="authModal.destPage"
-      />
-      
+      :msg="authModal.loginMsg"
+      :destPage="authModal.destPage" />
 
     <signup-modal
       v-else
       @authenticated="publishWap"
       @swapAuthModal="swapAuthModal"
-      :msg="authModal.signupMsg" 
-      :destPage="authModal.destPage"
-      />
-
+      :msg="authModal.signupMsg"
+      :destPage="authModal.destPage" />
   </div>
 
   <loading-screen v-if="isLoading" />
@@ -101,7 +97,7 @@
 import draggable from 'vuedraggable'
 import { socketService } from '../services/socket.service'
 
-import { eventBus ,showUserMsg} from '../services/event-bus.service'
+import { eventBus, showUserMsg } from '../services/event-bus.service'
 import { httpService } from '../services/http.service'
 import getCmp, { wapUtils } from '../services/wap-cmps.service'
 import { appEditorService } from '../services/app-editor.service'
@@ -180,7 +176,7 @@ export default {
         this.authModal.signupMsg = 'Signup  to view dashboard'
       } else {
         this.authModal.loginMsg = 'Login to publish website'
-        this.authModal.signupMsg = 'Signup publish website'
+        this.authModal.signupMsg = 'Signup to publish website'
       }
       this.authModal.destPage = destinationPage
     },
@@ -293,11 +289,9 @@ export default {
     // prettier-ignore
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
 
-      console.log('style',updatedStyle)
       let changedCmp = this.wap.cmps.find(cmp => cmp.id === cmpId)
       if (childCmpId) changedCmp = changedCmp.cmps.find( childCmp => childCmp.id === childCmpId)
       if (elType) {
-        // console.log(updatedStyle.options.style.backgroundColor)
         updatedStyle ? changedCmp.info[elType].options = updatedStyle : changedCmp.info[elType].content.text = content
       } else {
         updatedStyle ? changedCmp.options=updatedStyle :  changedCmp.content.text = content
@@ -305,10 +299,7 @@ export default {
       this.onCmpsChange()
     },
     async loadWap() {
-      // console.log('templatedId',this.$route.query.templateId)
       if (this.$route.params?.id) {
-        // console.log(this.$route.name === 'app-editor' ? 'ayyayaya' : 'ops')
-        // if(!auth) return  this.$router.push({ path: '/edit/' + editedWapId, replace: true })
         const wap = await this.$store.dispatch({
           type: 'getWap',
           id: this.$route.params.id,
@@ -398,12 +389,12 @@ export default {
     async publishWap(wapName) {
       //TODO ADD USER MSGS
       if (!this.loggedinUser) {
-        this.authModal.isShown = true
+        this.authModal.isShown = 'login'
         this.setAuthModalMsg('publishWap')
         return
       }
       if (this.wap.isPublished) {
-        showUserMsg({txt:'Site saved'})
+        showUserMsg({ txt: 'Site saved' })
         return
       }
       this.wap.name = wapName
@@ -417,7 +408,6 @@ export default {
         this.$store.dispatch('addWapToUser', { wapId: this.wap._id })
         // this.$router.replace({ path: , replace: true })
         this.$router.push(this.wap.name)
-
 
         // if (wapId) this.$router.push(`/${wapName}`)
       } catch (err) {
@@ -570,5 +560,7 @@ export default {
   top: 50%;
   transform: translate(-50%, -50%);
   text-align: end;
+  border-radius: 10px;
+  box-shadow: 0 0 0;
 }
 </style>
