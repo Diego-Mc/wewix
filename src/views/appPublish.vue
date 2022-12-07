@@ -10,7 +10,7 @@
       :options="cmp.options"
       :cmps="cmp.cmps" />
 
-    <section v-else>
+    <section v-if="showErrPage">
         <page-not-found/>
       </section>
 
@@ -39,6 +39,7 @@ export default {
   data() {
     return {
       wap: null,
+      showErrPage:false,
       // header: getCmp('wap-header', 2),
       // hero: getCmp('wap-hero', 2),
       // cards: getCmp('wap-cards', 2),
@@ -51,6 +52,8 @@ export default {
   methods: {
     async getWap(wapName) {
       this.wap = await this.$store.dispatch({ type: 'getWapByName', wapName })
+      console.log(this.wap)
+      if(!this.wap) this.showErrPage = true
     },
   },
   components: {

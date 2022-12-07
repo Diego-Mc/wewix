@@ -194,12 +194,14 @@ export default {
       this.onCmpsChange()
     },
     updateField(fieldInfo) {
+      console.log('fieldInfo', fieldInfo)
       const cmp = this.wap.cmps.find((cmp) => cmp.id === fieldInfo.id)
+      const formCmp = cmp.cmps.find(childCmp => childCmp.id === fieldInfo.childCmpId)
       if (fieldInfo.txt || fieldInfo.txt === '')
-        cmp.options.meta.formInputs[fieldInfo.idx].tag = fieldInfo.txt
+        formCmp.options.meta.formInputs[fieldInfo.idx].tag = fieldInfo.txt
       else if (typeof fieldInfo.idx === 'number')
-        cmp.options.meta.formInputs.splice(fieldInfo.idx, 1)
-      else cmp.options.meta.formInputs.push({ tag: 'wa', txt: '' })
+        formCmp.options.meta.formInputs.splice(fieldInfo.idx, 1)
+      else formCmp.options.meta.formInputs.push({ tag: 'wa', txt: '' })
       this.onCmpsChange()
     },
     keydownHandler(event) {
@@ -342,6 +344,7 @@ export default {
       }
     },
     cmpSelected({ cmpId, elType, childCmpId, elDom }) {
+      console.log(cmpId, elType, childCmpId, elDom)
       this.selectedCmp = {}
       let cmp = this.wap.cmps.find(({ id }) => {
         return id === cmpId
@@ -351,6 +354,7 @@ export default {
         cmp = cmp.cmps.find(({ id }) => id === childCmpId)
         this.selectedCmp.childCmpId = childCmpId
       }
+      console.log('cmp', cmp)
 
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = elType ? cmp.info[elType].options : cmp.options
@@ -413,18 +417,22 @@ export default {
         this.$store.dispatch('addWapToUser', { wapId: this.wap._id })
         // this.$router.replace({ path: , replace: true })
         this.$router.push(this.wap.name)
+        showUserMsg({ txt: 'Site in live!' })
+
+        // window.open(routeData.href, '_blank');
 
         // if (wapId) this.$router.push(`/${wapName}`)
       } catch (err) {
         console.log(err)
+        showUserMsg({ txt: 'Could not publish site' })
       }
     },
     async setName(wapName) {
       //TODO ADD USER MSGS
       this.wap.name = wapName
       try {
-        const wapId = await this.updateWap(this.wap)
-        console.log('this.wap:', this.wap)
+        this.updateWap()
+        showUserMsg(`site name updated to ${wapName}`)
       } catch (err) {
         console.log(err)
       }

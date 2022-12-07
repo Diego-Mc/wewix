@@ -25,11 +25,10 @@
         type="password"
         placeholder="Please type password"
         show-password />
-      <el-button @click.prevent="doLogin" type="primary">Login
+      <el-button @click.prevent="doLogin" type="primary"
+        >Login
         <span v-if="destPage === 'publishWap'">&nbspand publish</span>
-      
       </el-button>
-      
     </form>
     <button class="toggle-auth-link" @click="openSignupModal">
       Dont have a user? signup
@@ -122,18 +121,26 @@ export default {
   .auth-header {
     text-align: center;
     margin-bottom: 20px;
+    @media (max-width: 700px) {
+        font-size: 16px;
+}
   }
   .login-form {
     display: flex;
     flex-direction: column;
-    
+
     gap: 20px;
     .auth-input {
       width: 350px;
+      @media (max-width: 700px) {
+        width: 240px;
+}
     }
   }
   .toggle-auth-link {
     color: rgb(102, 102, 102);
   }
+
+
 }
 </style>
