@@ -36,10 +36,23 @@
         <span>{{ msg.from }}:</span>{{ msg.txt }}
       </li>
     </ul>
+
     <form @submit.prevent="sendMsg">
-      <input type="text" v-model="msg.txt" placeholder="Your msg" />
+      <input
+        v-if="(activeConversation && this.user.isAdmin) || !this.user.isAdmin"
+        @input="sendTypeState"
+        type="text"
+        v-model="msg.txt"
+        placeholder="Your msg" />
+      <span v-else>Please Select User To Msg</span>
       <button>Send</button>
     </form>
+
+    <span v-for="u in activeUsers" :key="u" @click="setActiveConversation(u)">
+      <!-- Todo Make It Random -->
+      <img class="guest-avatar" src="../../assets/imgs/png-96/avatar1.png" />
+      <span>{{ u.unread }}</span>
+    </span>
   </section>
 </template>
 
@@ -59,13 +72,14 @@ export default {
     return {
       msg: { txt: '' },
       msgs: [],
-      isChatOpen: true, //TODO: change to false
+      isChatOpen: false,
 
       conversations: {},
-      activeUsers: [],
+      activeGuests: [],
       activeConversation: null,
       user: this.getUser(),
       chatId: this.options.meta.chatData.chatId,
+      isUserTyping: {},
     }
   },
   created() {
@@ -82,8 +96,6 @@ export default {
       socketService.emit('listenAll', {})
     })
 
-    socketService.on('addMsg', this.addMsg)
-
     socketService.on('setGuestActiveConversation', (userId) => {
       if (this.user.id !== userId) return
 
@@ -94,11 +106,15 @@ export default {
     })
   },
   unmounted() {
+    this.activeGuests = this.activeGuests.filter(
+      ({ userId }) => userId !== this.user.id
+    )
     socketService.off(SOCKET_EVENT_ADD_MSG, this.addMsg)
   },
   methods: {
     addMsg(msg) {
-      this.msgs.push(msg)
+      if (msg.isFromAdmin) this.activeConversation = msg.id
+
       if (this.conversations[msg.id]) this.conversations[msg.id].push(msg)
       else this.conversations[msg.id] = [msg]
 
@@ -112,8 +128,16 @@ export default {
       if (user && this.activeConversation !== user.userId) user.unread++
     },
     sendMsg() {
-      this.msg.from = this.user.userNickname
-      socketService.emit('addMsg', this.msg)
+      // if (!this.conversations[this.user.id]) this.conversations[this.user.id] = [this.msg]
+      // else {
+      //   this.conversations[this.user.id].push(this.msg)
+      // }
+
+      this.msg.from = 'Davud'
+      socketService.emit('addMsg', {
+        msg: this.msg,
+        activeConversation: this.activeConversation,
+      })
       this.msg = { txt: '' }
     },
     getUser() {
@@ -136,6 +160,12 @@ export default {
     },
     avatar() {
       return '../../assets/imgs/png-96/avatar1.png'
+    },
+    isTyping(user) {
+      return this.isUserTyping[user]
+    },
+    clearTyping(user) {
+      this.isUserTyping[user] = false
     },
   },
 

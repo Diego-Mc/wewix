@@ -1,6 +1,7 @@
 <template #default>
   <section>
     <user-msg />
+    <notifications />
     <router-view />
   </section>
 </template>

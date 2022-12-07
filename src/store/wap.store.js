@@ -89,7 +89,6 @@ export const wapStore = {
     //Todo
     async getWapByName(context, { wapName }) {
       const waps = await wapService.query()
-
       return waps.find(wap => {
         return wap.name === wapName
       })
