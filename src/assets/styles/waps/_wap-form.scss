@@ -30,22 +30,57 @@
       color: var(--clr-3);
     }
   }
+  &.type-3 {
+    color: var(--clr-1);
+    .btn {
+      border-radius: 0;
+      background-color: var(--clr-2);
+      color: var(--clr-1);
+      font-size: em(16px);
+      letter-spacing: 0.8px;
+      padding: 18px 32px;
+      transition: all 0.15s ease-in-out;
+      margin-left: 10px;
+      &:hover {
+        color: var(--clr-3);
+        background-color: var(--clr-1);
+      }
+    }
+    i.send-btn {
+      display: none;
+    }
+    form {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      width: 100%;
+      .input-fields {
+        flex: 1;
+        input {
+          border-radius: 0;
+        }
+      }
+      .type-subscribe {
+        display: none;
+      }
+    }
+  }
 }
 
 .form-input {
   position: relative;
-  margin-bottom:15px;
 
   .label {
     position: absolute;
     top: 18px;
     left: 16px;
-    color: grey;
+    color: lightgrey;
     font-size: em(18px);
     line-height: 22px;
     transform: translateZ(0);
     transform-origin: top left;
     pointer-events: none;
+    font-family: PoppinsRegular;
     &.selected {
       transform: scale(calc(13 / 17)) translate3d(0, -50%, 0);
     }

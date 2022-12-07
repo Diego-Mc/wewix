@@ -1,0 +1,85 @@
+.templates-page {
+  .template-page-header {
+    font-size: rem(28px);
+    font-family: PoppinsBold;
+    padding-inline: 80px;
+    padding-top: 40px;
+    color: $btn-dark;
+  }
+
+  .templates {
+    display: grid;
+    gap: 50px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 300px));
+    padding: 80px;
+
+    .template {
+      aspect-ratio: 1/1.5;
+      background-color: #fff;
+      border-radius: 8px;
+      color: $btn-dark;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+      // overflow: hidden;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+
+      .img-container {
+        height: 80%;
+        border-bottom: 2px solid #eee;
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .template-name-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        color: #444;
+        font-family: PoppinsBold;
+      }
+
+      .template-actions {
+        position: absolute;
+        border-radius: 8px;
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 20px;
+        opacity: 0;
+        transition: opacity 0.15s ease-out;
+        background-color: rgba($color: $main, $alpha: 0.4);
+        outline: 4px solid $main;
+        button {
+          background-color: #fff;
+          border-radius: 4px;
+          padding: 1rem 1.6rem;
+          letter-spacing: 3px;
+          font-family: Asap;
+          font-weight: 600;
+          &:hover {
+            background-color: darken(#fff, 3%);
+          }
+        }
+
+        .edit-btn {
+          background-color: gold;
+          &:hover {
+            background-color: darken(gold, 3%);
+          }
+        }
+      }
+
+      &:hover .template-actions {
+        opacity: 1;
+      }
+    }
+  }
+}

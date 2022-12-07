@@ -88,6 +88,7 @@
         :elType="selectedCmp.elType"
         :elDom="selectedCmp.elDom"
         />
+        <h3 v-else>Select an element to edit</h3>
     </section>
 
     <section
@@ -98,6 +99,7 @@
       <general-editor />
     </section>
   </section>
+
 </template>
 
 <script>

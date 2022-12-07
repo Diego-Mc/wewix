@@ -38,6 +38,28 @@
   .img-section {
     height: 100%;
   }
+
+  &.type-5 {
+    @include grid(1);
+    color: var(--clr-3);
+    padding-block: 18rem;
+    justify-items: center;
+  }
+  &.type-6 {
+    @include grid(1);
+    color: var(--clr-3);
+    background-color: var(--clr-2);
+    padding-block: 18rem;
+    justify-items: center;
+  }
+}
+
+@container wap (max-width: 1160px) {
+  .wap-hero {
+    &.type-5 {
+      font-size: rem(12px);
+    }
+  }
 }
 
 @container wap (max-width: 990px) {

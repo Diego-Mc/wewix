@@ -27,11 +27,9 @@ export default {
     wapData: Object,
   },
   created() {
-    console.log('wa', this.wapData)
   },
   computed: {
     dateStr() {
-      console.log(this.wapData.createdAt);
       return new Date(this.wapData.createdAt).toLocaleDateString('fr')
     },
     conversionRate(){

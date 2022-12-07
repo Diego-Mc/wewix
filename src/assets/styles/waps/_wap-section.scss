@@ -80,6 +80,60 @@
     background-color: var(--clr-1);
     color: var(--clr-2);
   }
+  &.type-15 {
+    font-family: PoppinsRegular;
+    @include grid(1);
+    row-gap: 60px;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    padding-block: 8rem;
+  }
+  &.type-16 {
+    @include grid(1);
+    background-color: #fff;
+  }
+  &.type-17,
+  &.type-18 {
+    @include grid(2);
+    background-color: var(--clr-1);
+    color: var(--clr-3);
+  }
+  &.type-19 {
+    background-color: #fff;
+    font-family: PoppinsRegular;
+  }
+  &.type-20 {
+    background-color: var(--clr-3);
+    font-family: PoppinsBold;
+    color: var(--clr-1);
+  }
+  &.type-21,
+  &.type-25 {
+    @include grid(3, 14px);
+    background-color: var(--clr-1);
+    font-family: PoppinsRegular;
+    color: var(--clr-3);
+  }
+  &.type-22 {
+    @include grid(1);
+    background-color: var(--clr-3);
+    font-family: PoppinsRegular;
+    color: var(--clr-1);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+  }
+  &.type-23 {
+    @include grid(1);
+    background-color: var(--clr-2);
+    font-family: PoppinsBold;
+    color: var(--clr-3);
+  }
+  &.type-24 {
+    @include grid(1);
+    background-color: var(--clr-3);
+    font-family: PoppinsBold;
+    color: var(--clr-1);
+  }
 }
 
 @container wap (max-width: 990px) {

@@ -29,21 +29,6 @@
       </div>
     </template>
   </draggable>
-  <!-- <header
-    class="wap-header"
-    :class="'type-' + typeId"
-    :style="options.style"
-    @click.stop="emitSelect({ cmpId })">
-
-
-    <button
-      class="btn"
-      :style="info?.btn?.options.style"
-      @click.stop="emitSelect({ cmpId, elType: 'btn' })"
-      @change="updateContent('btn')">
-      {{ info?.btn?.content.text }}
-    </button>
-  </header> -->
 </template>
 
 <script>

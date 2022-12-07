@@ -13,6 +13,12 @@
       {{ info?.tag?.content.text }}
     </span>
 
+    <section v-if="info.img" class="img" :style="info?.title?.options.style">
+      <img
+        :src="info?.img?.options?.meta.src"
+        @click.stop="emitSelect('img')" />
+    </section>
+
     <div class="titles-wrapper">
       <h2
         v-if="info.title"
@@ -76,7 +82,7 @@ export default {
       })
     },
     emitSelect(elType) {
-      console.log('wap-text section',this.cmpId);
+      console.log('wap-text section', this.cmpId)
       eventBus.emit('select', {
         cmpId: this.cmpId,
         childCmpId: this.childCmpId,

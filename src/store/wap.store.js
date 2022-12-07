@@ -47,6 +47,9 @@ export const wapStore = {
   },
 
   mutations: {
+    setEditMode(state, { isEditMode }) {
+      state.isEditMode = isEditMode
+    },
     setEditedWap(state, { wap }) {
       state.editedWap = wap
     },
@@ -70,10 +73,10 @@ export const wapStore = {
     },
   },
   actions: {
-    
+
     async getWaps(context) {
       const waps = await wapService.query()
-      console.log('waps',waps);
+      console.log('waps', waps);
       context.commit({ type: 'setWaps', waps })
       return waps
     },
@@ -84,12 +87,12 @@ export const wapStore = {
     },
 
     //Todo
-    async getWapByName(context, { wapName }) {  
-        const waps = await wapService.query()
+    async getWapByName(context, { wapName }) {
+      const waps = await wapService.query()
 
-          return waps.find(wap => {
-              return wap.name === wapName
-          })
+      return waps.find(wap => {
+        return wap.name === wapName
+      })
     },
 
     async updateWap(context, { wap }) {

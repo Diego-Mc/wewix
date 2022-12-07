@@ -1,7 +1,7 @@
 <template>
   <!-- $emit('select', { cmpId}) -->
   <draggable
-    class="list-group wap-cards"
+        class="list-group wap-cards"
     :class="'type-' + typeId"
     :style="options.style"
     :component-data="{
@@ -14,7 +14,9 @@
     @end="onDrop"
     item-key="id"
     :group="'cards-' + cmpId"
-    @click.stop="onCmpClick({ cmpId })">
+    @click.stop="onCmpClick({ cmpId })"
+    :disabled="!this.$store.getters.isEditMode" 
+    >
     <template #item="{ element }">
       <div>
         <component

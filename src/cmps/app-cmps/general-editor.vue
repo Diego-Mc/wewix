@@ -1,6 +1,7 @@
+//TODO: change default theme based on chosen template
 <template>
   <div>
-    <ul>
+    <!-- <ul>
       <li
         v-for="font in fontClasses"
         @click.stop="setClass({ fontClass: font.class })">
@@ -15,19 +16,22 @@
         @click.stop="setClass({ themeClass: theme.class })">
         <span>{{ theme.class }}</span>
       </li>
-    </ul>
+    </ul> -->
+    <edit-theme-section @select="handleThemeSelect" />
   </div>
 </template>
 
 <script>
 import { eventBus } from '../../services/event-bus.service'
+import editorBtnGroup from '../main-editor/editor-items/editor-btn-group.vue'
+import editThemeSection from '../main-editor/cmp-edit-sections/edit-theme-section.vue'
 
 export default {
   data() {
     return {
       classState: {
         fontClass: '',
-        themeClass: '',
+        themeClass: 'theme-1',
       },
       fontClasses: [
         { sign: 'Aa', family: 'System', class: 'f-system' },
@@ -52,6 +56,9 @@ export default {
   },
 
   methods: {
+    handleThemeSelect({ key, val }) {
+      eventBus.emit('themeChanged', val)
+    },
     setClass(classType) {
       this.classState.fontClass = classType.fontClass
         ? classType.fontClass
@@ -62,6 +69,10 @@ export default {
       eventBus.emit('themeChanged', this.classState)
       document.body.className = `${this.classState.fontClass} ${this.classState.themeClass}`
     },
+  },
+  components: {
+    editorBtnGroup,
+    editThemeSection,
   },
 }
 </script>

@@ -75,15 +75,15 @@
           ><span class="mb-show">... /</span
           ><span
             class="site-name"
-            :style="{color: siteNameColor}"
+            :style="{ color: siteNameColor }"
             @input="setUpdatedWapName($event)"
             :contenteditable="!isOnline"
             >{{ updatedWapName }}</span
           >
         </p>
       </section>
-      <a @click="preview" class="preview-btn">preview site</a>
-      <a @click="validate" class="publish-btn">publish site</a>
+      <a @click="preview" class="preview-btn">preview</a>
+      <a @click="validate" class="publish-btn">publish</a>
     </div>
     <!-- <section class="upload-site">
       <editor-btn-group
@@ -107,7 +107,7 @@ export default {
     return {
       media: '',
       updatedWapName: this.wapName || 'mySite',
-      isValidName: true
+      isValidName: true,
     }
   },
   methods: {
@@ -121,35 +121,41 @@ export default {
     },
     setUpdatedWapName(ev) {
       this.updatedWapName = ev.target.innerText
-      if (true) { //TODO Replace WITH isValid
-          this.$emit('setName', this.updatedWapName)
+      if (true) {
+        //TODO Replace WITH isValid
+        this.$emit('setName', this.updatedWapName)
       }
     },
     validate() {
       if (this.isValidName) {
         // TODO : BUILD MODAL, SAVE WAP WITH USER DATA, SWITCH isOnline = true
-      }
-      else {
+      } else {
         console.log('Not A Valid Site')
         //Todo add user msg
       }
     },
     preview() {
-      this.$router.push({ path: `/${this.updatedWapName}`, query: { preview: 'true' }})
-    }
+      this.$router.push({
+        path: `/${this.updatedWapName}`,
+        query: { preview: 'true' },
+      })
+    },
   },
   computed: {
     async isValidUpdatedWapName() {
-        //TODO: cannot be 'signup', 'login', '', 'templates', 'edit', 'dashboard', 'preview', 
-        try {
-          const isUnique = await this.$store.dispatch({ type: 'getWapByName', wapName: this.updatedWapName })
-          return isUnique
-        } catch (err) {
-          this.siteNameColor = '#e35a5a'
-          console.log('err:', err)
-          return false
-        }  
-    }, 
+      //TODO: cannot be 'signup', 'login', '', 'templates', 'edit', 'dashboard', 'preview',
+      try {
+        const isUnique = await this.$store.dispatch({
+          type: 'getWapByName',
+          wapName: this.updatedWapName,
+        })
+        return isUnique
+      } catch (err) {
+        this.siteNameColor = '#e35a5a'
+        console.log('err:', err)
+        return false
+      }
+    },
   },
   components: {
     editorBtnGroup,

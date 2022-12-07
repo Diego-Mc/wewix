@@ -25,6 +25,7 @@
     </section>
     <div class="auth-info">Diego Mc</div>
   </header> -->
+  
   <header class="app-header main-header">
     <section class="logo" @click="$router.push('/')">
       <svg
@@ -51,12 +52,12 @@
     <nav class="nav">
       <router-link to="/">Home</router-link>
       <router-link to="/templates">Templates</router-link>
-      <router-link to="/dashboard">Dashboard</router-link>
+      <a @click="dashboardLinkClicked">Dashboard</a>
     </nav>
     <Slide noOverlay right :closeOnNavigation="true" class="burger">
       <router-link to="/">Home</router-link>
       <router-link to="/templates">Templates</router-link>
-      <router-link to="/dashboard">Dashboard</router-link>
+      <a @click="dashboardLinkClicked">Dashboard</a>
     </Slide>
     <section class="user-auth">
       <h3 v-if="loggedinUser">logged in user : {{ loggedinUser.fullname }}</h3>
@@ -79,6 +80,9 @@ export default {
     log(data) {
       console.log(data)
     },
+    dashboardLinkClicked(){
+      this.$emit('dashboardLinkClicked')
+    }
   },
   computed: {
     loggedinUser() {

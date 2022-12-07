@@ -55,6 +55,42 @@
       :contenteditable="$store.getters.isEditMode">
       {{ info?.text?.content.text }}
     </p>
+    <p
+      v-if="info.text1"
+      class="text1"
+      :style="info?.text1?.options.style"
+      @click.stop="emitSelect('text1')"
+      @input="updateContent('text1', $event)"
+      :contenteditable="$store.getters.isEditMode">
+      {{ info?.text1?.content.text }}
+    </p>
+    <p
+      v-if="info.text2"
+      class="text2"
+      :style="info?.text2?.options.style"
+      @click.stop="emitSelect('text2')"
+      @input="updateContent('text2', $event)"
+      :contenteditable="$store.getters.isEditMode">
+      {{ info?.text2?.content.text }}
+    </p>
+    <p
+      v-if="info.text3"
+      class="text3"
+      :style="info?.text3?.options.style"
+      @click.stop="emitSelect('text3')"
+      @input="updateContent('text3', $event)"
+      :contenteditable="$store.getters.isEditMode">
+      {{ info?.text3?.content.text }}
+    </p>
+    <p
+      v-if="info.text4"
+      class="text4"
+      :style="info?.text4?.options.style"
+      @click.stop="emitSelect('text4')"
+      @input="updateContent('text4', $event)"
+      :contenteditable="$store.getters.isEditMode">
+      {{ info?.text4?.content.text }}
+    </p>
 
     <button
       class="btn"

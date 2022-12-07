@@ -4,6 +4,9 @@
   > .list-group {
     padding-inline: calc(((100vw - 1280px) / 2) + 3rem) !important;
   }
+  > * > * {
+    padding-inline: calc(((100vw - 1280px) / 2) + 3rem) !important;
+  }
 }
 
 .main-wap {
@@ -17,6 +20,9 @@
 @container wap (max-width: 1200px) {
   .wap {
     > .list-group {
+      padding-inline: 3rem !important;
+    }
+    > * > * {
       padding-inline: 3rem !important;
     }
   }

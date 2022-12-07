@@ -30,7 +30,6 @@ export default {
     wapData: Object,
   },
   created() {
-    // console.log(this.wapData.usersData,'contacts:',this.wapData.contacts)
     
   },
   computed: {

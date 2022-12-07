@@ -34,7 +34,8 @@
   }
 
   &.type-2,
-  &.type-3 {
+  &.type-3,
+  &.type-4 {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 0;
     .gallery-item {
@@ -52,6 +53,17 @@
     gap: 20px;
     .img-container {
       aspect-ratio: unset;
+    }
+  }
+
+  &.type-4 {
+    gap: 10px;
+    .img-container {
+      border-radius: 8px;
+    }
+    > *:first-child {
+      grid-row: span 2;
+      grid-column: span 2;
     }
   }
 }

@@ -1,6 +1,18 @@
 <template>
   <div class="wap" :style="{ fontFamily: 'SpaceGrotesk' }">
     <button
+      @click="changeTheme('theme-5')"
+      :style="{
+        padding: '20px',
+        backgroundColor: 'pink',
+        color: 'white',
+        position: 'sticky',
+        top: 0,
+        'z-index': 5000,
+      }">
+      יוגה
+    </button>
+    <button
       @click="changeTheme('theme-1')"
       :style="{
         padding: '20px',
@@ -36,14 +48,30 @@
       }">
       סוכנות עיצוב
     </button>
-    <component
-      v-for="section in sections"
-      :is="section.type"
-      :cmpId="section.id"
-      :typeId="section.typeId"
-      :info="section.info"
-      :options="section.options"
-      :cmps="section.cmps" />
+    <button
+      @click="changeTheme('theme-4')"
+      :style="{
+        padding: '20px',
+        backgroundColor: 'purple',
+        color: 'white',
+        position: 'sticky',
+        top: 0,
+        'z-index': 5000,
+      }">
+      גלישה
+    </button>
+    <section v-for="section in sections">
+      <!-- <p>{{ section.type }}, {{ section.typeId }}</p> -->
+
+      <component
+        :style="{ transform: '' }"
+        :is="section.type"
+        :cmpId="section.id"
+        :typeId="section.typeId"
+        :info="section.info"
+        :options="section.options"
+        :cmps="section.cmps" />
+    </section>
   </div>
 </template>
 
@@ -53,6 +81,7 @@ import wapHero from '../cmps/wap-sections/wap-hero.vue'
 import wapCards from '../cmps/wap-sections/wap-cards.vue'
 import wapSection from '../cmps/wap-sections/wap-section.vue'
 import wapForm from '../cmps/wap-sections/wap-form.vue'
+import wapVideo from '../cmps/wap-items/wap-video.vue'
 import getCmp from '../services/wap-cmps.service'
 import editorBtnGroup from '../cmps/main-editor/editor-items/editor-btn-group.vue'
 import mainHeader from '../cmps/app-cmps/main-header.vue'
@@ -62,6 +91,30 @@ export default {
   data() {
     return {
       sections: [
+        // template 5
+        getCmp('wap-header', 6),
+        getCmp('wap-hero', 6),
+        getCmp('wap-section', 21),
+        getCmp('wap-section', 22),
+        getCmp('wap-section', 23),
+        getCmp('wap-section', 24),
+        getCmp('wap-section', 25),
+        getCmp('wap-cards', 11),
+        // getCmp('wap-footer', 4),
+
+        // template 4
+        getCmp('wap-header', 5),
+        getCmp('wap-hero', 5),
+        getCmp('wap-section', 15),
+        getCmp('wap-section', 16),
+        getCmp('wap-cards', 8),
+        getCmp('wap-section', 17),
+        getCmp('wap-section', 19),
+        getCmp('wap-cards', 9),
+        getCmp('wap-section', 18),
+        getCmp('wap-section', 20),
+        // getCmp('footer', 3)
+
         // template 3
         getCmp('wap-header', 4),
         getCmp('wap-hero', 4),
@@ -91,8 +144,6 @@ export default {
         getCmp('wap-section', 6),
         getCmp('wap-cards', 5),
         getCmp('wap-section', 7),
-        // getCmp('wap-section', 6),
-        // getCmp('wap-section', 7),
         // getCmp('wap-form', 2),
       ],
       // header: getCmp('wap-header', 2),
@@ -119,6 +170,7 @@ export default {
     mainHeader,
     editorHeader,
     editorSidebar,
+    wapVideo,
   },
 }
 </script>
