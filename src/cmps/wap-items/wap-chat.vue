@@ -1,16 +1,90 @@
 <template>
-  <button @click="(isChatOpen = !isChatOpen)">Click Here To Open Chat</button>
+  <button @click="isChatOpen = !isChatOpen">Click Here To Open Chat</button>
+  <!--
+  <section class="wap-chat" v-if="isChatOpen">
+    <header v-if="this.user.isAdmin"> -->
+  <!-- <nav>
+        <ul>
+          <li>👧👸👨‍🦱</li>
+          <li>®©®</li>
+        </ul>
+      </nav> -->
+  <!-- <span class="header-text">
+        <small>Hello manager,</small>
+        <h3>wewix chat</h3>
+      </span>
+      <nav class="guests">
+        <span
+          v-for="g in activeGuests"
+          :key="g"
+          @click="setActiveConversation(g)">
+          <img
+            class="guest-avatar"
+            src="../../assets/imgs/png-96/avatar1.png" />
+          <span>{{ g.unread }}</span>
+          <span v-if="isTyping(g.userId)">typing...</span>
+          <span v-else-if="isTyping('Admin')">Admin typing...</span>
+        </span>
+      </nav> -->
+  <!-- <div class="welcome-txt">
+        <h1>Hey! 👋</h1>
+        <h1>How Could We Help?</h1>
+      </div> -->
+  <!-- <div class="welcome-txt">
+        <h1>Hey! 👋</h1>
+      </div>
+    </header> -->
+
+  <!-- <section
+      class="messages"
+      v-if="!this.user.isAdmin || (this.user.isAdmin && activeConversation)">
+      <article class="message guest">Hello</article>
+      <article class="message guest">pls answer me</article>
+      <article class="message manager">hey</article>
+      <article class="message guest">sup</article>
+      <article class="message manager">sup</article>
+      <article class="message guest">Hello</article>
+      <article class="message guest">pls answer me</article>
+      <article class="message manager">hey</article>
+      <article class="message guest">sup</article>
+      <article class="message manager">sup</article>
+      <article class="message guest">Hello</article>
+      <article class="message guest">pls answer me</article>
+      <article class="message manager">hey</article>
+      <article class="message guest">sup</article>
+      <article class="message manager">sup</article>
+      <article class="message guest">Hello</article>
+      <article class="message guest">pls answer me</article>
+      <article class="message manager">hey</article>
+      <article class="message guest">sup</article>
+      <article class="message manager">sup</article>
+    </section> -->
+  <!-- <section
+      class="messages"
+      v-if="!this.user.isAdmin || (this.user.isAdmin && activeConversation)"
+      v-for="(msg, idx) in conversations[this.activeConversation]"
+      :key="idx"> -->
+  <!-- <span>{{ msg.from }}:</span>{{ msg.txt }} -->
+  <!-- <article class="message manager">{{ msg.from }}:{{ msg.txt }}</article>
+    </section>
+
+    <form @submit.prevent="sendMsg">
+      <input
+        v-if="(activeConversation && this.user.isAdmin) || !this.user.isAdmin"
+        @input="sendTypeState"
+        type="text"
+        v-model="msg.txt"
+        placeholder="Your msg" />
+      <span v-else>Please Select User To Msg</span>
+    </form>
+  </section> -->
 
   <section class="wap-chat" v-if="isChatOpen">
     <header>
       <nav>
         <ul>
-          <li>
-            👧👸👨‍🦱
-          </li>
-          <li>
-            ®©®
-          </li>
+          <li>👧👸👨‍🦱</li>
+          <li>®©®</li>
         </ul>
       </nav>
       <div class="welcome-txt">
@@ -19,24 +93,28 @@
       </div>
     </header>
 
-
     <hr />
-    <ul class="msgs">
-      <li v-for="(msg, idx) in conversations[this.activeConversation]" :key="idx">
+    <ul>
+      <li
+        v-for="(msg, idx) in conversations[this.activeConversation]"
+        :key="idx">
         <span>{{ msg.from }}:</span>{{ msg.txt }}
       </li>
     </ul>
-
     <form @submit.prevent="sendMsg">
-      <input v-if="((activeConversation && this.user.isAdmin) || !this.user.isAdmin)" @input="sendTypeState" type="text" v-model="msg.txt" placeholder="Your msg" />
+      <input
+        v-if="(activeConversation && this.user.isAdmin) || !this.user.isAdmin"
+        @input="sendTypeState"
+        type="text"
+        v-model="msg.txt"
+        placeholder="Your msg" />
       <span v-else>Please Select User To Msg</span>
       <button>Send</button>
     </form>
-    
+
     <span v-for="g in activeGuests" :key="g" @click="setActiveConversation(g)">
-      <!-- Todo Make It Random -->
-      <img class="guest-avatar" src="../../assets/imgs/png-96/avatar1.png">
-      <span>{{g.unread}}</span>
+      <img class="guest-avatar" src="../../assets/imgs/png-96/avatar1.png" />
+      <span>{{ g.unread }}</span>
       <span v-if="isTyping(g.userId)">typing...</span>
       <span v-else-if="isTyping('Admin')">Admin typing...</span>
     </span>
@@ -50,67 +128,57 @@ import {
   SOCKET_EVENT_ADD_MSG,
 } from '../../services/socket.service'
 import { utilService } from '../../services/util.service'
-
-
 export default {
   props: {
-    options: Object
+    options: Object,
   },
   data() {
     return {
-      msg: {txt: '' },
+      msg: { txt: '' },
       isChatOpen: false,
-
       conversations: {},
       activeGuests: [],
       activeConversation: null,
       user: this.getUser(),
       chatId: this.options.meta.chatData.chatId,
-      isUserTyping: {}
+      isUserTyping: {},
     }
   },
   created() {
     socketService.emit('startConversation', {
-      chatId: this.chatId, 
-      userId: this.user.id, 
-      adminId: (this.user.isAdmin) ? this.user.id : ''
+      chatId: this.chatId,
+      userId: this.user.id,
+      adminId: this.user.isAdmin ? this.user.id : '',
     })
-
-
     socketService.on('updateGuests', (data) => {
       if (Array.isArray(data)) {
         this.activeGuests = data
-        
+
         this.conversations = this.activeGuests.reduce((updatedGuest, guest) => {
-            updatedGuest[guest.userId] = guest.msgs
-            return updatedGuest
+          updatedGuest[guest.userId] = guest.msgs
+          return updatedGuest
         }, {})
-      }
-      else if (typeof data === 'object' && data !== null) this.activeGuests.push(data)
+      } else if (typeof data === 'object' && data !== null)
+        this.activeGuests.push(data)
     })
-
-
-
     socketService.on('addGuestMsg', this.addMsg)
     socketService.on('addAdminMsg', this.addMsg)
     socketService.on('addOwnMsg', this.addMsg)
     socketService.on('typing', (user) => {
-        this.isUserTyping[user] = true
-        this.clearTyping(user)
+      this.isUserTyping[user] = true
+      this.clearTyping(user)
     })
-
-
-
     this.clearTyping = utilService.debounce(this.clearTyping)
   },
   unmounted() {
-    this.activeGuests = this.activeGuests.filter(({userId}) => userId !== this.user.id)
+    this.activeGuests = this.activeGuests.filter(
+      ({ userId }) => userId !== this.user.id
+    )
     socketService.off(SOCKET_EVENT_ADD_MSG, this.addMsg)
   },
   methods: {
     addMsg(msg) {
       if (msg.isFromAdmin) this.activeConversation = msg.id
-
       if (this.conversations[msg.id]) this.conversations[msg.id].push(msg)
       else this.conversations[msg.id] = [msg]
     },
@@ -118,70 +186,42 @@ export default {
       // if (!this.conversations[this.user.id]) this.conversations[this.user.id] = [this.msg]
       // else {
       //   this.conversations[this.user.id].push(this.msg)
-      // } 
-
+      // }
       this.msg.from = 'Davud'
-      socketService.emit('addMsg', {msg: this.msg, activeConversation: this.activeConversation})
+      socketService.emit('addMsg', {
+        msg: this.msg,
+        activeConversation: this.activeConversation,
+      })
       this.msg = { txt: '' }
     },
     getUser() {
-        const user = JSON.parse(JSON.stringify(this.$store.getters.loggedinUser))
-
-        if (!user) return {nickname: 'guest', id: Math.random() + ''}
-
-        user.isAdmin = true
-        user.nickname = 'Admin'
-        user.id = user._id
-
-        delete user._id
-        return user       
+      const user = JSON.parse(JSON.stringify(this.$store.getters.loggedinUser))
+      if (!user) return { nickname: 'guest', id: Math.random() + '' }
+      user.isAdmin = true
+      user.nickname = 'Admin'
+      user.id = user._id
+      delete user._id
+      return user
     },
-    setActiveConversation({userId}) {
-        this.activeConversation = userId
-        socketService.emit('activateChat', this.activeConversation)
+    setActiveConversation({ userId }) {
+      this.activeConversation = userId
+      socketService.emit('activateChat', this.activeConversation)
     },
     sendTypeState() {
       socketService.emit('typing', this.user.id)
     },
-    avatar() { 
+    avatar() {
       return '../../assets/imgs/png-96/avatar1.png'
     },
     isTyping(user) {
-        return this.isUserTyping[user]
+      return this.isUserTyping[user]
     },
     clearTyping(user) {
       this.isUserTyping[user] = false
-    }
+    },
   },
-
-  computed: {
-  }
-
+  computed: {},
 }
 </script>
 
-<style lang="scss" scoped>
-.guest-avatar {
-    height: 50px;
-}
-.wap-chat {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  height: 400px;
-  width: 350px;
-  background-color: lightblue;
-  padding: 10px;
-
-  nav ul {
-    display: flex;
-    justify-content: space-between;
-    margin-block: 0;
-    padding-inline: 0;
-  }
-
-  .welcome-txt {
-    margin-block-start: 50px;
-  }
-}
-</style>
+<style lang="scss" scoped></style>

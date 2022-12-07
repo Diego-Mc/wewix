@@ -97,6 +97,7 @@ export default {
   props: {
     wapName: String,
     isPublished: Boolean,
+    wapId: String
   },
   data() {
     return {
@@ -159,7 +160,7 @@ export default {
     },
     preview() {
       this.$router.push({
-        path: `/${this.wapName}`,
+        path: `/${this.wapId}`,
         query: { preview: 'true' },
       })
     },
