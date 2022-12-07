@@ -54,7 +54,7 @@ export default {
 
     formSubmited() {
       console.log(this.userInfo)
-      this.userInfo.at = Date.now()
+      this.userInfo.createdAt = Date.now()
       eventBus.emit('formSubmited', this.userInfo)
     },
     emitSelect(elInfo) {

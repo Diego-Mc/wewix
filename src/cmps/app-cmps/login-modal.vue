@@ -1,43 +1,46 @@
 <template>
-    <div class="auth-modal">
-      <h2 class="auth-header">Login</h2>
+  <div class="auth-modal">
+    <h2 class="auth-header" v-if="isModalInAuthPage">Login</h2>
+    <h2 class="auth-header" v-else>Login to publish your website</h2>
 
-      <div class="google-auth-btn">
-        <button>
-          <a href="http://localhost:3030/auth/google">google login</a>
-          <div
-            class="g-signin2"
-            data-width="300"
-            data-height="200"
-            data-longtitle="true"></div>
-        </button>
-      </div>
-      <p class="login-p-divider">or</p>
-
-      <form class="login-form">
-        <el-input
-          class="auth-input"
-          type="text"
-          v-model="loginCred.username"
-          placeholder="Enter username" />
-        <!-- TODO: change to enter email or userName -->
-        <el-input
-          class="auth-input"
-          v-model="loginCred.password"
-          type="password"
-          placeholder="Please type password"
-          show-password />
-        <el-button @click.prevent="doLogin"  type="primary">Login</el-button>
-      </form>
-      <router-link :to="'/signup/'">
-      <span class="toggle-auth-link">Dont have a user? signup</span>
-    </router-link>
+    <div class="google-auth-btn">
+      <button>
+        <a href="http://localhost:3030/auth/google">google login</a>
+        <div
+          class="g-signin2"
+          data-width="300"
+          data-height="200"
+          data-longtitle="true"></div>
+      </button>
     </div>
-    
+    <p class="login-p-divider">or</p>
+
+    <form class="login-form">
+      <el-input
+        class="auth-input"
+        type="text"
+        v-model="loginCred.username"
+        placeholder="Enter username" />
+      <!-- TODO: change to enter email or userName -->
+      <el-input
+        class="auth-input"
+        v-model="loginCred.password"
+        type="password"
+        placeholder="Please type password"
+        show-password />
+      <el-button @click.prevent="doLogin" type="primary">Login</el-button>
+    </form>
+    <button class="toggle-auth-link" @click="openSignupModal">
+      Dont have a user? signup
+    </button>
+  </div>
 </template>
 
 <script>
 export default {
+  props: {
+    isModalInAuthPage: Boolean,
+  },
   name: 'login-modal',
   data() {
     return {
@@ -54,6 +57,11 @@ export default {
     },
   },
   methods: {
+    openSignupModal() {
+      if (this.isModalInAuthPage) this.$router.push('/signup')
+      else this.$emit('swapAuthModal', 'signup')
+      console.log('modal', this.isModalInAuthPage)
+    },
     async doLogin() {
       if (!this.loginCred.username) {
         this.msg = 'Please enter username/password'
@@ -64,11 +72,12 @@ export default {
       }
       try {
         await this.$store.dispatch({ type: 'login', userCred: this.loginCred })
-        this.$router.push('/')
+        if (this.isModalInAuthPage) this.$router.push('/')
       } catch (err) {
         console.log(err)
         this.msg = 'Failed to login'
       }
+      this.$emit('authenticated')
     },
     async doSignup() {
       if (
@@ -83,10 +92,9 @@ export default {
       this.$router.push('/')
     },
   },
-  components: {  },
+  components: {},
 }
 </script>
-
 
 <style lang="scss">
 .auth-modal {

@@ -2,21 +2,24 @@
   <app-header />
   <p>{{ msg }}</p>
   <div>
-    <login-modal />
-    <signupModal />
+    <login-modal @authenticated="authenticated" :isModalInAuthPage="true"/>
   </div>
 </template>
 
 <script>
 import appHeader from '../cmps/app-cmps/app-header.vue'
 import loginModal from '../cmps/app-cmps/login-modal.vue'
-import signupModal from '../cmps/app-cmps/signup-modal.vue'
 
 export default {
   components: {
     appHeader,
     loginModal,
-    signupModal,
+  },
+  methods: {
+    authenticated() {
+      this.$emit('authenticated', 'login')
+
+    },
   },
 }
 </script>

@@ -118,7 +118,7 @@ export default {
     keyForDisplay(key, user) {
       let displatedKey = '-'
       if (user[key]) {
-        displatedKey = key === 'at' ? this.dateStr(user[key]) : user[key]
+        displatedKey = key === 'createdAt' ? this.dateStr(user[key]) : user[key]
       }
       return displatedKey
     },

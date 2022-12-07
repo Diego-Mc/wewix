@@ -1,6 +1,7 @@
 <template>
   <div class="auth-modal">
-    <h2 class="auth-header">Signup</h2>
+    <h2 class="auth-header" v-if="isModalInAuthPage">Signup</h2>
+    <h2 class="auth-header" v-else>Signup to publish your website</h2>
     <p>{{ msg }}</p>
     <form class="login-form">
       <el-input
@@ -23,14 +24,15 @@
       <img-uploader @uploaded="onUploaded"></img-uploader>
       <el-button type="primary" @click.prevent="doSignup">Signup</el-button>
     </form>
-    <router-link :to="'/login/'">
-      <p class="toggle-auth-link">back to login</p>
-    </router-link>
+    <button class="toggle-auth-link" @click="backToLogin">back to login</button>
   </div>
 </template>
 
 <script>
 export default {
+  props: {
+    isModalInAuthPage: Boolean,
+  },
   name: 'login-signup',
   data() {
     return {
@@ -44,18 +46,9 @@ export default {
     },
   },
   methods: {
-    async doLogin() {
-      if (!this.loginCred.username) {
-        this.msg = 'Please enter username/password'
-        return
-      }
-      try {
-        await this.$store.dispatch({ type: 'login', userCred: this.loginCred })
-        this.$router.push('/')
-      } catch (err) {
-        console.log(err)
-        this.msg = 'Failed to login'
-      }
+    backToLogin() {
+      if (this.isModalInAuthPage) this.$router.push('/login')
+      else this.$emit('swapAuthModal', 'login')
     },
     async doSignup() {
       if (
@@ -67,7 +60,8 @@ export default {
         return
       }
       await this.$store.dispatch({ type: 'signup', userCred: this.signupCred })
-      this.$router.push('/')
+      this.$router.push('/edit') //TODO: change to different page
+      this.$emit('authenticated')
     },
   },
   components: {},

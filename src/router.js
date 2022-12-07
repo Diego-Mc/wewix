@@ -9,7 +9,7 @@ import appPreview from './views/app-preview.vue'
 import testTestTest from './views/test-test-test.vue'
 import testTestTestTest from './views/test-test-test-test.vue'
 import appPublish from './views/appPublish.vue'
-
+import pageNotFound from './views/page-not-found.vue'
 import editorWithStyle from './views/editor-with-style.vue'
 
 import loginModal from './cmps/app-cmps/login-modal.vue'
@@ -80,6 +80,11 @@ const routes = [
     name: 'publish-wap',
     component: appPublish,
   },
+  // {
+  //   path: '/:pathMatch(.*)*',
+  //   name: 'not-found',
+  //   component: pageNotFound,
+  // },
 
 
   // {
