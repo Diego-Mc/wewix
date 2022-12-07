@@ -5383,10 +5383,10 @@ wap-social-section: 4
 
 //------------------------------------------------------ section with map and form --------------------------------------
 
-wapsMap.set('wap-section-24', {
+wapsMap.set('wap-section-26', {
   id: '',
   type: 'wap-section',
-  typeId: 24,
+  typeId: 26,
   previewImg:
     'https://res.cloudinary.com/wewix/image/upload/v1670410157/waps/wap-testimonial-24_hmdvxe.png',
   options: {
