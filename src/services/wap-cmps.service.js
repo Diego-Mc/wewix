@@ -5381,6 +5381,92 @@ wap-social-section: 4
 
 */
 
+//------------------------------------------------------ section with map and form --------------------------------------
+
+wapsMap.set('wap-section-24', {
+  id: '',
+  type: 'wap-section',
+  typeId: 24,
+  previewImg:
+    'https://res.cloudinary.com/wewix/image/upload/v1670410157/waps/wap-testimonial-24_hmdvxe.png',
+  options: {
+    meta: {
+      src: 'https://assets.website-files.com/5ff6cf529d44b2be039f96ca/5ff86d6541dd4e083c9c5102_background_discover.jpg',
+    },
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '',
+      type: 'wap-form',
+      typeId: 1,
+      options: {
+        meta: {
+          formInputs: [
+            { tag: 'email', txt: '' },
+            { tag: 'name', txt: '' },
+            { tag: 'phone', txt: '' },
+            { tag: 'msg', txt: '' },
+          ],
+        },
+        style: getStyles(),
+      },
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Stay up to speed',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Sign up to get the latest Dance offers, updates, and tips straight to your inbox.',
+          },
+        },
+      },
+    },
+    {
+      id: 'wc10',
+      type: 'wap-map',
+      options: {
+        meta: {
+          mapData: {
+            title: '',
+            label: '',
+            position: {
+              lat: '',
+              lng: '',
+            },
+          },
+        },
+        style: {
+          backgroundColor: '',
+          fontFamily: '',
+          color: '',
+          borderRadius: '',
+          fontWeight: '',
+        },
+      },
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: {},
+          },
+          content: {},
+        },
+      },
+    },
+  ],
+})
+
 //TODO: move to db
 // *************** TEMPLATES MAP ****************
 

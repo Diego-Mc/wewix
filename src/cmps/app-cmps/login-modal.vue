@@ -1,7 +1,7 @@
 <template>
   <div class="auth-modal">
     <h2 class="auth-header">{{ msg }}</h2>
-    <div class="google-auth-btn">
+    <!-- <div class="google-auth-btn">
       <button>
         <a href="http://localhost:3030/auth/google">google login</a>
         <div
@@ -10,8 +10,8 @@
           data-height="200"
           data-longtitle="true"></div>
       </button>
-    </div>
-    <p class="login-p-divider">or</p>
+    </div> -->
+    <!-- <p class="login-p-divider">or</p> -->
     <form class="login-form">
       <el-input
         class="auth-input"
@@ -25,7 +25,11 @@
         type="password"
         placeholder="Please type password"
         show-password />
-      <el-button @click.prevent="doLogin" type="primary">Login</el-button>
+      <el-button @click.prevent="doLogin" type="primary">Login
+        <span v-if="destPage === 'publishWap'">&nbspand publish</span>
+      
+      </el-button>
+      
     </form>
     <button class="toggle-auth-link" @click="openSignupModal">
       Dont have a user? signup
@@ -34,6 +38,8 @@
 </template>
 
 <script>
+import { showUserMsg } from '../../services/event-bus.service.js'
+
 export default {
   props: {
     isModalInAuthPage: Boolean,
@@ -69,13 +75,18 @@ export default {
       }
       try {
         await this.$store.dispatch({ type: 'login', userCred: this.loginCred })
-        let dest 
+        let dest
         if (this.isModalInAuthPage) dest = '/'
         else if (this.destPage === 'dashboard') dest = '/dashboard'
         this.$router.push(dest)
+
+        showUserMsg({ txt: 'Logged in successfully' })
+
+        console.log(showUserMsg)
       } catch (err) {
         console.log(err)
         this.msg = 'Failed to login'
+        showUserMsg(this.msg)
       }
       this.$emit('authenticated')
     },
@@ -102,16 +113,20 @@ export default {
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  border-radius: 10px;
+
   .login-p-divider,
   .google-auth-btn {
     text-align: center;
   }
   .auth-header {
     text-align: center;
+    margin-bottom: 20px;
   }
   .login-form {
     display: flex;
     flex-direction: column;
+    
     gap: 20px;
     .auth-input {
       width: 350px;

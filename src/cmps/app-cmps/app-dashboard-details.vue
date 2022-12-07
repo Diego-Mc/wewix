@@ -68,7 +68,6 @@ export default {
 
     modifiedUsers() {
       let users = this.usersData
-      console.log(users)
       //Filter
       if (this.filterBy) {
         const regex = new RegExp(this.filterBy, 'i')

@@ -1,6 +1,6 @@
 <template>
   <header class="app-header">
-    <section class="logo">
+    <section class="logo" @click="$router.push('/')">
       <svg
         width="24"
         height="24"

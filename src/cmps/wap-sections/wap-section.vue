@@ -13,7 +13,10 @@
     @start="drag = true"
     @end="onDrop"
     item-key="id"
-    :group="'section-' + cmpId">
+    :disabled="!this.$store.getters.isEditMode"
+    :group="'section-' + cmpId"
+    
+    >
     <template #item="{ element }">
       <div>
         <component

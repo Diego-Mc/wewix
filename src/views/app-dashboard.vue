@@ -2,13 +2,14 @@
   <main class="app-dashboard">
     <section class="dashboard-sidebar">
       <h3 class="my-Sites-header">My Sites</h3>
-      <ul class="waps-list">
+      <ul v-if="loggedinUser" class="waps-list">
         <li v-for="wap in userWaps" @click="changeCurrWapData(wap)">
           {{ wap.name }}
         </li>
       </ul>
     </section>
     <router-view v-if="currWapData" :wapData="currWapData"></router-view>
+    <div style="" v-else>Build a website to see data!</div>
   </main>
 </template>
 
@@ -17,17 +18,17 @@ export default {
   data() {
     return {
       userWaps: null,
-      currWapData: {},
+      currWapData: null,
     }
   },
   async created() {
-    if (!this.loggedinUser || !this.loggedinUser.waps) this.$router.push('/')
+    if (!this.loggedinUser) return this.$router.push('/')
+    else if (!this.loggedinUser.waps) return
     let waps = await this.getWaps()
-  
+
     this.userWaps = waps
       .filter((wap) => this.loggedinUser.waps.includes(wap._id))
       .map((wap) => {
-        console.log(wap.usersData);
         return {
           _id: wap._id,
           name: wap.name,

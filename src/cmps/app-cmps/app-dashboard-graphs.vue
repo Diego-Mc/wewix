@@ -111,7 +111,6 @@ export default {
   },
   created() {
     this.initWaps()
-    console.log(this.visitorsData);
   },
 
   methods: {

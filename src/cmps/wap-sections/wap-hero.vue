@@ -50,7 +50,9 @@
     @start="drag = true"
     @end="onDrop"
     item-key="id"
-    :group="'hero-' + cmpId">
+    :group="'hero-' + cmpId"
+    :disabled="!this.$store.getters.isEditMode"
+    >
     <template #item="{ element }">
       <div>
         <component
