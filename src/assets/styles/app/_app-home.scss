@@ -39,6 +39,7 @@
     h1 {
       font-size: 5.2rem;
       font-family: PoppinsBold;
+      line-height: 1.2;
 
       span {
         // background: linear-gradient(
@@ -58,6 +59,7 @@
     p {
       font-size: rem(16px);
       position: relative;
+      margin-bottom: 16px;
       @media screen and (max-width: 1180px) {
         .decor {
           display: none;
