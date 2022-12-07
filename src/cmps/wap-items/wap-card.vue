@@ -1,9 +1,9 @@
 <template>
-  <article :style="options.style" class="wap-card" :class="'type-' + typeId" >
+  <article :style="options.style" class="wap-card" :class="'type-' + typeId">
     <img
       v-if="info.img"
       :style="info?.img?.options.style"
-      @click.stop="emitSelect('img',$event)"
+      @click.stop="emitSelect('img', $event)"
       class="card-img"
       :src="info?.img?.options.meta.src" />
     <span
@@ -36,6 +36,15 @@
       :contenteditable="$store.getters.isEditMode">
       {{ info?.title?.content.text }}
     </h3>
+    <h3
+      v-if="info.subtitle"
+      class="subtitle"
+      :style="info?.subtitle?.options.style"
+      @click.stop="emitSelect('subtitle')"
+      @input="updateContent('subtitle', $event)"
+      :contenteditable="$store.getters.isEditMode">
+      {{ info?.subtitle?.content.text }}
+    </h3>
 
     <p
       v-if="info.text"
@@ -45,6 +54,42 @@
       @input="updateContent('text', $event)"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.text?.content.text }}
+    </p>
+    <p
+      v-if="info.text1"
+      class="text1"
+      :style="info?.text1?.options.style"
+      @click.stop="emitSelect('text1')"
+      @input="updateContent('text1', $event)"
+      :contenteditable="$store.getters.isEditMode">
+      {{ info?.text1?.content.text }}
+    </p>
+    <p
+      v-if="info.text2"
+      class="text2"
+      :style="info?.text2?.options.style"
+      @click.stop="emitSelect('text2')"
+      @input="updateContent('text2', $event)"
+      :contenteditable="$store.getters.isEditMode">
+      {{ info?.text2?.content.text }}
+    </p>
+    <p
+      v-if="info.text3"
+      class="text3"
+      :style="info?.text3?.options.style"
+      @click.stop="emitSelect('text3')"
+      @input="updateContent('text3', $event)"
+      :contenteditable="$store.getters.isEditMode">
+      {{ info?.text3?.content.text }}
+    </p>
+    <p
+      v-if="info.text4"
+      class="text4"
+      :style="info?.text4?.options.style"
+      @click.stop="emitSelect('text4')"
+      @input="updateContent('text4', $event)"
+      :contenteditable="$store.getters.isEditMode">
+      {{ info?.text4?.content.text }}
     </p>
 
     <button
@@ -75,12 +120,12 @@ export default {
         childCmpId: this.childCmpId,
       })
     },
-    emitSelect(elType,e) {
-      console.log(window.getComputedStyle(e.target))
+    emitSelect(elType, e) {
       eventBus.emit('select', {
         cmpId: this.cmpId,
         childCmpId: this.childCmpId,
         elType,
+        elDom: e,
       })
     },
   },

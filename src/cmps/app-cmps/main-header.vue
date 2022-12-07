@@ -59,8 +59,9 @@
       <router-link to="/dashboard">Dashboard</router-link>
     </Slide>
     <section class="user-auth">
-      <router-link :to="'/login/'">
-      <button class="login-btn"><i class="bi bi-person"></i> login</button>
+      <h3 v-if="loggedinUser">logged in user : {{ loggedinUser.fullname }}</h3>
+      <router-link v-else to="/login/">
+        <button class="login-btn"><i class="bi bi-person"></i> login</button>
       </router-link>
     </section>
   </header>
@@ -77,6 +78,11 @@ export default {
   methods: {
     log(data) {
       console.log(data)
+    },
+  },
+  computed: {
+    loggedinUser() {
+      return this.$store.getters.loggedinUser
     },
   },
 }

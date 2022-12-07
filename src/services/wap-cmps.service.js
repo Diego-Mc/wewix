@@ -9,11 +9,11 @@ export const wapUtils = {
 }
 
 function getTemplate(templateId) {
-  return {
-    _id: '5e28393890dd7201a06d4e44',
-    name: 'HairDresser Baluta Marketing Site',
+  const wa = {
+    _id: 'template-1',
+    name: 'template-1',
     imgUrl:
-      'http://res.cloudinary.com/webify/image/upload/v1580021948/coffe_yi0yzf.png',
+      'http://res.cloudinary.com/webify/image/upload/v1590021948/coffe_yi0yzf.png',
     createdBy: {
       _id: '5e26e0b718a0891d4c995527',
       fullname: 'Hekro Special',
@@ -34,6 +34,7 @@ function getTemplate(templateId) {
       getCmp('wap-cards', 2),
     ],
   }
+  return wa
 }
 
 export default function getCmp(type, typeId) {
@@ -184,6 +185,7 @@ wapsMap.set('wap-header-1', {
     meta: {},
     style: getStyles(),
   },
+  cmps: [],
   info: {
     title: {
       options: {
@@ -616,6 +618,80 @@ wapsMap.set('wap-header-2', {
       content: { text: 'Find us' },
     },
   },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-logo',
+      typeId: 1, // change to what you want
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://i.ibb.co/zZdJHBn/plantify-logo.png',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        title: {
+          options: {
+            meta: { animation: '' },
+            style: getStyles('title'),
+          },
+          content: { text: 'Plantify' },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-nav',
+      typeId: 1,
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        nav: {
+          options: {
+            meta: {},
+            style: getStyles('nav'),
+          },
+          content: {
+            nav1: 'Menu',
+            nav2: 'Schedule',
+            nav3: 'About',
+            nav4: 'Catering',
+            nav5: 'Contact',
+          },
+        },
+      },
+    },
+    {
+      id: '3',
+      type: 'wap-btn',
+      typeId: 1,
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        btn: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: { text: 'Find us' },
+        },
+      },
+    },
+  ],
 })
 
 // this is temp's 2 hero section.
@@ -1180,7 +1256,7 @@ wapsMap.set('wap-header-3', {
     {
       id: '1',
       type: 'wap-logo',
-      typeId: 1, // change to what you want
+      typeId: 2, // change to what you want
       previewImg: '',
       options: {
         meta: {},
@@ -1191,19 +1267,18 @@ wapsMap.set('wap-header-3', {
           // logo or wapLogo or title?
           options: {
             meta: {
-              src: '', // its an svg didnt know how to copy
+              src: 'https://i.ibb.co/9r1MBSK/image.png',
             },
             style: getStyles('img'),
           },
-          content: {
-          },
+          content: {},
         },
       },
     },
     {
       id: '2',
-      type: 'nav',
-      typeId: 20, //change to what you want
+      type: 'wap-nav',
+      typeId: 2, //change to what you want
       previewImg: '',
       options: {
         meta: {},
@@ -1216,13 +1291,10 @@ wapsMap.set('wap-header-3', {
             style: getStyles('nav'),
           },
           content: {
-            nav1: 'SHOP',
-            nav2: 'DESIGN',
-            nav3: 'ABOUT',
-            nav4: 'REVIEWS',
-            nav5: 'REFER A FRIEND',
-            nav6: 'SIGN IN',
-            nav7: 'CART',
+            nav1: 'DESIGN',
+            nav2: 'ABOUT',
+            nav3: 'REVIEWS',
+            nav4: 'REFER A FRIEND',
           },
         },
       },
@@ -1239,13 +1311,17 @@ wapsMap.set('wap-hero-3', {
     meta: {
       src: 'https://www.goby.co/assets/modern-luxary-desktop-810f00643379d078f84ed90e28d96ba12742e9fb347cc966e480c75f9d896740.jpg',
     },
-    style: getStyles(),
+    style: {
+      ...getStyles(),
+      backgroundImage:
+        'url(https://www.goby.co/assets/modern-luxary-desktop-810f00643379d078f84ed90e28d96ba12742e9fb347cc966e480c75f9d896740.jpg)',
+    },
   },
   cmps: [
     {
       id: '1',
       type: 'wap-text-section',
-      typeId: 5,
+      typeId: 6,
       options: {
         meta: {},
         style: getStyles(),
@@ -1266,7 +1342,7 @@ wapsMap.set('wap-hero-3', {
             style: getStyles('btn'),
           },
           content: {
-            text: 'Shop Now',
+            text: 'SHOP NOW',
           },
         },
       },
@@ -1358,8 +1434,7 @@ wapsMap.set('wap-cards-3', {
             },
             style: getStyles('img'),
           },
-          content: {
-          },
+          content: {},
         },
         title: {
           options: {
@@ -1434,10 +1509,10 @@ wapsMap.set('wap-cards-3', {
 })
 
 //did we skip the part wher eit has a sticker 'ADA Accepted'?
-wapsMap.set('wap-section-6', {
+wapsMap.set('wap-section-5', {
   id: '',
   type: 'wap-section',
-  typeId: 6,
+  typeId: 5,
   previewImg: '',
   options: {
     meta: {},
@@ -1446,8 +1521,28 @@ wapsMap.set('wap-section-6', {
   cmps: [
     {
       id: '1',
+      type: 'wap-img-section',
+      typeId: 5,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://www.goby.co/assets/max-clean-0ddf5ef0f199f84aa3a1a0a17a24e404e97546c6ed6235644b742579e7af6ac2.jpg',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+      },
+    },
+    {
+      id: '2',
       type: 'wap-text-section',
-      typeId: 6,
+      typeId: 9,
       options: {
         meta: {},
         style: getStyles(),
@@ -1460,7 +1555,7 @@ wapsMap.set('wap-section-6', {
             style: getStyles('title'),
           },
           content: {
-            text: 'MAXIMUM CLEAN, FRACTION OF THE PRICE.',
+            text: 'MAXIMUM CLEAN, FRACTION OF THE PRICE',
           },
         },
         text: {
@@ -1500,7 +1595,7 @@ wapsMap.set('wap-cards-4', {
     {
       id: '1',
       type: 'wap-card',
-      typeId: 4,
+      typeId: 5,
       options: {
         meta: {},
         style: getStyles(),
@@ -1539,7 +1634,7 @@ wapsMap.set('wap-cards-4', {
     {
       id: '2',
       type: 'wap-card',
-      typeId: 4,
+      typeId: 5,
       options: {
         meta: {},
         style: getStyles(),
@@ -1578,7 +1673,7 @@ wapsMap.set('wap-cards-4', {
     {
       id: '3',
       type: 'wap-card',
-      typeId: 4,
+      typeId: 5,
       options: {
         meta: {},
         style: getStyles(),
@@ -1643,7 +1738,7 @@ wapsMap.set('wap-section-6', {
             style: getStyles('title'),
           },
           content: {
-            text: 'UNLIMITED COMPLIMENTS. GUARANTEED.',
+            text: 'UNLIMITED COMPLIMENTS. GUARANTEED',
           },
         },
       },
@@ -1665,7 +1760,7 @@ wapsMap.set('wap-cards-5', {
     {
       id: '1',
       type: 'wap-card',
-      typeId: 4,
+      typeId: 6,
       options: {
         meta: {},
         style: getStyles(),
@@ -1674,7 +1769,7 @@ wapsMap.set('wap-cards-5', {
         img: {
           options: {
             meta: {
-              src: 'https://www.goby.co/assets/subscribe-4bb6314d9b54e9f3725d3b697e8e804259b370bd91849da8204ed3b9126b8eb0.png',
+              src: 'https://www.goby.co/assets/icon-smile-ed3aec2d082711b3bd0ff051712c0e85aef7523efeea12eee291da20970151d6.png',
             },
             style: getStyles('img'),
           },
@@ -1704,7 +1799,7 @@ wapsMap.set('wap-cards-5', {
     {
       id: '2',
       type: 'wap-card',
-      typeId: 4,
+      typeId: 6,
       options: {
         meta: {},
         style: getStyles(),
@@ -1743,7 +1838,7 @@ wapsMap.set('wap-cards-5', {
     {
       id: '3',
       type: 'wap-card',
-      typeId: 4,
+      typeId: 6,
       options: {
         meta: {},
         style: getStyles(),
@@ -1782,7 +1877,7 @@ wapsMap.set('wap-cards-5', {
     {
       id: '4',
       type: 'wap-card',
-      typeId: 4,
+      typeId: 6,
       options: {
         meta: {},
         style: getStyles(),
@@ -1847,7 +1942,7 @@ wapsMap.set('wap-section-7', {
             style: getStyles('title'),
           },
           content: {
-            text: 'TREAT YOUR MOUTH TO A BETTER TOOTHBRUSH.',
+            text: 'TREAT YOUR MOUTH TO A BETTER TOOTHBRUSH',
           },
         },
         btn: {
@@ -1856,7 +1951,7 @@ wapsMap.set('wap-section-7', {
             style: getStyles('btn'),
           },
           content: {
-            text: 'GET YOUR GOBY.',
+            text: 'GET YOUR GOBY',
           },
         },
       },
@@ -1907,7 +2002,7 @@ wapsMap.set('footer-1', {
       typeId: 1,
       options: {
         meta: {
-          formInputs: [{ tag: 'email', txt: '' },]
+          formInputs: [{ tag: 'email', txt: '' }],
         },
         style: getStyles(),
       },
@@ -1922,7 +2017,6 @@ wapsMap.set('footer-1', {
             text: 'JOIN THE GOBY REVOLUTION',
           },
         },
-
       },
     },
   ],
@@ -2015,22 +2109,22 @@ const template2 = {
   ],
 }
 
-// -----------------------------------------------template 2--------------------------------------------------------------->
+// ---------------------------template 3 --------------------------------------------------------------------
+
 wapsMap.set('wap-header-4', {
   id: '',
   type: 'wap-header',
   typeId: 4,
   previewImg: '',
   options: {
-    meta: {
-    },
+    meta: {},
     style: getStyles(),
   },
   cmps: [
     {
       id: '1',
       type: 'wap-logo',
-      typeId: 2,
+      typeId: 3,
       previewImg: '',
       options: {
         meta: {},
@@ -2038,22 +2132,20 @@ wapsMap.set('wap-header-4', {
       },
       info: {
         img: {
-          // logo or wapLogo or title?
           options: {
             meta: {
-              src: '',//img is svg
+              src: 'https://888874.smushcdn.com/2059080/wp-content/uploads/2021/06/WEB-sevah-logo-primary-col-®.png?lossy=0&strip=1&webp=1',
             },
             style: getStyles('img'),
           },
-          content: {
-          },
+          content: {},
         },
       },
     },
     {
       id: '2',
-      type: 'nav',
-      typeId: 5, //change to what you want
+      type: 'wap-nav',
+      typeId: 2, //change to what you want
       previewImg: '',
       options: {
         meta: {},
@@ -2082,19 +2174,24 @@ wapsMap.set('wap-header-4', {
 wapsMap.set('wap-hero-4', {
   id: '',
   type: 'wap-hero',
-  typeId: 4,
+  typeId: 4, // not sure but i think you maybe said it needs to be 6.
   previewImg: '',
   options: {
     meta: {
-      src: 'https://888874.smushcdn.com/2059080/wp-content/uploads/2022/11/SC-holographic-2.0.jpg?lossy=0&strip=1&webp=1',
+      src: '',
     },
-    style: getStyles(),
+    style: {
+      ...getStyles(),
+      backgroundImage:
+        'url(https://888874.smushcdn.com/2059080/wp-content/uploads/2022/11/SC-holographic-2.0.jpg?lossy=0&strip=1&webp=1)',
+    },
   },
+  //go back to this.
   cmps: [
     {
       id: '1',
       type: 'wap-text-section',
-      typeId: 9,
+      typeId: 10,
       options: {
         meta: {},
         style: getStyles(),
@@ -2141,12 +2238,11 @@ wapsMap.set('wap-section-9', {
     meta: {},
     style: getStyles(),
   },
-  //go back to this.
   cmps: [
     {
       id: '1',
       type: 'wap-text-section',
-      typeId: 10,
+      typeId: 11,
       options: {
         meta: {},
         style: getStyles(),
@@ -2166,16 +2262,18 @@ wapsMap.set('wap-section-9', {
             meta: {
               src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/sv-dot-1.png?w=240&ssl=1',
             },
-            style: getStyles('img'),
+            style: getStyles(),
           },
-          content: {},
+          content: {
+            text: 'GET YOUR GOBY.',
+          },
         },
       },
     },
     {
-      id: '2',
+      id: '1',
       type: 'wap-text-section',
-      typeId: 11,
+      typeId: 12,
       options: {
         meta: {},
         style: getStyles(),
@@ -2193,21 +2291,85 @@ wapsMap.set('wap-section-9', {
         btn1: {
           options: {
             meta: {
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/sv-dot-1.png?w=240&ssl=1',
             },
             style: getStyles('btn'),
           },
           content: {
-            text: 'DESIGN SERVICES'
+            text: 'GET YOUR GOBY.',
           },
         },
         btn2: {
           options: {
             meta: {
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/sv-dot-1.png?w=240&ssl=1',
             },
             style: getStyles('btn'),
           },
           content: {
-            text: 'CONTENT SERVICES'
+            text: 'CONTENT SERVICES.',
+          },
+        },
+      },
+    },
+  ],
+})
+
+//
+
+wapsMap.set('wap-section-14', {
+  id: '',
+  type: 'wap-section',
+  typeId: 14,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 14,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Things we can do for your business',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'AKA our services that will elevate your brand aesthetics, free up your time & add value to your bottom line.',
+          },
+        },
+        btn1: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'DESIGN SERVICES',
+          },
+        },
+        btn2: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'CONTENT SERVICES',
           },
         },
       },
@@ -2224,10 +2386,9 @@ wapsMap.set('wap-section-10', {
     meta: {},
     style: getStyles(),
   },
-  //go back to this.
   cmps: [
     {
-      id: '1',
+      id: '2',
       type: 'wap-gallery-section',
       typeId: 2,
       options: {
@@ -2238,7 +2399,7 @@ wapsMap.set('wap-section-10', {
         img1: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2022/10/BE-shopify2.0-2.png?fit=1500%2C1500&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2247,7 +2408,7 @@ wapsMap.set('wap-section-10', {
         img2: {
           options: {
             meta: {
-              src: 'https://uploads-ssl.webflow.com/623b08ca224738c57f5fa0ea/623f1197a9384100846bb45b_Burgers.jpg',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2022/07/DrNC-thumbnail-1.0.jpg?fit=1500%2C1500&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2256,7 +2417,7 @@ wapsMap.set('wap-section-10', {
         img3: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2022/03/LivelyLiving-Feb2022-Web-SSP_1149-Edit-1.jpg?fit=2200%2C1237&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2265,7 +2426,7 @@ wapsMap.set('wap-section-10', {
         img4: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2021/11/SC-DaBomb-Studio-Pink-2-860.jpg?fit=1650%2C2200&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2274,7 +2435,7 @@ wapsMap.set('wap-section-10', {
         img5: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2022/01/CC-website-1.1-1.png?fit=1500%2C1500&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2283,7 +2444,7 @@ wapsMap.set('wap-section-10', {
         img6: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2021/11/ILIONEMA-thumbnail-1.0.png?fit=1500%2C1500&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2292,7 +2453,7 @@ wapsMap.set('wap-section-10', {
         img7: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2021/10/SoftwareSkin_SSP_409-Edit-1.jpg?fit=1800%2C1800&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2301,7 +2462,7 @@ wapsMap.set('wap-section-10', {
         img8: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2021/08/TheBBco_SSP_344-Edit.jpg?fit=1200%2C1200&ssl=1',
             },
             style: getStyles('img'),
           },
@@ -2310,116 +2471,11 @@ wapsMap.set('wap-section-10', {
         img9: {
           options: {
             meta: {
-              src: '',
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2021/04/AÉDE_Studio19Mar2021_LCC2291-Edit-2-copy.jpg?fit=1067%2C1600&ssl=1',
             },
             style: getStyles('img'),
           },
           content: {},
-        },
-      },
-    },
-  ],
-})
-
-wapsMap.set('wap-section-11', {
-  id: '',
-  type: 'wap-section',
-  typeId: 9,
-  previewImg: '',
-  options: {
-    meta: {},
-    style: getStyles(),
-  },
-  //go back to this.
-  cmps: [
-    {
-      id: '1',
-      type: 'wap-text-section',
-      typeId: 11,
-      options: {
-        meta: {},
-        style: getStyles(),
-      },
-      info: {
-        title: {
-          options: {
-            meta: {},
-            style: getStyles('title'),
-          },
-          content: {
-            text: 'Things we can do for your business.',
-          },
-        },
-        text: {
-          options: {
-            meta: {},
-            style: getStyles('text'),
-          },
-          content: {
-            text: 'AKA our services that will elevate your brand aesthetics, free up your time & add value to your bottom line.',
-          },
-        },
-
-        btn: {
-          options: {
-            meta: {
-            },
-            style: getStyles('btn'),
-          },
-          content: {
-            text: 'DESIGN SERVICES'
-          },
-        },
-        btn: {
-          options: {
-            meta: {
-              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/sv-dot-1.png?w=240&ssl=1',
-            },
-            style: getStyles('btn'),
-          },
-          content: {
-            text: 'CONTENT SERVICES',
-          },
-        },
-      },
-    },
-    {
-      id: '2',
-      type: 'wap-gallery-section',
-      typeId: 11,
-      options: {
-        meta: {},
-        style: getStyles(),
-      },
-      info: {
-        text: {
-          options: {
-            meta: {},
-            style: getStyles('text'),
-          },
-          content: {
-            text: 'Our digital experience offering is second to none, with the ability to make any platform – from WordPress, Unbounce, Shopify through to email platforms, CRMs and social channels – look better than any of those out-of-the-box templates. Whether you’re a services, product or eCommerce business, we create a cohesive brand experience across digital channels, offering slick and compelling touch points that convert and move people to action.',
-          },
-        },
-        btn1: {
-          options: {
-            meta: {
-            },
-            style: getStyles('btn'),
-          },
-          content: {
-            text: 'DESIGN SERVICES'
-          },
-        },
-        btn2: {
-          options: {
-            meta: {
-            },
-            style: getStyles('btn'),
-          },
-          content: {
-            text: 'CONTENT SERVICES'
-          },
         },
       },
     },
@@ -2429,7 +2485,7 @@ wapsMap.set('wap-section-11', {
 wapsMap.set('wap-cards-6', {
   id: '',
   type: 'wap-cards',
-  typeId: 6, // not sure but i think you maybe said it needs to be 6.
+  typeId: 6,
   previewImg: '',
   options: {
     meta: {},
@@ -2440,7 +2496,7 @@ wapsMap.set('wap-cards-6', {
     {
       id: '1',
       type: 'wap-card',
-      typeId: 6,
+      typeId: 7,
       options: {
         meta: {},
         style: getStyles(),
@@ -2449,7 +2505,7 @@ wapsMap.set('wap-cards-6', {
         img: {
           options: {
             meta: {
-              src: 'https://www.goby.co/assets/subscribe-4bb6314d9b54e9f3725d3b697e8e804259b370bd91849da8204ed3b9126b8eb0.png',
+              src: 'https://i.ibb.co/dKBRbQ9/Capture-2022-12-06-192538.png',
             },
             style: getStyles('img'),
           },
@@ -2479,7 +2535,7 @@ wapsMap.set('wap-cards-6', {
     {
       id: '2',
       type: 'wap-card',
-      typeId: 6,
+      typeId: 7,
       options: {
         meta: {},
         style: getStyles(),
@@ -2488,7 +2544,7 @@ wapsMap.set('wap-cards-6', {
         img: {
           options: {
             meta: {
-              src: 'https://www.goby.co/assets/subscribe-4bb6314d9b54e9f3725d3b697e8e804259b370bd91849da8204ed3b9126b8eb0.png',
+              src: 'https://i.ibb.co/RCG6qY7/Capture-2022-12-06-192617.png',
             },
             style: getStyles('img'),
           },
@@ -2518,7 +2574,7 @@ wapsMap.set('wap-cards-6', {
     {
       id: '3',
       type: 'wap-card',
-      typeId: 6,
+      typeId: 7,
       options: {
         meta: {},
         style: getStyles(),
@@ -2527,7 +2583,7 @@ wapsMap.set('wap-cards-6', {
         img: {
           options: {
             meta: {
-              src: 'https://www.goby.co/assets/subscribe-4bb6314d9b54e9f3725d3b697e8e804259b370bd91849da8204ed3b9126b8eb0.png',
+              src: 'https://i.ibb.co/6BkRWXr/Capture-2022-12-06-192555.png',
             },
             style: getStyles('img'),
           },
@@ -2557,7 +2613,7 @@ wapsMap.set('wap-cards-6', {
     {
       id: '4',
       type: 'wap-card',
-      typeId: 6,
+      typeId: 7,
       options: {
         meta: {},
         style: getStyles(),
@@ -2566,7 +2622,7 @@ wapsMap.set('wap-cards-6', {
         img: {
           options: {
             meta: {
-              src: 'https://www.goby.co/assets/subscribe-4bb6314d9b54e9f3725d3b697e8e804259b370bd91849da8204ed3b9126b8eb0.png',
+              src: 'https://i.ibb.co/HtG3myL/Capture-2022-12-06-192606.png',
             },
             style: getStyles('img'),
           },
@@ -2591,6 +2647,123 @@ wapsMap.set('wap-cards-6', {
             text: 'We’ve worked with Unbounce landing pages since 2013. Whether you need a design refresh, a brand new page built from scratch, help with optimising conversions or setting up A/B testing – we know how to get the most out of Unbounce for you.',
           },
         },
+        img2: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+      },
+    },
+  ],
+})
+
+wapsMap.set('wap-section-11', {
+  id: '',
+  type: 'wap-section',
+  typeId: 11,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 13,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'We work with awesome brands & businesses',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'p.s. We’re based on the beautiful Gold Coast, Australia – but our clients are Australia wide and around the world. No matter where you are, we charge in $AUD, making Sevah Creative® a cost-effective solution.',
+          },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-gallery-section',
+      typeId: 3,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img1: {
+          options: {
+            meta: {
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/Entertainment.png?w=300&ssl=1',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img2: {
+          options: {
+            meta: {
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/BE-logo-1.png?w=300&ssl=1',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img3: {
+          options: {
+            meta: {
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/BPDZenith-logo.png?w=300&ssl=1',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img4: {
+          options: {
+            meta: {
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/redballoon-logo.png?w=300&ssl=1',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img5: {
+          options: {
+            meta: {
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2021/04/AEDE-v1.png?w=300&ssl=1',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img6: {
+          options: {
+            meta: {
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2022/11/DrNC.png?w=300&ssl=1',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
       },
     },
   ],
@@ -2608,188 +2781,24 @@ wapsMap.set('wap-section-12', {
   cmps: [
     {
       id: '1',
-      type: 'wap-text-section',
-      typeId: 13,
+      type: 'wap-img-section',
+      typeId: 6,
       options: {
         meta: {},
         style: getStyles(),
       },
       info: {
-        title: {
+        img: {
           options: {
-            meta: {},
-            style: getStyles('title'),
+            meta: {
+              src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/10/sevah-quotation-badge-80px-v2.png?resize=80%2C70&ssl=1',
+            },
+            style: getStyles('img'),
           },
-          content: {
-            text: 'We work with awesome brands & businesses.',
-          },
-        },
-        text: {
-          options: {
-            meta: {},
-            style: getStyles('text'),
-          },
-          content: {
-            text: 'p.s. We’re based on the beautiful Gold Coast, Australia – but our clients are Australia wide and around the world. No matter where you are, we charge in $AUD, making Sevah Creative® a cost-effective solution.',
-          },
+          content: {},
         },
       },
     },
-    {
-      id: '2',
-      type: 'wap-gallery-section',
-      typeId: 4,
-      options: {
-        meta: {},
-        style: getStyles(),
-      },
-      info: {
-        img1: {
-          options: {
-            meta: {
-              src: ''
-            },
-            style: getStyles('img'),
-          },
-          content: {
-          },
-        },
-        img2: {
-          options: {
-            meta: {
-              src: ''
-            },
-            style: getStyles('img'),
-          },
-          content: {
-          },
-        },
-        img3: {
-          options: {
-            meta: {
-              src: ''
-            },
-            style: getStyles('img'),
-          },
-          content: {
-          },
-        },
-        img4: {
-          options: {
-            meta: {
-              src: ''
-            },
-            style: getStyles('img'),
-          },
-          content: {
-          },
-        },
-        img5: {
-          options: {
-            meta: {
-              src: ''
-            },
-            style: getStyles('img'),
-          },
-          content: {
-          },
-        },
-        img6: {
-          options: {
-            meta: {
-              src: ''
-            },
-            style: getStyles('img'),
-          },
-          content: {
-          },
-        },
-        img7: {
-          options: {
-            meta: {
-              src: ''
-            },
-            style: getStyles('img'),
-          },
-          content: {
-          },
-        },
-        img8: {
-          options: {
-            meta: {
-              src: ''
-            },
-            style: getStyles('img'),
-          },
-          content: {
-          },
-        },
-        img9: {
-          options: {
-            meta: {
-              src: ''
-            },
-            style: getStyles('img'),
-          },
-          content: {
-          },
-        },
-        img10: {
-          options: {
-            meta: {
-              src: ''
-            },
-            style: getStyles('img'),
-          },
-          content: {
-          },
-        },
-        img11: {
-          options: {
-            meta: {
-              src: ''
-            },
-            style: getStyles('img'),
-          },
-          content: {
-          },
-        },
-        img12: {
-          options: {
-            meta: {
-              src: ''
-            },
-            style: getStyles('img'),
-          },
-          content: {
-          },
-        },
-        img1: {
-          options: {
-            meta: {
-              src: ''
-            },
-            style: getStyles('img'),
-          },
-          content: {
-          },
-        },
-
-      },
-    },
-  ],
-})
-
-wapsMap.set('wap-section-15', {
-  id: '',
-  type: 'wap-section',
-  typeId: 15,
-  previewImg: '',
-  options: {
-    meta: {},
-    style: getStyles(),
-  },
-  cmps: [
     {
       id: '1',
       type: 'wap-text-section',
@@ -2805,7 +2814,7 @@ wapsMap.set('wap-section-15', {
             style: getStyles('title'),
           },
           content: {
-            text: 'Let\'s make some magic.',
+            text: `"...very experienced across a wide range of platforms"`,
           },
         },
         text: {
@@ -2814,7 +2823,60 @@ wapsMap.set('wap-section-15', {
             style: getStyles('text'),
           },
           content: {
-            text: 'Go on, give us a go. We won’t disappoint …'
+            text: 'Zoe, your ability to assess and create is uncanny. I have zero suggestions that could make anything that you have done any better! I’ve never said that before!',
+          },
+        },
+        tag: {
+          options: {
+            meta: {},
+            style: getStyles('tag'),
+          },
+          content: {
+            text: 'Lizzie Babarczy, Head of Marketing Bench',
+          },
+        },
+      },
+    },
+  ],
+})
+wapsMap.set('wap-section-13', {
+  id: '',
+  type: 'wap-section',
+  typeId: 13,
+  previewImg: '',
+  options: {
+    meta: {
+      src: '',
+    },
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 16,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: `Let's make some magic.`,
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Go on, give us a go. We won’t disappoint …',
           },
         },
         btn: {
@@ -2823,51 +2885,7 @@ wapsMap.set('wap-section-15', {
             style: getStyles('btn'),
           },
           content: {
-            text: `Go on, give us a go. we won't disappoint...`
-          },
-        },
-      },
-    },
-  ],
-})
-
-
-//  in the website this is a sliding gallery
-wapsMap.set('wap-section-13', {
-  id: '',
-  type: 'wap-section',
-  typeId: 13,
-  previewImg: '',
-  options: {
-    meta: {},
-    style: getStyles(),
-  },
-  cmps: [
-    {
-      id: '1',
-      type: 'wap-text-section',
-      typeId: 13,
-      options: {
-        meta: {},
-        style: getStyles(),
-      },
-      info: {
-        title: {
-          options: {
-            meta: {},
-            style: getStyles('title'),
-          },
-          content: {
-            text: '"...very experienced across a wide range of platforms"',
-          },
-        },
-        text: {
-          options: {
-            meta: {},
-            style: getStyles('text'),
-          },
-          content: {
-            text: 'When Zoe was recommended to us, we were hesitant to work with a freelancer; but she has proven her stripes time and time again. Her work ethic and deliverables are spot on! Gerardo Altman, CEO & Founder Velocity Host'
+            text: 'GET IN TOUCH',
           },
         },
       },
@@ -2886,23 +2904,28 @@ wapsMap.set('footer-2', {
   },
   cmps: [
     {
-      id: '1',
-      type: 'wap-img-section',
-      typeId: 4, //change to what you want
+      id: '2',
+      type: 'wap-logo',
+      typeId: 3, //change to what you want
       previewImg: '',
       options: {
         meta: {},
         style: getStyles(),
       },
       info: {
-        img: {
+        nav: {
           options: {
-            meta: {
-              src: ''
-            },
-            style: getStyles('img'),
+            meta: {},
+            style: getStyles('nav'),
           },
           content: {
+            nav1: 'SHOP',
+            nav2: 'DESIGN',
+            nav3: 'ABOUT',
+            nav4: 'REVIEWS',
+            nav5: 'REFER A FRIEND',
+            nav6: 'SIGN IN',
+            nav7: 'CART',
           },
         },
       },
@@ -2910,7 +2933,7 @@ wapsMap.set('footer-2', {
     {
       id: '2',
       type: 'nav',
-      typeId: 6, //change to what you want
+      typeId: 3, //change to what you want
       previewImg: '',
       options: {
         meta: {},
@@ -2939,24 +2962,43 @@ wapsMap.set('footer-2', {
 wapsMap.set('wap-section-14', {
   id: '',
   type: 'wap-section',
-  typeId: 1, // not sure but i think you maybe said it needs to be 6.
+  typeId: 14,
   previewImg: '',
   options: {
     meta: {},
     style: getStyles(),
   },
-  //go back to this.
   cmps: [
     {
       id: '1',
+      type: 'wap-text-section',
+      typeId: 17,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+
+      info: {
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'We acknowledge & pay respect to the land & the traditional families of the Yugambeh region of South East Queensland & their Elders past, present & emerging.',
+          },
+        },
+      },
+    },
+    {
+      id: '1',
       type: 'wap-social-section',
-      typeId: 1,
+      typeId: 2,
       options: {
         meta: {},
         style: getStyles(),
       },
       info: {
-
         img1: {
           options: {
             meta: {
@@ -2987,8 +3029,7 @@ wapsMap.set('wap-section-14', {
         img4: {
           options: {
             meta: {
-              //linkdin
-              src: '',
+              src: 'https://www.goby.co/assets/instagram-5ea4be0a80a85df13e3066b28af284140f8ec4b47763285ea431ece13e20b175.svg',
             },
             style: getStyles('img'),
           },
@@ -2997,29 +3038,1372 @@ wapsMap.set('wap-section-14', {
         img5: {
           options: {
             meta: {
-              //  youtube
-              src: '',
+              src: 'https://www.goby.co/assets/instagram-5ea4be0a80a85df13e3066b28af284140f8ec4b47763285ea431ece13e20b175.svg',
             },
             style: getStyles('img'),
           },
           content: {},
         },
-        txt: {
+        text: {
           options: {
             meta: {},
-            style: getStyles('txt'),
+            style: getStyles('text'),
+          },
+          content: { text: '© 2022 Sevah Creative®' },
+        },
+      },
+    },
+  ],
+})
+
+// const template3 = {
+//   _id: 'template-3',
+//   name: 'Sevah Creative',
+//   imgUrl:
+//     '',
+
+//   usersData: {
+//     contacts: [
+//       { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+//     ],
+//     subscriptions: [{ email: 'user@user.com', at: 123 }],
+//   },
+//   cmps: [
+//     getCmp('wap-header', 4),
+//     getCmp('wap-hero', 4),
+//     getCmp('wap-section', 9),
+//     getCmp('wap-section', 14),
+//     getCmp('wap-section', 10),
+//     getCmp('wap-cards-6', 6),
+//     getCmp('wap-section', 11),
+//     getCmp('wap-section', 12),
+//     getCmp('wap-section', 13),
+//     getCmp('footer', 2),
+//     getCmp('wap-section', 14),
+//   ],
+// }
+
+//------------------------------------- template 4 ----------------------------------------------------------------------------------------->
+
+wapsMap.set('wap-header-5', {
+  id: '',
+  type: 'wap-header',
+  typeId: 5,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-logo',
+      typeId: 4,
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://webdesign-finder.com/werfy/wp-content/uploads/2020/02/logo-1.png',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-nav',
+      typeId: 3, //change to what you want
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        nav: {
+          options: {
+            meta: {},
+            style: getStyles('nav'),
           },
           content: {
-            text: '© Sevah Creative® • ',
+            nav1: 'Home',
+            nav2: 'About',
+            nav3: 'Services',
+            nav4: 'Pages',
+            nav5: 'Gallery',
+            nav6: 'Blog',
           },
         },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: '8 800 353-24-55',
+          },
+        },
+      },
+    },
+  ],
+})
 
+wapsMap.set('wap-hero-5', {
+  id: '',
+  type: 'wap-hero',
+  typeId: 5,
+  previewImg: '',
+  options: {
+    meta: {
+      src: '',
+    },
+    style: {
+      ...getStyles(),
+      backgroundImage:
+        'url(https://webdesign-finder.com/werfy/wp-content/uploads/2020/01/slide01.jpg)',
+    },
+  },
+  //go back to this.
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 18,
+      options: {
+        meta: {
+          src: '',
+        },
+        style: getStyles(),
+      },
+      info: {
+        subtitle: {
+          options: {
+            meta: {},
+            style: getStyles('subtitle'),
+          },
+          content: {
+            text: 'WIND, WATER, LIFESTYLE .',
+          },
+        },
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'KITE SCHOOL',
+          },
+        },
+        text: {
+          options: {
+            meta: {
+              src: 'https://www.goby.co/assets/twitter-ffb608709acf047f23aacb01ca67ac1120372ceb9d7a389bd9476b204b0e264e.svg',
+            },
+            style: getStyles('text'),
+          },
+          content: { text: 'CALIFORNIA' },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'Book A Lesson',
+          },
+        },
+      },
+    },
+  ],
+})
+
+wapsMap.set('wap-section-15', {
+  id: '',
+  type: 'wap-section',
+  typeId: 15,
+  previewImg: '',
+  options: {
+    meta: {
+      src: 'http://webdesign-finder.com/werfy/wp-content/uploads/2020/01/bg-section-about.jpg',
+    },
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 19,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        tag: {
+          options: {
+            meta: {},
+            style: getStyles('tag'),
+          },
+          content: {
+            text: 'About Us',
+          },
+        },
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Our Little History',
+          },
+        },
+        subtitle: {
+          options: {
+            meta: {},
+            style: getStyles('subtitle'),
+          },
+          content: {
+            text: 'We want our clients to feel awesome and unique.',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'We specialize in private kitesurfing lessons, semi-private kitesurfing lessons!\n\nWe teach kiteboarding at our epic local spot near Óbidos, in a flat water lagoon home to consistent winds and butter flat water. ',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'Book A Lesson',
+          },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-video',
+      typeId: 5,
+      options: {
+        meta: {
+          src: 'https://www.youtube.com/embed/4KEAdBN7I1g',
+        },
+        style: getStyles(),
+      },
+      info: {
+        video: {
+          options: {
+            meta: {
+              src: 'https://www.youtube.com/embed/4KEAdBN7I1g',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+      },
+    },
+  ],
+})
+wapsMap.set('wap-section-16', {
+  id: '',
+  type: 'wap-section',
+  typeId: 16,
+  previewImg: '',
+  options: {
+    meta: {
+      src: 'http://webdesign-finder.com/werfy/wp-content/uploads/2020/01/im_9.jpg',
+    },
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 20,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        tag: {
+          options: {
+            meta: {},
+            style: getStyles('tag'),
+          },
+          content: {
+            text: 'Advantages',
+          },
+        },
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Why Learn How To Kitesurf With Us?',
+          },
+        },
+        subtitle: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'We want our clients to feel awesome and unique.',
+          },
+        },
+      },
+    },
+  ],
+})
+
+wapsMap.set('wap-cards-8', {
+  id: '',
+  type: 'wap-cards',
+  typeId: 8,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  //go back to this.
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-card',
+      typeId: 8,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              // i think icons are from an icon collection
+              src: 'https://i.ibb.co/yPzZGxQ/Capture-2022-12-06-223916.png',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: '251',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Safest spot home to flat and shallow.',
+          },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-card',
+      typeId: 8,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://i.ibb.co/x6nNS6R/Capture-2022-12-06-223926.png"',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: '72',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Safest spot home to flat and shallow.',
+          },
+        },
+      },
+    },
+    {
+      id: '3',
+      type: 'wap-card',
+      typeId: 7,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: 'https://i.ibb.co/m0WQrfN/Capture-2022-12-06-223935.png"',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: '193',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Safest spot home to flat and shallow',
+          },
+        },
+      },
+    },
+  ],
+})
+
+wapsMap.set('wap-section-17', {
+  id: '',
+  type: 'wap-section',
+  typeId: 17,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '2',
+      type: 'wap-gallery-section',
+      typeId: 1,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img1: {
+          options: {
+            meta: {
+              src: 'http://webdesign-finder.com/werfy/wp-content/uploads/2019/05/im_4-800x600.jpg',
+            },
+            style: getStyles('img'),
+          },
+          content: { text: 'Kiteboarding' },
+        },
+        img2: {
+          options: {
+            meta: {
+              src: 'http://webdesign-finder.com/werfy/wp-content/uploads/2019/10/im_14-800x600.jpg',
+            },
+            style: getStyles('img'),
+          },
+          content: { text: 'Equipment' },
+        },
+        img3: {
+          options: {
+            meta: {
+              src: 'http://webdesign-finder.com/werfy/wp-content/uploads/2019/10/im_11-800x600.jpg',
+            },
+            style: getStyles('img'),
+          },
+          content: { text: 'Kite Repairs' },
+        },
+        img4: {
+          options: {
+            meta: {
+              src: 'http://webdesign-finder.com/werfy/wp-content/uploads/2019/10/im_12-800x600.jpg',
+            },
+            style: getStyles('img'),
+          },
+          content: { text: 'Sailing' },
+        },
+      },
+    },
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 21,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+
+      info: {
+        tag: {
+          options: {
+            meta: {
+              // i think icons are from an icon collection
+              src: '',
+            },
+            style: getStyles('tag'),
+          },
+          content: { text: 'Services' },
+        },
+
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Let’s Start An Education!',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'We want our clients to feel awesome and unique.',
+          },
+        },
+      },
+    },
+  ],
+})
+
+//transformed to section with gallery instead
+// wapsMap.set('wap-section-17', {
+//   id: '',
+//   type: 'wap-cards',
+//   typeId: 17,
+//   previewImg: '',
+//   options: {
+//     meta: {},
+//     style: getStyles(),
+//   },
+//   cmps: [
+//     {
+//       id: '1',
+//       type: 'wap-card',
+//       typeId: 10,
+//       options: {
+//         meta: {},
+//         style: getStyles(),
+//       },
+//       info: {
+//         subtitle: {
+//           options: {
+//             meta: {
+//               // i think icons are from an icon collection
+//               src: '',
+//             },
+//             style: getStyles('subtitle'),
+//           },
+//           content: { text: 'Services' },
+//         },
+
+//         title: {
+//           options: {
+//             meta: {},
+//             style: getStyles('title'),
+//           },
+//           content: {
+//             text: 'Let’s Start An Education!',
+//           },
+//         },
+//         text: {
+//           options: {
+//             meta: {},
+//             style: getStyles('text'),
+//           },
+//           content: {
+//             text: 'We want our clients to feel awesome and unique.',
+//           },
+//         },
+//       },
+//     },
+//     {
+//       id: '2',
+//       type: 'wap-card',
+//       typeId: 11,
+//       options: {
+//         meta: {},
+//         style: getStyles(),
+//       },
+//       info: {
+//         img: {
+//           options: {
+//             meta: {
+//               src: 'http://webdesign-finder.com/werfy/wp-content/uploads/2019/05/im_4-800x600.jpg',
+//             },
+//             style: getStyles('img'),
+//           },
+//           content: {},
+//         },
+
+//         btn1: {
+//           options: {
+//             meta: {},
+//             style: getStyles('btn'),
+//           },
+//           content: {
+//             text: 'Delivery',
+//           },
+//         },
+//         title: {
+//           options: {
+//             meta: {},
+//             style: getStyles('title'),
+//           },
+//           content: {
+//             text: 'Kiteboarding',
+//           },
+//         },
+//         text: {
+//           options: {
+//             meta: {},
+//             style: getStyles('text'),
+//           },
+//           content: {
+//             text: 'Habitant dictum metus rhoncus vitae ac ad litora etiam. Ante elementum vivamus integer tent.',
+//           },
+//         },
+//         btn2: {
+//           options: {
+//             meta: {},
+//             style: getStyles('btn'),
+//           },
+//           content: {
+//             text: 'Book a lesson',
+//           },
+//         },
+//       },
+//     },
+//     {
+//       id: '3',
+//       type: 'wap-card',
+//       typeId: 11,
+//       options: {
+//         meta: { src: '' },
+//         style: getStyles(),
+//       },
+//       info: {
+//         img: {
+//           options: {
+//             meta: {
+//               src: 'http://webdesign-finder.com/werfy/wp-content/uploads/2019/10/im_14-800x600.jpg',
+//             },
+//             style: getStyles('img'),
+//           },
+//           content: {},
+//         },
+
+//         btn1: {
+//           options: {
+//             meta: {},
+//             style: getStyles('btn'),
+//           },
+//           content: {
+//             text: 'Delivery',
+//           },
+//         },
+//         title: {
+//           options: {
+//             meta: {},
+//             style: getStyles('title'),
+//           },
+//           content: {
+//             text: 'Equipment',
+//           },
+//         },
+//         text: {
+//           options: {
+//             meta: {},
+//             style: getStyles('text'),
+//           },
+//           content: {
+//             text: 'Habitant dictum metus rhoncus vitae ac ad litora etiam. Ante elementum vivamus integer tent.',
+//           },
+//         },
+//         btn2: {
+//           options: {
+//             meta: {},
+//             style: getStyles('btn'),
+//           },
+//           content: {
+//             text: 'Book a lesson',
+//           },
+//         },
+//       },
+//     },
+//     {
+//       id: '4',
+//       type: 'wap-card',
+//       typeId: 11,
+//       options: {
+//         meta: { src: '' },
+//         style: getStyles(),
+//       },
+//       info: {
+//         img: {
+//           options: {
+//             meta: {
+//               src: 'http://webdesign-finder.com/werfy/wp-content/uploads/2019/10/im_12-800x600.jpg',
+//             },
+//             style: getStyles('img'),
+//           },
+//           content: {},
+//         },
+
+//         btn1: {
+//           options: {
+//             meta: {},
+//             style: getStyles('btn'),
+//           },
+//           content: {
+//             text: 'Delivery',
+//           },
+//         },
+//         title: {
+//           options: {
+//             meta: {},
+//             style: getStyles('title'),
+//           },
+//           content: {
+//             text: 'Sailing',
+//           },
+//         },
+//         text: {
+//           options: {
+//             meta: {},
+//             style: getStyles('text'),
+//           },
+//           content: {
+//             text: 'Habitant dictum metus rhoncus vitae ac ad litora etiam. Ante elementum vivamus integer tent.',
+//           },
+//         },
+//         btn2: {
+//           options: {
+//             meta: {},
+//             style: getStyles('btn'),
+//           },
+//           content: {
+//             text: 'Book a lesson',
+//           },
+//         },
+//       },
+//     },
+//     {
+//       id: '5',
+//       type: 'wap-card',
+//       typeId: 11,
+//       options: {
+//         meta: {},
+//         style: getStyles(),
+//       },
+//       info: {
+//         img: {
+//           options: {
+//             meta: {
+//               src: 'http://webdesign-finder.com/werfy/wp-content/uploads/2019/10/im_11-800x600.jpg',
+//             },
+//             style: getStyles('img'),
+//           },
+//           content: {},
+//         },
+
+//         btn1: {
+//           options: {
+//             meta: {},
+//             style: getStyles('btn'),
+//           },
+//           content: {
+//             text: 'Delivery',
+//           },
+//         },
+//         title: {
+//           options: {
+//             meta: {},
+//             style: getStyles('title'),
+//           },
+//           content: {
+//             text: 'Kite Repairs',
+//           },
+//         },
+//         text: {
+//           options: {
+//             meta: {},
+//             style: getStyles('text'),
+//           },
+//           content: {
+//             text: 'Habitant dictum metus rhoncus vitae ac ad litora etiam. Ante elementum vivamus integer tent.',
+//           },
+//         },
+//         btn2: {
+//           options: {
+//             meta: {},
+//             style: getStyles('btn'),
+//           },
+//           content: {
+//             text: 'Book a lesson',
+//           },
+//         },
+//       },
+//     },
+//   ],
+// })
+
+wapsMap.set('wap-section-18', {
+  id: '',
+  type: 'wap-section',
+  typeId: 18,
+  previewImg: '',
+  options: {
+    meta: {
+      src: 'http://webdesign-finder.com/werfy/wp-content/uploads/2020/01/im_9.jpg',
+    },
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 22,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+
+      info: {
+        tag: {
+          options: {
+            meta: {
+              // i think icons are from an icon collection
+              src: '',
+            },
+            style: getStyles('tag'),
+          },
+          content: { text: 'Gallery' },
+        },
+
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Our photos',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'We want our clients to feel awesome and unique.',
+          },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-gallery-section',
+      typeId: 4,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img1: {
+          options: {
+            meta: {
+              src: 'https://webdesign-finder.com/werfy/wp-content/uploads/2019/05/im_4-555x450.jpg',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img2: {
+          options: {
+            meta: {
+              src: 'https://webdesign-finder.com/werfy/wp-content/uploads/2019/12/im_23-555x450.jpg',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img3: {
+          options: {
+            meta: {
+              src: 'https://webdesign-finder.com/werfy/wp-content/uploads/2019/10/im_12-555x450.jpg',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+      },
+    },
+  ],
+})
+
+wapsMap.set('wap-section-19', {
+  id: '',
+  type: 'wap-section',
+  typeId: 19,
+  previewImg: '',
+  options: {
+    meta: {
+      src: 'http://webdesign-finder.com/werfy/wp-content/uploads/2020/01/bg-section-about.jpg',
+    },
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 22,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        tag: {
+          options: {
+            meta: {},
+            style: getStyles('tag'),
+          },
+          content: {
+            text: 'Pricing',
+          },
+        },
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Kite School Programs',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'We want our clients to feel awesome and unique. ',
+          },
+        },
+      },
+    },
+  ],
+})
+
+wapsMap.set('wap-cards-9', {
+  id: '',
+  type: 'wap-cards',
+  typeId: 9,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-card',
+      typeId: 12,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: '$45',
+          },
+        },
+        details: {
+          options: {
+            meta: {
+              // i think icons are from an icon collection
+              src: '',
+            },
+            style: getStyles('details'),
+          },
+          content: { text: 'Private' },
+        },
+        text1: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: ' Transfers to kalpitiya lagoon',
+          },
+        },
+        text2: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Course with IKO instructors',
+          },
+        },
+        text3: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: '3 nights accommodation',
+          },
+        },
+        text4: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'IKO card-certificate',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'Book A Lesson',
+          },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-card',
+      typeId: 13,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: '$52',
+          },
+        },
+        details: {
+          options: {
+            meta: {
+              // i think icons are from an icon collection
+              src: '',
+            },
+            style: getStyles('details'),
+          },
+          content: { text: 'Semi Private' },
+        },
+        text1: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: ' Transfers to kalpitiya lagoon',
+          },
+        },
+        text2: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Course with IKO instructors',
+          },
+        },
+        text3: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: '3 nights accommodation',
+          },
+        },
+        text4: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'IKO card-certificate',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'Book A Lesson',
+          },
+        },
+      },
+    },
+    {
+      id: '3',
+      type: 'wap-card',
+      typeId: 12,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: '$72',
+          },
+        },
+        details: {
+          options: {
+            meta: {
+              // i think icons are from an icon collection
+              src: '',
+            },
+            style: getStyles('details'),
+          },
+          content: { text: 'Group' },
+        },
+        text1: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Transfers to kalpitiya lagoon',
+          },
+        },
+        text2: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Course with IKO instructors',
+          },
+        },
+        text3: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: '3 nights accommodation',
+          },
+        },
+        text4: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'IKO card-certificate',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'Book A Lesson',
+          },
+        },
+      },
+    },
+  ],
+})
+
+wapsMap.set('wap-section-20', {
+  id: '',
+  type: 'wap-section',
+  typeId: 20,
+  previewImg: '',
+  options: {
+    meta: {
+      src: 'http://webdesign-finder.com/werfy/wp-content/uploads/2020/01/bg-section-about.jpg',
+    },
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '',
+      type: 'wap-form',
+      typeId: 3,
+      options: {
+        meta: {
+          formInputs: [{ tag: 'email', txt: '' }],
+        },
+        style: getStyles(),
+      },
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Get 30% Off Your First Order',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Join our newsletter to receive the latest updates and promotions.',
+          },
+        },
+      },
+    },
+  ],
+})
+wapsMap.set('footer-3', {
+  id: '',
+  type: 'wap-footer',
+  typeId: 3,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '2',
+      type: 'wap-text-section',
+      typeId: 23, //change to what you want
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img1: {
+          options: {
+            meta: {},
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'The estuary is the well-known kite spot in the lagoon. Two launches are possible.',
+          },
+        },
+        //  social media
+        img2: {
+          options: {
+            meta: {},
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img3: {
+          options: {
+            meta: {},
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        img4: {
+          options: {
+            meta: {},
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'nav',
+      typeId: 3, //change to what you want
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        nav: {
+          options: {
+            meta: {},
+            style: getStyles('nav'),
+          },
+          content: {
+            nav1: 'Home',
+            nav2: 'About',
+            nav3: 'Services',
+            nav4: 'Pages',
+            nav5: 'Gallery',
+            nav6: 'Blog',
+          },
+        },
       },
     },
     {
       id: '2',
       type: 'wap-text-section',
-      typeId: 14,
+      typeId: 24, //change to what you want
+      previewImg: '',
       options: {
         meta: {},
         style: getStyles(),
@@ -3031,7 +4415,189 @@ wapsMap.set('wap-section-14', {
             style: getStyles('text'),
           },
           content: {
-            text: 'We acknowledge & pay respect to the land & the traditional families of the Yugambeh region of South East Queensland & their Elders past, present & emerging.',
+            text: 'Portfolio',
+          },
+        },
+        img: {
+          options: {
+            meta: {},
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-text-section',
+      typeId: 25, //change to what you want
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img1: {
+          options: {
+            meta: {},
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+      },
+    },
+  ],
+})
+
+// const template4 = {
+//   _id: 'template-4',
+//   name: 'Kitesurfing-club-template',
+//   imgUrl:
+//     'http://res.cloudinary.com/webify/image/upload/v1580021948/coffe_yi0yzf.png',
+//   createdBy: {
+//     _id: '5e26e0b718a0891d4c995527',
+//     fullname: 'Hekro Special',
+//     imgUrl: 'img.jpg',
+//   },
+//   usersData: {
+//     contacts: [
+//       { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+//     ],
+//     subscriptions: [{ email: 'user@user.com', at: 123 }],
+//   },
+//   cmps: [
+//     getCmp('wap - header', 5),
+//     getCmp('wap-hero', 5),
+//     getCmp('wap-section', 15),
+//     getCmp('wap-section', 16),
+//     getCmp('wap-cards', 8),
+//     getCmp('wap-cards', 9),
+//     getCmp('wap-section', 17),
+//     getCmp('wap-section', 18),
+//     getCmp('wap-cards', 10),
+//     getCmp('wap-section', 19),
+//     getCmp('wap-section', 20),
+//     getCmp('footer', 3)
+//   ],
+// }
+
+//------------------------------------------------------------------------------------------------------
+
+//----------------------------------------- template 5 -------------------------------------------------------------
+
+wapsMap.set('wap-header-6', {
+  id: '',
+  type: 'wap-header',
+  typeId: 6,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-logo',
+      typeId: 4,
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'nav',
+      typeId: 5,
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        nav: {
+          options: {
+            meta: {},
+            style: getStyles('nav'),
+          },
+          content: {
+            nav1: 'Courses',
+            nav2: 'Plans',
+            nav3: 'Blog Posts',
+            nav4: 'Blog',
+          },
+        },
+        img: {
+          options: {
+            meta: {
+              src: 'https://assets.website-files.com/5ff6cf529d44b2be039f96ca/609398c36be20aa94f6d2f91_logo%402x.png',
+            },
+            style: getStyles('img'),
+          },
+          content: {},
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'DO IT NOW',
+          },
+        },
+      },
+    },
+  ],
+})
+
+wapsMap.set('wap-hero-20', {
+  id: '',
+  type: 'wap-hero',
+  typeId: 20,
+  previewImg: '',
+  options: {
+    meta: {
+      src: 'http://webdesign-finder.com/werfy/wp-content/uploads/2020/01/bg-section-about.jpg',
+    },
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 20,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        tag: {
+          options: {
+            meta: {},
+            style: getStyles('tag'),
+          },
+          content: {
+            text: 'Advantages',
+          },
+        },
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Learn with us',
           },
         },
         text: {
@@ -3040,7 +4606,129 @@ wapsMap.set('wap-section-14', {
             style: getStyles('text'),
           },
           content: {
-            text: 'When Zoe was recommended to us, we were hesitant to work with a freelancer; but she has proven her stripes time and time again. Her work ethic and deliverables are spot on! Gerardo Altman, CEO & Founder Velocity Host'
+            text: 'But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system.',
+          },
+        },
+      },
+    },
+  ],
+})
+wapsMap.set('wap-section-21', {
+  id: '',
+  type: 'wap-section',
+  typeId: 21,
+  previewImg: '',
+  options: {
+    meta: {
+      src: 'http://webdesign-finder.com/werfy/wp-content/uploads/2020/01/bg-section-about.jpg',
+    },
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-video-section',
+      typeId: 3,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        video: {
+          options: {
+            meta: {},
+            style: getStyles('video'),
+          },
+          content: {},
+        },
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Morning Routine for Beginners',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: ' 30 MINS  •  RELAXATION & STRETCHING',
+          },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-video-section',
+      typeId: 3,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        video: {
+          options: {
+            meta: {},
+            style: getStyles('video'),
+          },
+          content: {},
+        },
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Yoga on the beach',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: ' 30 MINS  •  RELAXATION & STRETCHING',
+          },
+        },
+      },
+    },
+    {
+      id: '1',
+      type: 'wap-video-section',
+      typeId: 3,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        video: {
+          options: {
+            meta: {},
+            style: getStyles('video'),
+          },
+          content: {},
+        },
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Yoga in house',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: ' 30 MINS  •  RELAXATION & STRETCHING',
           },
         },
       },
@@ -3048,17 +4736,518 @@ wapsMap.set('wap-section-14', {
   ],
 })
 
+wapsMap.set('wap-section-22', {
+  id: '',
+  type: 'wap-section',
+  typeId: 22,
+  previewImg: '',
+  options: {
+    meta: {
+      src: 'http://webdesign-finder.com/werfy/wp-content/uploads/2020/01/bg-section-about.jpg',
+    },
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 22,
+      options: {
+        meta: {
+          src: 'https://assets.website-files.com/5ff6cf529d44b2be039f96ca/5ff8735866b4f772aff36056_img1.jpg',
+        },
+        style: getStyles(),
+      },
+      info: {
+        tag: {
+          options: {
+            meta: {},
+            style: getStyles('tag'),
+          },
+          content: {
+            text: 'DISCOVER MORE',
+          },
+        },
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Start with us the body and mind clensing',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'START YOUR JOURNY',
+          },
+        },
+        details: {
+          options: {
+            meta: {},
+            style: getStyles('details'),
+          },
+          content: {
+            text: 'Try our 30-days free trial',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful.',
+          },
+        },
+      },
+    },
+  ],
+})
+wapsMap.set('wap-section-23', {
+  id: '',
+  type: 'wap-section',
+  typeId: 23,
+  previewImg: '',
+  options: {
+    meta: {
+      src: 'https://assets.website-files.com/5ff6cf529d44b2be039f96ca/5ff86d6541dd4e083c9c5102_background_discover.jpg',
+    },
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 23,
+      options: {
+        meta: {
+          src: 'https://assets.website-files.com/5ff6cf529d44b2be039f96ca/5ff8735866b4f772aff36056_img1.jpg',
+        },
+        style: getStyles(),
+      },
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Discover yourself through yoga',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'START YOUR JOURNY',
+          },
+        },
+      },
+    },
+  ],
+})
+wapsMap.set('wap-section-24', {
+  id: '',
+  type: 'wap-section',
+  typeId: 24,
+  previewImg: '',
+  options: {
+    meta: {
+      src: 'https://assets.website-files.com/5ff6cf529d44b2be039f96ca/5ff86d6541dd4e083c9c5102_background_discover.jpg',
+    },
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 24,
+      options: {
+        meta: {
+          src: 'https://assets.website-files.com/5ff6cf529d44b2be039f96ca/5ff8735866b4f772aff36056_img1.jpg',
+        },
+        style: getStyles(),
+      },
+      info: {
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'People trust us',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: '“But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences.”',
+          },
+        },
 
+        img: {
+          options: {
+            meta: {
+              src: 'https://assets.website-files.com/5ff6cf529d44b2be039f96ca/5ffb1d59c715f856854fa66b_medalion_quote.png',
+            },
+            style: getStyles('img'),
+          },
+          content: {
+            text: '“Jennie Poe”',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: '“Jennie Poe”',
+          },
+        },
+        details: {
+          options: {
+            meta: {},
+            style: getStyles('details'),
+          },
+          content: {
+            text: 'ROCKIE GYM AMBASADOR',
+          },
+        },
+      },
+    },
+  ],
+})
 
+wapsMap.set('wap-cards-11', {
+  id: '',
+  type: 'wap-cards',
+  typeId: 11,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-card',
+      typeId: 14,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        tag: {
+          options: {
+            meta: {
+              // i think icons are from an icon collection
+              src: '',
+            },
+            style: getStyles('tag'),
+          },
+          content: { text: 'CHOOSE YOURS ' },
+        },
+        title: {
+          options: {
+            meta: {},
+            style: getStyles('title'),
+          },
+          content: {
+            text: 'Start now your plan',
+          },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-card',
+      typeId: 15,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        title: {
+          options: {
+            meta: {
+              // i think icons are from an icon collection
+              src: '',
+            },
+            style: getStyles('title'),
+          },
+          content: { text: 'Basic' },
+        },
+        subtitle: {
+          options: {
+            meta: {},
+            style: getStyles('subtitle'),
+          },
+          content: {
+            text: 'TRY FREE TODAY',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Learn a new skill, stretch and let it loose and unwind. Live from your living room, our boundary-pushing activities come to you.',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Create private collections',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Access to new features',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Comment direct on design',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'GET IT NOW',
+          },
+        },
+      },
+    },
+    {
+      id: '3',
+      type: 'wap-card',
+      typeId: 16,
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        title: {
+          options: {
+            meta: {
+              // i think icons are from an icon collection
+              src: '',
+            },
+            style: getStyles('title'),
+          },
+          content: { text: 'Advanced' },
+        },
+        subtitle: {
+          options: {
+            meta: {},
+            style: getStyles(`20$ /MONTH`),
+          },
+          content: {
+            text: `Discover true flexibility and join us as long as you want for a few days, dip your toes in, or go steady for a year. It's at home.`,
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: '120+ videos',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Premium live videos',
+          },
+        },
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'A well structured meal plan',
+          },
+        },
+        btn: {
+          options: {
+            meta: {},
+            style: getStyles('btn'),
+          },
+          content: {
+            text: 'GET IT NOW',
+          },
+        },
+      },
+    },
+  ],
+})
+
+wapsMap.set('footer-4', {
+  id: '',
+  type: 'wap-footer',
+  typeId: 4,
+  previewImg: '',
+  options: {
+    meta: {},
+    style: getStyles(),
+  },
+  cmps: [
+    {
+      id: '1',
+      type: 'wap-text-section',
+      typeId: 25, //change to what you want
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: '© Yoga Instructor',
+          },
+        },
+
+        text: {
+          options: {
+            meta: {},
+            style: getStyles('text'),
+          },
+          content: {
+            text: 'Template by DOTS N’ BITS Powered by Webflow Style Guide, Instructions, Licensing & Changelog',
+          },
+        },
+      },
+    },
+    {
+      id: '2',
+      type: 'wap-social-section',
+      typeId: 4,
+      previewImg: '',
+      options: {
+        meta: {},
+        style: getStyles(),
+      },
+      info: {
+        img1: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('nav'),
+          },
+          content: {},
+        },
+        img2: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('nav'),
+          },
+          content: {},
+        },
+        img3: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('nav'),
+          },
+          content: {},
+        },
+        img4: {
+          options: {
+            meta: {
+              src: '',
+            },
+            style: getStyles('nav'),
+          },
+          content: {},
+        },
+      },
+    },
+  ],
+})
+
+// const template5 = {
+//   _id: 'template-5',
+//   name: 'Kitesurfing-club-template',
+//   imgUrl:
+//     'http://res.cloudinary.com/webify/image/upload/v1580021948/coffe_yi0yzf.png',
+//   createdBy: {
+//     _id: '5e26e0b718a0891d4c995527',
+//     fullname: 'Hekro Special',
+//     imgUrl: 'img.jpg',
+//   },
+//   usersData: {
+//     contacts: [
+//       { email: 'user@user.com', msg: 'Please send me stuff', at: 123 },
+//     ],
+//     subscriptions: [{ email: 'user@user.com', at: 123 }],
+//   },
+//   cmps: [
+//     getCmp('wap-header', 5),
+//     getCmp('wap-hero', 20),
+//     getCmp('wap-section', 21),
+//     getCmp('wap-section', 22),
+//     getCmp('wap-section', 23),
+//     getCmp('wap-section', 24),
+//     getCmp('wap-cards', 11),
+//     getCmp('wap-footer', 4),
+//    ],
+// }
 
 /*
-LAST SECTION typeId:
-  wap-section: 15
-  text-section : 15
-  wap-hero : 4
-  gallery:4
-  wap-cards-6
-  footer:2
-  wap-img-section: 5
-  nav- 6
+last cmp num:
+wap-header: 6
+wap-section: 24
+wap-hero: 5
+wap-text-section : 25
+wap-cards : 11
+wap-card : 16
+wap-gallery : 5
+wap-logo : 3
+nav : 5
+wap-img-section : 4
+wap-video-section: 3
+wap-form : 4
+wap-footer: 3
+wap-social-section: 4
+
 */

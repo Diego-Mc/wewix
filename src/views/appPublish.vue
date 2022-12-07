@@ -10,7 +10,8 @@ import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
 import wapCards from '../cmps/wap-sections/wap-cards.vue'
 import wapSection from '../cmps/wap-sections/wap-section.vue'
-import wapForm from '../cmps/wap-sections/wap-form.vue'
+// import wapForm from '../cmps/wap-sections/wap-form.vue'
+import wapChat from '../cmps/wap-items/wap-chat.vue'
 //   import getCmp from '../../services/wap-cmps.service'
 //   import editorBtnGroup from '../main-editor/editor-items/editor-btn-group.vue'
 //   import mainHeader from '../app-cmps/main-header.vue'
@@ -41,6 +42,7 @@ export default {
         wapHero,
         wapCards,
         wapSection,
+        wapChat
         //   wapForm,
         //   editorBtnGroup,
         //   mainHeader,
@@ -49,6 +51,7 @@ export default {
     },
     created() {
         const wapName = this.$route.params.name
+        console.log(wapName);
         if (wapName) {
             this.getWap(wapName)
         }

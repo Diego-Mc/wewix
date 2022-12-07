@@ -6,8 +6,20 @@
     :confirmData="confirmData"
     @closelModal="closeConfirmModal"
     @openWorkSpace="openWorkSpace" />
+
   <cursor v-if="workTogetherCursors[0]" :cursorsData="workTogetherCursors" />
-  <loading-screen v-if="isLoading"/>
+  <div v-if="authModal" class="authModal">
+    <login-modal
+      v-if="authModal === 'login'"
+      @authenticated="publishWap"
+      @swapAuthModal="swapAuthModal" />
+    <signup-modal
+      v-else
+      @authenticated="publishWap"
+      @swapAuthModal="swapAuthModal" />
+  </div>
+
+  <loading-screen v-if="isLoading" />
   <section
     @drag="sendMouseEvent('drag', $event)"
     @mousemove="sendMouseEvent('move', $event)"
@@ -28,11 +40,15 @@
         }">
         publish test
       </button>
-      <main-header @setVal="openWorkTogetherConfirm" />
+      <main-header />
       <editor-header
+        @setName="setName"
+        @setVal="openSocketsConfirm"
         @setMedia="setMedia"
         @publishWap="publishWap"
-        :wapName="wap.name" />
+        @openPublishConfirm=""
+        :wapName="wap.name"
+        :isOnline="wap.isOnline" />
       <editor-sidebar :selectedCmp="selectedCmp" />
     </section>
     <main class="main-wap" :class="mediaType">
@@ -83,6 +99,8 @@ import editorHeader from '../cmps/main-editor/editor-header.vue'
 import editorSidebar from '../cmps/main-editor/editor-sidebar.vue'
 import cursor from '../cmps/app-cmps/cursor.vue'
 import userConfirmModal from '../cmps/app-cmps/user-confirm-modal.vue'
+import loginModal from '../cmps/app-cmps/login-modal.vue'
+import signupModal from '../cmps/app-cmps/signup-modal.vue'
 
 import wapHeader from '../cmps/wap-sections/wap-header.vue'
 import wapHero from '../cmps/wap-sections/wap-hero.vue'
@@ -92,7 +110,6 @@ import wapForm from '../cmps/wap-sections/wap-form.vue'
 import wapVideo from '../cmps/wap-items/wap-video.vue'
 import wapMap from '../cmps/wap-items/wap-map.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
-import loginModal from '../cmps/app-cmps/login-modal.vue'
 
 import loadingScreen from '../cmps/app-cmps/loading-screen.vue'
 export default {
@@ -117,6 +134,7 @@ export default {
       isConfirmModalOpen: false,
       confirmData: null,
       isLoading: false,
+      authModal: false,
     }
   },
   async created() {
@@ -143,6 +161,9 @@ export default {
     document.removeEventListener('keydown', this.keydownHandler)
   },
   methods: {
+    swapAuthModal(modalType){
+      this.authModal = modalType
+    },
     cmpAdded(e) {
       this.onCmpsChange()
     },
@@ -256,23 +277,28 @@ export default {
     async loadWap() {
       // console.log('templatedId',this.$route.query.templateId)
       if (this.$route.params?.id) {
+        // if(!auth) return  this.$router.push({ path: '/edit/' + editedWapId, replace: true })
         const wap = await this.$store.dispatch({
           type: 'getWap',
           id: this.$route.params.id,
         })
+        if (wap.isPublished) {
+          if (
+            !this.loggedinUser ||
+            !this.loggedinUser?.waps.includes(this.$route.params?.id)
+          )
+            return console.log('Not your website!')
+        }
         this.wap = JSON.parse(JSON.stringify(this.$store.getters.editedWap))
       } else {
         if (this.$route.query.templateId) {
           this.wap = wapUtils.getTemplate(this.$route.query.templateId)
-          delete this.wap._id
         } else this.wap = appEditorService.getEmptyWap()
-
+        delete this.wap._id
         const editedWapId = await this.$store.dispatch({
           type: 'updateWap',
           wap: this.wap,
         })
-
-        console.log('editedWapId', editedWapId)
         this.wap._id = editedWapId
 
         this.$router.push({ path: '/edit/' + editedWapId, replace: true })
@@ -288,15 +314,13 @@ export default {
         })
       }
     },
-    cmpSelected({ cmpId, elType, childCmpId }) {
+    cmpSelected({ cmpId, elType, childCmpId, elDom }) {
       this.selectedCmp = {}
-      console.log('THIS IS WAP', this.wap._id)
 
       let cmp = this.wap.cmps.find(({ id }) => {
         return id === cmpId
       })
-      console.log('after loop:', cmp)
-      console.log('selected-wap before bug:', this.wap._id)
+
       if (childCmpId) {
         cmp = cmp.cmps.find(({ id }) => id === childCmpId)
         this.selectedCmp.childCmpId = childCmpId
@@ -305,6 +329,8 @@ export default {
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = elType ? cmp.info[elType].options : cmp.options
       this.selectedCmp.elType = elType
+      this.selectedCmp.elDom = elDom?.target
+
       eventBus.emit('openCmpEditor')
     },
 
@@ -331,22 +357,47 @@ export default {
     },
     checkNewVisit() {
       if (!sessionStorage.getItem('newVisit', 'new!')) {
-        // make visitcount default
-        const currVisit = { at: Date.now() }
-        this.wap.visitCount
-          ? this.wap.visitCount.push(currVisit)
-          : (this.wap.visitCount = [currVisit])
+        const currVisit = { createdAt: Date.now() }
+        this.wap.visits
+          ? this.wap.visits.push(currVisit)
+          : (this.wap.visits = [currVisit])
         sessionStorage.setItem('newVisit', 'new!')
+        console.log('new visit!', this.wap.visits)
+        this.updateWap()
       }
     },
-    async publishWap(siteName) {
+    async publishWap(wapName) {
       //TODO ADD USER MSGS
-      this.wap.name = siteName
+      if (!this.loggedinUser) {
+        this.authModal = true
+        return
+      }
+      if (this.wap.isPublished) {
+        console.log('saved changes')
+        return
+      }
+      this.wap.name = wapName
+      this.wap.createdAt = Date.now()
       this.wap.owner = this.loggedinUser
+      this.wap.isPublished = !this.wap.isPublished
+      this.authModal = false
+
       try {
         const wapId = await this.updateWap(this.wap)
         this.$store.dispatch('addWapToUser', { wapId: this.wap._id })
-        // if (wapId) this.$router.push(`/${siteName}`)
+        this.$router.push({ path: editedWapId, replace: true })
+
+        // if (wapId) this.$router.push(`/${wapName}`)
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    async setName(wapName) {
+      //TODO ADD USER MSGS
+      this.wap.name = wapName
+      try {
+        const wapId = await this.updateWap(this.wap)
+        console.log('this.wap:', this.wap)
       } catch (err) {
         console.log(err)
       }
@@ -401,7 +452,7 @@ export default {
       socketService.emit('mouseEvent', sendedCursor)
     },
 
-    openWorkTogetherConfirm({ key }) {
+    openSocketsConfirm({ key }) {
       if (this.isSocketsOn) {
         //Todo user msg
         console.log('There is opened work space')
@@ -409,15 +460,21 @@ export default {
       }
       if (key !== 'workTogether') return
 
-      this.confirmData = {
+      const data = {
         txt: 'Are you sure you want to open a work space?',
       }
 
-      this.isConfirmModalOpen = true
+      this.handleUserConfirmModal('open', data)
+    },
+
+    handleUserConfirmModal(state, data) {
+      this.isConfirmModalOpen = state === 'open' ? true : false
+      this.confirmData = data
     },
 
     closeConfirmModal() {
-      ;(this.confirmData = null), (this.isConfirmModalOpen = false)
+      this.confirmData = null
+      this.isConfirmModalOpen = false
     },
 
     openWorkSpace() {
@@ -455,7 +512,9 @@ export default {
     cursor,
     userConfirmModal,
     wapChat,
-    loadingScreen
+    loadingScreen,
+    loginModal,
+    signupModal,
   },
 }
 </script>
@@ -468,3 +527,15 @@ export default {
   transform: translate(-50%, -50%);
 }
 </options>
+
+<style lang="scss">
+  .authModal{
+    position: fixed;
+    z-index: 20000;
+    background-color: white;
+    padding: 20px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+  }
+</style>

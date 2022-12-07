@@ -12,10 +12,10 @@
       </div>
     </div>
     <main class="graph-and-stats-container">
-      <app-dashboard-graphs :usersData="getDemoData" />
-      <app-dashboard-stats />
+      <app-dashboard-graphs :visitorsData="wapData.visits" />
+      <app-dashboard-stats :wapData="wapData"/>
     </main>
-    <app-dashboard-details :usersData="getDemoData" />
+    <app-dashboard-details :usersData="wapData.usersData.contacts" />
   </section>
 </template>
 
@@ -30,7 +30,8 @@ export default {
     wapData: Object,
   },
   created() {
-  console.log(this.wapData);
+    // console.log(this.wapData.usersData,'contacts:',this.wapData.contacts)
+    
   },
   computed: {
     getDemoData() {

@@ -5,14 +5,9 @@
 
   .gallery-item {
     width: 100%;
-    &:nth-child(even) {
-      padding-top: 40px;
-    }
     .img-container {
       width: 100%;
-      aspect-ratio: 42/56;
       object-fit: cover;
-      margin-bottom: 20px;
       img {
         object-fit: cover;
         height: 100%;
@@ -22,6 +17,53 @@
     .img-text {
       font-size: em(32px);
       font-weight: 400;
+    }
+  }
+
+  &.type-1 {
+    .gallery-item {
+      &:nth-child(even) {
+        padding-top: 40px;
+      }
+
+      .img-container {
+        aspect-ratio: 42/56;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  &.type-2,
+  &.type-3,
+  &.type-4 {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+    .gallery-item {
+      padding-bottom: 0 !important;
+    }
+    .img-container {
+      height: 100%;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+    }
+  }
+
+  &.type-3 {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    gap: 20px;
+    .img-container {
+      aspect-ratio: unset;
+    }
+  }
+
+  &.type-4 {
+    gap: 10px;
+    .img-container {
+      border-radius: 8px;
+    }
+    > *:first-child {
+      grid-row: span 2;
+      grid-column: span 2;
     }
   }
 }

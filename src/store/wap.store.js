@@ -24,7 +24,6 @@ export function getActionAddWapMsg(wapId) {
     type: 'addWapMsg',
     wapId,
     txt: 'Stam txt',
-    user: {},
   }
 }
 
@@ -84,14 +83,13 @@ export const wapStore = {
       return wap
     },
 
-    async getWapByName(context, { wapName }) {
-      try {
-        const wap = await wapService.getByName(wapName)
-        return wap
-      } catch(err) {
-        return undefined
-      }
+    //Todo
+    async getWapByName(context, { wapName }) {  
+        const waps = await wapService.query()
 
+          return waps.find(wap => {
+              return wap.name === wapName
+          })
     },
 
     async updateWap(context, { wap }) {

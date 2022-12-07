@@ -111,6 +111,9 @@
       <div>
         <el-button type="danger" @click.stop="onRemoveCmp">Remove</el-button>
       </div>
+      <div>
+        <button @click="log">Log</button>
+      </div>
     </section>
   </section>
 </template>
@@ -135,6 +138,7 @@ export default {
     childCmpId: String,
     editOptions: Object,
     elType: String,
+    elDom: Object
   },
   data() {
     return {
@@ -241,6 +245,10 @@ export default {
     closeMapLocationLoader() {
       this.isMapLocationLoader = false
     },
+    log() {
+      window.getComputedStyle(this.elDom)
+      this.elDom.style.height = Math.floor(Math.random() * 100) + 'px'
+    }
   },
   watch: {
     editOptions() {
@@ -249,8 +257,9 @@ export default {
   },
 
   created() {
-    console.log('wa');
+    console.log('elDom', this.elDom);
     this.getMapData = utilService.debounce(this.getMapData, 1500)
+
   },
 
   components: {

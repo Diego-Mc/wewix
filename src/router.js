@@ -7,8 +7,8 @@ import appDashboard from './views/app-dashboard.vue'
 import appDashboardData from './views/app-dashboard-data.vue'
 import appPreview from './views/app-preview.vue'
 import testTestTest from './views/test-test-test.vue'
+import testTestTestTest from './views/test-test-test-test.vue'
 import appPublish from './views/appPublish.vue'
-
 
 import editorWithStyle from './views/editor-with-style.vue'
 
@@ -56,14 +56,14 @@ const routes = [
     component: testTestTest,
   },
   {
+    path: '/testtesttest',
+    name: 'testtesttest',
+    component: testTestTestTest,
+  },
+  {
     path: '/editorWithStyle/:id',
     name: 'editorWithStyle',
     component: editorWithStyle,
-  },
-  {
-    path: '/:name?',
-    name: 'publish-wap',
-    component: appPublish,
   },
   {
     path: '/login',
@@ -75,12 +75,12 @@ const routes = [
     name: 'usersignup',
     component: usersignup,
   },
-
   {
     path: '/:name?',
     name: 'publish-wap',
     component: appPublish,
   },
+
 
   // {
   //   path: dynamicUrl,

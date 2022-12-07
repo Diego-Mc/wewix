@@ -75,15 +75,15 @@
           ><span class="mb-show">... /</span
           ><span
             class="site-name"
-            :style="{ color: isValidSiteName ? '#00c2a6' : '#e35a5a' }"
-            @input="setSiteName($event)"
-            :contenteditable="!wapName"
-            >{{ siteName }}</span
+            :style="{color: siteNameColor}"
+            @input="setUpdatedWapName($event)"
+            :contenteditable="!isOnline"
+            >{{ updatedWapName }}</span
           >
         </p>
       </section>
-      <router-link to="#" class="preview-btn">preview site</router-link>
-      <router-link to="#" class="publish-btn">publish site</router-link>
+      <a @click="preview" class="preview-btn">preview site</a>
+      <a @click="validate" class="publish-btn">publish site</a>
     </div>
     <!-- <section class="upload-site">
       <editor-btn-group
@@ -97,6 +97,8 @@
 
 <script>
 import editorBtnGroup from '../main-editor/editor-items/editor-btn-group.vue'
+import { wapService } from '../../services/wap.service'
+
 export default {
   props: {
     wapName: String,
@@ -104,9 +106,8 @@ export default {
   data() {
     return {
       media: '',
-      publishSiteTxt: '',
-      siteName: this.wapName,
-      isValidSiteName: true,
+      updatedWapName: this.wapName || 'mySite',
+      isValidName: true
     }
   },
   methods: {
@@ -118,9 +119,37 @@ export default {
       this.handleBtnSelect({ key, val })
       this.$emit('setMedia', val)
     },
-    setSiteName(ev) {
-      this.siteName = ev.target.innerText
+    setUpdatedWapName(ev) {
+      this.updatedWapName = ev.target.innerText
+      if (true) { //TODO Replace WITH isValid
+          this.$emit('setName', this.updatedWapName)
+      }
     },
+    validate() {
+      if (this.isValidName) {
+        // TODO : BUILD MODAL, SAVE WAP WITH USER DATA, SWITCH isOnline = true
+      }
+      else {
+        console.log('Not A Valid Site')
+        //Todo add user msg
+      }
+    },
+    preview() {
+      this.$router.push({ path: `/${this.updatedWapName}`, query: { preview: 'true' }})
+    }
+  },
+  computed: {
+    async isValidUpdatedWapName() {
+        //TODO: cannot be 'signup', 'login', '', 'templates', 'edit', 'dashboard', 'preview', 
+        try {
+          const isUnique = await this.$store.dispatch({ type: 'getWapByName', wapName: this.updatedWapName })
+          return isUnique
+        } catch (err) {
+          this.siteNameColor = '#e35a5a'
+          console.log('err:', err)
+          return false
+        }  
+    }, 
   },
   components: {
     editorBtnGroup,

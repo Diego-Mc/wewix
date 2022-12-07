@@ -151,6 +151,7 @@ export const wapChat = {
     meta: {
         chatData: {
           adminName: 'Adam. MasterChef at CafePuki',
+          adminID: 'adam1234',
           chatId: 'asgg2134'
         }
       }

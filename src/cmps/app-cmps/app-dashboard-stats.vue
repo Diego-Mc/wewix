@@ -1,16 +1,47 @@
 <template>
   <section class="dashboard-wap-stats">
-    <div class="wap-stat-block">Total Views</div>
-    <div class="wap-stat-block">Created At</div>
-    <div class="wap-stat-block">Total Subscribers</div>
-    <div class="wap-stat-block">Conversion Rate</div>
+    <div class="wap-stat-block">
+      <h3>Total Views</h3>
+      <p class="stat-count">{{ wapData.visits?.length }}</p>
+    </div>
+    <div class="wap-stat-block">
+      <h3>Created At</h3>
+      <p class="stat-count">{{ dateStr }}</p>
+    </div>
+    <div class="wap-stat-block">
+      <h3>Total Subscribers</h3>
+      <p class="stat-count">{{ wapData.usersData.subscriptions.length }}</p>
+    </div>
+    <div class="wap-stat-block">
+      <h3>Conversion Rate</h3>
+      <p class="stat-count">
+        {{ conversionRate }}
+      </p>
+    </div>
   </section>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    wapData: Object,
+  },
+  created() {
+    console.log('wa', this.wapData)
+  },
+  computed: {
+    dateStr() {
+      console.log(this.wapData.createdAt);
+      return new Date(this.wapData.createdAt).toLocaleDateString('fr')
+    },
+    conversionRate(){
+      let rate = this.wapData.usersData.subscriptions.length / this.wapData.visits?.length * 100
+      if(isNaN(rate)) rate =  0
+      return rate + '%'
+    }
+  },
+}
 </script>
-
 
 <style lang="scss" scoped>
 .dashboard-wap-stats {
@@ -23,12 +54,21 @@ export default {}
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
+    flex-direction: column;
     background-color: blue;
     width: 160px;
     height: 160px;
     background: #ffffff;
     border: 1px solid #eeeeee;
     border-radius: 8px;
+  }
+  h3 {
+    font-size: 16px;
+  }
+  .stat-count {
+    font-size: 26px;
+    font-weight: 600;
   }
 }
 </style>

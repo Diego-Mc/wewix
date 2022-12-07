@@ -24,15 +24,17 @@ export default {
     console.log(this.loggedinUser);
     if (!this.loggedinUser || !this.loggedinUser.waps) return
     let waps = await this.getWaps()
+  
     this.userWaps = waps
       .filter((wap) => this.loggedinUser.waps.includes(wap._id))
       .map((wap) => {
+        console.log(wap.usersData);
         return {
           _id: wap._id,
           name: wap.name,
           usersData: wap.usersData,
-          createdAt: 2,
-          totalViews: wap.totalViews,
+          createdAt: wap.createdAt,
+          visits: wap.visits,
         }
       })
   },
@@ -43,7 +45,6 @@ export default {
     changeCurrWapData(wap) {
       this.currWapData = wap
       this.$router.push('/dashboard/' + this.currWapData._id)
-      console.log(this.currWapData);
     },
   },
   computed: {

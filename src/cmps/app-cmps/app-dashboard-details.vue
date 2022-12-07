@@ -1,57 +1,31 @@
 <template>
-  <div class="container home" >
-    <ul class="wap-list">
-      <li v-for="wap in waps" :key="wap._id">
-        <p>
-          {{ wap.vendor }}
-        </p>
-        <p>${{ wap.price?.toLocaleString() }}</p>
-        <button @click="removeWap(wap._id)">x</button>
-        <button @click="updateWap(wap)">Update</button>
-        <hr />
-        <button @click="addWapMsg(wap._id)">Add wap msg</button>
-        <button @click="printWapToConsole(wap)">Print msgs to console</button>
-      </li>
-    </ul>
-    
-    <el-pagination
-    background
-    layout="prev, pager, next"
-    :total="totalPages"
-    class="mt-4"
-    @current-change="paginate($event)"
-    :current-page="currentPage"
-
-  />
+  <div class="container home">
     <button @click="log">log</button>
 
-    <input type="search" v-model="filterBy">
-
-    <table >
+    <input type="search" v-model="filterBy" />
+    <table class="styled-table">
       <thead>
         <tr class="header">
           <td v-for="userKey in usersDataKeys" :key="userKey">
-              <span @click="setSort(userKey)">{{userKey}}</span>
+            <span @click="setSort(userKey)">{{ userKey }}</span>
           </td>
         </tr>
       </thead>
       <tbody>
         <tr v-for="user in modifiedUsers" :key="user" class="header">
-          <td v-for="userKey in usersDataKeys"> {{(user[userKey] ? user[userKey] : '-')}}</td>
+          <td v-for="userKey in usersDataKeys">
+            {{ keyForDisplay(userKey, user) }}
+          </td>
         </tr>
       </tbody>
     </table>
-  
-
-
-    <hr />
-
-
-    <form @submit.prevent="addWap()">
-      <h2>Add wap</h2>
-      <input type="text" v-model="wapToAdd.vendor" />
-      <button>Save</button>
-    </form>
+    <el-pagination
+      background
+      layout="prev, pager, next"
+      :page-count="totalPages"
+      class="mt-4 paging"
+      @current-change="paginate($event)"
+      :current-page="currentPage" />
   </div>
 </template>
 
@@ -65,73 +39,70 @@ import {
 } from '../../store/wap.store'
 export default {
   props: {
-    usersData: Array
+    usersData: Array,
   },
   data() {
     return {
       sortBy: {
         type: '',
-        desc: 1
+        desc: 1,
       },
       filterBy: '',
       currentPage: 1,
-      totalPages: (this.usersData.length / 5),
+      totalPages: 10000,
       wapToAdd: wapService.getEmptyWap(),
     }
   },
-   created(){
-  },
   computed: {
     usersDataKeys() {
-        return this.usersData.reduce((keys, currUser) => {
-            const userKeys = Object.keys(currUser)
-            userKeys.forEach(key => {
-              if (!keys.includes(key)) keys.push(key)
-            })
-            return keys
-        }, []).sort()
+      return this.usersData
+        .reduce((keys, currUser) => {
+          const userKeys = Object.keys(currUser)
+          userKeys.forEach((key) => {
+            if (!keys.includes(key)) keys.push(key)
+          })
+          return keys
+        }, [])
+        .sort()
     },
-
- 
 
     modifiedUsers() {
       let users = this.usersData
-
+      console.log(users)
       //Filter
       if (this.filterBy) {
         const regex = new RegExp(this.filterBy, 'i')
-        users = users.filter(user => {
+        users = users.filter((user) => {
           const userKeys = Object.keys(user)
-          return userKeys.some(key => regex.test(user[key]))
+          return userKeys.some((key) => regex.test(user[key]))
         })
       }
 
       // Sort
       if (this.sortBy.type) {
         if (this.sortBy.type === 'createdAt') {
-          users.sort((u1, u2)=> {
+          users.sort((u1, u2) => {
             return (u1.createdAt - u2.createdAt) * this.sortBy.desc
           })
         } else {
-          users.sort((u1, u2)=> {
-            return (u1[this.sortBy.type].localeCompare(u2[this.sortBy.type]) * this.sortBy.desc)
+          users.sort((u1, u2) => {
+            return (
+              u1[this.sortBy.type].localeCompare(u2[this.sortBy.type]) *
+              this.sortBy.desc
+            )
           })
         }
       }
 
-      this.totalPages = users.length / 5
+      const USERS_PER_PAGE = 5
+      this.totalPages = Math.round(users.length / USERS_PER_PAGE)
 
       //Paginate
-      const USERS_PER_PAGE = 5
       const firstIndex = (this.currentPage - 1) * USERS_PER_PAGE
       const lastIndex = this.currentPage * USERS_PER_PAGE
-      // console.log('firstIndex, lastIndex:', firstIndex, lastIndex)
       users = users.slice(firstIndex, lastIndex)
-      // console.log("🚀 ~ file: app-dashboard-details.vue:128 ~ modifiedUsers ~ users", users)
-      
       return users
     },
-
 
     loggedInUser() {
       return this.$store.getters.loggedinUser
@@ -144,12 +115,25 @@ export default {
     this.$store.dispatch({ type: 'loadWaps' })
   },
   methods: {
+    keyForDisplay(key, user) {
+      let displatedKey = '-'
+      if (user[key]) {
+        displatedKey = key === 'at' ? this.dateStr(user[key]) : user[key]
+      }
+      return displatedKey
+    },
+    dateStr(timeStamp) {
+      const date = new Date(timeStamp)
+      return `${date.toLocaleDateString(
+        'fr'
+      )} ${date.getHours()}:${date.getMinutes()} `
+    },
     paginate(page) {
       this.currentPage = page
     },
     setSort(sortBy) {
       if (this.sortBy.type === sortBy) this.sortBy.desc *= -1
-      
+
       this.sortBy.type = sortBy
     },
 
@@ -199,10 +183,38 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 .header {
   display: flex;
   flex-direction: row;
 }
+.styled-table {
+  display: table;
+    table-layout: fixed;
+  width: 100%;
+  thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+  }
+  th,
+  td {
+    padding: 12px 15px;
+  }
+  tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
 
+  tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+
+  tbody tr.active-row {
+    font-weight: bold;
+    background: #F5F6FA;
+  }
+}
+.paging {
+  justify-content: end;
+}
 </style>
