@@ -2,13 +2,17 @@
   <button @click="isChatOpen = !isChatOpen">Click Here To Open Chat</button>
 
   <section class="wap-chat" v-if="isChatOpen">
-    <header>
+    <header v-if="this.user.isAdmin">
       <!-- <nav>
         <ul>
           <li>👧👸👨‍🦱</li>
           <li>®©®</li>
         </ul>
       </nav> -->
+      <span class="header-text">
+        <small>Hello manager,</small>
+        <h3>wiwix chat</h3>
+      </span>
       <nav class="guests">
         <span
           class="guest"
@@ -22,22 +26,46 @@
           <span>{{ u.unread }}</span>
         </span>
       </nav>
-      <div class="welcome-txt">
+      <!-- <div class="welcome-txt">
         <h1>Hey! 👋</h1>
         <h1>How Could We Help?</h1>
+      </div> -->
+      <div class="welcome-txt">
+        <h1>Hey! 👋</h1>
       </div>
     </header>
 
-    <hr />
-    <ul>
-      <li
-        v-for="(msg, idx) in conversations[this.activeConversation]"
-        :key="idx">
-        <span>{{ msg.from }}:</span>{{ msg.txt }}
-      </li>
-    </ul>
+    <section
+      class="messages"
+      v-if="!this.user.isAdmin || (this.user.isAdmin && activeConversation)">
+      <article class="message guest">Hello</article>
+      <article class="message guest">pls answer me</article>
+      <article class="message manager">hey</article>
+      <article class="message guest">sup</article>
+      <article class="message manager">sup</article>
+      <article class="message guest">Hello</article>
+      <article class="message guest">pls answer me</article>
+      <article class="message manager">hey</article>
+      <article class="message guest">sup</article>
+      <article class="message manager">sup</article>
+      <article class="message guest">Hello</article>
+      <article class="message guest">pls answer me</article>
+      <article class="message manager">hey</article>
+      <article class="message guest">sup</article>
+      <article class="message manager">sup</article>
+      <article class="message guest">Hello</article>
+      <article class="message guest">pls answer me</article>
+      <article class="message manager">hey</article>
+      <article class="message guest">sup</article>
+      <article class="message manager">sup</article>
+    </section>
+    <!-- <section
+      v-for="(msg, idx) in conversations[this.activeConversation]"
+      :key="idx">
+      <span>{{ msg.from }}:</span>{{ msg.txt }}
+    </section> -->
 
-    <form @submit.prevent="sendMsg">
+    <form @submit.prevent="sendMsg" class="input">
       <input
         v-if="(activeConversation && this.user.isAdmin) || !this.user.isAdmin"
         @input="sendTypeState"
@@ -45,14 +73,7 @@
         v-model="msg.txt"
         placeholder="Your msg" />
       <span v-else>Please Select User To Msg</span>
-      <button>Send</button>
     </form>
-
-    <span v-for="u in activeUsers" :key="u" @click="setActiveConversation(u)">
-      <!-- Todo Make It Random -->
-      <img class="guest-avatar" src="../../assets/imgs/png-96/avatar1.png" />
-      <span>{{ u.unread }}</span>
-    </span>
   </section>
 </template>
 
