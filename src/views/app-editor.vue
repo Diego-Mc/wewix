@@ -45,8 +45,8 @@
         @publishWap="publishWap"
         @openPublishConfirm=""
         :wapName="wap.name"
-        :isPublished="wap.isPublished" 
-        :wapId="wap._id"/>
+        :isPublished="wap.isPublished"
+        :wapId="wap._id" />
       <editor-sidebar :selectedCmp="selectedCmp" />
     </section>
     <main class="main-wap" :class="mediaType">
@@ -186,7 +186,9 @@ export default {
     },
     updateField(fieldInfo) {
       const cmp = this.wap.cmps.find((cmp) => cmp.id === fieldInfo.id)
-      const formCmp = cmp.cmps.find(childCmp => childCmp.id === fieldInfo.childCmpId)
+      const formCmp = cmp.cmps.find(
+        (childCmp) => childCmp.id === fieldInfo.childCmpId
+      )
       if (fieldInfo.txt || fieldInfo.txt === '')
         formCmp.options.meta.formInputs[fieldInfo.idx].tag = fieldInfo.txt
       else if (typeof fieldInfo.idx === 'number')
@@ -393,11 +395,11 @@ export default {
         const wapId = await this.updateWap(this.wap)
         this.$store.dispatch('addWapToUser', { wapId: this.wap._id })
         // this.$router.replace({ path: , replace: true })
-        this.$router.push(this.wap.name)
+        this.$router.push('/' + this.wap.name)
         this.$notify({
-              title: 'Site is live! ',
-              type: 'success',
-          });
+          title: 'Site is live! ',
+          type: 'success',
+        })
 
         // window.open(routeData.href, '_blank');
 
@@ -405,9 +407,9 @@ export default {
       } catch (err) {
         console.log(err)
         this.$notify({
-              title: 'Cannot Publish Site With Invalid Name',
-              type: 'error',
-          });
+          title: 'Cannot Publish Site With Invalid Name',
+          type: 'error',
+        })
       }
     },
     async setName(wapName) {
@@ -558,6 +560,5 @@ export default {
   border-radius: 10px;
   box-shadow: 0 0 0;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
 }
 </style>

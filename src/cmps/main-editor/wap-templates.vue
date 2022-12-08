@@ -177,7 +177,7 @@ li {
   opacity: 0.4;
   background: grey;
   /* max-height: 30px; */
-  background-color: #00c2a6;
+  background-color: #b2f8ee;
   overflow: hidden;
   /* float: right; */
   width: 100%;
