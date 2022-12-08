@@ -49,30 +49,6 @@
       </span>
     </header>
 
-    <!-- <section
-      class="messages"
-      v-if="!this.user.isAdmin || (this.user.isAdmin && activeConversation)">
-      <article class="message guest">Hello</article>
-      <article class="message guest">pls answer me</article>
-      <article class="message manager">hey</article>
-      <article class="message guest">sup</article>
-      <article class="message manager">sup</article>
-      <article class="message guest">Hello</article>
-      <article class="message guest">pls answer me</article>
-      <article class="message manager">hey</article>
-      <article class="message guest">sup</article>
-      <article class="message manager">sup</article>
-      <article class="message guest">Hello</article>
-      <article class="message guest">pls answer me</article>
-      <article class="message manager">hey</article>
-      <article class="message guest">sup</article>
-      <article class="message manager">sup</article>
-      <article class="message guest">Hello</article>
-      <article class="message guest">pls answer me</article>
-      <article class="message manager">hey</article>
-      <article class="message guest">sup</article>
-      <article class="message manager">sup</article>
-    </section> -->
     <section
       class="messages"
       v-if="!this.user.isAdmin || (this.user.isAdmin && activeConversation)">
@@ -207,11 +183,13 @@ export default {
       else this.conversations[msg.id] = [msg]
     },
     sendMsg() {
-      // if (!this.conversations[this.user.id]) this.conversations[this.user.id] = [this.msg]
-      // else {
-      //   this.conversations[this.user.id].push(this.msg)
-      // }
+
       this.msg.from = 'Davud'
+
+      if (this.user.isAdmin) {
+          
+      }
+      
       socketService.emit('addMsg', {
         msg: this.msg,
         activeConversation: this.activeConversation,
@@ -219,12 +197,14 @@ export default {
       this.msg = { txt: '' }
     },
     getUser() {
+      //TODO VERIFICATION WAPID === USERID
       const user = JSON.parse(JSON.stringify(this.$store.getters.loggedinUser))
       if (!user) return { nickname: 'guest', id: Math.random() + '' }
       user.isAdmin = true
       user.nickname = 'Admin'
       user.id = user._id
       delete user._id
+
       return user
     },
     setActiveConversation({ userId }) {
