@@ -36,7 +36,7 @@
       <div v-if="isOptionsContain('src')">
         <edit-upload-section @select="updateOptionsMeta" />
 
-        <input
+        <input v-if="!isOptionsContain('backgroundImage')"
           @input="updateOptions"
           v-model="updatedOptions.meta.src"
           type="text"
@@ -192,7 +192,6 @@ export default {
         ...Object.keys(this.editOptions.style),
         ...Object.keys(this.editOptions.meta),
       ]
-      console.log(type,options.includes(type));
       return options.includes(type)
     },
 
@@ -202,10 +201,9 @@ export default {
     },
 
     updateOptionsMeta({ key, val }) {
-
+      console.log('key, val:', key, val)
       if (key === 'src' && this.isOptionsContain('backgroundImage')) {
-        this.updatedOptions.meta[backgroundImage] = `url(https://res.cloudinary.com/projwewix/image/upload/v1670488894/2_omk8of.png)`
-        console.log('this.updatedOptions.meta[backgroundImage]:', this.updatedOptions.meta[backgroundImage])
+        this.updatedOptions.style.backgroundImage = val
       } else {
         this.updatedOptions.meta[key] = val
       }

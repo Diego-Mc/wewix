@@ -55,6 +55,7 @@ export default {
           'https://api.cloudinary.com/v1_1/projwewix/image/upload',
           FORM_DATA
         )
+
         this.$emit('select', { key: 'src', val: data.url })
       } catch (err) {
         throw new Error(`${err}, Cannot Upload Image`)
