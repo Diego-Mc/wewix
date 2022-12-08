@@ -87,6 +87,7 @@ export default {
       this.$store.dispatch({ type: 'logout' })
     },
     dashboardLinkClicked() {
+      console.log('on dashboardlink ckicked');
       this.$emit('dashboardLinkClicked')
     },
   },

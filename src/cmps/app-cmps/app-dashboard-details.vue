@@ -1,5 +1,5 @@
 <template>
-  <div v-if="usersData.length" class="container home">
+  <!-- <div v-if="usersData.length" class="container home">
     <input type="search" v-model="filterBy" />
     <table class="styled-table">
       <thead>
@@ -24,11 +24,37 @@
       class="mt-4 paging"
       @current-change="paginate($event)"
       :current-page="currentPage" />
-  </div>
+  </div> -->
+  <el-input
+    class="table-search"
+    v-model="filterBy"
+    size="small"
+    placeholder="Type to search" />
+  <el-table :data="modifiedUsers" style="width: 100%">
+    <el-table-column
+      v-for="userKey in usersDataKeys"
+      :key="userKey"
+      :fixed="userKey === 'createdAt'"
+      :prop="userKey"
+      :label="userKey"
+      sortable
+      width="150" />
+  </el-table>
+  <el-pagination
+    background
+    hide-on-single-page
+    :small="true"
+    layout="prev, pager, next"
+    :page-count="totalPages"
+    class="mt-4 paging"
+    @current-change="paginate($event)"
+    :current-page="currentPage" />
 </template>
 
 <script>
+import { isTemplateNode } from '@vue/compiler-core'
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
+import { utilService } from '../../services/util.service'
 import { wapService } from '../../services/wap.service.local'
 import {
   getActionRemoveWap,
@@ -38,6 +64,9 @@ import {
 export default {
   props: {
     usersData: Array,
+  },
+  created() {
+    this.$store.dispatch({ type: 'loadWaps' })
   },
   data() {
     return {
@@ -107,9 +136,6 @@ export default {
     waps() {
       return this.$store.getters.waps
     },
-  },
-  created() {
-    this.$store.dispatch({ type: 'loadWaps' })
   },
   methods: {
     keyForDisplay(key, user) {
@@ -181,37 +207,37 @@ export default {
 </script>
 
 <style lang="scss">
-.header {
-  display: flex;
-  flex-direction: row;
-}
-.styled-table {
-  display: table;
-    table-layout: fixed;
-  width: 100%;
-  thead tr {
-    background-color: #009879;
-    color: #ffffff;
-    text-align: left;
-  }
-  th,
-  td {
-    padding: 12px 15px;
-  }
-  tbody tr {
-    border-bottom: 1px solid #dddddd;
-  }
+// .header {
+//   display: flex;
+//   flex-direction: row;
+// }
+// .styled-table {
+//   display: table;
+//   table-layout: fixed;
+//   width: 100%;
+//   thead tr {
+//     background-color: #009879;
+//     color: #ffffff;
+//     text-align: left;
+//   }
+//   th,
+//   td {
+//     padding: 12px 15px;
+//   }
+//   tbody tr {
+//     border-bottom: 1px solid #dddddd;
+//   }
 
-  tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-  }
+//   tbody tr:nth-of-type(even) {
+//     background-color: #f3f3f3;
+//   }
 
-  tbody tr.active-row {
-    font-weight: bold;
-    background: #F5F6FA;
-  }
-}
-.paging {
-  justify-content: end;
-}
+//   tbody tr.active-row {
+//     font-weight: bold;
+//     background: #f5f6fa;
+//   }
+// }
+// .paging {
+//   justify-content: end;
+// }
 </style>

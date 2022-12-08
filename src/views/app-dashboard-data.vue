@@ -1,19 +1,19 @@
 <template>
-  <section class="dashboard-data" >
+  <section class="dashboard-data">
     <div class="dashboard-top-div">
-      <h2>Kite Shop's Dashboard</h2>
+      <h2>{{ wapData.name + "'s Dashboard" }}</h2>
       <div>
         <router-link :to="`/${wapData.name}`">
           <el-button class="view-wap-btn">View Website</el-button>
         </router-link>
         <router-link :to="'/edit/' + wapData._id">
-          <button class="edit-wap-btn" >Edit Website</button>
+          <button class="edit-wap-btn">Edit Website</button>
         </router-link>
       </div>
     </div>
     <main class="graph-and-stats-container">
       <app-dashboard-graphs :visitorsData="wapData.visits" />
-      <app-dashboard-stats :wapData="wapData"/>
+      <app-dashboard-stats :wapData="wapData" />
     </main>
     <app-dashboard-details :usersData="wapData.usersData.contacts" />
   </section>
@@ -24,14 +24,13 @@ import Chance from 'chance'
 import appDashboardGraphs from '../cmps/app-cmps/app-dashboard-graphs.vue'
 import appDashboardDetails from '../cmps/app-cmps/app-dashboard-details.vue'
 import appDashboardStats from '../cmps/app-cmps/app-dashboard-stats.vue'
+import { utilService } from '../services/util.service'
 
 export default {
   props: {
     wapData: Object,
   },
-  created() {
-    
-  },
+  created() {},
   computed: {
     getDemoData() {
       var chance = new Chance()
@@ -66,31 +65,31 @@ export default {
 </script>
 
 <style lang="scss">
-.dashboard-data {
-  padding: 25px 15px 100px 25px;
-}
-.dashboard-top-div {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 53px;
-  button {
-    border-radius: 50px;
-  }
-  .edit-wap-btn {
-    background: rgba(0, 194, 166, 0.5);
-    border: 1px solid #eeeeee;
-    color: #ffffff;
-  }
-  .view-wap-btn {
-    background: #ffffff;
-    border: 1px solid #00c2a6;
-    color: #00c2a6;
-    margin-right: 15px;
-  }
-}
+// .dashboard-data {
+//   padding: 25px 15px 100px 25px;
+// }
+// .dashboard-top-div {
+//   display: flex;
+//   justify-content: space-between;
+//   margin-bottom: 53px;
+//   button {
+//     border-radius: 50px;
+//   }
+//   .edit-wap-btn {
+//     background: rgba(0, 194, 166, 0.5);
+//     border: 1px solid #eeeeee;
+//     color: #ffffff;
+//   }
+//   .view-wap-btn {
+//     background: #ffffff;
+//     border: 1px solid #00c2a6;
+//     color: #00c2a6;
+//     margin-right: 15px;
+//   }
+// }
 
-.graph-and-stats-container {
-  display: flex;
-  justify-content: space-between;
-}
+// .graph-and-stats-container {
+//   display: flex;
+//   justify-content: space-between;
+// }
 </style>
