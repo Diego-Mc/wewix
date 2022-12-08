@@ -4,7 +4,7 @@
     :class="'type-' + typeId"
     v-if="info.btn"
     :style="info?.btn?.options.style"
-    @click.stop="emitSelect('btn')">
+    @click.stop="emitSelect('btn', $event)">
     <span
       @input="updateContent('btn', $event)"
       :contenteditable="$store.getters.isEditMode">
