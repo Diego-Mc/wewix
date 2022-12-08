@@ -46,7 +46,7 @@ export default {
   name: 'login-signup',
   data() {
     return {
-      signupCred: { username: '', password: '', fullname: '', imgUrl: '' },
+      signupCred: { username: 'john', password: 'john', fullname: 'john', imgUrl: '' },
       userMsg:''
     }
   },
@@ -78,7 +78,7 @@ export default {
           userCred: this.signupCred,
         })
         if (this.isModalInAuthPage) {
-          this.$router.push('/')
+          this.$router.push('/edit')
         } else if (this.destPage === 'dashboard') {
           this.$router.push('/dashboard/')
         } else {

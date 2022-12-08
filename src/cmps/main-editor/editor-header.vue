@@ -166,7 +166,7 @@ export default {
     },
 
     async publish() {
-      if (this.updatedWapName.length <= 3) {
+      if (this.updatedWapName.length <= 3 || this.updatedWapName=== 'site-name') {
         this.$notify({
           title: 'Cannot Publish Site With Invalid Name',
           type: 'error',

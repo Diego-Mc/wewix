@@ -25,6 +25,8 @@ export default {
         elType,
         content: e.target.innerText,
         childCmpId: this.childCmpId,
+        elDom: e,
+
       })
     },
     emitSelect(elType, e) {

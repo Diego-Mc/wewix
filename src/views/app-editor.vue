@@ -374,8 +374,7 @@ export default {
         this.wap.chatData = null
         const idx = this.wap.cmps.findIndex((cmp) => cmp.type === 'wap-chat')
         this.wap.cmps.splice(idx, 1)
-      }
-      else {
+      } else {
         this.wap.chatData = {
           adminName: this.loggedinUser.fullname,
           adminID: this.loggedinUser._id,
@@ -393,7 +392,6 @@ export default {
               },
             },
           },
-
         })
         this.$notify({
           title: 'Chat added to website.',
@@ -406,7 +404,7 @@ export default {
       //TODO ADD USER MSGS
       if (!this.loggedinUser) {
         this.authModal.isShown = 'login'
-        console.log(this.isConfirmModalOpen)
+
         this.setAuthModalMsg('publishWap')
         this.isConfirmModalOpen = false
         return
@@ -416,18 +414,20 @@ export default {
           title: 'sites saved',
           type: 'success',
         })
+        this.$router.push('/' + this.wap.name)
+
         return
       }
-      this.wap.name = wapName
+
+      // this.wap.name = wapName
       this.wap.createdAt = Date.now()
       this.wap.owner = this.loggedinUser
       this.wap.isPublished = !this.wap.isPublished
       this.authModal.isShown = false
-
+      console.log(this.wap)
       try {
         const wapId = await this.updateWap(this.wap)
         this.$store.dispatch('addWapToUser', { wapId: this.wap._id })
-        // this.$router.replace({ path: , replace: true })
         this.$router.push('/' + this.wap.name)
         this.$notify({
           title: 'Site is live! ',
