@@ -26,7 +26,9 @@
           >&nbspand publish</span
         ></el-button
       >
-      <button class="toggle-auth-link" @click.prevent="backToLogin">To login</button>
+      <button class="toggle-auth-link" @click.prevent="backToLogin">
+        To login
+      </button>
     </form>
   </div>
 </template>
@@ -70,15 +72,10 @@ export default {
           type: 'signup',
           userCred: this.signupCred,
         })
-        let dest
         if (this.isModalInAuthPage) {
-          dest = '/'
-          this.$router.push(dest)
-
-        }
-        else if (this.destPage === 'dashboard') {
-          dest = '/dashboard'
-          this.$router.push(dest)
+          this.$router.push('/')
+        } else if (this.destPage === 'dashboard') {
+          this.$router.push('/dashboard/')
         }
         this.$emit('authenticated')
         this.$notify({

@@ -30,7 +30,7 @@
         <span v-if="destPage === 'publishWap'">&nbspand publish</span>
       </el-button>
       <button class="toggle-auth-link" @click.prevent="openSignupModal">
-        Dont have a user? <span style="font-weight:600;">signup here</span>
+        Dont have a user? <span style="font-weight: 600">signup here</span>
       </button>
     </form>
   </div>
@@ -74,11 +74,13 @@ export default {
       }
       try {
         await this.$store.dispatch({ type: 'login', userCred: this.loginCred })
-        let dest
-        if (this.isModalInAuthPage) dest = '/'
-        else if (this.destPage === 'dashboard') dest = '/dashboard'
-        this.$router.push(dest)
-      this.$emit('authenticated')
+        if (this.isModalInAuthPage) {
+          this.$router.push('/')
+        } else if (this.destPage === 'dashboard') {
+          this.$router.push('/dashboard')
+        }else{
+          this.$emit('authenticated')
+        }
 
         this.$notify({
           title: 'Logged in successfully',

@@ -18,12 +18,12 @@ export default {
   data() {
     return {
       userWaps: null,
-      currWapData: null
+      currWapData: null,
     }
   },
   async created() {
     if (!this.loggedinUser) return this.$router.push('/')
-    else if (!this.loggedinUser.waps) return
+    if (!this.loggedinUser.waps) return
     let waps = await this.getWaps()
 
     this.userWaps = waps
@@ -37,8 +37,8 @@ export default {
           visits: wap.visits,
         }
       })
-    
-      this.currWapData = this.userWaps[0]
+
+    this.currWapData = this.userWaps[0]
   },
   methods: {
     async getWaps() {
