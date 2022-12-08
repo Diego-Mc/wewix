@@ -15,25 +15,25 @@
           val: 'system',
           small: 'System',
           sample: 'Aa',
-          style: 'font-family:\'Rubik\'',
+          style: 'font-family:\'PoppinsRegular\'', //Asap
         },
         {
           val: 'fancy',
           small: 'Fancy',
           sample: 'Ss',
-          style: 'font-family:\'Baskerville\'',
+          style: 'font-family:\'JosefinSans\'', //Baskerville
         },
         {
           val: 'mono',
           small: 'Mono',
           sample: '00',
-          style: 'font-family:\'FiraCode\'',
+          style: 'font-family:\'Raleway\'', //FiraCode
         },
         {
           val: 'round',
           small: 'Round',
           sample: 'Rr',
-          style: 'font-family:\'VarelaRound\'',
+          style: 'font-family:\'SpaceGrotesk\'', //VarelaRound
         },
         {
           val: 'fun',

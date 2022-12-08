@@ -59,7 +59,7 @@
       <router-link to="/templates">Templates</router-link>
       <a @click="dashboardLinkClicked">Dashboard</a>
     </Slide>
-    <section class="user-auth">
+    <!-- <section class="user-auth">
       <h3 v-if="loggedinUser">
         logged in user : {{ loggedinUser.fullname }}
         <button @click="doLogout">Log out</button>
@@ -67,17 +67,20 @@
       <router-link v-else to="/login/">
         <button class="login-btn"><i class="bi bi-person"></i> login</button>
       </router-link>
-    </section>
+    </section> -->
+    <user-auth-btn :loggedinUser="loggedinUser" :btnsToShow="{ login: true }" />
   </header>
 </template>
 
 <script>
 import editorBtnGroup from '../main-editor/editor-items/editor-btn-group.vue'
+import userAuthBtn from './user-auth-btn.vue'
 import { Slide } from 'vue3-burger-menu'
 export default {
   components: {
     editorBtnGroup,
     Slide,
+    userAuthBtn,
   },
   methods: {
     log(data) {
@@ -87,7 +90,7 @@ export default {
       this.$store.dispatch({ type: 'logout' })
     },
     dashboardLinkClicked() {
-      console.log('on dashboardlink ckicked');
+      console.log('on dashboardlink ckicked')
       this.$emit('dashboardLinkClicked')
     },
   },
