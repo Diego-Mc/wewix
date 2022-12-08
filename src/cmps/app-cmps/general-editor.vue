@@ -3,7 +3,8 @@
   <div>
     <section class="add-chat-container">
       <h6 class="edit-type-label">CHAT</h6>
-      <h3 class="add-chat">Add chat?</h3>
+      <h3 style="display: inline;margin-right: 5px;" class="add-chat">Add chat? </h3>
+   
       <input type="checkbox" :checked="isWapHasChat" @click="emitChatToggled" />
     </section>
 
@@ -77,12 +78,12 @@ export default {
     },
     emitChatToggled() {
       // TODO: add condition to return if user is guest
-      eventBus.emit('chatToggled')
+      eventBus.emit('toggleChat')
     },
   },
   computed: {
     isWapHasChat() {
-      return this.$store.getters.editedWap.chatData
+      return this.$store.getters.editedWap?.chatData ? true : false
     },
   },
   components: {
