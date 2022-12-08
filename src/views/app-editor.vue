@@ -193,7 +193,7 @@ export default {
         formCmp.options.meta.formInputs[fieldInfo.idx].tag = fieldInfo.txt
       else if (typeof fieldInfo.idx === 'number')
         formCmp.options.meta.formInputs.splice(fieldInfo.idx, 1)
-      else formCmp.options.meta.formInputs.push({ tag: 'wa', txt: '' })
+      else formCmp.options.meta.formInputs.push({ tag: '', txt: '' })
       this.onCmpsChange()
     },
     keydownHandler(event) {

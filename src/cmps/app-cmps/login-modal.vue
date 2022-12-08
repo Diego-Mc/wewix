@@ -29,10 +29,10 @@
         >Login
         <span v-if="destPage === 'publishWap'">&nbspand publish</span>
       </el-button>
-      <button class="toggle-auth-link" @click.prevent="openSignupModal">
-        Dont have a user? <span style="font-weight: 600">signup here</span>
-      </button>
     </form>
+    <button class="toggle-auth-link" @click.stop.prevent="openSignupModal">
+      Dont have a user? <span style="font-weight: 600">signup here</span>
+    </button>
   </div>
 </template>
 

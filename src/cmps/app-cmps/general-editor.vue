@@ -1,11 +1,17 @@
 //TODO: change default theme based on chosen template
 <template>
   <div>
-    <section class="add-chat-container">
+    <section class="add-chat-container" @click="emitChatToggled">
       <h6 class="edit-type-label">CHAT</h6>
-      <h3 style="display: inline;margin-right: 5px;" class="add-chat">Add chat? </h3>
-   
-      <input type="checkbox" :checked="isWapHasChat" @click="emitChatToggled" />
+      <h3 style="display: inline; margin-right: 5px" class="add-chat">
+        Add chat?
+      </h3>
+
+      <input
+        type="checkbox"
+        :disabled="!this.$store.getters.loggedinUser"
+        :checked="isWapHasChat"
+         />
     </section>
 
     <!-- <ul>
@@ -77,6 +83,14 @@ export default {
       document.body.className = `${this.classState.fontClass} ${this.classState.themeClass}`
     },
     emitChatToggled() {
+      if (!this.$store.getters.loggedinUser) {
+         this.$notify({
+          title: 'You must login to add chat',
+          type: 'error',
+        })
+        return
+
+      }
       // TODO: add condition to return if user is guest
       eventBus.emit('toggleChat')
     },
@@ -94,8 +108,7 @@ export default {
 </script>
 
 <style>
-.add-chat-container{
+.add-chat-container {
   margin-bottom: 32px;
-
 }
 </style>

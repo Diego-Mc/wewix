@@ -26,10 +26,11 @@
           >&nbspand publish</span
         ></el-button
       >
-      <button class="toggle-auth-link" @click.prevent="backToLogin">
-        To login
-      </button>
+    
     </form>
+    <button class="toggle-auth-link" @click.prevent="backToLogin">
+      To login
+    </button>
   </div>
 </template>
 
@@ -46,6 +47,7 @@ export default {
   data() {
     return {
       signupCred: { username: '', password: '', fullname: '', imgUrl: '' },
+      userMsg:''
     }
   },
   computed: {
@@ -67,7 +69,7 @@ export default {
         !this.signupCred.password ||
         !this.signupCred.username
       ) {
-        this.msg = 'Please fill up the form'
+        this.userMsg = 'Please fill up the form'
         return
       }
       try {
