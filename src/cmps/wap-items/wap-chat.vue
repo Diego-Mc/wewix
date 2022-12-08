@@ -158,6 +158,7 @@ export default {
           updatedGuest[guest.userId] = guest.msgs
           return updatedGuest
         }, {})
+        console.log('this.conversations:', this.conversations)
       } else if (typeof data === 'object' && data !== null)
         this.activeGuests.push(data)
     })
