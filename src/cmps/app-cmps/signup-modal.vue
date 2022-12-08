@@ -26,10 +26,11 @@
           >&nbspand publish</span
         ></el-button
       >
-      <button class="toggle-auth-link" @click.prevent="backToLogin">
-        To login
-      </button>
+    
     </form>
+    <button class="toggle-auth-link" @click.prevent="backToLogin">
+      To login
+    </button>
   </div>
 </template>
 
@@ -45,7 +46,8 @@ export default {
   name: 'login-signup',
   data() {
     return {
-      signupCred: { username: '', password: '', fullname: '', imgUrl: '' },
+      signupCred: { username: 'john', password: 'john', fullname: 'john', imgUrl: '' },
+      userMsg:''
     }
   },
   computed: {
@@ -67,7 +69,7 @@ export default {
         !this.signupCred.password ||
         !this.signupCred.username
       ) {
-        this.msg = 'Please fill up the form'
+        this.userMsg = 'Please fill up the form'
         return
       }
       try {
@@ -76,7 +78,7 @@ export default {
           userCred: this.signupCred,
         })
         if (this.isModalInAuthPage) {
-          this.$router.push('/')
+          this.$router.push('/edit')
         } else if (this.destPage === 'dashboard') {
           this.$router.push('/dashboard/')
         } else {

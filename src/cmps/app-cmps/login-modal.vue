@@ -29,10 +29,10 @@
         >Login
         <span v-if="destPage === 'publishWap'">&nbspand publish</span>
       </el-button>
-      <button class="toggle-auth-link" @click.prevent="openSignupModal">
-        Dont have a user? <span style="font-weight: 600">signup here</span>
-      </button>
     </form>
+    <button class="toggle-auth-link" @click.stop.prevent="openSignupModal">
+      Dont have a user? <span style="font-weight: 600">signup here</span>
+    </button>
   </div>
 </template>
 
@@ -48,7 +48,7 @@ export default {
   name: 'login-modal',
   data() {
     return {
-      loginCred: { username: '', password: '' },
+      loginCred: { username: 'nir', password: 'coren' },
     }
   },
   computed: {
@@ -78,7 +78,7 @@ export default {
       try {
         await this.$store.dispatch({ type: 'login', userCred: this.loginCred })
         if (this.isModalInAuthPage) {
-          this.$router.push('/')
+          this.$router.push('/edit')
         } else if (this.destPage === 'dashboard') {
           this.$router.push('/dashboard')
         }else{
