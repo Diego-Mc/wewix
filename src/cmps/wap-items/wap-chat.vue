@@ -1,15 +1,17 @@
 <template>
   <button @click="isChatOpen = !isChatOpen">Click Here To Open Chat</button>
-  <!--
+
   <section class="wap-chat" v-if="isChatOpen">
-    <header v-if="this.user.isAdmin"> -->
-  <!-- <nav>
+    <header
+      class="admin-header"
+      v-if="this.user.isAdmin && !activeConversation">
+      <!-- <nav>
         <ul>
           <li>👧👸👨‍🦱</li>
           <li>®©®</li>
         </ul>
       </nav> -->
-  <!-- <span class="header-text">
+      <span class="header-text">
         <small>Hello manager,</small>
         <h3>wewix chat</h3>
       </span>
@@ -25,17 +27,29 @@
           <span v-if="isTyping(g.userId)">typing...</span>
           <span v-else-if="isTyping('Admin')">Admin typing...</span>
         </span>
-      </nav> -->
-  <!-- <div class="welcome-txt">
-        <h1>Hey! 👋</h1>
-        <h1>How Could We Help?</h1>
-      </div> -->
-  <!-- <div class="welcome-txt">
-        <h1>Hey! 👋</h1>
-      </div>
-    </header> -->
+      </nav>
+    </header>
 
-  <!-- <section
+    <header
+      class="in-chat"
+      v-else-if="
+        !this.user.isAdmin || (this.user.isAdmin && activeConversation)
+      ">
+      <i
+        v-if="this.user.isAdmin"
+        @click="activeConversation = null"
+        class="bi bi-arrow-left-short"></i>
+      <i v-else @click="isChatOpen = false" class="bi bi-arrow-down-short"></i>
+      <img class="guest-avatar" src="../../assets/imgs/png-96/avatar1.png" />
+      <!-- <span v-if="isTyping(g.userId)">typing...</span> -->
+      <!-- <span v-else-if="isTyping('Admin')">Admin typing...</span> -->
+      <span class="header-text">
+        <h3 v-if="this.user.isAdmin">Guest 1</h3>
+        <h3 v-else>Admin</h3>
+      </span>
+    </header>
+
+    <!-- <section
       class="messages"
       v-if="!this.user.isAdmin || (this.user.isAdmin && activeConversation)">
       <article class="message guest">Hello</article>
@@ -59,27 +73,37 @@
       <article class="message guest">sup</article>
       <article class="message manager">sup</article>
     </section> -->
-  <!-- <section
+    <section
       class="messages"
-      v-if="!this.user.isAdmin || (this.user.isAdmin && activeConversation)"
-      v-for="(msg, idx) in conversations[this.activeConversation]"
-      :key="idx"> -->
-  <!-- <span>{{ msg.from }}:</span>{{ msg.txt }} -->
-  <!-- <article class="message manager">{{ msg.from }}:{{ msg.txt }}</article>
+      v-if="!this.user.isAdmin || (this.user.isAdmin && activeConversation)">
+      <article
+        v-for="(msg, idx) in conversations[this.activeConversation]"
+        :key="idx"
+        class="message"
+        :class="{ manager: msg.isFromAdmin }">
+        {{ msg.txt }}
+      </article>
     </section>
 
-    <form @submit.prevent="sendMsg">
+    <form
+      v-if="(activeConversation && this.user.isAdmin) || !this.user.isAdmin"
+      @submit.prevent="sendMsg"
+      class="input">
       <input
-        v-if="(activeConversation && this.user.isAdmin) || !this.user.isAdmin"
         @input="sendTypeState"
         type="text"
         v-model="msg.txt"
         placeholder="Your msg" />
-      <span v-else>Please Select User To Msg</span>
     </form>
-  </section> -->
+    <span class="admin-msg" v-else>
+      <div class="texts">
+        <h3>Hey! 👋</h3>
+        <h4>Select a user to start chatting</h4>
+      </div>
+    </span>
+  </section>
 
-  <section class="wap-chat" v-if="isChatOpen">
+  <!-- <section class="wap-chat" v-if="isChatOpen">
     <header>
       <nav>
         <ul>
@@ -118,7 +142,7 @@
       <span v-if="isTyping(g.userId)">typing...</span>
       <span v-else-if="isTyping('Admin')">Admin typing...</span>
     </span>
-  </section>
+  </section> -->
 </template>
 
 <script>

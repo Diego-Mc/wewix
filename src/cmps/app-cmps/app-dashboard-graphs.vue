@@ -18,7 +18,7 @@
           {{ stat.label }}
         </option>
       </select>
-      <component :is="selectedChart" :chartData="chartData"></component>
+      <component :is="selectedChart" :chartData="chartData" :options="graphOptions"></component>
     </section>
 
     <section>
@@ -28,8 +28,7 @@
     <section>
       <h3>Leads</h3>
     </section>
-
-    <!-- <pre>{{ chartData }}</pre> -->
+    
   </section>
 </template>
 
@@ -55,8 +54,8 @@ export default {
     return {
       loggedinUserWaps: null,
       toys: [],
-      selectedChart: '',
-      selectedStat: '',
+      selectedChart: 'PieChart',
+      selectedStat: 'conversionRate',
 
       chartsOptions: [
         {
@@ -107,6 +106,14 @@ export default {
           label: 'Conversion Rate',
         },
       ],
+
+      graphOptions: {
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+      },
     }
   },
   created() {

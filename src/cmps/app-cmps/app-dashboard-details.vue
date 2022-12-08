@@ -1,7 +1,5 @@
 <template>
-  <div class="container home">
-    <button @click="log">log</button>
-
+  <div v-if="usersData.length" class="container home">
     <input type="search" v-model="filterBy" />
     <table class="styled-table">
       <thead>
