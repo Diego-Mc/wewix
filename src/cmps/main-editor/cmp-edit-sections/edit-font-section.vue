@@ -12,25 +12,25 @@
       }"
       :opts="[
         {
-          val: 'system',
+          val: 'PoppinsRegular',
           small: 'System',
           sample: 'Aa',
           style: 'font-family:\'PoppinsRegular\'', //Asap
         },
         {
-          val: 'fancy',
+          val: 'JosefinSans',
           small: 'Fancy',
           sample: 'Ss',
           style: 'font-family:\'JosefinSans\'', //Baskerville
         },
         {
-          val: 'mono',
+          val: 'Raleway',
           small: 'Mono',
           sample: '00',
           style: 'font-family:\'Raleway\'', //FiraCode
         },
         {
-          val: 'round',
+          val: 'SpaceGrotesk',
           small: 'Round',
           sample: 'Rr',
           style: 'font-family:\'SpaceGrotesk\'', //VarelaRound
