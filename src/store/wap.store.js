@@ -31,7 +31,7 @@ export const wapStore = {
   state: {
     waps: [],
     editedWap: null,
-    currWap:null,
+    currWap: null,
     isEditMode: true, //TODO: change to be dynamic
   },
 
@@ -48,14 +48,13 @@ export const wapStore = {
   },
 
   mutations: {
-    setCurrWap(state,{wap}){
+    setCurrWap(state, { wap }) {
       state.setCurrWap = wap
-      console.log(wap);
     },
     setEditMode(state, { isEditMode }) {
       state.isEditMode = isEditMode
     },
-    addInfo(state, { isEditMode }){
+    addInfo(state, { isEditMode }) {
       console.log(state.editedWap);
     },
     setEditedWap(state, { wap }) {
@@ -67,10 +66,10 @@ export const wapStore = {
     addWap(state, { wap }) {
       state.waps.push(wap)
     },
-    updateWap(state, { wap }) {
-      const idx = state.waps.findIndex((c) => c.id === wap._id)
-      state.waps.splice(idx, 1, wap)
-    },
+    // updateWap(state, { wap }) {
+    //   const idx = state.waps.findIndex((c) => c.id === wap._id)
+    //   state.waps.splice(idx, 1, wap)
+    // },
     removeWap(state, { wapId }) {
       state.waps = state.waps.filter((wap) => wap._id !== wapId)
     },
