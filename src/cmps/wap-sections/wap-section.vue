@@ -13,9 +13,8 @@
     @start="drag = true"
     @end="onDrop"
     item-key="id"
-    :disabled="!this.$store.getters.isEditMode" 
-    :group="'section-' + cmpId"
-    >
+    :disabled="!this.$store.getters.isEditMode"
+    :group="'section-' + cmpId">
     <template #item="{ element }">
       <div>
         <component
@@ -83,6 +82,7 @@ import wapTextSection from '../wap-items/wap-text-section.vue'
 import wapGallerySection from '../wap-items/wap-gallery-section.vue'
 import wapForm from './wap-form.vue'
 import wapVideo from '../wap-items/wap-video.vue'
+import wapMap from '../wap-items/wap-map.vue'
 import draggable from 'vuedraggable'
 import { eventBus } from '../../services/event-bus.service'
 
@@ -106,6 +106,7 @@ export default {
     wapGallerySection,
     wapVideo,
     wapForm,
+    wapMap,
     draggable,
   },
 
