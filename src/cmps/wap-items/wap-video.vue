@@ -20,7 +20,7 @@
       v-if="info.title"
       class="title"
       :style="info?.title?.options.style"
-      @click.stop="emitSelect('title')"
+      @click.stop="emitSelect('title', $event)"
       @input="updateContent('title', $event)"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.title?.content.text }}
@@ -29,7 +29,7 @@
       v-if="info.subtitle"
       class="subtitle"
       :style="info?.subtitle?.options.style"
-      @click.stop="emitSelect('subtitle')"
+      @click.stop="emitSelect('subtitle', $event)"
       @input="updateContent('subtitle', $event)"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.subtitle?.content.text }}
@@ -39,7 +39,7 @@
       v-if="info.text"
       class="text"
       :style="info?.text?.options.style"
-      @click.stop="emitSelect('text')"
+      @click.stop="emitSelect('text', $event)"
       @input="updateContent('text', $event)"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.text?.content.text }}
@@ -59,6 +59,8 @@ export default {
         elType,
         content: e.target.innerText,
         childCmpId: this.childCmpId,
+        elDom: e,
+
       })
     },
     emitSelect(elType, e) {

@@ -12,25 +12,25 @@
       }"
       :opts="[
         {
-          val: 'light',
+          val: '200',
           small: 'Light',
           sample: 'Li',
           style: 'font-weight:200',
         },
         {
-          val: 'regular',
+          val: '400',
           small: 'Regular',
           sample: 'Re',
           style: 'font-weight:400',
         },
         {
-          val: 'bold',
+          val: '600',
           small: 'Semi-Bold',
           sample: 'Sb',
           style: 'font-weight:600',
         },
         {
-          val: 'bolder',
+          val: '800',
           small: 'Bold',
           sample: 'Bb',
           style: 'font-weight:800',

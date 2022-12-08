@@ -11,14 +11,13 @@
   color: $btn-dark;
 
   .login-btn {
-    padding: 4px 16px;
-    border-radius: rem(8px);
+    // padding: 4px 16px;
     border-radius: 3rem;
     border: 2px solid #ddd;
     transition: all 0.2s;
     &:hover {
       border-color: #ddd;
-      background-color: #eee;
+      background-color: #f8f8f8;
     }
   }
 
@@ -167,6 +166,9 @@
     padding-right: 20px;
     flex: 1;
     justify-content: flex-end;
+    a {
+      cursor: pointer;
+    }
   }
   .url-bar {
     background-color: rgba(238, 238, 238, 0.5);

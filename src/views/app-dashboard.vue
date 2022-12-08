@@ -16,7 +16,7 @@
         :opts="wapNames" />
     </section>
     <router-view v-if="currWapData" :wapData="currWapData"></router-view>
-    <div style="" v-else>Build a website to see data!</div>
+    <!-- <div style="" v-else>Build a website to see data!</div> -->
   </main>
 </template>
 

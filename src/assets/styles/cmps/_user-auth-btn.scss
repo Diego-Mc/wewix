@@ -1,0 +1,87 @@
+.user-auth {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  button {
+    font-size: inherit;
+  }
+
+  .user-options {
+    .info {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-family: Asap;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+      i {
+        font-size: rem(18px);
+      }
+    }
+
+    .el-button-group {
+      > button {
+        padding-block: 1.1rem;
+      }
+      > button:first-child {
+        border-top-left-radius: 5rem;
+        border-bottom-left-radius: 5rem;
+        padding-inline: 1rem;
+      }
+      > button:last-child {
+        border-top-right-radius: 5rem;
+        border-bottom-right-radius: 5rem;
+        padding-inline: 1.4rem;
+        > span {
+          margin-right: 3px;
+        }
+      }
+    }
+  }
+
+  .login-options {
+    display: flex;
+    gap: 14px;
+
+    button {
+      height: 36px;
+    }
+    .login-btn {
+      font-size: rem(16px);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      i {
+        font-size: rem(18px);
+        height: 18px;
+      }
+    }
+    .register-btn {
+      background: $main;
+      background: linear-gradient(
+        90deg,
+        rgba(0, 194, 166, 1) 0%,
+        rgba(0, 194, 166, 1) 50%
+      );
+      border-radius: 3rem;
+      font-family: 'PoppinsBold';
+      color: white;
+
+      transition: all 1s;
+      &:hover {
+        color: white;
+        // background: linear-gradient(
+        //   180deg,
+        //   rgba(0, 194, 166, 1) 0%,
+        //   rgba(6, 255, 255, 0.7) 50%
+        // );
+        background: linear-gradient(
+          -320deg,
+          rgba(0, 194, 166, 1) 0%,
+          rgb(209, 92, 227) 98%
+        );
+      }
+    }
+  }
+}

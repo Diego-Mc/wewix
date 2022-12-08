@@ -35,40 +35,31 @@
       <router-link to="/" v-scroll-to="'#about'">About</router-link>
     </Slide>
     <!-- TODO: make it pretty -->
-    <section v-if="loggedinUser">
-      <span
-        >user:
-        <h3 style="display: inline-block">
-          {{ loggedinUser.fullname }}
-        </h3>
-      </span>
-      <button @click="doLogout">Logout</button>
-    </section>
-    <section class="user-auth" v-else>
-      <router-link :to="'/login/'">
-        <button class="login-btn"><i class="bi bi-person"></i> login</button>
-      </router-link>
-      <router-link :to="'/signup/'">
-        <button class="register-btn">sign up for free</button>
-      </router-link>
-    </section>
+    <!-- <span>
+      user:
+      <h3 style="display: inline-block">
+        {{ loggedinUser.fullname }}
+      </h3>
+    </span>
+    <button @click="doLogout">Logout</button> -->
+    <!-- <section v-if="loggedinUser"></section> -->
+    <user-auth-btn :loggedinUser="loggedinUser" />
   </header>
 </template>
 <script>
 import { Slide } from 'vue3-burger-menu'
+import userAuthBtn from './user-auth-btn.vue'
+import { utilService } from '../../services/util.service'
 export default {
   computed: {
     loggedinUser() {
       return this.$store.getters.loggedinUser
     },
   },
-  methods: {
-    doLogout() {
-      this.$store.dispatch({ type: 'logout' })
-    },
-  },
+
   components: {
     Slide,
+    userAuthBtn,
   },
 }
 </script>
