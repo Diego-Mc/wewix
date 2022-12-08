@@ -106,6 +106,7 @@ export default {
         // wapMap,
         // wapForm,
         wapChat,
+        wapMap,
       ],
     }
   },

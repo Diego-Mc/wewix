@@ -62,9 +62,9 @@
           placeholder="link" />
       </div>
 
-      <div v-if="updatedOptions.meta.mapData">
+      <edit-map-section v-if="isOptionsContain('mapData')" @select="updateOptionsMeta"/>
+      <!-- <div v-if="isOptionsContain('mapData')">
         Map Data
-
         <input @input="handleMapInput($event)" type="text" />
         <div v-if="isMapLocationLoader">
           <span v-if="loadedMapLocation">
@@ -72,7 +72,7 @@
           </span>
           <span v-else> Loading </span>
         </div>
-      </div>
+      </div> -->
 
       <div v-if="isOptionsContain('animation')">
         <edit-animation-section
@@ -95,11 +95,6 @@
         <el-button type="primary" @click="fieldAdded(id)" style="width: 100%; background: green; margin-bottom: 10px">
           add field
         </el-button>
-        <!-- <input
-          @input="updateOptions"
-          v-model="updatedOptions.meta.link"
-          type="text"
-          placeholder="link" /> -->
       </div>
 
       <div>
@@ -122,6 +117,7 @@ import editBgColorSection from '../cmp-edit-sections/edit-bg-color-section.vue'
 import editRadiusSection from '../cmp-edit-sections/edit-radius-section.vue'
 import editUploadSection from '../cmp-edit-sections/edit-upload-section.vue'
 import editAnimationSection from '../cmp-edit-sections/edit-animation-section.vue'
+import editMapSection from '../cmp-edit-sections/edit-map-section.vue'
 
 export default {
   props: {
@@ -271,6 +267,7 @@ export default {
     editUploadSection,
     editFontSizeSection,
     editAnimationSection,
+    editMapSection
   },
 }
 </script>
