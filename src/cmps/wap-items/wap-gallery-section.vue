@@ -5,7 +5,7 @@
     :class="'type-' + typeId"
     :style="options.style">
     <div class="gallery-item" v-for="(cmp, key) in info">
-      <div class="img-container" @click.stop="emitSelect(key)">
+      <div class="img-container" @click.stop="emitSelect(key,$event)">
         <img :src="cmp.options.meta.src"   />
       </div>
       <!-- @click.stop="emitSelect" -->
@@ -15,7 +15,7 @@
         class="img-text"
         @input="updateContent(key, $event)"
         :style="info[key]?.options.style"
-        @click.stop="emitSelect(key)"
+        @click.stop="emitSelect(key,$event)"
         :contenteditable="$store.getters.isEditMode">
         {{ info[key]?.content.text }}
       </h6>
@@ -30,16 +30,12 @@ export default {
   props: ['info', 'cmpId', 'childCmpId', 'options', 'typeId'],
   methods: {
     // Change 'gallery' into 'img1'
-    emitSelect(key) {
-      console.log({
-        cmpId: this.cmpId,
-        elType: 'img' + key,
-        childCmpId: this.childCmpId,
-      })
+    emitSelect(key,e) {
       eventBus.emit('select', {
         cmpId: this.cmpId,
         elType: key,
         childCmpId: this.childCmpId,
+        elDom:e,
       })
     },
   },

@@ -16,7 +16,7 @@
     <section v-if="info.img" class="img" :style="info?.title?.options.style">
       <img
         :src="info?.img?.options?.meta.src"
-        @click.stop="emitSelect('img')" />
+        @click.stop="emitSelect('img', $event)" />
     </section>
 
     <div class="titles-wrapper">
@@ -79,14 +79,16 @@ export default {
         elType,
         content: e.target.innerText,
         childCmpId: this.childCmpId,
+        elDom: e,
       })
     },
-    emitSelect(elType) {
+    emitSelect(elType,e) {
       console.log('wap-text section', this.cmpId)
       eventBus.emit('select', {
         cmpId: this.cmpId,
         childCmpId: this.childCmpId,
         elType,
+        elDom: e,
       })
     },
   },
