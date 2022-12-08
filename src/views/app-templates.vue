@@ -30,7 +30,7 @@
         @mouseenter="isHover[template.name] = true"
         @mouseleave="isHover[template.name] = false">
         <div class="template-actions">
-          <button class="preview-btn">PREVIEW</button>
+          <button class="preview-btn" @click="preview(template.id)">PREVIEW</button>
           <button class="edit-btn" @click="openEditor(template.id)">
             EDIT
           </button>
@@ -90,6 +90,10 @@ export default {
     swapAuthModal(modalType) {
       this.authModal.isShown = modalType
     },
+    preview(id) {
+        // const route = `/template${parseInt(id)}`
+        // this.$router.push(`/${id}`)
+    }
   },
 
   computed: {
