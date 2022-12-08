@@ -175,16 +175,6 @@ export default {
         childCmpId: this.childCmpId,
       })
     },
-
-    updateContent() {
-      this.$emit('cmpUpdated', {
-        cmpId: id,
-        elType,
-        content: info.text.content,
-        childCmpId: this.childCmpId,
-      })
-    },
-
     removeCmp() {
       this.$store.dispatch({
         type: 'removeCmp',

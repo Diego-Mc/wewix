@@ -236,8 +236,8 @@ export default {
       document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
       this.onCmpsChange()
     },
-    undo() {
-      const gHistory = appEditorService.loadFromStorage('gHistory')
+    undo() { [1,2,3]
+      const gHistory = appEditorService.loadFromStorage('gHistory') // get history 
       if (!gHistory.changeIdx) return
       gHistory.changeIdx -= 1
       this.wap = gHistory.changes[gHistory.changeIdx]

@@ -15,7 +15,7 @@
         }"
         :opts="wapNames" />
     </section>
-    <router-view v-if="currWapData" :wapData="currWapData"></router-view>
+    <router-view :wapData="currWapData"></router-view>
     <!-- <div style="" v-else>Build a website to see data!</div> -->
   </main>
 </template>
@@ -30,10 +30,10 @@ export default {
     }
   },
   async created() {
+
     if (!this.loggedinUser) return this.$router.push('/')
     if (!this.loggedinUser.waps) return
     let waps = await this.getWaps()
-
     this.userWaps = waps
       .filter((wap) => this.loggedinUser.waps.includes(wap._id))
       .map((wap) => {
@@ -45,8 +45,8 @@ export default {
           visits: wap.visits,
         }
       })
-
-    this.currWapData = this.userWaps[0]
+      this.currWapData = this.userWaps[0]
+      
   },
   methods: {
     handleBtnSelect(ans) {
