@@ -124,7 +124,7 @@ export default {
     },
     fieldRemoved(id, idx) {
       this.updatedOptions.meta.formInputs.splice(idx, 1)
-      eventBus.emit('updateField', { id, idx })
+      eventBus.emit('updateField', { id, idx,childCmpId: this.childCmpId })
     },
     fieldAdded(id) {
       this.updatedOptions.meta.formInputs.push({ tag: '', txt: '' })

@@ -158,7 +158,6 @@ export default {
           updatedGuest[guest.userId] = guest.msgs
           return updatedGuest
         }, {})
-        console.log('this.conversations:', this.conversations)
       } else if (typeof data === 'object' && data !== null)
         this.activeGuests.push(data)
     })
@@ -179,18 +178,13 @@ export default {
   },
   methods: {
     addMsg(msg) {
-      if (msg.isFromAdmin) this.activeConversation = msg.id
+      console.log('msg - round:', msg)
+      this.activeConversation = msg.id
       if (this.conversations[msg.id]) this.conversations[msg.id].push(msg)
       else this.conversations[msg.id] = [msg]
     },
     sendMsg() {
-
-      this.msg.from = 'Davud'
-
-      if (this.user.isAdmin) {
-          
-      }
-      
+      this.msg.from = 'Davud'     
       socketService.emit('addMsg', {
         msg: this.msg,
         activeConversation: this.activeConversation,
@@ -205,7 +199,6 @@ export default {
       user.nickname = 'Admin'
       user.id = user._id
       delete user._id
-
       return user
     },
     setActiveConversation({ userId }) {
@@ -225,7 +218,6 @@ export default {
       this.isUserTyping[user] = false
     },
   },
-  computed: {},
 }
 </script>
 

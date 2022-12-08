@@ -193,7 +193,7 @@ export default {
         formCmp.options.meta.formInputs[fieldInfo.idx].tag = fieldInfo.txt
       else if (typeof fieldInfo.idx === 'number')
         formCmp.options.meta.formInputs.splice(fieldInfo.idx, 1)
-      else formCmp.options.meta.formInputs.push({ tag: 'wa', txt: '' })
+      else formCmp.options.meta.formInputs.push({ tag: '', txt: '' })
       this.onCmpsChange()
     },
     keydownHandler(event) {
@@ -367,16 +367,15 @@ export default {
       eventBus.on('themeChanged', this.themeChanged)
       eventBus.on('removeCmp', this.removeCmp)
       eventBus.on('updateField', this.updateField)
-      eventBus.on('chatToggled', this.toggleChat)
+      eventBus.on('toggleChat', this.toggleChat)
     },
     toggleChat() {
-      console.log(this.wap.chatData)
-
       if (this.wap.chatData) {
         this.wap.chatData = null
         const idx = this.wap.cmps.findIndex((cmp) => cmp.type === 'wap-chat')
         this.wap.cmps.splice(idx, 1)
-      } else {
+      }
+      else {
         this.wap.chatData = {
           adminName: this.loggedinUser.fullname,
           adminID: this.loggedinUser._id,
@@ -394,12 +393,14 @@ export default {
               },
             },
           },
+
         })
-        console.log(this.wap.chatData)
+        this.$notify({
+          title: 'Chat added to website.',
+          type: 'success',
+        })
       }
       this.updateWap()
-
-      // this.wap.cmps.push() // chat
     },
     async publishWap(wapName) {
       //TODO ADD USER MSGS

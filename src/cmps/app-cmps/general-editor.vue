@@ -1,12 +1,17 @@
 //TODO: change default theme based on chosen template
 <template>
   <div>
-    <section>
-    <h6 class="edit-type-label">CHAT</h6>
-    <h3>
-      do you want a chat in your website? 
-    </h3>
-    <input type="checkbox" @click="emitChatToggled">
+    <section class="add-chat-container" @click="emitChatToggled">
+      <h6 class="edit-type-label">CHAT</h6>
+      <h3 style="display: inline; margin-right: 5px" class="add-chat">
+        Add chat?
+      </h3>
+
+      <input
+        type="checkbox"
+        :disabled="!this.$store.getters.loggedinUser"
+        :checked="isWapHasChat"
+         />
     </section>
 
     <!-- <ul>
@@ -62,7 +67,7 @@ export default {
       ],
     }
   },
-
+  created() {},
   methods: {
     handleThemeSelect({ key, val }) {
       eventBus.emit('themeChanged', { themeClass: val })
@@ -77,10 +82,23 @@ export default {
       eventBus.emit('themeChanged', this.classState)
       document.body.className = `${this.classState.fontClass} ${this.classState.themeClass}`
     },
-    emitChatToggled(){
+    emitChatToggled() {
+      if (!this.$store.getters.loggedinUser) {
+         this.$notify({
+          title: 'You must login to add chat',
+          type: 'error',
+        })
+        return
+
+      }
       // TODO: add condition to return if user is guest
-      eventBus.emit('chatToggled')
-    }
+      eventBus.emit('toggleChat')
+    },
+  },
+  computed: {
+    isWapHasChat() {
+      return this.$store.getters.editedWap?.chatData ? true : false
+    },
   },
   components: {
     editorBtnGroup,
@@ -88,3 +106,9 @@ export default {
   },
 }
 </script>
+
+<style>
+.add-chat-container {
+  margin-bottom: 32px;
+}
+</style>
