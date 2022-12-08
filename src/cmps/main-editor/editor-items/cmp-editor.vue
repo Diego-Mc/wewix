@@ -201,7 +201,6 @@ export default {
     },
 
     updateOptionsMeta({ key, val }) {
-      console.log('key, val:', key, val)
       if (key === 'src' && this.isOptionsContain('backgroundImage')) {
         this.updatedOptions.style.backgroundImage = val
       } else {
