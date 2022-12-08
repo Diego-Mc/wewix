@@ -30,7 +30,7 @@
         @mouseenter="isHover[template.name] = true"
         @mouseleave="isHover[template.name] = false">
         <div class="template-actions">
-          <button class="preview-btn">PREVIEW</button>
+          <button class="preview-btn" @click="preview(template.id)">PREVIEW</button>
           <button class="edit-btn" @click="openEditor(template.id)">
             EDIT
           </button>
@@ -90,6 +90,9 @@ export default {
     swapAuthModal(modalType) {
       this.authModal.isShown = modalType
     },
+    preview(id) {
+        this.$router.push(`/${id}`)
+    }
   },
 
   computed: {
@@ -107,27 +110,27 @@ export default {
         },
         {
           name: 'Product',
-          id: 'template-1',
+          id: 'template1',
           img: 'https://res.cloudinary.com/wewix/image/upload/v1670428298/site-previews/goby-preview-site_hiwx9v.png',
         },
         {
           name: 'Local Business',
-          id: 'template-2',
+          id: 'template2',
           img: 'https://res.cloudinary.com/wewix/image/upload/v1670428298/site-previews/yoga-preview-site_lig7fy.png',
         },
         {
           name: "Sport's shop",
-          id: 'template-3',
+          id: 'template3',
           img: 'https://res.cloudinary.com/wewix/image/upload/v1670428300/site-previews/kite-preview-site_aowkrp.png',
         },
         {
           name: 'Food truck',
-          id: 'template-4',
+          id: 'template4',
           img: 'https://res.cloudinary.com/wewix/image/upload/v1670428296/site-previews/plantify-preview-site_lfoxvp.png',
         },
         {
           name: 'Design Agency',
-          id: 'template-5',
+          id: 'template5',
           img: 'https://res.cloudinary.com/wewix/image/upload/v1670428300/site-previews/creative-preview-site_kjnnnn.png',
         },
       ]

@@ -185,7 +185,7 @@ export default {
     getDemoData() {
       var chance = new Chance()
       const demoData = []
-      for (var i = 0; i < 1500; i++) {
+      for (var i = 0; i < 150; i++) {
         demoData.push({
           firstName: chance.name().split(' ')[0],
           lastName: chance.name().split(' ')[0],
