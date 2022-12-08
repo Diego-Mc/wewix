@@ -36,12 +36,24 @@
       <div v-if="isOptionsContain('src')">
         <edit-upload-section @select="updateOptionsMeta" />
 
-        <input
+        <input v-if="!isOptionsContain('backgroundImage')"
           @input="updateOptions"
           v-model="updatedOptions.meta.src"
           type="text"
           placeholder="src" />
       </div>
+
+
+<!--  switch to image upload
+      <div v-if="isOptionsContain('backgroundImage')">
+        <edit-upload-section @select="updateOptionsMeta" />
+
+        <input
+          @input="updateOptions"
+          v-model="updatedOptions.style.backgroundImage"
+          type="text"
+          placeholder="src" />
+      </div> -->
 
       <div v-if="isOptionsContain('link')">
         Link
@@ -51,6 +63,27 @@
           type="text"
           placeholder="link" />
       </div>
+
+      <!-- <div v-if="isOptionsContain('backgroundImage')">
+        <edit-upload-section @select="updateOptionsStyle" />
+
+        <input
+          @input="updateOptions"
+          v-model="updatedOptions.style.backgroundImage"
+          type="text"
+          placeholder="src" />
+      </div> -->
+     
+      <div v-if="isOptionsContain('backgroundImage')">
+        background Image
+        <input
+          @input="updateOptions"
+          v-model="updatedOptions.style.backgroundImage"
+          type="text"
+          placeholder="backgroundImage" />
+      </div>
+
+     
 
       <div v-if="updatedOptions.meta.mapData">
         Map Data
@@ -168,12 +201,21 @@ export default {
     },
 
     updateOptionsMeta({ key, val }) {
-      this.updatedOptions.meta[key] = val
+      console.log('key, val:', key, val)
+      if (key === 'src' && this.isOptionsContain('backgroundImage')) {
+        this.updatedOptions.style.backgroundImage = val
+      } else {
+        this.updatedOptions.meta[key] = val
+      }
+
+      
       this.updateOptions()
     },
 
     //TODO CHANGE NAME
     updateOptions() {
+      if(this.updatedOptions.style.backgroundImage) this.updatedOptions.style.backgroundImage = `url(${this.updatedOptions.style.backgroundImage})`
+      
       eventBus.emit('cmpUpdated', {
         cmpId: this.id,
         elType: this.elType,

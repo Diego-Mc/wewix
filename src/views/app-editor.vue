@@ -147,7 +147,6 @@ export default {
     console.log(this.wap)
     this.initEventsFromBus()
     this.initHistory()
-    this.checkNewVisit() // TODO: only on published mode.
     if (this.wap.classState) {
       document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
     }
@@ -171,8 +170,10 @@ export default {
       this.authModal.destPage = destinationPage
     },
     dashboardLinkClicked() {
+      console.log('dashboard clocked')
       if (this.loggedinUser) this.$router.push('/dashboard')
       else {
+        this.isConfirmModalOpen = false
         this.setAuthModalMsg('dashboard')
         this.authModal.isShown = 'login'
       }
@@ -370,10 +371,11 @@ export default {
 
     async publishWap(wapName) {
       //TODO ADD USER MSGS
-      console.log('wa')
       if (!this.loggedinUser) {
         this.authModal.isShown = 'login'
+        console.log(this.isConfirmModalOpen)
         this.setAuthModalMsg('publishWap')
+        this.isConfirmModalOpen = false
         return
       }
       if (this.wap.isPublished) {
@@ -398,10 +400,6 @@ export default {
           title: 'Site is live! ',
           type: 'success',
         })
-
-        // window.open(routeData.href, '_blank');
-
-        // if (wapId) this.$router.push(`/${wapName}`)
       } catch (err) {
         console.log(err)
         this.$notify({

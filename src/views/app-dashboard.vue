@@ -31,7 +31,7 @@ export default {
   },
   async created() {
     if (!this.loggedinUser) return this.$router.push('/')
-    else if (!this.loggedinUser.waps) return
+    if (!this.loggedinUser.waps) return
     let waps = await this.getWaps()
 
     this.userWaps = waps
