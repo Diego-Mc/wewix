@@ -367,8 +367,40 @@ export default {
       eventBus.on('themeChanged', this.themeChanged)
       eventBus.on('removeCmp', this.removeCmp)
       eventBus.on('updateField', this.updateField)
+      eventBus.on('chatToggled', this.toggleChat)
     },
+    toggleChat() {
+      console.log(this.wap.chatData)
 
+      if (this.wap.chatData) {
+        this.wap.chatData = null
+        const idx = this.wap.cmps.findIndex((cmp) => cmp.type === 'wap-chat')
+        this.wap.cmps.splice(idx, 1)
+      } else {
+        this.wap.chatData = {
+          adminName: this.loggedinUser.fullname,
+          adminID: this.loggedinUser._id,
+          chatId: utilService.makeId(),
+        }
+        this.wap.cmps.push({
+          id: utilService.makeId(),
+          type: 'wap-chat',
+          options: {
+            meta: {
+              chatData: {
+                adminName: this.wap.chatData.adminName,
+                adminID: this.wap.chatData.adminID,
+                chatId: this.wap.chatData.chatId,
+              },
+            },
+          },
+        })
+        console.log(this.wap.chatData)
+      }
+      this.updateWap()
+
+      // this.wap.cmps.push() // chat
+    },
     async publishWap(wapName) {
       //TODO ADD USER MSGS
       if (!this.loggedinUser) {
@@ -413,7 +445,6 @@ export default {
       this.wap.name = wapName
       try {
         this.updateWap()
-        showUserMsg(`site name updated to ${wapName}`)
       } catch (err) {
         console.log(err)
       }
@@ -427,6 +458,7 @@ export default {
       eventBus.off('themeChanged')
       eventBus.off('removeCmp')
       eventBus.off('updateField')
+      eventBus.off('toggleChat')
     },
 
     async setSocketEvents() {

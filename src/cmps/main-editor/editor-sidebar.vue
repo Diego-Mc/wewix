@@ -43,12 +43,12 @@
           :opts="[
             { val: 'header', text: 'Header' },
             { val: 'hero', text: 'Hero' },
-            { val: 'contact', text: 'Contact' },
-            { val: 'cta', text: 'CTA' },
-            { val: 'testimonial', text: 'Testimonial' },
-            { val: 'text', text: 'Text' },
-            { val: 'about', text: 'About' },
+            { val: 'section', text: 'Section' },
             { val: 'gallery', text: 'Gallery' },
+            { val: 'cards', text: 'Cards' },
+            { val: 'testimonials', text: 'Testimonials' },
+            { val: 'contact', text: 'Contact' },
+            { val: 'video', text: 'Video' },
           ]" />
         <editor-btn-group
           class="mobile-section-names-btns"
@@ -62,18 +62,16 @@
           :opts="[
             { val: 'header', small: 'Header', sample: 'Hh' },
             { val: 'hero', small: 'Hero', sample: 'He' },
-            { val: 'contact', small: 'Contact', sample: 'Cc' },
-            { val: 'cta', small: 'CTA', sample: 'Ct' },
-            { val: 'testimonial', small: 'Testimonial', sample: 'Tt' },
-            { val: 'text', small: 'Text', sample: 'Tx' },
-            { val: 'about', small: 'About', sample: 'Ab' },
+            { val: 'section', small: 'Section', sample: 'Sc' },
             { val: 'gallery', small: 'Gallery', sample: 'Gl' },
+            { val: 'cards', small: 'Cards', sample: 'Cr' },
+            { val: 'testimonials', small: 'Testimonials', sample: 'Tt' },
+            { val: 'contact', small: 'Contact', sample: 'Cc' },
+            { val: 'video', small: 'Video', sample: 'Vd' },
           ]" />
       </nav>
-      <section
-        class="section-cmps"
-        :class="{ open: tabState.section === 'header' }">
-        <wap-templates />
+      <section class="section-cmps" :class="{ open: tabState.section }">
+        <wap-templates :cmpType="tabState.section" />
       </section>
     </section>
     <section
@@ -86,9 +84,8 @@
         :childCmpId="selectedCmp.childCmpId"
         :editOptions="selectedCmp.options"
         :elType="selectedCmp.elType"
-        :elDom="selectedCmp.elDom"
-        />
-        <h3 v-else>Select an element to edit</h3>
+        :elDom="selectedCmp.elDom" />
+      <h3 v-else>Select an element to edit</h3>
     </section>
 
     <section
@@ -99,7 +96,6 @@
       <general-editor />
     </section>
   </section>
-
 </template>
 
 <script>

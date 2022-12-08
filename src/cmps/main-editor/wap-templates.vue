@@ -3,7 +3,7 @@
     :sort="false"
     class="list-group section-cmp-previews"
     @start="startDrag"
-    :list="cmpsDropdownOptions"
+    :list="cmpToShow"
     item-key="id"
     :group="{
       name: 'sections',
@@ -34,6 +34,7 @@ import {
   wapChat,
 } from '../../services/wap-new-model'
 export default {
+  props: ['cmpType'],
   components: {
     draggable,
     cmpItem,
@@ -46,15 +47,15 @@ export default {
         getCmp('wap-section', 21),
         getCmp('wap-section', 22),
         getCmp('wap-section', 23),
-        getCmp('wap-section', 24),
-        getCmp('wap-section', 25),
+        getCmp('wap-section', 24), //
+        getCmp('wap-section', 25), //
         getCmp('wap-cards', 11),
         // getCmp('wap-footer', 4),
 
         // template 4
         getCmp('wap-header', 5),
         getCmp('wap-hero', 5),
-        getCmp('wap-section', 15),
+        getCmp('wap-section', 15), //
         getCmp('wap-section', 16),
         getCmp('wap-cards', 8),
         getCmp('wap-section', 17),
@@ -70,8 +71,8 @@ export default {
         getCmp('wap-section', 9),
         getCmp('wap-section', 10),
         getCmp('wap-cards', 6),
-        getCmp('wap-section', 11),
-        getCmp('wap-section', 12),
+        getCmp('wap-section', 11), //
+        getCmp('wap-section', 12), //
         getCmp('wap-section', 13),
         // getCmp('wap-section', 14),
 
@@ -128,7 +129,73 @@ export default {
       // ]
     },
   },
-
+  computed: {
+    cmpToShow() {
+      console.log('SDFSFSFFSD!!!')
+      switch (this.cmpType) {
+        case 'video':
+          return [getCmp('wap-section', 15), getCmp('wap-section', 25)]
+        case 'testimonials':
+          return [
+            getCmp('wap-section', 11),
+            getCmp('wap-section', 12),
+            getCmp('wap-section', 24),
+            wapChat,
+          ]
+        case 'section':
+          return [
+            getCmp('wap-section', 23),
+            getCmp('wap-section', 22),
+            getCmp('wap-section', 21),
+            getCmp('wap-section', 19),
+            getCmp('wap-section', 16),
+            getCmp('wap-section', 13),
+            getCmp('wap-section', 9),
+            getCmp('wap-section', 7),
+            getCmp('wap-section', 6),
+            getCmp('wap-section', 5),
+            getCmp('wap-section', 4),
+            getCmp('wap-section', 2),
+          ]
+        case 'hero':
+          return [
+            getCmp('wap-hero', 6),
+            getCmp('wap-hero', 5),
+            getCmp('wap-hero', 4),
+            getCmp('wap-hero', 3),
+            getCmp('wap-hero', 2),
+          ]
+        case 'header':
+          return [
+            getCmp('wap-header', 6),
+            getCmp('wap-header', 5),
+            getCmp('wap-header', 4),
+            getCmp('wap-header', 3),
+            getCmp('wap-header', 2),
+          ]
+        case 'gallery':
+          return [
+            getCmp('wap-section', 18),
+            getCmp('wap-section', 17),
+            getCmp('wap-section', 10),
+            getCmp('wap-section', 3),
+          ]
+        case 'contact':
+          return [getCmp('wap-section', 20)]
+        case 'cards':
+          return [
+            getCmp('wap-cards', 11),
+            getCmp('wap-cards', 9),
+            getCmp('wap-cards', 8),
+            getCmp('wap-cards', 6),
+            getCmp('wap-cards', 5),
+            getCmp('wap-cards', 4),
+            getCmp('wap-cards', 3),
+            getCmp('wap-cards', 2),
+          ]
+      }
+    },
+  },
 }
 </script>
 
