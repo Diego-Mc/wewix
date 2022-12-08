@@ -91,7 +91,8 @@ export default {
       this.authModal.isShown = modalType
     },
     preview(id) {
-        this.$router.push(`/${id}`)
+        // const route = `/template${parseInt(id)}`
+        // this.$router.push(`/${id}`)
     }
   },
 
@@ -110,27 +111,27 @@ export default {
         },
         {
           name: 'Product',
-          id: 'template1',
+          id: 'template-1',
           img: 'https://res.cloudinary.com/wewix/image/upload/v1670428298/site-previews/goby-preview-site_hiwx9v.png',
         },
         {
           name: 'Local Business',
-          id: 'template2',
+          id: 'template-2',
           img: 'https://res.cloudinary.com/wewix/image/upload/v1670428298/site-previews/yoga-preview-site_lig7fy.png',
         },
         {
           name: "Sport's shop",
-          id: 'template3',
+          id: 'template-3',
           img: 'https://res.cloudinary.com/wewix/image/upload/v1670428300/site-previews/kite-preview-site_aowkrp.png',
         },
         {
           name: 'Food truck',
-          id: 'template4',
+          id: 'template-4',
           img: 'https://res.cloudinary.com/wewix/image/upload/v1670428296/site-previews/plantify-preview-site_lfoxvp.png',
         },
         {
           name: 'Design Agency',
-          id: 'template5',
+          id: 'template-5',
           img: 'https://res.cloudinary.com/wewix/image/upload/v1670428300/site-previews/creative-preview-site_kjnnnn.png',
         },
       ]
