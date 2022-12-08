@@ -202,13 +202,22 @@ export default {
     },
 
     updateOptionsMeta({ key, val }) {
-      this.updatedOptions.meta[key] = val
+
+      if (key === 'src' && this.isOptionsContain('backgroundImage')) {
+        this.updatedOptions.meta[backgroundImage] = `url(https://res.cloudinary.com/projwewix/image/upload/v1670488894/2_omk8of.png)`
+        console.log('this.updatedOptions.meta[backgroundImage]:', this.updatedOptions.meta[backgroundImage])
+      } else {
+        this.updatedOptions.meta[key] = val
+      }
+
+      
       this.updateOptions()
     },
 
     //TODO CHANGE NAME
     updateOptions() {
       if(this.updatedOptions.style.backgroundImage) this.updatedOptions.style.backgroundImage = `url(${this.updatedOptions.style.backgroundImage})`
+      
       eventBus.emit('cmpUpdated', {
         cmpId: this.id,
         elType: this.elType,

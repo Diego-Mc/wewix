@@ -57,7 +57,7 @@ export default {
         )
         this.$emit('select', { key: 'src', val: data.url })
       } catch (err) {
-        throw new Error('Cannot Upload Image')
+        throw new Error(`${err}, Cannot Upload Image`)
       }
     },
   },
