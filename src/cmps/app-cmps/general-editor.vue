@@ -1,12 +1,10 @@
 //TODO: change default theme based on chosen template
 <template>
   <div>
-    <section>
-    <h6 class="edit-type-label">CHAT</h6>
-    <h3>
-      do you want a chat in your website? 
-    </h3>
-    <input type="checkbox" @click="emitChatToggled">
+    <section class="add-chat-container">
+      <h6 class="edit-type-label">CHAT</h6>
+      <h3 class="add-chat">Add chat?</h3>
+      <input type="checkbox" :checked="isWapHasChat" @click="emitChatToggled" />
     </section>
 
     <!-- <ul>
@@ -62,7 +60,7 @@ export default {
       ],
     }
   },
-
+  created() {},
   methods: {
     handleThemeSelect({ key, val }) {
       eventBus.emit('themeChanged', { themeClass: val })
@@ -77,10 +75,15 @@ export default {
       eventBus.emit('themeChanged', this.classState)
       document.body.className = `${this.classState.fontClass} ${this.classState.themeClass}`
     },
-    emitChatToggled(){
+    emitChatToggled() {
       // TODO: add condition to return if user is guest
       eventBus.emit('chatToggled')
-    }
+    },
+  },
+  computed: {
+    isWapHasChat() {
+      return this.$store.getters.editedWap.chatData
+    },
   },
   components: {
     editorBtnGroup,
@@ -88,3 +91,10 @@ export default {
   },
 }
 </script>
+
+<style>
+.add-chat-container{
+  margin-bottom: 32px;
+
+}
+</style>
