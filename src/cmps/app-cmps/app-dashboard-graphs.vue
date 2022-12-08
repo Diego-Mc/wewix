@@ -1,35 +1,65 @@
 <template>
-  <section>
-
-    <section>
+  <!-- <section> -->
+  <!-- <section>
       <div v-for="wap in loggedinUserWaps">
         {{ wap }}
       </div>
+    </section> -->
+
+  <section class="graph-container">
+    <section class="dropdowns">
+      <el-dropdown @command="test2">
+        <span class="el-dropdown-link">
+          Chart Types
+          <i class="bi bi-chevron-down"></i>
+        </span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item
+              v-for="chart in chartsOptions"
+              :command="chart.value">
+              {{ chart.label }}
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+
+      <el-dropdown @command="test">
+        <span class="el-dropdown-link">
+          Data Type
+          <i class="bi bi-chevron-down"></i>
+        </span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item
+              v-for="stat in statsOptions"
+              :command="stat.value">
+              {{ stat.label }}
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </section>
 
-    <section class="charts-container">
-      <select v-model="selectedChart">
-        <option v-for="chart in chartsOptions" :value="chart.value">
-          {{ chart.label }}
-        </option>
-      </select>
-      <select v-model="selectedStat">
-        <option v-for="stat in statsOptions" :value="stat.value">
-          {{ stat.label }}
-        </option>
-      </select>
-      <component :is="selectedChart" :chartData="chartData" :options="graphOptions"></component>
+    <!-- <select v-model="selectedChart">
+      <option v-for="chart in chartsOptions" :value="chart.value">
+        {{ chart.label }}
+      </option>
+    </select>
+    <select v-model="selectedStat">
+      <option v-for="stat in statsOptions" :value="stat.value">
+        {{ stat.label }}
+      </option>
+    </select> -->
+    <section class="graph-wrapper">
+      <component
+        :is="selectedChart"
+        :chartData="chartData"
+        responsive
+        :options="graphOptions"></component>
     </section>
-
-    <section>
-      <h3>Statistics</h3>
-    </section>
-
-    <section>
-      <h3>Leads</h3>
-    </section>
-    
   </section>
+  <!-- </section> -->
 </template>
 
 <script>
@@ -121,6 +151,14 @@ export default {
   },
 
   methods: {
+    test(x) {
+      console.log('x', x)
+      this.selectedStat = x
+    },
+    test2(x) {
+      console.log('x', x)
+      this.selectedChart = x
+    },
     initWaps() {
       this.loggedinUserWaps = this.$store.getters.loggedinUserWaps
     },
@@ -269,9 +307,4 @@ export default {
 }
 </script>
 
-<style>
-.charts-container {
-  max-width: 400px;
-  height: 242;
-}
-</style>
+<style></style>

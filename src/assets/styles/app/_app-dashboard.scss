@@ -1,0 +1,145 @@
+.app-dashboard {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+}
+
+.dashboard-data {
+  margin: 20px;
+  border-radius: 8px;
+  padding: 48px 48px;
+  border: 1px solid #eee;
+}
+
+.dashboard-sidebar {
+  border-radius: 8px;
+  margin: 20px;
+  border: 1px solid #eee;
+  padding: 48px 12px;
+
+  .my-sites-header {
+    padding-inline: 12px;
+    font-size: em(24px);
+    margin-bottom: 20px;
+  }
+}
+
+.dashboard-data {
+  // padding: 25px 15px 100px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.graph-and-stats-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+}
+
+.dashboard-sidebar {
+}
+
+.dashboard-top-div {
+  display: flex;
+  justify-content: space-between;
+  // margin-bottom: 53px;
+  button {
+    border-radius: 3rem;
+  }
+  .edit-wap-btn {
+    background: $main;
+    border: 1px solid $main;
+    color: #ffffff;
+
+    &:hover {
+      background-color: lighten($main, 4%);
+      border-color: lighten($main, 4%);
+    }
+  }
+  .view-wap-btn {
+    border: 1px solid $main;
+    color: $main;
+    margin-right: 20px;
+    &:hover {
+      background-color: lighten($main, 4%);
+      border-color: lighten($main, 4%);
+      color: #fff;
+    }
+  }
+}
+
+.graph-and-stats-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  flex: 1;
+  gap: 80px;
+  align-items: center;
+  align-content: start;
+}
+
+.table-search {
+  max-width: 360px;
+}
+
+.dashboard-wap-stats {
+  display: grid;
+  // grid-template-columns: 160px 160px;
+  grid-template-columns: repeat(2, minmax(160px, 1fr));
+  gap: 20px;
+  font-family: PoppinsBold;
+  aspect-ratio: 1/1;
+  .wap-stat-block {
+    // color: $main;
+    // background-color: $main-light;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+    border: 2px solid #ddd;
+    color: #666;
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1/1;
+  }
+  h3 {
+    font-size: em(16px);
+    font-family: PoppinsRegular;
+  }
+  .stat-count {
+    color: #333;
+    font-size: em(26px);
+    font-weight: 600;
+  }
+}
+
+.charts-container {
+  max-width: 400px;
+  height: 242;
+}
+
+.graph-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  .dropdowns {
+    display: flex;
+    gap: 20px;
+  }
+  .graph-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    > div {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
