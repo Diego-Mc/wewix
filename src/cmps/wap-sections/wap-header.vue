@@ -1,4 +1,3 @@
-<!-- @click.stop="emitSelect({ cmpId })" -->
 <template>
   <draggable
     class="list-group wap-header"
