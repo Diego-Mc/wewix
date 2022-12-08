@@ -351,24 +351,6 @@ export default {
       eventBus.emit('openCmpEditor')
     },
 
-    addUserInfo(userInfo) {
-      if (userInfo.type === 'subscription')
-        this.wap.usersData.subscriptions.push(userInfo)
-      else this.wap.usersData.contacts.push(userInfo)
-      try {
-      this.updateWap()
-      this.$notify({
-          title: 'message sent successfully',
-          type: 'success',
-        })
-      } catch (error) {
-        this.$notify({
-          title: 'couldnt send message',
-          type: 'error',
-        })
-      }
-
-    },
     initEventsFromBus() {
       eventBus.on('cmpUpdated', this.handleUpdate)
       eventBus.on('onInnerCmpDrop', ({ cmpId, cmps }) => {
@@ -376,7 +358,6 @@ export default {
         this.wap.cmps[cmpIndex].cmps = cmps
         this.updateWap()
       })
-      eventBus.on('formSubmited', this.addUserInfo)
       eventBus.on('undo', this.undo)
       eventBus.on('redo', this.redo)
       eventBus.on('select', this.cmpSelected)
@@ -384,17 +365,7 @@ export default {
       eventBus.on('removeCmp', this.removeCmp)
       eventBus.on('updateField', this.updateField)
     },
-    checkNewVisit() {
-      if (!sessionStorage.getItem('newVisit', 'new!')) {
-        const currVisit = { createdAt: Date.now() }
-        this.wap.visits
-          ? this.wap.visits.push(currVisit)
-          : (this.wap.visits = [currVisit])
-        sessionStorage.setItem('newVisit', 'new!')
-        console.log('new visit!', this.wap.visits)
-        this.updateWap()
-      }
-    },
+
     async publishWap(wapName) {
       //TODO ADD USER MSGS
       console.log('wa')
@@ -451,7 +422,6 @@ export default {
       eventBus.off('select')
       eventBus.off('cmpUpdated')
       eventBus.off('onInnerCmpDrop')
-      eventBus.off('formSubmited')
       eventBus.off('undo')
       eventBus.off('redo')
       eventBus.off('themeChanged')
