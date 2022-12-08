@@ -5,7 +5,7 @@
   }
   font-family: PoppinsRegular;
   color: $btn-dark;
-  font-size: rem(16px);
+  font-size: 16px;
   display: grid;
   grid-template-columns: 1fr minmax(0, 1700px) 1fr;
   > * {
@@ -33,11 +33,11 @@
     color: white;
     display: flex;
     flex-direction: column;
-    padding-top: 6rem;
+    padding-top: 6em;
     padding-bottom: 0;
     position: relative;
     h1 {
-      font-size: 5.2rem;
+      font-size: 5.2em;
       font-family: PoppinsBold;
       line-height: 1.2;
 
@@ -57,7 +57,7 @@
       }
     }
     p {
-      font-size: rem(16px);
+      font-size: em(16px);
       position: relative;
       margin-bottom: 16px;
       @media screen and (max-width: 1180px) {
@@ -72,15 +72,15 @@
       }
     }
     button {
-      font-size: rem(16px);
+      font-size: em(16px);
       // border: 1px solid white;
       background-color: white;
       color: $btn-dark;
       font-family: PoppinsBold;
       display: inline;
       width: fit-content;
-      border-radius: 3rem;
-      padding: 1rem 2.6rem;
+      border-radius: 3em;
+      padding: 1em 2.6em;
       background: linear-gradient(140deg, #fff 0%, #fff 70%);
       transition: background 0.1s;
       &:hover {
@@ -107,19 +107,33 @@
         right: 0;
         height: 26%;
       }
+
+      @media screen and (max-width: 920px) {
+        img {
+          display: none;
+        }
+        &::before {
+          display: none;
+        }
+      }
+    }
+
+    @media screen and (max-width: 920px) {
+      padding-block: 6em;
+      // min-height: 80vh;
     }
   }
   .features {
     @include grid(1);
     text-align: center;
-    margin-top: 5rem;
-    margin-bottom: 6rem;
+    margin-top: 5em;
+    margin-bottom: 6em;
 
     .title-wrapper {
       font-family: PoppinsBold;
       margin-bottom: 120px;
       h2 {
-        font-size: rem(42px);
+        font-size: em(42px);
       }
     }
 
@@ -131,10 +145,10 @@
       grid-template-columns: repeat(auto-fit, minmax(200px, 30%));
       .card {
         i {
-          font-size: rem(24px);
+          font-size: em(24px);
         }
         h3 {
-          font-size: rem(18px);
+          font-size: em(18px);
           font-family: PoppinsBold;
           margin-block: 24px 10px;
         }
@@ -144,11 +158,11 @@
 
   .demo {
     @include grid(1);
-    margin-bottom: 6rem;
+    margin-bottom: 6em;
     h3 {
       font-family: PoppinsBold;
       text-align: center;
-      font-size: rem(42px);
+      font-size: em(42px);
       margin-bottom: 40px;
 
       span {
@@ -186,7 +200,7 @@
         width: 100%;
         overflow: visible;
         video {
-          // border-radius: rem(8px);
+          // border-radius: em(8px);
           // box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
           //   0 6px 6px rgba(0, 0, 0, 0.23);
           box-shadow: 20px 20px 0 $main;
@@ -197,7 +211,7 @@
           margin-bottom: 60px;
           h4 {
             font-family: PoppinsBold;
-            font-size: rem(18px);
+            font-size: em(18px);
             margin-bottom: 4px;
           }
           p {
@@ -212,20 +226,20 @@
     color: white;
     @include grid(1);
     justify-items: center;
-    padding-block: 8rem 4rem;
+    padding-block: 8em 4em;
     h2 {
-      font-size: rem(36px);
+      font-size: em(36px);
       font-family: PoppinsBold;
       text-align: center;
     }
     button {
-      font-size: rem(18px);
+      font-size: em(18px);
       border: 1px solid white;
       display: inline;
       width: fit-content;
-      border-radius: 3rem;
-      padding: 1rem 3rem;
-      margin-bottom: 4rem;
+      border-radius: 3em;
+      padding: 1em 3em;
+      margin-bottom: 4em;
       transition: background-color 0.1s;
       &:hover {
         background-color: white;
@@ -242,7 +256,7 @@
         display: flex;
         cursor: pointer;
         gap: 8px;
-        font-size: rem(24px);
+        font-size: em(24px);
         font-family: 'PoppinsBold';
         align-items: center;
         color: rgba($color: #fff, $alpha: 0.5);
@@ -252,12 +266,12 @@
         }
         img {
           color: white;
-          height: rem(24px);
+          height: em(24px);
         }
       }
       nav {
         display: flex;
-        gap: rem(24px);
+        gap: em(24px);
         color: rgba($color: #fff, $alpha: 0.5);
         transition: all 0.2s;
         a:hover {
@@ -266,7 +280,30 @@
       }
     }
   }
+
   @media screen and (max-width: 1770px) {
     max-width: 1770px;
+  }
+
+  @media screen and (max-width: 620px) {
+    .title-wrapper .decor {
+      width: 60vw;
+    }
+    .logo {
+      h1 {
+        display: none;
+      }
+    }
+    font-size: 12px;
+    grid-template-columns: 0 minmax(0, 1fr) 0;
+    > * {
+      padding-inline: 20px !important;
+    }
+    .header-container {
+      grid-template-columns: 0 minmax(0, 1fr) 0;
+      .app-header {
+        padding-inline: 20px !important;
+      }
+    }
   }
 }

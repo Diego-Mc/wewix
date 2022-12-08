@@ -13,6 +13,7 @@
     background-color: #fff;
     z-index: 190;
     height: 100%;
+    height: calc(100vh - $main-header-height - $editor-header-height);
     padding-top: 8px;
   }
   .section-select {
@@ -36,6 +37,7 @@
       }
 
       width: $editor-section-names-width;
+      height: calc(100vh - $main-header-height - $editor-header-height);
       position: absolute;
       background-color: #fff;
       height: 100%;
@@ -57,6 +59,7 @@
       left: $editor-section-cmps-width * -1;
       background-color: #fff;
       height: 100%;
+      height: calc(100vh - $main-header-height - $editor-header-height);
       overflow-y: scroll;
 
       .section-cmp-previews {
