@@ -26,8 +26,8 @@
           >&nbspand publish</span
         ></el-button
       >
+      <button class="toggle-auth-link" @click.prevent="backToLogin">To login</button>
     </form>
-    <button class="toggle-auth-link" @click="backToLogin">back to login</button>
   </div>
 </template>
 

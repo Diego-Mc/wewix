@@ -183,6 +183,15 @@ li {
   width: 100%;
 }
 
+.ghost img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.ghost i {
+  display: none;
+}
+
 .list-group {
   min-height: 20px;
 }

@@ -1,9 +1,15 @@
 <template>
   <app-header />
-  <p>{{ msg }}</p>
-  <div>
-    <login-modal @authenticated="authenticated" :isModalInAuthPage="true" :msg="'login'"/>
-  </div>
+
+  <section class="auth-page">
+    <p>{{ msg }}</p>
+    <div>
+      <login-modal
+        @authenticated="authenticated"
+        :isModalInAuthPage="true"
+        :msg="'login'" />
+    </div>
+  </section>
 </template>
 
 <script>
@@ -18,8 +24,25 @@ export default {
   methods: {
     authenticated() {
       this.$emit('authenticated', 'login')
-
     },
   },
 }
 </script>
+
+<style lang="scss">
+.auth-page{
+  margin-top: 40px;
+  .auth-modal{
+    form{
+
+      width: 500px;
+
+    }
+    .auth-input{
+      width: 100%;
+      height: 50px;
+    }
+
+  }
+}
+</style>
