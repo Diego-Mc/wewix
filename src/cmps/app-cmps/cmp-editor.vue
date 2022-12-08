@@ -115,6 +115,7 @@ export default {
         ...Object.keys(this.editOptions.style),
         ...Object.keys(this.editOptions.meta),
       ]
+      console.log(this.editOptions.style);
       console.log('cmp', options.includes(type))
 
       return options.includes(type)

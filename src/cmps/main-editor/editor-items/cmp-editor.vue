@@ -73,16 +73,7 @@
           type="text"
           placeholder="src" />
       </div> -->
-     
-      <div v-if="isOptionsContain('backgroundImage')">
-        background Image
-        <input
-          @input="updateOptions"
-          v-model="updatedOptions.style.backgroundImage"
-          type="text"
-          placeholder="backgroundImage" />
-      </div>
-
+    
      
 
       <div v-if="updatedOptions.meta.mapData">
@@ -192,6 +183,7 @@ export default {
         ...Object.keys(this.editOptions.style),
         ...Object.keys(this.editOptions.meta),
       ]
+      console.log(this.editOptions.style);
       return options.includes(type)
     },
 
