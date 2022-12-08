@@ -21,14 +21,16 @@
       <div v-if="isOptionsContain('borderRadius')">
         <edit-radius-section
           @select="updateStyleValToEm"
-          :borderRadius="parseFloat(editOptions.style.borderRadius)" />
+          :borderRadius="parseFloat(editOptions.style.borderRadius)"
+        />
       </div>
 
       <!-- TODO: add style to fontSize -->
       <div v-if="isOptionsContain('fontSize')">
         <edit-font-size-section
           @select="updateStyleValToEm"
-          :fontSize="parseFloat(editOptions.style.fontSize)" />
+          :fontSize="parseFloat(editOptions.style.fontSize)"
+          :elStyle="getElStyle('font-size')" />
       </div>
     </section>
 
@@ -100,6 +102,7 @@
         <el-button type="danger" @click.stop="onRemoveCmp">Remove</el-button>
       </div>
     </section>
+
   </section>
 </template>
 
@@ -129,9 +132,6 @@ export default {
   data() {
     return {
       updatedOptions: JSON.parse(JSON.stringify(this.editOptions)),
-
-      loadedMapLocation: null,
-      isMapLocationLoader: false,
     }
   },
 
@@ -243,18 +243,21 @@ export default {
       this.isMapLocationLoader = false
     },
     log() {
-      window.getComputedStyle(this.elDom)
+      if (!this.elDom) return
+      console.log('window.getComputedStyle(this.elDom):', window.getComputedStyle(this.elDom))
       this.elDom.style.height = Math.floor(Math.random() * 100) + 'px'
     },
+
+    getElStyle(styleProp) {
+      //console.log('this.elDom:', this.elDom)
+      //return window.getComputedStyle(this.elDom).getPropertyValue(styleProp)
+    }
   },
+
   watch: {
     editOptions() {
       this.updatedOptions = JSON.parse(JSON.stringify(this.editOptions))
     },
-  },
-
-  created() {
-    this.getMapData = utilService.debounce(this.getMapData, 1500)
   },
 
   components: {
