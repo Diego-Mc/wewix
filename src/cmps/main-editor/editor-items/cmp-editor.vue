@@ -42,18 +42,16 @@
           type="text"
           placeholder="src" />
       </div>
-
-
-<!--  switch to image upload
+      
       <div v-if="isOptionsContain('backgroundImage')">
         <edit-upload-section @select="updateOptionsMeta" />
 
-        <input
+        <input 
           @input="updateOptions"
           v-model="updatedOptions.style.backgroundImage"
           type="text"
           placeholder="src" />
-      </div> -->
+      </div>
 
       <div v-if="isOptionsContain('link')">
         Link
@@ -63,27 +61,6 @@
           type="text"
           placeholder="link" />
       </div>
-
-      <!-- <div v-if="isOptionsContain('backgroundImage')">
-        <edit-upload-section @select="updateOptionsStyle" />
-
-        <input
-          @input="updateOptions"
-          v-model="updatedOptions.style.backgroundImage"
-          type="text"
-          placeholder="src" />
-      </div> -->
-     
-      <div v-if="isOptionsContain('backgroundImage')">
-        background Image
-        <input
-          @input="updateOptions"
-          v-model="updatedOptions.style.backgroundImage"
-          type="text"
-          placeholder="backgroundImage" />
-      </div>
-
-     
 
       <div v-if="updatedOptions.meta.mapData">
         Map Data
