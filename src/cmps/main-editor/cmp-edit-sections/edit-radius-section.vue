@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  props: ['borderRadius'],
+  props: ['borderRadius', 'elStyle'],
   data() {
     return {
       borderRadiusToEdit: this.borderRadius || 0 
@@ -19,6 +19,9 @@ export default {
       this.$emit('select', { key: 'borderRadius', val: this.borderRadiusToEdit })
     },
   },
+  created() {
+    console.log(this.elStyle);
+  }
 }
 </script>
 

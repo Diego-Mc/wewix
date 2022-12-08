@@ -19,51 +19,35 @@
       </div>
 
       <div v-if="isOptionsContain('borderRadius')">
-        <edit-radius-section
-          @select="updateStyleValToEm"
-          :borderRadius="parseFloat(editOptions.style.borderRadius)" />
+        <edit-radius-section @select="updateStyleValToEm" :borderRadius="parseFloat(editOptions.style.borderRadius)"
+          :elStyle="getElStyle('border-radius')" />
       </div>
 
       <!-- TODO: add style to fontSize -->
       <div v-if="isOptionsContain('fontSize')">
-        <edit-font-size-section
-          @select="updateStyleValToEm"
-          :fontSize="parseFloat(editOptions.style.fontSize)" />
+        <edit-font-size-section 
+            @select="updateStyleValToEm" 
+            :fontSize="getElStyle('font-size')" />
       </div>
     </section>
 
     <section class="content-editor">
       <div v-if="isOptionsContain('src')">
         <edit-upload-section @select="updateOptionsMeta" />
-<!-- 
-        <input v-if="!isOptionsContain('backgroundImage')"
-          @input="updateOptions"
-          v-model="updatedOptions.meta.src"
-          type="text"
-          placeholder="src"  -->
       </div>
-      
+
       <div v-if="isOptionsContain('backgroundImage')">
         <edit-upload-section @select="updateOptionsMeta" />
-        <!-- <input 
-          @input="updateOptions"
-          v-model="updatedOptions.style.backgroundImage"
-          type="text"
-          placeholder="src" /> -->
       </div>
 
       <div v-if="isOptionsContain('link')">
         Link
-        <input 
-          @input="updateOptions"
-          v-model="updatedOptions.meta.link"
-          type="text"
-          placeholder="link" />
+        <input @input="updateOptions" v-model="updatedOptions.meta.link" type="text" placeholder="link" />
       </div>
 
-      <div v-if="updatedOptions.meta.mapData">
+      <edit-map-section v-if="isOptionsContain('mapData')" @select="updateOptionsMeta" />
+      <!-- <div v-if="isOptionsContain('mapData')">
         Map Data
-
         <input @input="handleMapInput($event)" type="text" />
         <div v-if="isMapLocationLoader">
           <span v-if="loadedMapLocation">
@@ -71,12 +55,11 @@
           </span>
           <span v-else> Loading </span>
         </div>
-      </div>
+      </div> -->
 
-      <div v-if="isOptionsContain('animation')">
-        <edit-animation-section
-          @select="updateOptionsMeta"
-          :animation="editOptions.meta.animation" />
+      <div>
+        <edit-animation-section @select="updateOptionsMeta" :animation="editOptions.meta.animation"
+          :elDom="getElStyle('font-size')" />
       </div>
 
       <div v-if="isOptionsContain('formInputs')">
@@ -84,27 +67,20 @@
 
         <div v-for="(field, idx) in updatedOptions.meta.formInputs">
           <div>
-            <input
-              @input="fieldChanged(id, idx, $event)"
-              :value="field.tag"
-              type="text" />
+            <input @input="fieldChanged(id, idx, $event)" :value="field.tag" type="text" />
             <button @click="fieldRemoved(id, idx)">X</button>
           </div>
         </div>
         <el-button type="primary" @click="fieldAdded(id)" style="width: 100%; background: green; margin-bottom: 10px">
           add field
         </el-button>
-        <!-- <input
-          @input="updateOptions"
-          v-model="updatedOptions.meta.link"
-          type="text"
-          placeholder="link" /> -->
       </div>
 
       <div>
         <el-button type="danger" @click.stop="onRemoveCmp">Remove</el-button>
       </div>
     </section>
+
   </section>
 </template>
 
@@ -121,6 +97,7 @@ import editBgColorSection from '../cmp-edit-sections/edit-bg-color-section.vue'
 import editRadiusSection from '../cmp-edit-sections/edit-radius-section.vue'
 import editUploadSection from '../cmp-edit-sections/edit-upload-section.vue'
 import editAnimationSection from '../cmp-edit-sections/edit-animation-section.vue'
+import editMapSection from '../cmp-edit-sections/edit-map-section.vue'
 
 export default {
   props: {
@@ -133,9 +110,6 @@ export default {
   data() {
     return {
       updatedOptions: JSON.parse(JSON.stringify(this.editOptions)),
-
-      loadedMapLocation: null,
-      isMapLocationLoader: false,
     }
   },
 
@@ -177,21 +151,20 @@ export default {
     },
 
     updateOptionsMeta({ key, val }) {
-      console.log('key, val:', key, val)
       if (key === 'src' && this.isOptionsContain('backgroundImage')) {
         this.updatedOptions.style.backgroundImage = val
       } else {
         this.updatedOptions.meta[key] = val
       }
 
-      
+
       this.updateOptions()
     },
 
     //TODO CHANGE NAME
     updateOptions() {
-      if(this.updatedOptions.style.backgroundImage) this.updatedOptions.style.backgroundImage = `url(${this.updatedOptions.style.backgroundImage})`
-      
+      if (this.updatedOptions.style.backgroundImage) this.updatedOptions.style.backgroundImage = `url(${this.updatedOptions.style.backgroundImage})`
+
       eventBus.emit('cmpUpdated', {
         cmpId: this.id,
         elType: this.elType,
@@ -248,29 +221,37 @@ export default {
       this.isMapLocationLoader = false
     },
     log() {
-      window.getComputedStyle(this.elDom)
+      if (!this.elDom) return
+      console.log('window.getComputedStyle(this.elDom):', window.getComputedStyle(this.elDom))
       this.elDom.style.height = Math.floor(Math.random() * 100) + 'px'
     },
-  },
-  watch: {
-    editOptions() {
-      this.updatedOptions = JSON.parse(JSON.stringify(this.editOptions))
+
+    getElStyle(styleProp) {
+      console.log('this.elDom:', this.elDom)
+
+      if (this.elDom) {
+        console.log('window.getComputedStyle(this.elDom).getPropertyValue(styleProp):', window.getComputedStyle(this.elDom).getPropertyValue(styleProp))
+        return window.getComputedStyle(this.elDom).getPropertyValue(styleProp)
+      }
     },
   },
 
-  created() {
-    this.getMapData = utilService.debounce(this.getMapData, 1500)
-  },
+    watch: {
+      editOptions() {
+        this.updatedOptions = JSON.parse(JSON.stringify(this.editOptions))
+      },
+    },
 
-  components: {
-    editFontSection,
-    editFontWeightSection,
-    editColorSection,
-    editBgColorSection,
-    editRadiusSection,
-    editUploadSection,
-    editFontSizeSection,
-    editAnimationSection,
-  },
-}
+    components: {
+      editFontSection,
+      editFontWeightSection,
+      editColorSection,
+      editBgColorSection,
+      editRadiusSection,
+      editUploadSection,
+      editFontSizeSection,
+      editAnimationSection,
+      editMapSection
+    },
+  }
 </script>
