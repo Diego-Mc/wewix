@@ -2206,7 +2206,6 @@ wapsMap.set('wap-hero-4', {
     'https://res.cloudinary.com/wewix/image/upload/v1670410157/waps/wap-hero-4_gqivo0.png',
   options: {
     meta: {
-      src: '',
     },
     style: {
       ...getStyles(),
@@ -2681,7 +2680,6 @@ wapsMap.set('wap-cards-6', {
         img2: {
           options: {
             meta: {
-              src: '',
             },
             style: getStyles('img'),
           },
@@ -2880,7 +2878,6 @@ wapsMap.set('wap-section-13', {
     'https://res.cloudinary.com/wewix/image/upload/v1670410155/waps/wap-section-13_jxbohe.png',
   options: {
     meta: {
-      src: '',
     },
     style: getStyles(),
   },
@@ -3197,7 +3194,6 @@ wapsMap.set('wap-hero-5', {
     'https://res.cloudinary.com/wewix/image/upload/v1670410156/waps/wap-hero-5_ubplty.png',
   options: {
     meta: {
-      src: '',
     },
     style: {
       ...getStyles(),
@@ -3213,7 +3209,6 @@ wapsMap.set('wap-hero-5', {
       typeId: 18,
       options: {
         meta: {
-          src: '',
         },
         style: getStyles(),
       },
@@ -3611,7 +3606,6 @@ wapsMap.set('wap-section-17', {
           options: {
             meta: {
               // i think icons are from an icon collection
-              src: '',
             },
             style: getStyles('tag'),
           },
@@ -3665,8 +3659,7 @@ wapsMap.set('wap-section-17', {
 //           options: {
 //             meta: {
 //               // i think icons are from an icon collection
-//               src: '',
-//             },
+// //             },
 //             style: getStyles('subtitle'),
 //           },
 //           content: { text: 'Services' },
@@ -3950,7 +3943,6 @@ wapsMap.set('wap-section-18', {
           options: {
             meta: {
               // i think icons are from an icon collection
-              src: '',
             },
             style: getStyles('tag'),
           },
@@ -4105,7 +4097,6 @@ wapsMap.set('wap-cards-9', {
           options: {
             meta: {
               // i think icons are from an icon collection
-              src: '',
             },
             style: getStyles('details'),
           },
@@ -4180,7 +4171,6 @@ wapsMap.set('wap-cards-9', {
           options: {
             meta: {
               // i think icons are from an icon collection
-              src: '',
             },
             style: getStyles('details'),
           },
@@ -4255,7 +4245,6 @@ wapsMap.set('wap-cards-9', {
           options: {
             meta: {
               // i think icons are from an icon collection
-              src: '',
             },
             style: getStyles('details'),
           },
@@ -4616,7 +4605,6 @@ wapsMap.set('wap-hero-6', {
     'https://res.cloudinary.com/wewix/image/upload/v1670410155/waps/wap-hero-6_y3ffwo.png',
   options: {
     meta: {
-      src: '',
     },
     style: {
       ...getStyles(),
@@ -4632,7 +4620,6 @@ wapsMap.set('wap-hero-6', {
       typeId: 26,
       options: {
         meta: {
-          src: '',
         },
         style: getStyles(),
       },
@@ -4649,7 +4636,6 @@ wapsMap.set('wap-hero-6', {
         text: {
           options: {
             meta: {
-              src: '',
             },
             style: getStyles('text'),
           },
@@ -4668,7 +4654,6 @@ wapsMap.set('wap-section-21', {
     'https://res.cloudinary.com/wewix/image/upload/v1670410156/waps/wap-section-21_zgcnal.png',
   options: {
     meta: {
-      src: '',
     },
     style: getStyles(),
   },
@@ -4722,7 +4707,6 @@ wapsMap.set('wap-section-22', {
     'https://res.cloudinary.com/wewix/image/upload/v1670410157/waps/wap-section-22_pgrihm.png',
   options: {
     meta: {
-      src: '',
     },
     style: {
       ...getStyles(),
@@ -4737,7 +4721,6 @@ wapsMap.set('wap-section-22', {
       typeId: 27,
       options: {
         meta: {
-          src: '',
         },
         style: getStyles(),
       },
@@ -4847,7 +4830,6 @@ wapsMap.set('wap-section-25', {
     'https://res.cloudinary.com/wewix/image/upload/v1670410158/waps/wap-video-section-25_l7syts.png',
   options: {
     meta: {
-      src: '',
     },
     style: getStyles(),
   },
@@ -5072,7 +5054,6 @@ wapsMap.set('wap-cards-11', {
           options: {
             meta: {
               // i think icons are from an icon collection
-              src: '',
             },
             style: getStyles('tag'),
           },
@@ -5102,7 +5083,6 @@ wapsMap.set('wap-cards-11', {
           options: {
             meta: {
               // i think icons are from an icon collection
-              src: '',
             },
             style: getStyles('title'),
           },
@@ -5177,7 +5157,6 @@ wapsMap.set('wap-cards-11', {
           options: {
             meta: {
               // i think icons are from an icon collection
-              src: '',
             },
             style: getStyles('title'),
           },
@@ -5296,7 +5275,6 @@ wapsMap.set('footer-4', {
         img1: {
           options: {
             meta: {
-              src: '',
             },
             style: getStyles('nav'),
           },
@@ -5305,7 +5283,6 @@ wapsMap.set('footer-4', {
         img2: {
           options: {
             meta: {
-              src: '',
             },
             style: getStyles('nav'),
           },
@@ -5314,7 +5291,6 @@ wapsMap.set('footer-4', {
         img3: {
           options: {
             meta: {
-              src: '',
             },
             style: getStyles('nav'),
           },
@@ -5323,7 +5299,6 @@ wapsMap.set('footer-4', {
         img4: {
           options: {
             meta: {
-              src: '',
             },
             style: getStyles('nav'),
           },

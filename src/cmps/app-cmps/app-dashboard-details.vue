@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import { isTemplateNode } from '@vue/compiler-core'
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
 import { utilService } from '../../services/util.service'
 import { wapService } from '../../services/wap.service.local'
@@ -63,6 +64,9 @@ import {
 export default {
   props: {
     usersData: Array,
+  },
+  created() {
+    this.$store.dispatch({ type: 'loadWaps' })
   },
   data() {
     return {
@@ -132,9 +136,6 @@ export default {
     waps() {
       return this.$store.getters.waps
     },
-  },
-  created() {
-    this.$store.dispatch({ type: 'loadWaps' })
   },
   methods: {
     keyForDisplay(key, user) {
