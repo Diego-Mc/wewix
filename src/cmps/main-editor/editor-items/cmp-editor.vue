@@ -43,6 +43,18 @@
           placeholder="src" />
       </div>
 
+
+<!--  switch to image upload
+      <div v-if="isOptionsContain('backgroundImage')">
+        <edit-upload-section @select="updateOptionsMeta" />
+
+        <input
+          @input="updateOptions"
+          v-model="updatedOptions.style.backgroundImage"
+          type="text"
+          placeholder="src" />
+      </div> -->
+
       <div v-if="isOptionsContain('link')">
         Link
         <input
@@ -51,6 +63,27 @@
           type="text"
           placeholder="link" />
       </div>
+
+      <!-- <div v-if="isOptionsContain('backgroundImage')">
+        <edit-upload-section @select="updateOptionsStyle" />
+
+        <input
+          @input="updateOptions"
+          v-model="updatedOptions.style.backgroundImage"
+          type="text"
+          placeholder="src" />
+      </div> -->
+     
+      <div v-if="isOptionsContain('backgroundImage')">
+        background Image
+        <input
+          @input="updateOptions"
+          v-model="updatedOptions.style.backgroundImage"
+          type="text"
+          placeholder="backgroundImage" />
+      </div>
+
+     
 
       <div v-if="updatedOptions.meta.mapData">
         Map Data
@@ -159,6 +192,7 @@ export default {
         ...Object.keys(this.editOptions.style),
         ...Object.keys(this.editOptions.meta),
       ]
+      console.log(type,options.includes(type));
       return options.includes(type)
     },
 
@@ -174,6 +208,7 @@ export default {
 
     //TODO CHANGE NAME
     updateOptions() {
+      if(this.updatedOptions.style.backgroundImage) this.updatedOptions.style.backgroundImage = `url(${this.updatedOptions.style.backgroundImage})`
       eventBus.emit('cmpUpdated', {
         cmpId: this.id,
         elType: this.elType,

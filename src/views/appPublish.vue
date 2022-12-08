@@ -56,9 +56,10 @@ export default {
       const wapName = this.$route.params.name
       await this.getWapByName(wapName)
       this.checkNewVisit()
-      this.$store.commit('setEditMode', { isEditMode: false })
       eventBus.on('formSubmited', this.addUserInfo)
     }
+    this.$store.commit('setEditMode', { isEditMode: false })
+
   },
   unmounted() {
     eventBus.off('formSubmited')

@@ -5,8 +5,8 @@
     :class="'type-' + typeId"
     :style="options.style">
     <div class="gallery-item" v-for="(cmp, key) in info">
-      <div class="img-container">
-        <img :src="cmp.options.meta.src" />
+      <div class="img-container" @click.stop="emitSelect(key)">
+        <img :src="cmp.options.meta.src"   />
       </div>
       <!-- @click.stop="emitSelect" -->
 
@@ -31,10 +31,14 @@ export default {
   methods: {
     // Change 'gallery' into 'img1'
     emitSelect(key) {
-      console.log('key', key)
-      eventBus.emit('select', {
+      console.log({
         cmpId: this.cmpId,
         elType: 'img' + key,
+        childCmpId: this.childCmpId,
+      })
+      eventBus.emit('select', {
+        cmpId: this.cmpId,
+        elType: key,
         childCmpId: this.childCmpId,
       })
     },

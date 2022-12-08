@@ -1,18 +1,19 @@
 <!-- TODO: add a function to check if src is yt link or if suer uploaded a video -->
 <template>
   <section class="wap-video" :class="'type-' + typeId">
-    <div class="video">
+        
+    <div class="video"    @click.stop="emitSelect('video')">
       <iframe
         v-if="info.video"
         width="560"
         height="315"
         :src="info?.video?.options?.meta?.src"
-        :style="info?.video?.options.style"
-        @click.stop="emitSelect('video')"
+        :style="{...info?.video?.options.style,pointerEvents: $store.getters.isEditMode ? 'none' : 'auto'}"
         @input="updateContent('video', $event)"
         title="YouTube video player"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      
         allowfullscreen></iframe>
     </div>
     <h3
@@ -61,6 +62,7 @@ export default {
       })
     },
     emitSelect(elType, e) {
+      console.log('type' ,elType);
       eventBus.emit('select', {
         cmpId: this.cmpId,
         childCmpId: this.childCmpId,
