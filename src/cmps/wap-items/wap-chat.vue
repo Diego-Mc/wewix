@@ -200,12 +200,12 @@ export default {
     getUser() {
       //TODO VERIFICATION WAPID === USERID
       const user = JSON.parse(JSON.stringify(this.$store.getters.loggedinUser))
+      console.log('user:', user)
       if (!user) return { nickname: 'guest', id: Math.random() + '' }
       user.isAdmin = true
       user.nickname = 'Admin'
       user.id = user._id
       delete user._id
-
       return user
     },
     setActiveConversation({ userId }) {
@@ -225,7 +225,6 @@ export default {
       this.isUserTyping[user] = false
     },
   },
-  computed: {},
 }
 </script>
 

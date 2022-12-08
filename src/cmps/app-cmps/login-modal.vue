@@ -76,7 +76,6 @@ export default {
         this.doLogout()
       }
       try {
-        debugger
         await this.$store.dispatch({ type: 'login', userCred: this.loginCred })
         if (this.isModalInAuthPage) {
           this.$router.push('/')
