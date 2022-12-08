@@ -1,17 +1,14 @@
 <!-- AIzaSyBOnIuYA6sTb4lF2WYWYJIUouv3HjIx2mg -->
 <template>
-  <section class="wap-map" @click.stop="emitSelect({cmpId},$event)">
+  <section class="wap-map" @click.stop="emitSelect({ cmpId }, $event)">
     <GoogleMap
-    
-    api-key="AIzaSyDKvG9VduLBhsz5HMIEo1Q9RQaX6B24Mck" 
-    style="width: 100%; height: 500px"
-    :center="center"
-    :zoom="10"
-  >
-    <Marker :options="marker"/>
-  </GoogleMap>
+      api-key="AIzaSyDKvG9VduLBhsz5HMIEo1Q9RQaX6B24Mck"
+      style="width: 100%; height: 500px"
+      :center="center"
+      :zoom="10">
+      <Marker :options="marker" />
+    </GoogleMap>
   </section>
-
 </template>
 
 <script>
@@ -22,7 +19,7 @@ import { eventBus } from '../../services/event-bus.service'
 export default {
   props: {
     cmpId: String,
-    options: Object
+    options: Object,
   },
   components: { GoogleMap, Marker },
   data() {
@@ -33,17 +30,21 @@ export default {
     }
   },
   computed: {
-      center() {
-          return (this.options?.meta?.mapData?.position?.lat) ? this.options.meta.mapData.position : { lat: 32.0853, lng: 34.7818 }
-      },
+    center() {
+      return this.options?.meta?.mapData?.position?.lat
+        ? this.options.meta.mapData.position
+        : { lat: 32.0853, lng: 34.7818 }
+    },
 
-      marker() {
-          return  (this.options?.meta?.mapData?.position?.lat) ? 
-                  this.options.meta.mapData : 
-                  {title: 'Tel-Aviv', label: 'TLV', position: { lat: 32.0853, lng: 34.7818 },
-        }
-
-      }
+    marker() {
+      return this.options?.meta?.mapData?.position?.lat
+        ? this.options.meta.mapData
+        : {
+            title: 'Tel-Aviv',
+            label: 'TLV',
+            position: { lat: 32.0853, lng: 34.7818 },
+          }
+    },
   },
 
   methods: {
@@ -51,18 +52,11 @@ export default {
       console.log('center:', this.center)
       console.log('marker:', this.marker)
     },
-    emitSelect(cmpInfo){
+    emitSelect(cmpInfo) {
       eventBus.emit('select', cmpInfo)
-    }
-  }
-
+    },
+  },
 }
 </script>
 
-<style>
-.wap-map {
-  padding: 50px;
-  background-color: violet;
-}
-</style>
-  
+<style></style>

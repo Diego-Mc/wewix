@@ -1330,8 +1330,7 @@ wapsMap.set('wap-hero-3', {
   previewImg:
     'https://res.cloudinary.com/wewix/image/upload/v1670410152/waps/wap-hero-3_sxscii.png',
   options: {
-    meta: {
-    },
+    meta: {},
     style: {
       ...getStyles(),
       backgroundImage:
@@ -2204,8 +2203,7 @@ wapsMap.set('wap-hero-4', {
   previewImg:
     'https://res.cloudinary.com/wewix/image/upload/v1670410157/waps/wap-hero-4_gqivo0.png',
   options: {
-    meta: {
-    },
+    meta: {},
     style: {
       ...getStyles(),
       backgroundImage:
@@ -2678,8 +2676,7 @@ wapsMap.set('wap-cards-6', {
         },
         img2: {
           options: {
-            meta: {
-            },
+            meta: {},
             style: getStyles('img'),
           },
           content: {},
@@ -2876,8 +2873,7 @@ wapsMap.set('wap-section-13', {
   previewImg:
     'https://res.cloudinary.com/wewix/image/upload/v1670410155/waps/wap-section-13_jxbohe.png',
   options: {
-    meta: {
-    },
+    meta: {},
     style: getStyles(),
   },
   cmps: [
@@ -3192,8 +3188,7 @@ wapsMap.set('wap-hero-5', {
   previewImg:
     'https://res.cloudinary.com/wewix/image/upload/v1670410156/waps/wap-hero-5_ubplty.png',
   options: {
-    meta: {
-    },
+    meta: {},
     style: {
       ...getStyles(),
       backgroundImage:
@@ -3207,8 +3202,7 @@ wapsMap.set('wap-hero-5', {
       type: 'wap-text-section',
       typeId: 18,
       options: {
-        meta: {
-        },
+        meta: {},
         style: getStyles(),
       },
       info: {
@@ -4603,8 +4597,7 @@ wapsMap.set('wap-hero-6', {
   previewImg:
     'https://res.cloudinary.com/wewix/image/upload/v1670410155/waps/wap-hero-6_y3ffwo.png',
   options: {
-    meta: {
-    },
+    meta: {},
     style: {
       ...getStyles(),
       backgroundImage:
@@ -4618,8 +4611,7 @@ wapsMap.set('wap-hero-6', {
       type: 'wap-text-section',
       typeId: 26,
       options: {
-        meta: {
-        },
+        meta: {},
         style: getStyles(),
       },
       info: {
@@ -4634,8 +4626,7 @@ wapsMap.set('wap-hero-6', {
         },
         text: {
           options: {
-            meta: {
-            },
+            meta: {},
             style: getStyles('text'),
           },
           content: { text: 'with simona' },
@@ -4652,8 +4643,7 @@ wapsMap.set('wap-section-21', {
   previewImg:
     'https://res.cloudinary.com/wewix/image/upload/v1670410156/waps/wap-section-21_zgcnal.png',
   options: {
-    meta: {
-    },
+    meta: {},
     style: getStyles(),
   },
   cmps: [
@@ -4705,8 +4695,7 @@ wapsMap.set('wap-section-22', {
   previewImg:
     'https://res.cloudinary.com/wewix/image/upload/v1670410157/waps/wap-section-22_pgrihm.png',
   options: {
-    meta: {
-    },
+    meta: {},
     style: {
       ...getStyles(),
       backgroundImage:
@@ -4719,8 +4708,7 @@ wapsMap.set('wap-section-22', {
       type: 'wap-text-section',
       typeId: 27,
       options: {
-        meta: {
-        },
+        meta: {},
         style: getStyles(),
       },
       info: {
@@ -4828,8 +4816,7 @@ wapsMap.set('wap-section-25', {
   previewImg:
     'https://res.cloudinary.com/wewix/image/upload/v1670410158/waps/wap-video-section-25_l7syts.png',
   options: {
-    meta: {
-    },
+    meta: {},
     style: getStyles(),
   },
   cmps: [
@@ -5273,32 +5260,28 @@ wapsMap.set('footer-4', {
       info: {
         img1: {
           options: {
-            meta: {
-            },
+            meta: {},
             style: getStyles('nav'),
           },
           content: {},
         },
         img2: {
           options: {
-            meta: {
-            },
+            meta: {},
             style: getStyles('nav'),
           },
           content: {},
         },
         img3: {
           options: {
-            meta: {
-            },
+            meta: {},
             style: getStyles('nav'),
           },
           content: {},
         },
         img4: {
           options: {
-            meta: {
-            },
+            meta: {},
             style: getStyles('nav'),
           },
           content: {},
@@ -5361,11 +5344,10 @@ wapsMap.set('wap-section-26', {
   id: '',
   type: 'wap-section',
   typeId: 26,
-  previewImg:
-    'https://res.cloudinary.com/wewix/image/upload/v1670410157/waps/wap-testimonial-24_hmdvxe.png',
+  previewImg: '',
   options: {
     meta: {
-      src: 'https://assets.website-files.com/5ff6cf529d44b2be039f96ca/5ff86d6541dd4e083c9c5102_background_discover.jpg',
+      src: '',
     },
     style: getStyles(),
   },

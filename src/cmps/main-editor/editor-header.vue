@@ -71,7 +71,7 @@
     <div class="publish-btns">
       <section class="url-bar">
         <p class="address">
-          https://<span class="mb-hide">wewix.onrender.com/</span
+          <span>https://</span><span class="mb-hide">wewix.onrender.com/</span
           ><span class="mb-show">... /</span
           ><span
             class="site-name"
@@ -82,8 +82,24 @@
           >
         </p>
       </section>
-      <a @click="preview" class="preview-btn">preview</a>
-      <a @click="publish" class="publish-btn">publish</a>
+      <div class="publish-links">
+        <a @click="preview" class="preview-btn">PREVIEW</a>
+        <a @click="publish" class="publish-btn">PUBLISH</a>
+      </div>
+
+      <el-dropdown
+        class="publish-links mobile"
+        split-button
+        type="primary"
+        @click="handleClick">
+        Preview
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item @click="publish">Publish</el-dropdown-item>
+            <el-dropdown-item @click="preview">Preview</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </div>
   </nav>
 </template>
