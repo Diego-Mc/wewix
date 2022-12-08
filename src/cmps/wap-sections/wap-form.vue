@@ -1,12 +1,12 @@
 <template>
   <!--  -->
   <article class="wap-form" :class="'type-' + typeId">
-    <h3
+    <!-- <h3
       class="title"
       :style="info?.title?.options.style"
       @click.stop="emitSelect({ cmpId, childCmpId })">
       {{ info?.title?.content.text }}
-    </h3>
+    </h3> -->
     <p
       class="text"
       :style="info?.text?.options.style"
