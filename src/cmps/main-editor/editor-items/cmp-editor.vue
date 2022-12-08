@@ -19,51 +19,33 @@
       </div>
 
       <div v-if="isOptionsContain('borderRadius')">
-        <edit-radius-section
-          @select="updateStyleValToEm"
-          :borderRadius="parseFloat(editOptions.style.borderRadius)"
-        />
+        <edit-radius-section @select="updateStyleValToEm" :borderRadius="parseFloat(editOptions.style.borderRadius)"
+          :elStyle="getElStyle('border-radius')" />
       </div>
 
       <!-- TODO: add style to fontSize -->
       <div v-if="isOptionsContain('fontSize')">
-        <edit-font-size-section
-          @select="updateStyleValToEm"
-          :fontSize="parseFloat(editOptions.style.fontSize)"
-          :elStyle="getElStyle('font-size')" />
+        <edit-font-size-section 
+            @select="updateStyleValToEm" 
+            :fontSize="getElStyle('font-size')" />
       </div>
     </section>
 
     <section class="content-editor">
       <div v-if="isOptionsContain('src')">
         <edit-upload-section @select="updateOptionsMeta" />
-<!-- 
-        <input v-if="!isOptionsContain('backgroundImage')"
-          @input="updateOptions"
-          v-model="updatedOptions.meta.src"
-          type="text"
-          placeholder="src"  -->
       </div>
-      
+
       <div v-if="isOptionsContain('backgroundImage')">
         <edit-upload-section @select="updateOptionsMeta" />
-        <!-- <input 
-          @input="updateOptions"
-          v-model="updatedOptions.style.backgroundImage"
-          type="text"
-          placeholder="src" /> -->
       </div>
 
       <div v-if="isOptionsContain('link')">
         Link
-        <input 
-          @input="updateOptions"
-          v-model="updatedOptions.meta.link"
-          type="text"
-          placeholder="link" />
+        <input @input="updateOptions" v-model="updatedOptions.meta.link" type="text" placeholder="link" />
       </div>
 
-      <edit-map-section v-if="isOptionsContain('mapData')" @select="updateOptionsMeta"/>
+      <edit-map-section v-if="isOptionsContain('mapData')" @select="updateOptionsMeta" />
       <!-- <div v-if="isOptionsContain('mapData')">
         Map Data
         <input @input="handleMapInput($event)" type="text" />
@@ -75,10 +57,9 @@
         </div>
       </div> -->
 
-      <div v-if="isOptionsContain('animation')">
-        <edit-animation-section
-          @select="updateOptionsMeta"
-          :animation="editOptions.meta.animation" />
+      <div>
+        <edit-animation-section @select="updateOptionsMeta" :animation="editOptions.meta.animation"
+          :elDom="getElStyle('font-size')" />
       </div>
 
       <div v-if="isOptionsContain('formInputs')">
@@ -86,10 +67,7 @@
 
         <div v-for="(field, idx) in updatedOptions.meta.formInputs">
           <div>
-            <input
-              @input="fieldChanged(id, idx, $event)"
-              :value="field.tag"
-              type="text" />
+            <input @input="fieldChanged(id, idx, $event)" :value="field.tag" type="text" />
             <button @click="fieldRemoved(id, idx)">X</button>
           </div>
         </div>
@@ -179,14 +157,14 @@ export default {
         this.updatedOptions.meta[key] = val
       }
 
-      
+
       this.updateOptions()
     },
 
     //TODO CHANGE NAME
     updateOptions() {
-      if(this.updatedOptions.style.backgroundImage) this.updatedOptions.style.backgroundImage = `url(${this.updatedOptions.style.backgroundImage})`
-      
+      if (this.updatedOptions.style.backgroundImage) this.updatedOptions.style.backgroundImage = `url(${this.updatedOptions.style.backgroundImage})`
+
       eventBus.emit('cmpUpdated', {
         cmpId: this.id,
         elType: this.elType,
@@ -249,27 +227,31 @@ export default {
     },
 
     getElStyle(styleProp) {
-      //console.log('this.elDom:', this.elDom)
-      //return window.getComputedStyle(this.elDom).getPropertyValue(styleProp)
-    }
-  },
+      console.log('this.elDom:', this.elDom)
 
-  watch: {
-    editOptions() {
-      this.updatedOptions = JSON.parse(JSON.stringify(this.editOptions))
+      if (this.elDom) {
+        console.log('window.getComputedStyle(this.elDom).getPropertyValue(styleProp):', window.getComputedStyle(this.elDom).getPropertyValue(styleProp))
+        return window.getComputedStyle(this.elDom).getPropertyValue(styleProp)
+      }
     },
   },
 
-  components: {
-    editFontSection,
-    editFontWeightSection,
-    editColorSection,
-    editBgColorSection,
-    editRadiusSection,
-    editUploadSection,
-    editFontSizeSection,
-    editAnimationSection,
-    editMapSection
-  },
-}
+    watch: {
+      editOptions() {
+        this.updatedOptions = JSON.parse(JSON.stringify(this.editOptions))
+      },
+    },
+
+    components: {
+      editFontSection,
+      editFontWeightSection,
+      editColorSection,
+      editBgColorSection,
+      editRadiusSection,
+      editUploadSection,
+      editFontSizeSection,
+      editAnimationSection,
+      editMapSection
+    },
+  }
 </script>
