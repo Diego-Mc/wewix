@@ -36,7 +36,7 @@
       <div v-if="isOptionsContain('src')">
         <edit-upload-section @select="updateOptionsMeta" />
 
-        <input
+        <input v-if="!isOptionsContain('backgroundImage')"
           @input="updateOptions"
           v-model="updatedOptions.meta.src"
           type="text"
@@ -192,7 +192,6 @@ export default {
         ...Object.keys(this.editOptions.style),
         ...Object.keys(this.editOptions.meta),
       ]
-      console.log(type,options.includes(type));
       return options.includes(type)
     },
 
@@ -202,13 +201,21 @@ export default {
     },
 
     updateOptionsMeta({ key, val }) {
-      this.updatedOptions.meta[key] = val
+      console.log('key, val:', key, val)
+      if (key === 'src' && this.isOptionsContain('backgroundImage')) {
+        this.updatedOptions.style.backgroundImage = val
+      } else {
+        this.updatedOptions.meta[key] = val
+      }
+
+      
       this.updateOptions()
     },
 
     //TODO CHANGE NAME
     updateOptions() {
       if(this.updatedOptions.style.backgroundImage) this.updatedOptions.style.backgroundImage = `url(${this.updatedOptions.style.backgroundImage})`
+      
       eventBus.emit('cmpUpdated', {
         cmpId: this.id,
         elType: this.elType,

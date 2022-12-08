@@ -26,47 +26,49 @@ export default {
   props: {
     wapData: Object,
   },
-  created() {
-  },
+  created() {},
   computed: {
     dateStr() {
       return new Date(this.wapData.createdAt).toLocaleDateString('fr')
     },
-    conversionRate(){
-      let rate = this.wapData.usersData.subscriptions.length / this.wapData.visits?.length * 100
-      if(isNaN(rate)) rate =  0
+    conversionRate() {
+      let rate =
+        (this.wapData.usersData.subscriptions.length /
+          this.wapData.visits?.length) *
+        100
+      if (isNaN(rate)) rate = 0
       return rate + '%'
-    }
+    },
   },
 }
 </script>
 
 <style lang="scss" scoped>
-.dashboard-wap-stats {
-  display: grid;
-  grid-template-columns: 160px 160px;
-  justify-items: center;
-  gap: 26px;
-  row-gap: 26px;
-  .wap-stat-block {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex-direction: column;
-    background-color: blue;
-    width: 160px;
-    height: 160px;
-    background: #ffffff;
-    border: 1px solid #eeeeee;
-    border-radius: 8px;
-  }
-  h3 {
-    font-size: 16px;
-  }
-  .stat-count {
-    font-size: 26px;
-    font-weight: 600;
-  }
-}
+// .dashboard-wap-stats {
+//   display: grid;
+//   grid-template-columns: 160px 160px;
+//   justify-items: center;
+//   gap: 26px;
+//   row-gap: 26px;
+//   .wap-stat-block {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     gap: 10px;
+//     flex-direction: column;
+//     background-color: blue;
+//     width: 160px;
+//     height: 160px;
+//     background: #ffffff;
+//     border: 1px solid #eeeeee;
+//     border-radius: 8px;
+//   }
+//   h3 {
+//     font-size: 16px;
+//   }
+//   .stat-count {
+//     font-size: 26px;
+//     font-weight: 600;
+//   }
+// }
 </style>
