@@ -70,8 +70,6 @@
             </span>
         </div>
       </div>
-
-
       <div>
         <button @click.stop="removeCmp">Delete</button>
       </div>

@@ -1,6 +1,14 @@
 //TODO: change default theme based on chosen template
 <template>
   <div>
+    <section>
+    <h6 class="edit-type-label">CHAT</h6>
+    <h3>
+      do you want a chat in your website? 
+    </h3>
+    <input type="checkbox" @click="emitChatToggled">
+    </section>
+
     <!-- <ul>
       <li
         v-for="font in fontClasses"
@@ -69,6 +77,10 @@ export default {
       eventBus.emit('themeChanged', this.classState)
       document.body.className = `${this.classState.fontClass} ${this.classState.themeClass}`
     },
+    emitChatToggled(){
+      // TODO: add condition to return if user is guest
+      eventBus.emit('chatToggled')
+    }
   },
   components: {
     editorBtnGroup,
