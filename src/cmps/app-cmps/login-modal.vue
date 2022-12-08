@@ -60,6 +60,9 @@ export default {
     },
   },
   methods: {
+    doLogout() {
+      this.$store.dispatch({ type: 'logout' })
+    },
     openSignupModal() {
       if (this.isModalInAuthPage) this.$router.push('/signup')
       else this.$emit('swapAuthModal', 'signup')
@@ -73,6 +76,7 @@ export default {
         this.doLogout()
       }
       try {
+        debugger
         await this.$store.dispatch({ type: 'login', userCred: this.loginCred })
         if (this.isModalInAuthPage) {
           this.$router.push('/')

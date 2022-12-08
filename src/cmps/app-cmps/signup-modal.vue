@@ -54,6 +54,9 @@ export default {
     },
   },
   methods: {
+    doLogout() {
+      this.$store.dispatch({ type: 'logout' })
+    },
     backToLogin() {
       if (this.isModalInAuthPage) this.$router.push('/login')
       else this.$emit('swapAuthModal', 'login')
@@ -76,8 +79,9 @@ export default {
           this.$router.push('/')
         } else if (this.destPage === 'dashboard') {
           this.$router.push('/dashboard/')
+        } else {
+          this.$emit('authenticated')
         }
-        this.$emit('authenticated')
         this.$notify({
           title: 'Signed up successfully',
           type: 'success',
