@@ -145,7 +145,7 @@
       grid-template-columns: repeat(auto-fit, minmax(200px, 30%));
       .card {
         i {
-          font-size: em(24px);
+          font-size: em(32px);
         }
         h3 {
           font-size: em(18px);
@@ -284,8 +284,25 @@
   @media screen and (max-width: 1770px) {
     max-width: 1770px;
   }
+  @media screen and (max-width: 960px) {
+    .hero {
+      h1 {
+        font-size: 8vw;
+      }
+    }
+    .title-wrapper {
+      h2 {
+        font-size: 6vw;
+      }
+    }
+  }
 
   @media screen and (max-width: 620px) {
+    .hero {
+      h1 {
+        font-size: 3.8em;
+      }
+    }
     .title-wrapper .decor {
       width: 60vw;
     }

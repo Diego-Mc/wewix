@@ -1,0 +1,10 @@
+.wap-map {
+  border-radius: 12px;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  > div {
+    min-height: 100% !important;
+    min-width: 100% !important;
+  }
+}

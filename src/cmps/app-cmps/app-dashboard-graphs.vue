@@ -1,11 +1,4 @@
 <template>
-  <!-- <section> -->
-  <!-- <section>
-      <div v-for="wap in loggedinUserWaps">
-        {{ wap }}
-      </div>
-    </section> -->
-
   <section class="graph-container">
     <section class="dropdowns">
       <el-dropdown @command="test2">

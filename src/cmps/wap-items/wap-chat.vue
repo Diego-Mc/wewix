@@ -1,5 +1,19 @@
 <template>
-  <button @click="isChatOpen = !isChatOpen">Click Here To Open Chat</button>
+    <svg 
+      class="chat-icon"
+      @click="isChatOpen = !isChatOpen"
+      enable-background="new 0 0 512 512" 
+      height="512px"
+      viewBox="0 0 512 512" 
+      width="512px" 
+      xml:space="preserve" 
+      xmlns="http://www.w3.org/2000/svg" 
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+      <path 
+        d="M259.934,35.78C118.566,32.999,2.202,120.108,0.031,230.351c-0.753,38.327,12.401,74.394,35.814,105.273H35.84  c40.263,51.731-3.682,140.661-3.682,140.661l129.747-55.881c27.954,8.833,58.33,13.979,90.16,14.605  c141.368,2.786,257.732-84.328,259.904-194.569C514.141,130.196,401.3,38.568,259.934,35.78"
+        fill="#00c2a6"
+      />
+    </svg>
 
   <section class="wap-chat" v-if="isChatOpen">
     <header
@@ -221,4 +235,13 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .chat-icon {
+      width: 50px;
+      height: 50px;
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      z-index: 1000000;
+  }
+</style>

@@ -140,6 +140,7 @@ export default {
             getCmp('wap-section', 11),
             getCmp('wap-section', 12),
             getCmp('wap-section', 24),
+            getCmp('wap-section', 26),
             wapChat,
           ]
         case 'section':

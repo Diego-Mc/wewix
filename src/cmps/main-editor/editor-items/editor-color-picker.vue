@@ -17,9 +17,9 @@ export default {
   data() {
     return {
       colors: [
-        { initialValue: '#202225', selected: true, isPicker: false },
-        { initialValue: '#657487', selected: false, isPicker: false },
-        { initialValue: '#9ea4aa', selected: false, isPicker: false },
+        { initialValue: 'var(--clr-1)', selected: true, isPicker: false },
+        { initialValue: 'var(--clr-2)', selected: false, isPicker: false },
+        { initialValue: 'var(--clr-3)', selected: false, isPicker: false },
         { initialValue: '#0400ff', selected: false, isPicker: false },
         { initialValue: '#0064ff', selected: false, isPicker: false },
         { initialValue: '#00bae5', selected: false, isPicker: false },
