@@ -60,6 +60,23 @@ export default {
       if (wap) this.$router.push('/dashboard/' + this.currWapData._id)
       else this.$router.push('/dashboard')
     },
+    getDemoData() {
+      var chance = new Chance()
+      const demoData = []
+      for (var i = 0; i < 150; i++) {
+        demoData.push({
+          firstName: chance.name().split(' ')[0],
+          lastName: chance.name().split(' ')[0],
+          email: chance.email(),
+          createdAt: chance
+            .date({ year: chance.integer({ min: 2020, max: 2022 }) })
+            [Symbol.toPrimitive]('number'),
+          msg: chance.sentence({ words: 5 }),
+        })
+      }
+
+      return demoData
+    },
   },
   computed: {
     loggedinUser() {
