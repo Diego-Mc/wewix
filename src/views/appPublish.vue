@@ -87,12 +87,12 @@ export default {
       try {
         await this.updateWap()
         this.$notify({
-          title: 'message sent successfully',
+          title: 'Message sent successfully',
           type: 'success',
         })
       } catch (error) {
         this.$notify({
-          title: 'couldnt send message',
+          title: 'Couldn\'t send message',
           type: 'error',
         })
       }

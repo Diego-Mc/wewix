@@ -32,9 +32,11 @@
     </section>
 
     <section class="content-editor">
-      <div v-if="isOptionsContain('src')">
-        <edit-upload-section @select="updateOptionsMeta" />
+       <div v-if="isOptionsContain('src')">
+        Link
+        <input @input="updateOptions" v-model="updatedOptions.meta.src" type="text" placeholder="link" />
       </div>
+
 
       <div v-if="isOptionsContain('backgroundImage')">
         <edit-upload-section @select="updateOptionsMeta" />
@@ -57,10 +59,10 @@
         </div>
       </div> -->
 
-      <div>
+      <!-- <div>
         <edit-animation-section @select="updateOptionsMeta" :animation="editOptions.meta.animation"
           :elDom="getElStyle('font-size')" />
-      </div>
+      </div> -->
 
       <div v-if="isOptionsContain('formInputs')">
         <h6 class="edit-type-label">Form Fields</h6>
@@ -142,6 +144,7 @@ export default {
         ...Object.keys(this.editOptions.style),
         ...Object.keys(this.editOptions.meta),
       ]
+      console.log(options);
       return options.includes(type)
     },
 
