@@ -1331,7 +1331,6 @@ wapsMap.set('wap-hero-3', {
     'https://res.cloudinary.com/wewix/image/upload/v1670410152/waps/wap-hero-3_sxscii.png',
   options: {
     meta: {
-      src: 'https://www.goby.co/assets/modern-luxary-desktop-810f00643379d078f84ed90e28d96ba12742e9fb347cc966e480c75f9d896740.jpg',
     },
     style: {
       ...getStyles(),
