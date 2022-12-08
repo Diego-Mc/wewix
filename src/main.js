@@ -1,12 +1,20 @@
 import { createApp } from 'vue'
 
+
+ 
+
+
+
+// Register the component globally
+
+
 import { router } from './router.js'
 import { store } from './store/store.js'
 
 import Notifications from '@kyvg/vue3-notification'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
-
+import { Skeletor } from 'vue-skeletor';
 import './assets/styles/main.scss'
 import rootCmp from './root-cmp.vue'
 
@@ -134,5 +142,6 @@ app.use(store)
 app.use(ElementPlus)
 app.use(VueScrollTo)
 app.use(Notifications)
+app.component(Skeletor.name, Skeletor);
 
 app.mount('#app')

@@ -57,10 +57,10 @@
         </div>
       </div> -->
 
-      <div>
+      <!-- <div>
         <edit-animation-section @select="updateOptionsMeta" :animation="editOptions.meta.animation"
           :elDom="getElStyle('font-size')" />
-      </div>
+      </div> -->
 
       <div v-if="isOptionsContain('formInputs')">
         <h6 class="edit-type-label">Form Fields</h6>

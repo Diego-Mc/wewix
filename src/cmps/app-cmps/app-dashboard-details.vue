@@ -94,7 +94,13 @@ export default {
     },
 
     modifiedUsers() {
-      let users = this.usersData
+      let users = JSON.parse(JSON.stringify(this.usersData))
+
+      users.forEach(user => {
+          user.createdAt = this.getDate(user.createdAt)
+          console.log('user:', user)
+      })
+
       //Filter
       if (this.filterBy) {
         const regex = new RegExp(this.filterBy, 'i')
@@ -103,6 +109,8 @@ export default {
           return userKeys.some((key) => regex.test(user[key]))
         })
       }
+
+
 
       // Sort
       if (this.sortBy.type) {
@@ -158,6 +166,25 @@ export default {
       if (this.sortBy.type === sortBy) this.sortBy.desc *= -1
 
       this.sortBy.type = sortBy
+    },
+
+    getDate(date) {
+            const createdAt = new Date(date)
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
+                "July", "Aug", "Sep", "Oct", "Nov", "Dec"
+            ];
+            // If Pass By Year
+            if (new Date().getFullYear() - createdAt.getFullYear() > 1) {
+                return monthNames[createdAt.getMonth()] + ' ' + createdAt.getFullYear()
+            // If Pass By Less Then 24 Hours 
+            } else if (new Date() - createdAt < 1000 * 60 * 60 * 24){
+                const hour = (createdAt.getHours() < 10) ? '0' + createdAt.getHours() : createdAt.getHours() 
+                const minutes = (createdAt.getMinutes() < 10) ? '0' + createdAt.getMinutes() : createdAt.getMinutes()
+                return hour + ':' + minutes
+            } else {
+                return monthNames[createdAt.getMonth()] + ' ' + (createdAt.getDay() + 1)
+            }
+
     },
 
     async addWap() {
