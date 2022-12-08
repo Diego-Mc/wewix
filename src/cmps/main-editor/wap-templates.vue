@@ -174,8 +174,13 @@ li {
 }
 
 .ghost {
-  opacity: 0.5;
+  opacity: 0.4;
   background: grey;
+  /* max-height: 30px; */
+  background-color: #00c2a6;
+  overflow: hidden;
+  /* float: right; */
+  width: 100%;
 }
 
 .list-group {
