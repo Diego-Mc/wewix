@@ -1,6 +1,6 @@
 <!-- AIzaSyBOnIuYA6sTb4lF2WYWYJIUouv3HjIx2mg -->
 <template>
-  <section class="wap-map" @click.stop="emitSelect({cmpId})">
+  <section class="wap-map" @click.stop="emitSelect({cmpId},$event)">
     <GoogleMap
     
     api-key="AIzaSyDKvG9VduLBhsz5HMIEo1Q9RQaX6B24Mck" 

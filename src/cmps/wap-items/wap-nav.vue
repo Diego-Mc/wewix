@@ -3,7 +3,7 @@
     v-if="info.nav"
     :class="'type-' + typeId"
     :style="info?.nav?.options.style"
-    @click.stop="emitSelect('nav')">
+    @click.stop="emitSelect('nav',$event)">
     <ul>
       <li
         class="nav"
@@ -34,6 +34,8 @@ export default {
         elType,
         content: e.target.innerText,
         childCmpId: this.childCmpId,
+        elDom: e,
+
       })
     },
     emitSelect(elType, e) {

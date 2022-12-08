@@ -8,7 +8,7 @@
       class="tag"
       @input="updateContent('tag', $event)"
       :style="info?.tag?.options.style"
-      @click.stop="emitSelect('tag')"
+      @click.stop="emitSelect('tag', $event)"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.tag?.content.text }}
     </span>
@@ -25,7 +25,7 @@
         class="title"
         @input="updateContent('title', $event)"
         :style="info?.title?.options.style"
-        @click.stop="emitSelect('title')"
+        @click.stop="emitSelect('title', $event)"
         :contenteditable="$store.getters.isEditMode">
         {{ info?.title?.content.text }}
       </h2>
@@ -34,7 +34,7 @@
         class="subtitle"
         @input="updateContent('subtitle', $event)"
         :style="info?.subtitle?.options.style"
-        @click.stop="emitSelect('subtitle')"
+        @click.stop="emitSelect('subtitle', $event)"
         :contenteditable="$store.getters.isEditMode">
         {{ info?.subtitle?.content.text }}
       </h2>
@@ -44,7 +44,7 @@
       class="text"
       @input="updateContent('text', $event)"
       :style="info?.text?.options.style"
-      @click.stop="emitSelect('text')"
+      @click.stop="emitSelect('text', $event)"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.text?.content.text }}
     </p>
@@ -53,7 +53,7 @@
       class="details"
       @input="updateContent('details', $event)"
       :style="info?.details?.options.style"
-      @click.stop="emitSelect('details')"
+      @click.stop="emitSelect('details', $event)"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.details?.content.text }}
     </p>
@@ -62,7 +62,7 @@
       class="btn"
       @input="updateContent('btn', $event)"
       :style="info?.btn?.options.style"
-      @click.stop="emitSelect('btn')">
+      @click.stop="emitSelect('btn', $event)">
       {{ info?.btn?.content.text || 'Find us' }}
     </button>
   </section>

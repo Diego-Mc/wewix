@@ -10,7 +10,7 @@
       v-if="info?.title"
       class="title"
       :style="info?.title?.options.style"
-      @click.stop="emitSelect('title')"
+      @click.stop="emitSelect('title', $event)"
       @input="updateContent('title', $event)"
       :contenteditable="$store.getters.isEditMode">
       {{ info?.title?.content.text }}
@@ -30,6 +30,8 @@ export default {
         elType,
         content: e.target.innerText,
         childCmpId: this.childCmpId,
+        elDom: e,
+
       })
     },
     emitSelect(elType, e) {
