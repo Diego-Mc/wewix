@@ -1,6 +1,9 @@
 .wap {
   container-type: inline-size;
   container-name: wap;
+  > * {
+    padding-inline: calc(((100vw - 1280px) / 2) + 3rem) !important;
+  }
   // > .list-group {
   //   padding-inline: calc(((100vw - 1280px) / 2) + 3rem) !important;
   // }
@@ -12,6 +15,9 @@
 .main-wap {
   container-type: inline-size;
   container-name: wap;
+  > .list-group > div > * {
+    padding-inline: calc(((100vw - 1280px) / 2) + 3rem) !important;
+  }
   // > .list-group > div > * {
   //   padding-inline: calc(((100vw - 1280px) / 2) + 3rem) !important;
   // }
@@ -19,6 +25,10 @@
 
 @container wap (max-width: 1200px) {
   .wap {
+    > * {
+      padding-inline: 3rem !important;
+    }
+
     // > .list-group {
     //   padding-inline: 3rem !important;
     // }
@@ -29,11 +39,14 @@
 }
 
 @container wap (max-width: 1200px) {
-  // .main-wap {
-  //   > .list-group > div > * {
-  //     padding-inline: 3rem !important;
-  //   }
-  // }
+  .main-wap {
+    > .list-group > div > * {
+      padding-inline: 3rem !important;
+    }
+    //   > .list-group > div > * {
+    //     padding-inline: 3rem !important;
+    //   }
+  }
 }
 
 @container wap (max-width: 990px) {

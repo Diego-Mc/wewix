@@ -29,10 +29,10 @@
         >Login
         <span v-if="destPage === 'publishWap'">&nbspand publish</span>
       </el-button>
+      <button class="toggle-auth-link" @click.prevent="openSignupModal">
+        Dont have a user? <span style="font-weight:600;">signup here</span>
+      </button>
     </form>
-    <button class="toggle-auth-link" @click="openSignupModal">
-      Dont have a user? signup
-    </button>
   </div>
 </template>
 
@@ -141,6 +141,9 @@ export default {
     }
   }
   .toggle-auth-link {
+    font-size: 16px;
+    padding: 0;
+    text-align: start;
     color: rgb(102, 102, 102);
   }
 }

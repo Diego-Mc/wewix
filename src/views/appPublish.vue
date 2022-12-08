@@ -11,12 +11,8 @@
       :cmps="cmp.cmps" />
 
     <section v-if="showErrPage">
-        <page-not-found/>
-      </section>
-
-        
-        
-
+      <page-not-found />
+    </section>
   </main>
 </template>
 
@@ -27,7 +23,7 @@ import wapCards from '../cmps/wap-sections/wap-cards.vue'
 import wapSection from '../cmps/wap-sections/wap-section.vue'
 // import wapForm from '../cmps/wap-sections/wap-form.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
-
+import { eventBus } from '../services/event-bus.service'
 import pageNotFound from './page-not-found.vue'
 //   import getCmp from '../../services/wap-cmps.service'
 //   import editorBtnGroup from '../main-editor/editor-items/editor-btn-group.vue'
@@ -39,7 +35,7 @@ export default {
   data() {
     return {
       wap: null,
-      showErrPage:false,
+      showErrPage: false,
       userInfo: {},
       // header: getCmp('wap-header', 2),
       // hero: getCmp('wap-hero', 2),
@@ -50,23 +46,65 @@ export default {
       // form: getCmp('wap-form', 1),
     }
   },
+  async created() {
+    const { preview } = this.$route.query
+    if (preview) {
+      const id = this.$route.params.name
+      await this.getWap(id)
+     
+    } else {
+      const wapName = this.$route.params.name
+      await this.getWapByName(wapName)
+      this.checkNewVisit()
+      this.$store.commit('setEditMode', { isEditMode: false })
+      eventBus.on('formSubmited', this.addUserInfo)
+    }
+  },
+  unmounted() {
+    eventBus.off('formSubmited')
+  },
   methods: {
     async getWapByName(wapName) {
       this.wap = await this.$store.dispatch({ type: 'getWapByName', wapName })
-      console.log(this.wap)
-      if(!this.wap) this.showErrPage = true
+      if (!this.wap) this.showErrPage = true
+    },
+    async updateWap() {
+      return await this.$store.dispatch({ type: 'updateWap', wap: this.wap })
     },
 
     async getWap(wapId) {
-        this.wap = await this.$store.dispatch({ type: 'getWap', id: wapId })
-        console.log(this.wap)
-        if(!this.wap) this.showErrPage = true
+      this.wap = await this.$store.dispatch({ type: 'getWap', id: wapId })
+      if (!this.wap) this.showErrPage = true
+      this.$store.commit('setCurrWap', { wap: this.wap })
     },
-    formSubmited() {
-      console.log('wa');
-      // if(this.$store.getters.isEditMode) return
-      this.userInfo.createdAt = Date.now()
-      eventBus.emit('formSubmited', this.userInfo)
+
+    async addUserInfo(userInfo) {
+      if (userInfo.type === 'subscription')
+        this.wap.usersData.subscriptions.push(userInfo)
+      else this.wap.usersData.contacts.push(userInfo)
+      try {
+        await this.updateWap()
+        this.$notify({
+          title: 'message sent successfully',
+          type: 'success',
+        })
+      } catch (error) {
+        this.$notify({
+          title: 'couldnt send message',
+          type: 'error',
+        })
+      }
+    },
+    checkNewVisit() {
+      if (!sessionStorage.getItem('newVisit', 'new!')) {
+        const currVisit = { createdAt: Date.now() }
+        this.wap.visits
+          ? this.wap.visits.push(currVisit)
+          : (this.wap.visits = [currVisit])
+        sessionStorage.setItem('newVisit', 'new!')
+        console.log('new visit!', this.wap.visits)
+        this.updateWap()
+      }
     },
   },
 
@@ -82,18 +120,6 @@ export default {
     //   mainHeader,
     //   editorHeader,
     //   editorSidebar,
-  },
-  created() {
-    const {preview} = this.$route.query
-    
-    if (preview) {
-      const id = this.$route.params.name
-      this.getWap(id)
-    } else {
-      const wapName = this.$route.params.name
-      this.getWapByName(wapName)
-    }
-    this.$store.commit('setEditMode', { isEditMode: false })
   },
 }
 </script>

@@ -31,6 +31,7 @@ export const wapStore = {
   state: {
     waps: [],
     editedWap: null,
+    currWap:null,
     isEditMode: true, //TODO: change to be dynamic
   },
 
@@ -47,8 +48,15 @@ export const wapStore = {
   },
 
   mutations: {
+    setCurrWap(state,{wap}){
+      state.setCurrWap = wap
+      console.log(wap);
+    },
     setEditMode(state, { isEditMode }) {
       state.isEditMode = isEditMode
+    },
+    addInfo(state, { isEditMode }){
+      console.log(state.editedWap);
     },
     setEditedWap(state, { wap }) {
       state.editedWap = wap
@@ -98,6 +106,7 @@ export const wapStore = {
       try {
         const updatedWap = await wapService.save(wap)
         context.commit({ type: 'setEditedWap', wap: updatedWap })
+        console.log('wap saved in backend');
         return updatedWap._id
       } catch {
         console.log('err: couldnt save wap')

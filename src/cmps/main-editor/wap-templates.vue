@@ -174,8 +174,13 @@ li {
 }
 
 .ghost {
-  opacity: 0.5;
+  opacity: 0.4;
   background: grey;
+  /* max-height: 30px; */
+  background-color: #b2f8ee;
+  overflow: hidden;
+  /* float: right; */
+  width: 100%;
 }
 
 .ghost img {

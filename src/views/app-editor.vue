@@ -45,8 +45,8 @@
         @publishWap="publishWap"
         @openPublishConfirm=""
         :wapName="wap.name"
-        :isPublished="wap.isPublished" 
-        :wapId="wap._id"/>
+        :isPublished="wap.isPublished"
+        :wapId="wap._id" />
       <editor-sidebar :selectedCmp="selectedCmp" />
     </section>
     <main class="main-wap" :class="mediaType">
@@ -185,7 +185,9 @@ export default {
     },
     updateField(fieldInfo) {
       const cmp = this.wap.cmps.find((cmp) => cmp.id === fieldInfo.id)
-      const formCmp = cmp.cmps.find(childCmp => childCmp.id === fieldInfo.childCmpId)
+      const formCmp = cmp.cmps.find(
+        (childCmp) => childCmp.id === fieldInfo.childCmpId
+      )
       if (fieldInfo.txt || fieldInfo.txt === '')
         formCmp.options.meta.formInputs[fieldInfo.idx].tag = fieldInfo.txt
       else if (typeof fieldInfo.idx === 'number')
@@ -351,24 +353,6 @@ export default {
       eventBus.emit('openCmpEditor')
     },
 
-    addUserInfo(userInfo) {
-      if (userInfo.type === 'subscription')
-        this.wap.usersData.subscriptions.push(userInfo)
-      else this.wap.usersData.contacts.push(userInfo)
-      try {
-      this.updateWap()
-      this.$notify({
-          title: 'message sent successfully',
-          type: 'success',
-        })
-      } catch (error) {
-        this.$notify({
-          title: 'couldnt send message',
-          type: 'error',
-        })
-      }
-
-    },
     initEventsFromBus() {
       eventBus.on('cmpUpdated', this.handleUpdate)
       eventBus.on('onInnerCmpDrop', ({ cmpId, cmps }) => {
@@ -376,7 +360,6 @@ export default {
         this.wap.cmps[cmpIndex].cmps = cmps
         this.updateWap()
       })
-      eventBus.on('formSubmited', this.addUserInfo)
       eventBus.on('undo', this.undo)
       eventBus.on('redo', this.redo)
       eventBus.on('select', this.cmpSelected)
@@ -384,17 +367,7 @@ export default {
       eventBus.on('removeCmp', this.removeCmp)
       eventBus.on('updateField', this.updateField)
     },
-    checkNewVisit() {
-      if (!sessionStorage.getItem('newVisit', 'new!')) {
-        const currVisit = { createdAt: Date.now() }
-        this.wap.visits
-          ? this.wap.visits.push(currVisit)
-          : (this.wap.visits = [currVisit])
-        sessionStorage.setItem('newVisit', 'new!')
-        console.log('new visit!', this.wap.visits)
-        this.updateWap()
-      }
-    },
+
     async publishWap(wapName) {
       //TODO ADD USER MSGS
       console.log('wa')
@@ -420,11 +393,11 @@ export default {
         const wapId = await this.updateWap(this.wap)
         this.$store.dispatch('addWapToUser', { wapId: this.wap._id })
         // this.$router.replace({ path: , replace: true })
-        this.$router.push(this.wap.name)
+        this.$router.push('/' + this.wap.name)
         this.$notify({
-              title: 'Site is live! ',
-              type: 'success',
-          });
+          title: 'Site is live! ',
+          type: 'success',
+        })
 
         // window.open(routeData.href, '_blank');
 
@@ -432,9 +405,9 @@ export default {
       } catch (err) {
         console.log(err)
         this.$notify({
-              title: 'Cannot Publish Site With Invalid Name',
-              type: 'error',
-          });
+          title: 'Cannot Publish Site With Invalid Name',
+          type: 'error',
+        })
       }
     },
     async setName(wapName) {
@@ -451,7 +424,6 @@ export default {
       eventBus.off('select')
       eventBus.off('cmpUpdated')
       eventBus.off('onInnerCmpDrop')
-      eventBus.off('formSubmited')
       eventBus.off('undo')
       eventBus.off('redo')
       eventBus.off('themeChanged')
@@ -586,6 +558,5 @@ export default {
   border-radius: 10px;
   box-shadow: 0 0 0;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-
 }
 </style>
