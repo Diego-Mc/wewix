@@ -35,27 +35,26 @@
     <section class="content-editor">
       <div v-if="isOptionsContain('src')">
         <edit-upload-section @select="updateOptionsMeta" />
-
+<!-- 
         <input v-if="!isOptionsContain('backgroundImage')"
           @input="updateOptions"
           v-model="updatedOptions.meta.src"
           type="text"
-          placeholder="src" />
+          placeholder="src"  -->
       </div>
       
       <div v-if="isOptionsContain('backgroundImage')">
         <edit-upload-section @select="updateOptionsMeta" />
-
-        <input 
+        <!-- <input 
           @input="updateOptions"
           v-model="updatedOptions.style.backgroundImage"
           type="text"
-          placeholder="src" />
+          placeholder="src" /> -->
       </div>
 
       <div v-if="isOptionsContain('link')">
         Link
-        <input
+        <input 
           @input="updateOptions"
           v-model="updatedOptions.meta.link"
           type="text"

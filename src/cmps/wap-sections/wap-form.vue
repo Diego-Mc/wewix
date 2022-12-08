@@ -1,10 +1,10 @@
 <template>
   <!--  -->
   <article class="wap-form" :class="'type-' + typeId">
-    <h3 class="title" :style="info?.title?.options.style">
+    <h3 class="title" :style="info?.title?.options.style" @click.stop="emitSelect({ cmpId, childCmpId })">
       {{ info?.title?.content.text }}
     </h3>
-    <p class="text" :style="info?.text?.options.style">
+    <p class="text" :style="info?.text?.options.style" @click.stop="emitSelect({ cmpId, childCmpId })">
       {{ info?.text?.content.text }}
     </p>
     <!-- <p class="text" :style="info.text.options.style">
@@ -14,7 +14,8 @@
     </p> -->
     <form
       @submit.prevent="formSubmited"
-      @click.stop="emitSelect({ cmpId, childCmpId })">
+      @click.stop="emitSelect({ cmpId, childCmpId })"
+      >
       <div
         v-for="(field, idx) in options?.meta?.formInputs"
         class="input-fields">
@@ -58,6 +59,7 @@ export default {
       eventBus.emit('formSubmited', this.userInfo)
     },
     emitSelect(elInfo) {
+      console.log(elInfo);
       eventBus.emit('select', elInfo)
     },
   },
