@@ -9,7 +9,8 @@ export const utilService = {
   deepCopy,
   getRandomColor,
   toTitleCase,
-  getDemoData
+  getDemoData,
+  copyToClipboard,
 }
 
 function toTitleCase(str) {
@@ -71,6 +72,16 @@ function makeLorem(size = 100) {
   return txt
 }
 
+function copyToClipboard(text) {
+  var input = document.createElement('input')
+  input.setAttribute('value', text)
+  document.body.appendChild(input)
+  input.select()
+  var result = document.execCommand('copy')
+  document.body.removeChild(input)
+  return result
+}
+
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min)
   max = Math.floor(max)
@@ -122,7 +133,7 @@ function getRandomColor() {
 function getDemoData() {
   var chance = new Chance()
   const demoData = []
-  
+
   for (var i = 0; i < 150; i++) {
     demoData.push({
       createdAt: chance
