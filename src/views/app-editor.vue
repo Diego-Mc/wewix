@@ -87,6 +87,8 @@
 import draggable from 'vuedraggable'
 import { socketService } from '../services/socket.service'
 
+// import { ElMessage } from 'element-plus'
+
 import publishModal from '../cmps/app-cmps/publish-modal.vue'
 
 import { eventBus, showUserMsg } from '../services/event-bus.service'
@@ -532,8 +534,8 @@ export default {
       utilService.copyToClipboard(window.location.href + '?workTogether=true')
       this.$router.replace({ ...this.$route, query: { workTogether: true } })
       this.openWorkSpace()
-      this.$notify({
-        title: 'Link copied! work together is on',
+      ElMessage({
+        message: 'Link copied! work together is on.',
         type: 'success',
       })
 
