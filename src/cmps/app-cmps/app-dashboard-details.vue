@@ -1,30 +1,4 @@
 <template>
-  <!-- <div v-if="usersData.length" class="container home">
-    <input type="search" v-model="filterBy" />
-    <table class="styled-table">
-      <thead>
-        <tr class="header">
-          <td v-for="userKey in usersDataKeys" :key="userKey">
-            <span @click="setSort(userKey)">{{ userKey }}</span>
-          </td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="user in modifiedUsers" :key="user" class="header">
-          <td v-for="userKey in usersDataKeys">
-            {{ keyForDisplay(userKey, user) }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <el-pagination
-      background
-      layout="prev, pager, next"
-      :page-count="totalPages"
-      class="mt-4 paging"
-      @current-change="paginate($event)"
-      :current-page="currentPage" />
-  </div> -->
   <el-input
     class="table-search"
     v-model="filterBy"
@@ -98,7 +72,6 @@ export default {
 
       users.forEach(user => {
           user.createdAt = this.getDate(user.createdAt)
-          console.log('user:', user)
       })
 
       //Filter

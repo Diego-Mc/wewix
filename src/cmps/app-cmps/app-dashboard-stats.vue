@@ -26,9 +26,6 @@ export default {
   props: {
     wapData: Object,
   },
-  created() {
-    console.log(this.wapData);
-  },
   computed: {
     dateStr() {
       return new Date(this.wapData.createdAt).toLocaleDateString('fr')

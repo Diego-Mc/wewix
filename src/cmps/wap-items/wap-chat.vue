@@ -78,47 +78,6 @@
         </div>
       </span>
     </section>
-
-    <!-- <section class="wap-chat" v-if="isChatOpen">
-      <header>
-        <nav>
-          <ul>
-            <li>👧👸👨‍🦱</li>
-            <li>®©®</li>
-          </ul>
-        </nav>
-        <div class="welcome-txt">
-          <h1>Hey! 👋</h1>
-          <h1>How Could We Help?</h1>
-        </div>
-      </header>
-
-      <hr />
-      <ul>
-        <li
-        v-for="(msg, idx) in conversations[this.activeConversation]"
-        :key="idx">
-        <span>{{ msg.from }}:</span>{{ msg.txt }}
-      </li>
-    </ul>
-    <form @submit.prevent="sendMsg">
-      <input
-      v-if="(activeConversation && this.user.isAdmin) || !this.user.isAdmin"
-      @input="sendTypeState"
-      type="text"
-      v-model="msg.txt"
-      placeholder="Your msg" />
-      <span v-else>Please Select User To Msg</span>
-      <button>Send</button>
-    </form>
-
-    <span v-for="g in activeGuests" :key="g" @click="setActiveConversation(g)">
-      <img class="guest-avatar" src="../../assets/imgs/png-96/avatar1.png" />
-      <span>{{ g.unread }}</span>
-      <span v-if="isTyping(g.userId)">typing...</span>
-      <span v-else-if="isTyping('Admin')">Admin typing...</span>
-    </span>
-  </section> -->
   </section>
 </template>
 
@@ -132,6 +91,7 @@ import { utilService } from '../../services/util.service'
 export default {
   props: {
     options: Object,
+    wapId: String
   },
   data() {
     return {
@@ -141,7 +101,7 @@ export default {
       activeGuests: [],
       activeConversation: null,
       user: this.getUser(),
-      chatId: this.options.meta.chatData.chatId,
+      chatId: this.options?.meta?.chatData?.chatId || this.wapId,
       isUserTyping: {},
     }
   },
@@ -179,7 +139,6 @@ export default {
   },
   methods: {
     addMsg(msg) {
-      console.log('msg - round:', msg)
       this.activeConversation = msg.id
       if (this.conversations[msg.id]) this.conversations[msg.id].push(msg)
       else this.conversations[msg.id] = [msg]
@@ -219,7 +178,17 @@ export default {
       this.isUserTyping[user] = false
     },
   },
+  watch: { 
+      	wapId(newWapId) { // watch it
+          socketService.emit('startConversation', {
+              chatId: newWapId,
+              userId: this.user.id,
+              adminId: this.user.isAdmin ? this.user.id : '',
+          })
+        }
+  }
 }
+
 </script>
 
 <style lang="scss" scoped></style>
