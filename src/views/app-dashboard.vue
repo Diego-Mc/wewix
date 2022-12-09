@@ -1,28 +1,32 @@
 <template>
-  <main class="app-dashboard">
-    <section class="dashboard-sidebar">
-      <h3 class="my-sites-header">My Sites</h3>
-      <editor-btn-group
-        :info="{ key: 'wap' }"
-        dir="column"
-        @setVal="handleBtnSelect"
-        v-model="currWapData"
-        :style="{
-          margin: '4px',
-          justifyContent: 'flex-start',
-          padding: '18px 20px',
-          gap: '10px',
-        }"
-        :opts="wapNames" />
-    </section>
-    <router-view :wapData="currWapData"></router-view>
-    <!-- <wap-chat :options="currWapData.options"/> -->
-    <!-- <div style="" v-else>Build a website to see data!</div> -->
-  </main>
+  <section class="dashboard-page">
+    <main-header />
+    <main class="app-dashboard">
+      <section class="dashboard-sidebar">
+        <h3 class="my-sites-header">My Sites</h3>
+        <editor-btn-group
+          :info="{ key: 'wap' }"
+          dir="column"
+          @setVal="handleBtnSelect"
+          v-model="currWapData"
+          :style="{
+            margin: '4px',
+            justifyContent: 'flex-start',
+            padding: '18px 20px',
+            gap: '10px',
+          }"
+          :opts="wapNames" />
+      </section>
+      <router-view :wapData="currWapData"></router-view>
+      <!-- <wap-chat :options="currWapData.options"/> -->
+      <!-- <div style="" v-else>Build a website to see data!</div> -->
+    </main>
+  </section>
 </template>
 
 <script>
 import editorBtnGroup from '../cmps/main-editor/editor-items/editor-btn-group.vue'
+import mainHeader from '../cmps/app-cmps/main-header.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
 export default {
   data() {
@@ -32,7 +36,6 @@ export default {
     }
   },
   async created() {
-
     if (!this.loggedinUser) return this.$router.push('/')
     if (!this.loggedinUser.waps) return
 
@@ -42,9 +45,7 @@ export default {
     handleBtnSelect(ans) {
       this.changeCurrWapData(ans.val)
     },
-    getWap(){
-
-    },
+    getWap() {},
     async getWaps() {
       return await this.$store.dispatch('getWaps')
     },
@@ -88,7 +89,8 @@ export default {
   },
   components: {
     editorBtnGroup,
-    wapChat
+    wapChat,
+    mainHeader,
   },
 }
 </script>

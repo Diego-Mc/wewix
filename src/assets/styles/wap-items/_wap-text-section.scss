@@ -369,6 +369,12 @@
       }
     }
   }
+  &.type-18 {
+    .text {
+      justify-self: start;
+      margin-left: 8px;
+    }
+  }
   &.type-19,
   &.type-20,
   &.type-21,
@@ -420,7 +426,7 @@
       'cta details'
       'text text';
 
-    max-width: 50%;
+    max-width: 60%;
 
     grid-template-columns: max-content 1fr;
     gap: 10px;

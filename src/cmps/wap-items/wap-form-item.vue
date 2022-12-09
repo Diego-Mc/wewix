@@ -1,7 +1,7 @@
 <template>
   <article class="form-input">
-    <label class="label" :class="{ selected: focused }">
-      {{tag}}
+    <label class="label" :class="{ selected: focused || txt.length > 0 }">
+      {{ tag }}
     </label>
     <i class="bi bi-arrow-right send-btn"></i>
     <input
@@ -29,7 +29,7 @@ export default {
   props: {
     type: String,
     modelValue: String,
-    tag:String,
+    tag: String,
   },
   created() {
     switch (this.type) {
@@ -46,7 +46,6 @@ export default {
     }
   },
   methods: {
-  
     changeTxt() {
       this.$emit('update:modelValue', this.txt)
     },
