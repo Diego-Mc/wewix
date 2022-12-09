@@ -51,7 +51,6 @@ export default {
     if (preview) {
       const id = this.$route.params.name
       await this.getWap(id)
-     
     } else {
       const wapName = this.$route.params.name
       await this.getWapByName(wapName)
@@ -59,7 +58,6 @@ export default {
       eventBus.on('formSubmited', this.addUserInfo)
     }
     this.$store.commit('setEditMode', { isEditMode: false })
-
   },
   unmounted() {
     eventBus.off('formSubmited')
@@ -68,7 +66,7 @@ export default {
     async getWapByName(wapName) {
       this.wap = await this.$store.dispatch({ type: 'getWapByName', wapName })
       if (!this.wap) this.showErrPage = true
-      console.log('chat data' ,this.wap.chatData);
+      console.log('chat data', this.wap.chatData)
     },
     
     async updateWap() {
@@ -93,7 +91,7 @@ export default {
         })
       } catch (error) {
         this.$notify({
-          title: 'Couldn\'t send message',
+          title: "Couldn't send message",
           type: 'error',
         })
       }
@@ -108,6 +106,11 @@ export default {
         console.log('new visit!', this.wap.visits)
         this.updateWap()
       }
+    },
+  },
+  computed: {
+    wapsToRender() {
+      return this.wap.filter((w) => w.type !== 'wap-chat')
     },
   },
 
