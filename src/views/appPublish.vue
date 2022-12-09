@@ -25,11 +25,13 @@ import wapSection from '../cmps/wap-sections/wap-section.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
 import { eventBus } from '../services/event-bus.service'
 import pageNotFound from './page-not-found.vue'
+import { utilService } from '../services/util.service'
 //   import getCmp from '../../services/wap-cmps.service'
 //   import editorBtnGroup from '../main-editor/editor-items/editor-btn-group.vue'
 //   import mainHeader from '../app-cmps/main-header.vue'
 //   import editorHeader from '../main-editor/editor-header.vue'
 //   import editorSidebar from '../main-editor/editor-sidebar.vue'
+import { ElMessage } from 'element-plus'
 
 export default {
   data() {
@@ -64,29 +66,23 @@ export default {
   },
   methods: {
     async getWapByName(wapName) {
-      this.wap = await this.$store.dispatch({ type: 'getWapByName', wapName })
+      const wap = await this.$store.dispatch({ type: 'getWapByName', wapName })
+      this.wap = utilService.deepCopy(wap)
       if (!this.wap) this.showErrPage = true
       console.log('chat data', this.wap.chatData)
     },
-    
+
     async updateWap() {
       return await this.$store.dispatch({ type: 'updateWap', wap: this.wap })
     },
-
-    async getWap(wapId) {
-      this.wap = await this.$store.dispatch({ type: 'getWap', id: wapId })
-      if (!this.wap) this.showErrPage = true
-      this.$store.commit('setCurrWap', { wap: this.wap })
-    },
-
     async addUserInfo(userInfo) {
       if (userInfo.type === 'subscription')
         this.wap.usersData.subscriptions.push(userInfo)
       else this.wap.usersData.contacts.push(userInfo)
       try {
         await this.updateWap()
-        this.$notify({
-          title: 'Message sent successfully',
+        ElMessage({
+          message: 'Message sent successfully',
           type: 'success',
         })
       } catch (error) {
@@ -106,11 +102,6 @@ export default {
         console.log('new visit!', this.wap.visits)
         this.updateWap()
       }
-    },
-  },
-  computed: {
-    wapsToRender() {
-      return this.wap.filter((w) => w.type !== 'wap-chat')
     },
   },
 

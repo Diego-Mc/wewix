@@ -59,6 +59,7 @@ export const wapStore = {
     },
     setEditedWap(state, { wap }) {
       state.editedWap = wap
+      console.log( state.editedWap );
     },
     setWaps(state, { waps }) {
       state.waps = waps
@@ -107,7 +108,8 @@ export const wapStore = {
     // },
     async getWapByName(context, { wapName }) {
       const wap = await wapService.getByName(wapName)
-      console.log(wap);
+      context.commit({ type: 'setEditedWap', wap })
+
       return wap
       
     },

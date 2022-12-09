@@ -28,6 +28,10 @@
 import editorBtnGroup from '../cmps/main-editor/editor-items/editor-btn-group.vue'
 import mainHeader from '../cmps/app-cmps/main-header.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
+import { socketService } from '../services/socket.service.js'
+import { utilService } from '../services/util.service'
+import { ElMessage } from 'element-plus'
+
 export default {
   data() {
     return {
@@ -39,7 +43,24 @@ export default {
     if (!this.loggedinUser) return this.$router.push('/')
     if (!this.loggedinUser.waps) return
 
-   this.userWaps = await this.getUserWaps()
+    const waps = await this.getUserWaps()
+    this.userWaps = utilService.deepCopy(waps)
+    socketService.on('formSent', (sentMsg) => {
+      if (sentMsg.wapOwnerId === this.loggedinUser._id) {
+        const updatedWap = this.userWaps.find(
+          (wap) => wap._id === sentMsg.wapId
+        )
+        const { wapOwnerId, wapId, ...newMsg } = sentMsg
+        updatedWap.usersData.subscriptions.push(newMsg)
+        ElMessage({
+          message: `You have a new lead from site ${updatedWap.name}`,
+          type: 'success',
+        })
+      }
+    })
+  },
+  unmounted() {
+    socketService.off('formSent')
   },
   methods: {
     handleBtnSelect(ans) {
@@ -54,7 +75,8 @@ export default {
     },
     changeCurrWapData(wap) {
       this.currWapData = wap
-      if (this.currWapData && this.currWapData._id) this.$router.push('/dashboard/' + this.currWapData._id)
+      if (this.currWapData && this.currWapData._id)
+        this.$router.push('/dashboard/' + this.currWapData._id)
       else this.$router.push('/dashboard')
     },
     getDemoData() {

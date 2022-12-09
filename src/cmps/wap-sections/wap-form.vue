@@ -56,11 +56,7 @@
 import { eventBus } from '../../services/event-bus.service'
 import wapFormItem from '../wap-items/wap-form-item.vue'
 
-import {
-  socketService,
-  SOCKET_EMIT_SEND_MSG,
-  SOCKET_EVENT_ADD_MSG,
-} from '../../services/socket.service.js'
+import { socketService } from '../../services/socket.service.js'
 
 export default {
   props: ['info', 'cmpId', 'options', 'typeId', 'childCmpId'],
@@ -75,7 +71,12 @@ export default {
       if (this.$store.getters.isEditMode) return
       this.userInfo.createdAt = Date.now()
       eventBus.emit('formSubmited', { ...this.userInfo })
-      socketService.emit('formSubmited', { ...this.userInfo })
+      const wap = this.$store.getters.editedWap
+      socketService.emit('formSubmited', {
+        ...this.userInfo,
+        wapOwnerId: wap.owner._id,
+        wapId: wap._id,
+      })
     },
     updateContent(elType, e) {
       eventBus.emit('cmpUpdated', {

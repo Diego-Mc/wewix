@@ -113,6 +113,8 @@ import wapVideo from '../cmps/wap-items/wap-video.vue'
 import wapMap from '../cmps/wap-items/wap-map.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
 
+import { ElMessage } from 'element-plus'
+
 import { demoData } from '../services/demo-data'
 import Chance from 'chance'
 
@@ -413,8 +415,8 @@ export default {
             },
           },
         })
-        this.$notify({
-          title: 'Chat added to website.',
+        ElMessage({
+          message: 'Chat added to website.',
           type: 'success',
         })
       }
@@ -449,8 +451,8 @@ export default {
         const wapId = await this.updateWap(this.wap)
         this.$store.dispatch('addWapToUser', { wapId: this.wap._id })
         this.$router.push('/' + this.wap.name)
-        this.$notify({
-          title: `Site is live at  ${window.location.href}`,
+        ElMessage({
+          message: `Site is live at  ${window.location.href}`,
           type: 'success',
         })
       } catch (err) {
