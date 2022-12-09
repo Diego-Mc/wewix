@@ -9,8 +9,12 @@
         <router-link :to="'/edit/' + wapData._id">
           <button class="edit-wap-btn">Edit Website</button>
         </router-link> -->
-        <a @click="preview" class="preview-btn">VIEW</a>
-        <a @click="publish" class="publish-btn">EDIT</a>
+        <router-link :to="`/${wapData.name}`" class="preview-btn"
+          >VIEW</router-link
+        >
+        <router-link :to="'/edit/' + wapData._id" class="publish-btn"
+          >EDIT</router-link
+        >
       </div>
     </div>
     <main class="graph-and-stats-container">

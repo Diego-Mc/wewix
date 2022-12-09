@@ -48,7 +48,7 @@ export default {
     usersData: Array,
   },
   created() {
-    this.$store.dispatch({ type: 'loadWaps' })
+    // this.$store.dispatch({ type: 'loadWaps' })
   },
   data() {
     return {
