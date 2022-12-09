@@ -1,16 +1,20 @@
 <template>
   <!--  -->
   <article class="wap-form" :class="'type-' + typeId">
-    <!-- <h3
+    <h3
       class="title"
       :style="info?.title?.options.style"
-      @click.stop="emitSelect({ cmpId, childCmpId })">
+      @click.stop="emitSelect({ cmpId, childCmpId, elType: 'title' })"
+      @input="updateContent('title', $event)"
+      :contenteditable="$store.getters.isEditMode">
       {{ info?.title?.content.text }}
-    </h3> -->
+    </h3>
     <p
       class="text"
       :style="info?.text?.options.style"
-      @click.stop="emitSelect({ cmpId, childCmpId })">
+      @click.stop="emitSelect({ cmpId, childCmpId, elType: 'text' })"
+      @input="updateContent('text', $event)"
+      :contenteditable="$store.getters.isEditMode">
       {{ info?.text?.content.text }}
     </p>
     <!-- <p class="text" :style="info.text.options.style">
@@ -51,6 +55,9 @@
 <script>
 import { eventBus } from '../../services/event-bus.service'
 import wapFormItem from '../wap-items/wap-form-item.vue'
+
+import { socketService } from '../../services/socket.service.js'
+
 export default {
   props: ['info', 'cmpId', 'options', 'typeId', 'childCmpId'],
   data() {
@@ -64,6 +71,21 @@ export default {
       if (this.$store.getters.isEditMode) return
       this.userInfo.createdAt = Date.now()
       eventBus.emit('formSubmited', { ...this.userInfo })
+      const wap = this.$store.getters.editedWap
+      socketService.emit('formSubmited', {
+        ...this.userInfo,
+        wapOwnerId: wap.owner._id,
+        wapId: wap._id,
+      })
+    },
+    updateContent(elType, e) {
+      eventBus.emit('cmpUpdated', {
+        cmpId: this.cmpId,
+        elType,
+        content: e.target.innerText,
+        childCmpId: this.childCmpId,
+        elDom: e,
+      })
     },
     emitSelect(elInfo) {
       eventBus.emit('select', { ...elInfo })

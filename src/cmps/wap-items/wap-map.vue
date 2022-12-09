@@ -5,7 +5,9 @@
       api-key="AIzaSyDKvG9VduLBhsz5HMIEo1Q9RQaX6B24Mck"
       style="width: 100%; height: 500px"
       :center="center"
-      :zoom="10">
+      :zoom="10"
+
+      >
       <Marker :options="marker" />
     </GoogleMap>
   </section>
@@ -48,10 +50,7 @@ export default {
   },
 
   methods: {
-    log() {
-      console.log('center:', this.center)
-      console.log('marker:', this.marker)
-    },
+    log() {},
     emitSelect(cmpInfo) {
       eventBus.emit('select', cmpInfo)
     },

@@ -7,7 +7,7 @@
       <login-modal
         @authenticated="authenticated"
         :isModalInAuthPage="true"
-        :msg="'login'" />
+        :msg="'Login'" />
     </div>
   </section>
 </template>

@@ -12,23 +12,23 @@
       </button>
     </div> -->
     <!-- <p class="login-p-divider">or</p> -->
-    <form class="login-form">
+    <form class="login-form" @submit.prevent="doLogin">
       <el-input
         class="auth-input"
         type="text"
         v-model="loginCred.username"
         placeholder="Enter username" />
       <!-- TODO: change to enter email or userName -->
-      <el-input
+      <input
         class="auth-input"
         v-model="loginCred.password"
         type="password"
         placeholder="Please type password"
         show-password />
-      <el-button @click.prevent="doLogin" type="primary"
-        >Login
+      <button type="primary" class="auth-btn">
+        Login
         <span v-if="destPage === 'publishWap'">&nbspand publish</span>
-      </el-button>
+      </button>
     </form>
     <button class="toggle-auth-link" @click.stop.prevent="openSignupModal">
       Dont have a user? <span style="font-weight: 600">signup here</span>
@@ -48,7 +48,7 @@ export default {
   name: 'login-modal',
   data() {
     return {
-      loginCred: { username: 'nir', password: 'coren' },
+      loginCred: { username: 'nir', password: 'nir' },
     }
   },
   computed: {
@@ -81,7 +81,7 @@ export default {
           this.$router.back()
         } else if (this.destPage === 'dashboard') {
           this.$router.push('/dashboard')
-        }else{
+        } else {
           this.$emit('authenticated')
         }
 
@@ -149,6 +149,56 @@ export default {
     padding: 0;
     text-align: start;
     color: rgb(102, 102, 102);
+  }
+
+/* CSS */
+.auth-btn {
+    appearance: none;
+    background-color: #2ea44f;
+    border: 1px solid rgba(27, 31, 35, 0.15);
+    box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    padding: 6px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  .auth-btn:focus:not(:focus-visible):not(.focus-visible) {
+    box-shadow: none;
+    outline: none;
+  }
+
+  .auth-btn:hover {
+    background-color: #2c974b;
+  }
+
+  .auth-btn:focus {
+    box-shadow: rgba(46, 164, 79, 0.4) 0 0 0 3px;
+    outline: none;
+  }
+
+  .auth-btn:disabled {
+    background-color: #94d3a2;
+    border-color: rgba(27, 31, 35, 0.1);
+    color: rgba(255, 255, 255, 0.8);
+    cursor: default;
+  }
+
+  .auth-btn:active {
+    background-color: #298e46;
+    box-shadow: rgba(20, 70, 32, 0.2) 0 1px 0 inset;
   }
 }
 </style>

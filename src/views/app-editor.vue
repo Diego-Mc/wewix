@@ -1,5 +1,6 @@
 <template>
   <!-- <wap-chat/> -->
+  <!-- <publish-modal/> -->
   <user-confirm-modal
     class="confirm-modal"
     v-if="isConfirmModalOpen"
@@ -86,6 +87,8 @@
 import draggable from 'vuedraggable'
 import { socketService } from '../services/socket.service'
 
+import publishModal from '../cmps/app-cmps/publish-modal.vue'
+
 import { eventBus, showUserMsg } from '../services/event-bus.service'
 import { httpService } from '../services/http.service'
 import getCmp, { wapUtils } from '../services/wap-cmps.service'
@@ -109,6 +112,8 @@ import wapForm from '../cmps/wap-sections/wap-form.vue'
 import wapVideo from '../cmps/wap-items/wap-video.vue'
 import wapMap from '../cmps/wap-items/wap-map.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
+
+import { ElMessage } from 'element-plus'
 
 import { demoData } from '../services/demo-data'
 import Chance from 'chance'
@@ -410,8 +415,8 @@ export default {
             },
           },
         })
-        this.$notify({
-          title: 'Chat added to website.',
+        ElMessage({
+          message: 'Chat added to website.',
           type: 'success',
         })
       }
@@ -446,8 +451,8 @@ export default {
         const wapId = await this.updateWap(this.wap)
         this.$store.dispatch('addWapToUser', { wapId: this.wap._id })
         this.$router.push('/' + this.wap.name)
-        this.$notify({
-          title: 'Site is live! ',
+        ElMessage({
+          message: `Site is live at  ${window.location.href}`,
           type: 'success',
         })
       } catch (err) {
@@ -581,6 +586,7 @@ export default {
     loadingScreen,
     loginModal,
     signupModal,
+    publishModal
   },
 }
 </script>
@@ -595,7 +601,7 @@ export default {
 </options>
 
 <style lang="scss">
-.auth-edit-mode-modal {
+.auth-edit-mode-modal,.publish-modal {
   position: fixed;
   z-index: 20000;
   background-color: white;
