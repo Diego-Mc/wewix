@@ -110,6 +110,9 @@ import wapVideo from '../cmps/wap-items/wap-video.vue'
 import wapMap from '../cmps/wap-items/wap-map.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
 
+import { demoData } from '../services/demo-data'
+import Chance from 'chance'
+
 import loadingScreen from '../cmps/app-cmps/loading-screen.vue'
 export default {
   data() {
@@ -293,16 +296,15 @@ export default {
 
     // prettier-ignore
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
-      let changedCmp = this.wap.cmps.find(cmp => cmp.id === cmpId)
+      let changedCmp = this.wap.cmps.find( cmp => cmp.id === cmpId)
       if (childCmpId) changedCmp = changedCmp.cmps.find( childCmp => childCmp.id === childCmpId)
       if (elType) {
         updatedStyle ? changedCmp.info[elType].options = updatedStyle : changedCmp.info[elType].content.text = content
       } else {
-        updatedStyle ? changedCmp.options=updatedStyle :  changedCmp.content.text = content
+        updatedStyle ? changedCmp.options=updatedStyle : changedCmp.content.text = content
       }
       this.onCmpsChange()
     },
-
     async loadWap() {
       if (this.$route.params?.id) {
         const wap = await this.$store.dispatch({
@@ -317,10 +319,14 @@ export default {
             return console.log('Not your website!')
         }
         this.wap = JSON.parse(JSON.stringify(this.$store.getters.editedWap))
+
+        // demo data:
+        // this.wap.usersData.subscriptions = demoData
+        // this.wap.visits = utilService.getDemoData()
       } else {
         if (this.$route.query.templateId) {
           const { templateId } = this.$route.query
-          this.wap = wapUtils.getTemplate(templateId)
+          this.wap = utilService.deepCopy(wapUtils.getTemplate(templateId))
           const defaultTheme = wapUtils.getTemplateTheme(templateId)
           this.themeChanged({ themeClass: defaultTheme })
         } else this.wap = appEditorService.getEmptyWap()

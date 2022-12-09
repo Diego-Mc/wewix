@@ -73,9 +73,10 @@ export default {
   props: {
     visitorsData: Array,
   },
+  created(){
+  },
   data() {
     return {
-      loggedinUserWaps: null,
       toys: [],
       selectedChart: 'PieChart',
       selectedStat: 'conversionRate',
@@ -140,7 +141,8 @@ export default {
     }
   },
   created() {
-    this.initWaps()
+    console.log('visits',this.visitorsData);
+
   },
 
   methods: {
@@ -152,9 +154,7 @@ export default {
       console.log('x', x)
       this.selectedChart = x
     },
-    initWaps() {
-      this.loggedinUserWaps = this.$store.getters.loggedinUserWaps
-    },
+
     getWapsiteData() {},
     getDatasetData({ type, dateAfter, columnsFilter }) {
       if (type === 'conversionRate') return [55, 45]

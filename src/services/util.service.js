@@ -9,6 +9,7 @@ export const utilService = {
   deepCopy,
   getRandomColor,
   toTitleCase,
+  getDemoData
 }
 
 function toTitleCase(str) {
@@ -116,4 +117,19 @@ function getRandomColor() {
     color += letters[Math.floor(Math.random() * 16)]
   }
   return color
+}
+
+function getDemoData() {
+  var chance = new Chance()
+  const demoData = []
+  
+  for (var i = 0; i < 150; i++) {
+    demoData.push({
+      createdAt: chance
+        .date({ year: chance.integer({ min: 2020, max: 2022 }) })
+        [Symbol.toPrimitive]('number'),
+      msg: chance.sentence({ words: 5 }),
+    })
+  }
+  return demoData
 }

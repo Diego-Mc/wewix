@@ -76,7 +76,7 @@ export default {
       },
       filterBy: '',
       currentPage: 1,
-      totalPages: 50,
+      totalPages: 100,
       wapToAdd: wapService.getEmptyWap(),
     }
   },
@@ -98,7 +98,6 @@ export default {
 
       users.forEach(user => {
           user.createdAt = this.getDate(user.createdAt)
-          console.log('user:', user)
       })
 
       //Filter
