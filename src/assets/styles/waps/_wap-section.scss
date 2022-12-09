@@ -170,6 +170,9 @@
         }
       }
     }
+    &.type-15 {
+      @include grid(1);
+    }
     &.type-17,
     &.type-18 {
       @include grid(1);
@@ -235,7 +238,8 @@
       }
     }
 
-    .gallery-section {
+    .gallery-section,
+    .gallery-section.type-1 {
       grid-template-columns: 1fr;
       .gallery-item,
       .gallery-item:nth-child(even) {
