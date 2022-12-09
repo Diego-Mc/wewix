@@ -39,7 +39,7 @@ export default {
     if (!this.loggedinUser) return this.$router.push('/')
     if (!this.loggedinUser.waps) return
 
-   this.userWaps = await this.getUserWaps()
+    this.userWaps = await this.getUserWaps()
   },
   methods: {
     handleBtnSelect(ans) {
@@ -82,7 +82,7 @@ export default {
     wapNames() {
       return this?.userWaps?.map((wap) => ({
         val: wap,
-        icon: 'cast',
+        icon: 'file-bar-graph-fill',
         text: wap.name,
       }))
     },

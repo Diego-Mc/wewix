@@ -1,28 +1,36 @@
 <template>
-  <el-input
-    class="table-search"
-    v-model="filterBy"
-    size="small"
-    placeholder="Type to search" />
-  <el-table :data="modifiedUsers" style="width: 100%">
-    <el-table-column
-      v-for="userKey in usersDataKeys"
-      :key="userKey"
-      :fixed="userKey === 'createdAt'"
-      :prop="userKey"
-      :label="userKey"
-      sortable
-      width="150" />
-  </el-table>
-  <el-pagination
-    background
-    hide-on-single-page
-    :small="true"
-    layout="prev, pager, next"
-    :page-count="totalPages"
-    class="mt-4 paging"
-    @current-change="paginate($event)"
-    :current-page="currentPage" />
+  <section class="leads">
+    <div class="table-options">
+      <el-input
+        class="table-search"
+        v-model="filterBy"
+        size="small"
+        placeholder="Type to search" />
+      <button class="csv-download">DOWNLOAD CSV</button>
+    </div>
+    <el-table
+      :data="modifiedUsers"
+      style="width: 100%"
+      max-height="200px"
+      flexible>
+      <el-table-column
+        v-for="userKey in usersDataKeys"
+        :key="userKey"
+        :fixed="userKey === 'createdAt'"
+        :prop="userKey"
+        :label="userKey"
+        class="leads-table"
+        sortable />
+    </el-table>
+    <el-pagination
+      background
+      hide-on-single-page
+      layout="prev, pager, next"
+      :page-count="totalPages"
+      class="mt-4 paging"
+      @current-change="paginate($event)"
+      :current-page="currentPage" />
+  </section>
 </template>
 
 <script>
@@ -70,8 +78,8 @@ export default {
     modifiedUsers() {
       let users = JSON.parse(JSON.stringify(this.usersData))
 
-      users.forEach(user => {
-          user.createdAt = this.getDate(user.createdAt)
+      users.forEach((user) => {
+        user.createdAt = this.getDate(user.createdAt)
       })
 
       //Filter
@@ -82,8 +90,6 @@ export default {
           return userKeys.some((key) => regex.test(user[key]))
         })
       }
-
-
 
       // Sort
       if (this.sortBy.type) {
@@ -142,22 +148,38 @@ export default {
     },
 
     getDate(date) {
-            const createdAt = new Date(date)
-            const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
-                "July", "Aug", "Sep", "Oct", "Nov", "Dec"
-            ];
-            // If Pass By Year
-            if (new Date().getFullYear() - createdAt.getFullYear() > 1) {
-                return monthNames[createdAt.getMonth()] + ' ' + createdAt.getFullYear()
-            // If Pass By Less Then 24 Hours 
-            } else if (new Date() - createdAt < 1000 * 60 * 60 * 24){
-                const hour = (createdAt.getHours() < 10) ? '0' + createdAt.getHours() : createdAt.getHours() 
-                const minutes = (createdAt.getMinutes() < 10) ? '0' + createdAt.getMinutes() : createdAt.getMinutes()
-                return hour + ':' + minutes
-            } else {
-                return monthNames[createdAt.getMonth()] + ' ' + (createdAt.getDay() + 1)
-            }
-
+      const createdAt = new Date(date)
+      const monthNames = [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'June',
+        'July',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec',
+      ]
+      // If Pass By Year
+      if (new Date().getFullYear() - createdAt.getFullYear() > 1) {
+        return monthNames[createdAt.getMonth()] + ' ' + createdAt.getFullYear()
+        // If Pass By Less Then 24 Hours
+      } else if (new Date() - createdAt < 1000 * 60 * 60 * 24) {
+        const hour =
+          createdAt.getHours() < 10
+            ? '0' + createdAt.getHours()
+            : createdAt.getHours()
+        const minutes =
+          createdAt.getMinutes() < 10
+            ? '0' + createdAt.getMinutes()
+            : createdAt.getMinutes()
+        return hour + ':' + minutes
+      } else {
+        return monthNames[createdAt.getMonth()] + ' ' + (createdAt.getDay() + 1)
+      }
     },
 
     async addWap() {

@@ -1,18 +1,22 @@
 <template>
   <section class="dashboard-wap-stats">
     <div class="wap-stat-block">
+      <i class="bi bi-eyeglasses"></i>
       <h3>Total Views</h3>
       <p class="stat-count">{{ wapData.visits ? wapData.visits.length : 0 }}</p>
     </div>
     <div class="wap-stat-block">
+      <i class="bi bi-calendar-event"></i>
       <h3>Created At</h3>
       <p class="stat-count">{{ dateStr }}</p>
     </div>
     <div class="wap-stat-block">
+      <i class="bi bi-briefcase"></i>
       <h3>Total Subscribers</h3>
       <p class="stat-count">{{ wapData.usersData.subscriptions.length }}</p>
     </div>
     <div class="wap-stat-block">
+      <i class="bi bi-bank"></i>
       <h3>Conversion Rate</h3>
       <p class="stat-count">
         {{ conversionRate }}
