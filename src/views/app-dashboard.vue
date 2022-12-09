@@ -35,23 +35,8 @@ export default {
 
     if (!this.loggedinUser) return this.$router.push('/')
     if (!this.loggedinUser.waps) return
-    // this.loggedinUser.waps.map(wapId =>{
-      
-    // })
-    let waps = await this.getWaps()
-    this.userWaps = waps
-      .filter((wap) => this.loggedinUser.waps.includes(wap._id))
-      .map((wap) => {
-        return {
-          _id: wap._id,
-          name: wap.name,
-          usersData: wap.usersData,
-          createdAt: wap.createdAt,
-          visits: wap.visits,
-        }
-      })
-      this.currWapData = this.userWaps[0]
-      
+
+   this.userWaps = await this.getUserWaps()
   },
   methods: {
     handleBtnSelect(ans) {
@@ -62,6 +47,9 @@ export default {
     },
     async getWaps() {
       return await this.$store.dispatch('getWaps')
+    },
+    async getUserWaps() {
+      return await this.$store.dispatch('getUserWaps')
     },
     changeCurrWapData(wap) {
       this.currWapData = wap

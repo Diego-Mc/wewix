@@ -33,8 +33,9 @@
 
     <section class="content-editor">
        <div v-if="isOptionsContain('src')">
-        Link
-        <input @input="updateOptions" v-model="updatedOptions.meta.src" type="text" placeholder="link" />
+        <!-- Link
+        <input @input="updateOptions" v-model="updatedOptions.meta.src" type="text" placeholder="link" /> -->
+        <edit-upload-section @select="updateOptionsMeta" />
       </div>
 
 

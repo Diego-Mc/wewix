@@ -11,7 +11,9 @@ export const wapService = {
   save,
   remove,
   getEmptyWap,
+  getUserWaps,
   addWapMsg,
+  getByName,
 }
 window.cs = wapService
 
@@ -28,22 +30,35 @@ async function query(filterBy = { txt: '', price: 0 }) {
   // }
   // return waps
 }
+async function getUserWaps(userWapIds) {
+  return httpService.get(`wap/user`,userWapIds)
+
+}
+
+
 function getById(wapId) {
   // return storageService.get(STORAGE_KEY, wapId)
   return httpService.get(`wap/${wapId}`)
 }
 
-// Todo
-async function getByName(wapName) {
-  return true
-  try {
-    const res = await storageService.getByName(WAPS_KEY, wapName)
-    return res
-  } catch (err) {
-    console.log(`${err} while getByName From storageService`);
-    throw new Error(`Couldn't retrieve Wap from storageService`)
-  }
+function getByName(wapName) {
+  // return storageService.get(STORAGE_KEY, wapId)
+  return httpService.get(`wap/name/${wapName}`)
 }
+
+
+
+// Todo
+// async function getByName(wapName) {
+//   return true
+//   try {
+//     const res = await storageService.getByName(WAPS_KEY, wapName)
+//     return res
+//   } catch (err) {
+//     console.log(`${err} while getByName From storageService`);
+//     throw new Error(`Couldn't retrieve Wap from storageService`)
+//   }
+// }
 
 async function remove(wapId) {
   // await storageService.remove(STORAGE_KEY, wapId)
@@ -53,8 +68,6 @@ async function remove(wapId) {
 async function save(wap) {
   var savedWap
   if (wap._id) {
-  console.log('service',wap._id);
-
     // savedWap = await storageService.put(STORAGE_KEY, wap)
     savedWap = await httpService.put(`wap/${wap._id}`, wap)
   } else {

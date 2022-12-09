@@ -148,8 +148,8 @@ export default {
   async created() {
     this.onCmpsChange = utilService.debounce(this.onCmpsChange, 500)
     this.$store.commit('setEditMode', { isEditMode: true })
-    await this.loadWap()
-    console.log(this.wap)
+    const authenticeted = await this.loadWap()
+    if (!authenticeted) return this.$router.push('/templates')
     this.initEventsFromBus()
     this.initHistory()
     if (this.wap.classState) {
@@ -316,7 +316,7 @@ export default {
             !this.loggedinUser ||
             !this.loggedinUser?.waps.includes(this.$route.params?.id)
           )
-            return console.log('Not your website!')
+            return false
         }
         this.wap = JSON.parse(JSON.stringify(this.$store.getters.editedWap))
 
@@ -339,6 +339,7 @@ export default {
 
         this.$router.push({ path: '/edit/' + editedWapId, replace: true })
       }
+      return true
     },
     initHistory() {
       const gHistory = appEditorService.loadFromStorage('gHistory')
@@ -546,6 +547,7 @@ export default {
         wapId: this.wap._id,
         cursorId: this.curserId,
       })
+      this.$router.replace({ ...this.$route, query: { workTogether: true } })
     },
   },
 

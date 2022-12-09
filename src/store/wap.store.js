@@ -86,6 +86,12 @@ export const wapStore = {
       context.commit({ type: 'setWaps', waps })
       return waps
     },
+
+    async getUserWaps(context) {
+      const userWaps = await wapService.getUserWaps(context.getters.loggedinUser.waps)
+      return userWaps
+    },
+
     async getWap(context, { id }) {
       const wap = await wapService.getById(id)
       context.commit({ type: 'setEditedWap', wap })
@@ -93,11 +99,17 @@ export const wapStore = {
     },
 
     //Todo
+    // async getWapByName(context, { wapName }) {
+    //   const waps = await wapService.query()
+    //   return waps.find(wap => {
+    //     return wap.name === wapName
+    //   })
+    // },
     async getWapByName(context, { wapName }) {
-      const waps = await wapService.query()
-      return waps.find(wap => {
-        return wap.name === wapName
-      })
+      const wap = await wapService.getByName(wapName)
+      console.log(wap);
+      return wap
+      
     },
 
     async updateWap(context, { wap }) {

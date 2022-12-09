@@ -78,7 +78,7 @@ export default {
       try {
         await this.$store.dispatch({ type: 'login', userCred: this.loginCred })
         if (this.isModalInAuthPage) {
-          this.$router.push('/edit')
+          this.$router.back()
         } else if (this.destPage === 'dashboard') {
           this.$router.push('/dashboard')
         }else{
