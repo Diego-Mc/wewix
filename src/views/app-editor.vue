@@ -394,7 +394,7 @@ export default {
         this.wap.chatData = {
           adminName: this.loggedinUser.fullname,
           adminID: this.loggedinUser._id,
-          chatId: utilService.makeId(),
+          chatId: this.wap._id,
         }
         this.wap.cmps.push({
           id: utilService.makeId(),
@@ -404,7 +404,7 @@ export default {
               chatData: {
                 adminName: this.wap.chatData.adminName,
                 adminID: this.wap.chatData.adminID,
-                chatId: this.wap.chatData.chatId,
+                chatId: this.wap._id,
               },
             },
           },

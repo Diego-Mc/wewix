@@ -16,12 +16,14 @@
         :opts="wapNames" />
     </section>
     <router-view :wapData="currWapData"></router-view>
+    <!-- <wap-chat :options="currWapData.options"/> -->
     <!-- <div style="" v-else>Build a website to see data!</div> -->
   </main>
 </template>
 
 <script>
 import editorBtnGroup from '../cmps/main-editor/editor-items/editor-btn-group.vue'
+import wapChat from '../cmps/wap-items/wap-chat.vue'
 export default {
   data() {
     return {
@@ -98,6 +100,7 @@ export default {
   },
   components: {
     editorBtnGroup,
+    wapChat
   },
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <section class="dashboard-data">
+  <section class="dashboard-data" v-if="wapData">
     <div class="dashboard-top-div">
       <h2>{{ wapData.name + "'s Dashboard" }}</h2>
       <div>
@@ -16,6 +16,7 @@
       <app-dashboard-stats :wapData="wapData" />
     </main>
     <app-dashboard-details :usersData="wapData.usersData.subscriptions" />
+    <wap-chat :wapId="wapData._id"/>
   </section>
 </template>
 
@@ -24,6 +25,7 @@ import Chance from 'chance'
 import appDashboardGraphs from '../cmps/app-cmps/app-dashboard-graphs.vue'
 import appDashboardDetails from '../cmps/app-cmps/app-dashboard-details.vue'
 import appDashboardStats from '../cmps/app-cmps/app-dashboard-stats.vue'
+import wapChat from '../cmps/wap-items/wap-chat.vue'
 import { utilService } from '../services/util.service'
 
 export default {
@@ -60,6 +62,7 @@ export default {
     appDashboardGraphs,
     appDashboardDetails,
     appDashboardStats,
+    wapChat
   },
 }
 </script>
