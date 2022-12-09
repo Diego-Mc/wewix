@@ -110,6 +110,8 @@ import editorBtnGroup from '../main-editor/editor-items/editor-btn-group.vue'
 import { wapService } from '../../services/wap.service'
 import { utilService } from '../../services/util.service'
 import urlBar from './url-bar.vue'
+import { ElMessage } from 'element-plus'
+
 export default {
   props: {
     wapName: String,
@@ -140,13 +142,13 @@ export default {
       this.updateInlineNameStyle(isValid.state)
 
       if (isValid.state) {
-        this.$notify({
-          title: isValid.msg,
+        ElMessage({
+          message: isValid.msg,
           type: 'success',
         })
         this.$emit('setName', this.updatedWapName)
       } else {
-        this.$notify({
+        ElMessage({
           title: isValid.msg,
           type: 'error',
         })
@@ -188,7 +190,7 @@ export default {
         this.updatedWapName === 'site-name' ||
         this.updatedWapName === 'user'
       ) {
-        this.$notify({
+        ElMessage({
           title: 'Cannot Publish Site With Invalid Name',
           type: 'error',
         })
@@ -200,8 +202,8 @@ export default {
       console.log(this.updatedWapName)
       console.log(state)
       if (!state) {
-        this.$notify({
-          title: 'Cannot Publish Site With Invalid Name',
+        ElMessage({
+          message: 'Cannot Publish Site With Invalid Name',
           type: 'error',
         })
       } else {

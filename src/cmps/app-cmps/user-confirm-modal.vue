@@ -22,6 +22,9 @@
 </template>
 
 <script>
+import { ElMessage } from 'element-plus'
+
+
 export default {
   props: {
     confirmData: Object,
@@ -49,8 +52,8 @@ export default {
       this.copyToClipboard(this.currentUrl)
       this.$emit('openWorkSpace')
       this.$emit('closelModal')
-      this.$notify({
-              title: 'Link copied! work together is on',
+      ElMessage({
+              message: 'Link copied! work together is on',
               type: 'success',
           });
 

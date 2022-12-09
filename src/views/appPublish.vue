@@ -86,7 +86,7 @@ export default {
           type: 'success',
         })
       } catch (error) {
-        this.$notify({
+        ElMessage({
           title: "Couldn't send message",
           type: 'error',
         })

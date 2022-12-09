@@ -40,7 +40,7 @@ export default {
           this.wapData.visits?.length) *
         100
       if (isNaN(rate)) rate = 0
-      return rate + '%'
+      return rate.toFixed(2) + '%'
     },
   },
 }

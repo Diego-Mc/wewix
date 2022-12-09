@@ -52,7 +52,7 @@ export default {
           (wap) => wap._id === sentMsg.wapId
         )
         const { wapOwnerId, wapId, ...newMsg } = sentMsg
-        updatedWap.usersData.subscriptions.push(newMsg)
+        updatedWap.usersData.subscriptions.unshift(newMsg)
         ElMessage({
           message: `You have a new lead from site '${updatedWap.name}'`,
           type: 'success',

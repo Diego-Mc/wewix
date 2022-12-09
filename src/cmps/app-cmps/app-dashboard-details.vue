@@ -78,7 +78,7 @@ export default {
       users.forEach((user) => {
         user.createdAt = this.getDate(user.createdAt)
       })
-
+  
       //Filter
       if (this.filterBy) {
         const regex = new RegExp(this.filterBy, 'i')
@@ -104,7 +104,7 @@ export default {
         }
       }
 
-      const USERS_PER_PAGE = 5
+      const USERS_PER_PAGE = 10
       this.totalPages = Math.round(users.length / USERS_PER_PAGE)
 
       //Paginate

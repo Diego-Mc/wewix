@@ -15,6 +15,8 @@
 <script>
 import { cmpEditorService } from '../../../services/cmp-editor.service'
 import { utilService } from '../../../services/util.service'
+import { ElMessage } from 'element-plus'
+
 export default {
     data() {
         return {
@@ -36,16 +38,16 @@ export default {
             try {
                 this.location = await cmpEditorService.getMapData(locationName)
                 if (!this.location) {
-                    this.$notify({
-                        title: 'The map failed to load, please try again ',
+                    ElMessage({
+                        message: 'The map failed to load, please try again ',
                         type: 'error',
                     })
                     throw new Error("Map Has'nt been loaded")
                 }
 
                 // Handle state when getting data
-                this.$notify({
-                        title: 'The map is loaded and ready to use',
+                ElMessage({
+                        message: 'The map is loaded and ready to use',
                         type: 'success',
                 })
                 this.$emit('select', { key: 'mapData', val: this.location })
