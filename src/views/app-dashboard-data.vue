@@ -19,10 +19,14 @@
     </div>
     <main class="graph-and-stats-container">
       <app-dashboard-stats v-if="wapData" :wapData="wapData" />
-      <app-dashboard-graphs v-if="wapData.visits" :visitorsData="wapData.visits" />
+      <app-dashboard-graphs
+        v-if="wapData.visits"
+        :visitorsData="wapData.visits" />
     </main>
-    <app-dashboard-details v-if="wapData.usersData.subscriptions" :usersData="wapData.usersData.subscriptions" />
-    <wap-chat :wapId="wapData._id" />
+    <app-dashboard-details
+      v-if="wapData.usersData.subscriptions"
+      :usersData="wapData.usersData.subscriptions" />
+    <wap-chat :isOwner="true" :wapId="wapData._id" />
   </section>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-  <section class="wap-chat-container">
+  <section v-if="chatId" class="wap-chat-container">
     <section @click="isChatOpen = true" class="chat-icon" v-if="!isChatOpen">
       <i class="bi bi-chat-right-dots"></i>
     </section>
@@ -91,7 +91,8 @@ import { utilService } from '../../services/util.service'
 export default {
   props: {
     options: Object,
-    wapId: String
+    wapId: String,
+    isOwner: Boolean,
   },
   data() {
     return {
@@ -101,11 +102,15 @@ export default {
       activeGuests: [],
       activeConversation: null,
       user: this.getUser(),
-      chatId: this.options?.meta?.chatData?.chatId || this.wapId,
+      // chatId: this.options?.meta?.chatData?.chatId || this.wapId, //PUKI
+      chatId: null, //PUKI
       isUserTyping: {},
     }
   },
-  created() {
+  async created() {
+    this.chatId = !this.isOwner
+      ? this.$store.getters.editedWap.owner._id
+      : this.$store.getters.loggedinUser._id
     socketService.emit('startConversation', {
       chatId: this.chatId,
       userId: this.user.id,
@@ -144,6 +149,12 @@ export default {
       else this.conversations[msg.id] = [msg]
     },
     sendMsg() {
+      console.log(
+        'PUKI',
+        !this.isOwner
+          ? this.$store.getters.editedWap.owner._id
+          : this.$store.getters.loggedinUser._id
+      )
       this.msg.from = 'Davud'
       socketService.emit('addMsg', {
         msg: this.msg,
@@ -178,17 +189,20 @@ export default {
       this.isUserTyping[user] = false
     },
   },
-  watch: { 
-      	wapId(newWapId) { // watch it
-          socketService.emit('startConversation', {
-              chatId: newWapId,
-              userId: this.user.id,
-              adminId: this.user.isAdmin ? this.user.id : '',
-          })
-        }
-  }
-}
+  watch: {
+    wapId(newWapId) {
+      // watch it
 
+      socketService.emit('startConversation', {
+        chatId: !this.isOwner
+          ? this.$store.getters.editedWap.owner._id
+          : this.$store.getters.loggedinUser._id, //PUKI
+        userId: this.user.id,
+        adminId: this.user.isAdmin ? this.user.id : '',
+      })
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped></style>
