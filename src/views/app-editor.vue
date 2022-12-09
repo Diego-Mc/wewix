@@ -236,8 +236,9 @@ export default {
       document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
       this.onCmpsChange()
     },
-    undo() { [1,2,3]
-      const gHistory = appEditorService.loadFromStorage('gHistory') // get history 
+    undo() {
+      ;[1, 2, 3]
+      const gHistory = appEditorService.loadFromStorage('gHistory') // get history
       if (!gHistory.changeIdx) return
       gHistory.changeIdx -= 1
       this.wap = gHistory.changes[gHistory.changeIdx]
@@ -281,9 +282,9 @@ export default {
       this.drag = false
       this.onCmpsChange()
     },
+
     // prettier-ignore
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
-
       let changedCmp = this.wap.cmps.find(cmp => cmp.id === cmpId)
       if (childCmpId) changedCmp = changedCmp.cmps.find( childCmp => childCmp.id === childCmpId)
       if (elType) {
@@ -293,6 +294,7 @@ export default {
       }
       this.onCmpsChange()
     },
+
     async loadWap() {
       if (this.$route.params?.id) {
         const wap = await this.$store.dispatch({
