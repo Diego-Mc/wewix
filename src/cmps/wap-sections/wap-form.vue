@@ -63,11 +63,11 @@ export default {
     formSubmited() {
       if (this.$store.getters.isEditMode) return
       this.userInfo.createdAt = Date.now()
-      eventBus.emit('formSubmited', this.userInfo)
+      eventBus.emit('formSubmited', { ...this.userInfo })
     },
     emitSelect(elInfo) {
-      console.log(elInfo)
       eventBus.emit('select', { ...elInfo })
+      // this.userInfo = {}
     },
   },
 
