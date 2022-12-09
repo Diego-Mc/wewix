@@ -529,11 +529,19 @@ export default {
       }
       if (key !== 'workTogether') return
 
-      const data = {
-        txt: 'Are you sure you want to open a work space?',
-      }
+      utilService.copyToClipboard(window.location.href + '?workTogether=true')
+      this.$router.replace({ ...this.$route, query: { workTogether: true } })
+      this.openWorkSpace()
+      this.$notify({
+        title: 'Link copied! work together is on',
+        type: 'success',
+      })
 
-      this.handleUserConfirmModal('open', data)
+      // const data = {
+      //   txt: 'Are you sure you want to open a work space?',
+      // }
+
+      // this.handleUserConfirmModal('open', data)
     },
 
     handleUserConfirmModal(state, data) {
@@ -586,7 +594,7 @@ export default {
     loadingScreen,
     loginModal,
     signupModal,
-    publishModal
+    publishModal,
   },
 }
 </script>
@@ -601,7 +609,8 @@ export default {
 </options>
 
 <style lang="scss">
-.auth-edit-mode-modal,.publish-modal {
+.auth-edit-mode-modal,
+.publish-modal {
   position: fixed;
   z-index: 20000;
   background-color: white;
