@@ -49,7 +49,7 @@
         :wapId="wap._id" />
       <editor-sidebar :selectedCmp="selectedCmp" />
     </section>
-    <main class="main-wap" :class="mediaType">
+    <main class="main-wap" :class="mediaType" ref="mainWap">
       <draggable
         class="list-group"
         :component-data="{
@@ -138,6 +138,8 @@ export default {
         loginMsg: '',
         signupMsg: '',
       },
+
+      overlayInterval: 0,
     }
   },
   async created() {
@@ -157,6 +159,12 @@ export default {
       this.isSocketsOn = true
       this.openWorkSpace()
     }
+  },
+  updated() {
+    console.log('updated')
+    clearInterval(this.overlayInterval)
+    this.overlayInterval = 0
+    setInterval(appEditorService.addOverlays, 20, this.$refs.mainWap)
   },
   methods: {
     setAuthModalMsg(destinationPage) {
@@ -236,8 +244,9 @@ export default {
       document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
       this.onCmpsChange()
     },
-    undo() { [1,2,3]
-      const gHistory = appEditorService.loadFromStorage('gHistory') // get history 
+    undo() {
+      ;[1, 2, 3]
+      const gHistory = appEditorService.loadFromStorage('gHistory') // get history
       if (!gHistory.changeIdx) return
       gHistory.changeIdx -= 1
       this.wap = gHistory.changes[gHistory.changeIdx]

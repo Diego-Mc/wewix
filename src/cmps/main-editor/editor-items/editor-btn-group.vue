@@ -12,7 +12,7 @@
       <label :class="info.type" :style="style">
         <i
           v-if="opt.icon"
-          @click="iconEvent(opt.icon)"
+          @mousedown.prevent="iconEvent(opt.icon)"
           :class="'icon bi bi-' + opt.icon"></i>
         <span class="text" v-if="opt.text">{{ opt.text }}</span>
         <span class="sample" :style="opt.style" v-if="opt.sample">{{
