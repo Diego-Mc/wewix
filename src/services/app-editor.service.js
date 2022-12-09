@@ -45,7 +45,7 @@ function addOverlays(elMainWap) {
   elMainWap
     .querySelectorAll('[data-draggable]:hover')
     .forEach((elDraggable) => {
-      _addOverlay(elDraggable, '#00e8c511', '#00e8c555')
+      _addOverlay(elDraggable, '#00e8c533', '#00e8c555')
       elDraggable
         .querySelectorAll("[contenteditable='true']:hover")
         .forEach((elEditable) => _addOverlay(elEditable, '#00e8c533'))
