@@ -92,7 +92,7 @@
         class="publish-links mobile"
         split-button
         type="primary"
-        @click="handleClick">
+        @click="preview">
         Preview
         <template #dropdown>
           <el-dropdown-menu>

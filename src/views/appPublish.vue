@@ -52,10 +52,10 @@ export default {
     const { preview } = this.$route.query
     if (preview) {
       const id = this.$route.params.name
-      await this.getWap(id)
+      this.wap = await this.$store.dispatch('getWap',{id})
     } else {
       const wapName = this.$route.params.name
-      await this.getWapByName(wapName)
+     await this.getWapByName(wapName)
       this.checkNewVisit()
       eventBus.on('formSubmited', this.addUserInfo)
     }

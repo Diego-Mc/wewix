@@ -17,7 +17,7 @@
           }"
           :opts="wapNames" />
       </section>
-      <router-view :wapData="currWapData"></router-view>
+      <router-view v-if="currWapData" :wapData="currWapData"></router-view>
       <!-- <wap-chat :options="currWapData.options"/> -->
       <!-- <div style="" v-else>Build a website to see data!</div> -->
     </main>
@@ -43,7 +43,6 @@ export default {
     if (!this.loggedinUser) return this.$router.push('/')
     if (!this.loggedinUser.waps) return
 
-    this.userWaps = await this.getUserWaps()
     const waps = await this.getUserWaps()
     this.userWaps = utilService.deepCopy(waps)
     socketService.on('formSent', (sentMsg) => {
@@ -67,14 +66,11 @@ export default {
     handleBtnSelect(ans) {
       this.changeCurrWapData(ans.val)
     },
-    getWap() {},
-    async getWaps() {
-      return await this.$store.dispatch('getWaps')
-    },
     async getUserWaps() {
       return await this.$store.dispatch('getUserWaps')
     },
     changeCurrWapData(wap) {
+      console.log(wap)
       this.currWapData = wap
       if (this.currWapData && this.currWapData._id)
         this.$router.push('/dashboard/' + this.currWapData._id)
