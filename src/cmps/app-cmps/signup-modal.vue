@@ -1,7 +1,7 @@
 <template>
   <div class="auth-modal">
     <h2 class="auth-header">{{ msg }}</h2>
-    <form class="login-form">
+    <form class="login-form"  @submit.prevent="doSignup">
       <el-input
         class="auth-input"
         type="text"
@@ -19,12 +19,11 @@
         placeholder="Password"
         show-password />
 
-      <img-uploader @uploaded="onUploaded"></img-uploader>
-      <el-button type="primary" @click.prevent="doSignup">
+      <button type="primary">
         <span>Signup </span>
         <span v-if="destPage === 'publishWap'"
           >&nbspand publish</span
-        ></el-button
+        ></button
       >
     
     </form>

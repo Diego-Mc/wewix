@@ -69,6 +69,7 @@
     </div>
 
     <div class="publish-btns">
+      <!-- <url-bar/> -->
       <section class="url-bar">
         <p class="address">
           <span>https://</span><span class="mb-hide">wewix.onrender.com/</span
@@ -108,7 +109,7 @@
 import editorBtnGroup from '../main-editor/editor-items/editor-btn-group.vue'
 import { wapService } from '../../services/wap.service'
 import { utilService } from '../../services/util.service'
-
+import urlBar from './url-bar.vue'
 export default {
   props: {
     wapName: String,
@@ -208,7 +209,7 @@ export default {
     },
   },
   components: {
-    editorBtnGroup,
+    editorBtnGroup,urlBar
   },
   created() {
     this.setUpdatedWapName = utilService.debounce(this.setUpdatedWapName, 1000)

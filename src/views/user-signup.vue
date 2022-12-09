@@ -4,7 +4,7 @@
     <signup-modal
       @authenticated="authenticated"
       :isModalInAuthPage="true"
-      :msg="'signup'" />
+      :msg="'Signup'" />
   </section>
 </template>
 

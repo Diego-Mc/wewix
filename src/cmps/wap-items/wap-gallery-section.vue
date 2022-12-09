@@ -8,15 +8,15 @@
       <div class="img-container">
         <img :src="cmp.options.meta.src"  @click.stop="emitSelect(key, $event)"/>
       </div>
-        <!-- <h6
+      <!-- <h6
         v-if="cmp.content.text"
         class="img-text"
         @input="updateContent(key, $event)"
         :style="info[key]?.options.style"
-        @click.stop="emitSelect(key, $event)"
+        @click.stop="emitSelect('text' + key.slice(3), $event)"
         :contenteditable="$store.getters.isEditMode">
         {{ info[key]?.content.text }}
-      </h6> -->
+      </h6>  -->
      
     </div>
   </section>
@@ -39,7 +39,7 @@ export default {
       })
     },
     emitSelect(key, e) {
-      console.log(key)
+      console.log(key);
       eventBus.emit('select', {
         cmpId: this.cmpId,
         elType: key,

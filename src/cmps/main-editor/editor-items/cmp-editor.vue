@@ -1,7 +1,6 @@
 <template>
   <section v-if="editOptions">
     <section class="style-editor">
-
       <div v-if="isOptionsContain('fontFamily')">
         <edit-font-section @select="updateOptionsStyle" />
       </div>
@@ -19,25 +18,26 @@
       </div>
 
       <div v-if="isOptionsContain('borderRadius')">
-        <edit-radius-section @select="updateStyleValToEm" :borderRadius="parseFloat(editOptions.style.borderRadius)"
+        <edit-radius-section
+          @select="updateStyleValToEm"
+          :borderRadius="parseFloat(editOptions.style.borderRadius)"
           :elStyle="getElStyle('border-radius')" />
       </div>
 
       <!-- TODO: add style to fontSize -->
       <div v-if="isOptionsContain('fontSize')">
-        <edit-font-size-section 
-            @select="updateStyleValToEm" 
-            :fontSize="getElStyle('font-size')" />
+        <edit-font-size-section
+          @select="updateStyleValToEm"
+          :fontSize="getElStyle('font-size')" />
       </div>
     </section>
 
     <section class="content-editor">
-       <div v-if="isOptionsContain('src')">
+      <div v-if="isOptionsContain('src')">
         <!-- Link
         <input @input="updateOptions" v-model="updatedOptions.meta.src" type="text" placeholder="link" /> -->
         <edit-upload-section @select="updateOptionsMeta" />
       </div>
-
 
       <div v-if="isOptionsContain('backgroundImage')">
         <edit-upload-section @select="updateOptionsMeta" />
@@ -45,10 +45,16 @@
 
       <div v-if="isOptionsContain('link')">
         Link
-        <input @input="updateOptions" v-model="updatedOptions.meta.link" type="text" placeholder="link" />
+        <input
+          @input="updateOptions"
+          v-model="updatedOptions.meta.link"
+          type="text"
+          placeholder="link" />
       </div>
 
-      <edit-map-section v-if="isOptionsContain('mapData')" @select="updateOptionsMeta" />
+      <edit-map-section
+        v-if="isOptionsContain('mapData')"
+        @select="updateOptionsMeta" />
       <!-- <div v-if="isOptionsContain('mapData')">
         Map Data
         <input @input="handleMapInput($event)" type="text" />
@@ -68,22 +74,30 @@
       <div v-if="isOptionsContain('formInputs')">
         <h6 class="edit-type-label">Form Fields</h6>
 
-        <div v-for="(field, idx) in updatedOptions.meta.formInputs">
-          <div>
-            <input @input="fieldChanged(id, idx, $event)" :value="field.tag" type="text" />
-            <button @click="fieldRemoved(id, idx)">X</button>
+        <div
+          v-for="(field, idx) in updatedOptions.meta.formInputs"
+          class="form-inputs-container">
+          <div style="display: flex">
+            <el-input
+            class="form-input"
+              @input="fieldChanged(id, idx, $event)"
+              :value="field.tag"
+              type="text" />
+            <button style="color: red" @click="fieldRemoved(id, idx)">X</button>
           </div>
         </div>
-        <el-button type="primary" @click="fieldAdded(id)" style="width: 100%; background: green; margin-bottom: 10px">
-          add field
+        <el-button
+          type="primary"
+          @click="fieldAdded(id)"
+          style="width: 100%; margin-bottom: 10px">
+          Add field to form
         </el-button>
       </div>
 
       <div>
-        <el-button type="danger" @click.stop="onRemoveCmp">Remove</el-button>
+        <el-button type="danger" style="background: rgb(239, 3, 42) !important; font-size: 12px;" @click.stop="onRemoveCmp">Remove</el-button>
       </div>
     </section>
-
   </section>
 </template>
 
@@ -127,7 +141,7 @@ export default {
     },
     fieldRemoved(id, idx) {
       this.updatedOptions.meta.formInputs.splice(idx, 1)
-      eventBus.emit('updateField', { id, idx,childCmpId: this.childCmpId })
+      eventBus.emit('updateField', { id, idx, childCmpId: this.childCmpId })
     },
     fieldAdded(id) {
       this.updatedOptions.meta.formInputs.push({ tag: '', txt: '' })
@@ -145,7 +159,7 @@ export default {
         ...Object.keys(this.editOptions.style),
         ...Object.keys(this.editOptions.meta),
       ]
-      console.log(options);
+      console.log(options)
       return options.includes(type)
     },
 
@@ -161,13 +175,13 @@ export default {
         this.updatedOptions.meta[key] = val
       }
 
-
       this.updateOptions()
     },
 
     //TODO CHANGE NAME
     updateOptions() {
-      if (this.updatedOptions.style.backgroundImage) this.updatedOptions.style.backgroundImage = `url(${this.updatedOptions.style.backgroundImage})`
+      if (this.updatedOptions.style.backgroundImage)
+        this.updatedOptions.style.backgroundImage = `url(${this.updatedOptions.style.backgroundImage})`
 
       eventBus.emit('cmpUpdated', {
         cmpId: this.id,
@@ -216,7 +230,10 @@ export default {
     },
     log() {
       if (!this.elDom) return
-      console.log('window.getComputedStyle(this.elDom):', window.getComputedStyle(this.elDom))
+      console.log(
+        'window.getComputedStyle(this.elDom):',
+        window.getComputedStyle(this.elDom)
+      )
       this.elDom.style.height = Math.floor(Math.random() * 100) + 'px'
     },
 
@@ -224,28 +241,39 @@ export default {
       console.log('this.elDom:', this.elDom)
 
       if (this.elDom) {
-        console.log('window.getComputedStyle(this.elDom).getPropertyValue(styleProp):', window.getComputedStyle(this.elDom).getPropertyValue(styleProp))
+        console.log(
+          'window.getComputedStyle(this.elDom).getPropertyValue(styleProp):',
+          window.getComputedStyle(this.elDom).getPropertyValue(styleProp)
+        )
         return window.getComputedStyle(this.elDom).getPropertyValue(styleProp)
       }
     },
   },
 
-    watch: {
-      editOptions() {
-        this.updatedOptions = JSON.parse(JSON.stringify(this.editOptions))
-      },
+  watch: {
+    editOptions() {
+      this.updatedOptions = JSON.parse(JSON.stringify(this.editOptions))
     },
+  },
 
-    components: {
-      editFontSection,
-      editFontWeightSection,
-      editColorSection,
-      editBgColorSection,
-      editRadiusSection,
-      editUploadSection,
-      editFontSizeSection,
-      editAnimationSection,
-      editMapSection
-    },
-  }
+  components: {
+    editFontSection,
+    editFontWeightSection,
+    editColorSection,
+    editBgColorSection,
+    editRadiusSection,
+    editUploadSection,
+    editFontSizeSection,
+    editAnimationSection,
+    editMapSection,
+  },
+}
 </script>
+
+<style>
+.form-inputs-container > * {
+  margin-bottom: 14px;
+}
+
+
+</style>

@@ -5427,8 +5427,8 @@ wapsMap.set('wap-section-26', {
 // *************** TEMPLATES MAP ****************
 
 const templatesMap = new Map()
-templatesMap.set('template-1', {
-  _id: 'template-1',
+templatesMap.set('template1', {
+  _id: 'template1',
   name: '',
   imgUrl:
     'https://res.cloudinary.com/wewix/image/upload/v1670428298/site-previews/goby-preview-site_hiwx9v.png',
@@ -5448,8 +5448,8 @@ templatesMap.set('template-1', {
     getCmp('wap-section', 7),
   ],
 })
-templatesMap.set('template-2', {
-  _id: 'template-2',
+templatesMap.set('template2', {
+  _id: 'template2',
   name: '',
   imgUrl:
     'https://res.cloudinary.com/wewix/image/upload/v1670428298/site-previews/yoga-preview-site_lig7fy.png',
@@ -5469,8 +5469,8 @@ templatesMap.set('template-2', {
     getCmp('wap-cards', 11),
   ],
 })
-templatesMap.set('template-3', {
-  _id: 'template-3',
+templatesMap.set('template3', {
+  _id: 'template3',
   name: '',
   imgUrl:
     'https://res.cloudinary.com/wewix/image/upload/v1670428300/site-previews/kite-preview-site_aowkrp.png',
@@ -5492,8 +5492,8 @@ templatesMap.set('template-3', {
     getCmp('wap-section', 20),
   ],
 })
-templatesMap.set('template-4', {
-  _id: 'template-4',
+templatesMap.set('template4', {
+  _id: 'template4',
   name: '',
   imgUrl:
     'https://res.cloudinary.com/wewix/image/upload/v1670428296/site-previews/plantify-preview-site_lfoxvp.png',
@@ -5511,8 +5511,8 @@ templatesMap.set('template-4', {
     getCmp('wap-section', 4),
   ],
 })
-templatesMap.set('template-5', {
-  _id: 'template-5',
+templatesMap.set('template5', {
+  _id: 'template5',
   name: '',
   imgUrl:
     'https://res.cloudinary.com/wewix/image/upload/v1670428300/site-previews/creative-preview-site_kjnnnn.png',

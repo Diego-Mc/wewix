@@ -54,7 +54,7 @@ export default {
     },
     changeCurrWapData(wap) {
       this.currWapData = wap
-      if (wap) this.$router.push('/dashboard/' + this.currWapData._id)
+      if (this.currWapData && this.currWapData._id) this.$router.push('/dashboard/' + this.currWapData._id)
       else this.$router.push('/dashboard')
     },
     getDemoData() {

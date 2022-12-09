@@ -1,5 +1,6 @@
 <template>
   <!-- <wap-chat/> -->
+  <!-- <publish-modal/> -->
   <user-confirm-modal
     class="confirm-modal"
     v-if="isConfirmModalOpen"
@@ -85,6 +86,8 @@
 <script>
 import draggable from 'vuedraggable'
 import { socketService } from '../services/socket.service'
+
+import publishModal from '../cmps/app-cmps/publish-modal.vue'
 
 import { eventBus, showUserMsg } from '../services/event-bus.service'
 import { httpService } from '../services/http.service'
@@ -447,7 +450,7 @@ export default {
         this.$store.dispatch('addWapToUser', { wapId: this.wap._id })
         this.$router.push('/' + this.wap.name)
         this.$notify({
-          title: 'Site is live! ',
+          title: `Site is live at  ${window.location.href}`,
           type: 'success',
         })
       } catch (err) {
@@ -581,6 +584,7 @@ export default {
     loadingScreen,
     loginModal,
     signupModal,
+    publishModal
   },
 }
 </script>
@@ -595,7 +599,7 @@ export default {
 </options>
 
 <style lang="scss">
-.auth-edit-mode-modal {
+.auth-edit-mode-modal,.publish-modal {
   position: fixed;
   z-index: 20000;
   background-color: white;
