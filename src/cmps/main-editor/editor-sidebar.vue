@@ -1,5 +1,5 @@
 <template>
-  <section class="editor-sidebar" @mousedown.prevent>
+  <section class="editor-sidebar">
     <nav class="editor-nav">
       <editor-btn-group
         :info="{ key: 'editOpt' }"
