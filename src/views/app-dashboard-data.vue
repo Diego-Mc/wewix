@@ -2,21 +2,23 @@
   <section class="dashboard-data" v-if="wapData">
     <div class="dashboard-top-div">
       <h2>{{ wapData.name + "'s Dashboard" }}</h2>
-      <div>
-        <router-link :to="`/${wapData.name}`">
+      <div class="preview-links">
+        <!-- <router-link :to="`/${wapData.name}`">
           <el-button class="view-wap-btn">View Website</el-button>
         </router-link>
         <router-link :to="'/edit/' + wapData._id">
           <button class="edit-wap-btn">Edit Website</button>
-        </router-link>
+        </router-link> -->
+        <a @click="preview" class="preview-btn">VIEW</a>
+        <a @click="publish" class="publish-btn">EDIT</a>
       </div>
     </div>
     <main class="graph-and-stats-container">
-      <app-dashboard-graphs :visitorsData="wapData.visits" />
       <app-dashboard-stats :wapData="wapData" />
+      <app-dashboard-graphs :visitorsData="wapData.visits" />
     </main>
     <app-dashboard-details :usersData="wapData.usersData.subscriptions" />
-    <wap-chat :wapId="wapData._id"/>
+    <wap-chat :wapId="wapData._id" />
   </section>
 </template>
 
@@ -62,7 +64,7 @@ export default {
     appDashboardGraphs,
     appDashboardDetails,
     appDashboardStats,
-    wapChat
+    wapChat,
   },
 }
 </script>

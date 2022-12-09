@@ -77,8 +77,8 @@ export default {
   data() {
     return {
       toys: [],
-      selectedChart: 'PieChart',
-      selectedStat: 'conversionRate',
+      selectedChart: 'LineChart',
+      selectedStat: 'frequencyPerMonth',
 
       chartsOptions: [
         {
@@ -137,6 +137,20 @@ export default {
           },
         },
         lineTension: 0.4,
+        scales: {
+          x: {
+            grid: {
+              color: 'rgba(0, 0, 0, 0.0)',
+            },
+            ticks: { color: 'rgba(0, 0, 0, 0.4)' },
+          },
+          y: {
+            grid: {
+              color: 'rgba(0, 0, 0, 0.1)',
+            },
+            ticks: { color: 'rgba(0, 0, 0, 0.4)' },
+          },
+        },
       },
     }
   },
@@ -270,18 +284,20 @@ export default {
             label,
             data,
             backgroundColor: [
-              '#cfc5ff',
-              '#ac9bff',
-              '#856cff',
-              '#5f3eff',
-              '#2e15a6',
-              '#ffb9b4',
-              '#ff9494',
-              '#ff6666',
-              '#ff3f3f',
-              '#b72b2b',
-              '#8f1717',
+              // '#cfc5ff',
+              // '#ac9bff',
+              // '#856cff',
+              // '#5f3eff',
+              // '#2e15a6',
+              // '#ffb9b4',
+              // '#ff9494',
+              // '#ff6666',
+              // '#ff3f3f',
+              // '#b72b2b',
+              // '#8f1717',
+              '#00c2a6',
             ],
+            borderColor: '#00c2a6',
           },
         ],
       }

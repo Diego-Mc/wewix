@@ -43,6 +43,7 @@ export default {
     if (!this.loggedinUser) return this.$router.push('/')
     if (!this.loggedinUser.waps) return
 
+    this.userWaps = await this.getUserWaps()
     const waps = await this.getUserWaps()
     this.userWaps = utilService.deepCopy(waps)
     socketService.on('formSent', (sentMsg) => {
@@ -104,7 +105,7 @@ export default {
     wapNames() {
       return this?.userWaps?.map((wap) => ({
         val: wap,
-        icon: 'cast',
+        icon: 'file-bar-graph-fill',
         text: wap.name,
       }))
     },
