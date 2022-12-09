@@ -87,7 +87,7 @@
 import draggable from 'vuedraggable'
 import { socketService } from '../services/socket.service'
 
-// import { ElMessage } from 'element-plus'
+import { ElMessage } from 'element-plus'
 
 import publishModal from '../cmps/app-cmps/publish-modal.vue'
 
@@ -115,7 +115,6 @@ import wapVideo from '../cmps/wap-items/wap-video.vue'
 import wapMap from '../cmps/wap-items/wap-map.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
 
-import { ElMessage } from 'element-plus'
 
 import { demoData } from '../services/demo-data'
 import Chance from 'chance'
@@ -434,8 +433,8 @@ export default {
         return
       }
       if (this.wap.isPublished) {
-        this.$notify({
-          title: 'sites saved',
+        elMessage({
+          message: 'sites saved',
           type: 'success',
         })
         this.$router.push('/' + this.wap.name)
@@ -459,8 +458,8 @@ export default {
         })
       } catch (err) {
         console.log(err)
-        this.$notify({
-          title: 'Cannot Publish Site With Invalid Name',
+        elMessage({
+          message: 'Cannot Publish Site With Invalid Name',
           type: 'error',
         })
       }

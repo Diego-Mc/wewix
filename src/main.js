@@ -7,7 +7,9 @@ import { store } from './store/store.js'
 
 import Notifications from '@kyvg/vue3-notification'
 import ElementPlus from 'element-plus'
+
 import 'element-plus/dist/index.css'
+
 import { Skeletor } from 'vue-skeletor'
 import './assets/styles/main.scss'
 import rootCmp from './root-cmp.vue'

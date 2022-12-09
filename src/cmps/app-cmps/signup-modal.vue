@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { ElMessage } from 'element-plus'
 
 export default {
   props: {
@@ -82,13 +83,13 @@ export default {
         } else {
           this.$emit('authenticated')
         }
-        this.$notify({
-          title: 'Signed up successfully',
+       ElMessage({
+          message: 'Signed up successfully',
           type: 'success',
         })
       } catch {
-        this.$notify({
-          title: 'Signed up failed.',
+        ElMessage({
+          message: 'Signed up failed.',
           type: 'error',
         })
       }

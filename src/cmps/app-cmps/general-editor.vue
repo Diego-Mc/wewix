@@ -38,6 +38,7 @@
 import { eventBus } from '../../services/event-bus.service'
 import editorBtnGroup from '../main-editor/editor-items/editor-btn-group.vue'
 import editThemeSection from '../main-editor/cmp-edit-sections/edit-theme-section.vue'
+import { ElMessage } from 'element-plus'
 
 export default {
   data() {
@@ -84,8 +85,8 @@ export default {
     },
     emitChatToggled() {
       if (!this.$store.getters.loggedinUser) {
-         this.$notify({
-          title: 'You must login to add chat',
+         ElMessage({
+          message: 'You must login to add chat',
           type: 'error',
         })
         return

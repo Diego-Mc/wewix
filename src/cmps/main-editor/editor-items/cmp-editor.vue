@@ -78,8 +78,8 @@
           v-for="(field, idx) in updatedOptions.meta.formInputs"
           class="form-inputs-container">
           <div style="display: flex">
-            <el-input
-            class="form-input"
+            <input
+              class="editor-form-input"
               @input="fieldChanged(id, idx, $event)"
               :value="field.tag"
               type="text" />
@@ -89,13 +89,18 @@
         <el-button
           type="primary"
           @click="fieldAdded(id)"
-          style="width: 100%; margin-bottom: 10px">
+          style="width: 100%; margin-bottom: 10px;">
           Add field to form
         </el-button>
       </div>
 
       <div>
-        <el-button type="danger" style="background: rgb(239, 3, 42) !important; font-size: 12px;" @click.stop="onRemoveCmp">Remove</el-button>
+        <el-button
+          type="danger"
+          style="background: rgb(239, 3, 42) !important; font-size: 12px; border: none"
+          @click.stop="onRemoveCmp"
+          >Remove</el-button
+        >
       </div>
     </section>
   </section>
@@ -274,6 +279,14 @@ export default {
 .form-inputs-container > * {
   margin-bottom: 14px;
 }
-
-
+.editor-form-input {
+  border: 1px solid rgb(177, 177, 177) !important;
+  padding: 5px !important;
+}
+.editor-form-input:active {
+  border-color: aqua;
+}
+.editor-form-input:focus-visible {
+  border-color: aqua;
+}
 </style>

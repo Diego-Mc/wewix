@@ -38,6 +38,7 @@
 
 <script>
 import { showUserMsg } from '../../services/event-bus.service.js'
+import { ElMessage } from 'element-plus'
 
 export default {
   props: {
@@ -85,13 +86,13 @@ export default {
           this.$emit('authenticated')
         }
 
-        this.$notify({
-          title: 'Logged in successfully',
+        ElMessage({
+          message: 'Logged in successfully',
           type: 'success',
         })
       } catch (err) {
         console.log(err)
-        this.$notify({
+        ElMessage({
           title: 'Cannot sign in',
           type: 'error',
         })
