@@ -1,5 +1,5 @@
 <template>
-  <label class="color-picker-option" @click="emitColor">
+  <label class="color-picker-option" @mousedown.prevent="emitColor">
     <div
       class="option"
       :class="{ selected: this.selected }"
