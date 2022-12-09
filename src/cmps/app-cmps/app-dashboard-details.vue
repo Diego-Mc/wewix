@@ -50,7 +50,7 @@ export default {
       },
       filterBy: '',
       currentPage: 1,
-      totalPages: 10000,
+      totalPages: 50,
       wapToAdd: wapService.getEmptyWap(),
     }
   },

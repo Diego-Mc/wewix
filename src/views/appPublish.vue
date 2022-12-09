@@ -68,6 +68,7 @@ export default {
       if (!this.wap) this.showErrPage = true
       console.log('chat data', this.wap.chatData)
     },
+    
     async updateWap() {
       return await this.$store.dispatch({ type: 'updateWap', wap: this.wap })
     },

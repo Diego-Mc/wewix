@@ -35,6 +35,9 @@ export default {
 
     if (!this.loggedinUser) return this.$router.push('/')
     if (!this.loggedinUser.waps) return
+    // this.loggedinUser.waps.map(wapId =>{
+      
+    // })
     let waps = await this.getWaps()
     this.userWaps = waps
       .filter((wap) => this.loggedinUser.waps.includes(wap._id))
@@ -53,6 +56,9 @@ export default {
   methods: {
     handleBtnSelect(ans) {
       this.changeCurrWapData(ans.val)
+    },
+    getWap(){
+
     },
     async getWaps() {
       return await this.$store.dispatch('getWaps')

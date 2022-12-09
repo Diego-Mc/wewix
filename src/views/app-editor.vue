@@ -290,9 +290,9 @@ export default {
       this.drag = false
       this.onCmpsChange()
     },
+
     // prettier-ignore
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
-
       let changedCmp = this.wap.cmps.find(cmp => cmp.id === cmpId)
       if (childCmpId) changedCmp = changedCmp.cmps.find( childCmp => childCmp.id === childCmpId)
       if (elType) {
@@ -302,6 +302,7 @@ export default {
       }
       this.onCmpsChange()
     },
+
     async loadWap() {
       if (this.$route.params?.id) {
         const wap = await this.$store.dispatch({
