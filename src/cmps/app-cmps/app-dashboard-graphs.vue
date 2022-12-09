@@ -73,8 +73,7 @@ export default {
   props: {
     visitorsData: Array,
   },
-  created(){
-  },
+  created() {},
   data() {
     return {
       toys: [],
@@ -137,12 +136,12 @@ export default {
             display: false,
           },
         },
+        lineTension: 0.4,
       },
     }
   },
   created() {
-    console.log('visits',this.visitorsData);
-
+    console.log('visits', this.visitorsData)
   },
 
   methods: {

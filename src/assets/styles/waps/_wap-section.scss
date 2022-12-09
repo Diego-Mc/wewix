@@ -113,6 +113,9 @@
     font-family: PoppinsRegular;
     color: var(--clr-3);
   }
+  &.type-21 {
+    @include grid(1);
+  }
   &.type-22 {
     @include grid(1);
     background-color: var(--clr-3);
@@ -167,6 +170,27 @@
         }
       }
     }
+    &.type-17,
+    &.type-18 {
+      @include grid(1);
+    }
+    &.type-18 {
+      .gallery-section {
+        .gallery-item {
+          grid-column: span 1;
+          grid-row: span 1;
+        }
+      }
+    }
+    &.type-22 {
+      background-image: unset !important;
+      .text-section {
+        max-width: 100%;
+      }
+    }
+    &.type-25 {
+      @include grid(2);
+    }
     &.type-26 {
       @include grid(1);
     }
@@ -220,6 +244,20 @@
       .gallery-item:not(:last-child) {
         padding-bottom: 40px;
       }
+    }
+
+    &.type-18 {
+      .gallery-section {
+        grid-template-columns: 1fr;
+        .gallery-item {
+          grid-column: span 1;
+          grid-row: span 1;
+        }
+      }
+    }
+
+    &.type-25 {
+      @include grid(1);
     }
   }
 }

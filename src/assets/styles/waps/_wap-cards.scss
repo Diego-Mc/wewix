@@ -358,6 +358,10 @@
     &.type-5 {
       @include grid(1);
     }
+
+    &.type-11 {
+      @include grid(1);
+    }
   }
 }
 

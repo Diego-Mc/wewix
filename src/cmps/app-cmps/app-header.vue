@@ -23,16 +23,34 @@
       <h1>wewix</h1>
     </section>
     <nav class="nav">
-      <router-link to="/" v-scroll-to="'#home'">Home</router-link>
+      <!-- <router-link to="/" v-scroll-to="'#home'">Home</router-link> -->
       <router-link to="/" v-scroll-to="'#features'">Features</router-link>
       <router-link to="/" v-scroll-to="'#demo'">Demo</router-link>
       <router-link to="/" v-scroll-to="'#about'">About</router-link>
+      <router-link to="/templates"
+        >Templates&nbsp;<i class="bi bi-box-arrow-up-right"></i
+      ></router-link>
     </nav>
     <Slide noOverlay right :closeOnNavigation="true" class="burger">
-      <router-link to="/" v-scroll-to="'#home'">Home</router-link>
-      <router-link to="/" v-scroll-to="'#features'">Features</router-link>
+      <!-- <router-link to="/" v-scroll-to="'#home'">Home</router-link> -->
+      <!-- <router-link to="/" v-scroll-to="'#features'">Features</router-link>
       <router-link to="/" v-scroll-to="'#demo'">Demo</router-link>
-      <router-link to="/" v-scroll-to="'#about'">About</router-link>
+      <router-link to="/" v-scroll-to="'#about'">About</router-link> -->
+      <router-link to="/templates"
+        >Templates&nbsp;<i class="bi bi-box-arrow-up-right"></i
+      ></router-link>
+      <router-link v-if="!loggedinUser" to="/login"
+        >Login&nbsp;<i class="bi bi-box-arrow-up-right"></i
+      ></router-link>
+      <router-link v-if="loggedinUser" to="/dashboard"
+        >Dashboard&nbsp;<i class="bi bi-box-arrow-up-right"></i
+      ></router-link>
+      <router-link
+        v-if="loggedinUser"
+        to="#"
+        @click="$store.dispatch({ type: 'logout' })"
+        >Logout&nbsp;<i class="bi bi-box-arrow-up-right"></i
+      ></router-link>
     </Slide>
     <!-- TODO: make it pretty -->
     <!-- <span>

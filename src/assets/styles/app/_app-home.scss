@@ -283,6 +283,16 @@
 
   @media screen and (max-width: 1770px) {
     max-width: 1770px;
+    .app-header {
+      grid-template-columns: min-content 1fr minmax(400px, 500px) 1fr max-content;
+      .nav {
+        grid-column: 3;
+      }
+      .user-auth,
+      .burger {
+        grid-column: 5;
+      }
+    }
   }
   @media screen and (max-width: 960px) {
     .hero {
@@ -293,6 +303,12 @@
     .title-wrapper {
       h2 {
         font-size: 6vw;
+      }
+    }
+    .app-header {
+      grid-template-columns: min-content 1fr max-content;
+      .burger {
+        grid-column: 3;
       }
     }
   }

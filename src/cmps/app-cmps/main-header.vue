@@ -49,16 +49,16 @@
       </svg>
       <h1>wewix</h1>
     </section>
-    <nav class="nav">
+    <!-- <nav class="nav">
       <router-link to="/">Home</router-link>
       <router-link to="/templates">Templates</router-link>
       <a @click.stop="dashboardLinkClicked">Dashboard</a>
-    </nav>
-    <Slide noOverlay right :closeOnNavigation="true" class="burger">
+    </nav> -->
+    <!-- <Slide noOverlay right :closeOnNavigation="true" class="burger">
       <router-link to="/">Home</router-link>
       <router-link to="/templates">Templates</router-link>
       <a @click.stop="dashboardLinkClicked">Dashboard</a>
-    </Slide>
+    </Slide> -->
     <!-- <section class="user-auth">
       <h3 v-if="loggedinUser">
         logged in user : {{ loggedinUser.fullname }}
