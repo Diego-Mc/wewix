@@ -1,12 +1,10 @@
 <template>
-  <section v-if="chatId" class="wap-chat-container">
+  <section class="wap-chat-container">
     <section @click="isChatOpen = true" class="chat-icon" v-if="!isChatOpen">
       <i class="bi bi-chat-right-dots"></i>
     </section>
     <section class="wap-chat" v-else>
-      <header
-        class="admin-header"
-        v-if="this.user.isAdmin && !activeConversation">
+      <header class="admin-header" v-if="user.isAdmin && !activeConversation">
         <span class="header-text">
           <i @click="isChatOpen = false" class="bi bi-x-lg"></i>
           <small>Hello manager,</small>
@@ -29,11 +27,9 @@
 
       <header
         class="in-chat"
-        v-else-if="
-          !this.user.isAdmin || (this.user.isAdmin && activeConversation)
-        ">
+        v-else-if="!user.isAdmin || (user.isAdmin && activeConversation)">
         <i
-          v-if="this.user.isAdmin"
+          v-if="user.isAdmin"
           @click="activeConversation = null"
           class="bi bi-arrow-left-short"></i>
         <i
@@ -92,7 +88,7 @@ export default {
   props: {
     options: Object,
     wapId: String,
-    isOwner: Boolean,
+    owner: Object,
   },
   data() {
     return {
@@ -102,15 +98,15 @@ export default {
       activeGuests: [],
       activeConversation: null,
       user: this.getUser(),
-      // chatId: this.options?.meta?.chatData?.chatId || this.wapId, //PUKI
-      chatId: null, //PUKI
+      // chatId: this.options?.meta?.chatData?.chatId || this.wapId,
+      chatId: null,
       isUserTyping: {},
     }
   },
-  async created() {
-    this.chatId = !this.isOwner
-      ? this.$store.getters.editedWap.owner._id
-      : this.$store.getters.loggedinUser._id
+  created() {
+    this.chatId = this.owner
+      ? this.owner._id
+      : this.$store.getters.editedWap.owner._id
     socketService.emit('startConversation', {
       chatId: this.chatId,
       userId: this.user.id,
@@ -149,12 +145,6 @@ export default {
       else this.conversations[msg.id] = [msg]
     },
     sendMsg() {
-      console.log(
-        'PUKI',
-        !this.isOwner
-          ? this.$store.getters.editedWap.owner._id
-          : this.$store.getters.loggedinUser._id
-      )
       this.msg.from = 'Davud'
       socketService.emit('addMsg', {
         msg: this.msg,
@@ -172,8 +162,13 @@ export default {
       delete user._id
       return user
     },
-    setActiveConversation({ userId }) {
+    setActiveConversation(g) {
+      console.log('this', g)
+      const { userId } = g
       this.activeConversation = userId
+      // this.user.isAdmin
+      // if (g.msgs) this.chatId = g.msgs[0].id
+      // this.chatId =
       socketService.emit('activateChat', this.activeConversation)
     },
     sendTypeState() {
@@ -192,11 +187,9 @@ export default {
   watch: {
     wapId(newWapId) {
       // watch it
-
       socketService.emit('startConversation', {
-        chatId: !this.isOwner
-          ? this.$store.getters.editedWap.owner._id
-          : this.$store.getters.loggedinUser._id, //PUKI
+        // chatId: newWapId,
+        chatId: this.chatId,
         userId: this.user.id,
         adminId: this.user.isAdmin ? this.user.id : '',
       })

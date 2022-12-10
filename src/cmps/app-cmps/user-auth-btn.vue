@@ -22,10 +22,10 @@
     </el-dropdown>
     <section class="login-options" v-else>
       <router-link :to="'/login/'" v-if="!btnsToShow || btnsToShow.login">
-        <button class="login-btn"><i class="bi bi-person"></i> login</button>
+        <button class="login-btn"><i class="bi bi-person"></i> Login</button>
       </router-link>
       <router-link :to="'/signup/'" v-if="!btnsToShow || btnsToShow.signup">
-        <button class="register-btn">sign up for free</button>
+        <button class="register-btn">Sign up for free</button>
       </router-link>
     </section>
   </section>

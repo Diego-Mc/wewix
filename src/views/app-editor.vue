@@ -115,7 +115,6 @@ import wapVideo from '../cmps/wap-items/wap-video.vue'
 import wapMap from '../cmps/wap-items/wap-map.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
 
-
 import { demoData } from '../services/demo-data'
 import Chance from 'chance'
 
@@ -174,6 +173,7 @@ export default {
     clearInterval(this.overlayInterval)
     this.overlayInterval = 0
     setInterval(appEditorService.addOverlays, 20, this.$refs.mainWap)
+    appEditorService.addSelectionListeners(this.$refs.mainWap)
   },
   methods: {
     setAuthModalMsg(destinationPage) {

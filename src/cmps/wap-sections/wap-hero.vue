@@ -1,41 +1,4 @@
 <template>
-  <!-- <section
-    class="wap-hero"
-    @click.stop="emitSelect({ cmpId })"
-    :style="options.style">
-    <video
-      src="https://knowledge.s.dance.app/videos/hero_home_alt_15s_16_9.webm,"
-      autoplay
-      loop
-      playsinline
-      muted></video>
-    <h2
-      class="title"
-      @input="updateContent('title', $event)"
-      :style="info.title?.options.style"
-      @click.stop="emitSelect({ cmpId, elType: 'title' })"
-      :contenteditable="$store.getters.isEditMode">
-      {{ info.title?.content.text }}
-    </h2>
-    <p
-      class="text"
-      @input="updateContent('text', $event)"
-      :style="info.text?.options.style"
-      @click.stop="emitSelect({ cmpId, elType: 'text' })"
-      :contenteditable="$store.getters.isEditMode">
-      {{ info.text?.content.text }}
-    </p>
-    <button
-      class="btn"
-      :style="info.btn?.options.style"
-      @click.stop="emitSelect({ cmpId, elType: 'btn' })">
-      <span
-        :contenteditable="$store.getters.isEditMode"
-        @input="updateContent('btn', $event)">
-        {{ info.btn?.content.text }}
-      </span>
-    </button>
-  </section> -->
   <draggable
     class="list-group wap-hero"
     :class="'type-' + typeId"
@@ -51,8 +14,7 @@
     @end="onDrop"
     item-key="id"
     :group="'hero-' + cmpId"
-    :disabled="!this.$store.getters.isEditMode"
-    >
+    :disabled="!this.$store.getters.isEditMode">
     <template #item="{ element }">
       <div>
         <component
