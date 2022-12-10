@@ -57,7 +57,7 @@
     <section
       class="cmp-editor"
       :class="{ open: isOpen('editOpt', 'edit-cmp') }">
-      <h2 class="title">Section</h2>
+      <h2 class="title">Editor</h2>
       <h6 class="edit-type-label">FONT</h6>
       <editor-btn-group
         :info="{ key: 'font', type: 'picker' }"
@@ -122,7 +122,7 @@
     <section
       class="page-editor cmp-editor"
       :class="{ open: isOpen('editOpt', 'edit-site') }">
-      <h2 class="title">Section</h2>
+      <h2 class="title">General</h2>
       <h6 class="edit-type-label">FONT</h6>
       <editor-btn-group
         :info="{ key: 'font', type: 'picker' }"

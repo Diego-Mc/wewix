@@ -78,7 +78,7 @@
             class="site-name"
             :style="{ color: isValidWapName ? 'green' : 'red' }"
             @input="onInput($event)"
-            :contenteditable="!isPublished"
+            :contenteditable="true"
             >{{ updatedWapName }}</span
           >
         </p>
@@ -124,7 +124,6 @@ export default {
       updatedWapName: this.wapName || '',
       isValidWapName: false,
       checkingSiteName: false,
-      
     }
   },
   methods: {
