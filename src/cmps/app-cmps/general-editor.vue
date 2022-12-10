@@ -98,7 +98,7 @@ export default {
   },
   computed: {
     isWapHasChat() {
-      return this.$store.getters.editedWap?.chatData ? true : false
+      return this.$store.getters.editedWap?.plugins?.chatData ? true : false
     },
   },
   components: {
