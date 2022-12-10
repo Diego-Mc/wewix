@@ -3,7 +3,7 @@
     <div class="wap-stat-block">
       <i class="bi bi-eyeglasses"></i>
       <h3>Total Views</h3>
-      <p class="stat-count">{{ wapData.visits ? wapData.visits.length : 0 }}</p>
+      <p class="stat-count">{{ wapData.visits ? wapData.visits.length : 1 }}</p>
     </div>
     <div class="wap-stat-block">
       <i class="bi bi-calendar-event"></i>
