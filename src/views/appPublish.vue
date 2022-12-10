@@ -10,6 +10,10 @@
       :options="cmp.options"
       :cmps="cmp.cmps" />
 
+    <section v-if="wap?.plugins?.chatData">
+      <wap-chat :wapId="wap._id" />
+    </section>
+
     <section v-if="showErrPage">
       <page-not-found />
     </section>
@@ -52,10 +56,10 @@ export default {
     const { preview } = this.$route.query
     if (preview) {
       const id = this.$route.params.name
-      this.wap = await this.$store.dispatch('getWap',{id})
+      this.wap = await this.$store.dispatch('getWap', { id })
     } else {
       const wapName = this.$route.params.name
-     await this.getWapByName(wapName)
+      await this.getWapByName(wapName)
       this.checkNewVisit()
       eventBus.on('formSubmited', this.addUserInfo)
     }

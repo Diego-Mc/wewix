@@ -93,7 +93,7 @@ export default {
       } catch (err) {
         console.log(err)
         ElMessage({
-          title: 'Cannot sign in',
+          message: 'Cannot sign in',
           type: 'error',
         })
       }

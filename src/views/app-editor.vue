@@ -393,29 +393,15 @@ export default {
       eventBus.on('toggleChat', this.toggleChat)
     },
     toggleChat() {
-      if (this.wap.chatData) {
-        this.wap.chatData = null
-        const idx = this.wap.cmps.findIndex((cmp) => cmp.type === 'wap-chat')
-        this.wap.cmps.splice(idx, 1)
+      if (this.wap.plugins?.chatData) {
+        this.wap.plugins.chatData = null
       } else {
-        this.wap.chatData = {
+        this.wap.plugins = {}      
+        this.wap.plugins.chatData = {
           adminName: this.loggedinUser.fullname,
           adminID: this.loggedinUser._id,
           chatId: this.wap._id,
         }
-        this.wap.cmps.push({
-          id: utilService.makeId(),
-          type: 'wap-chat',
-          options: {
-            meta: {
-              chatData: {
-                adminName: this.wap.chatData.adminName,
-                adminID: this.wap.chatData.adminID,
-                chatId: this.wap._id,
-              },
-            },
-          },
-        })
         ElMessage({
           message: 'Chat added to website.',
           type: 'success',
@@ -433,7 +419,7 @@ export default {
         return
       }
       if (this.wap.isPublished) {
-        elMessage({
+        ElMessage({
           message: 'sites saved',
           type: 'success',
         })
@@ -458,7 +444,7 @@ export default {
         })
       } catch (err) {
         console.log(err)
-        elMessage({
+        ElMessage({
           message: 'Cannot Publish Site With Invalid Name',
           type: 'error',
         })

@@ -149,7 +149,7 @@ export default {
         this.$emit('setName', this.updatedWapName)
       } else {
         ElMessage({
-          title: isValid.msg,
+          message: isValid.msg,
           type: 'error',
         })
       }
@@ -191,7 +191,7 @@ export default {
         this.updatedWapName === 'user'
       ) {
         ElMessage({
-          title: 'Cannot Publish Site With Invalid Name',
+          message: 'Cannot Publish Site With Invalid Name',
           type: 'error',
         })
         return
