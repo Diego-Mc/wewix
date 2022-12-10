@@ -18,6 +18,7 @@
           :opts="wapNames" />
       </section>
       <router-view v-if="currWapData" :wapData="currWapData"></router-view>
+      <wap-chat :owner="$store.getters.loggedinUser" :userWaps="userWaps" :wapId="wapData._id" />
       <!-- <wap-chat :options="currWapData._id" /> -->
       <!-- <wap-chat :wapId="wapData._id" /> -->
       <!-- <div style="" v-else>Build a website to see data!</div> -->
@@ -86,6 +87,7 @@ export default {
 
     const waps = await this.getUserWaps()
     this.userWaps = utilService.deepCopy(waps)
+    
     socketService.on('formSent', (sentMsg) => {
       if (sentMsg.wapOwnerId === this.loggedinUser._id) {
         const updatedWap = this.userWaps.find(

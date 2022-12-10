@@ -24,7 +24,7 @@
         <edit-radius-section
           @select="updateStyleValToEm"
           :borderRadius="parseFloat(editOptions.style.borderRadius)"
-          :elStyle="getElStyle('border-radius')" />
+          :elStyle="borderRadius" />
       </div>
 
       <!-- TODO: add style to fontSize -->
@@ -142,6 +142,7 @@ export default {
       fontFamily: null,
       fontWeight: null,
       fontSize: null,
+      borderRadius:null,
     }
   },
   created() {},
@@ -272,7 +273,7 @@ export default {
         this.fontFamily = this.getElStyle('font-family')
         this.fontWeight = this.getElStyle('font-weight')
         this.fontSize = this.getElStyle('font-size')
-        console.log(this.fontSize);
+        this.borderRadius = this.getElStyle('border-radius')
       },
     },
     childCmpId: {
@@ -281,7 +282,7 @@ export default {
         this.fontFamily = this.getElStyle('font-family')
         this.fontWeight = this.getElStyle('font-weight')
         this.fontSize = this.getElStyle('font-size')
-        console.log(this.fontSize);
+        this.borderRadius = this.getElStyle('border-radius')
 
         // this.fontWeight =
       },
@@ -292,7 +293,7 @@ export default {
         this.fontFamily = this.getElStyle('font-family')
         this.fontWeight = this.getElStyle('font-weight')
         this.fontSize = this.getElStyle('font-size')
-        console.log(this.fontSize);
+        this.borderRadius = this.getElStyle('border-radius')
 
       },
     },
