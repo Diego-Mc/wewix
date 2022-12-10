@@ -185,6 +185,7 @@
   }
   .url-bar {
     background-color: rgba(238, 238, 238, 0.5);
+
     height: 30px;
     border: 2px solid #eee;
     border-radius: 2rem;
@@ -201,11 +202,27 @@
 
     .address {
       color: rgba(30, 30, 30, 0.5);
+      color: #bbb;
       overflow-x: hidden;
       white-space: nowrap;
     }
     .site-name {
       color: $main;
+      display: inline-block;
+      min-width: 100px;
+      &:focus-visible {
+        outline: none;
+        &::before {
+          color: rgba(30, 30, 30, 0.2) !important;
+        }
+      }
+      &:empty::before {
+        content: 'site-name';
+        color: #bbb;
+        color: rgba(30, 30, 30, 0.5);
+        font-weight: bold;
+        cursor: text;
+      }
     }
     // .preview-btn {
     //   color: rgba($color: $main, $alpha: 0.4);

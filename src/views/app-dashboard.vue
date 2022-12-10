@@ -1,5 +1,5 @@
 <template>
-  <section class="dashboard-page">
+  <section v-if="true" class="dashboard-page">
     <main-header />
     <main class="app-dashboard">
       <section class="dashboard-sidebar">
@@ -22,6 +22,46 @@
       <!-- <wap-chat :wapId="wapData._id" /> -->
       <!-- <div style="" v-else>Build a website to see data!</div> -->
     </main>
+  </section>
+  <section class="skeleton" v-if="false">
+    <div class="header"></div>
+    <div class="sidebar"></div>
+    <div class="main">
+      <div class="header"></div>
+      <div class="graph-and-stats-container">
+        <div class="stats">
+          <div class="wap-stat-block">
+            <i></i>
+            <h3></h3>
+            <div class="stat-count"></div>
+          </div>
+          <div class="wap-stat-block">
+            <i></i>
+            <h3></h3>
+            <div class="stat-count"></div>
+          </div>
+          <div class="wap-stat-block">
+            <i></i>
+            <h3></h3>
+            <div class="stat-count"></div>
+          </div>
+          <div class="wap-stat-block">
+            <i></i>
+            <h3></h3>
+            <div class="stat-count"></div>
+          </div>
+        </div>
+        <div class="graph">
+          <div class="dropdowns"></div>
+          <div class="graph-wrapper"></div>
+        </div>
+      </div>
+      <div class="table-area">
+        <div class="search"></div>
+        <div class="btn"></div>
+        <div class="table"></div>
+      </div>
+    </div>
   </section>
 </template>
 

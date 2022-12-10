@@ -400,8 +400,8 @@ export default {
         this.wap.plugins.chatData = {
           adminName: this.loggedinUser.fullname,
           adminID: this.loggedinUser._id,
-          // chatId: this.wap._id,
-          chatId: this.loggedinUser._id,
+          chatId: this.wap._id,
+          // chatId: this.loggedinUser._id,
         }
         ElMessage({
           message: 'Chat added to website.',

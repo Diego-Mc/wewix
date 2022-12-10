@@ -26,7 +26,7 @@
       <!-- <router-link to="/" v-scroll-to="'#home'">Home</router-link> -->
       <router-link to="/" v-scroll-to="'#features'">Features</router-link>
       <router-link to="/" v-scroll-to="'#demo'">Demo</router-link>
-      <router-link to="/" v-scroll-to="'#about'">About</router-link>
+      <!-- <router-link to="/" v-scroll-to="'#about'">About</router-link> -->
       <router-link to="/templates"
         >Templates&nbsp;<i class="bi bi-box-arrow-up-right"></i
       ></router-link>

@@ -5,7 +5,7 @@
       class="editor-btns"
       :info="{ key: 'fontFamily', type: 'picker' }"
       dir="row"
-      initialValue="system"
+      v-model="font"
       @setVal="handleBtnSelect"
       :style="{
         padding: '30px',
@@ -66,6 +66,11 @@
 <script>
 import editorBtnGroup from '../editor-items/editor-btn-group.vue'
 export default {
+  data() {
+    return {
+      font: 'PoppinsRegular',
+    }
+  },
   components: {
     editorBtnGroup,
   },
