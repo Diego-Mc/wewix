@@ -29,9 +29,14 @@
         :class="{ emptyTemplate: !template.id }"
         @mouseenter="isHover[template.name] = true"
         @mouseleave="isHover[template.name] = false">
-        <div class="template-actions">
-          <button class="preview-btn" @click="preview(template.id)">PREVIEW</button>
-          <button class="edit-btn" @click="openEditor(template.id)">
+        <div class="template-actions" @click="openEditor(template.id)">
+          <button
+            v-if="template.id"
+            class="preview-btn"
+            @click.stop="preview(template.id)">
+            PREVIEW
+          </button>
+          <button class="edit-btn" @click.stop="openEditor(template.id)">
             EDIT
           </button>
         </div>
@@ -92,9 +97,9 @@ export default {
     },
     preview(id) {
       this.$router.push(`/${id}`)
-        // const route = `/template${parseInt(id)}`
-        // this.$router.push(`/${id}`)
-    }
+      // const route = `/template${parseInt(id)}`
+      // this.$router.push(`/${id}`)
+    },
   },
 
   computed: {

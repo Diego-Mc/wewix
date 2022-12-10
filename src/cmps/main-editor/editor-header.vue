@@ -19,6 +19,7 @@
           gap="4px"
           :style="{ paddingInline: '14px' }"
           :info="{ key: 'history', type: 'click' }"
+          @setVal="doHistory"
           :opts="[
             {
               val: 'undo',
@@ -60,8 +61,8 @@
       </section>
       <section class="back-btn">
         <editor-btn-group
-          :info="{ key: 'back' }"
-          @setVal="handleBtnSelect"
+          :info="{ key: 'back', type: 'click' }"
+          @setVal="backToGallery"
           gap="4px"
           :style="{ paddingInline: '14px' }"
           :opts="[{ val: 'back', icon: 'arrow-left' }]" />
@@ -111,6 +112,7 @@ import { wapService } from '../../services/wap.service'
 import { utilService } from '../../services/util.service'
 import urlBar from './url-bar.vue'
 import { ElMessage } from 'element-plus'
+import { eventBus } from '../../services/event-bus.service'
 
 export default {
   props: {
@@ -127,6 +129,9 @@ export default {
     }
   },
   methods: {
+    doHistory({ val: historyType }) {
+      eventBus.emit(historyType)
+    },
     handleBtnSelect({ key, val }) {
       console.log({ key, val })
       this[key] = val
@@ -213,6 +218,10 @@ export default {
         return
       }
       this.$emit('publishWap', this.updatedWapName)
+    },
+    backToGallery() {
+      //TODO: add modal to ask use if he's sure
+      this.$router.push('/templates')
     },
   },
   components: {

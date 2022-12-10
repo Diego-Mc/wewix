@@ -107,6 +107,7 @@ export default {
     this.chatId = this.owner
       ? this.owner._id
       : this.$store.getters.editedWap.owner._id
+    // this.chatId = this.owner ? this.owner._id : this.wapId
     socketService.emit('startConversation', {
       chatId: this.chatId,
       userId: this.user.id,

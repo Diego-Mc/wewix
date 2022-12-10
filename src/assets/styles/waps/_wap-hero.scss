@@ -86,7 +86,10 @@
 
     &.type-6 {
       .text-section {
-        font-size: 2.4vw;
+        font-size: em(16px);
+        .text {
+          font-size: em(24px);
+        }
       }
     }
   }
@@ -116,6 +119,7 @@
     &.type-6 {
       .text-section {
         grid-template-areas: 'titles' 'text';
+        font-size: em(14px);
         .text {
           font-size: em(32px);
         }

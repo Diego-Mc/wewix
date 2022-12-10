@@ -66,11 +66,10 @@
 <script>
 import editorBtnGroup from '../editor-items/editor-btn-group.vue'
 export default {
-  props:{
-    elStyle:String,
+  props: {
+    elStyle: String,
   },
-  created(){
-  },
+  created() {},
   components: {
     editorBtnGroup,
   },

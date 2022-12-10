@@ -10,10 +10,7 @@
       v-for="opt in opts"
       :key="opt.val">
       <label :class="info.type" :style="style">
-        <i
-          v-if="opt.icon"
-          @click="iconEvent(opt.icon)"
-          :class="'icon bi bi-' + opt.icon"></i>
+        <i v-if="opt.icon" :class="'icon bi bi-' + opt.icon"></i>
         <span class="text" v-if="opt.text">{{ opt.text }}</span>
         <span class="sample" :style="opt.style" v-if="opt.sample">{{
           opt.sample
@@ -53,7 +50,10 @@ export default {
   ],
   data() {
     return {
-      val: [this.modelValue || this.initialValue],
+      val:
+        this.modelValue || this.initialValue
+          ? [this.modelValue || this.initialValue]
+          : [],
       // opts: [ //this is an example for the prop data
       //   {
       //     val: 'mobile',
@@ -68,8 +68,13 @@ export default {
   },
   methods: {
     reportVal(ev) {
-      if (this.info.type === 'click') this.val = []
-      else if (this.val[0] === undefined) {
+      console.log('hey', this.val, this?.val[0])
+      if (this.info.type === 'click') {
+        this.$emit('setVal', { key: this.info?.key, val: this.val[0] })
+        this.val = []
+        console.log('hey2', this.val)
+        return
+      } else if (this.val[0] === undefined) {
         if (this.info.type === 'radioDefault') this.val = [this.initialValue]
         if (this.info.type === 'radio') this.val = [this.val]
       }
@@ -80,11 +85,11 @@ export default {
       this.$emit('update:modelValue', this.val[0])
       this.$emit('setVal', { key: this.info?.key, val: this.val[0] })
     },
-    iconEvent(iconType) {
-      if (iconType === 'arrow-return-left') eventBus.emit('undo')
-      else if (iconType === 'arrow-return-right') eventBus.emit('redo')
-      return true
-    },
+    // iconEvent(iconType) {
+    //   if (iconType === 'arrow-return-left') eventBus.emit('undo')
+    //   else if (iconType === 'arrow-return-right') eventBus.emit('redo')
+    //   return true
+    // },
   },
   watch:{
     modelValue:{

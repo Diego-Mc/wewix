@@ -283,14 +283,22 @@
 
   @media screen and (max-width: 1770px) {
     max-width: 1770px;
+    width: 100%;
     .app-header {
-      grid-template-columns: min-content 1fr minmax(400px, 500px) 1fr max-content;
+      grid-template-columns: minmax(230px, 1fr) minmax(250px, 400px) minmax(
+          230px,
+          1fr
+        );
+      gap: 60px;
       .nav {
-        grid-column: 3;
+        grid-column: 2;
       }
       .user-auth,
       .burger {
-        grid-column: 5;
+        grid-column: 3;
+      }
+      .burger {
+        position: absolute;
       }
     }
   }
