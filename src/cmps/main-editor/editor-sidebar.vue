@@ -92,7 +92,7 @@
       class="page-editor cmp-editor"
       :class="{ open: tabState.editOpt === 'edit-site' }">
       <h2 class="title">Section</h2>
-      <edit-font-section />
+      <!-- <edit-font-section /> -->
       <general-editor />
     </section>
   </section>

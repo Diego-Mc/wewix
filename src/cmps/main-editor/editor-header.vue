@@ -78,7 +78,7 @@
           ><span
             class="site-name"
             :style="{ color: isValidWapName ? 'green' : 'red' }"
-            @input="setUpdatedWapName($event)"
+            @input="onInput($event)"
             :contenteditable="!isPublished"
             >{{ updatedWapName }}</span
           >
@@ -123,8 +123,10 @@ export default {
   data() {
     return {
       media: '',
-      updatedWapName: this.wapName || 'site-name',
-      isValidWapName: true,
+      updatedWapName: this.wapName || '',
+      isValidWapName: false,
+      checkingSiteName: false,
+      
     }
   },
   methods: {
@@ -138,6 +140,10 @@ export default {
     handleMediaSelect({ key, val }) {
       this.handleBtnSelect({ key, val })
       this.$emit('setMedia', val)
+    },
+    onInput(ev) {
+      this.checkingSiteName = true
+      this.setUpdatedWapName(ev)
     },
     async setUpdatedWapName(ev) {
       this.updatedWapName = ev.target.innerText
@@ -167,9 +173,13 @@ export default {
         type: 'getWapByName',
         wapName,
       })
+      this.$emit('foundSiteName')
+      console.log('ha')
       const regex = /^[A-Za-z0-9]*$/
-
+      this.checkingSiteName = false
+      console.log(regex.test(wapName))
       if (!isExist && regex.test(wapName) && wapName.length > 3) {
+        this.isValidWapName = true
         return { state: true, msg: 'Site name is valid' }
         // TODO : BUILD MODAL, SAVE WAP WITH USER DATA, SWITCH isOnline = true
       } else if (isExist) {
@@ -178,7 +188,7 @@ export default {
       } else {
         return {
           state: false,
-          msg: 'Site name use invalid Characters (use only charachtors and numbers',
+          msg: 'Site name use invalid Characters (use only charachtors and numbers)',
         }
       }
     },
@@ -190,10 +200,17 @@ export default {
     },
 
     async publish() {
-      if (
+      if (this.checkingSiteName) {
+        ElMessage({
+          message: 'Validating site name...',
+          type: 'error',
+        })
+        return
+      } else if (
         this.updatedWapName.length <= 3 ||
         this.updatedWapName === 'site-name' ||
-        this.updatedWapName === 'user'
+        this.updatedWapName === 'user' ||
+        !this.isValidWapName
       ) {
         ElMessage({
           message: 'Cannot Publish Site With Invalid Name',
@@ -202,17 +219,6 @@ export default {
         return
       }
       this.$emit('publishWap', this.updatedWapName)
-      return
-      const { state } = await this.isValidName(this.updatedWapName)
-      console.log(this.updatedWapName)
-      console.log(state)
-      if (!state) {
-        ElMessage({
-          message: 'Cannot Publish Site With Invalid Name',
-          type: 'error',
-        })
-      } else {
-      }
     },
     backToGallery() {
       //TODO: add modal to ask use if he's sure
@@ -224,7 +230,7 @@ export default {
     urlBar,
   },
   created() {
-    this.setUpdatedWapName = utilService.debounce(this.setUpdatedWapName, 1000)
+    this.setUpdatedWapName = utilService.debounce(this.setUpdatedWapName, 400)
   },
 }
 </script>

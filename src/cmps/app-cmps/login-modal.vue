@@ -19,7 +19,7 @@
         v-model="loginCred.username"
         placeholder="Enter username" />
       <!-- TODO: change to enter email or userName -->
-      <input
+      <el-input
         class="auth-input"
         v-model="loginCred.password"
         type="password"
@@ -45,6 +45,9 @@ export default {
     isModalInAuthPage: Boolean,
     msg: String,
     destPage: String,
+  },
+  created(){
+    console.log( );
   },
   name: 'login-modal',
   data() {
@@ -79,7 +82,9 @@ export default {
       try {
         await this.$store.dispatch({ type: 'login', userCred: this.loginCred })
         if (this.isModalInAuthPage) {
-          this.$router.back()
+          if(this.$router.options.history.state.back === '/signup') this.$router.push('/edit')
+          else  this.$router.back()
+         
         } else if (this.destPage === 'dashboard') {
           this.$router.push('/dashboard')
         } else {
@@ -136,12 +141,15 @@ export default {
   .login-form {
     display: flex;
     flex-direction: column;
-
+    align-items: center;
     gap: 20px;
+    @media (max-width: 700px) {
+      width: 300px !important;
+    }
     .auth-input {
-      width: 350px;
+      width: 100%;
       @media (max-width: 700px) {
-        width: 240px;
+        // width: 300px !important;
       }
     }
   }
@@ -152,8 +160,9 @@ export default {
     color: rgb(102, 102, 102);
   }
 
-/* CSS */
-.auth-btn {
+  /* CSS */
+  .auth-btn {
+    width: 100%;
     appearance: none;
     background-color: #2ea44f;
     border: 1px solid rgba(27, 31, 35, 0.15);
