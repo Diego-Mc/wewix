@@ -4,9 +4,7 @@
       <i class="bi bi-chat-right-dots"></i>
     </section>
     <section class="wap-chat" v-else>
-      <header
-        class="admin-header"
-        v-if="this.user.isAdmin && !activeConversation">
+      <header class="admin-header" v-if="user.isAdmin && !activeConversation">
         <span class="header-text">
           <i @click="isChatOpen = false" class="bi bi-x-lg"></i>
           <small>Hello manager,</small>
@@ -29,11 +27,9 @@
 
       <header
         class="in-chat"
-        v-else-if="
-          !this.user.isAdmin || (this.user.isAdmin && activeConversation)
-        ">
+        v-else-if="!user.isAdmin || (user.isAdmin && activeConversation)">
         <i
-          v-if="this.user.isAdmin"
+          v-if="user.isAdmin"
           @click="activeConversation = null"
           class="bi bi-arrow-left-short"></i>
         <i
@@ -91,7 +87,8 @@ import { utilService } from '../../services/util.service'
 export default {
   props: {
     options: Object,
-    wapId: String
+    wapId: String,
+    owner: Object,
   },
   data() {
     return {
@@ -101,11 +98,15 @@ export default {
       activeGuests: [],
       activeConversation: null,
       user: this.getUser(),
-      chatId: this.options?.meta?.chatData?.chatId || this.wapId,
+      // chatId: this.options?.meta?.chatData?.chatId || this.wapId,
+      chatId: null,
       isUserTyping: {},
     }
   },
   created() {
+    this.chatId = this.owner
+      ? this.owner._id
+      : this.$store.getters.editedWap.owner._id
     socketService.emit('startConversation', {
       chatId: this.chatId,
       userId: this.user.id,
@@ -153,16 +154,25 @@ export default {
     },
     getUser() {
       //TODO VERIFICATION WAPID === USERID
-      const user = JSON.parse(JSON.stringify(this.$store.getters.loggedinUser))
-      if (!user) return { nickname: 'guest', id: Math.random() + '' }
+      // // const user = JSON.parse(JSON.stringify(this.$store.getters.loggedinUser))
+      //   this.chatId = this.owner
+      // ? this.owner._id
+      // : this.$store.getters.editedWap.owner._id
+      const user = this.owner && utilService.deepCopy(this.owner)
+      if (!this.owner) return { nickname: 'guest', id: Math.random() + '' }
       user.isAdmin = true
       user.nickname = 'Admin'
       user.id = user._id
       delete user._id
       return user
     },
-    setActiveConversation({ userId }) {
+    setActiveConversation(g) {
+      console.log('this', g)
+      const { userId } = g
       this.activeConversation = userId
+      // this.user.isAdmin
+      // if (g.msgs) this.chatId = g.msgs[0].id
+      // this.chatId =
       socketService.emit('activateChat', this.activeConversation)
     },
     sendTypeState() {
@@ -178,17 +188,18 @@ export default {
       this.isUserTyping[user] = false
     },
   },
-  watch: { 
-      	wapId(newWapId) { // watch it
-          socketService.emit('startConversation', {
-              chatId: newWapId,
-              userId: this.user.id,
-              adminId: this.user.isAdmin ? this.user.id : '',
-          })
-        }
-  }
+  watch: {
+    wapId(newWapId) {
+      // watch it
+      socketService.emit('startConversation', {
+        // chatId: newWapId,
+        chatId: this.chatId,
+        userId: this.user.id,
+        adminId: this.user.isAdmin ? this.user.id : '',
+      })
+    },
+  },
 }
-
 </script>
 
 <style lang="scss" scoped></style>

@@ -18,7 +18,8 @@
           :opts="wapNames" />
       </section>
       <router-view v-if="currWapData" :wapData="currWapData"></router-view>
-      <!-- <wap-chat :options="currWapData.options"/> -->
+      <!-- <wap-chat :options="currWapData._id" /> -->
+      <!-- <wap-chat :wapId="wapData._id" /> -->
       <!-- <div style="" v-else>Build a website to see data!</div> -->
     </main>
   </section>

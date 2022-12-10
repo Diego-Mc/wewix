@@ -19,10 +19,14 @@
     </div>
     <main class="graph-and-stats-container">
       <app-dashboard-stats v-if="wapData" :wapData="wapData" />
-      <app-dashboard-graphs v-if="wapData.visits" :visitorsData="wapData.visits" />
+      <app-dashboard-graphs
+        v-if="wapData.visits"
+        :visitorsData="wapData.visits" />
     </main>
-    <app-dashboard-details v-if="wapData.usersData.subscriptions" :usersData="wapData.usersData.subscriptions" />
-    <wap-chat :wapId="wapData._id" />
+    <app-dashboard-details
+      v-if="wapData.usersData.subscriptions"
+      :usersData="wapData.usersData.subscriptions" />
+    <wap-chat :owner="$store.getters.loggedinUser" :wapId="wapData._id" />
   </section>
 </template>
 
@@ -33,6 +37,7 @@ import appDashboardDetails from '../cmps/app-cmps/app-dashboard-details.vue'
 import appDashboardStats from '../cmps/app-cmps/app-dashboard-stats.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
 import { utilService } from '../services/util.service'
+import { socketService } from '../services/socket.service'
 
 export default {
   props: {
@@ -70,6 +75,9 @@ export default {
     appDashboardStats,
     wapChat,
   },
+  // unmounted() {
+  //   socketService.logout()
+  // },
 }
 </script>
 

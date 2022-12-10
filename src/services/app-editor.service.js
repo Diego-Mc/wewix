@@ -3,6 +3,7 @@ export const appEditorService = {
   saveToStorage,
   loadFromStorage,
   addOverlays,
+  addSelectionListeners,
 }
 
 function getEmptyWap() {
@@ -33,7 +34,7 @@ function loadFromStorage(key) {
 
 function _removeOverlays(elMainWap) {
   elMainWap
-    .querySelectorAll('[data-draggable],[contenteditable="true"]')
+    .querySelectorAll('[data-draggable],[contenteditable="true"],button,img')
     .forEach((el) => {
       el?.elOverlay?.remove()
       el.elOverlay = null
@@ -43,13 +44,37 @@ function _removeOverlays(elMainWap) {
 function addOverlays(elMainWap) {
   _removeOverlays(elMainWap)
   elMainWap
-    .querySelectorAll('[data-draggable]:hover')
+    .querySelectorAll('[data-draggable]:not(.selected):hover')
     .forEach((elDraggable) => {
-      _addOverlay(elDraggable, '#00e8c533', '#00e8c555')
+      _addOverlay(elDraggable, '#00e8c522', '#00e8c555')
       elDraggable
-        .querySelectorAll("[contenteditable='true']:hover")
-        .forEach((elEditable) => _addOverlay(elEditable, '#00e8c533'))
+        .querySelectorAll(
+          ":is([contenteditable='true'],button,img):not(.selected):hover"
+        )
+        .forEach((elEditable) => _addOverlay(elEditable, '#00e8c522'))
     })
+}
+
+function addSelectionListeners(elMainWap) {
+  elMainWap
+    .querySelectorAll('[data-draggable],[contenteditable="true"],img,button')
+    .forEach((elSelectable) => {
+      // elSelectable.removeEventListener('click', _selectEl)
+      elSelectable.addEventListener('mousedown', (e) => {
+        e.stopPropagation()
+        _selectEl(elSelectable, elMainWap)
+      })
+    })
+}
+
+function _selectEl(el, elMainWap) {
+  elMainWap
+    .querySelectorAll('[data-draggable],[contenteditable="true"],img,button')
+    .forEach((elSelectable) => {
+      elSelectable.classList.remove('selected')
+    })
+  el.classList.add('selected')
+  console.log('added class', el)
 }
 
 function _addOverlay(el, backgroundColor, outlineColor) {
