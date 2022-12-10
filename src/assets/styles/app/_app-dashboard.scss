@@ -111,6 +111,21 @@
     grid-template-areas: 'header' 'stats' 'leads';
     height: calc(100vh - $main-header-height - 40px - 40px);
     overflow-y: scroll;
+
+    .title {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      .site-link {
+        color: #888;
+        font-size: rem(20px);
+        transform: translateY(6%);
+        cursor: pointer;
+        &:hover {
+          color: #444;
+        }
+      }
+    }
   }
 
   .leads {

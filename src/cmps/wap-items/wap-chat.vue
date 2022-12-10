@@ -28,7 +28,7 @@
 
 
 </template>
-  
+
 <script>
 import { socketService } from '../../services/socket.service'
 import { utilService } from '../../services/util.service'
@@ -107,4 +107,3 @@ export default {
 
 }
 </script>
-  

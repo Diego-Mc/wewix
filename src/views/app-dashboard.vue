@@ -95,10 +95,7 @@ export default {
         )
         const { wapOwnerId, wapId, ...newMsg } = sentMsg
         updatedWap.usersData.subscriptions.unshift(newMsg)
-        ElMessage({
-          message: `You have a new lead from site '${updatedWap.name}'`,
-          type: 'success',
-        })
+
       }
     })
   },
