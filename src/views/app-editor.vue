@@ -39,7 +39,12 @@
     v-if="wap && !isLoading">
     <section class="main-editor-tools">
       <main-header @dashboardLinkClicked="dashboardLinkClicked" />
+      <!-- 
+         @checkingSiteName="setCheckingSiteName(true)"
+        @foundSiteName="setCheckingSiteName(false)"
+       -->
       <editor-header
+       
         @setName="setName"
         @setVal="openSocketsConfirm"
         @setMedia="setMedia"
@@ -115,7 +120,6 @@ import wapVideo from '../cmps/wap-items/wap-video.vue'
 import wapMap from '../cmps/wap-items/wap-map.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
 
-
 import { demoData } from '../services/demo-data'
 import Chance from 'chance'
 
@@ -170,7 +174,6 @@ export default {
     }
   },
   updated() {
-    console.log('updated')
     clearInterval(this.overlayInterval)
     this.overlayInterval = 0
     setInterval(appEditorService.addOverlays, 20, this.$refs.mainWap)
@@ -187,7 +190,6 @@ export default {
       this.authModal.destPage = destinationPage
     },
     dashboardLinkClicked() {
-      console.log('dashboard clocked')
       if (this.loggedinUser) this.$router.push('/dashboard')
       else {
         this.isConfirmModalOpen = false
@@ -358,7 +360,6 @@ export default {
       }
     },
     cmpSelected({ cmpId, elType, childCmpId, elDom }) {
-      console.log(cmpId, elType, childCmpId, elDom)
       this.selectedCmp = {}
       let cmp = this.wap.cmps.find(({ id }) => {
         return id === cmpId
@@ -368,7 +369,6 @@ export default {
         cmp = cmp.cmps.find(({ id }) => id === childCmpId)
         this.selectedCmp.childCmpId = childCmpId
       }
-      console.log('cmp', cmp)
 
       this.selectedCmp.id = cmpId
       this.selectedCmp.options = elType ? cmp.info[elType].options : cmp.options
@@ -396,7 +396,7 @@ export default {
       if (this.wap.plugins?.chatData) {
         this.wap.plugins.chatData = null
       } else {
-        this.wap.plugins = {}      
+        this.wap.plugins = {}
         this.wap.plugins.chatData = {
           adminName: this.loggedinUser.fullname,
           adminID: this.loggedinUser._id,
@@ -433,7 +433,6 @@ export default {
       this.wap.owner = this.loggedinUser
       this.wap.isPublished = !this.wap.isPublished
       this.authModal.isShown = false
-      console.log(this.wap)
       try {
         const wapId = await this.updateWap(this.wap)
         this.$store.dispatch('addWapToUser', { wapId: this.wap._id })

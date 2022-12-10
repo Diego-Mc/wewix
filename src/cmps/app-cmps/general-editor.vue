@@ -70,6 +70,7 @@ export default {
   },
   created() {},
   methods: {
+
     handleThemeSelect({ key, val }) {
       eventBus.emit('themeChanged', { themeClass: val })
     },

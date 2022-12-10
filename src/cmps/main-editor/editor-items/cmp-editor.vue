@@ -2,7 +2,9 @@
   <section v-if="editOptions">
     <section class="style-editor">
       <div v-if="isOptionsContain('fontFamily')">
-        <edit-font-section @select="updateOptionsStyle" />
+        <edit-font-section
+          @select="updateOptionsStyle"
+          :elStyle="fontFamily" />
       </div>
 
       <div v-if="isOptionsContain('backgroundColor')">
@@ -12,9 +14,10 @@
       <div v-if="isOptionsContain('color')">
         <edit-color-section @select="updateOptionsStyle" />
       </div>
-
       <div v-if="isOptionsContain('fontWeight')">
-        <edit-font-weight-section @select="updateOptionsStyle" />
+        <edit-font-weight-section
+          @select="updateOptionsStyle"
+          :elStyle="fontWeight" />
       </div>
 
       <div v-if="isOptionsContain('borderRadius')">
@@ -28,7 +31,7 @@
       <div v-if="isOptionsContain('fontSize')">
         <edit-font-size-section
           @select="updateStyleValToEm"
-          :fontSize="getElStyle('font-size')" />
+          :fontSize="fontSize" />
       </div>
     </section>
 
@@ -89,7 +92,7 @@
         <el-button
           type="primary"
           @click="fieldAdded(id)"
-          style="width: 100%; margin-bottom: 10px;">
+          style="width: 100%; margin-bottom: 10px">
           Add field to form
         </el-button>
       </div>
@@ -97,7 +100,11 @@
       <div>
         <el-button
           type="danger"
-          style="background: rgb(239, 3, 42) !important; font-size: 12px; border: none"
+          style="
+            background: rgb(239, 3, 42) !important;
+            font-size: 12px;
+            border: none;
+          "
           @click.stop="onRemoveCmp"
           >Remove</el-button
         >
@@ -132,8 +139,12 @@ export default {
   data() {
     return {
       updatedOptions: JSON.parse(JSON.stringify(this.editOptions)),
+      fontFamily: null,
+      fontWeight: null,
+      fontSize: null,
     }
   },
+  created() {},
 
   methods: {
     fieldChanged(id, idx, e) {
@@ -164,7 +175,6 @@ export default {
         ...Object.keys(this.editOptions.style),
         ...Object.keys(this.editOptions.meta),
       ]
-      console.log(options)
       return options.includes(type)
     },
 
@@ -243,21 +253,48 @@ export default {
     },
 
     getElStyle(styleProp) {
-      console.log('this.elDom:', this.elDom)
-
+      // console.log(styleProp);
+      // console.log(window.getComputedStyle(this.elDom));
       if (this.elDom) {
-        console.log(
-          'window.getComputedStyle(this.elDom).getPropertyValue(styleProp):',
-          window.getComputedStyle(this.elDom).getPropertyValue(styleProp)
-        )
         return window.getComputedStyle(this.elDom).getPropertyValue(styleProp)
       }
     },
   },
 
+  //TODO: change this awful thing
   watch: {
     editOptions() {
       this.updatedOptions = JSON.parse(JSON.stringify(this.editOptions))
+    },
+    id: {
+      immediate: true,
+      handler() {
+        this.fontFamily = this.getElStyle('font-family')
+        this.fontWeight = this.getElStyle('font-weight')
+        this.fontSize = this.getElStyle('font-size')
+        console.log(this.fontSize);
+      },
+    },
+    childCmpId: {
+      immediate: true,
+      handler() {
+        this.fontFamily = this.getElStyle('font-family')
+        this.fontWeight = this.getElStyle('font-weight')
+        this.fontSize = this.getElStyle('font-size')
+        console.log(this.fontSize);
+
+        // this.fontWeight =
+      },
+    },
+    elType: {
+      immediate: true,
+      handler() {
+        this.fontFamily = this.getElStyle('font-family')
+        this.fontWeight = this.getElStyle('font-weight')
+        this.fontSize = this.getElStyle('font-size')
+        console.log(this.fontSize);
+
+      },
     },
   },
 

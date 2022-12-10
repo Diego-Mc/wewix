@@ -5,7 +5,7 @@
       class="editor-btns"
       :info="{ key: 'fontWeight', type: 'picker' }"
       dir="row"
-      initialValue="system"
+      v-model="elStyle"
       @setVal="handleBtnSelect"
       :style="{
         padding: '30px',
@@ -42,6 +42,12 @@
 <script>
 import editorBtnGroup from '../editor-items/editor-btn-group.vue'
 export default {
+  props:{
+    elStyle:String,
+  },
+  created() {
+    console.log('weight',this.elStyle);
+  },
   components: {
     editorBtnGroup,
   },

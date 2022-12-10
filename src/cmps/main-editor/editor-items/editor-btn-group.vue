@@ -86,6 +86,14 @@ export default {
       return true
     },
   },
+  watch:{
+    modelValue:{
+      handler(a){
+        this.val = [a]
+        console.log('val', this.val);
+      }
+    }
+  }
 }
 </script>
 

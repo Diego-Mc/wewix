@@ -19,7 +19,7 @@
         placeholder="Password"
         show-password />
 
-      <button type="primary">
+      <button class="auth-btn">
         <span>Signup </span>
         <span v-if="destPage === 'publishWap'"
           >&nbspand publish</span
@@ -77,7 +77,8 @@ export default {
           userCred: this.signupCred,
         })
         if (this.isModalInAuthPage) {
-          this.$router.push('/edit')
+          if(this.$router.options.history.state.back === '/login') this.$router.push('/edit')
+          else this.$router.push('/edit')
         } else if (this.destPage === 'dashboard') {
           this.$router.push('/dashboard/')
         } else {

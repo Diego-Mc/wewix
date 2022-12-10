@@ -206,6 +206,8 @@
     }
     .site-name {
       color: $main;
+      display: inline-block;
+      width: 100px;
     }
     // .preview-btn {
     //   color: rgba($color: $main, $alpha: 0.4);
