@@ -11,7 +11,7 @@
       :cmps="cmp.cmps" />
 
     <section v-if="wap?.plugins?.chatData">
-      <wap-chat :wapId="wap._id" />
+      <wap-chat :chatRoom="wap._id" />
     </section>
 
     <section v-if="showErrPage">

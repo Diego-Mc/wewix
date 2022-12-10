@@ -75,10 +75,10 @@ export default {
     modifiedUsers() {
       let users = JSON.parse(JSON.stringify(this.usersData))
 
+      users.sort((a, b) => b.createdAt - a.createdAt)
       users.forEach((user) => {
         user.createdAt = this.getDate(user.createdAt)
       })
-  
       //Filter
       if (this.filterBy) {
         const regex = new RegExp(this.filterBy, 'i')
@@ -91,6 +91,7 @@ export default {
       // Sort
       if (this.sortBy.type) {
         if (this.sortBy.type === 'createdAt') {
+          console.log(users)
           users.sort((u1, u2) => {
             return (u1.createdAt - u2.createdAt) * this.sortBy.desc
           })
