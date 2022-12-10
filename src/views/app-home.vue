@@ -101,7 +101,7 @@
         </article>
         <article class="card">
           <i class="bi bi-cast"></i>
-          <h3>Publish you website</h3>
+          <h3>Publish your website</h3>
           <p>Get your own custom domain to send to your customers.</p>
         </article>
         <article class="card">

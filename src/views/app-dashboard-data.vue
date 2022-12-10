@@ -1,7 +1,12 @@
 <template>
   <section class="dashboard-data" v-if="wapData">
     <div class="dashboard-top-div">
-      <h2>{{ wapData.name + "'s Dashboard" }}</h2>
+      <div class="title">
+        <h2>
+          {{ wapData.name + "'s Dashboard" }}
+        </h2>
+        <i class="bi bi-link-45deg site-link" @click="copySiteUrl"></i>
+      </div>
       <div class="preview-links">
         <!-- <router-link :to="`/${wapData.name}`">
           <el-button class="view-wap-btn">View Website</el-button>
@@ -38,6 +43,7 @@ import appDashboardStats from '../cmps/app-cmps/app-dashboard-stats.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
 import { utilService } from '../services/util.service'
 import { socketService } from '../services/socket.service'
+import { ElMessage } from 'element-plus'
 
 export default {
   props: {
@@ -67,6 +73,16 @@ export default {
             Math.random() < 0.5
       }
       return demoData
+    },
+  },
+  methods: {
+    copySiteUrl() {
+      const url = `${window.location.origin}/#/${this.wapData.name}`
+      utilService.copyToClipboard(url)
+      ElMessage({
+        message: 'Website link copied to your clipboard.',
+        type: 'success',
+      })
     },
   },
   components: {

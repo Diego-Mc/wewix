@@ -190,15 +190,15 @@ export default {
     },
   },
   watch: {
-    wapId(newWapId) {
-      // watch it
-      socketService.emit('startConversation', {
-        // chatId: newWapId,
-        chatId: this.chatId,
-        userId: this.user.id,
-        adminId: this.user.isAdmin ? this.user.id : '',
-      })
-    },
+    // wapId(newWapId) {
+    //   // watch it
+    //   socketService.emit('startConversation', {
+    //     // chatId: newWapId,
+    //     chatId: this.chatId,
+    //     userId: this.user.id,
+    //     adminId: this.user.isAdmin ? this.user.id : '',
+    //   })
+    // },
   },
 }
 </script>

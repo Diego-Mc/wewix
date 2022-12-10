@@ -39,12 +39,11 @@
     v-if="wap && !isLoading">
     <section class="main-editor-tools">
       <main-header @dashboardLinkClicked="dashboardLinkClicked" />
-      <!-- 
+      <!--
          @checkingSiteName="setCheckingSiteName(true)"
         @foundSiteName="setCheckingSiteName(false)"
        -->
       <editor-header
-       
         @setName="setName"
         @setVal="openSocketsConfirm"
         @setMedia="setMedia"
