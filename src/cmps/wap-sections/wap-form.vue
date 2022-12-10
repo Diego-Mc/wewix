@@ -76,6 +76,7 @@ export default {
         ...this.userInfo,
         wapOwnerId: wap.owner._id,
         wapId: wap._id,
+        wapName: wap.name,
       })
     },
     updateContent(elType, e) {

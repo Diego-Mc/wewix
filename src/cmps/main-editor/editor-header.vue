@@ -124,7 +124,7 @@ export default {
     return {
       media: '',
       updatedWapName: this.wapName || '',
-      isValidWapName: false,
+      isValidWapName: this.isPublished? true : false ,
       checkingSiteName: false,
     }
   },
@@ -147,6 +147,7 @@ export default {
     async setUpdatedWapName(ev) {
       this.updatedWapName = ev.target.innerText
       const isValid = await this.isValidName(this.updatedWapName)
+      this.checkingSiteName = false
 
       ///if (isValid.state)
       this.updateInlineNameStyle(isValid.state)
@@ -175,7 +176,6 @@ export default {
       this.$emit('foundSiteName')
       console.log('ha')
       const regex = /^[A-Za-z0-9]*$/
-      this.checkingSiteName = false
       console.log(regex.test(wapName))
       if (!isExist && regex.test(wapName) && wapName.length > 3) {
         this.isValidWapName = true
@@ -229,7 +229,7 @@ export default {
     urlBar,
   },
   created() {
-    this.setUpdatedWapName = utilService.debounce(this.setUpdatedWapName, 400)
+    this.setUpdatedWapName = utilService.debounce(this.setUpdatedWapName, 1000)
   },
 }
 </script>
