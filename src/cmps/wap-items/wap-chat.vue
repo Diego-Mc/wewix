@@ -154,8 +154,12 @@ export default {
     },
     getUser() {
       //TODO VERIFICATION WAPID === USERID
-      const user = JSON.parse(JSON.stringify(this.$store.getters.loggedinUser))
-      if (!user) return { nickname: 'guest', id: Math.random() + '' }
+      // // const user = JSON.parse(JSON.stringify(this.$store.getters.loggedinUser))
+      //   this.chatId = this.owner
+      // ? this.owner._id
+      // : this.$store.getters.editedWap.owner._id
+      const user = this.owner && utilService.deepCopy(this.owner)
+      if (!this.owner) return { nickname: 'guest', id: Math.random() + '' }
       user.isAdmin = true
       user.nickname = 'Admin'
       user.id = user._id

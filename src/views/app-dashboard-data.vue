@@ -37,6 +37,7 @@ import appDashboardDetails from '../cmps/app-cmps/app-dashboard-details.vue'
 import appDashboardStats from '../cmps/app-cmps/app-dashboard-stats.vue'
 import wapChat from '../cmps/wap-items/wap-chat.vue'
 import { utilService } from '../services/util.service'
+import { socketService } from '../services/socket.service'
 
 export default {
   props: {
@@ -74,6 +75,9 @@ export default {
     appDashboardStats,
     wapChat,
   },
+  // unmounted() {
+  //   socketService.logout()
+  // },
 }
 </script>
 

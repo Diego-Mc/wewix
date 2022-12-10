@@ -396,11 +396,12 @@ export default {
       if (this.wap.plugins?.chatData) {
         this.wap.plugins.chatData = null
       } else {
-        this.wap.plugins = {}      
+        this.wap.plugins = {}
         this.wap.plugins.chatData = {
           adminName: this.loggedinUser.fullname,
           adminID: this.loggedinUser._id,
-          chatId: this.wap._id,
+          // chatId: this.wap._id,
+          chatId: this.loggedinUser._id,
         }
         ElMessage({
           message: 'Chat added to website.',
