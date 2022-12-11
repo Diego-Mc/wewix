@@ -10,9 +10,7 @@
       :options="cmp.options"
       :cmps="cmp.cmps" />
 
-    <section v-if="wap?.plugins?.chatData">
-      <wap-chat :wapName="wap.name"/>
-    </section>
+    <wap-chat v-if="wap?.plugins?.chatData" :wapName="wap.name" />
 
     <section v-if="showErrPage">
       <page-not-found />
@@ -26,7 +24,8 @@ import wapHero from '../cmps/wap-sections/wap-hero.vue'
 import wapCards from '../cmps/wap-sections/wap-cards.vue'
 import wapSection from '../cmps/wap-sections/wap-section.vue'
 // import wapForm from '../cmps/wap-sections/wap-form.vue'
-import wapChat from '../cmps/wap-items/wap-chat.vue'
+// import wapChat from '../cmps/wap-items/wap-chat.vue'
+import wapChat from '../cmps/wap-items/wap-chat1.vue'
 import { eventBus } from '../services/event-bus.service'
 import pageNotFound from './page-not-found.vue'
 import { utilService } from '../services/util.service'

@@ -18,7 +18,7 @@
           :opts="wapNames" />
       </section>
       <router-view v-if="currWapData" :wapData="currWapData"></router-view>
-      <wap-chat :owner="$store.getters.loggedinUser"/>
+      <wap-chat :owner="$store.getters.loggedinUser" />
       <!-- <wap-chat :options="currWapData._id" /> -->
       <!-- <wap-chat :wapId="wapData._id" /> -->
       <!-- <div style="" v-else>Build a website to see data!</div> -->
@@ -69,7 +69,8 @@
 <script>
 import editorBtnGroup from '../cmps/main-editor/editor-items/editor-btn-group.vue'
 import mainHeader from '../cmps/app-cmps/main-header.vue'
-import wapChat from '../cmps/wap-items/wap-chat.vue'
+// import wapChat from '../cmps/wap-items/wap-chat.vue'
+import wapChat from '../cmps/wap-items/wap-chat1.vue'
 import { socketService } from '../services/socket.service.js'
 import { utilService } from '../services/util.service'
 import { ElMessage } from 'element-plus'
@@ -87,7 +88,7 @@ export default {
 
     const waps = await this.getUserWaps()
     this.userWaps = utilService.deepCopy(waps)
-    
+
     socketService.on('formSent', (sentMsg) => {
       if (sentMsg.wapOwnerId === this.loggedinUser._id) {
         const updatedWap = this.userWaps.find(
@@ -95,7 +96,6 @@ export default {
         )
         const { wapOwnerId, wapId, ...newMsg } = sentMsg
         updatedWap.usersData.subscriptions.unshift(newMsg)
-
       }
     })
   },
