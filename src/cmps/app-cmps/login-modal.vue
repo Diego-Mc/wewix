@@ -1,11 +1,9 @@
 <template>
   <div class="auth-modal">
     <h2 class="auth-header">{{ msg }}</h2>
-    <!-- <div class="google-auth-btn">
-      <button @click="googleAuth">
-        google login
-      </button>
-    </div> -->
+
+    <google-auth/>
+    
     <!-- <p class="login-p-divider">or</p> -->
     <form class="login-form" @submit.prevent="doLogin">
       <el-input
@@ -34,14 +32,18 @@
 <script>
 import { showUserMsg } from '../../services/event-bus.service.js'
 import { ElMessage } from 'element-plus'
+import googleAuth from './google-auth.vue'
 
 export default {
+  name: 'login-modal',
   props: {
     isModalInAuthPage: Boolean,
     msg: String,
     destPage: String,
   },
-  name: 'login-modal',
+  components: {
+    googleAuth,
+  },
   created() {
     console.log()
   },
@@ -113,7 +115,6 @@ export default {
       await this.$store.dispatch({ type: 'signup', userCred: this.signupCred })
     },
   },
-  components: {},
 }
 </script>
 

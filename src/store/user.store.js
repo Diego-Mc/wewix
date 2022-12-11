@@ -24,6 +24,7 @@ export const userStore = {
         setLoggedinUser(state, { user }) {
             // Yaron: needed this workaround as for score not reactive from birth
             state.loggedinUser = (user) ? { ...user } : null
+            console.log( 'loggedin user',state.loggedinUser);
         },
         setWatchedUser(state, { user }) {
             state.watchedUser = user
@@ -43,10 +44,9 @@ export const userStore = {
         }
     },
     actions: {
-        async googleAuth(){
-            const user = await userService.googleAuth()
-            // commit({ type: 'setLoggedinUser', user })
-
+        async googleLogin({commit},userDetails){
+            const user = await userService.googleLogin(userDetails)
+            commit({ type: 'setLoggedinUser', user })
         },
         async addWapToUser({ commit }, { wapId }) {
             const user = await userService.addWapId(wapId)
