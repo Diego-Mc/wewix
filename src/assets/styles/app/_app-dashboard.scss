@@ -35,7 +35,7 @@
     display: flex;
     gap: 20px;
   }
-
+  .remove-btn,
   .preview-btn,
   .publish-btn {
     padding: 0 18px;
@@ -61,6 +61,9 @@
       border-color: #ddd;
       // background-color: #eee;
     }
+  }
+  .remove-btn {
+    color: #f25c5c;
   }
   .publish-btn {
     font-weight: 800;

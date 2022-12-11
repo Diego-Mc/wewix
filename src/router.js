@@ -80,6 +80,7 @@ const routes = [
     name: 'publish-wap',
     component: appPublish,
   },
+
   // {
   //   path: '/:pathMatch(.*)*',
   //   name: 'not-found',

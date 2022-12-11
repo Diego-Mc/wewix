@@ -17,7 +17,7 @@ export const userService = {
     remove,
     update,
     addWapId,
-    googleAuth
+    googleLogin
 }
 
 window.userService = userService
@@ -66,9 +66,6 @@ async function login(userCred) {
     }
 }
 async function signup(userCred) {
-    // userCred.score = 10000
-    // if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
-    // const user = await storageService.post('user', userCred)
     const user = await httpService.post('auth/signup', userCred)
     // socketService.login(user._id)
     return saveLocalUser(user)
@@ -91,8 +88,12 @@ async function addWapId(wapId) {
     return user
 }
 
-async function googleAuth() {
-    const user = await httpService.get('auth/google')
+async function googleLogin(userDetails) {
+    const user = await httpService.post('auth/google',userDetails)
+    if (user) {
+        // socketService.login(user._id)
+        saveLocalUser(user)
+    }
     return user
 }
 
