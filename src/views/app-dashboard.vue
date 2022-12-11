@@ -87,7 +87,6 @@ export default {
 
     const waps = await this.getUserWaps()
     this.userWaps = utilService.deepCopy(waps)
-    
     socketService.on('formSent', (sentMsg) => {
       if (sentMsg.wapOwnerId === this.loggedinUser._id) {
         const updatedWap = this.userWaps.find(
