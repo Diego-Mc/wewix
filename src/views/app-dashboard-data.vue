@@ -24,9 +24,7 @@
     </div>
     <main class="graph-and-stats-container">
       <app-dashboard-stats v-if="wapData" :wapData="wapData" />
-      <app-dashboard-graphs
-        v-if="wapData.visits"
-        :visitorsData="wapData.visits" />
+      <app-dashboard-graphs v-if="wapData" :visitorsData="wapData.visits" />
     </main>
     <app-dashboard-details
       v-if="wapData.usersData.subscriptions"

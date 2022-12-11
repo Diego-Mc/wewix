@@ -95,9 +95,8 @@
         .guests {
           display: flex;
           flex-wrap: nowrap;
-          overflow-x: scroll;
           gap: 12px;
-          > span {
+          .guest-icon {
             aspect-ratio: 1/1;
             width: 30px;
             height: 30px;
@@ -106,6 +105,22 @@
               width: 30px;
               height: 30px;
               cursor: pointer;
+            }
+            .notification {
+              position: absolute;
+              background-color: #fd372d;
+              min-width: 16px;
+              min-height: 16px;
+              padding: 1px 3px;
+              top: 0;
+              right: 0;
+              border-radius: 50%;
+              font-size: 10px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: white;
+              transform: translate(3px, -3px);
             }
           }
         }
@@ -180,6 +195,7 @@
         color: #a0a0a0;
         width: fit-content;
         margin: 0 auto;
+        margin-top: 1rem;
       }
 
       .message {
@@ -205,6 +221,9 @@
           color: white;
         }
 
+        &.typing-indicator {
+          background-color: #eee;
+        }
         .typing {
           display: inline-block;
           width: 0.8rem;

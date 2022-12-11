@@ -9,23 +9,27 @@
         <span class="header-text">
           <i @click="isChatOpen = false" class="bi bi-x-lg"></i>
           <small>Hello manager,</small>
-          <h3>wewix chat</h3>
+          <h3>Live chat</h3>
         </span>
         <section
           v-for="(chat, siteName) in adminChats"
           class="site-chats-preview">
           <article class="site-chat-preview">
-            <h4>site name: {{ siteName }}</h4>
+            <!-- <h4>site name: {{ siteName }}</h4> -->
+            <!-- <pre>{{ adminChats }}</pre> -->
             <nav class="guests">
               <span
                 v-for="(guest, idx) in chat"
+                class="guest-icon"
                 :key="guest.guestId"
                 @click="adminChatWith(guest, siteName, idx)">
                 <img
                   class="guest-avatar"
                   src="../../assets/imgs/png-96/avatar1.png" />
-                <span>{{ guest.unread }}</span>
-                <span v-if="isTyping[guest.guestId]">typing...</span>
+                <span class="unread notification" v-if="guest.unread">{{
+                  guest.unread
+                }}</span>
+                <!-- //TODO: remove unread by entering (not by answering) -->
               </span>
             </nav>
           </article>
@@ -46,11 +50,10 @@
           <h3 v-if="owner">Guest {{ currGuest.guestId }}</h3>
           <h3 v-else>Admin</h3>
         </span>
-        <span v-if="isTyping[currGuest?.guestId]">typing...</span>
-        <span v-else-if="isTyping?.admin">Admin typing...</span>
       </header>
 
-      <section class="messages" v-if="owner && currGuest">
+      <section class="messages" ref="adminMsgs" v-if="owner && currGuest">
+        <div class="time">{{ currGuest?.createdAt || 'Today at now' }}</div>
         <article
           v-for="(msg, idx) in adminChats[currSiteName][currGuestIdx]?.msgs"
           :key="idx"
@@ -58,14 +61,27 @@
           :class="{ manager: msg.from === 'Admin' }">
           {{ msg.txt }}
         </article>
+        <article
+          v-if="isTyping[currGuest?.guestId]"
+          class="message typing-indicator">
+          <div class="typing typing-1"></div>
+          <div class="typing typing-2"></div>
+          <div class="typing typing-3"></div>
+        </article>
       </section>
-      <section class="messages" v-if="!owner">
+      <section class="messages" ref="guestMsgs" v-if="!owner">
+        <div class="time">{{ guestChat.createdAt || 'Today at now' }}</div>
         <article
           v-for="(msg, idx) in guestChat"
           :key="idx"
           class="message"
           :class="{ manager: msg.from !== 'Admin' }">
           {{ msg.txt }}
+        </article>
+        <article v-if="isTyping?.admin" class="message typing-indicator">
+          <div class="typing typing-1"></div>
+          <div class="typing typing-2"></div>
+          <div class="typing typing-3"></div>
         </article>
       </section>
 
@@ -134,6 +150,18 @@ export default {
       // chatId: null,
       // isUserTyping: {},
     }
+  },
+  updated() {
+    // const elMsgs = this.owner ? this.$refs.adminMsgs : this.$refs.guestMsgs
+    // if (elMsgs?.scrollTop) {
+    //   console.log('hr')
+    //   elMsgs.scrollTop = elMsgs.lastElementChild.offsetTop
+    // }
+    // if (this.$el) {
+    //   var messages = this.$el.querySelector('.messages')
+    //   messages.scrollTop = messages.scrollHeight
+    // }
+    this.$nextTick(this.scrollToEnd)
   },
   created() {
     console.log('this.wapName:', this.wapName)
@@ -208,6 +236,13 @@ export default {
     // socketService.off(SOCKET_EVENT_ADD_MSG, this.addMsg)
   },
   methods: {
+    scrollToEnd() {
+      const elMsgs = document.querySelector('.messages')
+      if (!elMsgs) return
+      console.log('check', elMsgs, elMsgs?.scrollHeight)
+      const scrollHeight = elMsgs.scrollHeight
+      elMsgs.scrollTop = scrollHeight
+    },
     sendMsg() {
       socketService.emit('addMsg', this.msg)
       this.msg.txt = ''
