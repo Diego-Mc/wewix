@@ -106,8 +106,8 @@ export default {
         // wapVideo,
         // wapMap,
         // wapForm,
-        wapChat,
-        wapMap,
+        // wapChat,
+        // wapMap,
       ],
     }
   },
@@ -140,8 +140,6 @@ export default {
             getCmp('wap-section', 11),
             getCmp('wap-section', 12),
             getCmp('wap-section', 24),
-            getCmp('wap-section', 26),
-            wapChat,
           ]
         case 'section':
           return [
@@ -182,7 +180,7 @@ export default {
             getCmp('wap-section', 3),
           ]
         case 'contact':
-          return [getCmp('wap-section', 20)]
+          return [getCmp('wap-section', 20), getCmp('wap-section', 26)]
         case 'cards':
           return [
             getCmp('wap-cards', 11),

@@ -77,7 +77,7 @@
     <section
       class="cmp-editor"
       :class="{ open: tabState.editOpt === 'edit-cmp' }">
-      <h2 class="title">Section</h2>
+      <h2 class="title">Edit</h2>
       <cmp-editor
         v-if="selectedCmp.id"
         :id="selectedCmp.id"
@@ -91,7 +91,7 @@
     <section
       class="page-editor cmp-editor"
       :class="{ open: tabState.editOpt === 'edit-site' }">
-      <h2 class="title">Section</h2>
+      <h2 class="title">Settings</h2>
       <!-- <edit-font-section /> -->
       <general-editor />
     </section>

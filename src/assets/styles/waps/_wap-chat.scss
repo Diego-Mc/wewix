@@ -23,6 +23,9 @@
 // }
 
 .wap-chat-container {
+  position: fixed;
+  bottom: 0;
+  right: 0;
   .chat-icon {
     background-color: #fff;
     border-radius: 50%;

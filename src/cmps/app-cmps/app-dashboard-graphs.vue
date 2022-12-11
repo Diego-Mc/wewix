@@ -46,10 +46,12 @@
     </select> -->
     <section class="graph-wrapper">
       <component
+        v-if="chartData"
         :is="selectedChart"
         :chartData="chartData"
         responsive
-        :options="graphOptions"></component>
+        :options="graphOptions">
+      </component>
     </section>
   </section>
   <!-- </section> -->

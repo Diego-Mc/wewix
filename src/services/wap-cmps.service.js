@@ -5344,7 +5344,8 @@ wapsMap.set('wap-section-26', {
   id: '',
   type: 'wap-section',
   typeId: 26,
-  previewImg: '',
+  previewImg:
+    'https://res.cloudinary.com/wewix/image/upload/v1670746938/waps/map-form-cnp-1_siblqa.png',
   options: {
     meta: {
       src: '',
