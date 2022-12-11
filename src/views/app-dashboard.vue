@@ -1,5 +1,5 @@
 <template>
-  <section v-if="userWaps" class="dashboard-page">
+  <section class="dashboard-page">
     <main-header />
     <main class="app-dashboard">
       <section class="dashboard-sidebar">
@@ -17,14 +17,14 @@
           }"
           :opts="wapNames" />
       </section>
-      <router-view v-if="currWapData" :wapData="currWapData"></router-view>
+      <router-view :wapData="currWapData"></router-view>
       <wap-chat :owner="$store.getters.loggedinUser" />
       <!-- <wap-chat :options="currWapData._id" /> -->
       <!-- <wap-chat :wapId="wapData._id" /> -->
       <!-- <div style="" v-else>Build a website to see data!</div> -->
     </main>
   </section>
-  <section v-if="false" class="skeleton">
+  <!-- <section v-if="false" class="skeleton">
     <div class="header"></div>
     <div class="sidebar"></div>
     <div class="main">
@@ -63,7 +63,7 @@
         <div class="table"></div>
       </div>
     </div>
-  </section>
+  </section> -->
 </template>
 
 <script>
