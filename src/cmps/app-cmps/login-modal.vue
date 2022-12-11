@@ -2,13 +2,8 @@
   <div class="auth-modal">
     <h2 class="auth-header">{{ msg }}</h2>
     <!-- <div class="google-auth-btn">
-      <button>
-        <a href="http://localhost:3030/auth/google">google login</a>
-        <div
-          class="g-signin2"
-          data-width="300"
-          data-height="200"
-          data-longtitle="true"></div>
+      <button @click="googleAuth">
+        google login
       </button>
     </div> -->
     <!-- <p class="login-p-divider">or</p> -->
@@ -46,14 +41,17 @@ export default {
     msg: String,
     destPage: String,
   },
-  created(){
-    console.log( );
-  },
   name: 'login-modal',
+  created() {
+    console.log()
+  },
   data() {
     return {
-      loginCred: { username: 'nir', password: 'nir' },
+      loginCred: { username: 'admin', password: 'admin' },
     }
+  },
+  googleAuth() {
+    this.$store.dispatch('googleAuth')
   },
   computed: {
     users() {
@@ -82,9 +80,9 @@ export default {
       try {
         await this.$store.dispatch({ type: 'login', userCred: this.loginCred })
         if (this.isModalInAuthPage) {
-          if(this.$router.options.history.state.back === '/signup') this.$router.push('/edit')
-          else  this.$router.back()
-         
+          if (this.$router.options.history.state.back === '/signup')
+            this.$router.push('/edit')
+          else this.$router.back()
         } else if (this.destPage === 'dashboard') {
           this.$router.push('/dashboard')
         } else {
