@@ -20,11 +20,14 @@ export default {
     socketService.on('formSent', (sentMsg) => {
       if (sentMsg.wapOwnerId === this.$store.getters.loggedinUser._id) {
         ElMessage({
-          message: `You have a new lead from ${sentMsg.wapName}`,
+          message: `You have a new lead from site '${sentMsg.wapName}''`,
           type: 'success',
         })
       }
     })
+  },
+  unmounted() {
+    socketService.off('formSent')
   },
   components: {
     userMsg,

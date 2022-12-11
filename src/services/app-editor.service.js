@@ -15,6 +15,7 @@ function getEmptyWap() {
       // fullname: '',
       // imgUrl: '',
     },
+    visits:[{createdAt:new Date().now}],
     usersData: {
       contacts: [],
       subscriptions: [],
