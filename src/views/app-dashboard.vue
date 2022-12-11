@@ -103,8 +103,8 @@ export default {
         type: 'success',
       })
     })
-    console.log('id', waps[0]._id)
-    this.$router.push(`/dashboard/${waps[0]._id}`)
+    // console.log('id', waps[0]._id)
+    // this.$router.push(`/dashboard/${waps[0]._id}`)
   },
   unmounted() {
     socketService.off('formSent')
