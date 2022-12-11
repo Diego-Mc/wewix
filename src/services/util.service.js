@@ -145,7 +145,7 @@ function getDemoData() {
   var chance = new Chance()
   const demoData = []
 
-  for (var i = 0; i < 150; i++) {
+  for (var i = 0; i < 300; i++) {
     demoData.push({
       createdAt: chance
         .date({ year: chance.integer({ min: 2020, max: 2022 }) })
