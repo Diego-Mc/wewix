@@ -123,8 +123,9 @@ import { utilService } from '../../services/util.service'
 
 export default {
   props: {
-    wapId: String,
+    //wapId: String,
     owner: Object,
+    wapName: String
   },
   data() {
     return {
@@ -163,6 +164,7 @@ export default {
     this.$nextTick(this.scrollToEnd)
   },
   created() {
+    console.log('this.wapName:', this.wapName)
     socketService.emit('joinChat', {
       fromWap: this.wapName,
       guestId: this.guestId,
