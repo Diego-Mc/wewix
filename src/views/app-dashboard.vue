@@ -1,5 +1,5 @@
 <template>
-  <section v-if="true" class="dashboard-page">
+  <section v-if="userWaps" class="dashboard-page">
     <main-header />
     <main class="app-dashboard">
       <section class="dashboard-sidebar">
@@ -24,7 +24,7 @@
       <!-- <div style="" v-else>Build a website to see data!</div> -->
     </main>
   </section>
-  <section class="skeleton" v-if="false">
+  <section v-if="false" class="skeleton">
     <div class="header"></div>
     <div class="sidebar"></div>
     <div class="main">

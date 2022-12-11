@@ -10,7 +10,7 @@ import ElementPlus from 'element-plus'
 
 import 'element-plus/dist/index.css'
 
-import { Skeletor } from 'vue-skeletor'
+import VueSkeletor from 'vue-skeletor';
 import './assets/styles/main.scss'
 import rootCmp from './root-cmp.vue'
 
@@ -34,6 +34,6 @@ app.use(store)
 app.use(ElementPlus)
 app.use(VueScrollTo)
 app.use(Notifications)
-app.component(Skeletor.name, Skeletor)
+app.use(VueSkeletor)
 
 app.mount('#app')
