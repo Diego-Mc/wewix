@@ -18,7 +18,7 @@
           :opts="wapNames" />
       </section>
       <router-view v-if="currWapData" :wapData="currWapData"></router-view>
-      <wap-chat :owner="$store.getters.loggedinUser"/>
+      <wap-chat :owner="$store.getters.loggedinUser" />
       <!-- <wap-chat :options="currWapData._id" /> -->
       <!-- <wap-chat :wapId="wapData._id" /> -->
       <!-- <div style="" v-else>Build a website to see data!</div> -->
@@ -81,6 +81,7 @@ export default {
       currWapData: null,
     }
   },
+
   async created() {
     if (!this.loggedinUser) return this.$router.push('/')
     if (!this.loggedinUser.waps) return
@@ -94,9 +95,14 @@ export default {
         )
         const { wapOwnerId, wapId, ...newMsg } = sentMsg
         updatedWap.usersData.subscriptions.unshift(newMsg)
-
       }
+      ElMessage({
+        message: `You have a new lead from site '${sentMsg.wapName}''`,
+        type: 'success',
+      })
     })
+    console.log('id', waps[0]._id)
+    this.$router.push(`/dashboard/${waps[0]._id}`)
   },
   unmounted() {
     socketService.off('formSent')
