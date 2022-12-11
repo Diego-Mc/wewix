@@ -2,9 +2,7 @@
   <section v-if="editOptions">
     <section class="style-editor">
       <div v-if="isOptionsContain('fontFamily')">
-        <edit-font-section
-          @select="updateOptionsStyle"
-          :elStyle="fontFamily" />
+        <edit-font-section @select="updateOptionsStyle" :elStyle="fontFamily" />
       </div>
 
       <div v-if="isOptionsContain('backgroundColor')">
@@ -43,7 +41,7 @@
       </div>
 
       <div v-if="isOptionsContain('backgroundImage')">
-        <edit-upload-section @select="updateOptionsMeta" />
+        <edit-upload-section @select="updateOptionsStyle" />
       </div>
 
       <div v-if="isOptionsContain('link')">
@@ -142,7 +140,7 @@ export default {
       fontFamily: null,
       fontWeight: null,
       fontSize: null,
-      borderRadius:null,
+      borderRadius: null,
     }
   },
   created() {},
@@ -180,25 +178,23 @@ export default {
     },
 
     updateOptionsStyle({ key, val }) {
-      this.updatedOptions.style[key] = val
+      if (key === 'src' && this.isOptionsContain('backgroundImage')) {
+        this.updatedOptions.style.backgroundImage = `url(${val})`
+      } else {
+        this.updatedOptions.style[key] = val
+      }
+      console.log(this.updatedOptions)
       this.updateOptions()
     },
 
     updateOptionsMeta({ key, val }) {
-      if (key === 'src' && this.isOptionsContain('backgroundImage')) {
-        this.updatedOptions.style.backgroundImage = val
-      } else {
-        this.updatedOptions.meta[key] = val
-      }
+      this.updatedOptions.meta[key] = val
 
       this.updateOptions()
     },
 
     //TODO CHANGE NAME
     updateOptions() {
-      if (this.updatedOptions.style.backgroundImage)
-        this.updatedOptions.style.backgroundImage = `url(${this.updatedOptions.style.backgroundImage})`
-
       eventBus.emit('cmpUpdated', {
         cmpId: this.id,
         elType: this.elType,
@@ -294,7 +290,6 @@ export default {
         this.fontWeight = this.getElStyle('font-weight')
         this.fontSize = this.getElStyle('font-size')
         this.borderRadius = this.getElStyle('border-radius')
-
       },
     },
   },
