@@ -43,6 +43,11 @@ export const userStore = {
         }
     },
     actions: {
+        async googleAuth(){
+            const user = await userService.googleAuth()
+            // commit({ type: 'setLoggedinUser', user })
+
+        },
         async addWapToUser({ commit }, { wapId }) {
             const user = await userService.addWapId(wapId)
             console.log(user);

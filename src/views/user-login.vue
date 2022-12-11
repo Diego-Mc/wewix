@@ -2,7 +2,6 @@
   <app-header />
 
   <section class="auth-page">
-    <p>{{ msg }}</p>
     <div>
       <login-modal
         @authenticated="authenticated"

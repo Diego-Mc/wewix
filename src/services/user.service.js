@@ -16,7 +16,8 @@ export const userService = {
     getById,
     remove,
     update,
-    addWapId
+    addWapId,
+    googleAuth
 }
 
 window.userService = userService
@@ -90,6 +91,10 @@ async function addWapId(wapId) {
     return user
 }
 
+async function googleAuth() {
+    const user = await httpService.get('auth/google')
+    return user
+}
 
 function saveLocalUser(user) {
     user = { _id: user._id, fullname: user.fullname, waps: user.waps }
