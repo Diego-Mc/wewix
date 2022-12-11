@@ -18,7 +18,7 @@
           :opts="wapNames" />
       </section>
       <router-view v-if="currWapData" :wapData="currWapData"></router-view>
-      <!-- <wap-chat :owner="loggedinUser._id" :chatRooms="userWaps" :wapId="wapData._id" /> -->
+      <wap-chat :owner="$store.getters.loggedinUser"/>
       <!-- <wap-chat :options="currWapData._id" /> -->
       <!-- <wap-chat :wapId="wapData._id" /> -->
       <!-- <div style="" v-else>Build a website to see data!</div> -->
