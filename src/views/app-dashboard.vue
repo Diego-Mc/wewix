@@ -17,7 +17,7 @@
           }"
           :opts="wapNames" />
       </section>
-      <router-view :wapData="currWapData"></router-view>
+      <router-view :wapData="currWapData" @wapRemoved="removeWap"></router-view>
       <wap-chat :owner="$store.getters.loggedinUser" />
       <!-- <wap-chat :options="currWapData._id" /> -->
       <!-- <wap-chat :wapId="wapData._id" /> -->
@@ -110,6 +110,14 @@ export default {
     socketService.off('formSent')
   },
   methods: {
+    removeWap(wapId){
+      const wapIdx = this.userWaps.findIndex(wap => wap._id === wapId)
+      this.userWaps.splice(wapIdx,1)
+      if(wapIdx > 0) {
+        console.log('push',`/dashboard/${this.userWaps[wapIdx-1]._id}`);
+        this.$router.push(`/dashboard/${this.userWaps[wapIdx-1]._id}`)
+      }
+    },
     handleBtnSelect(ans) {
       this.changeCurrWapData(ans.val)
     },

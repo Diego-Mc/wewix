@@ -1,10 +1,9 @@
 <template>
   <div class="auth-modal">
     <h2 class="auth-header">{{ msg }}</h2>
-
-    <google-auth/>
-    
-    <!-- <p class="login-p-divider">or</p> -->
+    <h3>Login with google</h3>
+    <google-auth @googleLogin="onGoogleLogin" />
+    <p class="login-p-divider">or</p>
     <form class="login-form" @submit.prevent="doLogin">
       <el-input
         class="auth-input"
@@ -44,17 +43,12 @@ export default {
   components: {
     googleAuth,
   },
-  created() {
-    console.log()
-  },
   data() {
     return {
       loginCred: { username: 'admin', password: 'admin' },
     }
   },
-  googleAuth() {
-    this.$store.dispatch('googleAuth')
-  },
+
   computed: {
     users() {
       return this.$store.getters.users
@@ -64,6 +58,9 @@ export default {
     },
   },
   methods: {
+    onGoogleLogin() {
+      this.redirectUser()
+    },
     doLogout() {
       this.$store.dispatch({ type: 'logout' })
     },
@@ -81,16 +78,7 @@ export default {
       }
       try {
         await this.$store.dispatch({ type: 'login', userCred: this.loginCred })
-        if (this.isModalInAuthPage) {
-          if (this.$router.options.history.state.back === '/signup')
-            this.$router.push('/edit')
-          else this.$router.back()
-        } else if (this.destPage === 'dashboard') {
-          this.$router.push('/dashboard')
-        } else {
-          this.$emit('authenticated')
-        }
-
+        this.redirectUser()
         ElMessage({
           message: 'Logged in successfully',
           type: 'success',
@@ -101,6 +89,17 @@ export default {
           message: 'Cannot sign in',
           type: 'error',
         })
+      }
+    },
+    redirectUser() {
+      if (this.isModalInAuthPage) {
+        if (this.$router.options.history.state.back === '/signup')
+          this.$router.push('/edit')
+        else this.$router.back()
+      } else if (this.destPage === 'dashboard') {
+        this.$router.push('/dashboard')
+      } else {
+        this.$emit('authenticated')
       }
     },
     async doSignup() {

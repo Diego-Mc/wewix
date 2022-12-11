@@ -10,12 +10,13 @@
       :options="cmp.options"
       :cmps="cmp.cmps" />
 
+      
+      <section v-if="showErrPage">
+        <page-not-found />
+      </section>
+    </main>
+    
     <wap-chat v-if="wap?.plugins?.chatData" :wapName="wap.name" />
-
-    <section v-if="showErrPage">
-      <page-not-found />
-    </section>
-  </main>
 </template>
 
 <script>

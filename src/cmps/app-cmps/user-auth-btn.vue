@@ -8,7 +8,11 @@
       class="user-options"
       @click="$router.push('/dashboard')">
       <span class="info">
-        <i class="bi bi-person-circle"></i>
+        
+        <img v-if="loggedinUser.picture" :src="loggedinUser.picture" alt="" />
+        <i v-else class="bi bi-person-circle"></i>
+        Login
+
         {{ loggedinUser.fullname + "'s Dashboard" }}
       </span>
       <template #dropdown>

@@ -8,6 +8,7 @@
         :isModalInAuthPage="true"
         :msg="'Login'" />
     </div>
+
   </section>
 </template>
 
@@ -29,19 +30,19 @@ export default {
 </script>
 
 <style lang="scss">
-.auth-page{
+.auth-page {
   margin-top: 40px;
-  .auth-modal{
-    form{
-
+  .auth-modal {
+    form {
       width: 500px;
-
     }
-    .auth-input{
+    .auth-input {
       width: 100%;
       height: 50px;
     }
-
+  }
+  .user-upload-photo-section{
+    width: 500px;
   }
 }
 </style>
