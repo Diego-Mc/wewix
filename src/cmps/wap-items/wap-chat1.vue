@@ -168,6 +168,10 @@ export default {
       this.clearTyping()
     })
 
+    socketService.on('guestDisconnected', (guestId) => {
+        console.log('guestId:', guestId)
+    })
+
     this.clearTyping = utilService.debounce(this.clearTyping)
     // this.chatId = this.owner
     //   ? this.owner._id
