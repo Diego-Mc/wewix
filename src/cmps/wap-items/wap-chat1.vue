@@ -42,12 +42,12 @@
           @click="isChatOpen = false"
           class="bi bi-arrow-down-short"></i>
         <img class="guest-avatar" src="../../assets/imgs/png-96/avatar1.png" />
-        <span v-if="isTyping[currGuest?.guestId]">typing...</span>
-        <span v-else-if="isTyping?.admin">Admin typing...</span>
         <span class="header-text">
           <h3 v-if="owner">Guest {{ currGuest.guestId }}</h3>
           <h3 v-else>Admin</h3>
         </span>
+        <span v-if="isTyping[currGuest?.guestId]">typing...</span>
+        <span v-else-if="isTyping?.admin">Admin typing...</span>
       </header>
 
       <section class="messages" v-if="owner && currGuest">
