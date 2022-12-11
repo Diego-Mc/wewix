@@ -47,7 +47,7 @@ export default {
   },
   data() {
     return {
-      loginCred: { username: 'nir', password: 'nir' },
+      loginCred: { username: 'admin', password: 'admin' },
     }
   },
   googleAuth() {
