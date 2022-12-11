@@ -84,7 +84,9 @@
         :childCmpId="selectedCmp.childCmpId"
         :editOptions="selectedCmp.options"
         :elType="selectedCmp.elType"
-        :elDom="selectedCmp.elDom" />
+        :elDom="selectedCmp.elDom"
+        @changeOrder="(newOrder) => {this.$emit('changeOrder', newOrder)}"
+       />
       <h3 v-else>Select an element to edit</h3>
     </section>
 

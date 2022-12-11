@@ -52,7 +52,10 @@
         :wapName="wap.name"
         :isPublished="wap.isPublished"
         :wapId="wap._id" />
-      <editor-sidebar :selectedCmp="selectedCmp" />
+      <editor-sidebar 
+        :selectedCmp="selectedCmp"
+        @changeOrder="changeOrder"
+      />
     </section>
     <main class="main-wap" :class="mediaType" ref="mainWap">
       <draggable
@@ -549,6 +552,11 @@ export default {
       })
       this.$router.replace({ ...this.$route, query: { workTogether: true } })
     },
+
+    changeOrder({oldIdx, newIdx}) {
+      [this.wap.cmps[oldIdx], this.wap.cmps[newIdx]] = [this.wap.cmps[newIdx], this.wap.cmps[oldIdx]]
+      this.onCmpsChange()
+    }
   },
 
   unmounted() {

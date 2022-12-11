@@ -164,7 +164,6 @@ export default {
     this.$nextTick(this.scrollToEnd)
   },
   created() {
-    console.log('this.wapName:', this.wapName)
     socketService.emit('joinChat', {
       fromWap: this.wapName,
       guestId: this.guestId,
