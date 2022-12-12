@@ -52,7 +52,7 @@
         :wapName="wap.name"
         :isPublished="wap.isPublished"
         :wapId="wap._id" />
-        
+
       <editor-sidebar 
         :selectedCmp="selectedCmp"
         @changeOrder="changeOrder"
@@ -176,6 +176,9 @@ export default {
       this.isSocketsOn = true
       this.openWorkSpace()
     }
+
+    if (this.isMobile()) this.$store.commit({ type: 'setEditMode', isEditMode: false })
+    console.log('this.$store.getters.isEditMode:', this.$store.getters.isEditMode)
   },
   updated() {
     clearInterval(this.overlayInterval)
@@ -565,7 +568,11 @@ export default {
         console.log('cmp:', cmp)
         this.wap.cmps.push(cmp)
         this.onCmpsChange()
-    }
+    },
+
+    isMobile() {
+      return (window.innerWidth <= 960)
+    },
   },
 
   unmounted() {

@@ -155,7 +155,6 @@ export default {
     }
   },
   created() {
-      if (this.isMobile()) this.$store.commit({ type: 'setEditMode', isEditMode: false })
       this.changeOrder = utilService.debounce(this.changeOrder, 250)
   },
 
