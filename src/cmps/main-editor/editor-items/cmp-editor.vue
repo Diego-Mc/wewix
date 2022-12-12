@@ -102,12 +102,13 @@
           Add field to form
         </el-button>
       </div>
+
       <section v-if="elType?.slice(0, 3) === 'nav'">
         <div
           v-for="cmp in currWap?.cmps"
-          class="grey"
           @click="updateOptionsMeta({ key: 'scrollTo', val: cmp.id })">
-          <h1>{{ cmp.type }} {{ cmp.id }}</h1>
+          <h1>{{ cmp.type.replace('wap-', '').toUpperCase() }}</h1>
+          <img src="" alt="" />
         </div>
       </section>
 
@@ -377,10 +378,5 @@ export default {
 }
 .editor-form-input:focus-visible {
   border-color: aqua;
-}
-.grey {
-  width: 50px;
-  background-color: grey;
-  margin: 5px;
 }
 </style>

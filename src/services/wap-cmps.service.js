@@ -279,7 +279,7 @@ wapsMap.set('wap-hero-1', {
         btn: {
           options: {
             meta: {
-              href: '#',
+              href: '',
             },
             style: getStyles('btn'),
           },
@@ -421,7 +421,7 @@ wapsMap.set('wap-cards-1', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: { text: 'See details' },
@@ -484,7 +484,7 @@ wapsMap.set('wap-cards-1', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: { text: 'See details' },
@@ -547,7 +547,7 @@ wapsMap.set('wap-cards-1', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: { text: 'See details', link: '#wc03' },
@@ -823,7 +823,7 @@ wapsMap.set('wap-header-2', {
       info: {
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: { text: 'Find us' },
@@ -897,7 +897,7 @@ wapsMap.set('wap-hero-2', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: {
@@ -995,7 +995,7 @@ wapsMap.set('wap-section-2', {
         tag: {
           options: {
             meta: {
-              href: '#',
+              href: '',
             },
             style: getStyles('tag'),
           },
@@ -1047,7 +1047,7 @@ wapsMap.set('wap-section-3', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: {
@@ -1310,7 +1310,7 @@ wapsMap.set('wap-section-4', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: {
@@ -1763,7 +1763,7 @@ wapsMap.set('wap-section-5', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: {
@@ -2145,7 +2145,7 @@ wapsMap.set('wap-section-7', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: {
@@ -2529,7 +2529,7 @@ wapsMap.set('wap-hero-4', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: {
@@ -2604,6 +2604,7 @@ wapsMap.set('wap-section-9', {
         btn1: {
           options: {
             meta: {
+              href: '',
               src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/sv-dot-1.png?w=240&ssl=1',
             },
             style: getStyles('btn'),
@@ -2615,6 +2616,7 @@ wapsMap.set('wap-section-9', {
         btn2: {
           options: {
             meta: {
+              href: '',
               src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/sv-dot-1.png?w=240&ssl=1',
             },
             style: getStyles('btn'),
@@ -2669,7 +2671,9 @@ wapsMap.set('wap-section-14', {
         },
         btn1: {
           options: {
-            meta: {},
+            meta: {
+              href: ''
+            },
             style: getStyles('btn'),
           },
           content: {
@@ -2678,7 +2682,9 @@ wapsMap.set('wap-section-14', {
         },
         btn2: {
           options: {
-            meta: {},
+            meta: {
+              href: ''
+            },
             style: getStyles('btn'),
           },
           content: {
@@ -3195,7 +3201,9 @@ wapsMap.set('wap-section-13', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {
+              href: ''
+            },
             style: getStyles('btn'),
           },
           content: {
@@ -3740,7 +3748,7 @@ wapsMap.set('wap-section-15', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: {
@@ -5088,7 +5096,7 @@ wapsMap.set('wap-header-6', {
       previewImg: '',
       options: {
         meta: {},
-        style: getStyles(),
+        style: getStyles('btn'),
       },
       info: {
         btn: {

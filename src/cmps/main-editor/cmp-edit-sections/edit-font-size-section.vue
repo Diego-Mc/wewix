@@ -29,7 +29,6 @@ export default {
     fontSize:{
       handler(){
         this.fontSizeToEdit =  parseInt(this.fontSize) / 16
-        console.log('ya');
       }
     }
   }
