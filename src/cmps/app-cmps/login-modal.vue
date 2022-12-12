@@ -1,30 +1,31 @@
 <template>
   <div class="auth-modal">
     <h2 class="auth-header">{{ msg }}</h2>
-    <h3>Login with google</h3>
     <google-auth @googleLogin="onGoogleLogin" />
     <p class="login-p-divider">or</p>
-    <form class="login-form" @submit.prevent="doLogin">
-      <el-input
-        class="auth-input"
-        type="text"
-        v-model="loginCred.username"
-        placeholder="Enter username" />
-      <!-- TODO: change to enter email or userName -->
-      <el-input
-        class="auth-input"
-        v-model="loginCred.password"
-        type="password"
-        placeholder="Please type password"
-        show-password />
-      <button type="primary" class="auth-btn">
-        Login
-        <span v-if="destPage === 'publishWap'">&nbspand publish</span>
+    <div class="auth-form-container">
+      <form class="login-form" @submit.prevent="doLogin">
+        <el-input
+          class="auth-input"
+          type="text"
+          v-model="loginCred.username"
+          placeholder="Email or Username" />
+        <!-- TODO: change to enter email or userName -->
+        <el-input
+          class="auth-input"
+          v-model="loginCred.password"
+          type="password"
+          placeholder="Password"
+          show-password />
+        <button type="primary" class="auth-btn">
+          Login
+          <span v-if="destPage === 'publishWap'">&nbspand publish</span>
+        </button>
+      </form>
+      <button class="toggle-auth-link" @click.stop.prevent="openSignupModal">
+        Dont have an account?
       </button>
-    </form>
-    <button class="toggle-auth-link" @click.stop.prevent="openSignupModal">
-      Dont have a user? <span style="font-weight: 600">signup here</span>
-    </button>
+    </div>
   </div>
 </template>
 
@@ -128,6 +129,10 @@ export default {
   .login-p-divider,
   .google-auth-btn {
     text-align: center;
+    margin-block: 16px;
+  }
+  .login-p-divider{
+    font-size: 12px;
   }
   .auth-header {
     text-align: center;
@@ -135,6 +140,8 @@ export default {
     @media (max-width: 700px) {
       font-size: 16px;
     }
+  }
+  .auth-form-container {
   }
   .login-form {
     display: flex;
@@ -152,17 +159,18 @@ export default {
     }
   }
   .toggle-auth-link {
-    font-size: 16px;
+    font-size: 12px;
     padding: 0;
     text-align: start;
     color: rgb(102, 102, 102);
+    text-decoration: underline;
   }
 
   /* CSS */
   .auth-btn {
     width: 100%;
     appearance: none;
-    background-color: #2ea44f;
+    background-color: #00c2a6;
     border: 1px solid rgba(27, 31, 35, 0.15);
     box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
     box-sizing: border-box;
@@ -181,6 +189,7 @@ export default {
     touch-action: manipulation;
     vertical-align: middle;
     white-space: nowrap;
+    margin-bottom: 20px;
   }
 
   .auth-btn:focus:not(:focus-visible):not(.focus-visible) {
@@ -189,7 +198,9 @@ export default {
   }
 
   .auth-btn:hover {
-    background-color: #2c974b;
+    background-color: #118f7c;
+
+    // background-color: #2c974b;
   }
 
   .auth-btn:focus {

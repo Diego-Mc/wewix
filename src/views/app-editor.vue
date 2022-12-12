@@ -53,11 +53,10 @@
         :isPublished="wap.isPublished"
         :wapId="wap._id" />
 
-      <editor-sidebar 
+      <editor-sidebar
         :selectedCmp="selectedCmp"
         @changeOrder="changeOrder"
-        @addByClick="addByClick"
-      />
+        @addByClick="addByClick" />
     </section>
     <main class="main-wap" :class="mediaType" ref="mainWap">
       <draggable
@@ -356,7 +355,7 @@ export default {
           wap: this.wap,
         })
         this.wap._id = editedWapId
-
+        this.wap.visitors = [{ createdAt: Date.now() }]
         this.$router.push({ path: '/edit/' + editedWapId, replace: true })
       }
       return true
@@ -579,7 +578,7 @@ export default {
     },
 
     isMobile() {
-      return (window.innerWidth <= 960)
+      return window.innerWidth <= 960
     },
   },
 

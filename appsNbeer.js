@@ -41,5 +41,9 @@ async function created() {
             const { wapOwnerId, wapId, ...newMsg } = sentMsg
             updatedWapData.usersData.subscriptions.unshift(newMsg)
         }
+        ElMessage({
+            message: `You have a new lead from site '${sentMsg.wapName}''`,
+            type: 'success',
+        })
     })
 }

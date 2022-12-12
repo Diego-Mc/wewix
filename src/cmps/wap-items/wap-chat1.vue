@@ -15,8 +15,7 @@
           v-for="(chat, siteName) in adminChats"
           class="site-chats-preview">
           <article class="site-chat-preview">
-            <!-- <h4>site name: {{ siteName }}</h4> -->
-            <!-- <pre>{{ adminChats }}</pre> -->
+            <h4 class="site-name">{{ siteName }}</h4>
             <nav class="guests">
               <span
                 v-for="(guest, idx) in chat"
@@ -25,7 +24,7 @@
                 @click="adminChatWith(guest, siteName, idx)">
                 <img
                   class="guest-avatar"
-                  src="../../assets/imgs/png-96/avatar1.png" />
+                  :src="`https://robohash.org/${guest.guestId}?bgset=bg1`" />
                 <span class="unread notification" v-if="guest.unread">{{
                   guest.unread
                 }}</span>
@@ -37,15 +36,19 @@
       </header>
 
       <header class="in-chat" v-else-if="!owner || (owner && currGuest)">
-        <i
-          v-if="owner"
-          @click="currGuest = null"
-          class="bi bi-arrow-left-short"></i>
+        <i v-if="owner" @click="goBack()" class="bi bi-arrow-left-short"></i>
         <i
           v-else
           @click="isChatOpen = false"
           class="bi bi-arrow-down-short"></i>
-        <img class="guest-avatar" src="../../assets/imgs/png-96/avatar1.png" />
+        <img
+          v-if="owner"
+          class="guest-avatar"
+          :src="`https://robohash.org/${currGuest.guestId}?bgset=bg1`" />
+        <img
+          v-else
+          class="guest-avatar"
+          src="../../assets/imgs/png-96/avatar1.png" />
         <span class="header-text">
           <h3 v-if="owner">Guest {{ currGuest.guestId }}</h3>
           <h3 v-else>Admin</h3>
@@ -53,7 +56,9 @@
       </header>
 
       <section class="messages" ref="adminMsgs" v-if="owner && currGuest">
-        <div class="time">{{ currGuest?.createdAt || 'Today at now' }}</div>
+        <div class="time">
+          {{ chatTime(currGuest?.createdAt) }}
+        </div>
         <article
           v-for="(msg, idx) in adminChats[currSiteName][currGuestIdx]?.msgs"
           :key="idx"
@@ -70,7 +75,9 @@
         </article>
       </section>
       <section class="messages" ref="guestMsgs" v-if="!owner">
-        <div class="time">{{ guestChat.createdAt || 'Today at now' }}</div>
+        <div class="time" v-if="guestChat?.createdAt">
+          {{ chatTime(guestChat.createdAt) }}
+        </div>
         <article
           v-for="(msg, idx) in guestChat"
           :key="idx"
@@ -125,7 +132,7 @@ export default {
   props: {
     //wapId: String,
     owner: Object,
-    wapName: String
+    wapName: String,
   },
   data() {
     return {
@@ -235,6 +242,13 @@ export default {
     // socketService.off(SOCKET_EVENT_ADD_MSG, this.addMsg)
   },
   methods: {
+    goBack() {
+      this.currGuest = null
+      socketService.emit('adminChatWith', '')
+    },
+    chatTime(createdAt) {
+      return utilService.toTimeStr(createdAt)
+    },
     scrollToEnd() {
       const elMsgs = document.querySelector('.messages')
       if (!elMsgs) return
