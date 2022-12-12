@@ -1,5 +1,5 @@
 <template>
-  <section class="graph-container">
+  <section class="graph-container card">
     <section class="dropdowns">
       <el-dropdown @command="test2">
         <span class="el-dropdown-link">

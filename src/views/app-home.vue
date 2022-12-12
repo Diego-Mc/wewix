@@ -38,7 +38,9 @@
       <button @click="$router.push('/templates')">Get Started</button>
 
       <div class="img-container">
-        <img src="../assets/imgs/hero-img.png" alt="hero-img" />
+        <img
+          src="https://res.cloudinary.com/wewix/image/upload/v1670844938/hero-img-final_yrcer9.png"
+          alt="hero-img" />
       </div>
     </section>
     <section class="features" id="features">
@@ -132,11 +134,11 @@
       </section>
     </section>
     <section class="demo" id="demo">
-      <h3>Let's make a website <span>in 2 minutes.</span></h3>
+      <h3>Let's make a website <span>in less than a minute.</span></h3>
       <main>
         <section class="video">
           <video
-            src="http://res.cloudinary.com/wewix/video/upload/c_crop,w_1268/v1670255921/wewix_nabu0e.mp4"
+            src="https://res.cloudinary.com/wewix/video/upload/v1670845043/wewix_site_example_l53dbt.mov"
             autoplay
             loop
             muted></video>
