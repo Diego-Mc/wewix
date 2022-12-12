@@ -94,6 +94,7 @@
             <button style="color: red" @click="fieldRemoved(id, idx)">X</button>
           </div>
         </div>
+
         <el-button
           type="primary"
           @click="fieldAdded(id)"
@@ -111,7 +112,8 @@
         </div>
       </section>
 
-      <section class="mb-only" v-if="!childCmpId && currWap.cmps.length > 1">
+      //TODO: continue working?
+      <!-- <section class="mb-only" v-if="!childCmpId && currWap.cmps.length > 1">
         <span
           v-if="currCmpIdx < currWap.cmps.length - 1"
           class="bi bi-arrow-down"
@@ -122,7 +124,7 @@
           class="bi bi-arrow-up"
           @click="changeOrder(currCmpIdx, currCmpIdx - 1)">
         </span>
-      </section>
+      </section> -->
     </section>
   </section>
 </template>
@@ -235,6 +237,7 @@ export default {
 
     //TODO CHANGE NAME
     updateOptions() {
+      console.log('this.updatedOptions:', this.updatedOptions)
       eventBus.emit('cmpUpdated', {
         cmpId: this.id,
         elType: this.elType,

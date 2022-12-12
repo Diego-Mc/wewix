@@ -240,6 +240,13 @@ export default {
     //   ({ userId }) => userId !== this.user.id
     // )
     // socketService.off(SOCKET_EVENT_ADD_MSG, this.addMsg)
+    if (!this.owner) {
+      socketService.off('initTyping')
+      socketService.off('joinChat')
+      socketService.off('updateAdminGuestData')
+      socketService.off('updateGuestMsgs')
+      socketService.off('guestDisconnected')
+    }
   },
   methods: {
     goBack() {

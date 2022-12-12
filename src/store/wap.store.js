@@ -59,7 +59,7 @@ export const wapStore = {
       state.isEditMode = isEditMode
     },
     setMobileEdit(state, { isMobileEdit }) {
-      return
+      return //TODO: continue working?
       state.isMobileEdit = isMobileEdit
     },
     addInfo(state, { isEditMode }) {
