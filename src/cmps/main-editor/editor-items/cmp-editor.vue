@@ -53,6 +53,28 @@
           placeholder="link" />
       </div>
 
+      <div v-if="isOptionsContain('href')">
+        <!-- Link
+        <input @input="updateOptions" v-model="updatedOptions.meta.src" type="text" placeholder="link" /> -->
+        <h6 class="edit-type-label">ADD A LINK</h6>
+        <el-input
+          @input="updateOptions"
+          v-model="updatedOptions.meta.href"
+          type="text"
+          placeholder="href" />
+      </div>
+
+      <div v-if="isOptionsContain('scrollTo')">
+        <!-- Link
+        <input @input="updateOptions" v-model="updatedOptions.meta.src" type="text" placeholder="link" /> -->
+        <h6 class="edit-type-label">CHNAGE</h6>
+        <el-input
+          @input="updateOptions"
+          v-model="updatedOptions.meta.href"
+          type="text"
+          placeholder="href" />
+      </div>
+
       <edit-map-section
         v-if="isOptionsContain('mapData')"
         @select="updateOptionsMeta" />
@@ -64,6 +86,7 @@
           v-for="(field, idx) in updatedOptions.meta.formInputs"
           class="form-inputs-container">
           <div style="display: flex">
+            {{field}}
             <input
               class="editor-form-input"
               @input="fieldChanged(id, idx, $event)"
@@ -79,34 +102,17 @@
           Add field to form
         </el-button>
       </div>
-
-      <section v-if="elType === 'nav'">
-          <div v-for="cmp in currWap.cmps" class="grey">
-            <h1 @click="setHref(cmp.id)">{{cmp.type}} {{cmp.id}}</h1>
-          </div>
+      
+      <section v-if="elType?.slice(0, 3) === 'nav'">
+        <div
+          v-for="cmp in currWap?.cmps"
+          @click="updateOptionsMeta({ key: 'scrollTo', val: cmp.id })">
+          <h1>{{ cmp.type.replace('wap-', '').toUpperCase() }}</h1>
+          <img src="" alt="">
+        </div>
       </section>
-
-      <section v-if="isMobile() && !childCmpId && (currWap.cmps.length > 1)">
-        <el-button>          
-              <span 
-                  v-if="currCmpIdx < currWap.cmps.length - 1" 
-                  class="bi bi-arrow-down" 
-                  @click="changeOrder(currCmpIdx, currCmpIdx + 1)">
-              </span>
-        </el-button>
-        <el-button>
-              <span 
-                  v-if="currCmpIdx > 0" 
-                  class="bi bi-arrow-up" 
-                  @click="changeOrder(currCmpIdx, currCmpIdx - 1)">
-              </span>
-        </el-button>
-      </section> 
-
-      <button @click="log">Log</button>
     </section>
   </section>
-  
 </template>
 
 <script>
@@ -140,35 +146,37 @@ export default {
       fontWeight: null,
       fontSize: null,
       borderRadius: null,
-      currCmpIdx: null
+      currCmpIdx: null,
     }
   },
   created() {
+    this.currCmpIdx = this.getCmpIdx
+    eventBus.on('resetEditedWap', () => {
       this.currCmpIdx = this.getCmpIdx
-      eventBus.on('resetEditedWap', () => {
-        this.currCmpIdx = this.getCmpIdx
-      })
+    })
 
-      eventBus.on('onRemoveCmp', () => {
-        if (this.id) {
-          console.log('this.id:', this.id)
-          this.onRemoveCmp()
-          eventBus.emit('resetSelectedCmp')
-          ElMessage({
-              message: 'The selected element has been successfully deleted',
-              type: 'success',
-          })
-        } else {
-          ElMessage({
-              message: 'Deletion has failed. There are no selected element to delete',
-              type: 'error',
-          })
-        }
-      })
+    eventBus.on('onRemoveCmp', () => {
+      if (this.id) {
+        console.log('this.id:', this.id)
+        this.onRemoveCmp()
+        eventBus.emit('resetSelectedCmp')
+        ElMessage({
+          message: 'The selected element has been successfully deleted',
+          type: 'success',
+        })
+      } else {
+        ElMessage({
+          message:
+            'Deletion has failed. There are no selected element to delete',
+          type: 'error',
+        })
+      }
+    })
   },
 
   methods: {
     fieldChanged(id, idx, e) {
+      this.updatedOptions.meta.formInputs[idx].tag = e.target.value
       eventBus.emit('updateField', {
         id,
         idx,
@@ -270,35 +278,26 @@ export default {
     },
 
     isMobile() {
-      return (window.innerWidth <= 960)
+      return window.innerWidth <= 960
     },
 
     changeOrder(oldIdx, newIdx) {
-        this.currCmpIdx = newIdx
-        this.$emit('changeOrder', {oldIdx, newIdx})
+      this.currCmpIdx = newIdx
+      this.$emit('changeOrder', { oldIdx, newIdx })
     },
-
-    setHref(hrefTo) {
-        console.log('this.elType:', this.elType)
-        this.updateOptionsMeta({ key:'href', val: hrefTo })
-    },
-
-    log() {
-      console.log(this.updatedOptions)
-    }
   },
 
   
 
   computed: {
-      getCmpIdx() {
-          const currWap = this.$store.getters.editedWap
-          const currCmps = currWap.cmps
-          return currCmps.findIndex(({id}) => id === this.id)
-      },
-      currWap() {
-        return this.$store.getters.editedWap
-      }
+    getCmpIdx() {
+      const currWap = this.$store.getters.editedWap
+      const currCmps = currWap.cmps
+      return currCmps.findIndex(({ id }) => id === this.id)
+    },
+    currWap() {
+      return this.$store.getters.editedWap
+    },
   },
 
   //TODO: change this awful thing
@@ -337,7 +336,6 @@ export default {
     },
   },
 
-
   components: {
     editFontSection,
     editFontWeightSection,
@@ -353,7 +351,6 @@ export default {
   unmounted() {
     eventBus.off('onRemoveCmp')
   },
-
 }
 </script>
 
@@ -370,10 +367,5 @@ export default {
 }
 .editor-form-input:focus-visible {
   border-color: aqua;
-}
-.grey {
-  width: 50px;
-  background-color: grey;
-  margin: 5px;
 }
 </style>

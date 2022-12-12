@@ -8,8 +8,10 @@
       :typeId="cmp.typeId"
       :info="cmp.info"
       :options="cmp.options"
-      :cmps="cmp.cmps" />
-
+      :cmps="cmp.cmps" 
+      :id="cmp.id"
+      />
+      
       
       <section v-if="showErrPage">
         <page-not-found />

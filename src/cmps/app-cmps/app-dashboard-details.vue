@@ -26,7 +26,7 @@
           @current-change="paginate($event)"
           :current-page="currentPage" />
       </div>
-      <button class="csv-download">DOWNLOAD CSV</button>
+      <button @click="downloadCsv" class="csv-download">DOWNLOAD CSV</button>
     </div>
     <el-table class="" :data="modifiedUsers" style="width: 100%" flexible>
       <el-table-column
@@ -54,6 +54,7 @@ import {
 export default {
   props: {
     usersData: Array,
+    wapName: String
   },
   data() {
     return {
@@ -235,7 +236,18 @@ export default {
     printWapToConsole(wap) {
       console.log('Wap msgs:', wap.msgs)
     },
+    downloadCsv() {
+      if (!this.usersData) return 
+      const userDataCsv = utilService.convertToCSV(this.usersData)
+      const anchor = document.createElement('a');
+      anchor.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(userDataCsv);
+      anchor.target = '_blank';
+      anchor.download = `${this.wapName}-usersData.csv`;
+      anchor.click();
+    }
   },
+
+
 }
 </script>
 
