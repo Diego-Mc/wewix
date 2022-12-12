@@ -86,7 +86,6 @@
           v-for="(field, idx) in updatedOptions.meta.formInputs"
           class="form-inputs-container">
           <div style="display: flex">
-            {{ field }}
             <input
               class="editor-form-input"
               @input="fieldChanged(id, idx, $event)"
