@@ -9,10 +9,10 @@
         <img
           class="user-img"
           v-if="loggedinUser.picture"
-          :src="loggedinUser.picture"
-          alt="" />
+          :src="loggedinUser.picture" />
         <i v-else class="bi bi-person-circle"></i>
         {{ loggedinUser.fullname }}
+        <i class="bi bi-chevron-down down-icon"></i>
       </el-button>
       <template #dropdown>
         <el-dropdown-menu>

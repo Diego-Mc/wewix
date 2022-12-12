@@ -1,6 +1,30 @@
 <template>
   <section v-if="editOptions">
     <section class="style-editor">
+      <section class="cmp-edit-section" v-if="elType?.slice(0, 3) === 'nav'">
+        <h6 class="edit-type-label">
+          QUICK LINKS&nbsp;
+          <el-tooltip
+            class="box-item"
+            effect="light"
+            content="Select the part you want to quick-link to"
+            placement="right">
+            <i class="bi bi-question-circle"></i>
+          </el-tooltip>
+        </h6>
+        <div class="preview-quick-links-container">
+          <!-- <h1>{{ cmp.type.replace('wap-', '').toUpperCase() }}</h1> -->
+          <div
+            class="img-container"
+            v-for="cmp in currWap?.cmps"
+            :class="{ selected: cmp.id === updatedOptions.meta.scrollTo }"
+            @click="updateOptionsMeta({ key: 'scrollTo', val: cmp.id })">
+            <img :src="cmp.previewImg" class="preview-nav-quick-link" />
+            <i class="bi bi-link-45deg link-icon"></i>
+          </div>
+        </div>
+      </section>
+
       <div v-if="isOptionsContain('fontFamily')">
         <edit-font-section @select="updateOptionsStyle" :elStyle="fontFamily" />
       </div>
@@ -64,17 +88,6 @@
           placeholder="href" />
       </div>
 
-      <div v-if="isOptionsContain('scrollTo')">
-        <!-- Link
-        <input @input="updateOptions" v-model="updatedOptions.meta.src" type="text" placeholder="link" /> -->
-        <h6 class="edit-type-label">CHANGE</h6>
-        <el-input
-          @input="updateOptions"
-          v-model="updatedOptions.meta.href"
-          type="text"
-          placeholder="href" />
-      </div>
-
       <edit-map-section
         v-if="isOptionsContain('mapData')"
         @select="updateOptionsMeta" />
@@ -104,16 +117,7 @@
         </el-button>
       </div>
 
-      <section v-if="elType?.slice(0, 3) === 'nav'">
-        <div
-          v-for="cmp in currWap?.cmps"
-          @click="updateOptionsMeta({ key: 'scrollTo', val: cmp.id })">
-          <h1>{{ cmp.type.replace('wap-', '').toUpperCase() }}</h1>
-          <img src="" alt="" />
-        </div>
-      </section>
-
-      //TODO: continue working?
+      <!-- //TODO: continue working? -->
       <!-- <section class="mb-only" v-if="!childCmpId && currWap.cmps.length > 1">
         <span
           v-if="currCmpIdx < currWap.cmps.length - 1"

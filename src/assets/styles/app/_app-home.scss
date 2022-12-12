@@ -285,10 +285,7 @@
     max-width: 1770px;
     width: 100%;
     .app-header {
-      grid-template-columns: minmax(230px, 1fr) minmax(250px, 400px) minmax(
-          230px,
-          1fr
-        );
+      grid-template-columns: minmax(230px, 1fr) minmax(0, 0) minmax(230px, 1fr);
       gap: 60px;
       .nav {
         grid-column: 2;
