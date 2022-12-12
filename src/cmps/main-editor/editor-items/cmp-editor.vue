@@ -125,6 +125,7 @@
           @click="changeOrder(currCmpIdx, currCmpIdx - 1)">
         </span>
       </section>
+      
     </section>
   </section>
 </template>

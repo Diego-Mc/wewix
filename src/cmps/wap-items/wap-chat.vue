@@ -61,7 +61,6 @@ export default {
     })
 
     socketService.on('updateAdminGuestData', (guestData) => {
-      console.log('guestData:', guestData)
       this.adminChats = guestData.reduce((adminChats, currGuestData) => {
         if (adminChats[currGuestData.fromWap])
           adminChats[currGuestData.fromWap].push(currGuestData)
@@ -87,7 +86,9 @@ export default {
 
     this.clearTyping = utilService.debounce(this.clearTyping)
   },
-  unmounted() {},
+  unmounted() {
+      socketService.off('close')
+  },
   methods: {
     sendMsg() {
       socketService.emit('addMsg', this.msg)
