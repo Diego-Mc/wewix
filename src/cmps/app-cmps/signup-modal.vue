@@ -1,7 +1,7 @@
 <template>
   <div class="auth-modal">
     <h2 class="auth-header">{{ msg }}</h2>
-    <h5>Profile image</h5>
+    <h5>Profile Picture</h5>
     <div class="upload-user-img-container">
       <img
         title="Upload your image"

@@ -165,6 +165,7 @@ function getRandomColor() {
   }
   return color
 }
+import Chance from 'chance'
 
 function getDemoData() {
   var chance = new Chance()

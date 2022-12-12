@@ -61,8 +61,8 @@
       v-if="info.btn"
       class="btn"
       @input="updateContent('btn', $event)"
-      :style="`${info?.btn?.options.style}`"
-      @click.stop="btnClicked($event)">
+      :style="info?.btn?.options.style"
+      @click.stop="emitSelect('btn', $event)">
       {{ info?.btn?.content.text || 'Find us' }}
     </button>
   </section>
@@ -93,7 +93,7 @@ export default {
     },
     btnClicked(ev) {
       if (!this.$store.getters.isEditMode && this.info.btn.options.meta.href) {
-        const res = this.info.btn.options.meta.href.replace(/(^\w+:|^)\/\//, '');
+        const res = this.info.btn.options.meta.href.replace(/(^\w+:|^)\/\//, '')
         location.href = '//' + res
       } else {
         this.emitSelect('btn', ev)
