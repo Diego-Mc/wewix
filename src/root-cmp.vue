@@ -17,11 +17,8 @@ export default {
   mounted() {
     const user = userService.getLoggedinUser()
     if (user) store.commit({ type: 'setLoggedinUser', user })
-    console.log('root cmp mounted');
   },
   unmounted() {
-    console.log('root cmp unmounted');
-
     socketService.off('formSent')
   },
   components: {
