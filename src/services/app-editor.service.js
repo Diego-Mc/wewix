@@ -75,7 +75,6 @@ function _selectEl(el, elMainWap) {
       elSelectable.classList.remove('selected')
     })
   el.classList.add('selected')
-  console.log('added class', el)
 }
 
 function _addOverlay(el, backgroundColor, outlineColor) {

@@ -125,6 +125,7 @@
 import { cmpEditorService } from '../../../services/cmp-editor.service'
 import { eventBus } from '../../../services/event-bus.service'
 import { utilService } from '../../../services/util.service'
+import { ElMessage } from 'element-plus'
 
 import editFontSection from '../cmp-edit-sections/edit-font-section.vue'
 import editFontWeightSection from '../cmp-edit-sections/edit-font-weight-section.vue'
@@ -159,6 +160,24 @@ export default {
       eventBus.on('resetEditedWap', () => {
         this.currCmpIdx = this.getCmpIdx
       })
+
+      eventBus.on('onRemoveCmp', () => {
+        if (this.id) {
+          this.onRemoveCmp()
+          eventBus.emit('resetSelectedCmp')
+          ElMessage({
+              message: 'The selected element has been successfully deleted',
+              type: 'success',
+          })
+        } else {
+          ElMessage({
+              message: 'Deletion has failed. There are no selected element to delete',
+              type: 'error',
+          })
+        }
+      })
+
+      console.log('hey');
   },
 
   methods: {
@@ -199,13 +218,11 @@ export default {
       } else {
         this.updatedOptions.style[key] = val
       }
-      console.log(this.updatedOptions)
       this.updateOptions()
     },
 
     updateOptionsMeta({ key, val }) {
       this.updatedOptions.meta[key] = val
-
       this.updateOptions()
     },
 
@@ -334,6 +351,11 @@ export default {
     editAnimationSection,
     editMapSection,
   },
+
+  unmounted() {
+    eventBus.off('onRemoveCmp')
+  },
+
 }
 </script>
 

@@ -26,9 +26,6 @@ export default {
       })
     },
   },
-  created() {
-    console.log(this.info, 'HR')
-  },
 }
 </script>
 

@@ -77,7 +77,12 @@
     <section
       class="cmp-editor"
       :class="{ open: tabState.editOpt === 'edit-cmp' }">
-      <h2 class="title">Edit</h2>
+      <h2 class="title editor-sidebar-actions-layout">
+        Edit
+        <div class="crud-actions">
+          <i @click.stop="onRemoveCmp" class="bi bi-trash"></i>
+        </div> 
+      </h2>
       <cmp-editor
         v-if="selectedCmp.id"
         :id="selectedCmp.id"
@@ -86,6 +91,7 @@
         :elType="selectedCmp.elType"
         :elDom="selectedCmp.elDom"
         @changeOrder="(newOrder) => {this.$emit('changeOrder', newOrder)}"
+        :key="selectedCmp.id"
        />
       <h3 v-else>Select an element to edit</h3>
     </section>
@@ -142,6 +148,9 @@ export default {
     closeCmpEditor() {
       this.tabState.editOpt = ''
     },
+    onRemoveCmp() {
+        eventBus.emit('onRemoveCmp')
+    }
   },
 
   components: {
@@ -161,4 +170,26 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+  .editor-sidebar-actions-layout {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(30, 30, 30, 0.4);
+
+    .bi-trash {
+      transition: 0.2s;
+      cursor: pointer;
+
+        &:hover {  
+          color: rgb(239, 3, 42) !important
+        }
+
+        &::before {
+          content: "\f5de";
+          width: 32px;
+          display: flex;
+          justify-content: center;
+        }
+    }
+  }
+</style>
