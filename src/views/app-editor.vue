@@ -562,18 +562,19 @@ export default {
       this.$router.replace({ ...this.$route, query: { workTogether: true } })
     },
 
-    changeOrder({ oldIdx, newIdx }) {
-      ;[this.wap.cmps[oldIdx], this.wap.cmps[newIdx]] = [
-        this.wap.cmps[newIdx],
-        this.wap.cmps[oldIdx],
-      ]
-      this.onCmpsChange()
+    changeOrder({oldIdx, newIdx}) {
+        [this.wap.cmps[oldIdx], this.wap.cmps[newIdx]] = [this.wap.cmps[newIdx], this.wap.cmps[oldIdx]]
+      try {
+        this.onCmpsChange()
+      } catch(err) {
+        [this.wap.cmps[oldIdx], this.wap.cmps[newIdx]] = [this.wap.cmps[newIdx], this.wap.cmps[oldIdx]]
+        eventBus.emit('resetEditedWap')
+      }
     },
 
     addByClick(cmp) {
-      console.log('cmp:', cmp)
-      this.wap.cmps.push(cmp)
-      this.onCmpsChange()
+        this.wap.cmps.push(cmp)
+        this.onCmpsChange()
     },
 
     isMobile() {
