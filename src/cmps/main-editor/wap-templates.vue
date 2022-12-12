@@ -15,7 +15,7 @@
       <li
         class="list-group-item"
         :style="{ backgroundColor: element.backgroundColor }">
-        <cmp-item :src="element.previewImg" />
+        <cmp-item @click="addByClick(element)" :src="element.previewImg" />
       </li>
     </template>
   </draggable>
@@ -127,6 +127,14 @@ export default {
       //   // wapVideo,
       //   // wapMap,
       // ]
+    },
+    addByClick(el) {
+        if (!this.isMobile()) return
+        this.$emit('addByClick', el)
+    },
+
+    isMobile() {
+      return (window.innerWidth <= 960)
     },
   },
   computed: {

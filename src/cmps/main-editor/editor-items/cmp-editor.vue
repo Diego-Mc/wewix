@@ -56,21 +56,6 @@
       <edit-map-section
         v-if="isOptionsContain('mapData')"
         @select="updateOptionsMeta" />
-      <!-- <div v-if="isOptionsContain('mapData')">
-        Map Data
-        <input @input="handleMapInput($event)" type="text" />
-        <div v-if="isMapLocationLoader">
-          <span v-if="loadedMapLocation">
-            {{ loadedMapLocation.title }}
-          </span>
-          <span v-else> Loading </span>
-        </div>
-      </div> -->
-
-      <!-- <div>
-        <edit-animation-section @select="updateOptionsMeta" :animation="editOptions.meta.animation"
-          :elDom="getElStyle('font-size')" />
-      </div> -->
 
       <div v-if="isOptionsContain('formInputs')">
         <h6 class="edit-type-label">Form Fields</h6>
@@ -95,6 +80,29 @@
         </el-button>
       </div>
 
+      <!-- <section v-if="elType === 'nav' && false">
+          <div v-for="cmp in currWap.cmps" class="grey">
+            <h1>{{cmp.type}} {{cmp.id}}</h1>
+          </div>
+      </section>
+-->
+      <section v-if="isMobile() && !childCmpId && (currWap.cmps.length > 1)">
+        <el-button>          
+              <span 
+                  v-if="currCmpIdx < currWap.cmps.length - 1" 
+                  class="bi bi-arrow-down" 
+                  @click="changeOrder(currCmpIdx, currCmpIdx + 1)">
+              </span>
+        </el-button>
+        <el-button>
+              <span 
+                  v-if="currCmpIdx > 0" 
+                  class="bi bi-arrow-up" 
+                  @click="changeOrder(currCmpIdx, currCmpIdx - 1)">
+              </span>
+        </el-button>
+      </section> 
+
       <div>
         <el-button
           type="danger"
@@ -104,11 +112,13 @@
             border: none;
           "
           @click.stop="onRemoveCmp"
-          >Remove</el-button
-        >
+          >Remove
+        </el-button>
       </div>
+
     </section>
   </section>
+  
 </template>
 
 <script>
@@ -141,9 +151,15 @@ export default {
       fontWeight: null,
       fontSize: null,
       borderRadius: null,
+      currCmpIdx: null
     }
   },
-  created() {},
+  created() {
+      this.currCmpIdx = this.getCmpIdx
+      eventBus.on('resetEditedWap', () => {
+        this.currCmpIdx = this.getCmpIdx
+      })
+  },
 
   methods: {
     fieldChanged(id, idx, e) {
@@ -240,14 +256,6 @@ export default {
     closeMapLocationLoader() {
       this.isMapLocationLoader = false
     },
-    log() {
-      if (!this.elDom) return
-      console.log(
-        'window.getComputedStyle(this.elDom):',
-        window.getComputedStyle(this.elDom)
-      )
-      this.elDom.style.height = Math.floor(Math.random() * 100) + 'px'
-    },
 
     getElStyle(styleProp) {
       // console.log(styleProp);
@@ -256,6 +264,26 @@ export default {
         return window.getComputedStyle(this.elDom).getPropertyValue(styleProp)
       }
     },
+
+    isMobile() {
+      return (window.innerWidth <= 960)
+    },
+
+    changeOrder(oldIdx, newIdx) {
+        this.currCmpIdx = newIdx
+        this.$emit('changeOrder', {oldIdx, newIdx})
+    }
+  },
+
+  computed: {
+      getCmpIdx() {
+          const currWap = this.$store.getters.editedWap
+          const currCmps = currWap.cmps
+          return currCmps.findIndex(({id}) => id === this.id)
+      },
+      currWap() {
+        return this.$store.getters.editedWap
+      }
   },
 
   //TODO: change this awful thing
@@ -294,6 +322,7 @@ export default {
     },
   },
 
+
   components: {
     editFontSection,
     editFontWeightSection,
@@ -321,5 +350,10 @@ export default {
 }
 .editor-form-input:focus-visible {
   border-color: aqua;
+}
+.grey {
+  width: 50px;
+  background-color: grey;
+  margin: 5px;
 }
 </style>

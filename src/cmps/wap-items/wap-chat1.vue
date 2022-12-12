@@ -171,7 +171,6 @@ export default {
     this.$nextTick(this.scrollToEnd)
   },
   created() {
-    console.log('this.wapName:', this.wapName)
     socketService.emit('joinChat', {
       fromWap: this.wapName,
       guestId: this.guestId,
@@ -201,6 +200,10 @@ export default {
       }
 
       this.clearTyping()
+    })
+
+    socketService.on('guestDisconnected', (guestId) => {
+        console.log('guestId:', guestId)
     })
 
     this.clearTyping = utilService.debounce(this.clearTyping)

@@ -1,12 +1,9 @@
 <template>
   <div class="auth-modal">
     <h2 class="auth-header">{{ msg }}</h2>
-    <!-- <div class="google-auth-btn">
-      <button @click="googleAuth">
-        google login
-      </button>
-    </div> -->
-    <!-- <p class="login-p-divider">or</p> -->
+    <h3>Login with google</h3>
+    <google-auth @googleLogin="onGoogleLogin" />
+    <p class="login-p-divider">or</p>
     <form class="login-form" @submit.prevent="doLogin">
       <el-input
         class="auth-input"
@@ -34,25 +31,24 @@
 <script>
 import { showUserMsg } from '../../services/event-bus.service.js'
 import { ElMessage } from 'element-plus'
+import googleAuth from './google-auth.vue'
 
 export default {
+  name: 'login-modal',
   props: {
     isModalInAuthPage: Boolean,
     msg: String,
     destPage: String,
   },
-  name: 'login-modal',
-  created() {
-    console.log()
+  components: {
+    googleAuth,
   },
   data() {
     return {
       loginCred: { username: 'admin', password: 'admin' },
     }
   },
-  googleAuth() {
-    this.$store.dispatch('googleAuth')
-  },
+
   computed: {
     users() {
       return this.$store.getters.users
@@ -62,6 +58,9 @@ export default {
     },
   },
   methods: {
+    onGoogleLogin() {
+      this.redirectUser()
+    },
     doLogout() {
       this.$store.dispatch({ type: 'logout' })
     },
@@ -79,16 +78,7 @@ export default {
       }
       try {
         await this.$store.dispatch({ type: 'login', userCred: this.loginCred })
-        if (this.isModalInAuthPage) {
-          if (this.$router.options.history.state.back === '/signup')
-            this.$router.push('/edit')
-          else this.$router.back()
-        } else if (this.destPage === 'dashboard') {
-          this.$router.push('/dashboard')
-        } else {
-          this.$emit('authenticated')
-        }
-
+        this.redirectUser()
         ElMessage({
           message: 'Logged in successfully',
           type: 'success',
@@ -99,6 +89,17 @@ export default {
           message: 'Cannot sign in',
           type: 'error',
         })
+      }
+    },
+    redirectUser() {
+      if (this.isModalInAuthPage) {
+        if (this.$router.options.history.state.back === '/signup')
+          this.$router.push('/edit')
+        else this.$router.back()
+      } else if (this.destPage === 'dashboard') {
+        this.$router.push('/dashboard')
+      } else {
+        this.$emit('authenticated')
       }
     },
     async doSignup() {
@@ -113,7 +114,6 @@ export default {
       await this.$store.dispatch({ type: 'signup', userCred: this.signupCred })
     },
   },
-  components: {},
 }
 </script>
 

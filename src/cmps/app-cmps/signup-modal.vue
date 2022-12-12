@@ -1,7 +1,12 @@
 <template>
   <div class="auth-modal">
     <h2 class="auth-header">{{ msg }}</h2>
-    <form class="login-form"  @submit.prevent="doSignup">
+    <div class="upload-user-img-container">
+      <img class="user-img-preview" :src="signupCred.picture" alt="" />
+      <upload-section @select="setUserImg" class="img-uploader" />
+    </div>
+
+    <form class="login-form" @submit.prevent="doSignup">
       <el-input
         class="auth-input"
         type="text"
@@ -21,11 +26,8 @@
 
       <button class="auth-btn">
         <span>Signup </span>
-        <span v-if="destPage === 'publishWap'"
-          >&nbspand publish</span
-        ></button
-      >
-    
+        <span v-if="destPage === 'publishWap'">&nbspand publish</span>
+      </button>
     </form>
     <button class="toggle-auth-link" @click.prevent="backToLogin">
       To login
@@ -35,6 +37,7 @@
 
 <script>
 import { ElMessage } from 'element-plus'
+import uploadSection from '../main-editor/cmp-edit-sections/edit-upload-section.vue'
 
 export default {
   props: {
@@ -42,11 +45,19 @@ export default {
     msg: String,
     destPage: String,
   },
+  components: {
+    uploadSection,
+  },
   name: 'login-signup',
   data() {
     return {
-      signupCred: { username: 'john', password: 'john', fullname: 'john', imgUrl: '' },
-      userMsg:''
+      signupCred: {
+        username: 'john',
+        password: 'john',
+        fullname: 'john',
+        picture: '',
+      },
+      userMsg: '',
     }
   },
   computed: {
@@ -55,6 +66,9 @@ export default {
     },
   },
   methods: {
+    setUserImg({ val }) {
+      this.signupCred.picture = val
+    },
     doLogout() {
       this.$store.dispatch({ type: 'logout' })
     },
@@ -77,14 +91,15 @@ export default {
           userCred: this.signupCred,
         })
         if (this.isModalInAuthPage) {
-          if(this.$router.options.history.state.back === '/login') this.$router.push('/edit')
+          if (this.$router.options.history.state.back === '/login')
+            this.$router.push('/edit')
           else this.$router.push('/edit')
         } else if (this.destPage === 'dashboard') {
           this.$router.push('/dashboard/')
         } else {
           this.$emit('authenticated')
         }
-       ElMessage({
+        ElMessage({
           message: 'Signed up successfully',
           type: 'success',
         })
@@ -96,8 +111,26 @@ export default {
       }
     },
   },
-  components: {},
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.upload-user-img-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  width: 500px;
+}
+
+.img-uploader {
+  max-width: 250px;
+}
+
+.user-img-preview {
+  border: 1px solid black;
+  margin-block: 10px;
+  max-width: 250px;
+  max-height: 250px;
+  border-radius: 5px;
+}
+</style>

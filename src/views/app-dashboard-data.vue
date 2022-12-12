@@ -14,6 +14,8 @@
         <router-link :to="'/edit/' + wapData._id">
           <button class="edit-wap-btn">Edit Website</button>
         </router-link> -->
+        <button @click="removeSite" class="remove-btn">Deleted site</button>
+
         <router-link :to="`/${wapData.name}`" class="preview-btn"
           >VIEW WEBSITE</router-link
         >
@@ -24,7 +26,10 @@
     </div>
     <main class="graph-and-stats-container">
       <app-dashboard-stats v-if="wapData" :wapData="wapData" />
-      <app-dashboard-graphs v-if="wapData" :visitorsData="wapData.visits" />
+      <app-dashboard-graphs
+        :visitorsData="
+          wapData.visits ? wapData.visits : [{ createdAt: Date.now() }]
+        " />
     </main>
     <app-dashboard-details
       v-if="wapData.usersData.subscriptions"
@@ -81,6 +86,11 @@ export default {
         message: 'Website link copied to your clipboard.',
         type: 'success',
       })
+    },
+    removeSite() {
+      this.$store.dispatch('removeWap', { wapId: this.wapData._id })
+      this.$emit('wapRemoved', this.wapData._id)
+      this.$router.push('/dashboard')
     },
   },
   components: {

@@ -17,7 +17,6 @@ import rootCmp from './root-cmp.vue'
 import VueScrollTo from 'vue-scrollto'
 import { utilService } from './services/util.service.js'
 
-import gAuthPlugin from 'vue3-google-oauth2'
 
 
 const supportsContainerQueries = 'container' in document.documentElement.style
@@ -25,9 +24,13 @@ if (!supportsContainerQueries) {
   import('https://cdn.skypack.dev/container-query-polyfill')
 }
 
-
-
+import vue3GoogleLogin from 'vue3-google-login'
 const app = createApp(rootCmp)
+
+app.use(vue3GoogleLogin, {
+  clientId: '334191761722-571betvfqffoabg2h3ftn7dkndlsiu6p.apps.googleusercontent.com'
+})
+
 
 app.use(router)
 app.use(store)

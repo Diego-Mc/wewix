@@ -61,6 +61,7 @@ export default {
     })
 
     socketService.on('updateAdminGuestData', (guestData) => {
+      console.log('guestData:', guestData)
       this.adminChats = guestData.reduce((adminChats, currGuestData) => {
         if (adminChats[currGuestData.fromWap])
           adminChats[currGuestData.fromWap].push(currGuestData)

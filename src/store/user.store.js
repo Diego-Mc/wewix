@@ -43,10 +43,9 @@ export const userStore = {
         }
     },
     actions: {
-        async googleAuth(){
-            const user = await userService.googleAuth()
-            // commit({ type: 'setLoggedinUser', user })
-
+        async googleLogin({commit},userDetails){
+            const user = await userService.googleLogin(userDetails)
+            commit({ type: 'setLoggedinUser', user })
         },
         async addWapToUser({ commit }, { wapId }) {
             const user = await userService.addWapId(wapId)
@@ -57,7 +56,6 @@ export const userStore = {
             try {
                 const user = await userService.login(userCred)
                 commit({ type: 'setLoggedinUser', user })
-                console.log('logged in user', user);
 
                 return user
             } catch (err) {
@@ -117,6 +115,7 @@ export const userStore = {
         async updateUser({ commit }, { user }) {
             try {
                 user = await userService.update(user)
+                
                 commit({ type: 'setUser', user })
             } catch (err) {
                 console.log('userStore: Error in updateUser', err)
