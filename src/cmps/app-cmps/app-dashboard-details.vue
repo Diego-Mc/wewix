@@ -26,6 +26,9 @@
           @current-change="paginate($event)"
           :current-page="currentPage" />
       </div>
+<<<<<<< HEAD
+      <button @click="downloadCsv" class="csv-download">DOWNLOAD CSV</button>
+=======
 
       <div class="table-sorting s-only">
         <el-button
@@ -37,6 +40,7 @@
       </div>
 
       <button class="csv-download">DOWNLOAD CSV</button>
+>>>>>>> b61cdd385d54071e982e4bec2acb8bd6d4ef5d07
     </div>
 
     <el-dialog v-model="dialogFormVisible" title="Table Filters">
@@ -92,6 +96,7 @@ import {
 export default {
   props: {
     usersData: Array,
+    wapName: String
   },
   data() {
     return {
@@ -273,7 +278,18 @@ export default {
     printWapToConsole(wap) {
       console.log('Wap msgs:', wap.msgs)
     },
+    downloadCsv() {
+      if (!this.usersData) return 
+      const userDataCsv = utilService.convertToCSV(this.usersData)
+      const anchor = document.createElement('a');
+      anchor.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(userDataCsv);
+      anchor.target = '_blank';
+      anchor.download = `${this.wapName}-usersData.csv`;
+      anchor.click();
+    }
   },
+
+
 }
 </script>
 

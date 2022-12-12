@@ -80,6 +80,22 @@
       <h2 class="title editor-sidebar-actions-layout">
         Edit
         <div class="crud-actions">
+          <!-- <section v-if="isMobile() && !childCmpId && currWap.cmps.length > 1">
+              <el-button>
+                <span
+                  v-if="currCmpIdx < currWap.cmps.length - 1"
+                  class="bi bi-arrow-down"
+                  @click="changeOrder(currCmpIdx, currCmpIdx + 1)">
+                </span>
+              </el-button>
+              <el-button>
+                <span
+                  v-if="currCmpIdx > 0"
+                  class="bi bi-arrow-up"
+                  @click="changeOrder(currCmpIdx, currCmpIdx - 1)">
+                </span>
+              </el-button>
+          </section> -->
           <i @click.stop="onRemoveCmp" :hidden="!selectedCmp.id" class="bi bi-trash"></i>
         </div> 
       </h2>
@@ -149,7 +165,10 @@ export default {
     },
     onRemoveCmp() {
         eventBus.emit('onRemoveCmp')
-    }
+    },
+    isMobile() {
+      return window.innerWidth <= 960
+    },
   },
 
   components: {

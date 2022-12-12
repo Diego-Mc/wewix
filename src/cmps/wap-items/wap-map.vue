@@ -5,7 +5,7 @@
       api-key="AIzaSyDKvG9VduLBhsz5HMIEo1Q9RQaX6B24Mck"
       style="width: 100%; height: 500px"
       :center="center"
-      :zoom="10"
+      :zoom="18"
 
       >
       <Marker :options="marker" />

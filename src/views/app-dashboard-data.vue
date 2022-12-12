@@ -58,7 +58,9 @@
     </main>
     <app-dashboard-details
       v-if="wapData.usersData.subscriptions"
-      :usersData="wapData.usersData.subscriptions" />
+      :usersData="wapData.usersData.subscriptions"
+      :wapName="wapData.name"
+      />
     <!-- <wap-chat :owner="$store.getters.loggedinUser" :wapIds="" :wapId="wapData._id" /> -->
   </section>
 </template>
