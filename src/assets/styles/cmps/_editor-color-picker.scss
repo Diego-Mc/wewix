@@ -3,22 +3,29 @@
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 12px;
+  align-items: center;
+  justify-items: center;
   .color-picker-option {
     position: relative;
     cursor: pointer;
+
     .option {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
       background-color: red;
       display: inline-block;
       position: relative;
       color: #fff;
+      border: 2px solid #ccc;
+      &.selected {
+        border: none;
+      }
       &.selected::after {
         content: '';
-        width: 34px;
-        height: 34px;
-        border: white 2px solid;
+        width: 38px;
+        height: 38px;
+        border: 2px solid #00c2a6;
         position: absolute;
         top: 50%;
         left: 50%;

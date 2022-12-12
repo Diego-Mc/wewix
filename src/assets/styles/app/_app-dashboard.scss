@@ -1,6 +1,25 @@
 // box-shadow: 0 4px 30px rgb(0 0 0 / 10%) //box shadow of table
+.el-popper {
+  .el-button {
+    &:hover {
+      color: grey;
+    }
+  }
+  .el-button--primary {
+    background-color: #f25c5c;
+    border-color: #f25c5c;
+    &:hover {
+      color: white;
+      background-color: red;
+    }
+  }
+}
 
 .dashboard-page {
+  .s-only {
+    display: none !important;
+  }
+
   // width: 100vw;
   // height: 100vh;
   min-width: 100vw;
@@ -30,7 +49,7 @@
     // background-color: $btn-dark;
     grid-area: header;
     grid-column: 1 / -1;
-    padding-inline: 40px;
+    padding-inline: 30px;
     .logo {
       // color: white;
     }
@@ -70,6 +89,9 @@
   }
   .remove-btn {
     color: #f25c5c;
+    &:hover {
+      color: red;
+    }
   }
   .publish-btn {
     font-weight: 800;
@@ -266,10 +288,11 @@
         word-wrap: break-word;
         background-color: #fff;
         background-clip: border-box;
-        border: 0 solid rgba(0, 0, 0, 0.125);
+        // border: 0 solid rgba(0, 0, 0, 0.125);
         border-radius: 1rem;
-        box-shadow: rgb(139 153 167 / 27%) 0px 15px 30px -4px,
-          rgb(141 154 168 / 28%) 0px 0px 1px 0px;
+        // box-shadow: rgb(139 153 167 / 15%) 0px 15px 0px -8px,
+        //   rgb(141 154 168 / 16%) 0px 0px 1px 0px;
+        outline: 1px solid #eee;
       }
       label:not(:has(:checked)):hover {
         // color: $btn-dark;
@@ -290,6 +313,7 @@
   }
 
   .dashboard-top-div {
+    align-items: center;
     display: flex;
     justify-content: space-between;
     grid-area: header;
@@ -412,8 +436,9 @@
     background-clip: border-box;
     border: 0 solid rgba(0, 0, 0, 0.125);
     border-radius: 1rem;
-    box-shadow: rgb(139 153 167 / 27%) 0px 15px 30px -4px,
-      rgb(141 154 168 / 28%) 0px 0px 1px 0px;
+    box-shadow: rgb(139 153 167 / 15%) 0px 15px 0px -8px,
+      rgb(141 154 168 / 16%) 0px 0px 1px 0px;
+    outline: 1px solid #eee;
   }
 }
 
@@ -663,6 +688,121 @@
           }
           .paging.mb-only {
             display: flex;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1040px) {
+  .dashboard-page {
+    .open-filter-btn {
+      &:hover {
+        color: grey;
+      }
+    }
+    > * {
+      padding-inline: 20px !important;
+    }
+    h2 {
+      max-width: calc(100vw - 200px);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .s-only {
+      display: block !important;
+    }
+    .s-hide {
+      display: none !important;
+    }
+    .app-dashboard {
+      grid-template-columns: 1fr;
+      &:has(.dashboard-data) {
+        .dashboard-sidebar {
+          display: none;
+        }
+      }
+      .dashboard-sidebar {
+        padding: 0;
+        border: none;
+      }
+      .dashboard-data {
+        .back-to-sites-btn {
+          font-size: 18px;
+          width: 24px;
+          height: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          color: #888;
+          &:hover {
+            color: #444;
+          }
+        }
+        .dashboard-top-div {
+        }
+      }
+      .dashboard-wap-stats {
+      }
+      .graph-and-stats-container {
+      }
+      .leads {
+        .table-options {
+          .table-sorting {
+            .table-search {
+            }
+            .paging {
+            }
+            .paging.mb-only {
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 740px) {
+  .dashboard-page {
+    .wap-chat-container {
+      &:has(.wap-chat) {
+        bottom: 0;
+        right: 0;
+      }
+      .wap-chat {
+        border-radius: 0;
+        height: 100vh;
+        width: 100vw;
+        bottom: 0;
+        right: 0;
+      }
+    }
+    .app-dashboard {
+      .dashboard-sidebar {
+      }
+      .dashboard-data {
+        .back-to-sites-btn {
+        }
+        .dashboard-top-div {
+        }
+      }
+      .graph-and-stats-container {
+        .dashboard-wap-stats {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .leads {
+        .table-options {
+          .table-sorting {
+            .table-search {
+            }
+            .paging {
+            }
+            .paging.mb-only {
+            }
           }
         }
       }
