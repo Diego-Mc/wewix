@@ -4573,7 +4573,7 @@ wapsMap.set('wap-header-6', {
       previewImg: '',
       options: {
         meta: {},
-        style: getStyles(),
+        style: getStyles('btn'),
       },
       info: {
         btn: {

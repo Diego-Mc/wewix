@@ -80,12 +80,12 @@
         </el-button>
       </div>
 
-      <!-- <section v-if="elType === 'nav' && false">
+      <section v-if="elType === 'nav'">
           <div v-for="cmp in currWap.cmps" class="grey">
-            <h1>{{cmp.type}} {{cmp.id}}</h1>
+            <h1 @click="setHref(cmp.id)">{{cmp.type}} {{cmp.id}}</h1>
           </div>
       </section>
--->
+
       <section v-if="isMobile() && !childCmpId && (currWap.cmps.length > 1)">
         <el-button>          
               <span 
@@ -103,6 +103,7 @@
         </el-button>
       </section> 
 
+      <button @click="log">Log</button>
     </section>
   </section>
   
@@ -275,8 +276,19 @@ export default {
     changeOrder(oldIdx, newIdx) {
         this.currCmpIdx = newIdx
         this.$emit('changeOrder', {oldIdx, newIdx})
+    },
+
+    setHref(hrefTo) {
+        console.log('this.elType:', this.elType)
+        this.updateOptionsMeta({ key:'href', val: hrefTo })
+    },
+
+    log() {
+      console.log(this.updatedOptions)
     }
   },
+
+  
 
   computed: {
       getCmpIdx() {

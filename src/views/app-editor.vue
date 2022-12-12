@@ -371,6 +371,7 @@ export default {
       }
     },
     cmpSelected({ cmpId, elType, childCmpId, elDom }) {
+      console.log('this.wap:', this.wap)
       this.selectedCmp = {}
       let cmp = this.wap.cmps.find(({ id }) => {
         return id === cmpId
