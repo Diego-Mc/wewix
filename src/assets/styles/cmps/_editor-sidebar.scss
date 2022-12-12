@@ -118,6 +118,10 @@
     overflow-y: scroll;
     height: calc(100vh - $main-header-height - $editor-header-height);
 
+    .mb-only {
+      display: none;
+    }
+
     .title {
       margin-bottom: 20px;
     }
@@ -248,6 +252,10 @@
       overflow-y: scroll;
       // height: calc(100vh - $main-header-height - $editor-header-height);
       height: $editor-mb-height-lvl1;
+
+      .mb-only {
+        display: flex;
+      }
 
       .title {
         // margin-bottom: 20px;
