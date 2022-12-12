@@ -1,12 +1,16 @@
 <template>
   <div class="auth-modal">
     <h2 class="auth-header">{{ msg }}</h2>
+    <h5>Profile image</h5>
     <div class="upload-user-img-container">
       <img
+        title="Upload your image"
         class="user-img-preview upload-img-item"
-        :src="signupCred.picture"
+        :src="signupCred.picture ? signupCred.picture : 'https://e7.pngegg.com/pngimages/224/826/png-clipart-computer-icons-anonymity-person-icon-cdr-face.png'"
         alt="" />
       <upload-section
+      title="Upload your image"
+
         @select="setUserImg"
         class="img-uploader upload-img-item" />
     </div>
@@ -135,7 +139,7 @@ export default {
   transform: translateX(-50%);
   position: absolute;
 }
-.el-upload-dragger{
+.upload-user-img-container .img-uploader{
   opacity: 0;
 }
 .user-img-preview-container {
@@ -144,7 +148,6 @@ export default {
   justify-content: center;
 }
 .user-img-preview {
-  border: 1px solid black;
   margin-block: 10px;
   width: 100px;
   height: 100px;
