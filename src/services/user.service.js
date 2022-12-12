@@ -89,7 +89,7 @@ async function addWapId(wapId) {
 }
 
 async function googleLogin(userDetails) {
-    const user = await httpService.post('auth/google',userDetails)
+    const user = await httpService.post('auth/google', userDetails)
     if (user) {
         // socketService.login(user._id)
         saveLocalUser(user)
@@ -98,7 +98,7 @@ async function googleLogin(userDetails) {
 }
 
 function saveLocalUser(user) {
-    user = { _id: user._id, fullname: user.fullname, waps: user.waps }
+    user = { _id: user._id, fullname: user.fullname, waps: user.waps, picture: user.picture }
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
 }

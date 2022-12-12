@@ -8,8 +8,7 @@
       class="user-options"
       @click="$router.push('/dashboard')">
       <span class="info">
-        
-        <img v-if="loggedinUser.picture" :src="loggedinUser.picture" alt="" />
+        <img class="user-img" v-if="loggedinUser.picture" :src="loggedinUser.picture" alt="" />
         <i v-else class="bi bi-person-circle"></i>
         Login
 
