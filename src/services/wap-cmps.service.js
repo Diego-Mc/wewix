@@ -229,7 +229,9 @@ wapsMap.set('wap-header-1', {
     },
     btn: {
       options: {
-        meta: {},
+        meta: {
+          href:''
+        },
         style: getStyles('btn'),
       },
       content: { text: 'Start now' },
@@ -1358,7 +1360,9 @@ wapsMap.set('wap-hero-3', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {
+              href: ''
+            },
             style: getStyles('btn'),
           },
           content: {
@@ -3235,7 +3239,9 @@ wapsMap.set('wap-hero-5', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {
+              href: ''
+            },
             style: getStyles('btn'),
           },
           content: {
@@ -3322,7 +3328,7 @@ wapsMap.set('wap-section-15', {
       typeId: 5,
       options: {
         meta: {
-          src: 'https://www.youtube.com/embed/4KEAdBN7I1g',
+          src: 'https://www.youtube.com/embed/8TuRYV71Rgo',
         },
         style: getStyles(),
       },
@@ -3330,7 +3336,7 @@ wapsMap.set('wap-section-15', {
         video: {
           options: {
             meta: {
-              src: 'https://www.youtube.com/embed/4KEAdBN7I1g',
+              src: 'https://www.youtube.com/embed/8TuRYV71Rgo',
             },
             style: getStyles('img'),
           },
@@ -4133,7 +4139,9 @@ wapsMap.set('wap-cards-9', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {
+              href: ''
+            },
             style: getStyles('btn'),
           },
           content: {
@@ -4207,7 +4215,7 @@ wapsMap.set('wap-cards-9', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href:''},
             style: getStyles('btn'),
           },
           content: {
@@ -4281,7 +4289,7 @@ wapsMap.set('wap-cards-9', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href:''},
             style: getStyles('btn'),
           },
           content: {
@@ -4511,6 +4519,7 @@ wapsMap.set('footer-3', {
 
 //----------------------------------------- template 5 -------------------------------------------------------------
 
+//trying to implement header
 wapsMap.set('wap-header-6', {
   id: '',
   type: 'wap-header',
@@ -4553,17 +4562,50 @@ wapsMap.set('wap-header-6', {
         style: getStyles(),
       },
       info: {
-        nav: {
+        nav1: {
           options: {
-            meta: {},
+            meta: {
+              scrollTo:''
+            },
             style: getStyles('nav'),
           },
           content: {
-            nav1: 'Courses',
-            nav2: 'Plans',
-            nav3: 'Blog',
+            text:'Courses'
           },
         },
+        nav2: {
+          options: {
+            meta: {
+              scrollTo:''
+            },
+            style: getStyles('nav'),
+          },
+          content: {
+            text:'Plans'
+          },
+        },
+        nav3: {
+          options: {
+            meta: {
+              scrollTo:''
+            },
+            style: getStyles('nav'),
+          },
+          content: {
+            text:'Blog'
+          },
+        },
+        // nav: {
+        //   options: {
+        //     meta: {},
+        //     style: getStyles('nav'),
+        //   },
+        //   content: {
+        //     nav1: 'Courses',
+        //     nav2: 'Plans',
+        //     nav3: 'Blog',
+        //   },
+        // },
       },
     },
     {
@@ -4578,7 +4620,7 @@ wapsMap.set('wap-header-6', {
       info: {
         btn: {
           options: {
-            meta: {},
+            meta: {href:''},
             style: getStyles('btn'),
           },
           content: {
@@ -4732,7 +4774,7 @@ wapsMap.set('wap-section-22', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href:''},
             style: getStyles('btn'),
           },
           content: {
@@ -4788,7 +4830,8 @@ wapsMap.set('wap-section-23', {
       info: {
         title: {
           options: {
-            meta: {},
+            meta: {
+            },
             style: getStyles('title'),
           },
           content: {
@@ -4797,7 +4840,9 @@ wapsMap.set('wap-section-23', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {
+              href: ''
+            },
             style: getStyles('btn'),
           },
           content: {
@@ -4826,7 +4871,7 @@ wapsMap.set('wap-section-25', {
       typeId: 5,
       options: {
         meta: {
-          src: 'https://www.youtube.com/embed/4KEAdBN7I1g',
+          src: 'https://www.youtube.com/embed/TOvmr5eSFVw',
         },
         style: getStyles(),
       },
@@ -4834,7 +4879,7 @@ wapsMap.set('wap-section-25', {
         video: {
           options: {
             meta: {
-              src: 'https://www.youtube.com/embed/4KEAdBN7I1g',
+              src: 'https://www.youtube.com/embed/TOvmr5eSFVw',
             },
             style: getStyles('img'),
           },
@@ -4874,7 +4919,7 @@ wapsMap.set('wap-section-25', {
         video: {
           options: {
             meta: {
-              src: 'https://www.youtube.com/embed/4KEAdBN7I1g',
+              src: 'https://www.youtube.com/embed/v7AYKMP6rOE',
             },
             style: getStyles('img'),
           },
@@ -4906,7 +4951,7 @@ wapsMap.set('wap-section-25', {
       typeId: 5,
       options: {
         meta: {
-          src: 'https://www.youtube.com/embed/4KEAdBN7I1g',
+          src: 'https://www.youtube.com/embed/8TuRYV71Rgo',
         },
         style: getStyles(),
       },
@@ -4914,7 +4959,7 @@ wapsMap.set('wap-section-25', {
         video: {
           options: {
             meta: {
-              src: 'https://www.youtube.com/embed/4KEAdBN7I1g',
+              src: 'https://www.youtube.com/embed/8TuRYV71Rgo',
             },
             style: getStyles('img'),
           },
@@ -5121,7 +5166,9 @@ wapsMap.set('wap-cards-11', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {
+              href: ''
+            },
             style: getStyles('btn'),
           },
           content: {
@@ -5195,7 +5242,7 @@ wapsMap.set('wap-cards-11', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href:''},
             style: getStyles('btn'),
           },
           content: {

@@ -315,6 +315,7 @@ export default {
 
     // prettier-ignore
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
+      console.log(cmpId, updatedStyle, elType, content, childCmpId )
       let changedCmp = this.wap.cmps.find( cmp => cmp.id === cmpId)
       if (childCmpId) changedCmp = changedCmp.cmps.find( childCmp => childCmp.id === childCmpId)
       if (elType) {
