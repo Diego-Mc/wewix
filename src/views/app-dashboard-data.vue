@@ -20,7 +20,6 @@
         <router-link :to="'/edit/' + wapData._id">
           <button class="edit-wap-btn">Edit Website</button>
         </router-link> -->
-        <button @click="removeSite" class="remove-btn">Deleted site</button>
         <button @click="removeSite" class="remove-btn">Delete site</button>
 
         <router-link :to="`/${wapData.name}`" class="preview-btn s-hide"

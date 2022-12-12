@@ -17,9 +17,10 @@ export default {
   props: ['borderRadius', 'elStyle'],
   data() {
     return {
-      borderRadiusToEdit: this.borderRadius || 0,
+      borderRadiusToEdit:  this.borderRadius || 0,
     }
   },
+
   components: {},
   methods: {
     handleBtnSelect() {
@@ -30,7 +31,7 @@ export default {
     },
   },
   created() {
-    console.log(this.elStyle)
+    console.log(this.borderRadius);
   },
   watch: {
     borderRadius: {
