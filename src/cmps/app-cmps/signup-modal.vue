@@ -48,6 +48,7 @@
 <script>
 import { ElMessage } from 'element-plus'
 import uploadSection from '../main-editor/cmp-edit-sections/edit-upload-section.vue'
+import Chance from 'chance'
 
 export default {
   props: {
@@ -62,9 +63,9 @@ export default {
   data() {
     return {
       signupCred: {
-        username: 'john',
+        username: this.getRandName(),
         password: 'john',
-        fullname: 'john',
+        fullname: this.getRandName(),
         picture: '',
       },
       userMsg: '',
@@ -76,6 +77,10 @@ export default {
     },
   },
   methods: {
+    getRandName(){
+      var chance = new Chance()
+      return chance.name().split(' ')[0]
+    },
     setUserImg({ val }) {
       this.signupCred.picture = val
     },
