@@ -560,12 +560,16 @@ export default {
     },
 
     changeOrder({oldIdx, newIdx}) {
-      [this.wap.cmps[oldIdx], this.wap.cmps[newIdx]] = [this.wap.cmps[newIdx], this.wap.cmps[oldIdx]]
-      this.onCmpsChange()
+        [this.wap.cmps[oldIdx], this.wap.cmps[newIdx]] = [this.wap.cmps[newIdx], this.wap.cmps[oldIdx]]
+      try {
+        this.onCmpsChange()
+      } catch(err) {
+        [this.wap.cmps[oldIdx], this.wap.cmps[newIdx]] = [this.wap.cmps[newIdx], this.wap.cmps[oldIdx]]
+        eventBus.emit('resetEditedWap')
+      }
     },
 
     addByClick(cmp) {
-        console.log('cmp:', cmp)
         this.wap.cmps.push(cmp)
         this.onCmpsChange()
     },

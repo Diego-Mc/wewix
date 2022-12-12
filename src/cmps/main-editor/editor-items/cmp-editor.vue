@@ -86,8 +86,7 @@
           </div>
       </section>
 -->
-      <section v-if="isMobile() && !childCmpId">
-        <h2>{{elType}} {{id}} </h2>
+      <section v-if="isMobile() && !childCmpId && (currWap.cmps.length > 1)">
         <el-button>          
               <span 
                   v-if="currCmpIdx < currWap.cmps.length - 1" 
@@ -152,10 +151,14 @@ export default {
       fontWeight: null,
       fontSize: null,
       borderRadius: null,
+      currCmpIdx: null
     }
   },
   created() {
-      this.changeOrder = utilService.debounce(this.changeOrder, 250)
+      this.currCmpIdx = this.getCmpIdx
+      eventBus.on('resetEditedWap', () => {
+        this.currCmpIdx = this.getCmpIdx
+      })
   },
 
   methods: {
@@ -267,12 +270,13 @@ export default {
     },
 
     changeOrder(oldIdx, newIdx) {
+        this.currCmpIdx = newIdx
         this.$emit('changeOrder', {oldIdx, newIdx})
     }
   },
 
   computed: {
-      currCmpIdx() {
+      getCmpIdx() {
           const currWap = this.$store.getters.editedWap
           const currCmps = currWap.cmps
           return currCmps.findIndex(({id}) => id === this.id)
