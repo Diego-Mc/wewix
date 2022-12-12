@@ -176,12 +176,11 @@ export default {
       this.openWorkSpace()
     }
 
-    if (this.isMobile())
-      this.$store.commit({ type: 'setEditMode', isEditMode: false })
-    console.log(
-      'this.$store.getters.isEditMode:',
-      this.$store.getters.isEditMode
-    )
+    if (this.isMobile()) this.$store.commit({ type: 'setEditMode', isEditMode: false })
+
+    eventBus.on('resetSelectedCmp', () => {
+        this.selectedCmp = {}
+    })
   },
   updated() {
     clearInterval(this.overlayInterval)
@@ -235,6 +234,7 @@ export default {
       this.mediaType = mediaType
     },
     removeCmp({ id, childCmpId, elType }) {
+
       let changedChildCmpIdx
       let changedCmpIdx = +this.wap.cmps.findIndex((cmp) => cmp.id === id)
       const parentCmp = this.wap.cmps[changedCmpIdx]
@@ -481,6 +481,7 @@ export default {
       eventBus.off('removeCmp')
       eventBus.off('updateField')
       eventBus.off('toggleChat')
+      eventBus.off('resetSelectedCmp')
     },
 
     async setSocketEvents() {

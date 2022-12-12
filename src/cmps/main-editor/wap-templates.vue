@@ -139,7 +139,6 @@ export default {
   },
   computed: {
     cmpToShow() {
-      console.log('SDFSFSFFSD!!!')
       switch (this.cmpType) {
         case 'video':
           return [getCmp('wap-section', 15), getCmp('wap-section', 25)]
