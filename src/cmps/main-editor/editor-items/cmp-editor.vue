@@ -64,17 +64,7 @@
           placeholder="href" />
       </div>
 
-      <div v-if="isOptionsContain('scrollTo')">
-        <!-- Link
-        <input @input="updateOptions" v-model="updatedOptions.meta.src" type="text" placeholder="link" /> -->
-        <h6 class="edit-type-label">CHNAGE</h6>
-        <el-input
-          @input="updateOptions"
-          v-model="updatedOptions.meta.href"
-          type="text"
-          placeholder="href" />
-      </div>
-
+   
       <edit-map-section
         v-if="isOptionsContain('mapData')"
         @select="updateOptionsMeta" />
