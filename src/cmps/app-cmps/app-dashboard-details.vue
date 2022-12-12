@@ -26,9 +26,6 @@
           @current-change="paginate($event)"
           :current-page="currentPage" />
       </div>
-<<<<<<< HEAD
-      <button @click="downloadCsv" class="csv-download">DOWNLOAD CSV</button>
-=======
 
       <div class="table-sorting s-only">
         <el-button
@@ -40,7 +37,6 @@
       </div>
 
       <button class="csv-download">DOWNLOAD CSV</button>
->>>>>>> b61cdd385d54071e982e4bec2acb8bd6d4ef5d07
     </div>
 
     <el-dialog v-model="dialogFormVisible" title="Table Filters">
