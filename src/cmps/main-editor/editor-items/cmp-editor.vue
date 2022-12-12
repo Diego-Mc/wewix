@@ -86,6 +86,7 @@
           v-for="(field, idx) in updatedOptions.meta.formInputs"
           class="form-inputs-container">
           <div style="display: flex">
+            {{field}}
             <input
               class="editor-form-input"
               @input="fieldChanged(id, idx, $event)"
@@ -101,9 +102,9 @@
           Add field to form
         </el-button>
       </div>
-      <section v-if="elType.slice(0, 3) === 'nav'">
+      <section v-if="elType?.slice(0, 3) === 'nav'">
         <div
-          v-for="cmp in currWap.cmps"
+          v-for="cmp in currWap?.cmps"
           class="grey"
           @click="updateOptionsMeta({ key: 'scrollTo', val: cmp.id })">
           <h1>{{ cmp.type }} {{ cmp.id }}</h1>
@@ -191,6 +192,7 @@ export default {
 
   methods: {
     fieldChanged(id, idx, e) {
+      this.updatedOptions.meta.formInputs[idx].tag = e.target.value
       eventBus.emit('updateField', {
         id,
         idx,
