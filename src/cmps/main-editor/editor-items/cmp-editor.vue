@@ -67,7 +67,7 @@
       <div v-if="isOptionsContain('scrollTo')">
         <!-- Link
         <input @input="updateOptions" v-model="updatedOptions.meta.src" type="text" placeholder="link" /> -->
-        <h6 class="edit-type-label">CHNAGE</h6>
+        <h6 class="edit-type-label">CHANGE</h6>
         <el-input
           @input="updateOptions"
           v-model="updatedOptions.meta.href"
@@ -86,7 +86,7 @@
           v-for="(field, idx) in updatedOptions.meta.formInputs"
           class="form-inputs-container">
           <div style="display: flex">
-            {{field}}
+            {{ field }}
             <input
               class="editor-form-input"
               @input="fieldChanged(id, idx, $event)"
@@ -111,21 +111,17 @@
         </div>
       </section>
 
-      <section v-if="isMobile() && !childCmpId && currWap.cmps.length > 1">
-        <el-button>
-          <span
-            v-if="currCmpIdx < currWap.cmps.length - 1"
-            class="bi bi-arrow-down"
-            @click="changeOrder(currCmpIdx, currCmpIdx + 1)">
-          </span>
-        </el-button>
-        <el-button>
-          <span
-            v-if="currCmpIdx > 0"
-            class="bi bi-arrow-up"
-            @click="changeOrder(currCmpIdx, currCmpIdx - 1)">
-          </span>
-        </el-button>
+      <section class="mb-only" v-if="!childCmpId && currWap.cmps.length > 1">
+        <span
+          v-if="currCmpIdx < currWap.cmps.length - 1"
+          class="bi bi-arrow-down"
+          @click="changeOrder(currCmpIdx, currCmpIdx + 1)">
+        </span>
+        <span
+          v-if="currCmpIdx > 0"
+          class="bi bi-arrow-up"
+          @click="changeOrder(currCmpIdx, currCmpIdx - 1)">
+        </span>
       </section>
     </section>
   </section>
