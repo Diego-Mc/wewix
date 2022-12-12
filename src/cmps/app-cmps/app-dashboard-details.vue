@@ -26,17 +26,7 @@
           @current-change="paginate($event)"
           :current-page="currentPage" />
       </div>
-
-      <div class="table-sorting s-only">
-        <el-button
-          class="open-filter-btn"
-          text
-          @click="dialogFormVisible = true">
-          <i class="bi bi-funnel"></i> &nbsp;&nbsp;Filters
-        </el-button>
-      </div>
-
-      <button class="csv-download">DOWNLOAD CSV</button>
+      <button @click="downloadCsv" class="csv-download">DOWNLOAD CSV</button>
     </div>
 
     <el-dialog v-model="dialogFormVisible" title="Table Filters">
