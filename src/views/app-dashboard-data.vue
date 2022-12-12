@@ -20,18 +20,8 @@
         <router-link :to="'/edit/' + wapData._id">
           <button class="edit-wap-btn">Edit Website</button>
         </router-link> -->
-        <el-popconfirm
-          confirm-button-text="Yes"
-          cancel-button-text="No"
-          hide-icon
-          title="Are you sure?"
-          class="delete-confirm-module"
-          @confirm="removeSite"
-          @cancel="cancelEvent">
-          <template #reference>
-            <button class="remove-btn s-hide">DELETE</button>
-          </template>
-        </el-popconfirm>
+        <button @click="removeSite" class="remove-btn">Deleted site</button>
+        <button @click="removeSite" class="remove-btn">Delete site</button>
 
         <router-link :to="`/${wapData.name}`" class="preview-btn s-hide"
           >VIEW WEBSITE</router-link

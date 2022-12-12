@@ -148,15 +148,16 @@ export default {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    @media (max-width: 700px) {
-      width: 300px !important;
-    }
-    .auth-input {
-      width: 100%;
-      @media (max-width: 700px) {
-        // width: 300px !important;
-      }
-    }
+    min-width: 350px;
+    // @media (max-width: 700px) {
+    //   width: 300px !important;
+    // }
+    // .auth-input {
+    //   width: 100%;
+    //   @media (max-width: 700px) {
+    //     // width: 300px !important;
+    //   }
+    // }
   }
   .toggle-auth-link {
     font-size: 12px;

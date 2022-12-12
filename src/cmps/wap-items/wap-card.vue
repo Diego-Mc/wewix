@@ -96,7 +96,7 @@
       class="btn"
       v-if="info.btn"
       :style="info?.btn?.options.style"
-      @click.stop="emitSelect('btn', $event)">
+      @click.stop="btnClicked($event)">
       <span
         @input="updateContent('btn', $event)"
         :contenteditable="$store.getters.isEditMode">
@@ -128,6 +128,13 @@ export default {
         elType,
         elDom: e,
       })
+    },
+    btnClicked(ev) {
+      if (!this.$store.getters.isEditMode && this.info.btn.options.meta.href) {
+        location.href = '//' + this.info.btn.options.meta.href
+      } else {
+        this.emitSelect('btn', ev)
+      }
     },
   },
 }

@@ -62,7 +62,7 @@
       class="btn"
       @input="updateContent('btn', $event)"
       :style="info?.btn?.options.style"
-      @click.stop="emitSelect('btn', $event)">
+      @click.stop="btnClicked($event)">
       {{ info?.btn?.content.text || 'Find us' }}
     </button>
   </section>
@@ -82,7 +82,7 @@ export default {
         elDom: e,
       })
     },
-    emitSelect(elType,e) {
+    emitSelect(elType, e) {
       console.log('wap-text section', this.cmpId)
       eventBus.emit('select', {
         cmpId: this.cmpId,
@@ -90,6 +90,13 @@ export default {
         elType,
         elDom: e,
       })
+    },
+    btnClicked(ev) {
+      if (!this.$store.getters.isEditMode && this.info.btn.options.meta.href) {
+        location.href = '//' + this.info.btn.options.meta.href
+      } else {
+        this.emitSelect('btn', ev)
+      }
     },
   },
 }
