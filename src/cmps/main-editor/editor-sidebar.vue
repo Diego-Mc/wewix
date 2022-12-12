@@ -71,7 +71,7 @@
           ]" />
       </nav>
       <section class="section-cmps" :class="{ open: tabState.section }">
-        <wap-templates :cmpType="tabState.section" />
+        <wap-templates :cmpType="tabState.section" @addByClick="(cmp) => $emit('addByClick', cmp)"/>
       </section>
     </section>
     <section
@@ -95,7 +95,7 @@
       :class="{ open: tabState.editOpt === 'edit-site' }">
       <h2 class="title">Settings</h2>
       <!-- <edit-font-section /> -->
-      <general-editor />
+      <general-editor/>
     </section>
   </section>
 </template>

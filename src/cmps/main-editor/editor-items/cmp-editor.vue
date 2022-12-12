@@ -85,26 +85,24 @@
             <h1>{{cmp.type}} {{cmp.id}}</h1>
           </div>
       </section>
-
-      <section v-if="isMobile()">
-        <div v-for="(cmp, idx) in currWap.cmps" class="Mobile">
-            <div>
-              <h1>
-                {{cmp.type}} {{cmp.id}} 
-                <span 
-                  v-if="idx < currWap.cmps.length - 1" 
+-->
+      <section v-if="isMobile() && !childCmpId">
+        <h2>{{elType}} {{id}} </h2>
+        <el-button>          
+              <span 
+                  v-if="currCmpIdx < currWap.cmps.length - 1" 
                   class="bi bi-arrow-down" 
-                  @click="changeOrder(idx, idx + 1)">
-                </span>
-                <span 
-                  v-if="idx > 0" 
+                  @click="changeOrder(currCmpIdx, currCmpIdx + 1)">
+              </span>
+        </el-button>
+        <el-button>
+              <span 
+                  v-if="currCmpIdx > 0" 
                   class="bi bi-arrow-up" 
-                  @click="changeOrder(idx, idx - 1)">
-                </span>
-              </h1>
-            </div>
-        </div>
-      </section> -->
+                  @click="changeOrder(currCmpIdx, currCmpIdx - 1)">
+              </span>
+        </el-button>
+      </section> 
 
       <div>
         <el-button
@@ -156,7 +154,10 @@ export default {
       borderRadius: null,
     }
   },
-  created() {},
+  created() {
+      if (this.isMobile()) this.$store.commit({ type: 'setEditMode', isEditMode: false })
+      this.changeOrder = utilService.debounce(this.changeOrder, 250)
+  },
 
   methods: {
     fieldChanged(id, idx, e) {
@@ -271,6 +272,17 @@ export default {
     }
   },
 
+  computed: {
+      currCmpIdx() {
+          const currWap = this.$store.getters.editedWap
+          const currCmps = currWap.cmps
+          return currCmps.findIndex(({id}) => id === this.id)
+      },
+      currWap() {
+        return this.$store.getters.editedWap
+      }
+  },
+
   //TODO: change this awful thing
   watch: {
     editOptions() {
@@ -305,12 +317,6 @@ export default {
         this.borderRadius = this.getElStyle('border-radius')
       },
     },
-  },
-
-  computed: {
-      currWap() {
-        return this.$store.getters.editedWap
-      }
   },
 
 

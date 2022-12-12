@@ -13,24 +13,8 @@
         :checked="isWapHasChat"
          />
     </section>
-
-    <!-- <ul>
-      <li
-        v-for="font in fontClasses"
-        @click.stop="setClass({ fontClass: font.class })">
-        <span>{{ font.sign }}</span>
-        <span>{{ font.family }}</span>
-      </li>
-    </ul>
-
-    <ul>
-      <li
-        v-for="theme in themeClasses"
-        @click.stop="setClass({ themeClass: theme.class })">
-        <span>{{ theme.class }}</span>
-      </li>
-    </ul> -->
     <edit-theme-section @select="handleThemeSelect" />
+    
   </div>
 </template>
 

@@ -52,9 +52,11 @@
         :wapName="wap.name"
         :isPublished="wap.isPublished"
         :wapId="wap._id" />
+        
       <editor-sidebar 
         :selectedCmp="selectedCmp"
         @changeOrder="changeOrder"
+        @addByClick="addByClick"
       />
     </section>
     <main class="main-wap" :class="mediaType" ref="mainWap">
@@ -557,6 +559,12 @@ export default {
     changeOrder({oldIdx, newIdx}) {
       [this.wap.cmps[oldIdx], this.wap.cmps[newIdx]] = [this.wap.cmps[newIdx], this.wap.cmps[oldIdx]]
       this.onCmpsChange()
+    },
+
+    addByClick(cmp) {
+        console.log('cmp:', cmp)
+        this.wap.cmps.push(cmp)
+        this.onCmpsChange()
     }
   },
 
