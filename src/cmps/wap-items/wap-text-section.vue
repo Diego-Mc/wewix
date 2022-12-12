@@ -62,7 +62,7 @@
       class="btn"
       @input="updateContent('btn', $event)"
       :style="info?.btn?.options.style"
-      @click.stop="emitSelect('btn', $event)">
+      @click.stop="btnClicked($event)">
       {{ info?.btn?.content.text || 'Find us' }}
     </button>
   </section>
