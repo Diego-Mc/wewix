@@ -426,7 +426,6 @@ export default {
       //TODO ADD USER MSGS
       if (!this.loggedinUser) {
         this.authModal.isShown = 'login'
-        console.log('not looged in')
 
         this.setAuthModalMsg('publishWap')
         this.isConfirmModalOpen = false

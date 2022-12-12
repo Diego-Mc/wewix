@@ -80,7 +80,7 @@
       <h2 class="title editor-sidebar-actions-layout">
         Edit
         <div class="crud-actions">
-          <i @click.stop="onRemoveCmp" class="bi bi-trash"></i>
+          <i @click.stop="onRemoveCmp" :hidden="!selectedCmp.id" class="bi bi-trash"></i>
         </div> 
       </h2>
       <cmp-editor
@@ -91,7 +91,6 @@
         :elType="selectedCmp.elType"
         :elDom="selectedCmp.elDom"
         @changeOrder="(newOrder) => {this.$emit('changeOrder', newOrder)}"
-        :key="selectedCmp.id"
        />
       <h3 v-else>Select an element to edit</h3>
     </section>
