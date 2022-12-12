@@ -95,6 +95,7 @@
             <button style="color: red" @click="fieldRemoved(id, idx)">X</button>
           </div>
         </div>
+
         <el-button
           type="primary"
           @click="fieldAdded(id)"
@@ -237,6 +238,7 @@ export default {
 
     //TODO CHANGE NAME
     updateOptions() {
+      console.log('this.updatedOptions:', this.updatedOptions)
       eventBus.emit('cmpUpdated', {
         cmpId: this.id,
         elType: this.elType,
