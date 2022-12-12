@@ -1,24 +1,24 @@
 <template>
-  <app-header />
+  <main-header />
 
   <section class="auth-page">
     <div>
       <login-modal
         @authenticated="authenticated"
         :isModalInAuthPage="true"
-        :msg="'Login'" />
+        :msg="'Login to your account'" />
     </div>
 
   </section>
 </template>
 
 <script>
-import appHeader from '../cmps/app-cmps/app-header.vue'
+import mainHeader from '../cmps/app-cmps/main-header.vue'
 import loginModal from '../cmps/app-cmps/login-modal.vue'
 
 export default {
   components: {
-    appHeader,
+    mainHeader,
     loginModal,
   },
   methods: {

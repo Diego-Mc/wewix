@@ -18,7 +18,7 @@
         :key="userKey"
         :fixed="userKey === 'createdAt'"
         :prop="userKey"
-        :label="userKey"
+        :label="modifiedUserKey(userKey)"
         class="leads-table"
         sortable
       />
@@ -62,6 +62,7 @@ export default {
     }
   },
   computed: {
+
     usersDataKeys() {
       return this.usersData
         .reduce((keys, currUser) => {
@@ -125,6 +126,10 @@ export default {
     },
   },
   methods: {
+    modifiedUserKey(userKey){
+      if(userKey === 'createdAt') return 'Date'
+      return userKey
+    },
     keyForDisplay(key, user) {
       let displatedKey = '-'
       if (user[key]) {

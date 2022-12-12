@@ -1,5 +1,5 @@
 <template>
-  <app-header />
+  <main-header />
   <main class="auth-page">
 
     <signup-modal
@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import appHeader from '../cmps/app-cmps/app-header.vue'
+import mainHeader from '../cmps/app-cmps/main-header.vue'
 import signupModal from '../cmps/app-cmps/signup-modal.vue'
 
 export default {
-  components: { appHeader, signupModal, },
+  components: { mainHeader, signupModal, },
 }
 </script>
 

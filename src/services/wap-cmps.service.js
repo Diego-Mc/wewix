@@ -559,8 +559,8 @@ wapsMap.set('wap-form-1', {
   options: {
     meta: {
       formInputs: [
-        { tag: 'email', txt: '' },
-        { tag: 'msg', txt: '' },
+        { tag: 'Email', txt: '' },
+        { tag: 'Message', txt: '' },
       ],
     },
     style: getStyles(),
@@ -2028,7 +2028,7 @@ wapsMap.set('footer-1', {
       typeId: 1,
       options: {
         meta: {
-          formInputs: [{ tag: 'email', txt: '' }],
+          formInputs: [{ tag: 'Email', txt: '' }],
         },
         style: getStyles(),
       },
@@ -4312,7 +4312,7 @@ wapsMap.set('wap-section-20', {
       typeId: 3,
       options: {
         meta: {
-          formInputs: [{ tag: 'email', txt: '' }],
+          formInputs: [{ tag: 'Email', txt: '' }],
         },
         style: getStyles(),
       },
@@ -5360,10 +5360,10 @@ wapsMap.set('wap-section-26', {
       options: {
         meta: {
           formInputs: [
-            { tag: 'email', txt: '' },
-            { tag: 'name', txt: '' },
-            { tag: 'phone', txt: '' },
-            { tag: 'msg', txt: '' },
+            { tag: 'Email', txt: '' },
+            { tag: 'Name', txt: '' },
+            { tag: 'Phone', txt: '' },
+            { tag: 'Message', txt: '' },
           ],
         },
         style: getStyles(),

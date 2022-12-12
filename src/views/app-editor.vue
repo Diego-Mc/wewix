@@ -53,11 +53,10 @@
         :isPublished="wap.isPublished"
         :wapId="wap._id" />
 
-      <editor-sidebar 
+      <editor-sidebar
         :selectedCmp="selectedCmp"
         @changeOrder="changeOrder"
-        @addByClick="addByClick"
-      />
+        @addByClick="addByClick" />
     </section>
     <main class="main-wap" :class="mediaType" ref="mainWap">
       <draggable
@@ -177,8 +176,12 @@ export default {
       this.openWorkSpace()
     }
 
-    if (this.isMobile()) this.$store.commit({ type: 'setEditMode', isEditMode: false })
-    console.log('this.$store.getters.isEditMode:', this.$store.getters.isEditMode)
+    if (this.isMobile())
+      this.$store.commit({ type: 'setEditMode', isEditMode: false })
+    console.log(
+      'this.$store.getters.isEditMode:',
+      this.$store.getters.isEditMode
+    )
   },
   updated() {
     clearInterval(this.overlayInterval)
@@ -352,7 +355,7 @@ export default {
           wap: this.wap,
         })
         this.wap._id = editedWapId
-
+        this.wap.visitors = [{ createdAt: Date.now() }]
         this.$router.push({ path: '/edit/' + editedWapId, replace: true })
       }
       return true
@@ -559,19 +562,22 @@ export default {
       this.$router.replace({ ...this.$route, query: { workTogether: true } })
     },
 
-    changeOrder({oldIdx, newIdx}) {
-      [this.wap.cmps[oldIdx], this.wap.cmps[newIdx]] = [this.wap.cmps[newIdx], this.wap.cmps[oldIdx]]
+    changeOrder({ oldIdx, newIdx }) {
+      ;[this.wap.cmps[oldIdx], this.wap.cmps[newIdx]] = [
+        this.wap.cmps[newIdx],
+        this.wap.cmps[oldIdx],
+      ]
       this.onCmpsChange()
     },
 
     addByClick(cmp) {
-        console.log('cmp:', cmp)
-        this.wap.cmps.push(cmp)
-        this.onCmpsChange()
+      console.log('cmp:', cmp)
+      this.wap.cmps.push(cmp)
+      this.onCmpsChange()
     },
 
     isMobile() {
-      return (window.innerWidth <= 960)
+      return window.innerWidth <= 960
     },
   },
 

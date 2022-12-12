@@ -46,6 +46,7 @@ export default {
 
     const waps = await this.getUserWaps()
     this.userWaps = utilService.deepCopy(waps)
+    this.changeCurrWapData(this.userWaps[0])
 
     socketService.on('formSent', (sentMsg) => {
       if (sentMsg.wapOwnerId === this.loggedinUser._id) {
@@ -67,12 +68,11 @@ export default {
     socketService.off('formSent')
   },
   methods: {
-    removeWap(wapId){
-      const wapIdx = this.userWaps.findIndex(wap => wap._id === wapId)
-      this.userWaps.splice(wapIdx,1)
-      if(wapIdx > 0) {
-        console.log('push',`/dashboard/${this.userWaps[wapIdx-1]._id}`);
-        this.$router.push(`/dashboard/${this.userWaps[wapIdx-1]._id}`)
+    removeWap(wapId) {
+      const wapIdx = this.userWaps.findIndex((wap) => wap._id === wapId)
+      this.userWaps.splice(wapIdx, 1)
+      if (wapIdx > 0) {
+        this.changeCurrWapData(this.userWaps[wapIdx - 1])
       }
     },
     handleBtnSelect(ans) {
@@ -82,7 +82,6 @@ export default {
       return await this.$store.dispatch('getUserWaps')
     },
     changeCurrWapData(wap) {
-      console.log(wap)
       this.currWapData = wap
       if (this.currWapData && this.currWapData._id)
         this.$router.push('/dashboard/' + this.currWapData._id)

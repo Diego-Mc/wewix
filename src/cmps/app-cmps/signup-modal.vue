@@ -2,36 +2,42 @@
   <div class="auth-modal">
     <h2 class="auth-header">{{ msg }}</h2>
     <div class="upload-user-img-container">
-      <img class="user-img-preview" :src="signupCred.picture" alt="" />
-      <upload-section @select="setUserImg" class="img-uploader" />
+      <img
+        class="user-img-preview upload-img-item"
+        :src="signupCred.picture"
+        alt="" />
+      <upload-section
+        @select="setUserImg"
+        class="img-uploader upload-img-item" />
     </div>
+    <div class="auth-form-container">
+      <form class="login-form" @submit.prevent="doSignup">
+        <el-input
+          class="auth-input"
+          type="text"
+          v-model="signupCred.fullname"
+          placeholder="Your full name" />
+        <el-input
+          class="auth-input"
+          type="text"
+          v-model="signupCred.username"
+          placeholder="Username" />
+        <el-input
+          class="auth-input"
+          type="text"
+          v-model="signupCred.password"
+          placeholder="Password"
+          show-password />
 
-    <form class="login-form" @submit.prevent="doSignup">
-      <el-input
-        class="auth-input"
-        type="text"
-        v-model="signupCred.fullname"
-        placeholder="Your full name" />
-      <el-input
-        class="auth-input"
-        type="text"
-        v-model="signupCred.username"
-        placeholder="Username" />
-      <el-input
-        class="auth-input"
-        type="text"
-        v-model="signupCred.password"
-        placeholder="Password"
-        show-password />
-
-      <button class="auth-btn">
-        <span>Signup </span>
-        <span v-if="destPage === 'publishWap'">&nbspand publish</span>
+        <button class="auth-btn">
+          <span>Signup </span>
+          <span v-if="destPage === 'publishWap'">&nbspand publish</span>
+        </button>
+      </form>
+      <button class="toggle-auth-link" @click.prevent="backToLogin">
+        To login
       </button>
-    </form>
-    <button class="toggle-auth-link" @click.prevent="backToLogin">
-      To login
-    </button>
+    </div>
   </div>
 </template>
 
@@ -116,21 +122,32 @@ export default {
 
 <style lang="scss">
 .upload-user-img-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5px;
   width: 500px;
+  height: 140px;
+  position: relative;
+  .el-upload-dragger {
+    padding-block: 10px !important;
+  }
 }
-
-.img-uploader {
-  max-width: 250px;
+.upload-img-item {
+  width: 150px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
 }
-
+.el-upload-dragger{
+  opacity: 0;
+}
+.user-img-preview-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
 .user-img-preview {
   border: 1px solid black;
   margin-block: 10px;
-  max-width: 250px;
-  max-height: 250px;
-  border-radius: 5px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
 }
 </style>
