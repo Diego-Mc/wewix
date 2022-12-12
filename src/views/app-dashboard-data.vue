@@ -20,7 +20,19 @@
         <router-link :to="'/edit/' + wapData._id">
           <button class="edit-wap-btn">Edit Website</button>
         </router-link> -->
-        <button @click="removeSite" class="remove-btn">Delete site</button>
+
+        <el-popconfirm
+          confirm-button-text="Yes"
+          cancel-button-text="No"
+          hide-icon
+          title="Are you sure?"
+          class="delete-confirm-module"
+          @confirm="removeSite"
+          @cancel="cancelEvent">
+          <template #reference>
+            <button class="remove-btn s-hide">DELETE</button>
+          </template>
+        </el-popconfirm>
 
         <router-link :to="`/${wapData.name}`" class="preview-btn s-hide"
           >VIEW WEBSITE</router-link
@@ -41,8 +53,17 @@
               <el-dropdown-item @click="$router.push('/edit/' + wapData._id)"
                 >Edit website</el-dropdown-item
               >
-              <el-dropdown-item @click="removeSite"
-                >Delete website</el-dropdown-item
+              <el-dropdown-item
+                ><el-popconfirm
+                  confirm-button-text="Yes"
+                  cancel-button-text="No"
+                  hide-icon
+                  title="Are you sure?"
+                  class="delete-confirm-module"
+                  @confirm="removeSite"
+                  @cancel="cancelEvent">
+                  <template #reference> Delete Website </template>
+                </el-popconfirm></el-dropdown-item
               >
             </el-dropdown-menu>
           </template>
@@ -59,8 +80,7 @@
     <app-dashboard-details
       v-if="wapData.usersData.subscriptions"
       :usersData="wapData.usersData.subscriptions"
-      :wapName="wapData.name"
-      />
+      :wapName="wapData.name" />
     <!-- <wap-chat :owner="$store.getters.loggedinUser" :wapIds="" :wapId="wapData._id" /> -->
   </section>
 </template>

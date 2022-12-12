@@ -64,7 +64,17 @@
           placeholder="href" />
       </div>
 
-   
+      <div v-if="isOptionsContain('scrollTo')">
+        <!-- Link
+        <input @input="updateOptions" v-model="updatedOptions.meta.src" type="text" placeholder="link" /> -->
+        <h6 class="edit-type-label">CHANGE</h6>
+        <el-input
+          @input="updateOptions"
+          v-model="updatedOptions.meta.href"
+          type="text"
+          placeholder="href" />
+      </div>
+
       <edit-map-section
         v-if="isOptionsContain('mapData')"
         @select="updateOptionsMeta" />
@@ -76,7 +86,7 @@
           v-for="(field, idx) in updatedOptions.meta.formInputs"
           class="form-inputs-container">
           <div style="display: flex">
-            {{field}}
+            {{ field }}
             <input
               class="editor-form-input"
               @input="fieldChanged(id, idx, $event)"
@@ -93,14 +103,27 @@
           Add field to form
         </el-button>
       </div>
-      
+
       <section v-if="elType?.slice(0, 3) === 'nav'">
         <div
           v-for="cmp in currWap?.cmps"
           @click="updateOptionsMeta({ key: 'scrollTo', val: cmp.id })">
           <h1>{{ cmp.type.replace('wap-', '').toUpperCase() }}</h1>
-          <img src="" alt="">
+          <img src="" alt="" />
         </div>
+      </section>
+
+      <section class="mb-only" v-if="!childCmpId && currWap.cmps.length > 1">
+        <span
+          v-if="currCmpIdx < currWap.cmps.length - 1"
+          class="bi bi-arrow-down"
+          @click="changeOrder(currCmpIdx, currCmpIdx + 1)">
+        </span>
+        <span
+          v-if="currCmpIdx > 0"
+          class="bi bi-arrow-up"
+          @click="changeOrder(currCmpIdx, currCmpIdx - 1)">
+        </span>
       </section>
     </section>
   </section>
@@ -278,8 +301,6 @@ export default {
       this.$emit('changeOrder', { oldIdx, newIdx })
     },
   },
-
-  
 
   computed: {
     getCmpIdx() {

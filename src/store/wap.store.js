@@ -33,6 +33,7 @@ export const wapStore = {
     editedWap: null,
     currWap: null,
     isEditMode: true, //TODO: change to be dynamic
+    isMobileEdit: false,
   },
 
   getters: {
@@ -45,6 +46,9 @@ export const wapStore = {
     isEditMode({ isEditMode }) {
       return isEditMode
     },
+    isMobileEdit({ isMobileEdit }) {
+      return isMobileEdit
+    },
   },
 
   mutations: {
@@ -54,8 +58,12 @@ export const wapStore = {
     setEditMode(state, { isEditMode }) {
       state.isEditMode = isEditMode
     },
+    setMobileEdit(state, { isMobileEdit }) {
+      return
+      state.isMobileEdit = isMobileEdit
+    },
     addInfo(state, { isEditMode }) {
-      console.log(state.editedWap);
+      console.log(state.editedWap)
     },
     setEditedWap(state, { wap }) {
       state.editedWap = wap
@@ -80,7 +88,6 @@ export const wapStore = {
     },
   },
   actions: {
-
     async getWaps(context) {
       const waps = await wapService.query()
       context.commit({ type: 'setWaps', waps })
@@ -88,7 +95,9 @@ export const wapStore = {
     },
 
     async getUserWaps(context) {
-      const userWaps = await wapService.getUserWaps(context.getters.loggedinUser.waps)
+      const userWaps = await wapService.getUserWaps(
+        context.getters.loggedinUser.waps
+      )
       return userWaps
     },
 
@@ -115,7 +124,7 @@ export const wapStore = {
       try {
         const updatedWap = await wapService.save(wap)
         context.commit({ type: 'setEditedWap', wap: updatedWap })
-        console.log('wap saved in backend');
+        console.log('wap saved in backend')
         return updatedWap._id
       } catch {
         console.log('err: couldnt save wap')
