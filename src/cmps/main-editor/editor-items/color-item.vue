@@ -3,7 +3,7 @@
     <div
       class="option"
       :class="{ selected: this.selected }"
-      :style="{ backgroundColor: color }">
+      :style="{ '--picker-color': color, backgroundColor: color }">
       <svg
         v-if="isPicker"
         xmlns="http://www.w3.org/2000/svg"

@@ -17,7 +17,10 @@
           }"
           :opts="wapNames" />
       </section>
-      <router-view :wapData="currWapData" @wapRemoved="removeWap"></router-view>
+      <router-view
+        @back-to-sidebar="deselectWap"
+        :wapData="currWapData"
+        @wapRemoved="removeWap"></router-view>
       <wap-chat :owner="$store.getters.loggedinUser" />
     </main>
   </section>
@@ -74,6 +77,10 @@ export default {
       if (wapIdx > 0) {
         this.changeCurrWapData(this.userWaps[wapIdx - 1])
       }
+    },
+    deselectWap() {
+      this.currWapData = null
+      this.$router.push('/dashboard')
     },
     handleBtnSelect(ans) {
       this.changeCurrWapData(ans.val)
