@@ -124,7 +124,7 @@ export default {
     return {
       media: '',
       updatedWapName: this.wapName || '',
-      isValidWapName: this.isPublished? true : false ,
+      isValidWapName: this.isPublished ? true : false,
       checkingSiteName: false,
     }
   },

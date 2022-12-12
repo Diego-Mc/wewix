@@ -6,13 +6,21 @@
   button {
     font-size: inherit;
   }
-  .user-img{
+  .user-img {
     width: 25px;
     height: 25px;
     border-radius: 50%;
   }
 
   .user-options {
+    font-size: rem(16px);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    i {
+      font-size: rem(18px);
+      height: 18px;
+    }
     .info {
       display: flex;
       gap: 8px;
@@ -20,6 +28,19 @@
       font-family: Asap;
       font-weight: 500;
       letter-spacing: 0.4px;
+      border-radius: 5rem;
+      border: 2px solid #eee;
+      transition: all 0.2s;
+      height: 36px;
+      background-color: #fff;
+      &:hover,
+      &:focus {
+        color: $btn-dark;
+      }
+      span {
+        display: flex;
+        gap: 6px;
+      }
       i {
         font-size: rem(18px);
       }

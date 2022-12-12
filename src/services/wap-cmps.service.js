@@ -176,6 +176,8 @@ function getStyles(elType) {
         color: '',
         fontWeight: '',
         fontSize: '',
+        borderRadius: '',
+
       }
     case 'form':
       return {
@@ -277,7 +279,7 @@ wapsMap.set('wap-hero-1', {
         btn: {
           options: {
             meta: {
-              href: '#',
+              href: '',
             },
             style: getStyles('btn'),
           },
@@ -419,7 +421,7 @@ wapsMap.set('wap-cards-1', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: { text: 'See details' },
@@ -482,7 +484,7 @@ wapsMap.set('wap-cards-1', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: { text: 'See details' },
@@ -545,7 +547,7 @@ wapsMap.set('wap-cards-1', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: { text: 'See details', link: '#wc03' },
@@ -821,7 +823,7 @@ wapsMap.set('wap-header-2', {
       info: {
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: { text: 'Find us' },
@@ -855,7 +857,10 @@ wapsMap.set('wap-hero-2', {
         tag: {
           options: {
             meta: {},
-            style: getStyles('tag'),
+            style: {
+              ...getStyles('tag'),
+              borderRadius: '1.46em'
+            },
           },
           content: {
             text: 'FOOD TRUCK',
@@ -892,7 +897,7 @@ wapsMap.set('wap-hero-2', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: {
@@ -944,9 +949,11 @@ wapsMap.set('wap-section-2', {
       typeId: 3,
       options: {
         meta: {
-          src: 'https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623cfb46d0ab4fab78e53577_Callout%20Photo.jpg',
         },
-        style: getStyles(),
+        style: {
+          ...getStyles(),
+          backgroundImage: 'url(https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623cfb46d0ab4fab78e53577_Callout%20Photo.jpg)',
+        },
       },
       info: {
         title: {
@@ -988,7 +995,7 @@ wapsMap.set('wap-section-2', {
         tag: {
           options: {
             meta: {
-              href: '#',
+              href: '',
             },
             style: getStyles('tag'),
           },
@@ -1040,7 +1047,7 @@ wapsMap.set('wap-section-3', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: {
@@ -1303,7 +1310,7 @@ wapsMap.set('wap-section-4', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: {
@@ -1756,7 +1763,7 @@ wapsMap.set('wap-section-5', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: {
@@ -2138,7 +2145,7 @@ wapsMap.set('wap-section-7', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: {
@@ -2243,7 +2250,7 @@ wapsMap.set('footer-1', {
       //       meta: {},
       //       style: getStyles('nav'),
       //     },
-          
+
       //     content: {
       //       nav1: 'SHOP',
       //       nav2: 'DESIGN',
@@ -2457,7 +2464,7 @@ wapsMap.set('wap-header-4', {
             text: 'CONTACT'
           },
         },
-     
+
       },
       // info: {
       //   nav: {
@@ -2522,7 +2529,7 @@ wapsMap.set('wap-hero-4', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: {
@@ -2568,7 +2575,7 @@ wapsMap.set('wap-section-9', {
             meta: {
               src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/sv-dot-1.png?w=240&ssl=1',
             },
-            style: getStyles(),
+            style: {},
           },
           content: {
             text: 'GET YOUR GOBY.',
@@ -2597,6 +2604,7 @@ wapsMap.set('wap-section-9', {
         btn1: {
           options: {
             meta: {
+              href: '',
               src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/sv-dot-1.png?w=240&ssl=1',
             },
             style: getStyles('btn'),
@@ -2608,6 +2616,7 @@ wapsMap.set('wap-section-9', {
         btn2: {
           options: {
             meta: {
+              href: '',
               src: 'https://i0.wp.com/sevahcreative.com/wp-content/uploads/2020/11/sv-dot-1.png?w=240&ssl=1',
             },
             style: getStyles('btn'),
@@ -2662,7 +2671,9 @@ wapsMap.set('wap-section-14', {
         },
         btn1: {
           options: {
-            meta: {},
+            meta: {
+              href: ''
+            },
             style: getStyles('btn'),
           },
           content: {
@@ -2671,7 +2682,9 @@ wapsMap.set('wap-section-14', {
         },
         btn2: {
           options: {
-            meta: {},
+            meta: {
+              href: ''
+            },
             style: getStyles('btn'),
           },
           content: {
@@ -3108,7 +3121,7 @@ wapsMap.set('wap-section-12', {
       },
     },
     {
-      id: '1',
+      id: '2',
       type: 'wap-text-section',
       typeId: 15,
       options: {
@@ -3188,7 +3201,9 @@ wapsMap.set('wap-section-13', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {
+              href: ''
+            },
             style: getStyles('btn'),
           },
           content: {
@@ -3373,7 +3388,7 @@ wapsMap.set('footer-2', {
       },
 
       //       nav6: 'CONTACT',
-   
+
     },
   ],
 })
@@ -3652,7 +3667,6 @@ wapsMap.set('wap-hero-5', {
         text: {
           options: {
             meta: {
-              src: 'https://www.goby.co/assets/twitter-ffb608709acf047f23aacb01ca67ac1120372ceb9d7a389bd9476b204b0e264e.svg',
             },
             style: getStyles('text'),
           },
@@ -3734,7 +3748,7 @@ wapsMap.set('wap-section-15', {
         },
         btn: {
           options: {
-            meta: {},
+            meta: {href: ''},
             style: getStyles('btn'),
           },
           content: {
@@ -5279,7 +5293,7 @@ wapsMap.set('wap-section-23', {
     'https://res.cloudinary.com/wewix/image/upload/v1670410157/waps/wap-section-23_jjhhgp.png',
   options: {
     meta: {
-      src: 'https://assets.website-files.com/5ff6cf529d44b2be039f96ca/5ff86d6541dd4e083c9c5102_background_discover.jpg',
+      // src: 'https://assets.website-files.com/5ff6cf529d44b2be039f96ca/5ff86d6541dd4e083c9c5102_background_discover.jpg',
     },
     style: getStyles(),
   },

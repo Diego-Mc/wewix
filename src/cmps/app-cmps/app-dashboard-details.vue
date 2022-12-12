@@ -1,7 +1,7 @@
 <template>
   <section class="leads card" style="padding: 20px">
     <div class="table-options">
-      <div class="table-sorting">
+      <div class="table-sorting s-hide">
         <el-input
           class="table-search"
           v-model="filterBy"
@@ -26,8 +26,50 @@
           @current-change="paginate($event)"
           :current-page="currentPage" />
       </div>
+<<<<<<< HEAD
       <button @click="downloadCsv" class="csv-download">DOWNLOAD CSV</button>
+=======
+
+      <div class="table-sorting s-only">
+        <el-button
+          class="open-filter-btn"
+          text
+          @click="dialogFormVisible = true">
+          <i class="bi bi-funnel"></i> &nbsp;&nbsp;Filters
+        </el-button>
+      </div>
+
+      <button class="csv-download">DOWNLOAD CSV</button>
+>>>>>>> b61cdd385d54071e982e4bec2acb8bd6d4ef5d07
     </div>
+
+    <el-dialog v-model="dialogFormVisible" title="Table Filters">
+      <div class="table-dialog">
+        <el-input
+          class="table-search"
+          v-model="filterBy"
+          size="small"
+          placeholder="Type to search" />
+        <el-pagination
+          background
+          hide-on-single-page
+          layout="prev, pager, next"
+          :page-count="totalPages"
+          :pager-count="1"
+          class="mt-4 paging mb-only"
+          @current-change="paginate($event)"
+          :current-page="currentPage" />
+      </div>
+
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button type="primary" @click="dialogFormVisible = false">
+            Confirm
+          </el-button>
+        </span>
+      </template>
+    </el-dialog>
+
     <el-table class="" :data="modifiedUsers" style="width: 100%" flexible>
       <el-table-column
         v-for="userKey in usersDataKeys"
@@ -58,6 +100,7 @@ export default {
   },
   data() {
     return {
+      dialogFormVisible: false,
       sortBy: {
         type: '',
         desc: 1,
@@ -69,7 +112,6 @@ export default {
     }
   },
   computed: {
-
     usersDataKeys() {
       return this.usersData
         .reduce((keys, currUser) => {
@@ -133,8 +175,8 @@ export default {
     },
   },
   methods: {
-    modifiedUserKey(userKey){
-      if(userKey === 'createdAt') return 'Date'
+    modifiedUserKey(userKey) {
+      if (userKey === 'createdAt') return 'Date'
       return userKey
     },
     keyForDisplay(key, user) {

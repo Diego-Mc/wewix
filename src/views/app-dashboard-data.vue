@@ -2,8 +2,14 @@
   <section class="dashboard-data" v-if="wapData">
     <div class="dashboard-top-div">
       <div class="title">
-        <h2>
+        <i
+          class="bi bi-chevron-left s-only back-to-sites-btn"
+          @click="$emit('back-to-sidebar')"></i>
+        <h2 class="s-hide">
           {{ wapData.name + "'s Dashboard" }}
+        </h2>
+        <h2 class="s-only">
+          {{ wapData.name }}
         </h2>
         <i class="bi bi-link-45deg site-link" @click="copySiteUrl"></i>
       </div>
@@ -15,13 +21,33 @@
           <button class="edit-wap-btn">Edit Website</button>
         </router-link> -->
         <button @click="removeSite" class="remove-btn">Deleted site</button>
+        <button @click="removeSite" class="remove-btn">Delete site</button>
 
-        <router-link :to="`/${wapData.name}`" class="preview-btn"
+        <router-link :to="`/${wapData.name}`" class="preview-btn s-hide"
           >VIEW WEBSITE</router-link
         >
-        <router-link :to="'/edit/' + wapData._id" class="publish-btn"
+        <router-link :to="'/edit/' + wapData._id" class="publish-btn s-hide"
           >EDIT WEBSITE</router-link
         >
+
+        <el-dropdown trigger="click">
+          <span class="el-dropdown-link s-only">
+            Actions&nbsp;<i class="bi bi-chevron-down"></i>
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item @click="$router.push(`/${wapData.name}`)"
+                >View website</el-dropdown-item
+              >
+              <el-dropdown-item @click="$router.push('/edit/' + wapData._id)"
+                >Edit website</el-dropdown-item
+              >
+              <el-dropdown-item @click="removeSite"
+                >Delete website</el-dropdown-item
+              >
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
       </div>
     </div>
     <main class="graph-and-stats-container">
@@ -101,38 +127,7 @@ export default {
     appDashboardStats,
     wapChat,
   },
-  // unmounted() {
-  //   socketService.logout()
-  // },
 }
 </script>
 
-<style lang="scss">
-// .dashboard-data {
-//   padding: 25px 15px 100px 25px;
-// }
-// .dashboard-top-div {
-//   display: flex;
-//   justify-content: space-between;
-//   margin-bottom: 53px;
-//   button {
-//     border-radius: 50px;
-//   }
-//   .edit-wap-btn {
-//     background: rgba(0, 194, 166, 0.5);
-//     border: 1px solid #eeeeee;
-//     color: #ffffff;
-//   }
-//   .view-wap-btn {
-//     background: #ffffff;
-//     border: 1px solid #00c2a6;
-//     color: #00c2a6;
-//     margin-right: 15px;
-//   }
-// }
-
-// .graph-and-stats-container {
-//   display: flex;
-//   justify-content: space-between;
-// }
-</style>
+<style lang="scss"></style>

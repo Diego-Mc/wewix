@@ -3,17 +3,17 @@
     <el-dropdown
       v-if="loggedinUser"
       trigger="click"
-      split-button
       type="primary"
-      class="user-options"
-      @click="$router.push('/dashboard')">
-      <span class="info">
-        <img class="user-img" v-if="loggedinUser.picture" :src="loggedinUser.picture" alt="" />
+      class="user-options">
+      <el-button class="info">
+        <img
+          class="user-img"
+          v-if="loggedinUser.picture"
+          :src="loggedinUser.picture"
+          alt="" />
         <i v-else class="bi bi-person-circle"></i>
-        Login
-
-        {{ loggedinUser.fullname + "'s Dashboard" }}
-      </span>
+        {{ loggedinUser.fullname }}
+      </el-button>
       <template #dropdown>
         <el-dropdown-menu>
           <el-dropdown-item @click="$router.push('/dashboard')">
@@ -23,6 +23,7 @@
         </el-dropdown-menu>
       </template>
     </el-dropdown>
+
     <section class="login-options" v-else>
       <router-link :to="'/login/'" v-if="!btnsToShow || btnsToShow.login">
         <button class="login-btn"><i class="bi bi-person"></i> Login</button>
