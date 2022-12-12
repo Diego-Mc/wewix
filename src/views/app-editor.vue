@@ -451,7 +451,8 @@ export default {
         this.$store.dispatch('addWapToUser', { wapId: this.wap._id })
         this.$router.push('/' + this.wap.name)
         ElMessage({
-          message: `Site is live at  ${window.location.href}`,
+          // message: `Site is live!`,
+          message: `Site is live at 'https://wewix.onrender.com/${this.wap.name}'`,
           type: 'success',
         })
       } catch (err) {

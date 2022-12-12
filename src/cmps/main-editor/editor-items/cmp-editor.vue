@@ -69,7 +69,8 @@
       </div>
 
       <div v-if="isOptionsContain('link')">
-        Link
+        <h6 class="edit-type-label">YouTube Link</h6>
+        <!-- need to add regex -->
         <input
           @input="updateOptions"
           v-model="updatedOptions.meta.link"
@@ -99,7 +100,6 @@
           v-for="(field, idx) in updatedOptions.meta.formInputs"
           class="form-inputs-container">
           <div style="display: flex">
-            {{ field }}
             <input
               class="editor-form-input"
               @input="fieldChanged(id, idx, $event)"
@@ -236,13 +236,15 @@ export default {
     },
 
     updateOptionsMeta({ key, val }) {
+      // if(key === 'link'){
+      //   val = 
+      // }
       this.updatedOptions.meta[key] = val
       this.updateOptions()
     },
 
     //TODO CHANGE NAME
     updateOptions() {
-      console.log('this.updatedOptions:', this.updatedOptions)
       eventBus.emit('cmpUpdated', {
         cmpId: this.id,
         elType: this.elType,

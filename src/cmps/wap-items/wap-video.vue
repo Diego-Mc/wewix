@@ -7,7 +7,7 @@
         v-if="info.video"
         width="560"
         height="315"
-        :src="info?.video?.options?.meta?.src"
+        :src="info?.video?.options?.meta?.link"
         :style="{...info?.video?.options.style,pointerEvents: $store.getters.isEditMode ? 'none' : 'auto'}"
         @input="updateContent('video', $event)"
         title="YouTube video player"
