@@ -10,8 +10,7 @@
       <input
         type="checkbox"
         :disabled="!this.$store.getters.loggedinUser"
-        :checked="isWapHasChat"
-         />
+        :checked="isWapHasChat" />
     </section>
 
     <!-- <ul>
@@ -70,7 +69,6 @@ export default {
   },
   created() {},
   methods: {
-
     handleThemeSelect({ key, val }) {
       eventBus.emit('themeChanged', { themeClass: val })
     },
@@ -86,12 +84,11 @@ export default {
     },
     emitChatToggled() {
       if (!this.$store.getters.loggedinUser) {
-         ElMessage({
+        ElMessage({
           message: 'You must login to add chat',
           type: 'error',
         })
         return
-
       }
       // TODO: add condition to return if user is guest
       eventBus.emit('toggleChat')

@@ -1,18 +1,34 @@
 <template>
-  <section class="leads">
+  <section class="leads card" style="padding: 20px">
     <div class="table-options">
-      <el-input
-        class="table-search"
-        v-model="filterBy"
-        size="small"
-        placeholder="Type to search" />
+      <div class="table-sorting">
+        <el-input
+          class="table-search"
+          v-model="filterBy"
+          size="small"
+          placeholder="Type to search" />
+        <el-pagination
+          background
+          hide-on-single-page
+          layout="prev, pager, next"
+          :page-count="totalPages"
+          :pager-count="5"
+          class="mt-4 paging"
+          @current-change="paginate($event)"
+          :current-page="currentPage" />
+        <el-pagination
+          background
+          hide-on-single-page
+          layout="prev, pager, next"
+          :page-count="totalPages"
+          :pager-count="1"
+          class="mt-4 paging mb-only"
+          @current-change="paginate($event)"
+          :current-page="currentPage" />
+      </div>
       <button class="csv-download">DOWNLOAD CSV</button>
     </div>
-    <el-table
-      :data="modifiedUsers"
-      style="width: 100%"
-      max-height="200px"
-      flexible>
+    <el-table class="" :data="modifiedUsers" style="width: 100%" flexible>
       <el-table-column
         v-for="userKey in usersDataKeys"
         :key="userKey"
@@ -21,16 +37,7 @@
         :label="userKey"
         class="leads-table"
         sortable />
-        
     </el-table>
-    <el-pagination
-      background
-      hide-on-single-page
-      layout="prev, pager, next"
-      :page-count="totalPages"
-      class="mt-4 paging"
-      @current-change="paginate($event)"
-      :current-page="currentPage" />
   </section>
 </template>
 

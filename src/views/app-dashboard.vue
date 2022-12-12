@@ -12,7 +12,7 @@
           :style="{
             margin: '4px',
             justifyContent: 'flex-start',
-            padding: '18px 20px',
+            padding: '18px 16px',
             gap: '10px',
           }"
           :opts="wapNames" />

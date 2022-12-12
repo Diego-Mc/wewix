@@ -62,6 +62,9 @@ export default {
       this.checkNewVisit()
       eventBus.on('formSubmited', this.addUserInfo)
     }
+    if (this.wap.classState) {
+      document.body.className = `${this.wap.classState.fontClass} ${this.wap.classState.themeClass}`
+    }
     this.$store.commit('setEditMode', { isEditMode: false })
   },
   unmounted() {

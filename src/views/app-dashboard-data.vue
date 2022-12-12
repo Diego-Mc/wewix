@@ -15,10 +15,10 @@
           <button class="edit-wap-btn">Edit Website</button>
         </router-link> -->
         <router-link :to="`/${wapData.name}`" class="preview-btn"
-          >VIEW</router-link
+          >VIEW WEBSITE</router-link
         >
         <router-link :to="'/edit/' + wapData._id" class="publish-btn"
-          >EDIT</router-link
+          >EDIT WEBSITE</router-link
         >
       </div>
     </div>
