@@ -71,7 +71,7 @@
           ]" />
       </nav>
       <section class="section-cmps" :class="{ open: tabState.section }">
-        <wap-templates :cmpType="tabState.section" />
+        <wap-templates :cmpType="tabState.section" @addByClick="(cmp) => $emit('addByClick', cmp)"/>
       </section>
     </section>
     <section
@@ -84,7 +84,9 @@
         :childCmpId="selectedCmp.childCmpId"
         :editOptions="selectedCmp.options"
         :elType="selectedCmp.elType"
-        :elDom="selectedCmp.elDom" />
+        :elDom="selectedCmp.elDom"
+        @changeOrder="(newOrder) => {this.$emit('changeOrder', newOrder)}"
+       />
       <h3 v-else>Select an element to edit</h3>
     </section>
 
@@ -93,7 +95,7 @@
       :class="{ open: tabState.editOpt === 'edit-site' }">
       <h2 class="title">Settings</h2>
       <!-- <edit-font-section /> -->
-      <general-editor />
+      <general-editor/>
     </section>
   </section>
 </template>

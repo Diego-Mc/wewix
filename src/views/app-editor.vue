@@ -52,7 +52,12 @@
         :wapName="wap.name"
         :isPublished="wap.isPublished"
         :wapId="wap._id" />
-      <editor-sidebar :selectedCmp="selectedCmp" />
+
+      <editor-sidebar 
+        :selectedCmp="selectedCmp"
+        @changeOrder="changeOrder"
+        @addByClick="addByClick"
+      />
     </section>
     <main class="main-wap" :class="mediaType" ref="mainWap">
       <draggable
@@ -171,6 +176,9 @@ export default {
       this.isSocketsOn = true
       this.openWorkSpace()
     }
+
+    if (this.isMobile()) this.$store.commit({ type: 'setEditMode', isEditMode: false })
+    console.log('this.$store.getters.isEditMode:', this.$store.getters.isEditMode)
   },
   updated() {
     clearInterval(this.overlayInterval)
@@ -549,6 +557,21 @@ export default {
         cursorId: this.curserId,
       })
       this.$router.replace({ ...this.$route, query: { workTogether: true } })
+    },
+
+    changeOrder({oldIdx, newIdx}) {
+      [this.wap.cmps[oldIdx], this.wap.cmps[newIdx]] = [this.wap.cmps[newIdx], this.wap.cmps[oldIdx]]
+      this.onCmpsChange()
+    },
+
+    addByClick(cmp) {
+        console.log('cmp:', cmp)
+        this.wap.cmps.push(cmp)
+        this.onCmpsChange()
+    },
+
+    isMobile() {
+      return (window.innerWidth <= 960)
     },
   },
 
