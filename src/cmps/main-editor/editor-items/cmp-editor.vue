@@ -57,7 +57,7 @@
         <!-- Link
         <input @input="updateOptions" v-model="updatedOptions.meta.src" type="text" placeholder="link" /> -->
         <h6 class="edit-type-label">ADD A LINK</h6>
-        <el-input
+        <input
           @input="updateOptions"
           v-model="updatedOptions.meta.href"
           type="text"
