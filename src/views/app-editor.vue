@@ -176,10 +176,11 @@ export default {
       this.openWorkSpace()
     }
 
-    if (this.isMobile()) this.$store.commit({ type: 'setEditMode', isEditMode: false })
+    if (this.isMobile())
+      this.$store.commit({ type: 'setMobileEdit', isMobileEdit: true })
 
     eventBus.on('resetSelectedCmp', () => {
-        this.selectedCmp = {}
+      this.selectedCmp = {}
     })
   },
   updated() {
@@ -234,7 +235,6 @@ export default {
       this.mediaType = mediaType
     },
     removeCmp({ id, childCmpId, elType }) {
-
       let changedChildCmpIdx
       let changedCmpIdx = +this.wap.cmps.findIndex((cmp) => cmp.id === id)
       const parentCmp = this.wap.cmps[changedCmpIdx]
@@ -564,19 +564,25 @@ export default {
       this.$router.replace({ ...this.$route, query: { workTogether: true } })
     },
 
-    changeOrder({oldIdx, newIdx}) {
-        [this.wap.cmps[oldIdx], this.wap.cmps[newIdx]] = [this.wap.cmps[newIdx], this.wap.cmps[oldIdx]]
+    changeOrder({ oldIdx, newIdx }) {
+      ;[this.wap.cmps[oldIdx], this.wap.cmps[newIdx]] = [
+        this.wap.cmps[newIdx],
+        this.wap.cmps[oldIdx],
+      ]
       try {
         this.onCmpsChange()
-      } catch(err) {
-        [this.wap.cmps[oldIdx], this.wap.cmps[newIdx]] = [this.wap.cmps[newIdx], this.wap.cmps[oldIdx]]
+      } catch (err) {
+        ;[this.wap.cmps[oldIdx], this.wap.cmps[newIdx]] = [
+          this.wap.cmps[newIdx],
+          this.wap.cmps[oldIdx],
+        ]
         eventBus.emit('resetEditedWap')
       }
     },
 
     addByClick(cmp) {
-        this.wap.cmps.push(cmp)
-        this.onCmpsChange()
+      this.wap.cmps.push(cmp)
+      this.onCmpsChange()
     },
 
     isMobile() {

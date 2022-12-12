@@ -122,7 +122,7 @@ export default {
       eventBus.emit('cmpUpdated', {
         cmpId: this.cmpId,
         elType,
-        
+
         // content: info.text.content,
       })
     },
