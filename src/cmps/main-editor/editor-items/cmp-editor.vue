@@ -103,19 +103,6 @@
         </el-button>
       </section> 
 
-      <div>
-        <el-button
-          type="danger"
-          style="
-            background: rgb(239, 3, 42) !important;
-            font-size: 12px;
-            border: none;
-          "
-          @click.stop="onRemoveCmp"
-          >Remove
-        </el-button>
-      </div>
-
     </section>
   </section>
   
@@ -163,6 +150,7 @@ export default {
 
       eventBus.on('onRemoveCmp', () => {
         if (this.id) {
+          console.log('this.id:', this.id)
           this.onRemoveCmp()
           eventBus.emit('resetSelectedCmp')
           ElMessage({
@@ -176,8 +164,6 @@ export default {
           })
         }
       })
-
-      console.log('hey');
   },
 
   methods: {
