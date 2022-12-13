@@ -1,8 +1,8 @@
-<!-- AIzaSyBOnIuYA6sTb4lF2WYWYJIUouv3HjIx2mg -->
+
 <template>
   <section class="wap-map" @click.stop="emitSelect({ cmpId }, $event)">
     <GoogleMap
-      api-key="AIzaSyDKvG9VduLBhsz5HMIEo1Q9RQaX6B24Mck"
+      api-key="AIzaSyCTfr4C-a7XNuHjCajMSI4f_QkH5GNDSj4"
       style="width: 100%; height: 500px"
       :center="center"
       :zoom="18"

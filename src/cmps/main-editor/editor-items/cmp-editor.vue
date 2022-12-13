@@ -113,7 +113,7 @@
         </div>
       </section>
 
-      <section class="mb-only" v-if="!childCmpId && currWap.cmps.length > 1">
+      <!-- <section class="mb-only" v-if="!childCmpId && currWap.cmps.length > 1">
         <span
           v-if="currCmpIdx < currWap.cmps.length - 1"
           class="bi bi-arrow-down"
@@ -124,7 +124,7 @@
           class="bi bi-arrow-up"
           @click="changeOrder(currCmpIdx, currCmpIdx - 1)">
         </span>
-      </section>
+      </section> -->
       
     </section>
   </section>
