@@ -21,7 +21,7 @@
           {
             val: 'edit-site',
             icon: 'file-richtext',
-            title: { text: 'Themes', placement: 'right' },
+            title: { text: 'Settings', placement: 'right' },
           },
         ]" />
     </nav>
@@ -29,7 +29,13 @@
       class="section-select"
       :class="{ open: tabState.editOpt === 'add-cmp' }">
       <nav class="section-names">
-        <h2 class="title">Section</h2>
+        <h2 class="title">
+          <i
+            @click="tabState.section = ''"
+            v-if="tabState.section"
+            class="bi bi-chevron-left back-btn"></i>
+          &nbsp;Section
+        </h2>
         <editor-btn-group
           class="desktop-section-names-btns"
           :info="{ key: 'section' }"
@@ -71,7 +77,9 @@
           ]" />
       </nav>
       <section class="section-cmps" :class="{ open: tabState.section }">
-        <wap-templates :cmpType="tabState.section" @addByClick="(cmp) => $emit('addByClick', cmp)"/>
+        <wap-templates
+          :cmpType="tabState.section"
+          @addByClick="(cmp) => $emit('addByClick', cmp)" />
       </section>
     </section>
     <section
@@ -96,8 +104,11 @@
                 </span>
               </el-button>
           </section> -->
-          <i @click.stop="onRemoveCmp" :hidden="!selectedCmp.id" class="bi bi-trash"></i>
-        </div> 
+          <i
+            @click.stop="onRemoveCmp"
+            :hidden="!selectedCmp.id"
+            class="bi bi-trash"></i>
+        </div>
       </h2>
       <cmp-editor
         v-if="selectedCmp.id"
@@ -106,9 +117,12 @@
         :editOptions="selectedCmp.options"
         :elType="selectedCmp.elType"
         :elDom="selectedCmp.elDom"
-        @changeOrder="(newOrder) => {this.$emit('changeOrder', newOrder)}"
-       />
-      <h3 v-else>Select an element to edit</h3>
+        @changeOrder="
+          (newOrder) => {
+            this.$emit('changeOrder', newOrder)
+          }
+        " />
+      <h3 class="placeholder-text" v-else>Select an element to edit</h3>
     </section>
 
     <section
@@ -116,7 +130,7 @@
       :class="{ open: tabState.editOpt === 'edit-site' }">
       <h2 class="title">Settings</h2>
       <!-- <edit-font-section /> -->
-      <general-editor/>
+      <general-editor />
     </section>
   </section>
 </template>
@@ -164,7 +178,7 @@ export default {
       this.tabState.editOpt = ''
     },
     onRemoveCmp() {
-        eventBus.emit('onRemoveCmp')
+      eventBus.emit('onRemoveCmp')
     },
     isMobile() {
       return window.innerWidth <= 960
@@ -189,25 +203,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .editor-sidebar-actions-layout {
-    display: flex;
-    justify-content: space-between;
+.editor-sidebar-actions-layout {
+  display: flex;
+  justify-content: space-between;
+
+  .bi-trash {
+    transition: 0.2s;
+    cursor: pointer;
     color: rgba(30, 30, 30, 0.4);
 
-    .bi-trash {
-      transition: 0.2s;
-      cursor: pointer;
+    &:hover {
+      color: rgb(239, 3, 42) !important;
+    }
 
-        &:hover {  
-          color: rgb(239, 3, 42) !important
-        }
-
-        &::before {
-          content: "\f5de";
-          width: 32px;
-          display: flex;
-          justify-content: center;
-        }
+    &::before {
+      content: '\f5de';
+      width: 32px;
+      display: flex;
+      justify-content: center;
     }
   }
+}
 </style>

@@ -12,52 +12,52 @@
       }"
       :opts="[
         {
-          val: 'PoppinsRegular',
+          val: 'Poppins',
           small: 'System',
           sample: 'Aa',
-          style: 'font-family:\'PoppinsRegular\'', //Asap
+          style: 'font-family:\'Poppins\'', //Asap
         },
         {
           val: 'JosefinSans',
-          small: 'Fancy',
+          small: 'Old',
           sample: 'Ss',
           style: 'font-family:\'JosefinSans\'', //Baskerville
         },
         {
-          val: 'Raleway',
-          small: 'Mono',
-          sample: '00',
-          style: 'font-family:\'Raleway\'', //FiraCode
+          val: 'Oswald',
+          small: 'Retro',
+          sample: 'Yg',
+          style: 'font-family:\'Oswald\'', //FiraCode
         },
         {
-          val: 'SpaceGrotesk',
+          val: 'Dosis',
           small: 'Round',
           sample: 'Rr',
-          style: 'font-family:\'SpaceGrotesk\'', //VarelaRound
+          style: 'font-family:\'Dosis\'', //VarelaRound
         },
         {
-          val: 'fun',
-          small: 'Fun',
+          val: 'Inter',
+          small: 'Neat',
           sample: 'Ff',
-          style: 'font-family:\'SignPainter\'',
+          style: 'font-family:\'Inter\'',
         },
         {
-          val: 'pro',
-          small: 'Pro',
+          val: 'Caveat',
+          small: 'Freestyle',
           sample: 'Pr',
-          style: 'font-family:\'Helvetica\'',
+          style: 'font-family:\'Caveat\'',
         },
         {
-          val: 'cool',
-          small: 'Cool',
+          val: 'PlayfairDisplay',
+          small: 'Fashion',
           sample: 'Cc',
-          style: 'font-family:\'Silom\'',
+          style: 'font-family:\'PlayfairDisplay\'',
         },
         {
-          val: 'old',
-          small: 'Old',
+          val: 'RedHatDisplay',
+          small: 'Pro',
           sample: 'At',
-          style: 'font-family:\'AmericanTypewriter\'',
+          style: 'font-family:\'RedHatDisplay\'',
         },
       ]" />
   </section>

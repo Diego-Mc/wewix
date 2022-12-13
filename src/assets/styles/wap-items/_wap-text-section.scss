@@ -28,7 +28,7 @@
   .title,
   .subtitle {
     font-size: em(80px);
-    font-weight: 500;
+    // font-weight: 500;
   }
   .subtitle {
     grid-area: subtitle;
@@ -163,7 +163,8 @@
       font-size: em(10px);
     }
     button {
-      font-family: PoppinsBold;
+      font-family: Poppins;
+      font-weight: 800;
       letter-spacing: 1px;
       border-radius: 4px;
       background-color: var(--clr-2);
@@ -197,7 +198,8 @@
       margin-bottom: 20px;
     }
     button {
-      font-family: PoppinsBold;
+      font-family: Poppins;
+      font-weight: 800;
       letter-spacing: 1px;
       border-radius: 4px;
       background-color: white;
@@ -214,10 +216,12 @@
   }
 
   &.type-10 {
-    font-family: PoppinsRegular;
+    font-family: Poppins;
+    font-weight: 400;
 
     .title {
-      font-family: PoppinsBold;
+      font-family: Poppins;
+      font-weight: 800;
       margin-bottom: 40px;
     }
     .text {
@@ -248,7 +252,8 @@
     }
   }
   &.type-11 {
-    font-family: PoppinsBold;
+    font-family: Poppins;
+    font-weight: 800;
     font-size: em(32px);
   }
   &.type-12 {
@@ -264,7 +269,8 @@
       align-items: center;
       margin-bottom: 32px;
       .title {
-        font-family: PoppinsBold;
+        font-family: Poppins;
+        font-weight: 800;
         font-size: em(48px);
         max-width: 80%;
       }
@@ -275,7 +281,8 @@
   }
   &.type-15,
   &.type-16 {
-    font-family: PoppinsRegular;
+    font-family: Poppins;
+    font-weight: 400;
     grid-template-areas: 'title' 'text' 'tag';
     text-align: center;
     justify-items: center;
@@ -286,7 +293,8 @@
       margin-bottom: 24px;
       .title {
         font-size: em(48px);
-        font-family: PoppinsBold;
+        font-family: Poppins;
+        font-weight: 800;
         max-width: 60%;
       }
     }
@@ -296,7 +304,8 @@
     }
     .tag {
       letter-spacing: normal;
-      font-family: PoppinsBold;
+      font-family: Poppins;
+      font-weight: 800;
       font-size: em(16px);
     }
   }
@@ -330,7 +339,8 @@
   &.type-18,
   &.type-26 {
     grid-template-areas: 'title' 'text' 'cta';
-    font-family: PoppinsBold;
+    font-family: Poppins;
+    font-weight: 800;
     width: fit-content;
     .titles-wrapper {
       display: flex;
@@ -389,11 +399,13 @@
     }
     .titles-wrapper {
       .title {
-        font-family: PoppinsBold;
+        font-family: Poppins;
+        font-weight: 800;
         font-size: em(64px);
       }
       .subtitle {
-        font-family: PoppinsBold;
+        font-family: Poppins;
+        font-weight: 800;
         font-size: em(24px);
       }
     }
@@ -416,7 +428,8 @@
     font-size: rem(26px);
     .text {
       color: var(--clr-3);
-      font-family: PoppinsRegular;
+      font-family: Poppins;
+      font-weight: 400;
     }
   }
   &.type-27 {
@@ -447,12 +460,14 @@
       grid-area: title;
       margin-bottom: 20px;
       .title {
-        font-family: PoppinsBold;
+        font-family: Poppins;
+        font-weight: 800;
         font-size: em(48px);
         line-height: 130%;
       }
       .subtitle {
-        font-family: PoppinsBold;
+        font-family: Poppins;
+        font-weight: 800;
         font-size: em(24px);
       }
     }
@@ -504,7 +519,8 @@
     }
     .details {
       font-size: em(14px);
-      font-family: PoppinsRegular;
+      font-family: Poppins;
+      font-weight: 400;
     }
     .tag,
     .details {

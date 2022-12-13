@@ -1,6 +1,9 @@
 <template>
   <section class="wap-chat-container">
     <section @click="isChatOpen = true" class="chat-icon" v-if="!isChatOpen">
+      <span v-if="notificationsTotal" class="unread notification">{{
+        notificationsTotal
+      }}</span>
       <i class="bi bi-chat-right-dots"></i>
     </section>
 
@@ -28,7 +31,6 @@
                 <span class="unread notification" v-if="guest.unread">{{
                   guest.unread
                 }}</span>
-                <!-- //TODO: remove unread by entering (not by answering) -->
               </span>
             </nav>
           </article>
@@ -134,6 +136,15 @@ export default {
     owner: Object,
     wapName: String,
   },
+  computed: {
+    notificationsTotal() {
+      return Object.values(this.adminChats).reduce(
+        (acc, chat) =>
+          acc + chat.reduce((gAcc, guest) => gAcc + guest.unread, 0),
+        0
+      )
+    },
+  },
   data() {
     return {
       currGuest: null,
@@ -203,7 +214,7 @@ export default {
     })
 
     socketService.on('guestDisconnected', (guestId) => {
-        console.log('guestId:', guestId)
+      console.log('guestId:', guestId)
     })
 
     this.clearTyping = utilService.debounce(this.clearTyping)

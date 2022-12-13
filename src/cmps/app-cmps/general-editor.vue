@@ -1,19 +1,30 @@
 //TODO: change default theme based on chosen template
 <template>
   <div>
-    <section class="add-chat-container" @click="emitChatToggled">
+    <section class="add-chat-container" v-if="this.$store.getters.loggedinUser">
       <h6 class="edit-type-label">CHAT</h6>
-      <h3 style="display: inline; margin-right: 5px" class="add-chat">
-        Add chat?
-      </h3>
 
-      <input
+      <editor-btn-group
+        :info="{ key: 'chat', type: 'picker' }"
+        dir="column"
+        v-model="isWapHasChat"
+        class="theme-picker chat"
+        @setVal="handleToggleChat"
+        :style="{ gap: '10px' }"
+        :opts="[
+          {
+            val: true,
+            icon: 'people',
+            text: 'Live Chat',
+          },
+        ]" />
+
+      <!-- <input
         type="checkbox"
         :disabled="!this.$store.getters.loggedinUser"
-        :checked="isWapHasChat" />
+        :checked="isWapHasChat" /> -->
     </section>
     <edit-theme-section @select="handleThemeSelect" />
-    
   </div>
 </template>
 
@@ -65,6 +76,9 @@ export default {
         : this.classState.themeClass
       eventBus.emit('themeChanged', this.classState)
       document.body.className = `${this.classState.fontClass} ${this.classState.themeClass}`
+    },
+    handleToggleChat({ val }) {
+      if (val) this.emitChatToggled()
     },
     emitChatToggled() {
       if (!this.$store.getters.loggedinUser) {

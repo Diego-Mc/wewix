@@ -6,7 +6,8 @@
   padding-block: 0 !important;
   color: var(--clr-1);
   background-color: var(--clr-3);
-  font-family: PoppinsBold;
+  font-family: Poppins;
+  font-weight: 800;
   justify-items: center;
 
   > :last-child {
@@ -134,7 +135,8 @@
     }
 
     nav ul {
-      font-family: PoppinsRegular;
+      font-family: Poppins;
+      font-weight: 400;
       & li:hover {
         color: var(--clr-1);
       }

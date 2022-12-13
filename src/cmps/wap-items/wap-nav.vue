@@ -98,9 +98,94 @@
       </li> -->
     </ul>
   </nav>
-  <Slide v-if="info.nav" noOverlay right class="burger">
-    <li v-for="nav in info?.nav?.content">
+  <Slide
+    v-if="info.nav1"
+    :class="'type-' + typeId"
+    :style="info?.nav?.options.style"
+    @click.stop="emitSelect(undefined, $event)"
+    noOverlay
+    right
+    class="burger">
+    <!-- <li v-for="nav in info?.nav?.content">
       {{ nav }}
+    </li> -->
+    <li
+      v-if="info.nav1"
+      v-scroll-to="
+        info.nav1.options.meta.scrollTo && !$store.isEditMode
+          ? '#' + info.nav1.options.meta.scrollTo
+          : '#app'
+      "
+      :style="info?.nav1?.options.style"
+      :contenteditable="$store.getters.isEditMode"
+      @click.stop="emitSelect('nav1', $event)"
+      @input="updateContent('nav1', $event)">
+      {{ info.nav1.content.text }}
+    </li>
+    <li
+      v-if="info.nav2"
+      v-scroll-to="
+        info.nav2.options.meta.scrollTo && !$store.isEditMode
+          ? '#' + info.nav2.options.meta.scrollTo
+          : '#app'
+      "
+      :style="info?.nav2?.options.style"
+      :contenteditable="$store.getters.isEditMode"
+      @click.stop="emitSelect('nav2', $event)"
+      @input="updateContent('nav2', $event)">
+      {{ info.nav2.content.text }}
+    </li>
+    <li
+      v-if="info.nav3"
+      v-scroll-to="
+        info.nav3.options.meta.scrollTo && !$store.isEditMode
+          ? '#' + info.nav3.options.meta.scrollTo
+          : '#app'
+      "
+      :style="info?.nav3?.options.style"
+      :contenteditable="$store.getters.isEditMode"
+      @click.stop="emitSelect('nav3', $event)"
+      @input="updateContent('nav3', $event)">
+      {{ info.nav3.content.text }}
+    </li>
+    <li
+      v-if="info.nav4"
+      v-scroll-to="
+        info.nav4.options.meta.scrollTo && !$store.isEditMode
+          ? '#' + info.nav4.options.meta.scrollTo
+          : '#app'
+      "
+      :style="info?.nav4?.options.style"
+      :contenteditable="$store.getters.isEditMode"
+      @click.stop="emitSelect('nav4', $event)"
+      @input="updateContent('nav4', $event)">
+      {{ info.nav4.content.text }}
+    </li>
+    <li
+      v-if="info.nav5"
+      v-scroll-to="
+        info.nav5.options.meta.scrollTo && !$store.isEditMode
+          ? '#' + info.nav5.options.meta.scrollTo
+          : '#app'
+      "
+      :style="info?.nav5?.options.style"
+      :contenteditable="$store.getters.isEditMode"
+      @click.stop="emitSelect('nav5', $event)"
+      @input="updateContent('nav5', $event)">
+      {{ info.nav5.content.text }}
+    </li>
+    <li
+      v-if="info.nav6"
+      v-scroll-to="
+        info.nav6.options.meta.scrollTo && !$store.isEditMode
+          ? '#' + info.nav6.options.meta.scrollTo
+          : '#app'
+      "
+      :style="info?.nav6?.options.style"
+      :contenteditable="$store.getters.isEditMode"
+      @click.stop="emitSelect('nav6', $event)"
+      @input="updateContent('nav6', $event)">
+      {{ info.nav6.content.text }}
     </li>
   </Slide>
 </template>

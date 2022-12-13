@@ -1,6 +1,30 @@
 <template>
   <section v-if="editOptions">
     <section class="style-editor">
+      <section class="cmp-edit-section" v-if="elType?.slice(0, 3) === 'nav'">
+        <h6 class="edit-type-label">
+          QUICK LINKS&nbsp;
+          <el-tooltip
+            class="box-item"
+            effect="light"
+            content="Select the part you want to quick-link to"
+            placement="right">
+            <i class="bi bi-question-circle"></i>
+          </el-tooltip>
+        </h6>
+        <div class="preview-quick-links-container">
+          <!-- <h1>{{ cmp.type.replace('wap-', '').toUpperCase() }}</h1> -->
+          <div
+            class="img-container"
+            v-for="cmp in currWap?.cmps"
+            :class="{ selected: cmp.id === updatedOptions.meta.scrollTo }"
+            @click="updateOptionsMeta({ key: 'scrollTo', val: cmp.id })">
+            <img :src="cmp.previewImg" class="preview-nav-quick-link" />
+            <i class="bi bi-link-45deg link-icon"></i>
+          </div>
+        </div>
+      </section>
+
       <div v-if="isOptionsContain('fontFamily')">
         <edit-font-section @select="updateOptionsStyle" :elStyle="fontFamily" />
       </div>
@@ -45,7 +69,8 @@
       </div>
 
       <div v-if="isOptionsContain('link')">
-        Link
+        <h6 class="edit-type-label">YouTube Link</h6>
+        <!-- need to add regex -->
         <input
           @input="updateOptions"
           v-model="updatedOptions.meta.link"
@@ -64,17 +89,6 @@
           placeholder="href" />
       </div>
 
-      <div v-if="isOptionsContain('scrollTo')">
-        <!-- Link
-        <input @input="updateOptions" v-model="updatedOptions.meta.src" type="text" placeholder="link" /> -->
-        <h6 class="edit-type-label">CHANGE</h6>
-        <el-input
-          @input="updateOptions"
-          v-model="updatedOptions.meta.href"
-          type="text"
-          placeholder="href" />
-      </div>
-
       <edit-map-section
         v-if="isOptionsContain('mapData')"
         @select="updateOptionsMeta" />
@@ -86,7 +100,6 @@
           v-for="(field, idx) in updatedOptions.meta.formInputs"
           class="form-inputs-container">
           <div style="display: flex">
-            {{ field }}
             <input
               class="editor-form-input"
               @input="fieldChanged(id, idx, $event)"
@@ -95,7 +108,7 @@
             <button style="color: red" @click="fieldRemoved(id, idx)">X</button>
           </div>
         </div>
-        
+
         <el-button
           type="primary"
           @click="fieldAdded(id)"
@@ -104,15 +117,7 @@
         </el-button>
       </div>
 
-      <section v-if="elType?.slice(0, 3) === 'nav'">
-        <div
-          v-for="cmp in currWap?.cmps"
-          @click="updateOptionsMeta({ key: 'scrollTo', val: cmp.id })">
-          <h1>{{ cmp.type.replace('wap-', '').toUpperCase() }}</h1>
-          <img src="" alt="" />
-        </div>
-      </section>
-
+      <!-- //TODO: continue working? -->
       <!-- <section class="mb-only" v-if="!childCmpId && currWap.cmps.length > 1">
         <span
           v-if="currCmpIdx < currWap.cmps.length - 1"
@@ -125,7 +130,6 @@
           @click="changeOrder(currCmpIdx, currCmpIdx - 1)">
         </span>
       </section> -->
-      
     </section>
   </section>
 </template>
@@ -232,13 +236,15 @@ export default {
     },
 
     updateOptionsMeta({ key, val }) {
+      // if(key === 'link'){
+      //   val =
+      // }
       this.updatedOptions.meta[key] = val
       this.updateOptions()
     },
 
     //TODO CHANGE NAME
     updateOptions() {
-      console.log('this.updatedOptions:', this.updatedOptions)
       eventBus.emit('cmpUpdated', {
         cmpId: this.id,
         elType: this.elType,
@@ -371,15 +377,20 @@ export default {
 <style>
 .form-inputs-container > * {
   margin-bottom: 14px;
+  display: flex;
 }
 .editor-form-input {
-  border: 1px solid rgb(177, 177, 177) !important;
-  padding: 5px !important;
+  /* border: 1px solid rgb(177, 177, 177) !important; */
+  flex: 1;
+  padding: 10px 10px !important;
+  border-radius: 8px;
+  outline: 1px solid #ccc;
+  border: none;
 }
 .editor-form-input:active {
-  border-color: aqua;
+  outline: 2px solid #00c2a6 !important;
 }
 .editor-form-input:focus-visible {
-  border-color: aqua;
+  outline: 2px solid #00c2a6 !important;
 }
 </style>

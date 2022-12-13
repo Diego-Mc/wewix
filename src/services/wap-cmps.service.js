@@ -3763,7 +3763,7 @@ wapsMap.set('wap-section-15', {
       typeId: 5,
       options: {
         meta: {
-          src: 'https://www.youtube.com/embed/8TuRYV71Rgo',
+         
         },
         style: getStyles(),
       },
@@ -3771,7 +3771,7 @@ wapsMap.set('wap-section-15', {
         video: {
           options: {
             meta: {
-              src: 'https://www.youtube.com/embed/8TuRYV71Rgo',
+              link: 'https://www.youtube.com/embed/8TuRYV71Rgo',
             },
             style: getStyles('img'),
           },
@@ -5360,7 +5360,7 @@ wapsMap.set('wap-section-25', {
         video: {
           options: {
             meta: {
-              src: 'https://www.youtube.com/embed/TOvmr5eSFVw',
+              link: 'https://www.youtube.com/embed/TOvmr5eSFVw',
             },
             style: getStyles('img'),
           },
@@ -5392,7 +5392,7 @@ wapsMap.set('wap-section-25', {
       typeId: 5,
       options: {
         meta: {
-          src: 'https://www.youtube.com/embed/4KEAdBN7I1g',
+          link: 'https://www.youtube.com/embed/4KEAdBN7I1g',
         },
         style: getStyles(),
       },
@@ -5400,7 +5400,7 @@ wapsMap.set('wap-section-25', {
         video: {
           options: {
             meta: {
-              src: 'https://www.youtube.com/embed/v7AYKMP6rOE',
+              link: 'https://www.youtube.com/embed/v7AYKMP6rOE',
             },
             style: getStyles('img'),
           },
@@ -5432,7 +5432,7 @@ wapsMap.set('wap-section-25', {
       typeId: 5,
       options: {
         meta: {
-          src: 'https://www.youtube.com/embed/8TuRYV71Rgo',
+          link: 'https://www.youtube.com/embed/8TuRYV71Rgo',
         },
         style: getStyles(),
       },
@@ -5440,7 +5440,7 @@ wapsMap.set('wap-section-25', {
         video: {
           options: {
             meta: {
-              src: 'https://www.youtube.com/embed/8TuRYV71Rgo',
+              link: 'https://www.youtube.com/embed/8TuRYV71Rgo',
             },
             style: getStyles('img'),
           },
@@ -5876,7 +5876,6 @@ wapsMap.set('wap-section-26', {
     'https://res.cloudinary.com/wewix/image/upload/v1670746938/waps/map-form-cnp-1_siblqa.png',
   options: {
     meta: {
-      src: '',
     },
     style: getStyles(),
   },

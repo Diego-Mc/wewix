@@ -63,7 +63,8 @@
   //   gap: 8px;
   //   font-size: rem(24px);
   //   color: white;
-  //   font-family: 'PoppinsBold';
+  //   font-family: Poppins;
+  font-weight: 800;
   //   align-items: center;
   // }
 
@@ -194,7 +195,7 @@
     align-items: center;
     padding-inline: 18px;
     flex: 1;
-    max-width: 350px;
+    max-width: 290px;
 
     .mb-show {
       display: none;

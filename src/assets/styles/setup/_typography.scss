@@ -29,11 +29,13 @@
   font-weight: 100 1000;
 }
 @font-face {
-  font-family: PoppinsRegular;
+  font-family: Poppins;
+  font-weight: 400;
   src: url('../fonts/Poppins-Regular.ttf') format('truetype');
 }
 @font-face {
-  font-family: PoppinsBold;
+  font-family: Poppins;
+  font-weight: 800;
   src: url('../fonts/Poppins-Bold.ttf') format('truetype');
 }
 @font-face {
@@ -45,3 +47,88 @@
   src: url('../fonts/BarlowCondensed-Bold.ttf') format('truetype');
 }
 @import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css');
+//new fonts:
+@font-face {
+  font-family: 'JosefinSans';
+  src: url('../fonts/sectioned-fonts/JosefinSans-VariableFont_wght.woff2')
+      format('woff2 supports variations'),
+    url('../fonts/sectioned-fonts/JosefinSans-VariableFont_wght.woff2')
+      format('woff2-variations');
+  font-weight: 100 1000;
+}
+@font-face {
+  font-family: 'Caveat';
+  src: url('../fonts/sectioned-fonts/Caveat-VariableFont_wght.woff2')
+      format('woff2 supports variations'),
+    url('../fonts/sectioned-fonts/Caveat-VariableFont_wght.woff2')
+      format('woff2-variations');
+  font-weight: 100 1000;
+}
+@font-face {
+  font-family: 'Dosis';
+  src: url('../fonts/sectioned-fonts/Dosis-VariableFont_wght.woff2')
+      format('woff2 supports variations'),
+    url('../fonts/sectioned-fonts/Dosis-VariableFont_wght.woff2')
+      format('woff2-variations');
+  font-weight: 100 1000;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/sectioned-fonts/Inter-VariableFont_slnt,wght.woff2')
+      format('woff2 supports variations'),
+    url('../fonts/sectioned-fonts/Inter-VariableFont_slnt,wght.woff2')
+      format('woff2-variations');
+  font-weight: 100 1000;
+}
+@font-face {
+  font-family: 'Oswald';
+  src: url('../fonts/sectioned-fonts/Oswald-VariableFont_wght.woff2')
+      format('woff2 supports variations'),
+    url('../fonts/sectioned-fonts/Oswald-VariableFont_wght.woff2')
+      format('woff2-variations');
+  font-weight: 100 1000;
+}
+@font-face {
+  font-family: 'PlayfairDisplay';
+  src: url('../fonts/sectioned-fonts/PlayfairDisplay-VariableFont_wght.woff2')
+      format('woff2 supports variations'),
+    url('../fonts/sectioned-fonts/PlayfairDisplay-VariableFont_wght.woff2')
+      format('woff2-variations');
+  font-weight: 100 1000;
+}
+@font-face {
+  font-family: 'RedHatDisplay';
+  src: url('../fonts/sectioned-fonts/RedHatDisplay-VariableFont_wght.woff2')
+      format('woff2 supports variations'),
+    url('../fonts/sectioned-fonts/RedHatDisplay-VariableFont_wght.woff2')
+      format('woff2-variations');
+  font-weight: 100 1000;
+}
+@font-face {
+  font-family: 'Rubik';
+  src: url('../fonts/sectioned-fonts/Rubik-VariableFont_wght.woff2')
+      format('woff2 supports variations'),
+    url('../fonts/sectioned-fonts/Rubik-VariableFont_wght.woff2')
+      format('woff2-variations');
+  font-weight: 100 1000;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url(../fonts/sectioned-fonts/Poppins-Light.ttf) format('truetype');
+  font-weight: 200;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url(../fonts/sectioned-fonts/Poppins-Regular.ttf) format('truetype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url(../fonts/sectioned-fonts/Poppins-SemiBold.ttf) format('truetype');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url(../fonts/sectioned-fonts/Poppins-Bold.ttf) format('truetype');
+  font-weight: 800;
+}

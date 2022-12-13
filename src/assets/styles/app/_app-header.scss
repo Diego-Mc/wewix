@@ -5,7 +5,8 @@
   @include grid(3);
   padding-block: 0;
   height: 120px;
-  font-family: 'PoppinsRegular';
+  font-family: Poppins;
+  font-weight: 400;
   a {
     cursor: pointer;
   }
@@ -14,7 +15,8 @@
     cursor: pointer;
     gap: 8px;
     font-size: rem(24px);
-    font-family: 'PoppinsBold';
+    font-family: Poppins;
+    font-weight: 800;
     align-items: center;
     img {
       height: rem(24px);

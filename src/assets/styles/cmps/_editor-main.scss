@@ -12,6 +12,10 @@
     pointer-events: none;
     user-select: none;
 
+    .main-header {
+      padding-inline: 24px;
+    }
+
     > * {
       pointer-events: auto;
     }

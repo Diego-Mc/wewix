@@ -28,10 +28,6 @@
           val: 'theme-5',
           text: 'Theme 5',
         },
-        {
-          val: 'theme-6',
-          text: 'Theme 6',
-        },
       ]" />
   </section>
 </template>

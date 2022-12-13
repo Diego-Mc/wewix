@@ -41,8 +41,8 @@
           >EDIT WEBSITE</router-link
         >
 
-        <el-dropdown trigger="click">
-          <span class="el-dropdown-link s-only">
+        <el-dropdown trigger="click" class="s-only">
+          <span class="el-dropdown-link">
             Actions&nbsp;<i class="bi bi-chevron-down"></i>
           </span>
           <template #dropdown>
