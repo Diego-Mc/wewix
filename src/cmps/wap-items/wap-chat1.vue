@@ -1,7 +1,9 @@
 <template>
   <section class="wap-chat-container">
     <section @click="isChatOpen = true" class="chat-icon" v-if="!isChatOpen">
-      <span class="unread notification">{{ notificationsTotal }}</span>
+      <span v-if="notificationsTotal" class="unread notification">{{
+        notificationsTotal
+      }}</span>
       <i class="bi bi-chat-right-dots"></i>
     </section>
 

@@ -237,7 +237,7 @@ export default {
 
     updateOptionsMeta({ key, val }) {
       // if(key === 'link'){
-      //   val = 
+      //   val =
       // }
       this.updatedOptions.meta[key] = val
       this.updateOptions()
@@ -377,15 +377,20 @@ export default {
 <style>
 .form-inputs-container > * {
   margin-bottom: 14px;
+  display: flex;
 }
 .editor-form-input {
-  border: 1px solid rgb(177, 177, 177) !important;
-  padding: 5px !important;
+  /* border: 1px solid rgb(177, 177, 177) !important; */
+  flex: 1;
+  padding: 10px 10px !important;
+  border-radius: 8px;
+  outline: 1px solid #ccc;
+  border: none;
 }
 .editor-form-input:active {
-  border-color: aqua;
+  outline: 2px solid #00c2a6 !important;
 }
 .editor-form-input:focus-visible {
-  border-color: aqua;
+  outline: 2px solid #00c2a6 !important;
 }
 </style>

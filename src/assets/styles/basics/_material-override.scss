@@ -19,6 +19,16 @@
   color: $main;
 }
 
+// .el-input {
+//   --el-input-focus-border: $main;
+//   --el-input-focus-border-color: $main;
+// }
+
+.el-input__wrapper.is-focus {
+  outline-color: #00c2a6 !important;
+  box-shadow: 0 0 0 1px #00c2a6 inset !important;
+}
+
 .el-button {
   background-color: $main;
   border-color: $main;

@@ -3,7 +3,8 @@
   .decor {
     user-select: none;
   }
-  font-family: PoppinsRegular;
+  font-family: Poppins;
+  font-weight: 400;
   color: $btn-dark;
   font-size: 16px;
   display: grid;
@@ -38,7 +39,8 @@
     position: relative;
     h1 {
       font-size: 5.2em;
-      font-family: PoppinsBold;
+      font-family: Poppins;
+      font-weight: 800;
       line-height: 1.2;
 
       span {
@@ -76,7 +78,8 @@
       // border: 1px solid white;
       background-color: white;
       color: $btn-dark;
-      font-family: PoppinsBold;
+      font-family: Poppins;
+      font-weight: 800;
       display: inline;
       width: fit-content;
       border-radius: 3em;
@@ -130,7 +133,8 @@
     margin-bottom: 6em;
 
     .title-wrapper {
-      font-family: PoppinsBold;
+      font-family: Poppins;
+      font-weight: 800;
       margin-bottom: 120px;
       h2 {
         font-size: em(42px);
@@ -149,7 +153,8 @@
         }
         h3 {
           font-size: em(18px);
-          font-family: PoppinsBold;
+          font-family: Poppins;
+          font-weight: 800;
           margin-block: 24px 10px;
         }
       }
@@ -160,7 +165,8 @@
     @include grid(1);
     margin-bottom: 6em;
     h3 {
-      font-family: PoppinsBold;
+      font-family: Poppins;
+      font-weight: 800;
       text-align: center;
       font-size: em(42px);
       margin-bottom: 40px;
@@ -210,7 +216,8 @@
         .demo-part {
           margin-bottom: 60px;
           h4 {
-            font-family: PoppinsBold;
+            font-family: Poppins;
+            font-weight: 800;
             font-size: em(18px);
             margin-bottom: 4px;
           }
@@ -229,7 +236,8 @@
     padding-block: 8em 4em;
     h2 {
       font-size: em(36px);
-      font-family: PoppinsBold;
+      font-family: Poppins;
+      font-weight: 800;
       text-align: center;
     }
     button {
@@ -257,7 +265,8 @@
         cursor: pointer;
         gap: 8px;
         font-size: em(24px);
-        font-family: 'PoppinsBold';
+        font-family: Poppins;
+        font-weight: 800;
         align-items: center;
         color: rgba($color: #fff, $alpha: 0.5);
         transition: all 0.2s;

@@ -49,7 +49,7 @@
     // background-color: $btn-dark;
     grid-area: header;
     grid-column: 1 / -1;
-    padding-inline: 30px;
+    padding-inline: 40px;
     .logo {
       // color: white;
     }
@@ -258,6 +258,8 @@
 
   .dashboard-sidebar {
     border-radius: 8px;
+    position: sticky;
+    top: 24px;
     // margin: 20px;
     // padding: 36px 12px;
     height: 100%;
@@ -359,7 +361,8 @@
     // grid-template-columns: 160px 160px;
     grid-template-columns: repeat(auto-fill, 160px);
     gap: 20px;
-    font-family: PoppinsBold;
+    font-family: Poppins;
+    font-weight: 800;
     .wap-stat-block {
       // color: $main;
       // background-color: $main-light;
@@ -381,7 +384,8 @@
     }
     h3 {
       font-size: em(14px);
-      font-family: PoppinsRegular;
+      font-family: Poppins;
+      font-weight: 400;
       color: #888;
       white-space: nowrap;
     }
@@ -516,7 +520,8 @@
         // grid-template-columns: 160px 160px;
         grid-template-columns: repeat(auto-fill, 160px);
         gap: 20px;
-        font-family: PoppinsBold;
+        font-family: Poppins;
+        font-weight: 800;
         .wap-stat-block {
           // color: $main;
           // background-color: $main-light;
@@ -537,7 +542,8 @@
           }
           h3 {
             font-size: em(14px);
-            font-family: PoppinsRegular;
+            font-family: Poppins;
+            font-weight: 400;
             color: #888;
             white-space: nowrap;
           }

@@ -1,5 +1,8 @@
 .editor-sidebar {
   pointer-events: all;
+  .back-btn {
+    display: none;
+  }
 
   .editor-nav {
     border-right: 1px solid #eee;
@@ -118,6 +121,21 @@
     overflow-y: scroll;
     height: calc(100vh - $main-header-height - $editor-header-height);
 
+    .placeholder-text {
+      color: #888;
+      font-family: Poppins;
+      font-weight: 400;
+      font-size: 14px;
+      background-color: #f8f8f8;
+      padding: 60px 20px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      border-radius: 8px;
+    }
+
     .mb-only {
       display: none;
     }
@@ -156,6 +174,19 @@
   }
 
   @media screen and (max-width: $mobileQuery) {
+    .section-select .section-cmps .cmp-img-container {
+      padding: 6px;
+      width: 100%;
+      img {
+        width: 100%;
+      }
+      i {
+        display: none;
+      }
+    }
+    .back-btn {
+      display: inline;
+    }
     .editor-nav {
       border-right: none;
       border-top: 1px solid #eee;
@@ -186,10 +217,17 @@
       z-index: 180;
       width: 100%;
       overflow-y: scroll;
+      display: grid;
 
       &.open {
         left: 0;
         bottom: $editor-nav-width;
+
+        &:has(.section-cmps.open) {
+          .section-names .mobile-section-names-btns {
+            display: none;
+          }
+        }
       }
       .section-names {
         .desktop-section-names-btns {
@@ -198,7 +236,7 @@
 
         .mobile-section-names-btns {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
         }
 
         width: 100%;
@@ -220,7 +258,7 @@
         left: 0;
         bottom: -500px;
         z-index: 200;
-        height: 26vh;
+        height: 33vh;
         overflow-y: scroll;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

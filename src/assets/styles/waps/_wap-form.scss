@@ -71,7 +71,8 @@
     border-radius: 12px;
     color: var(--clr-1);
     h3 {
-      font-family: PoppinsBold;
+      font-family: Poppins;
+      font-weight: 800;
       font-size: em(32px);
     }
     form {
@@ -108,7 +109,8 @@
     transform: translateZ(0);
     transform-origin: top left;
     pointer-events: none;
-    font-family: PoppinsRegular;
+    font-family: Poppins;
+    font-weight: 400;
     &.selected {
       transform: scale(calc(13 / 17)) translate3d(0, -50%, 0);
     }
