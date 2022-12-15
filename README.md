@@ -228,7 +228,7 @@ We are a group of former students from Coding Academy, a coding bootcamp. As par
 
 <div align="center">
 
-[<img src="https://res.cloudinary.com/wewix/image/upload/v1671100106/readme%20gifs/nir-2-about-wewix_gqb6ly.svg" style="max-width: 180px; height: auto; display: inline-block;">](https://github.com/Nircoren) [<img src="https://res.cloudinary.com/wewix/image/upload/v1671100108/readme%20gifs/diego-2-about-wewix_j41gdg.svg" style="max-width: 180px; height: auto; display: inline-block;">](https://github.com/Diego-Mc) [<img src="https://res.cloudinary.com/wewix/image/upload/v1671100106/readme%20gifs/avishai-2-about-wewix_cda7eb.svg" style="max-width: 180px; height: auto; display: inline-block;">](https://github.com/AvishaiDotan)
+[<img src="https://res.cloudinary.com/wewix/image/upload/v1671100106/readme%20gifs/nir-2-about-wewix_gqb6ly.svg" style="max-width: 80px; height: auto; display: inline-block;">](https://github.com/Nircoren) [<img src="https://res.cloudinary.com/wewix/image/upload/v1671100108/readme%20gifs/diego-2-about-wewix_j41gdg.svg" style="max-width: 80px; height: auto; display: inline-block;">](https://github.com/Diego-Mc) [<img src="https://res.cloudinary.com/wewix/image/upload/v1671100106/readme%20gifs/avishai-2-about-wewix_cda7eb.svg" style="max-width: 80px; height: auto; display: inline-block;">](https://github.com/AvishaiDotan)
 </div>
 
 <br/>
