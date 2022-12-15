@@ -202,11 +202,11 @@ The Wewix Dashboard allows you to manage stats about visitors to your website, s
 
 # 📐 &nbsp;Templates
 <div align="center">
-    <img style="width: 200px;height:200px; object-fit:cover; display: inline-block;" src="https://res.cloudinary.com/wewix/image/upload/v1670428298/site-previews/yoga-preview-site_lig7fy.png">
-    <img style="width: 200px;height:200px; object-fit:cover; display: inline-block;" src="https://res.cloudinary.com/wewix/image/upload/v1670428300/site-previews/kite-preview-site_aowkrp.png">
-    <img style="width: 200px;height:200px; object-fit:cover; display: inline-block;" src="https://res.cloudinary.com/wewix/image/upload/v1670428300/site-previews/creative-preview-site_kjnnnn.png">
-    <img style="width: 200px;height:200px; object-fit:cover; display: inline-block;" src="https://res.cloudinary.com/wewix/image/upload/v1670428298/site-previews/goby-preview-site_hiwx9v.png">
-    <img style="width: 200px;height:200px; object-fit:cover; display: inline-block;" src="https://res.cloudinary.com/wewix/image/upload/v1670428296/site-previews/plantify-preview-site_lfoxvp.png">
+    <img style="width: 180px;height:200px; object-fit:cover; display: inline-block;" src="https://res.cloudinary.com/wewix/image/upload/v1670428298/site-previews/yoga-preview-site_lig7fy.png">
+    <img style="width: 180px;height:200px; object-fit:cover; display: inline-block;" src="https://res.cloudinary.com/wewix/image/upload/v1670428300/site-previews/kite-preview-site_aowkrp.png">
+    <img style="width: 180px;height:200px; object-fit:cover; display: inline-block;" src="https://res.cloudinary.com/wewix/image/upload/v1670428300/site-previews/creative-preview-site_kjnnnn.png">
+    <img style="width: 180px;height:200px; object-fit:cover; display: inline-block;" src="https://res.cloudinary.com/wewix/image/upload/v1670428298/site-previews/goby-preview-site_hiwx9v.png">
+    <img style="width: 180px;height:200px; object-fit:cover; display: inline-block;" src="https://res.cloudinary.com/wewix/image/upload/v1670428296/site-previews/plantify-preview-site_lfoxvp.png">
 </div>
 Wewix offers a selection of pre-designed templates that can be used as a starting point for creating your own website. These templates were created by finding existing web design templates online and then using them as a reference to create reusable, responsive versions using HTML and CSS. While the developers of Wewix created the HTML and CSS for the templates, it should be noted that they do not own the rights to the designs and assets included in the original templates. These templates were used for educational purposes only.
 
@@ -228,7 +228,7 @@ We are a group of former students from Coding Academy, a coding bootcamp. As par
 
 <div align="center">
 
-[<img src="https://res.cloudinary.com/wewix/image/upload/v1671100106/readme%20gifs/nir-2-about-wewix_gqb6ly.svg" style="max-width: 260px; height: auto; display: inline-block;">](https://github.com/Nircoren) [<img src="https://res.cloudinary.com/wewix/image/upload/v1671100108/readme%20gifs/diego-2-about-wewix_j41gdg.svg" style="max-width: 260px; height: auto; display: inline-block;">](https://github.com/Diego-Mc) [<img src="https://res.cloudinary.com/wewix/image/upload/v1671100106/readme%20gifs/avishai-2-about-wewix_cda7eb.svg" style="max-width: 260px; height: auto; display: inline-block;">](https://github.com/AvishaiDotan)
+[<img src="https://res.cloudinary.com/wewix/image/upload/v1671100106/readme%20gifs/nir-2-about-wewix_gqb6ly.svg" style="max-width: 180px; height: auto; display: inline-block;">](https://github.com/Nircoren) [<img src="https://res.cloudinary.com/wewix/image/upload/v1671100108/readme%20gifs/diego-2-about-wewix_j41gdg.svg" style="max-width: 180px; height: auto; display: inline-block;">](https://github.com/Diego-Mc) [<img src="https://res.cloudinary.com/wewix/image/upload/v1671100106/readme%20gifs/avishai-2-about-wewix_cda7eb.svg" style="max-width: 180px; height: auto; display: inline-block;">](https://github.com/AvishaiDotan)
 </div>
 
 <br/>
