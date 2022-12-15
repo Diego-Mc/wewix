@@ -111,8 +111,8 @@ Wewix's inner drag and drop functionality allows you to easily rearrange element
 ## 🔗 &nbsp;Quick links
 
 <div align="center">
-    <img src="https://res.cloudinary.com/wewix/image/upload/v1671136923/readme%20gifs/md-quick-links-1-wewix_nibyku.gif">
-    <img src="https://res.cloudinary.com/wewix/image/upload/v1671136959/readme%20gifs/md-quick-links-2-wewix_ldmgmr.gif">
+    <img style="display:block; width:100%" src="https://media.giphy.com/media/voqJMar7FJbHPL6uXN/giphy.gif">
+    <img style="display:block; width:100%"  src="https://media.giphy.com/media/JDlvOuxrybqbSL9KJ5/giphy.gif">
 </div>
 
 Wewix's Quick Links feature allows you to easily add and manage links on your website. When you click on a link in the navbar, the entire page layout will open to the side, allowing you to choose where to link that nav link to. Once you have published your website, clicking on that link will cause the app to scroll to the section you chose. This makes it easy to create functional navigation menus.
