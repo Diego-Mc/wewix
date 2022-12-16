@@ -1,6 +1,6 @@
 <br />
 <div align="center">
-  <a href="https://zenml.io">
+  <a href="https://wewix.onrender.com">
     <img src="https://res.cloudinary.com/wewix/image/upload/v1671065364/readme%20gifs/md-banner-wewix_wucj68.png" alt="Logo" width="400">
   </a>
   <h3 align="center">Make a website in less than a minute</h3>
