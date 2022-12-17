@@ -1,7 +1,7 @@
 <br />
 <div align="center">
   <a href="https://wewix.onrender.com">
-    <img src="https://res.cloudinary.com/wewix/image/upload/v1671065364/readme%20gifs/md-banner-wewix_wucj68.png" alt="Logo" width="400">
+    <img src="https://res.cloudinary.com/wewix/image/upload/v1671065364/readme%20gifs/md-banner-wewix_wucj68.png" alt="Logo">
   </a>
   <h3 align="center">Make a website in less than a minute</h3>
   </br>
