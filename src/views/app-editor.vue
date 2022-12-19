@@ -72,7 +72,7 @@
         @end="drag = false"
         @update="onCmpsChange"
         item-key="id"
-        :disabled="!this.$store.getters.isEditMode"
+        :disabled="!this.$store.getters.isEditMode || this.$store.getters.isMobileEdit"
         group="sections">
         <template #item="{ element }">
           <div>
@@ -176,13 +176,16 @@ export default {
       this.openWorkSpace()
     }
 
-    if (this.isMobile())
-      this.$store.commit({ type: 'setMobileEdit', isMobileEdit: true })
-
     eventBus.on('resetSelectedCmp', () => {
       this.selectedCmp = {}
     })
+
+    window.addEventListener("resize", (ev) => {
+        const mobileState = this.isMobile()   
+        this.$store.commit({ type: 'setMobileEdit', isMobileEdit: mobileState })
+    });
   },
+
   updated() {
     clearInterval(this.overlayInterval)
     this.overlayInterval = 0
@@ -190,6 +193,9 @@ export default {
     appEditorService.addSelectionListeners(this.$refs.mainWap)
   },
   methods: {
+    isMobile() {
+      return window.innerWidth <= 900
+    },
     setAuthModalMsg(destinationPage) {
       if (destinationPage === 'dashboard') {
         this.authModal.loginMsg = 'Login to view dashboard'
@@ -315,7 +321,6 @@ export default {
 
     // prettier-ignore
     handleUpdate({ cmpId, updatedStyle, elType, content, childCmpId }) {
-      console.log(cmpId, updatedStyle, elType, content, childCmpId )
       let changedCmp = this.wap.cmps.find( cmp => cmp.id === cmpId)
       if (childCmpId) changedCmp = changedCmp.cmps.find( childCmp => childCmp.id === childCmpId)
       if (elType) {
@@ -484,7 +489,7 @@ export default {
       eventBus.off('toggleChat')
       eventBus.off('resetSelectedCmp')
     },
-
+    
     async setSocketEvents() {
       socketService.on('cmpChange', (wap) => {
         this.wap = wap
@@ -500,7 +505,6 @@ export default {
       })
 
       socketService.on('userDisconnected', (cursorId) => {
-        console.log('userDisconnected')
         const curserToRemoveIdx = this.workTogetherCursors.findIndex(
           ({ id }) => id === cursorId
         )
@@ -524,8 +528,6 @@ export default {
 
     openSocketsConfirm({ key }) {
       if (this.isSocketsOn) {
-        //Todo user msg
-        console.log('There is opened work space')
         return
       }
       if (key !== 'workTogether') return
@@ -584,15 +586,15 @@ export default {
       this.wap.cmps.push(cmp)
       this.onCmpsChange()
     },
-
-    isMobile() {
-      return window.innerWidth <= 960
-    },
   },
 
   unmounted() {
     this.terminateEventBus()
     socketService.emit('doDisconnect', {})
+    socketService.off('cmpChange')
+    socketService.off('mouseEvent')  
+    socketService.off('userDisconnected') 
+    socketService.terminate()
     document.removeEventListener('keydown', this.keydownHandler)
   },
   computed: {
@@ -600,6 +602,17 @@ export default {
       return this.$store.getters.loggedinUser
     },
   },
+  // watch: {
+  //   isMobile: {
+  //     handler(newVal) {
+  //       console.log('newVal:', newVal)
+  //       const mobileState = (newVal) ? true : false
+  //       this.$store.commit({ type: 'setMobileEdit', isMobileEdit: mobileState })
+  //     }
+      
+  //   }
+
+  // },
   components: {
     editorBtnGroup,
     mainHeader,

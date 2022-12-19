@@ -1,4 +1,4 @@
-<!-- AIzaSyBOnIuYA6sTb4lF2WYWYJIUouv3HjIx2mg -->
+
 <template>
   <section class="wap-map" @click.stop="emitSelect({ cmpId }, $event)">
     <GoogleMap

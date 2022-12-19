@@ -118,7 +118,7 @@
       </div>
 
       <!-- //TODO: continue working? -->
-      <!-- <section class="mb-only" v-if="!childCmpId && currWap.cmps.length > 1">
+      <section class="mb-only" v-if="isMobile && !childCmpId && currWap.cmps.length > 1">
         <span
           v-if="currCmpIdx < currWap.cmps.length - 1"
           class="bi bi-arrow-down"
@@ -129,7 +129,7 @@
           class="bi bi-arrow-up"
           @click="changeOrder(currCmpIdx, currCmpIdx - 1)">
         </span>
-      </section> -->
+      </section>
     </section>
   </section>
 </template>
@@ -299,10 +299,6 @@ export default {
       }
     },
 
-    isMobile() {
-      return window.innerWidth <= 960
-    },
-
     changeOrder(oldIdx, newIdx) {
       this.currCmpIdx = newIdx
       this.$emit('changeOrder', { oldIdx, newIdx })
@@ -318,6 +314,9 @@ export default {
     currWap() {
       return this.$store.getters.editedWap
     },
+    isMobile() {
+      return window.innerWidth <= 960
+    },
   },
 
   //TODO: change this awful thing
@@ -332,6 +331,7 @@ export default {
         this.fontWeight = this.getElStyle('font-weight')
         this.fontSize = this.getElStyle('font-size')
         this.borderRadius = this.getElStyle('border-radius')
+        this.currCmpIdx = this.getCmpIdx
       },
     },
     childCmpId: {
