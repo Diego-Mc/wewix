@@ -118,18 +118,6 @@
       </div>
 
       <!-- //TODO: continue working? -->
-      <section class="mb-only" v-if="isMobile && !childCmpId && currWap.cmps.length > 1">
-        <span
-          v-if="currCmpIdx < currWap.cmps.length - 1"
-          class="bi bi-arrow-down"
-          @click="changeOrder(currCmpIdx, currCmpIdx + 1)">
-        </span>
-        <span
-          v-if="currCmpIdx > 0"
-          class="bi bi-arrow-up"
-          @click="changeOrder(currCmpIdx, currCmpIdx - 1)">
-        </span>
-      </section>
     </section>
   </section>
 </template>
@@ -165,15 +153,9 @@ export default {
       fontWeight: null,
       fontSize: null,
       borderRadius: null,
-      currCmpIdx: null,
     }
   },
   created() {
-    this.currCmpIdx = this.getCmpIdx
-    eventBus.on('resetEditedWap', () => {
-      this.currCmpIdx = this.getCmpIdx
-    })
-
     eventBus.on('onRemoveCmp', () => {
       if (this.id) {
         console.log('this.id:', this.id)
@@ -298,24 +280,11 @@ export default {
         return window.getComputedStyle(this.elDom).getPropertyValue(styleProp)
       }
     },
-
-    changeOrder(oldIdx, newIdx) {
-      this.currCmpIdx = newIdx
-      this.$emit('changeOrder', { oldIdx, newIdx })
-    },
   },
 
   computed: {
-    getCmpIdx() {
-      const currWap = this.$store.getters.editedWap
-      const currCmps = currWap.cmps
-      return currCmps.findIndex(({ id }) => id === this.id)
-    },
     currWap() {
       return this.$store.getters.editedWap
-    },
-    isMobile() {
-      return window.innerWidth <= 960
     },
   },
 
@@ -331,7 +300,6 @@ export default {
         this.fontWeight = this.getElStyle('font-weight')
         this.fontSize = this.getElStyle('font-size')
         this.borderRadius = this.getElStyle('border-radius')
-        this.currCmpIdx = this.getCmpIdx
       },
     },
     childCmpId: {

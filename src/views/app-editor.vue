@@ -578,7 +578,6 @@ export default {
           this.wap.cmps[newIdx],
           this.wap.cmps[oldIdx],
         ]
-        eventBus.emit('resetEditedWap')
       }
     },
 
