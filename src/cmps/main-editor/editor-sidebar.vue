@@ -88,22 +88,21 @@
       <h2 class="title editor-sidebar-actions-layout">
         Edit
         <div class="crud-actions">
-          <!-- <section v-if="isMobile() && !childCmpId && currWap.cmps.length > 1">
-              <el-button>
+          
+          <section v-if="isMobile && !selectedCmp.childCmpId && currWap.cmps.length > 1">
+              <el-button v-if="currCmpIdx < currWap.cmps.length - 1">
                 <span
-                  v-if="currCmpIdx < currWap.cmps.length - 1"
                   class="bi bi-arrow-down"
                   @click="changeOrder(currCmpIdx, currCmpIdx + 1)">
                 </span>
               </el-button>
-              <el-button>
+              <el-button v-if="currCmpIdx > 0">
                 <span
-                  v-if="currCmpIdx > 0"
                   class="bi bi-arrow-up"
                   @click="changeOrder(currCmpIdx, currCmpIdx - 1)">
                 </span>
               </el-button>
-          </section> -->
+          </section>
           <i
             @click.stop="onRemoveCmp"
             :hidden="!selectedCmp.id"
@@ -168,6 +167,7 @@ export default {
         editOpt: '',
         section: '',
       },
+      currCmpIdx: null
     }
   },
   methods: {
@@ -180,8 +180,37 @@ export default {
     onRemoveCmp() {
       eventBus.emit('onRemoveCmp')
     },
+    changeOrder(oldIdx, newIdx) {
+      this.currCmpIdx = newIdx
+      this.$emit('changeOrder', { oldIdx, newIdx })
+    },
+  },
+
+  computed: {
+    currWap() {
+      return this.$store.getters.editedWap
+    },
     isMobile() {
-      return window.innerWidth <= 960
+      return window.innerWidth <= 900
+    },
+    getCmpIdx() {
+      const currWap = this.$store.getters.editedWap
+      if (!currWap) return
+
+      const currCmps = currWap.cmps
+      if (!currCmps.length) return
+
+      return currCmps.findIndex(({ id }) => id === this.selectedCmp.id)
+    },
+  },
+
+  watch: {
+    'selectedCmp.id': {
+      deep: true,
+      immediate: true,
+      handler() {
+        this.currCmpIdx = this.getCmpIdx
+      },
     },
   },
 
