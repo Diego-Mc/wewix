@@ -88,25 +88,24 @@
       <h2 class="title editor-sidebar-actions-layout">
         Edit
         <div class="crud-actions">
-          
-          <section v-if="isMobile && !selectedCmp.childCmpId && currWap.cmps.length > 1">
-              <el-button v-if="currCmpIdx < currWap.cmps.length - 1">
-                <span
-                  class="bi bi-arrow-down"
-                  @click="changeOrder(currCmpIdx, currCmpIdx + 1)">
-                </span>
-              </el-button>
-              <el-button v-if="currCmpIdx > 0">
-                <span
-                  class="bi bi-arrow-up"
-                  @click="changeOrder(currCmpIdx, currCmpIdx - 1)">
-                </span>
-              </el-button>
+          <section
+            class="arrows mb-only"
+            v-if="!selectedCmp.childCmpId && currWap.cmps.length > 1">
+            <i
+              v-if="currCmpIdx < currWap.cmps.length - 1"
+              class="bi bi-arrow-down icon"
+              @click="changeOrder(currCmpIdx, currCmpIdx + 1)">
+            </i>
+            <i
+              v-if="currCmpIdx > 0"
+              class="bi bi-arrow-up icon"
+              @click="changeOrder(currCmpIdx, currCmpIdx - 1)">
+            </i>
           </section>
           <i
             @click.stop="onRemoveCmp"
             :hidden="!selectedCmp.id"
-            class="bi bi-trash"></i>
+            class="bi bi-trash icon"></i>
         </div>
       </h2>
       <cmp-editor
@@ -167,7 +166,7 @@ export default {
         editOpt: '',
         section: '',
       },
-      currCmpIdx: null
+      currCmpIdx: null,
     }
   },
   methods: {
@@ -189,9 +188,6 @@ export default {
   computed: {
     currWap() {
       return this.$store.getters.editedWap
-    },
-    isMobile() {
-      return window.innerWidth <= 900
     },
     getCmpIdx() {
       const currWap = this.$store.getters.editedWap
@@ -236,20 +232,32 @@ export default {
   display: flex;
   justify-content: space-between;
 
-  .bi-trash {
-    transition: 0.2s;
-    cursor: pointer;
-    color: rgba(30, 30, 30, 0.4);
+  .crud-actions {
+    display: flex;
+    gap: 24px;
 
-    &:hover {
-      color: rgb(239, 3, 42) !important;
+    .arrows {
+      gap: 24px;
+      .icon {
+        &:hover {
+          color: #00c2a6 !important;
+        }
+      }
     }
+    .icon {
+      transition: 0.2s;
+      cursor: pointer;
+      color: rgba(30, 30, 30, 0.4);
 
-    &::before {
-      content: '\f5de';
-      width: 32px;
-      display: flex;
-      justify-content: center;
+      &:hover {
+        color: rgb(239, 3, 42) !important;
+      }
+
+      &::before {
+        width: 32px;
+        display: flex;
+        justify-content: center;
+      }
     }
   }
 }
