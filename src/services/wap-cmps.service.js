@@ -177,7 +177,6 @@ function getStyles(elType) {
         fontWeight: '',
         fontSize: '',
         borderRadius: '',
-
       }
     case 'form':
       return {
@@ -232,7 +231,7 @@ wapsMap.set('wap-header-1', {
     btn: {
       options: {
         meta: {
-          href: ''
+          href: '',
         },
         style: getStyles('btn'),
       },
@@ -421,7 +420,7 @@ wapsMap.set('wap-cards-1', {
         },
         btn: {
           options: {
-            meta: {href: ''},
+            meta: { href: '' },
             style: getStyles('btn'),
           },
           content: { text: 'See details' },
@@ -484,7 +483,7 @@ wapsMap.set('wap-cards-1', {
         },
         btn: {
           options: {
-            meta: {href: ''},
+            meta: { href: '' },
             style: getStyles('btn'),
           },
           content: { text: 'See details' },
@@ -547,7 +546,7 @@ wapsMap.set('wap-cards-1', {
         },
         btn: {
           options: {
-            meta: {href: ''},
+            meta: { href: '' },
             style: getStyles('btn'),
           },
           content: { text: 'See details', link: '#wc03' },
@@ -607,56 +606,56 @@ wapsMap.set('wap-header-2', {
     nav1: {
       options: {
         meta: {
-          scrollTo: ''
+          scrollTo: '',
         },
         style: getStyles('nav'),
       },
       content: {
-        text: 'Menu'
+        text: 'Menu',
       },
     },
     nav2: {
       options: {
         meta: {
-          scrollTo: ''
+          scrollTo: '',
         },
         style: getStyles('nav'),
       },
       content: {
-        text: 'Schedule'
+        text: 'Schedule',
       },
     },
     nav3: {
       options: {
         meta: {
-          scrollTo: ''
+          scrollTo: '',
         },
         style: getStyles('nav'),
       },
       content: {
-        text: 'About'
+        text: 'About',
       },
     },
     nav4: {
       options: {
         meta: {
-          scrollTo: ''
+          scrollTo: '',
         },
         style: getStyles('nav'),
       },
       content: {
-        text: 'Catering'
+        text: 'Catering',
       },
     },
     nav4: {
       options: {
         meta: {
-          scrollTo: ''
+          scrollTo: '',
         },
         style: getStyles('nav'),
       },
       content: {
-        text: 'Contact'
+        text: 'Contact',
       },
     },
   },
@@ -742,59 +741,59 @@ wapsMap.set('wap-header-2', {
         nav1: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'Menu'
+            text: 'Menu',
           },
         },
         nav2: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'Schedule'
+            text: 'Schedule',
           },
         },
         nav3: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'About'
+            text: 'About',
           },
         },
         nav4: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'Catering'
+            text: 'Catering',
           },
         },
         nav4: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'Contact'
+            text: 'Contact',
           },
         },
-      }
+      },
       // info: {
       //   nav: {
       //     options: {
@@ -823,7 +822,7 @@ wapsMap.set('wap-header-2', {
       info: {
         btn: {
           options: {
-            meta: {href: ''},
+            meta: { href: '' },
             style: getStyles('btn'),
           },
           content: { text: 'Find us' },
@@ -859,7 +858,7 @@ wapsMap.set('wap-hero-2', {
             meta: {},
             style: {
               ...getStyles('tag'),
-              borderRadius: '1.46em'
+              borderRadius: '1.46em',
             },
           },
           content: {
@@ -897,7 +896,7 @@ wapsMap.set('wap-hero-2', {
         },
         btn: {
           options: {
-            meta: {href: ''},
+            meta: { href: '' },
             style: getStyles('btn'),
           },
           content: {
@@ -948,11 +947,11 @@ wapsMap.set('wap-section-2', {
       type: 'wap-text-section',
       typeId: 3,
       options: {
-        meta: {
-        },
+        meta: {},
         style: {
           ...getStyles(),
-          backgroundImage: 'url(https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623cfb46d0ab4fab78e53577_Callout%20Photo.jpg)',
+          backgroundImage:
+            'url(https://uploads-ssl.webflow.com/623a639d34ee04adef0721f8/623cfb46d0ab4fab78e53577_Callout%20Photo.jpg)',
         },
       },
       info: {
@@ -1047,7 +1046,7 @@ wapsMap.set('wap-section-3', {
         },
         btn: {
           options: {
-            meta: {href: ''},
+            meta: { href: '' },
             style: getStyles('btn'),
           },
           content: {
@@ -1310,7 +1309,7 @@ wapsMap.set('wap-section-4', {
         },
         btn: {
           options: {
-            meta: {href: ''},
+            meta: { href: '' },
             style: getStyles('btn'),
           },
           content: {
@@ -1433,48 +1432,48 @@ wapsMap.set('wap-header-3', {
         nav1: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'DESIGN'
+            text: 'DESIGN',
           },
         },
         nav2: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'ABOUT'
+            text: 'ABOUT',
           },
         },
         nav3: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'REVIEWS'
+            text: 'REVIEWS',
           },
         },
         nav4: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'REFER A FRIEND'
+            text: 'REFER A FRIEND',
           },
         },
-      }
+      },
       // info: {
       //   nav: {
       //     options: {
@@ -1529,7 +1528,7 @@ wapsMap.set('wap-hero-3', {
         btn: {
           options: {
             meta: {
-              href: ''
+              href: '',
             },
             style: getStyles('btn'),
           },
@@ -1763,7 +1762,7 @@ wapsMap.set('wap-section-5', {
         },
         btn: {
           options: {
-            meta: {href: ''},
+            meta: { href: '' },
             style: getStyles('btn'),
           },
           content: {
@@ -2145,7 +2144,7 @@ wapsMap.set('wap-section-7', {
         },
         btn: {
           options: {
-            meta: {href: ''},
+            meta: { href: '' },
             style: getStyles('btn'),
           },
           content: {
@@ -2180,67 +2179,67 @@ wapsMap.set('footer-1', {
         nav1: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'SHOP'
+            text: 'SHOP',
           },
         },
         nav2: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'DESIGN'
+            text: 'DESIGN',
           },
         },
         nav3: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'ABOUT'
+            text: 'ABOUT',
           },
         },
         nav4: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'REVIEWS'
+            text: 'REVIEWS',
           },
         },
         nav5: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'REFER A FRIEND'
+            text: 'REFER A FRIEND',
           },
         },
         nav6: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'SIGN IN'
+            text: 'SIGN IN',
           },
         },
       },
@@ -2423,48 +2422,47 @@ wapsMap.set('wap-header-4', {
         nav1: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'OUR WORK'
+            text: 'OUR WORK',
           },
         },
         nav2: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'ABOUT'
+            text: 'ABOUT',
           },
         },
         nav3: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'BLOG'
+            text: 'BLOG',
           },
         },
         nav4: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'CONTACT'
+            text: 'CONTACT',
           },
         },
-
       },
       // info: {
       //   nav: {
@@ -2529,7 +2527,7 @@ wapsMap.set('wap-hero-4', {
         },
         btn: {
           options: {
-            meta: {href: ''},
+            meta: { href: '' },
             style: getStyles('btn'),
           },
           content: {
@@ -2672,7 +2670,7 @@ wapsMap.set('wap-section-14', {
         btn1: {
           options: {
             meta: {
-              href: ''
+              href: '',
             },
             style: getStyles('btn'),
           },
@@ -2683,7 +2681,7 @@ wapsMap.set('wap-section-14', {
         btn2: {
           options: {
             meta: {
-              href: ''
+              href: '',
             },
             style: getStyles('btn'),
           },
@@ -3202,7 +3200,7 @@ wapsMap.set('wap-section-13', {
         btn: {
           options: {
             meta: {
-              href: ''
+              href: '',
             },
             style: getStyles('btn'),
           },
@@ -3238,67 +3236,67 @@ wapsMap.set('footer-2', {
         nav1: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'SHOP'
+            text: 'SHOP',
           },
         },
         nav2: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'DESIGN'
+            text: 'DESIGN',
           },
         },
         nav3: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'ABOUT'
+            text: 'ABOUT',
           },
         },
         nav4: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'REVIEWS'
+            text: 'REVIEWS',
           },
         },
         nav5: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'REFER A FRIEND'
+            text: 'REFER A FRIEND',
           },
         },
         nav6: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'SIGN IN'
+            text: 'SIGN IN',
           },
         },
       },
@@ -3333,62 +3331,61 @@ wapsMap.set('footer-2', {
         nav1: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'DESIGN SERVICES'
+            text: 'DESIGN SERVICES',
           },
         },
         nav2: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'CONTENT SERVICES'
+            text: 'CONTENT SERVICES',
           },
         },
         nav3: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'OUR WORK'
+            text: 'OUR WORK',
           },
         },
         nav4: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'ABOUT'
+            text: 'ABOUT',
           },
         },
         nav5: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'BLOG'
+            text: 'BLOG',
           },
         },
       },
 
       //       nav6: 'CONTACT',
-
     },
   ],
 })
@@ -3564,56 +3561,56 @@ wapsMap.set('wap-header-5', {
         nav1: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'Home'
+            text: 'Home',
           },
         },
         nav2: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'About'
+            text: 'About',
           },
         },
         nav3: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'Services'
+            text: 'Services',
           },
         },
         nav4: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'Gallery'
+            text: 'Gallery',
           },
         },
         nav5: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'Blog'
+            text: 'Blog',
           },
         },
       },
@@ -3666,8 +3663,7 @@ wapsMap.set('wap-hero-5', {
         },
         text: {
           options: {
-            meta: {
-            },
+            meta: {},
             style: getStyles('text'),
           },
           content: { text: 'CALIFORNIA' },
@@ -3675,7 +3671,7 @@ wapsMap.set('wap-hero-5', {
         btn: {
           options: {
             meta: {
-              href: ''
+              href: '',
             },
             style: getStyles('btn'),
           },
@@ -3748,7 +3744,7 @@ wapsMap.set('wap-section-15', {
         },
         btn: {
           options: {
-            meta: {href: ''},
+            meta: { href: '' },
             style: getStyles('btn'),
           },
           content: {
@@ -3762,9 +3758,7 @@ wapsMap.set('wap-section-15', {
       type: 'wap-video',
       typeId: 5,
       options: {
-        meta: {
-         
-        },
+        meta: {},
         style: getStyles(),
       },
       info: {
@@ -4575,7 +4569,7 @@ wapsMap.set('wap-cards-9', {
         btn: {
           options: {
             meta: {
-              href: ''
+              href: '',
             },
             style: getStyles('btn'),
           },
@@ -4855,56 +4849,56 @@ wapsMap.set('footer-3', {
         nav1: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'Home'
+            text: 'Home',
           },
         },
         nav2: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'About'
+            text: 'About',
           },
         },
         nav3: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'Gallery'
+            text: 'Gallery',
           },
         },
         nav4: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'Services'
+            text: 'Services',
           },
         },
         nav5: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'Blog'
+            text: 'Blog',
           },
         },
       },
@@ -5057,34 +5051,34 @@ wapsMap.set('wap-header-6', {
         nav1: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'Courses'
+            text: 'Courses',
           },
         },
         nav2: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'Plans'
+            text: 'Plans',
           },
         },
         nav3: {
           options: {
             meta: {
-              scrollTo: ''
+              scrollTo: '',
             },
             style: getStyles('nav'),
           },
           content: {
-            text: 'Blog'
+            text: 'Contact us',
           },
         },
       },
@@ -5311,8 +5305,7 @@ wapsMap.set('wap-section-23', {
       info: {
         title: {
           options: {
-            meta: {
-            },
+            meta: {},
             style: getStyles('title'),
           },
           content: {
@@ -5322,7 +5315,7 @@ wapsMap.set('wap-section-23', {
         btn: {
           options: {
             meta: {
-              href: ''
+              href: '',
             },
             style: getStyles('btn'),
           },
@@ -5648,7 +5641,7 @@ wapsMap.set('wap-cards-11', {
         btn: {
           options: {
             meta: {
-              href: ''
+              href: '',
             },
             style: getStyles('btn'),
           },
@@ -5875,8 +5868,7 @@ wapsMap.set('wap-section-26', {
   previewImg:
     'https://res.cloudinary.com/wewix/image/upload/v1670746938/waps/map-form-cnp-1_siblqa.png',
   options: {
-    meta: {
-    },
+    meta: {},
     style: getStyles(),
   },
   cmps: [

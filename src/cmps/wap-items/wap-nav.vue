@@ -12,7 +12,7 @@
             ? '#' + info.nav1.options.meta.scrollTo
             : '#app'
         "
-        class="nav"
+        class="nav link"
         :style="info?.nav1?.options.style"
         :contenteditable="$store.getters.isEditMode"
         @click.stop="emitSelect('nav1', $event)"
@@ -26,7 +26,7 @@
             ? '#' + info.nav2.options.meta.scrollTo
             : '#app'
         "
-        class="nav"
+        class="nav link"
         :style="info?.nav2?.options.style"
         :contenteditable="$store.getters.isEditMode"
         @click.stop="emitSelect('nav2', $event)"
@@ -40,7 +40,7 @@
             ? '#' + info.nav3.options.meta.scrollTo
             : '#app'
         "
-        class="nav"
+        class="nav link"
         :style="info?.nav3?.options.style"
         :contenteditable="$store.getters.isEditMode"
         @click.stop="emitSelect('nav3', $event)"
@@ -54,7 +54,7 @@
             ? '#' + info.nav4.options.meta.scrollTo
             : '#app'
         "
-        class="nav"
+        class="nav link"
         :style="info?.nav4?.options.style"
         :contenteditable="$store.getters.isEditMode"
         @click.stop="emitSelect('nav4', $event)"
@@ -68,7 +68,7 @@
             ? '#' + info.nav5.options.meta.scrollTo
             : '#app'
         "
-        class="nav"
+        class="nav link"
         :style="info?.nav5?.options.style"
         :contenteditable="$store.getters.isEditMode"
         @click.stop="emitSelect('nav5', $event)"
@@ -82,7 +82,7 @@
             ? '#' + info.nav6.options.meta.scrollTo
             : '#app'
         "
-        class="nav"
+        class="nav link"
         :style="info?.nav6?.options.style"
         :contenteditable="$store.getters.isEditMode"
         @click.stop="emitSelect('nav6', $event)"
@@ -222,4 +222,11 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.link {
+  cursor: pointer;
+  &:hover {
+    color: var(--clr-2);
+  }
+}
+</style>
