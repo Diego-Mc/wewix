@@ -6,7 +6,7 @@
       v-model="searchTxt"
       class="w-50 m-2 map-input"
       size="large"
-      placeholder="Please Input"
+      placeholder="Please enter location"
       :prefix-icon="Search" />
     <div v-if="isMapLocationLoader">
       <span v-if="location">
