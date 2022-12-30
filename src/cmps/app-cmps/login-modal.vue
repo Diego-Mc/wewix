@@ -148,7 +148,7 @@ export default {
     flex-direction: column;
     align-items: center;
     gap: 20px;
-    min-width: 350px;
+    // min-width: 350px;
     // @media (max-width: 700px) {
     //   width: 300px !important;
     // }

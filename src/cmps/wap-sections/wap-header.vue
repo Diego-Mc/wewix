@@ -14,7 +14,7 @@
     item-key="id"
     :group="'header-' + cmpId"
     @click.stop="onCmpClick({ cmpId })"
-    :disabled="!this.$store.getters.isEditMode">
+    :disabled="!this.$store.getters.isEditMode || this.$store.getters.isMobileEdit">
     <template #item="{ element }">
       <div>
         <component

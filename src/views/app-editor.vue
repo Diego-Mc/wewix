@@ -180,9 +180,12 @@ export default {
       this.selectedCmp = {}
     })
 
+    const mobileState = this.isMobile()   
+    this.$store.commit({ type: 'setMobileEdit', isMobileEdit: mobileState })
+
     window.addEventListener("resize", (ev) => {
-        const mobileState = this.isMobile()   
-        this.$store.commit({ type: 'setMobileEdit', isMobileEdit: mobileState })
+      const mobileState = this.isMobile()   
+      this.$store.commit({ type: 'setMobileEdit', isMobileEdit: mobileState })
     });
   },
 

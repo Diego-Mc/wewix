@@ -14,7 +14,7 @@
     @end="onDrop"
     item-key="id"
     :group="'hero-' + cmpId"
-    :disabled="!this.$store.getters.isEditMode">
+    :disabled="!this.$store.getters.isEditMode || this.$store.getters.isMobileEdit">
     <template #item="{ element }">
       <div>
         <component

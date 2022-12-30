@@ -5,6 +5,7 @@
     @start="startDrag"
     :list="cmpToShow"
     item-key="id"
+    :disabled="!this.$store.getters.isEditMode || this.$store.getters.isMobileEdit"
     :group="{
       name: 'sections',
       pull: 'clone',

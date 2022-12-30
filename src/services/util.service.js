@@ -1,57 +1,49 @@
 export const utilService = {
+  getFormattedDate,
+  downloadCSV,
   makeId,
   makeLorem,
   getRandomIntInclusive,
   debounce,
-  randomPastTime,
   saveToStorage,
   loadFromStorage,
   deepCopy,
   getRandomColor,
-  toTitleCase,
-  getDemoData,
+  // getDemoData,
   copyToClipboard,
-  convertToCSV,
-  toTimeStr,
 }
 
-function toTimeStr(previous) {
-  var msPerMinute = 60 * 1000
-  var msPerHour = msPerMinute * 60
-  var msPerDay = msPerHour * 24
-  var msPerMonth = msPerDay * 30
-  var msPerYear = msPerDay * 365
-
-  var elapsed = Date.now() - previous
-
-  if (elapsed < msPerMinute) {
-    return Math.round(elapsed / 1000) + ' seconds ago'
-  } else if (elapsed < msPerHour) {
-    return Math.round(elapsed / msPerMinute) + ' minutes ago'
-  } else if (elapsed < msPerDay) {
-    return Math.round(elapsed / msPerHour) + ' hours ago'
-  } else if (elapsed < msPerMonth) {
-    return Math.round(elapsed / msPerDay) + ' days ago'
-  } else if (elapsed < msPerYear) {
-    return Math.round(elapsed / msPerMonth) + ' months ago'
+function getFormattedDate(timeStamp) {
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
+    "July", "Aug", "Sep", "Oct", "Nov", "Dec"
+  ];
+  // If Pass By Year
+  if (new Date().getFullYear() - timeStamp.getFullYear() > 1) {
+    return monthNames[timeStamp.getMonth()] + ' ' + timeStamp.getFullYear()
+    // If Pass By Less Then 24 Hours 
+  } else if (new Date() - timeStamp < 1000 * 60 * 60 * 24) {
+    const hour = (timeStamp.getHours() < 10) ? '0' + timeStamp.getHours() : timeStamp.getHours()
+    const minutes = (timeStamp.getMinutes() < 10) ? '0' + timeStamp.getMinutes() : timeStamp.getMinutes()
+    return hour + ':' + minutes
   } else {
-    return Math.round(elapsed / msPerYear) + ' years ago'
+    return monthNames[timeStamp.getMonth()] + ' ' + (timeStamp.getDay() + 1)
   }
+
 }
 
-function convertToCSV(arr) {
+
+function downloadCSV(arr) {
   const array = [Object.keys(arr[0])].concat(arr)
 
-  return array
-    .map((it) => {
-      return Object.values(it).toString()
-    })
-    .join('\n')
+  const csvData = array.map((it) => {return Object.values(it).toString()}).join('\n')
+
+  const anchor = document.createElement('a');
+  anchor.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvData);
+  anchor.target = '_blank';
+  anchor.download = `EXAMPLE.csv`;
+  anchor.click();
 }
 
-function toTitleCase(str) {
-  return str.toLowerCase().replace(/\b\w/g, (s) => s.toUpperCase())
-}
 
 function makeId(length = 6) {
   var txt = ''
@@ -124,14 +116,6 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min //The maximum is inclusive and the minimum is inclusive
 }
 
-function randomPastTime() {
-  const HOUR = 1000 * 60 * 60
-  const DAY = 1000 * 60 * 60 * 24
-  const WEEK = 1000 * 60 * 60 * 24 * 7
-
-  const pastTime = getRandomIntInclusive(HOUR, WEEK)
-  return Date.now() - pastTime
-}
 
 function debounce(func, timeout = 1000) {
   let timer
@@ -165,19 +149,18 @@ function getRandomColor() {
   }
   return color
 }
-import Chance from 'chance'
 
-function getDemoData() {
-  var chance = new Chance()
-  const demoData = []
+// import Chance from 'chance'
+// function getDemoData() {
+//   var chance = new Chance()
+//   const demoData = []
 
-  for (var i = 0; i < 300; i++) {
-    demoData.push({
-      createdAt: chance
-        .date({ year: chance.integer({ min: 2020, max: 2022 }) })
-        [Symbol.toPrimitive]('number'),
-      msg: chance.sentence({ words: 5 }),
-    })
-  }
-  return demoData
-}
+//   for (var i = 0; i < 300; i++) {
+//     demoData.push({
+//       createdAt: chance.date({ year: chance.integer({ min: 2020, max: 2022 }) })
+//       [Symbol.toPrimitive]('number'),
+//       msg: chance.sentence({ words: 5 }),
+//     })
+//   }
+//   return demoData
+// }

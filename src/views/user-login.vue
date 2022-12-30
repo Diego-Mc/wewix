@@ -35,6 +35,14 @@ export default {
   .auth-modal {
     form {
       width: 500px;
+
+      @media screen and (max-width: 750px) {
+          max-width: 350px;
+      }
+
+      @media screen and (max-width: 360px) {
+          width: 200px;
+      }
     }
     .auth-input {
       width: 100%;
