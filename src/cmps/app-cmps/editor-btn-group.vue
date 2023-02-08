@@ -23,16 +23,6 @@ export default {
   data() {
     return {
       val: [this.initialValue] || [],
-      // opts: [ //this is an example for the prop data
-      //   {
-      //     val: 'mobile',
-
-      //     icon: '',
-
-      //     sample: 'Aa',
-      //     small: 'System',
-      //   },
-      // ],
     }
   },
   methods: {

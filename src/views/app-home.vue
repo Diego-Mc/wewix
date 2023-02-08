@@ -73,28 +73,7 @@
             stroke-linecap="round"
             stroke-linejoin="round" />
         </svg>
-        <!-- <svg
-          class="decor"
-          width="306"
-          height="20"
-          viewBox="0 0 306 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M3 12C73.6667 5.66667 232.5 -3.19999 302.5 12"
-            stroke="#00C2A6"
-            stroke-width="6"
-            stroke-linecap="round"
-            stroke-linejoin="round" />
-          <path
-            d="M2.99996 11.8339C78.5968 6.37388 245.762 -0.392276 301.5 16.5"
-            stroke="#00C2A6"
-            stroke-width="6"
-            stroke-linecap="round"
-            stroke-linejoin="round" />
-        </svg> -->
       </div>
-      <!-- TODO: Add features as draggables, could be cool -->
       <section class="cards">
         <article class="card">
           <i class="bi bi-arrows-move"></i>

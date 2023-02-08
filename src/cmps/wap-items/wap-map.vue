@@ -1,8 +1,7 @@
-
 <template>
   <section class="wap-map" @click.stop="emitSelect({ cmpId }, $event)">
     <GoogleMap
-      api-key="AIzaSyCTfr4C-a7XNuHjCajMSI4f_QkH5GNDSj4"
+      :api-key="apiKey"
       style="width: 100%; height: 500px"
       :center="center"
       :zoom="18">
@@ -14,6 +13,7 @@
 <script>
 //v-for="m in markers"
 //@click="center = m.position"
+console.log(import.meta.env)
 import { GoogleMap, Marker } from 'vue3-google-map'
 import { eventBus } from '../../services/event-bus.service'
 export default {
@@ -27,6 +27,7 @@ export default {
       // center: { lat: 31.7683, lng: 35.2137 },
       // markers: [,
       // ],
+      apiKey: import.meta.env.VITE_GOOGLE_MAP_KEY,
     }
   },
   computed: {

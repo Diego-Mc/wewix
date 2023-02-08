@@ -44,15 +44,17 @@ export default {
       console.log('succsess', ev)
     },
     async getRequest() {
-      const UPLOAD_PRESET = 'mainuploader' // Insert your upload preset
+      // console.log(JSON.stringify(import.meta.env.VITE_UPLOAD_PRESET))
+      const UPLOAD_PRESET = import.meta.env.VITE_UPLOAD_PRESET
+      const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME
       const FORM_DATA = new FormData()
 
       // Building the request body
       FORM_DATA.append('file', this.file)
-      FORM_DATA.append('upload_preset', UPLOAD_PRESET)
+      FORM_DATA.append('UPLOAD_PRESET', UPLOAD_PRESET)
       try {
         const { data } = await axios.post(
-          'https://api.cloudinary.com/v1_1/projwewix/image/upload',
+          `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
           FORM_DATA
         )
 

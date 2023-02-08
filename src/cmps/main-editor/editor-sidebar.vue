@@ -179,9 +179,16 @@ export default {
     onRemoveCmp() {
       eventBus.emit('onRemoveCmp')
     },
-    changeOrder(oldIdx, newIdx) {
+    async changeOrder(oldIdx, newIdx) {
       this.currCmpIdx = newIdx
       this.$emit('changeOrder', { oldIdx, newIdx })
+      await this.$nextTick()
+      const selectedEl = document.querySelector('.selected > div')
+      const mainWap = document.querySelector('.main-wap')
+      console.dir(selectedEl)
+      console.log('selected', mainWap.scrollTop, selectedEl.offsetTop)
+      mainWap.scrollTop = selectedEl.offsetTop - 120
+      console.log('selected', mainWap.scrollTop, selectedEl.offsetTop)
     },
   },
 
