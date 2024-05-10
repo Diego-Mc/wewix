@@ -116,15 +116,6 @@ export default {
         // getCmp('footer', 3)
 
         // template 3
-        getCmp('wap-header', 4),
-        getCmp('wap-hero', 4),
-        getCmp('wap-section', 9),
-        getCmp('wap-section', 10),
-        getCmp('wap-cards', 6),
-        getCmp('wap-section', 11),
-        getCmp('wap-section', 12),
-        getCmp('wap-section', 13),
-        // getCmp('wap-section', 14),
 
         // template 2
         getCmp('wap-header', 2),

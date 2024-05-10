@@ -217,7 +217,6 @@ Here is a list of the original templates used to create the Wewix components:
 * [Goby](https://www.goby.co/)
 * [Werfy (Kite shop)](http://preview.themeforest.net/item/werfy-water-sports-wordpress-theme/full_screen_preview/25741730?_ga=2.255190856.1760300893.1670344642-1211155049.1669934266)
 * [Plantify](https://plantify-template.webflow.io/)
-* [Sevah creative](https://sevahcreative.com/)
 
 It is important to note that the creators of these templates hold the copyrights to their designs and assets. We would like to express our appreciation for their work.
 

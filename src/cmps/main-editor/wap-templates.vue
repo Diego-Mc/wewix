@@ -67,15 +67,6 @@ export default {
         // getCmp('footer', 3)
 
         // template 3
-        getCmp('wap-header', 4),
-        getCmp('wap-hero', 4),
-        getCmp('wap-section', 9),
-        getCmp('wap-section', 10),
-        getCmp('wap-cards', 6),
-        getCmp('wap-section', 11), //
-        getCmp('wap-section', 12), //
-        getCmp('wap-section', 13),
-        // getCmp('wap-section', 14),
 
         // template 2
         getCmp('wap-header', 2),
@@ -145,8 +136,6 @@ export default {
           return [getCmp('wap-section', 15), getCmp('wap-section', 25)]
         case 'testimonials':
           return [
-            getCmp('wap-section', 11),
-            getCmp('wap-section', 12),
             getCmp('wap-section', 24),
           ]
         case 'section':
@@ -156,8 +145,6 @@ export default {
             getCmp('wap-section', 21),
             getCmp('wap-section', 19),
             getCmp('wap-section', 16),
-            getCmp('wap-section', 13),
-            getCmp('wap-section', 9),
             getCmp('wap-section', 7),
             getCmp('wap-section', 6),
             getCmp('wap-section', 5),
@@ -168,7 +155,6 @@ export default {
           return [
             getCmp('wap-hero', 6),
             getCmp('wap-hero', 5),
-            getCmp('wap-hero', 4),
             getCmp('wap-hero', 3),
             getCmp('wap-hero', 2),
           ]
@@ -176,7 +162,6 @@ export default {
           return [
             getCmp('wap-header', 6),
             getCmp('wap-header', 5),
-            getCmp('wap-header', 4),
             getCmp('wap-header', 3),
             getCmp('wap-header', 2),
           ]
@@ -184,7 +169,6 @@ export default {
           return [
             getCmp('wap-section', 18),
             getCmp('wap-section', 17),
-            getCmp('wap-section', 10),
             getCmp('wap-section', 3),
           ]
         case 'contact':
@@ -194,7 +178,6 @@ export default {
             getCmp('wap-cards', 11),
             getCmp('wap-cards', 9),
             getCmp('wap-cards', 8),
-            getCmp('wap-cards', 6),
             getCmp('wap-cards', 5),
             getCmp('wap-cards', 4),
             getCmp('wap-cards', 3),
