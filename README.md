@@ -204,7 +204,6 @@ The Wewix Dashboard allows you to manage stats about visitors to your website, s
 <div align="center">
     <img style="width: 180px;height:200px; object-fit:cover; display: inline-block;" src="https://res.cloudinary.com/wewix/image/upload/v1670428298/site-previews/yoga-preview-site_lig7fy.png">
     <img style="width: 180px;height:200px; object-fit:cover; display: inline-block;" src="https://res.cloudinary.com/wewix/image/upload/v1670428300/site-previews/kite-preview-site_aowkrp.png">
-    <img style="width: 180px;height:200px; object-fit:cover; display: inline-block;" src="https://res.cloudinary.com/wewix/image/upload/v1670428300/site-previews/creative-preview-site_kjnnnn.png">
     <img style="width: 180px;height:200px; object-fit:cover; display: inline-block;" src="https://res.cloudinary.com/wewix/image/upload/v1670428298/site-previews/goby-preview-site_hiwx9v.png">
     <img style="width: 180px;height:200px; object-fit:cover; display: inline-block;" src="https://res.cloudinary.com/wewix/image/upload/v1670428296/site-previews/plantify-preview-site_lfoxvp.png">
 </div>
